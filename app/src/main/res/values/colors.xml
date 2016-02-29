@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+
+    <color name="background_invalid">#ffff0000</color>
+    <color name="background_valid">#ff0026ff</color>
+    <color name="background_needs_attention">#ffffff00</color>
+    <color name="black_transp_70">#b2000000</color>
+    <color name="text_light">#ff000000</color>
+    <color name="text_dark">#fff3f3f3</color>
+    <color name="text_secondary_light">#ff555555</color>
+    <color name="text_secondary_dark">#ffa5a5a5</color>
+    <color name="toolbar_light">#ffe0e0e0</color>
+    <color name="toolbar_dark">#ff0f0f0f</color>
+
+</resources>

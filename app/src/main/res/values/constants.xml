@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+
+    <string name="app_name" translatable="false">Tower Collector</string>
+    <string name="app_id" translatable="false">TowerCollector %s</string>
+    <string name="upload_url_opencellid_org" translatable="false">http://www.opencellid.org/measure/uploadCsv</string>
+    <string name="preferences_current_value_summary_format" translatable="false"><![CDATA[<br/><b>[%s]</b>]]></string>
+    <string name="preferences_show_introduction_key" translatable="false">show_introduction</string>
+
+    <bool name="preferences_show_introduction_default_value" translatable="false">true</bool>
+
+    <string name="preferences_show_compatibility_warning_key" translatable="false">show_compatibility_warning</string>
+
+    <bool name="preferences_show_compatibility_warning_default_value" translatable="false">true
+    </bool>
+
+    <string name="preferences_latest_developer_message_key" translatable="false">latest_developer_message</string>
+
+    <integer name="preferences_latest_developer_message_default_value" translatable="false">1
+    </integer>
+
+    <string name="preferences_api_key_key" translatable="false">api_key</string>
+    <string name="preferences_api_key_default_value" translatable="false"></string>
+    <string name="preferences_api_key_link_key" translatable="false">api_key_link</string>
+    <string name="preferences_opencellid_org_sign_up_link" translatable="false">http://www.opencellid.org/#&amp;action=database.requestForApiKey</string>
+    <string name="preferences_about_api_key_key" translatable="false">about_api_key</string>
+    <string name="preferences_about_opencellid_project_key" translatable="false">about_opencellid</string>
+    <string name="preferences_imperial_units_key" translatable="false">imperial_units_key</string>
+
+    <bool name="preferences_imperial_units_default_value" translatable="false">false</bool>
+
+    <string name="preferences_gps_optimizations_enabled_key" translatable="false">gps_optimizations_enabled_key</string>
+
+    <bool name="preferences_gps_optimizations_enabled_default_value" translatable="false">true
+    </bool>
+
+    <string name="preferences_tracking_enabled_key" translatable="false">tracking_enabled_key</string>
+
+    <bool name="preferences_tracking_enabled_default_value" translatable="false">true</bool>
+
+    <string name="preferences_about_tracking_key" translatable="false">about_tracking</string>
+    <string name="preferences_app_theme_mode_key" translatable="false">preferences_app_theme_mode</string>
+    <string name="preferences_app_theme_mode_default_value" translatable="false">@string/preferences_app_theme_mode_entries_value_light</string>
+    <string name="preferences_app_theme_mode_entries_value_light" translatable="false">light</string>
+    <string name="preferences_app_theme_mode_entries_value_dark" translatable="false">dark</string>
+    <string name="preferences_update_check_enabled_key" translatable="false">auto_update_check_enabled</string>
+
+    <bool name="preferences_update_check_enabled_default_value" translatable="false">true</bool>
+
+    <string name="preferences_last_update_check_date_key" translatable="false">last_update_check_date</string>
+
+    <integer name="preferences_last_update_check_date_default_value" translatable="false">0
+    </integer>
+
+    <string name="preferences_collector_keep_screen_on_mode_key" translatable="false">collector_keep_screen_on_mode</string>
+    <string name="preferences_collector_keep_screen_on_mode_default_value" translatable="false">@string/preferences_keep_screen_on_mode_entries_value_disabled</string>
+    <string name="preferences_main_keep_screen_on_mode_key" translatable="false">main_keep_screen_on_mode</string>
+
+    <bool name="preferences_main_keep_screen_on_mode_default_value" translatable="false">false
+    </bool>
+
+    <string name="preferences_about_main_keep_screen_on_key" translatable="false">about_main_keep_screen_on</string>
+    <string name="preferences_about_collector_keep_screen_on_key" translatable="false">about_collector_keep_screen_on</string>
+    <string name="preferences_keep_screen_on_mode_entries_value_disabled" translatable="false">disabled</string>
+    <string name="preferences_keep_screen_on_mode_entries_value_dim" translatable="false">dim</string>
+    <string name="preferences_keep_screen_on_mode_entries_value_full" translatable="false">full</string>
+    <string name="preferences_collector_api_version_key" translatable="false">collector_api_version</string>
+    <string name="preferences_collector_api_version_default_value" translatable="false">@string/preferences_collector_api_version_entries_value_auto</string>
+
+    <bool name="preferences_collector_api_version_enabled_default_value" translatable="false">
+        false
+    </bool>
+
+    <string name="preferences_collector_api_version_entries_value_auto" translatable="false">auto</string>
+    <string name="preferences_collector_api_version_entries_value_api_17" translatable="false">api_17</string>
+    <string name="preferences_collector_api_version_entries_value_api_1" translatable="false">api_1</string>
+    <string name="preferences_about_collector_api_version_key" translatable="false">about_collector_api_version</string>
+    <string name="preferences_collect_neighboring_cells_key" translatable="false">collect_neighboring_cells</string>
+
+    <bool name="preferences_collect_neighboring_cells_default_value" translatable="false">true
+    </bool>
+
+    <string name="preferences_about_neighboring_cells_key" translatable="false">about_neighboring_cells</string>
+    <string name="preferences_main_window_recent_tab_key" translatable="false">main_window_recent_tab</string>
+
+    <integer name="preferences_main_window_recent_tab_default_value">0</integer>
+
+    <string name="preferences_help_link_key" translatable="false">help_link</string>
+    <string name="preferences_about_link_key" translatable="false">about_link</string>
+    <string name="preferences_introduction_link_key" translatable="false">introduction_link</string>
+    <string name="preferences_best_practices_link_key" translatable="false">best_practices_link</string>
+    <string name="preferences_external_integration_link_key" translatable="false">external_integration_link</string>
+    <string name="preferences_website_link_key" translatable="false">website_link</string>
+    <string name="preferences_website_link" translatable="false">http://zamojski.info/Index,Tower-Collector.html</string>
+    <string name="preferences_contact_email_link_key" translatable="false">contact_email_link</string>
+    <string name="preferences_google_plus_community_link_key" translatable="false">google_plus_community_link</string>
+    <string name="preferences_google_plus_community_link" translatable="false">https://plus.google.com/communities/105724371687131986494</string>
+    <string name="preferences_translate_link_key" translatable="false">help_translating_link</string>
+    <string name="preferences_translation_tool_link" translatable="false">http://i18n.zamojski.info/</string>
+    <string name="preferences_privacy_statement_link_key" translatable="false">privacy_statement_link</string>
+    <string name="preferences_open_source_licenses_link_key" translatable="false">open_source_licenses_link</string>
+    <string name="network_group_cdma" translatable="false">CDMA</string>
+    <string name="network_group_gsm" translatable="false">GSM</string>
+    <string name="network_group_umts" translatable="false">UMTS</string>
+    <string name="network_group_lte" translatable="false">LTE</string>
+
+</resources>

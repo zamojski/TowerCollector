@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include layout="@layout/main_gps_status_fragment"/>
+
+    <include layout="@layout/main_invalid_system_time_fragment"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1">
+
+            <TableRow
+                android:id="@+id/main_stats_today_title_tablerow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="displayHelpOnClick">
+
+                <TextView
+                    android:id="@+id/main_stats_today_title_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2"
+                    android:padding="@dimen/padding_small"
+                    android:text="@string/main_stats_today_title"
+                    android:textStyle="bold"
+                    tools:context=".MainActivity"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/main_stats_today_locations_tablerow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="displayHelpOnClick">
+
+                <TextView
+                    android:id="@+id/main_stats_today_locations_label_textview"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    android:text="@string/main_stats_locations_label"
+                    tools:context=".MainActivity"/>
+
+                <TextView
+                    android:id="@+id/main_stats_today_locations_value_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    tools:context=".MainActivity"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/main_stats_today_cells_tablerow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="displayHelpOnClick">
+
+                <TextView
+                    android:id="@+id/main_stats_today_cells_label_textview"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    android:text="@string/main_stats_cells_label"
+                    tools:context=".MainActivity"/>
+
+                <TextView
+                    android:id="@+id/main_stats_today_cells_value_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    tools:context=".MainActivity"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/main_stats_local_title_tablerow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="displayHelpOnClick">
+
+                <TextView
+                    android:id="@+id/main_stats_local_title_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2"
+                    android:padding="@dimen/padding_small"
+                    android:text="@string/main_stats_local_title"
+                    android:textStyle="bold"
+                    tools:context=".MainActivity"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/main_stats_local_locations_tablerow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="displayHelpOnClick">
+
+                <TextView
+                    android:id="@+id/main_stats_local_locations_label_textview"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    android:text="@string/main_stats_locations_label"
+                    tools:context=".MainActivity"/>
+
+                <TextView
+                    android:id="@+id/main_stats_local_locations_value_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    tools:context=".MainActivity"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/main_stats_local_cells_tablerow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="displayHelpOnClick">
+
+                <TextView
+                    android:id="@+id/main_stats_local_cells_label_textview"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    android:text="@string/main_stats_cells_label"
+                    tools:context=".MainActivity"/>
+
+                <TextView
+                    android:id="@+id/main_stats_local_cells_value_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    tools:context=".MainActivity"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/main_stats_global_title_tablerow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="displayHelpOnClick">
+
+                <TextView
+                    android:id="@+id/main_stats_global_title_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2"
+                    android:padding="@dimen/padding_small"
+                    android:text="@string/main_stats_global_title"
+                    android:textStyle="bold"
+                    tools:context=".MainActivity"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/main_stats_global_locations_tablerow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="displayHelpOnClick">
+
+                <TextView
+                    android:id="@+id/main_stats_global_locations_label_textview"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    android:text="@string/main_stats_global_locations_label"
+                    tools:context=".MainActivity"/>
+
+                <TextView
+                    android:id="@+id/main_stats_global_locations_value_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    tools:context=".MainActivity"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/main_stats_global_cells_tablerow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="displayHelpOnClick">
+
+                <TextView
+                    android:id="@+id/main_stats_global_cells_label_textview"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    android:text="@string/main_stats_global_cells_label"
+                    tools:context=".MainActivity"/>
+
+                <TextView
+                    android:id="@+id/main_stats_global_cells_value_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    tools:context=".MainActivity"/>
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+
+</LinearLayout>

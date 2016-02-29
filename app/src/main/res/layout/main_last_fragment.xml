@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include layout="@layout/main_gps_status_fragment"/>
+
+    <include layout="@layout/main_invalid_system_time_fragment"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1">
+
+            <TableRow
+                android:id="@+id/main_tablerow_last_cell"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/main_last_cell_title_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2"
+                    android:padding="@dimen/padding_small"
+                    android:text="@string/main_last_cell_title"
+                    android:textStyle="bold"
+                    tools:context=".MainActivity"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/main_last_network_type_tablerow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="displayHelpOnClick">
+
+                <TextView
+                    android:id="@+id/main_last_network_type_label_textview"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    android:text="@string/main_last_network_type_label"
+                    tools:context=".MainActivity"/>
+
+                <TextView
+                    android:id="@+id/main_last_network_type_value_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    tools:context=".MainActivity"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/main_last_cell_id_tablerow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="displayHelpOnClick">
+
+                <TextView
+                    android:id="@+id/main_last_cell_id_label_textview"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    android:text="@string/main_last_cell_id_label"
+                    tools:context=".MainActivity"/>
+
+                <TextView
+                    android:id="@+id/main_last_cell_id_value_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    tools:context=".MainActivity"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/main_last_lac_tablerow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="displayHelpOnClick">
+
+                <TextView
+                    android:id="@+id/main_last_lac_label_textview"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    android:text="@string/main_last_lac_label"
+                    tools:context=".MainActivity"/>
+
+                <TextView
+                    android:id="@+id/main_last_lac_value_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    tools:context=".MainActivity"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/main_last_mcc_tablerow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="displayHelpOnClick">
+
+                <TextView
+                    android:id="@+id/main_last_mcc_label_textview"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    android:text="@string/main_last_mcc_label"
+                    tools:context=".MainActivity"/>
+
+                <TextView
+                    android:id="@+id/main_last_mcc_value_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    tools:context=".MainActivity"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/main_last_mnc_tablerow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="displayHelpOnClick">
+
+                <TextView
+                    android:id="@+id/main_last_mnc_label_textview"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    android:text="@string/main_last_mnc_label"
+                    tools:context=".MainActivity"/>
+
+                <TextView
+                    android:id="@+id/main_last_mnc_value_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    tools:context=".MainActivity"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/main_last_signal_strength_tablerow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="displayHelpOnClick">
+
+                <TextView
+                    android:id="@+id/main_last_signal_strength_label_textview"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    android:text="@string/main_last_signal_strength_label"
+                    tools:context=".MainActivity"/>
+
+                <TextView
+                    android:id="@+id/main_last_signal_strength_value_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    tools:context=".MainActivity"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/main_last_latitude_tablerow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="displayHelpOnClick">
+
+                <TextView
+                    android:id="@+id/main_last_latitude_label_textview"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    android:text="@string/main_last_latitude_label"
+                    tools:context=".MainActivity"/>
+
+                <TextView
+                    android:id="@+id/main_last_latitude_value_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    tools:context=".MainActivity"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/main_last_longitude_tablerow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="displayHelpOnClick">
+
+                <TextView
+                    android:id="@+id/main_last_longitude_label_textview"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    android:text="@string/main_last_longitude_label"
+                    tools:context=".MainActivity"/>
+
+                <TextView
+                    android:id="@+id/main_last_longitude_value_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    tools:context=".MainActivity"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/main_last_gps_accuracy_tablerow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="displayHelpOnClick">
+
+                <TextView
+                    android:id="@+id/main_last_gps_accuracy_label_textview"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    android:text="@string/main_last_gps_accuracy_label"
+                    tools:context=".MainActivity"/>
+
+                <TextView
+                    android:id="@+id/main_last_gps_accuracy_value_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    tools:context=".MainActivity"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/main_last_date_time_tablerow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="displayHelpOnClick">
+
+                <TextView
+                    android:id="@+id/main_last_date_time_label_textview"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    android:text="@string/main_last_date_time_label"
+                    tools:context=".MainActivity"/>
+
+                <TextView
+                    android:id="@+id/main_last_date_time_value_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    tools:context=".MainActivity"/>
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+
+</LinearLayout>

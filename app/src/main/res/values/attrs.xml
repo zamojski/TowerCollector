@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+
+    <attr name="icon_menu_start" format="reference"/>
+    <attr name="icon_menu_stop" format="reference"/>
+    <attr name="icon_menu_upload" format="reference"/>
+    <attr name="icon_menu_more" format="reference"/>
+    <attr name="icon_menu_export" format="reference"/>
+    <attr name="icon_menu_help" format="reference"/>
+    <attr name="icon_menu_preferences" format="reference"/>
+    <attr name="toolbar_background_color" format="reference"/>
+
+</resources>

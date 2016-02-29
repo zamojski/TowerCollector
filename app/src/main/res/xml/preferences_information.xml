@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/preferences_category_information_title">
+        <PreferenceScreen
+            android:key="@string/preferences_about_link_key"
+            android:summary="@string/preferences_about_link_summary"
+            android:title="@string/preferences_about_link_title"/>
+        <PreferenceScreen
+            android:key="@string/preferences_website_link_key"
+            android:summary="@string/preferences_website_link_summary"
+            android:title="@string/preferences_website_link_title"/>
+        <PreferenceScreen
+            android:key="@string/preferences_contact_email_link_key"
+            android:summary="@string/preferences_contact_email_link_summary"
+            android:title="@string/preferences_contact_email_link_title"/>
+        <PreferenceScreen
+            android:key="@string/preferences_google_plus_community_link_key"
+            android:summary="@string/preferences_google_plus_community_link_summary"
+            android:title="@string/preferences_google_plus_community_link_title"/>
+        <PreferenceScreen
+            android:key="@string/preferences_translate_link_key"
+            android:summary="@string/preferences_translate_link_summary"
+            android:title="@string/preferences_translate_link_title"/>
+        <PreferenceScreen
+            android:key="@string/preferences_privacy_statement_link_key"
+            android:summary="@string/preferences_privacy_statement_link_summary"
+            android:title="@string/preferences_privacy_statement_link_title"/>
+        <PreferenceScreen
+            android:key="@string/preferences_open_source_licenses_link_key"
+            android:summary="@string/preferences_open_source_licenses_link_summary"
+            android:title="@string/preferences_open_source_licenses_link_title"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

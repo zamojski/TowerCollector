@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/main_menu_start"
+        android:icon="?attr/icon_menu_start"
+        android:title="@string/main_menu_start_button"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/main_menu_stop"
+        android:icon="?attr/icon_menu_stop"
+        android:title="@string/main_menu_stop_button"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/main_menu_upload"
+        android:icon="?attr/icon_menu_upload"
+        android:title="@string/main_menu_upload_button"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/main_menu_more"
+        android:icon="?attr/icon_menu_more"
+        android:title="@string/main_menu_more_button"
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/main_menu_export"
+                android:icon="?attr/icon_menu_export"
+                android:title="@string/main_menu_export_button"
+                app:showAsAction="always"/>
+            <item
+                android:id="@+id/main_menu_preferences"
+                android:icon="?attr/icon_menu_preferences"
+                android:title="@string/main_menu_preferences_button"
+                app:showAsAction="always"/>
+        </menu>
+    </item>
+
+</menu>

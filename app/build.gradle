@@ -1,0 +1,160 @@
+// each of the version numbers must be 0-99
+def versionMajor = 1 // major releases
+def versionMinor = 8 // minor feature releases
+def versionPatch = 0 // hot fixes
+def versionBuild = 0 // build version
+
+// Double check the versioning
+for (versionPart in [versionPatch, versionMinor, versionMajor, versionBuild]) {
+    assert 0 <= versionPart
+    assert versionPart <= 99
+}
+
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "info.zamojski.soft.towercollector"
+        minSdkVersion 14
+        targetSdkVersion 22
+        versionCode versionMajor * 1000000 + versionMinor * 10000 + versionPatch * 100 + versionBuild
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}.${versionBuild}"
+
+        Properties props = getCustomProperties()
+        println 'Defining custom build config fields'
+        assert props
+        // ACRA
+        buildConfigField "Boolean", "ACRA_SEND_REPORTS_IN_DEV_MODE", props['acra_sendReportsInDevMode']
+        buildConfigField "String", "ACRA_FORM_URI", props['acra_formUri']
+        buildConfigField "String", "ACRA_HTTP_METHOD", props['acra_httpMethod']
+        buildConfigField "String", "ACRA_REPORT_TYPE", props['acra_reportType']
+        buildConfigField "String", "ACRA_FORM_URI_BASIC_AUTH_LOGIN", props['acra_formUriBasicAuthLogin']
+        buildConfigField "String", "ACRA_FORM_URI_BASIC_AUTH_PASSWORD", props['acra_formUriBasicAuthPassword']
+        // Other
+        buildConfigField "String", "UPDATE_CHECK_FEED_URI", props['other_updateCheckFeedUri']
+        buildConfigField "String", "CONTACT_EMAIL", props['other_contactEmail']
+    }
+    signingConfigs {
+        release {
+            keyAlias ''
+            storeFile null
+            storePassword ''
+            keyPassword ''
+        }
+    }
+    buildTypes {
+        debug {
+            versionNameSuffix "-debug"
+        }
+        release {
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+            debuggable false
+            jniDebuggable false
+            renderscriptDebuggable false
+            zipAlignEnabled true
+            signingConfig signingConfigs.release
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_6
+        targetCompatibility JavaVersion.VERSION_1_6
+    }
+    productFlavors {
+        develop {
+            versionName android.defaultConfig.versionName + '-dev'
+        }
+        stable {
+        }
+    }
+    lintOptions {
+        disable 'MissingTranslation'
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:support-v4:22.2.1'
+    //compile 'com.android.support:appcompat-v7:22.2.1'
+    compile 'com.android.support:design:22.2.1'
+    compile 'de.greenrobot:eventbus:2.4.0'
+    compile 'ch.acra:acra:4.6.2'
+    compile 'org.sufficientlysecure:html-textview:1.4'
+    compile 'com.github.kevinsawicki:http-request:6.0'
+}
+
+allprojects {
+    afterEvaluate { project ->
+        def configName = 'release'
+
+        def props = getCustomProperties()
+        assert props
+        // Signing
+        if(android.signingConfigs.hasProperty(configName)) {
+            println 'Defining custom signing configuration'
+            def signFile = file(props['sign_storeFile'])
+            assert signFile.exists()
+            android.signingConfigs[configName].storeFile = signFile
+            android.signingConfigs[configName].storePassword = props['sign_storePassword']
+            android.signingConfigs[configName].keyAlias = props['sign_keyAlias']
+            android.signingConfigs[configName].keyPassword = props['sign_keyPassword']
+        }
+    }
+}
+
+
+Properties getCustomProperties() {
+    def propsFile = rootProject.file('app/properties/private.properties')
+
+    if (propsFile.exists()) {
+        println 'Loading private custom properties configuration'
+        def props = new Properties()
+        props.load(new FileInputStream(propsFile))
+        println props
+        return props
+    }
+    return null
+}
+
+
+// Custom tasks
+import groovy.io.FileType
+
+List<String> getSourceFiles() {
+    def files = []
+    getProjectDir().eachFileRecurse (FileType.FILES) { file ->
+        if(file.name.endsWith('.java')) {
+            files << file
+        }
+    }
+    return files
+}
+
+def commentLoggingOne(path) {
+    def content = new File(path).getText('UTF-8').replaceAll(/(?m)^(\s*)(Log\.[vd].+)/, '$1;//$2')
+    new File(path).write(content, 'UTF-8')
+}
+
+def uncommentLoggingOne(path) {
+    def content = new File(path).getText('UTF-8').replaceAll(/(?m)^(\s*);\/\/\s?(Log\.[vd].+)/, '$1$2')
+    new File(path).write(content, 'UTF-8')
+}
+
+task commentLoggingAll << {
+    description = 'Comments all verbose and debug calls to Log class'
+    getSourceFiles().each {
+        commentLoggingOne(it.path)
+    }
+}
+
+task uncommentLoggingAll << {
+    description = 'Uncomments all verbose and debug calls to Log class'
+    getSourceFiles().each {
+        uncommentLoggingOne(it.path)
+    }
+}

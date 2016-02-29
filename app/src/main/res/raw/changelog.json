@@ -1,0 +1,67 @@
+{
+  "Entries": [
+    {
+      "VersionCode": 49,
+      "Title": "Changes in version 1.7.4",
+      "Description": "<a href=\"https://plus.google.com/communities/105724371687131986494\"><b><big>Official Google+ community</big></b></a>",
+      "Messages": [
+        "Fixed wrong description color and content in Collector and Advanced preferences."
+      ]
+    },
+    {
+      "VersionCode": 48,
+      "Title": "Changes in version 1.7.3",
+      "Description": "<a href=\"https://plus.google.com/communities/105724371687131986494\"><b><big>Official Google+ community</big></b></a><br/><br/><b>Incorrect measurements and cells saved on this device were removed as a result of fixes, so that their number could be reduced!</b>",
+      "Messages": [
+        "Fixed wrong measurements saved with only PSC value different for UMTS networks when using API 1.",
+        "Fixed crash on Android 4.2 when processing measurements using API 17.",
+        "Fixed serving and neighboring cells saved in reversed order when using API 1.",
+        "Removed network operator name field.",
+        "Improved error handling.",
+        "Many internal changes and improvements."
+      ]
+    },
+    {
+      "VersionCode": 47,
+      "Title": "Changes in version 1.7.2",
+      "Messages": [
+        "Small improvements in GPS optimization parameters.",
+        "Improved network error handling."
+      ]
+    },
+    {
+      "VersionCode": 46,
+      "Title": "Changes in version 1.7.1",
+      "Description": "<a href=\"https://plus.google.com/communities/105724371687131986494\"><b><big>Check out official Google+ community page!</big></b></a><br/><br/>You can find there useful information, links, post ideas and ask questions.",
+      "Messages": [
+        "Fixed milliseconds saving in exported CSV file.",
+        "Improved OpenCellID.org upload compatibility.",
+        "Added Timing Advance column to exported CSV file for LTE cells.",
+        "Added link to official Google+ Community in Preferences."
+      ]
+    },
+    {
+      "VersionCode": 45,
+      "Title": "Changes in version 1.7.0",
+      "Description": "This version introduces many changes related to measurement collecting. They're connected with added support for new methods of reading cell data and keeping screen on. You can find more details below. If you experience any problems please contact me!",
+      "Messages": [
+        "Added support for Android API 17 (4.2+) methods to read cell info while collecting. New method provides more reliable and consistent data. It's also no longer necessary to keep screen on to get cell info and signal strength refreshed.",
+        "Added support for collecting cells using multiple SIM cards on Android 5.1+ (only when using new API).",
+        "Changed 'Keep screen on' option into 'Keep screen on when collecting' which now forces screen to remain on at given brightness level.",
+        "Added 'Keep screen on when visible' option which keeps screen enabled while Main screen is displayed.",
+        "Added option to disable Neighboring Cells collecting.",
+        "Updated Preferences to clearly present currently selected value.",
+        "Reorganized Preferences and added Advanced section."
+      ]
+    },
+    {
+      "VersionCode": 44,
+      "Title": "Changes in version 1.6.5",
+      "Messages": [
+        "Fixed Collector status not updated after enabling GPS in Android settings.",
+        "Fixed GPS status not updated in some rare situations.",
+        "Changed current value display format in Preferences."
+      ]
+    }
+  ]
+}

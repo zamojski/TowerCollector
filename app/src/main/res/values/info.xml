@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+    <string name="info_about_api_key_title">API key</string>
+    <string name="info_about_opencellid_project_title">OpenCellID project</string>
+    <string name="info_usage_statistics_title">Usage statistics</string>
+    <string name="info_about_application_title">About</string>
+    <string name="info_introduction_title">Introduction</string>
+    <string name="info_best_practices_title">Best practices</string>
+    <string name="info_external_integration_title">External integration</string>
+    <string name="info_privacy_statement_title">Privacy statement</string>
+    <string name="info_open_source_licenses_title">Open source licenses</string>
+    <string name="info_about_neighboring_cells_title">Neighboring cells</string>
+    <string name="info_about_collector_api_version_title">Collector API version</string>
+    <string name="info_about_main_keep_screen_on_title">Keep screen on when visible</string>
+    <string name="info_about_collector_keep_screen_on_title">Keep screen on when collecting</string>
+</resources>
