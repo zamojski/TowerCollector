@@ -244,9 +244,9 @@ public class MeasurementsDatabase {
         String todayDiscoveredCellsQuery = "SELECT COUNT(*) AS " + todayDiscoveredCellsCount + " FROM (SELECT " + cellsTablePrimaryKeyColumns
                 + " FROM " + CellsTable.TABLE_NAME + " WHERE " + CellsTable.COLUMN_DISCOVERED_AT
                 + " >= ? EXCEPT SELECT " + cellsArchiveTablePrimaryKeyColumns + " FROM " + CellsArchiveTable.TABLE_NAME + ")";
-        String localCellsQuery = "SELECT COUNT(*) AS " + localCellsCount + ", MIN(" + CellsTable.COLUMN_DISCOVERED_AT + ") AS "
+        String localCellsQuery = "SELECT COUNT(" + CellsTable.COLUMN_ROW_ID + ") AS " + localCellsCount + ", MIN(" + CellsTable.COLUMN_DISCOVERED_AT + ") AS "
                 + localDiscoveredCellsSince + " FROM " + CellsTable.TABLE_NAME;
-        String localLocationsQuery = "SELECT COUNT(*) AS " + localLocationsCount + " FROM " + MeasurementsTable.TABLE_NAME;
+        String localLocationsQuery = "SELECT COUNT(" + MeasurementsTable.COLUMN_ROW_ID + ") AS " + localLocationsCount + " FROM " + MeasurementsTable.TABLE_NAME;
         String localDiscoveredCellsQuery = "SELECT COUNT(*) AS " + localDiscoveredCellsCount + " FROM (SELECT " + cellsTablePrimaryKeyColumns
                 + " FROM " + CellsTable.TABLE_NAME + " EXCEPT SELECT " + cellsArchiveTablePrimaryKeyColumns + " FROM " + CellsArchiveTable.TABLE_NAME + ")";
         String globalLocationsQuery = "SELECT " + StatsTable.COLUMN_TOTAL_LOCATIONS + " AS " + globalLocationsCount + " FROM "
@@ -254,9 +254,9 @@ public class MeasurementsDatabase {
         String globalDiscoveredCellsQuery = "SELECT COUNT(*) AS " + globalDiscoveredCellsCount + " FROM (SELECT "
                 + cellsTablePrimaryKeyColumns + " FROM " + CellsTable.TABLE_NAME + " UNION SELECT "
                 + cellsArchiveTablePrimaryKeyColumns + " FROM " + CellsArchiveTable.TABLE_NAME + ")";
-        String globalDiscoveredSinceQuery = "SELECT MIN(" + CellsTable.COLUMN_DISCOVERED_AT + ") AS " + globalDiscoveredCellsSince
-                + " FROM (SELECT " + CellsTable.COLUMN_DISCOVERED_AT + " FROM " + CellsTable.TABLE_NAME + " UNION SELECT "
-                + CellsArchiveTable.COLUMN_DISCOVERED_AT + " FROM " + CellsArchiveTable.TABLE_NAME + ")";
+        String globalDiscoveredSinceQuery = "SELECT " + CellsTable.COLUMN_DISCOVERED_AT + " AS " + globalDiscoveredCellsSince
+                + " FROM " + CellsTable.TABLE_NAME + " UNION SELECT " + CellsArchiveTable.COLUMN_DISCOVERED_AT
+                + " FROM " + CellsArchiveTable.TABLE_NAME + " ORDER BY " + CellsTable.COLUMN_DISCOVERED_AT + " ASC LIMIT 0, 1";
         //Log.d(TAG, todayDiscoveredCellsQuery);
         //Log.d(TAG, localDiscoveredCellsQuery);
         //Log.d(TAG, globalDiscoveredCellsQuery);
