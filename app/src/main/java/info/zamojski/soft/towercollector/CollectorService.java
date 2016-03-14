@@ -247,15 +247,6 @@ public class CollectorService extends Service {
 
     // ========== NOTIFICATION ========== //
 
-    private void updateNotification() {
-        GpsStatus gpsStatus = getGpsStatus();
-        if (gpsStatus == GpsStatus.LowAccuracy || gpsStatus == GpsStatus.NoLocation) {
-            updateNotification(gpsStatus);
-        } else {
-            updateNotification(MeasurementsDatabase.getInstance(getApplication()).getMeasurementsStatistics());
-        }
-    }
-
     private void updateNotification(GpsStatus status) {
         String statusString;
         if (status == GpsStatus.LowAccuracy) {
@@ -706,11 +697,18 @@ public class CollectorService extends Service {
 
     private void setGpsStatus(GpsStatus status) {
         Log.d(TAG, "setGpsStatus(): Setting gps status = " + status);
+        boolean statusChanged = (this.gpsStatus != status);
         this.gpsStatus = status;
         float accuracy = getLastGpsAccuracy();
         // Update always because accuracy might change
         EventBus.getDefault().postSticky(new GpsStatusChangedEvent(status, accuracy));
-        updateNotification();
+        if (gpsStatus == GpsStatus.LowAccuracy || gpsStatus == GpsStatus.NoLocation) {
+            updateNotification(gpsStatus);
+        }
+        // Optimization: it doesn't make sense to refresh if nothing changes (after save updated in a different way)
+        else if (statusChanged) {
+            updateNotification(MeasurementsDatabase.getInstance(getApplication()).getMeasurementsStatistics());
+        }
     }
 
     public float getLastGpsAccuracy() {
