@@ -44,7 +44,7 @@ public class Log {
         try {
             if (!logDir.exists())
                 logDir.mkdirs();
-            FileOutputStream fis = new FileOutputStream(logFile);
+            FileOutputStream fis = new FileOutputStream(logFile, true);
             osw = new OutputStreamWriter(fis);
             // write identification data
             d(TAG, ApkUtils.getDeviceName());
