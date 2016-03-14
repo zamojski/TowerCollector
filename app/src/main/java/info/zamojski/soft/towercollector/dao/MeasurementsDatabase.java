@@ -34,7 +34,7 @@ public class MeasurementsDatabase {
     private static final String TAG = MeasurementsDatabase.class.getSimpleName();
 
     public static final String DATABASE_FILE_NAME = "measurements.db";
-    public static final int DATABASE_FILE_VERSION = 10;
+    public static final int DATABASE_FILE_VERSION = 11;
 
     private static final int NUM_OF_DELETIONS_PER_ONE_QUERY = 50;
 
@@ -101,7 +101,7 @@ public class MeasurementsDatabase {
                 // insert location
                 {
                     ContentValues values = new ContentValues();
-                    values.put(LocationsTable.COLUMN_ROW_ID, locationHashCode);
+                    values.put(LocationsTable.COLUMN_HASHCODE, locationHashCode);
                     values.put(LocationsTable.COLUMN_LATITUDE, measurement.getLatitude());
                     values.put(LocationsTable.COLUMN_LONGITUDE, measurement.getLongitude());
                     values.put(LocationsTable.COLUMN_GPS_ACCURACY, measurement.getGpsAccuracy());
@@ -113,11 +113,30 @@ public class MeasurementsDatabase {
                     Log.d(TAG, "insertMeasurement(): Location inserted = " + localResult);
                     resultSb.append("\tlocation inserted=").append(localResult);
                 }
+                // don't use value returned by insert, because it sometimes returns wrong value -> query always
+                long locationId = -1;
+                {
+                    SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
+                    queryBuilder.setTables(LocationsTable.TABLE_NAME);
+                    String[] columns = new String[] { CellsTable.COLUMN_ROW_ID };
+                    String selection = LocationsTable.COLUMN_HASHCODE + " = ?";
+                    String[] selectionArgs = new String[] { locationHashCode };
+                    Cursor cursorTotal = queryBuilder.query(db, columns, selection, selectionArgs, null, null, null);
+                    boolean localResult = false;
+                    if (cursorTotal.moveToNext()) {
+                        locationId = cursorTotal.getInt(cursorTotal.getColumnIndex(CellsTable.COLUMN_ROW_ID));
+                        localResult = true;
+                    }
+                    cursorTotal.close();
+                    results[mIndex] = localResult;
+                    Log.d(TAG, "insertMeasurement(): Location found = " + localResult);
+                    resultSb.append("\tlocation found=").append(localResult);
+                }
                 // insert measurement (if previous queries returned correct result)
                 if (results[mIndex]) {
                     ContentValues values = new ContentValues();
                     values.put(MeasurementsTable.COLUMN_CELL_ID, cellId);
-                    values.put(MeasurementsTable.COLUMN_LOCATION_ID, locationHashCode);
+                    values.put(MeasurementsTable.COLUMN_LOCATION_ID, locationId);
                     values.put(MeasurementsTable.COLUMN_PSC, measurement.getPsc());
                     values.put(MeasurementsTable.COLUMN_NEIGHBORING, measurement.isNeighboring());
                     values.put(MeasurementsTable.COLUMN_TA, measurement.getTa());

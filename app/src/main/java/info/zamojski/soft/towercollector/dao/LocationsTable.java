@@ -8,6 +8,7 @@ final class LocationsTable implements ITable {
 
     static final String TABLE_NAME = "locations";
     static final String COLUMN_ROW_ID = "row_id";
+    static final String COLUMN_HASHCODE = "hashcode";
     static final String COLUMN_LATITUDE = "lat";
     static final String COLUMN_LONGITUDE = "lon";
     static final String COLUMN_GPS_ACCURACY = "accuracy";
@@ -16,14 +17,15 @@ final class LocationsTable implements ITable {
     static final String COLUMN_GPS_ALTITUDE = "altitude";
 
     private static final String QUERY_CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ("
-            + COLUMN_ROW_ID + " CHARACTER(40) NOT NULL, "
+            + COLUMN_ROW_ID + " INTEGER PRIMARY KEY NOT NULL, "
+            + COLUMN_HASHCODE + " CHARACTER(40) NOT NULL, "
             + COLUMN_LATITUDE + " REAL NOT NULL, "
             + COLUMN_LONGITUDE + " REAL NOT NULL, "
             + COLUMN_GPS_ACCURACY + " REAL NOT NULL, "
             + COLUMN_GPS_SPEED + " REAL NOT NULL, "
             + COLUMN_GPS_BEARING + " REAL NOT NULL, "
             + COLUMN_GPS_ALTITUDE + " REAL NOT NULL, "
-            + "PRIMARY KEY (" + COLUMN_ROW_ID + ") ON CONFLICT IGNORE)";
+            + "UNIQUE (" + COLUMN_HASHCODE + ") ON CONFLICT IGNORE)";
 
     @Override
     public String[] getCreateQueries() {
