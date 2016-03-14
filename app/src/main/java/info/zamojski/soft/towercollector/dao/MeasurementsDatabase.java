@@ -43,6 +43,9 @@ public class MeasurementsDatabase {
     private static volatile MeasurementsDatabase instance = null;
 
     private boolean insertionFailureReported = false;
+    
+    private Measurement lastMeasurementCache;
+    private Statistics lastStatisticsCache;
 
     private MeasurementsDatabase(Context context) {
         helper = new MeasurementsOpenHelper(context);
@@ -149,6 +152,7 @@ public class MeasurementsDatabase {
                 }
             }
         } finally {
+            invalidateCache();
             db.endTransaction();
         }
         return overallResult;
@@ -160,7 +164,6 @@ public class MeasurementsDatabase {
 
     public Measurement getFirstMeasurement() {
         Measurement firstMeasurement = null;
-        // try to get it from DB
         List<Measurement> measurements = getMeasurements(null, null, null, null, MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " ASC, " + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_ROW_ID + " ASC", "1");
         if (!measurements.isEmpty())
             firstMeasurement = measurements.get(0);
@@ -169,8 +172,12 @@ public class MeasurementsDatabase {
     }
 
     public Measurement getLastMeasurement() {
+        // Try to get from cache then read from DB
+        if (this.lastMeasurementCache != null) {
+            Log.d(TAG, "getLastMeasurement(): Value from cache: " + this.lastMeasurementCache);
+            return this.lastMeasurementCache;
+        }
         Measurement lastMeasurement = null;
-        // try to get it from DB
         List<Measurement> measurements = getMeasurements(null, null, null, null,
                 MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " DESC, "
                         + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_NEIGHBORING + " DESC, "
@@ -179,7 +186,8 @@ public class MeasurementsDatabase {
         if (!measurements.isEmpty()) {
             lastMeasurement = measurements.get(0);
         }
-        Log.d(TAG, "getLastMeasurement(): " + lastMeasurement);
+        Log.d(TAG, "getLastMeasurement(): Value from DB: " + lastMeasurement);
+        this.lastMeasurementCache = lastMeasurement;
         return lastMeasurement;
     }
 
@@ -199,7 +207,11 @@ public class MeasurementsDatabase {
     }
 
     public Statistics getMeasurementsStatistics() {
-        Log.d(TAG, "getMeasurementsStatistics(): Getting stats");
+        // Try to get from cache then read from DB
+        if (this.lastStatisticsCache != null) {
+            Log.d(TAG, "getMeasurementsStatistics(): Value from cache: " + this.lastStatisticsCache);
+            return this.lastStatisticsCache;
+        }
         Statistics stats = new Statistics();
         SQLiteDatabase db = helper.getReadableDatabase();
         // calculate midnight date (beginning of day)
@@ -271,7 +283,8 @@ public class MeasurementsDatabase {
             stats.setSinceGlobal(cursor.getLong(cursor.getColumnIndex(globalDiscoveredCellsSince)));
         }
         cursor.close();
-        Log.d(TAG, "getMeasurementsStatistics(): " + stats);
+        Log.d(TAG, "getMeasurementsStatistics(): Value from DB: " + stats);
+        this.lastStatisticsCache = stats;
         return stats;
     }
 
@@ -402,6 +415,7 @@ public class MeasurementsDatabase {
             db.setTransactionSuccessful();
             Log.d(TAG, "deleteAllMeasurements(): Deleted " + deletedMeasurements + " measurements, " + deletedCells + " cells, " + deletedLocations + " locations");
         } finally {
+            invalidateCache();
             db.endTransaction();
         }
         return deletedMeasurements;
@@ -431,10 +445,12 @@ public class MeasurementsDatabase {
                 String[] whereArgs = new String[upper - lower];
                 StringBuilder whereClauseBuilder = new StringBuilder(MeasurementsTable.COLUMN_ROW_ID + " IN (");
                 for (int j = 0; j < (upper - lower); j++) {
-                    if (j == 0)
+                    if (j == 0) {
                         whereClauseBuilder.append("?");
-                    else
+                    }
+                    else {
                         whereClauseBuilder.append(", ?");
+                    }
                     whereArgs[j] = String.valueOf(rowIds[lower + j]);
                 }
                 whereClauseBuilder.append(")");
@@ -444,16 +460,22 @@ public class MeasurementsDatabase {
             // validate total result
             if (deleted == rowIds.length) {
                 // if all removed successfully then delete orphaned cells and locations
-                long deletedCells = db.delete(CellsTable.TABLE_NAME, CellsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_CELL_ID + " FROM " + MeasurementsTable.TABLE_NAME + ")", null);
                 long deletedLocations = db.delete(LocationsTable.TABLE_NAME, LocationsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_LOCATION_ID + " FROM " + MeasurementsTable.TABLE_NAME + ")", null);
+                long deletedCells = db.delete(CellsTable.TABLE_NAME, CellsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_CELL_ID + " FROM " + MeasurementsTable.TABLE_NAME + ")", null);
                 Log.d(TAG, "deleteMeasurements(): Deleted orphaned " + deletedCells + " cells, " + deletedLocations + " locations");
                 db.setTransactionSuccessful();
             } else
                 deleted = 0;
         } finally {
+            invalidateCache();
             db.endTransaction();
         }
         return deleted;
+    }
+    
+    private void invalidateCache() {
+        lastMeasurementCache = null;
+        lastStatisticsCache = null;
     }
 
     // ========== GET DATABASE VERSION ========== //
