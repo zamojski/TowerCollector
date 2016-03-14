@@ -1,6 +1,16 @@
 {
   "Entries": [
     {
+      "VersionCode": 50,
+      "Title":"Changes in version 1.7.5",
+      "Description":"Tower Collector became open source - more on <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> :)",
+      "Messages": [
+        "Improved performance of the app and reducted battery usage when Collector is running.",
+        "Fixed crash when web browser is not insalled on a device.",
+        "Improved notification layout for displaying long text."
+      ]
+    },
+    {
       "VersionCode": 49,
       "Title": "Changes in version 1.7.4",
       "Description": "<a href=\"https://plus.google.com/communities/105724371687131986494\"><b><big>Official Google+ community</big></b></a>",
@@ -52,15 +62,6 @@
         "Added option to disable Neighboring Cells collecting.",
         "Updated Preferences to clearly present currently selected value.",
         "Reorganized Preferences and added Advanced section."
-      ]
-    },
-    {
-      "VersionCode": 44,
-      "Title": "Changes in version 1.6.5",
-      "Messages": [
-        "Fixed Collector status not updated after enabling GPS in Android settings.",
-        "Fixed GPS status not updated in some rare situations.",
-        "Changed current value display format in Preferences."
       ]
     }
   ]
