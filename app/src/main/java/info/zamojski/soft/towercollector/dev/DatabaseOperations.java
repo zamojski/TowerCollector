@@ -37,14 +37,18 @@ public class DatabaseOperations {
                 File externalStorage = Environment.getExternalStorageDirectory();
                 if (externalStorage.canWrite()) {
                     FileUtils.copyFile(srcFile, dstFile);
-                    Log.d(TAG, "importExportDatabase(): Database " + operation + "ed");
+                    Log.d(TAG, "copyDatabase(): Database " + operation + "ed");
                     Toast.makeText(context, "Database " + operation + "ed", Toast.LENGTH_LONG).show();
                 }
-                Log.d(TAG, "importExportDatabase(): External storage is read only");
+                else {
+                    Log.d(TAG, "copyDatabase(): External storage is read only");
+                }
             }
-            Log.d(TAG, "importExportDatabase(): External storage is not available");
+            else {
+                Log.d(TAG, "copyDatabase(): External storage is not available");
+            }
         } catch (Exception ex) {
-            Log.e(TAG, "importExportDatabase(): Cannot " + operation + " database", ex);
+            Log.e(TAG, "copyDatabase(): Cannot " + operation + " database", ex);
         }
     }
 
