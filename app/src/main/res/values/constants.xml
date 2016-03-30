@@ -63,6 +63,10 @@
     </bool>
 
     <string name="preferences_about_main_keep_screen_on_key" translatable="false">about_main_keep_screen_on</string>
+
+    <bool name="preferences_start_collector_at_boot_default_value" translatable="false">false</bool>
+
+    <string name="preferences_start_collector_at_boot_key" translatable="false">start_collector_at_boot</string>
     <string name="preferences_about_collector_keep_screen_on_key" translatable="false">about_collector_keep_screen_on</string>
     <string name="preferences_keep_screen_on_mode_entries_value_disabled" translatable="false">disabled</string>
     <string name="preferences_keep_screen_on_mode_entries_value_dim" translatable="false">dim</string>

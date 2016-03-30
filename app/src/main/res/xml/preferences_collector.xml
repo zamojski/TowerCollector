@@ -23,6 +23,12 @@
             android:key="@string/preferences_collector_keep_screen_on_mode_key"
             android:summary="@string/preferences_collector_keep_screen_on_summary"
             android:title="@string/preferences_collector_keep_screen_on_title"/>
+
+        <CheckBoxPreference
+            android:defaultValue="@bool/preferences_start_collector_at_boot_default_value"
+            android:key="@string/preferences_start_collector_at_boot_key"
+            android:summary="@string/preferences_start_collector_at_boot_summary"
+            android:title="@string/preferences_start_collector_at_boot_title"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/preferences_category_help_title">
         <PreferenceScreen

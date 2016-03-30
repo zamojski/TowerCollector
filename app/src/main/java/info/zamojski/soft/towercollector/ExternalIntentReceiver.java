@@ -17,6 +17,8 @@ public class ExternalIntentReceiver extends BroadcastReceiver {
 
     private static final String TAG = ExternalIntentReceiver.class.getSimpleName();
 
+    private final String quickBootPowerOnAction = "android.intent.action.QUICKBOOT_POWERON";
+
     private final String collectorStartAction = "info.zamojski.soft.towercollector.COLLECTOR_START";
     private final String collectorStopAction = "info.zamojski.soft.towercollector.COLLECTOR_STOP";
 
@@ -31,6 +33,11 @@ public class ExternalIntentReceiver extends BroadcastReceiver {
             stopCollectorService(context);
         } else if (action.equals(uploaderStartAction)) {
             startUploaderService(context);
+        } else if (action.equals(Intent.ACTION_BOOT_COMPLETED) || action.equals(quickBootPowerOnAction)) {
+            boolean startAtBootEnabled = MyApplication.getPreferencesProvider().getStartCollectorAtBoot();
+            if (startAtBootEnabled) {
+                startCollectorService(context,true);
+            }
         }
     }
 

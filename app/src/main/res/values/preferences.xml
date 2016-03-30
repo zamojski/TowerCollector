@@ -81,4 +81,6 @@
     <string name="preferences_about_main_keep_screen_on_summary">Learn how this option works and when to use it.</string>
     <string name="preferences_about_collector_keep_screen_on_title">About keep screen on when collecting</string>
     <string name="preferences_about_collector_keep_screen_on_summary">Learn how this option works and when to use it.</string>
+    <string name="preferences_start_collector_at_boot_title">Start collecting at device boot</string>
+    <string name="preferences_start_collector_at_boot_summary">Check to start Collector automatically at device boot. The app must be installed on internal memory to make it working.</string>
 </resources>
