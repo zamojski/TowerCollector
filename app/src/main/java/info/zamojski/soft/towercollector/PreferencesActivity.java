@@ -51,15 +51,13 @@ public class PreferencesActivity extends AppCompatPreferenceActivity {
     @Override
     public void onStart() {
         super.onStart();
-        //for GA Screen tracking
-        MyApplication.getAnalytics().startActivity(this);
+        MyApplication.getAnalytics().sendPreferencesActivityStarted();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        //for GA Screen tracking
-        MyApplication.getAnalytics().stopActivity(this);
+        MyApplication.getAnalytics().sendPreferencesActivityStopped();
     }
 
     @Override

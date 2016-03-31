@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources xmlns:tools="http://schemas.android.com/tools"
+           tools:ignore="TypographyDashes">
+
+    <!-- The application name. Defaults to name specified for the application label -->
+    <string name="ga_appName">Tower Collector</string>
+
+    <!-- The dispatching period in seconds when Google Play services is unavailable.
+    The default period is 1800 seconds or 30 minutes -->
+    <integer name="ga_dispatchPeriod">1800</integer>
+
+    <!-- Enable dry run mode. Default is false -->
+    <bool name="ga_dryRun">false</bool>
+
+</resources>

@@ -5,6 +5,7 @@
 package info.zamojski.soft.towercollector;
 
 import de.greenrobot.event.EventBus;
+import info.zamojski.soft.towercollector.analytics.IntentSource;
 import info.zamojski.soft.towercollector.events.CollectorStartedEvent;
 import info.zamojski.soft.towercollector.utils.BackgroundTaskHelper;
 
@@ -28,7 +29,7 @@ public class ExternalIntentReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
         if (action.equals(collectorStartAction)) {
-            startCollectorService(context);
+            startCollectorService(context, IntentSource.Application);
         } else if (action.equals(collectorStopAction)) {
             stopCollectorService(context);
         } else if (action.equals(uploaderStartAction)) {
@@ -36,18 +37,18 @@ public class ExternalIntentReceiver extends BroadcastReceiver {
         } else if (action.equals(Intent.ACTION_BOOT_COMPLETED) || action.equals(quickBootPowerOnAction)) {
             boolean startAtBootEnabled = MyApplication.getPreferencesProvider().getStartCollectorAtBoot();
             if (startAtBootEnabled) {
-                startCollectorService(context,true);
+                startCollectorService(context, IntentSource.System);
             }
         }
     }
 
-    private void startCollectorService(Context context) {
+    private void startCollectorService(Context context, IntentSource source) {
         if (canStartBackgroundService(context)) {
             Log.d(TAG, "startCollectorService(): Starting service from broadcast");
             Intent intent = getCollectorIntent(context);
             context.startService(intent);
             EventBus.getDefault().post(new CollectorStartedEvent(intent));
-            MyApplication.getAnalytics().sendCollectorStarted(true);
+            MyApplication.getAnalytics().sendCollectorStarted(source);
         }
     }
 
@@ -64,7 +65,7 @@ public class ExternalIntentReceiver extends BroadcastReceiver {
         if (canStartBackgroundService(context)) {
             Log.d(TAG, "startCollectorService(): Starting service from broadcast");
             context.startService(getUploaderIntent(context));
-            MyApplication.getAnalytics().sendUploadStarted(true);
+            MyApplication.getAnalytics().sendUploadStarted(IntentSource.Application);
         }
     }
 

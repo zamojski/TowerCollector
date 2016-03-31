@@ -10,8 +10,9 @@ Project is build using Android Studio 2.0.
 To build your own signed apk go to "[app/properties](app/properties)" and:
 
  1. Place your keystore file inside the folder.
- 2. Copy "[example.properties](app/properties/example.properties)" as "private.properties" and adjust it accordingly.
- 3. These files will be ignored so don't worry about committing them by mistake.
+ 2. Copy "[example.properties](app/properties/example.properties)" as "private.properties" in the same directory and adjust it accordingly.
+ 3. Copy "[google-services-example.json](app/google-services-example.json)" as "google-services.json" in the same directory and adjust it accordingly or place there your own generated file.
+ 4. These files will be ignored so don't worry about committing them by mistake.
 
 ## Bug reports and feature requests
 Please report through Issues tab on this page or email me directly.

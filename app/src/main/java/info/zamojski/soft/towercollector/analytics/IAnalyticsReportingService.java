@@ -12,13 +12,15 @@ public interface IAnalyticsReportingService {
 
     void setAppOptOut(boolean optOut);
 
-    @Deprecated
-    void startActivity(Activity activity);
-
-    @Deprecated
-    void stopActivity(Activity activity);
-
     void sendException(Throwable throwable, boolean isFatal);
+
+    void sendMainActivityStarted();
+
+    void sendMainActivityStopped();
+
+    void sendPreferencesActivityStarted();
+
+    void sendPreferencesActivityStopped();
 
     void sendUpdateAction(String source);
 
@@ -26,11 +28,11 @@ public interface IAnalyticsReportingService {
 
     void sendMigrationFinished(long duration, int oldDbVersion, AnalyticsStatistics stats);
 
-    void sendCollectorStarted(boolean byIntent);
+    void sendCollectorStarted(IntentSource source);
 
     void sendCollectorFinished(long duration, String transportMode, AnalyticsStatistics stats);
 
-    void sendUploadStarted(boolean byIntent);
+    void sendUploadStarted(IntentSource source);
 
     void sendUploadFinished(long duration, String networkType, AnalyticsStatistics stats);
 

@@ -4,6 +4,7 @@
 
 package info.zamojski.soft.towercollector;
 
+import info.zamojski.soft.towercollector.analytics.IntentSource;
 import info.zamojski.soft.towercollector.enums.FileType;
 import info.zamojski.soft.towercollector.enums.MeansOfTransport;
 import info.zamojski.soft.towercollector.enums.Validity;
@@ -78,8 +79,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//TODO: GA import com.google.analytics.tracking.android.GAServiceManager;
-
 import de.greenrobot.event.EventBus;
 
 public class MainActivity extends AppCompatActivity {
@@ -98,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     private MenuItem startMenu;
     private MenuItem stopMenu;
 
-    private boolean isMiminized = false;
+    private boolean isMinimized = false;
 
     public ICollectorService collectorServiceBinder;
 
@@ -158,9 +157,6 @@ public class MainActivity extends AppCompatActivity {
 
         processOnStartIntent(getIntent());
 
-        //send usage data
-        //TODO: GA GAServiceManager.getInstance().dispatchLocalHits();
-
         // check for availability of new version
         checkForNewVersionAvailability();
     }
@@ -181,22 +177,20 @@ public class MainActivity extends AppCompatActivity {
         if (isCollectorServiceRunning.get()) {
             bindService(new Intent(this, CollectorService.class), collectorServiceConnection, 0);
         }
-        if (isMiminized && showExportFinishedDialog) {
+        if (isMinimized && showExportFinishedDialog) {
             displayExportFinishedDialog();
         }
-        isMiminized = false;
+        isMinimized = false;
         EventBus.getDefault().register(this);
-        //for GA Screen tracking
-        MyApplication.getAnalytics().startActivity(this);
+        MyApplication.getAnalytics().sendMainActivityStarted();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        isMiminized = true;
+        isMinimized = true;
         EventBus.getDefault().unregister(this);
-        // for GA Screen tracking
-        MyApplication.getAnalytics().stopActivity(this);
+        MyApplication.getAnalytics().sendMainActivityStopped();
     }
 
     @Override
@@ -500,7 +494,6 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     });
-                    //TODO: check this IllegalArgumentException: View not attached to window manager caused probably by getParent()
                     alertDialog.show();
                 }
             }
@@ -615,7 +608,7 @@ public class MainActivity extends AppCompatActivity {
                 // start service
                 startService(intent);
                 EventBus.getDefault().post(new CollectorStartedEvent(intent));
-                MyApplication.getAnalytics().sendCollectorStarted(false);
+                MyApplication.getAnalytics().sendCollectorStarted(IntentSource.User);
             }
         }
     }
@@ -682,9 +675,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, UploaderService.class);
             intent.putExtra(UploaderService.INTENT_KEY_APIKEY, apiKey);
             startService(intent);
-            MyApplication.getAnalytics().sendUploadStarted(false);
-            //send usage data
-            //TODO: GA GAServiceManager.getInstance().dispatchLocalHits();
+            MyApplication.getAnalytics().sendUploadStarted(IntentSource.User);
         } else
             Toast.makeText(getApplication(), R.string.uploader_already_running, Toast.LENGTH_LONG).show();
     }
@@ -927,7 +918,7 @@ public class MainActivity extends AppCompatActivity {
             switch (msg.what) {
                 case EXPORT_FINISHED_UI_REFRESH:
                     mainActivity.exportedFileAbsolutePath = msg.getData().getString(ExportFileAsyncTask.ABSOLUTE_PATH);
-                    if (!mainActivity.isMiminized)
+                    if (!mainActivity.isMinimized)
                         mainActivity.displayExportFinishedDialog();
                     else
                         mainActivity.showExportFinishedDialog = true;

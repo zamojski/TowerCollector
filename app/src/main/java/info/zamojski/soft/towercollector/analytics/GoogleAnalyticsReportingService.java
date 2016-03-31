@@ -4,161 +4,185 @@
 
 package info.zamojski.soft.towercollector.analytics;
 
+import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.analytics.internal.Action;
 import info.zamojski.soft.towercollector.analytics.internal.Category;
 import info.zamojski.soft.towercollector.analytics.internal.Dimension;
 import info.zamojski.soft.towercollector.analytics.internal.Label;
 import info.zamojski.soft.towercollector.analytics.internal.Metric;
+import info.zamojski.soft.towercollector.analytics.internal.Screens;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
 
-import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
-import android.util.Log;
 
-//TODO: GA import com.google.analytics.tracking.android.EasyTracker;
-//TODO: GA import com.google.analytics.tracking.android.Fields;
-//TODO: GA import com.google.analytics.tracking.android.GAServiceManager;
-//TODO: GA import com.google.analytics.tracking.android.GoogleAnalytics;
-//TODO: GA import com.google.analytics.tracking.android.MapBuilder;
-//TODO: GA import com.google.analytics.tracking.android.StandardExceptionParser;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.StandardExceptionParser;
+import com.google.android.gms.analytics.Tracker;
 
 public class GoogleAnalyticsReportingService implements IAnalyticsReportingService {
 
-    private static final String TAG = GoogleAnalyticsReportingService.class.getSimpleName();
+    private Application application;
 
-    private Context context;
+    private GoogleAnalytics analytics;
+    private Tracker tracker;
 
-    //TODO: GA private GoogleAnalytics analytics;
-    //TODO: GA private EasyTracker tracker;
+    public GoogleAnalyticsReportingService(Application application, boolean trackingEnabled) {
+        this.application = application;
 
-    public GoogleAnalyticsReportingService(Context context, boolean dryRun, boolean trackingEnabled) {
-        this.context = context;
+        this.analytics = GoogleAnalytics.getInstance(application);
+        this.analytics.setAppOptOut(!trackingEnabled);
 
-        //TODO: GA this.analytics = GoogleAnalytics.getInstance(context);
-
-        Log.d(TAG, "ctor(): Setting dry run = " + dryRun);
-        //TODO: GA this.analytics.setDryRun(dryRun);
-
-        Log.d(TAG, "ctor(): Setting tracking enabled = " + trackingEnabled);
-        //TODO: GA analytics.setAppOptOut(!trackingEnabled);
-
-        //use manual dispatch on non-Google compatible devices (rest may be supported by Google Play Services)
-        //TODO: GA GAServiceManager.getInstance().setLocalDispatchPeriod(0);
-
-        //TODO: GA tracker = EasyTracker.getInstance(context);
+        this.tracker = analytics.newTracker(R.xml.global_tracker);
     }
 
     @Override
     public void setAppOptOut(boolean optOut) {
-        //TODO: GA analytics.setAppOptOut(optOut);
-    }
-
-    @Deprecated
-    @Override
-    public void startActivity(Activity activity) {
-        //TODO: GA this.tracker.activityStart(activity);
-    }
-
-    @Deprecated
-    @Override
-    public void stopActivity(Activity activity) {
-        //TODO: GA this.tracker.activityStop(activity);
+        analytics.setAppOptOut(optOut);
     }
 
     @Override
     public void sendException(Throwable throwable, boolean isFatal) {
-        //TODO: GA this.tracker.send(MapBuilder.createException(new StandardExceptionParser(context, null).getDescription(Thread.currentThread().getName(), throwable), isFatal).build());
+        this.tracker.send(new HitBuilders.ExceptionBuilder()
+                .setDescription(new StandardExceptionParser(this.application, null).getDescription(Thread.currentThread().getName(), throwable))
+                .setFatal(isFatal)
+                .build());
+    }
+
+    @Override
+    public void sendMainActivityStarted() {
+        this.tracker.setScreenName(Screens.MainActivity);
+        this.tracker.send(new HitBuilders.ScreenViewBuilder().build());
+    }
+
+    @Override
+    public void sendMainActivityStopped() {
+        this.tracker.setScreenName(null);
+    }
+
+    @Override
+    public void sendPreferencesActivityStarted() {
+        this.tracker.setScreenName(Screens.PreferencesActivity);
+        this.tracker.send(new HitBuilders.ScreenViewBuilder().build());
+    }
+
+    @Override
+    public void sendPreferencesActivityStopped() {
+        this.tracker.setScreenName(null);
     }
 
     @Override
     public void sendUpdateAction(String source) {
-        //TODO: GA this.tracker.send(MapBuilder.createEvent(Category.Tasks, Action.Update, Label.Select, 1L)
-        //TODO: GA         .set(Fields.customDimension(Dimension.UpdateSource), source)
-        //TODO: GA         .build());
+        this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, Action.Update)
+                .setLabel(Label.Select)
+                .setValue(1L)
+                .setCustomDimension(Dimension.UpdateSource, source)
+                .build());
     }
 
     @Override
     public void sendMigrationStarted() {
-        //TODO: GA this.tracker.send(MapBuilder.createEvent(Category.Tasks, Action.DbMigration, Label.Start, 1L)
-        //TODO: GA         .build());
+        this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, Action.DbMigration)
+                .setLabel(Label.Start)
+                .setValue(1L)
+                .build());
     }
 
     @Override
     public void sendMigrationFinished(long duration, int oldDbVersion, AnalyticsStatistics stats) {
-        //TODO: GA this.tracker.send(MapBuilder.createEvent(Category.Tasks, Action.DbMigration, Label.Finish, 1L)
-        //TODO: GA         .set(Fields.customDimension(Dimension.MigrationDbVersion), String.valueOf(oldDbVersion))
-        //TODO: GA         .set(Fields.customMetric(Metric.StatisticsLocations), String.valueOf(stats.getLocations()))
-        //TODO: GA         .set(Fields.customMetric(Metric.StatisticsCells), String.valueOf(stats.getCells()))
-        //TODO: GA         .set(Fields.customMetric(Metric.StatisticsDays), String.valueOf(stats.getDays()))
-        //TODO: GA         .set(Fields.customMetric(Metric.Duration), String.valueOf(duration))
-        //TODO: GA         .build());
-        //TODO: GA this.tracker.send(MapBuilder.createTiming(Category.Tasks, duration, Action.DbMigration, Label.Finish)
-        //TODO: GA         .set(Fields.customDimension(Dimension.MigrationDbVersion), String.valueOf(oldDbVersion))
-        //TODO: GA         .build());
+        this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, Action.DbMigration)
+                .setLabel(Label.Finish)
+                .setValue(1L)
+                .setCustomDimension(Dimension.MigrationDbVersion, String.valueOf(oldDbVersion))
+                .setCustomMetric(Metric.StatisticsLocations, stats.getLocations())
+                .setCustomMetric(Metric.StatisticsCells, stats.getCells())
+                .setCustomMetric(Metric.StatisticsDays, stats.getDays())
+                .setCustomMetric(Metric.Duration, duration)
+                .build());
+        this.tracker.send(new HitBuilders.TimingBuilder(Category.Tasks, Action.DbMigration, duration)
+                .setLabel(Label.Finish)
+                .setCustomDimension(Dimension.MigrationDbVersion, String.valueOf(oldDbVersion))
+                .build());
     }
 
     @Override
-    public void sendCollectorStarted(boolean byIntent) {
-        //TODO: GA this.tracker.send(MapBuilder.createEvent(Category.Tasks, Action.Collect, (byIntent ? Label.StartIntent : Label.Start), 1L)
-        //TODO: GA         .build());
+    public void sendCollectorStarted(IntentSource source) {
+        this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, Action.Collect)
+                .setLabel(convertToStartLabel(source))
+                .setValue(1L)
+                .build());
     }
 
     @Override
     public void sendCollectorFinished(long duration, String meansOfTransport, AnalyticsStatistics stats) {
-        //TODO: GA this.tracker.send(MapBuilder.createEvent(Category.Tasks, Action.Collect, Label.Finish, 1L)
-        //TODO: GA         .set(Fields.customDimension(Dimension.CollectorMeansOfTrasport), meansOfTransport)
-        //TODO: GA         .set(Fields.customMetric(Metric.CollectedLocationsInSession), String.valueOf(stats.getLocations()))
-        //TODO: GA         .set(Fields.customMetric(Metric.CollectedCellsInSession), String.valueOf(stats.getCells()))
-        //TODO: GA         .set(Fields.customMetric(Metric.Duration), String.valueOf(duration))
-        //TODO: GA         .build());
-        //TODO: GA this.tracker.send(MapBuilder.createTiming(Category.Tasks, duration, Action.Collect, Label.Finish)
-        //TODO: GA         .set(Fields.customDimension(Dimension.CollectorMeansOfTrasport), meansOfTransport)
-        //TODO: GA         .build());
+        this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, Action.Collect)
+                .setLabel(Label.Finish)
+                .setValue(1L)
+                .setCustomDimension(Dimension.CollectorMeansOfTrasport, meansOfTransport)
+                .setCustomMetric(Metric.CollectedLocationsInSession, stats.getLocations())
+                .setCustomMetric(Metric.CollectedCellsInSession, stats.getCells())
+                .setCustomMetric(Metric.Duration, duration)
+                .build());
+        this.tracker.send(new HitBuilders.TimingBuilder(Category.Tasks, Action.Collect, duration)
+                .setLabel(Label.Finish)
+                .setCustomDimension(Dimension.CollectorMeansOfTrasport, meansOfTransport)
+                .build());
     }
 
     @Override
-    public void sendUploadStarted(boolean byIntent) {
-        //TODO: GA this.tracker.send(MapBuilder.createEvent(Category.Tasks, Action.Upload, (byIntent ? Label.StartIntent : Label.Start), 1L)
-        //TODO: GA         .build());
+    public void sendUploadStarted(IntentSource source) {
+        this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, Action.Upload)
+                .setLabel(convertToStartLabel(source))
+                .setValue(1L)
+                .build());
     }
 
     @Override
     public void sendUploadFinished(long duration, String networkType, AnalyticsStatistics stats) {
-        //TODO: GA this.tracker.send(MapBuilder.createEvent(Category.Tasks, Action.Upload, Label.Finish, 1L)
-        //TODO: GA         .set(Fields.customDimension(Dimension.UploadNetworkType), networkType)
-        //TODO: GA         .set(Fields.customMetric(Metric.StatisticsLocations), String.valueOf(stats.getLocations()))
-        //TODO: GA         .set(Fields.customMetric(Metric.StatisticsCells), String.valueOf(stats.getCells()))
-        //TODO: GA         .set(Fields.customMetric(Metric.StatisticsDays), String.valueOf(stats.getDays()))
-        //TODO: GA         .set(Fields.customMetric(Metric.Duration), String.valueOf(duration))
-        //TODO: GA         .build());
-        //TODO: GA this.tracker.send(MapBuilder.createTiming(Category.Tasks, duration, Action.Upload, Label.Finish)
-        //TODO: GA         .set(Fields.customDimension(Dimension.UploadNetworkType), networkType)
-        //TODO: GA         .build());
+        this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, Action.Upload)
+                .setLabel(Label.Finish)
+                .setValue(1L)
+                .setCustomDimension(Dimension.UploadNetworkType, networkType)
+                .setCustomMetric(Metric.StatisticsLocations, stats.getLocations())
+                .setCustomMetric(Metric.StatisticsCells, stats.getCells())
+                .setCustomMetric(Metric.StatisticsDays, stats.getDays())
+                .setCustomMetric(Metric.Duration, duration)
+                .build());
+        this.tracker.send(new HitBuilders.TimingBuilder(Category.Tasks, Action.Upload, duration)
+                .setLabel(Label.Finish)
+                .setCustomDimension(Dimension.UploadNetworkType, networkType)
+                .build());
     }
 
     @Override
     public void sendExportStarted() {
-        //TODO: GA this.tracker.send(MapBuilder.createEvent(Category.Tasks, Action.Export, Label.Start, 1L)
-        //TODO: GA         .build());
+        this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, Action.Export)
+                .setLabel(Label.Start)
+                .setValue(1L)
+                .build());
     }
 
     @Override
     public void sendExportFinished(long duration, String fileType, AnalyticsStatistics stats) {
-        //TODO: GA this.tracker.send(MapBuilder.createEvent(Category.Tasks, Action.Export, Label.Finish, 1L)
-        //TODO: GA         .set(Fields.customDimension(Dimension.ExportFileType), fileType)
-        //TODO: GA         .set(Fields.customMetric(Metric.StatisticsLocations), String.valueOf(stats.getLocations()))
-        //TODO: GA         .set(Fields.customMetric(Metric.StatisticsCells), String.valueOf(stats.getCells()))
-        //TODO: GA         .set(Fields.customMetric(Metric.StatisticsDays), String.valueOf(stats.getDays()))
-        //TODO: GA         .set(Fields.customMetric(Metric.Duration), String.valueOf(duration))
-        //TODO: GA         .build());
-        //TODO: GA this.tracker.send(MapBuilder.createTiming(Category.Tasks, duration, Action.Export, Label.Finish)
-        //TODO: GA         .set(Fields.customDimension(Dimension.ExportFileType), fileType)
-        //TODO: GA         .build());
+        this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, Action.Export)
+                .setLabel(Label.Finish)
+                .setValue(1L)
+                .setCustomDimension(Dimension.ExportFileType, fileType)
+                .setCustomMetric(Metric.StatisticsLocations, stats.getLocations())
+                .setCustomMetric(Metric.StatisticsCells, stats.getCells())
+                .setCustomMetric(Metric.StatisticsDays, stats.getDays())
+                .setCustomMetric(Metric.Duration, duration)
+                .build());
+        this.tracker.send(new HitBuilders.TimingBuilder(Category.Tasks, Action.Export, duration)
+                .setLabel(Label.Finish)
+                .setCustomDimension(Dimension.ExportFileType, fileType)
+                .build());
     }
 
     @Override
     public void sendExportDeleteAction() {
-        //TODO: GA sendExportAction(Label.Delete);
+        sendExportAction(Label.Delete);
     }
 
     @Override
@@ -172,7 +196,22 @@ public class GoogleAnalyticsReportingService implements IAnalyticsReportingServi
     }
 
     private void sendExportAction(String action) {
-        //TODO: GA this.tracker.send(MapBuilder.createEvent(Category.Tasks, Action.Export, action, 1L)
-        //TODO: GA         .build());
+        this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, Action.Export)
+                .setLabel(action)
+                .setValue(1L)
+                .build());
+    }
+
+    private String convertToStartLabel(IntentSource source) {
+        switch (source) {
+            case User:
+                return Label.Start;
+            case Application:
+                return Label.StartIntent;
+            case System:
+                return Label.StartSystemIntent;
+            default:
+                throw new UnsupportedOperationException(String.format("Unsupported intent source '%s'", source));
+        }
     }
 }

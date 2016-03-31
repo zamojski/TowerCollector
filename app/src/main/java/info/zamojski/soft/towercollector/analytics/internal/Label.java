@@ -8,6 +8,7 @@ public class Label {
 
     public static final String Start = "Start";
     public static final String StartIntent = "StartIntent";
+    public static final String StartSystemIntent = "StartSystemIntent";
     public static final String Finish = "Finish";
     public static final String Select = "Select";
     public static final String Keep = "Keep";

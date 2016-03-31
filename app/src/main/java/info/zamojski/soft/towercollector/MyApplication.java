@@ -21,7 +21,6 @@ import info.zamojski.soft.towercollector.providers.AppThemeProvider;
 import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvider;
 
 import android.app.Application;
-import android.content.res.Resources;
 import android.util.Log;
 
 public class MyApplication extends Application {
@@ -36,8 +35,6 @@ public class MyApplication extends Application {
 
     private static String backgroundTaskName = null;
 
-    // prevent hits from being sent to reports, i.e. during testing
-    private static final boolean GA_IS_DRY_RUN = true;
     // don't use BuildConfig as it sometimes doesn't set DEBUG to true
     private static final boolean EVENTBUS_SUBSCRIBER_CAN_THROW = true;
 
@@ -74,7 +71,7 @@ public class MyApplication extends Application {
     private void initGA() {
         Log.d(TAG, "initGA(): Initializing Google Analytics");
         boolean trackingEnabled = getPreferencesProvider().getTrackingEnabled();
-        analyticsService = new GoogleAnalyticsReportingService(this, GA_IS_DRY_RUN, trackingEnabled);
+        analyticsService = new GoogleAnalyticsReportingService(this, trackingEnabled);
     }
 
     private void initACRA() {
