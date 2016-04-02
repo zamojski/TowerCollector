@@ -438,7 +438,11 @@ public class MainActivity extends AppCompatActivity {
                 }
                 MyApplication.getAnalytics().sendUpdateAction(downloadLink.getLabel());
                 String link = downloadLink.getLink();
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(link)));
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(link)));
+                } catch (ActivityNotFoundException ex) {
+                    Toast.makeText(getApplication(), R.string.web_browser_missing, Toast.LENGTH_LONG).show();
+                }
                 alertDialog.dismiss();
             }
         });
@@ -637,8 +641,12 @@ public class MainActivity extends AppCompatActivity {
                 alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_register), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.preferences_opencellid_org_sign_up_link)));
-                        startActivity(browserIntent);
+                        try {
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.preferences_opencellid_org_sign_up_link)));
+                            startActivity(browserIntent);
+                        } catch (ActivityNotFoundException ex) {
+                            Toast.makeText(getApplication(), R.string.web_browser_missing, Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
             } else {
