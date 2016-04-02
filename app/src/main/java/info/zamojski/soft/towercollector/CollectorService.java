@@ -141,7 +141,7 @@ public class CollectorService extends Service {
         EventBus.getDefault().register(this);
         // register receiver
         registerReceiver(stopRequestBroadcastReceiver, new IntentFilter(BROADCAST_INTENT_STOP_SERVICE));
-        Notification notification = notificationHelper.createNotification(startStats);
+        Notification notification = notificationHelper.createNotification(getGpsStatusNotificationText(getGpsStatus()));
         // start as foreground service to prevent from killing
         startForeground(NOTIFICATION_ID, notification);
     }
@@ -246,28 +246,6 @@ public class CollectorService extends Service {
     }
 
     // ========== NOTIFICATION ========== //
-
-    private void updateNotification(GpsStatus status) {
-        String statusString;
-        if (status == GpsStatus.LowAccuracy) {
-            // length unit
-            boolean useImperialUnits = MyApplication.getPreferencesProvider().getUseImperialUnits();
-            String lengthUnit;
-            if (useImperialUnits) {
-                lengthUnit = getString(R.string.unit_length_imperial);
-            } else {
-                lengthUnit = getString(R.string.unit_length_metric);
-            }
-            // format string
-            float accuracy = getLastGpsAccuracy();
-            statusString = getString(R.string.status_low_gps_accuracy, accuracy, lengthUnit);
-        } else if (status == GpsStatus.NoLocation)
-            statusString = getString(R.string.status_no_gps_location);
-        else
-            statusString = getString(R.string.status_unknown);// this should never happen
-        String notificationText = getString(R.string.collector_notification_status, statusString);
-        updateNotification(notificationText);
-    }
 
     private synchronized void updateNotification(Statistics statistics) {
         Notification notification = notificationHelper.updateNotification(statistics);
@@ -703,12 +681,34 @@ public class CollectorService extends Service {
         // Update always because accuracy might change
         EventBus.getDefault().postSticky(new GpsStatusChangedEvent(status, accuracy));
         if (gpsStatus == GpsStatus.LowAccuracy || gpsStatus == GpsStatus.NoLocation) {
-            updateNotification(gpsStatus);
+            String notificationText = getGpsStatusNotificationText(gpsStatus);
+            updateNotification(notificationText);
         }
         // Optimization: it doesn't make sense to refresh if nothing changes (after save updated in a different way)
         else if (statusChanged) {
             updateNotification(MeasurementsDatabase.getInstance(getApplication()).getMeasurementsStatistics());
         }
+    }
+
+    private String getGpsStatusNotificationText(GpsStatus status) {
+        String statusString;
+        if (status == GpsStatus.LowAccuracy) {
+            // length unit
+            boolean useImperialUnits = MyApplication.getPreferencesProvider().getUseImperialUnits();
+            String lengthUnit;
+            if (useImperialUnits) {
+                lengthUnit = getString(R.string.unit_length_imperial);
+            } else {
+                lengthUnit = getString(R.string.unit_length_metric);
+            }
+            // format string
+            float accuracy = getLastGpsAccuracy();
+            statusString = getString(R.string.status_low_gps_accuracy, accuracy, lengthUnit);
+        } else if (status == GpsStatus.NoLocation)
+            statusString = getString(R.string.status_no_gps_location);
+        else
+            statusString = getString(R.string.status_unknown);// this should never happen
+        return getString(R.string.collector_notification_status, statusString);
     }
 
     public float getLastGpsAccuracy() {

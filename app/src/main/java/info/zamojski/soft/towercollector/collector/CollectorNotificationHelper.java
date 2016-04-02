@@ -25,8 +25,7 @@ public class CollectorNotificationHelper {
         this.builder = new NotificationCompat.Builder(context);
     }
 
-    public Notification createNotification(Statistics stats) {
-        String notificationText = createStatsText(stats);
+    public Notification createNotification(String notificationText) {
         return prepareNotification(notificationText);
     }
 
