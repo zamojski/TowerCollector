@@ -2,7 +2,7 @@
 def versionMajor = 1 // major releases
 def versionMinor = 8 // minor feature releases
 def versionPatch = 0 // hot fixes
-def versionBuild = 0 // build version
+def versionBuild = 1 // build version
 
 // Double check the versioning
 for (versionPart in [versionPatch, versionMinor, versionMajor, versionBuild]) {
@@ -15,7 +15,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 22
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         applicationId "info.zamojski.soft.towercollector"
@@ -52,10 +52,9 @@ android {
         }
         release {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            minifyEnabled true
+            //minifyEnabled true
+            //shrinkResources true
             debuggable false
-            jniDebuggable false
-            renderscriptDebuggable false
             zipAlignEnabled true
             signingConfig signingConfigs.release
         }
