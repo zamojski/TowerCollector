@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.widget.Toast;
 
 public class AdvancedPreferenceFragment extends HelpfulPreferenceFragment implements OnSharedPreferenceChangeListener {
 
@@ -65,6 +66,7 @@ public class AdvancedPreferenceFragment extends HelpfulPreferenceFragment implem
             Log.d(TAG, "onSharedPreferenceChanged(): User set api version = \"" + collectorApiVersionValue + "\"");
             collectorApiVersionPreference.setSummary(formatValueString(R.string.preferences_collector_api_version_summary, collectorApiVersionLabel));
             setupApiVersionSelection();
+            Toast.makeText(getActivity(), R.string.preferences_restart_collector, Toast.LENGTH_SHORT).show();
         }
     }
 

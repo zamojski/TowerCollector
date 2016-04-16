@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.widget.Toast;
 
 public class DisplayPreferenceFragment extends HelpfulPreferenceFragment implements OnSharedPreferenceChangeListener {
 
@@ -53,6 +54,7 @@ public class DisplayPreferenceFragment extends HelpfulPreferenceFragment impleme
             Log.d(TAG, "onSharedPreferenceChanged(): User set app theme = \"" + appThemeValue + "\"");
             appThemePreference.setSummary(formatValueString(R.string.preferences_app_theme_summary, appThemeLabel));
             MyApplication.getApplication().initTheme();
+            Toast.makeText(getActivity(), R.string.preferences_restart_app, Toast.LENGTH_SHORT).show();
         }
     }
 

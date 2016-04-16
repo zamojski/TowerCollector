@@ -5,10 +5,11 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory android:title="@string/preferences_category_settings_title">
-        <CheckBoxPreference
+        <SwitchPreference
             android:defaultValue="@bool/preferences_imperial_units_default_value"
             android:key="@string/preferences_imperial_units_key"
-            android:summary="@string/preferences_imperial_units_summary"
+            android:summaryOff="@string/preferences_imperial_units_off_summary"
+            android:summaryOn="@string/preferences_imperial_units_on_summary"
             android:title="@string/preferences_imperial_units_title"/>
 
         <info.zamojski.soft.towercollector.controls.HtmlSummaryListPreference
@@ -19,10 +20,11 @@
             android:summary="@string/preferences_app_theme_summary"
             android:title="@string/preferences_app_theme_title"/>
 
-        <CheckBoxPreference
+        <SwitchPreference
             android:defaultValue="@bool/preferences_main_keep_screen_on_mode_default_value"
             android:key="@string/preferences_main_keep_screen_on_mode_key"
-            android:summary="@string/preferences_main_keep_screen_on_summary"
+            android:summaryOff="@string/preferences_main_keep_screen_on_off_summary"
+            android:summaryOn="@string/preferences_main_keep_screen_on_on_summary"
             android:title="@string/preferences_main_keep_screen_on_title"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/preferences_category_help_title">

@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.widget.Toast;
 
 public class CollectorPreferenceFragment extends HelpfulPreferenceFragment implements OnSharedPreferenceChangeListener {
 
@@ -47,11 +48,15 @@ public class CollectorPreferenceFragment extends HelpfulPreferenceFragment imple
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equals(getString(R.string.preferences_collector_keep_screen_on_mode_key))) {
+        if (key.equals(getString(R.string.preferences_gps_optimizations_enabled_key))
+                || key.equals(getString(R.string.preferences_collect_neighboring_cells_key))) {
+            Toast.makeText(getActivity(), R.string.preferences_restart_collector, Toast.LENGTH_SHORT).show();
+        } else if (key.equals(getString(R.string.preferences_collector_keep_screen_on_mode_key))) {
             String collectorKeepScreenOnValue = collectorKeepScreenOnPreference.getValue();
             CharSequence collectorKeepScreenOnLabel = collectorKeepScreenOnPreference.getEntry();
             Log.d(TAG, "onSharedPreferenceChanged(): User set keep screen on = \"" + collectorKeepScreenOnValue + "\"");
             collectorKeepScreenOnPreference.setSummary(formatValueString(R.string.preferences_collector_keep_screen_on_summary, collectorKeepScreenOnLabel));
+            Toast.makeText(getActivity(), R.string.preferences_restart_collector, Toast.LENGTH_SHORT).show();
         }
     }
 

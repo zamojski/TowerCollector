@@ -5,15 +5,17 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory android:title="@string/preferences_category_settings_title">
-        <CheckBoxPreference
+        <SwitchPreference
             android:defaultValue="@bool/preferences_gps_optimizations_enabled_default_value"
             android:key="@string/preferences_gps_optimizations_enabled_key"
-            android:summary="@string/preferences_gps_optimizations_enabled_summary"
+            android:summaryOff="@string/preferences_gps_optimizations_enabled_off_summary"
+            android:summaryOn="@string/preferences_gps_optimizations_enabled_on_summary"
             android:title="@string/preferences_gps_optimizations_enabled_title"/>
-        <CheckBoxPreference
+        <SwitchPreference
             android:defaultValue="@bool/preferences_collect_neighboring_cells_default_value"
             android:key="@string/preferences_collect_neighboring_cells_key"
-            android:summary="@string/preferences_collect_neighboring_cells_summary"
+            android:summaryOff="@string/preferences_collect_neighboring_cells_off_summary"
+            android:summaryOn="@string/preferences_collect_neighboring_cells_on_summary"
             android:title="@string/preferences_collect_neighboring_cells_title"/>
 
         <info.zamojski.soft.towercollector.controls.HtmlSummaryListPreference
@@ -24,10 +26,11 @@
             android:summary="@string/preferences_collector_keep_screen_on_summary"
             android:title="@string/preferences_collector_keep_screen_on_title"/>
 
-        <CheckBoxPreference
+        <SwitchPreference
             android:defaultValue="@bool/preferences_start_collector_at_boot_default_value"
             android:key="@string/preferences_start_collector_at_boot_key"
-            android:summary="@string/preferences_start_collector_at_boot_summary"
+            android:summaryOff="@string/preferences_start_collector_at_boot_off_summary"
+            android:summaryOn="@string/preferences_start_collector_at_boot_on_summary"
             android:title="@string/preferences_start_collector_at_boot_title"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/preferences_category_help_title">

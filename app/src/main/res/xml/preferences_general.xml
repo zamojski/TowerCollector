@@ -5,15 +5,17 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory android:title="@string/preferences_category_settings_title">
-        <CheckBoxPreference
+        <SwitchPreference
             android:defaultValue="@bool/preferences_tracking_enabled_default_value"
             android:key="@string/preferences_tracking_enabled_key"
-            android:summary="@string/preferences_tracking_enabled_summary"
+            android:summaryOff="@string/preferences_tracking_enabled_off_summary"
+            android:summaryOn="@string/preferences_tracking_enabled_on_summary"
             android:title="@string/preferences_tracking_enabled_title"/>
-        <CheckBoxPreference
+        <SwitchPreference
             android:defaultValue="@bool/preferences_update_check_enabled_default_value"
             android:key="@string/preferences_update_check_enabled_key"
-            android:summary="@string/preferences_update_check_enabled_summary"
+            android:summaryOff="@string/preferences_update_check_enabled_off_summary"
+            android:summaryOn="@string/preferences_update_check_enabled_on_summary"
             android:title="@string/preferences_update_check_enabled_title"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/preferences_category_help_title">
