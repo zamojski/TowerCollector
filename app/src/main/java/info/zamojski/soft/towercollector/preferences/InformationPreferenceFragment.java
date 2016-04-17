@@ -42,10 +42,12 @@ public class InformationPreferenceFragment extends HelpfulPreferenceFragment {
         preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                Intent mailto = new Intent(Intent.ACTION_SEND);
-                mailto.setType("message/rfc822");
-                mailto.putExtra(Intent.EXTRA_EMAIL, new String[]{BuildConfig.CONTACT_EMAIL});
-                startActivity(Intent.createChooser(mailto, getString(R.string.dialog_select_email_app)));
+                Intent mail = new Intent(Intent.ACTION_SEND);
+                mail.setType("message/rfc822");
+                mail.putExtra(Intent.EXTRA_EMAIL, new String[]{BuildConfig.CONTACT_EMAIL});
+                mail.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.preferences_email_title));
+                mail.putExtra(Intent.EXTRA_TEXT, ApkUtils.getInstallationInfo(getActivity()));
+                startActivity(Intent.createChooser(mail, getString(R.string.dialog_select_email_app)));
                 return true;
             }
         });

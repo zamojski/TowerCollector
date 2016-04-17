@@ -106,6 +106,8 @@
     <string name="preferences_translation_tool_link" translatable="false">http://i18n.zamojski.info/</string>
     <string name="preferences_privacy_statement_link_key" translatable="false">privacy_statement_link</string>
     <string name="preferences_open_source_licenses_link_key" translatable="false">open_source_licenses_link</string>
+    <string name="preferences_email_title" translatable="false">Tower Collector contact</string>
+    <string name="preferences_email_content" translatable="false">\r\n\r\nApp version: %1$s\r\nAndroid version: %2$s (%3$d)\r\nDevice: %4$s\r\n</string>
     <string name="network_group_cdma" translatable="false">CDMA</string>
     <string name="network_group_gsm" translatable="false">GSM</string>
     <string name="network_group_umts" translatable="false">UMTS</string>

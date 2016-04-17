@@ -58,13 +58,12 @@ public class ApkUtils {
         return fullAppId;
     }
 
-    public static boolean isPackageInstalled(Context context, String packageName) {
-        try {
-            context.getPackageManager().getPackageInfo(packageName, 0);
-        } catch (NameNotFoundException ex) {
-            return false;
-        }
-        return true;
+    public static String getInstallationInfo(Context context) {
+        String appVersion = getApkVersionName(context);
+        String androidVersionName = Build.VERSION.RELEASE;
+        int androidVersionCode = Build.VERSION.SDK_INT;
+        String deviceName = getDeviceName();
+        return context.getString(R.string.preferences_email_content, appVersion, androidVersionName, androidVersionCode, deviceName);
     }
 
     public static String getDeviceName() {
