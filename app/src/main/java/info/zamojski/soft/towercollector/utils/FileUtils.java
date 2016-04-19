@@ -15,7 +15,7 @@ import java.util.Locale;
 
 import android.os.Environment;
 
-import android.util.Log;
+import trikita.log.Log;
 
 public class FileUtils {
 

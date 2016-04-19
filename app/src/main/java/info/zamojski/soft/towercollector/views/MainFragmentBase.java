@@ -17,7 +17,7 @@ import info.zamojski.soft.towercollector.events.SystemTimeChangedEvent;
 import info.zamojski.soft.towercollector.utils.UnitConverter;
 
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import trikita.log.Log;
 import android.view.View;
 import android.widget.TableRow;
 import android.widget.TextView;

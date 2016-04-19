@@ -21,7 +21,7 @@ import info.zamojski.soft.towercollector.providers.AppThemeProvider;
 import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvider;
 
 import android.app.Application;
-import android.util.Log;
+import trikita.log.Log;
 
 public class MyApplication extends Application {
 

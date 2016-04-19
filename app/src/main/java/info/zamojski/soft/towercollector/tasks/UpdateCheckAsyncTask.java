@@ -19,7 +19,7 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
+import trikita.log.Log;
 
 public class UpdateCheckAsyncTask extends AsyncTask<String, Void, UpdateInfo> {
 

@@ -4,7 +4,7 @@
 
 package info.zamojski.soft.towercollector.collector.validators;
 
-import android.util.Log;
+import trikita.log.Log;
 
 public class SystemTimeValidator {
 

@@ -12,7 +12,7 @@ import info.zamojski.soft.towercollector.utils.BackgroundTaskHelper;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
+import trikita.log.Log;
 
 public class ExternalIntentReceiver extends BroadcastReceiver {
 

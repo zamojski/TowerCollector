@@ -17,7 +17,7 @@ import info.zamojski.soft.towercollector.utils.NetworkTypeUtils;
 import info.zamojski.soft.towercollector.utils.UnitConverter;
 
 import android.os.Bundle;
-import android.util.Log;
+import trikita.log.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

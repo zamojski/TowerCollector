@@ -10,7 +10,7 @@ import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
 
-import android.util.Log;
+import trikita.log.Log;
 
 public class DatabaseUpgradeTask {
 

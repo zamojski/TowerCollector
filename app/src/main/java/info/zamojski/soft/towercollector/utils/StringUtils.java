@@ -9,7 +9,7 @@ import java.net.URLEncoder;
 
 import android.text.TextUtils;
 
-import android.util.Log;
+import trikita.log.Log;
 
 public class StringUtils {
 

@@ -11,7 +11,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
+import trikita.log.Log;
 
 public class GeneralPreferenceFragment extends HelpfulPreferenceFragment implements OnSharedPreferenceChangeListener {
 

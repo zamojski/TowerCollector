@@ -5,7 +5,7 @@
 package info.zamojski.soft.towercollector.dao.migration;
 
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
+import trikita.log.Log;
 
 class UpgradeScript5 implements IUpgradeScript {
 

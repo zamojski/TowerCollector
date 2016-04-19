@@ -16,7 +16,7 @@ import info.zamojski.soft.towercollector.model.Measurement;
 
 import android.location.Location;
 import android.location.LocationManager;
-import android.util.Log;
+import trikita.log.Log;
 
 public abstract class MeasurementParser implements Runnable {
 

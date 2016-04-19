@@ -10,6 +10,8 @@ import java.security.NoSuchAlgorithmException;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+import trikita.log.Log;
+
 public class HashUtils {
 
     private static final String TAG = HashUtils.class.getSimpleName();

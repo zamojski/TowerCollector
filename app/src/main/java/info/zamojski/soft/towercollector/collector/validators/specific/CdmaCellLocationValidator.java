@@ -5,7 +5,7 @@
 package info.zamojski.soft.towercollector.collector.validators.specific;
 
 import android.telephony.cdma.CdmaCellLocation;
-import android.util.Log;
+import trikita.log.Log;
 
 public class CdmaCellLocationValidator {
 

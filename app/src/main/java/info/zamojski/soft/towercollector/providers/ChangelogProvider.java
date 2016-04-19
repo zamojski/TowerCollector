@@ -14,7 +14,7 @@ import info.zamojski.soft.towercollector.model.ChangelogInfo.ChangelogEntry;
 import info.zamojski.soft.towercollector.parsers.changelog.ChangelogFeedParseException;
 import info.zamojski.soft.towercollector.parsers.changelog.ChangelogFeedParser;
 
-import android.util.Log;
+import trikita.log.Log;
 
 import info.zamojski.soft.towercollector.utils.ResourceUtils;
 

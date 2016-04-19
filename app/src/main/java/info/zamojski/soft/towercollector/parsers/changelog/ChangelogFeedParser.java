@@ -12,7 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.text.TextUtils;
-import android.util.Log;
+import trikita.log.Log;
 
 import info.zamojski.soft.towercollector.model.ChangelogInfo;
 import info.zamojski.soft.towercollector.model.ChangelogInfo.ChangelogEntry;

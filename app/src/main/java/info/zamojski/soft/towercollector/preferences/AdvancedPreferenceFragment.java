@@ -12,7 +12,7 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.PreferenceManager;
-import android.util.Log;
+import trikita.log.Log;
 import android.widget.Toast;
 
 public class AdvancedPreferenceFragment extends HelpfulPreferenceFragment implements OnSharedPreferenceChangeListener {

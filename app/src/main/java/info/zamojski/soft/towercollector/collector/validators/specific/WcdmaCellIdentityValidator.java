@@ -8,7 +8,7 @@ import android.annotation.TargetApi;
 import android.os.Build;
 import android.telephony.CellIdentityGsm;
 import android.telephony.CellIdentityWcdma;
-import android.util.Log;
+import trikita.log.Log;
 
 public class WcdmaCellIdentityValidator {
 

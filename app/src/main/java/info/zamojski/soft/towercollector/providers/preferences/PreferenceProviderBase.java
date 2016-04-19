@@ -11,7 +11,7 @@ import org.acra.ACRA;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
+import trikita.log.Log;
 
 abstract class PreferenceProviderBase<T> {
 

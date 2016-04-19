@@ -39,7 +39,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
 import android.text.TextUtils;
-import android.util.Log;
+import trikita.log.Log;
 import android.widget.Toast;
 
 public class UploaderService extends Service {

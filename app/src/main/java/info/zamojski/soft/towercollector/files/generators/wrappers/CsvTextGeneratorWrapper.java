@@ -10,7 +10,7 @@ import java.util.List;
 import org.acra.ACRA;
 
 import android.content.Context;
-import android.util.Log;
+import trikita.log.Log;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.enums.GeneratorResult;

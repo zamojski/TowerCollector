@@ -5,7 +5,7 @@
 package info.zamojski.soft.towercollector.collector.validators;
 
 import android.location.Location;
-import android.util.Log;
+import trikita.log.Log;
 
 public class LocationValidator {
 

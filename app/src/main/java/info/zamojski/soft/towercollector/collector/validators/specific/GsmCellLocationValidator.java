@@ -8,7 +8,7 @@ import info.zamojski.soft.towercollector.model.Measurement;
 
 import android.telephony.NeighboringCellInfo;
 import android.telephony.gsm.GsmCellLocation;
-import android.util.Log;
+import trikita.log.Log;
 
 public class GsmCellLocationValidator {
 

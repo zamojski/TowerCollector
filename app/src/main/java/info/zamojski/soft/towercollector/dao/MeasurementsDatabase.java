@@ -27,7 +27,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
-import android.util.Log;
+import trikita.log.Log;
 
 public class MeasurementsDatabase {
 

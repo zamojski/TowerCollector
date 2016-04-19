@@ -12,7 +12,7 @@ import info.zamojski.soft.towercollector.utils.UnitConverter;
 
 import android.telephony.NeighboringCellInfo;
 import android.telephony.SignalStrength;
-import android.util.Log;
+import trikita.log.Log;
 
 public class CellLocationSignalConverter {
 

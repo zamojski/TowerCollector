@@ -17,7 +17,7 @@ import android.annotation.TargetApi;
 import android.location.Location;
 import android.os.Build;
 import android.telephony.CellInfo;
-import android.util.Log;
+import trikita.log.Log;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.collector.ParseResult;

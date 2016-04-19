@@ -14,7 +14,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
-import android.util.Log;
+import trikita.log.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;

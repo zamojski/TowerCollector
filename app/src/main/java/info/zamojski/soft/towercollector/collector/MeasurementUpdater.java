@@ -19,7 +19,7 @@ import android.telephony.NeighboringCellInfo;
 import android.telephony.SignalStrength;
 import android.telephony.cdma.CdmaCellLocation;
 import android.telephony.gsm.GsmCellLocation;
-import android.util.Log;
+import trikita.log.Log;
 
 public class MeasurementUpdater {
 

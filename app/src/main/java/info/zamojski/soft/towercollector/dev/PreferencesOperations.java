@@ -20,7 +20,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Environment;
 import android.preference.PreferenceManager;
-import android.util.Log;
+import trikita.log.Log;
 import android.widget.Toast;
 
 import com.example.android.internal.util.XmlUtils;

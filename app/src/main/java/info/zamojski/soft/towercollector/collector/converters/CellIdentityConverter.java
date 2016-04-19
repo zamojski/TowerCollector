@@ -18,7 +18,7 @@ import android.telephony.CellInfoCdma;
 import android.telephony.CellInfoGsm;
 import android.telephony.CellInfoLte;
 import android.telephony.CellInfoWcdma;
-import android.util.Log;
+import trikita.log.Log;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class CellIdentityConverter {

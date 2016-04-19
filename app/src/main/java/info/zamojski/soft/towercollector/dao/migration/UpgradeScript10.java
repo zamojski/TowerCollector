@@ -9,7 +9,7 @@ import info.zamojski.soft.towercollector.utils.HashUtils;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
+import trikita.log.Log;
 
 class UpgradeScript10 implements IUpgradeScript {
 

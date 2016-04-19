@@ -16,7 +16,7 @@ import org.acra.ACRA;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.github.kevinsawicki.http.HttpRequest.HttpRequestException;
 
-import android.util.Log;
+import trikita.log.Log;
 
 public class NetworkHelper {
     private static final String TAG = NetworkHelper.class.getSimpleName();

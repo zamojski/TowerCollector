@@ -86,6 +86,7 @@ dependencies {
     compile 'ch.acra:acra:4.6.2'
     compile 'org.sufficientlysecure:html-textview:1.4'
     compile 'com.github.kevinsawicki:http-request:6.0'
+    compile 'co.trikita:log:1.1.5'
 }
 
 allprojects {

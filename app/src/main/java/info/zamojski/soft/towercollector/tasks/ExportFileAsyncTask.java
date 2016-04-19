@@ -27,7 +27,7 @@ import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
+import trikita.log.Log;
 import android.widget.Toast;
 
 public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorResult> implements IProgressListener {

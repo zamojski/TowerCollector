@@ -14,7 +14,7 @@ import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
 import info.zamojski.soft.towercollector.model.Statistics;
 
 import android.os.Bundle;
-import android.util.Log;
+import trikita.log.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

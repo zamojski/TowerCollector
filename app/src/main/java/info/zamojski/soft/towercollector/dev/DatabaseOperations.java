@@ -8,7 +8,7 @@ import java.io.File;
 
 import android.content.Context;
 import android.os.Environment;
-import android.util.Log;
+import trikita.log.Log;
 import android.widget.Toast;
 
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;

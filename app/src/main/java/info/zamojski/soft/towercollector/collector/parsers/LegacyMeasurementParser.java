@@ -18,7 +18,7 @@ import android.telephony.CellLocation;
 import android.telephony.NeighboringCellInfo;
 import android.telephony.SignalStrength;
 import android.telephony.gsm.GsmCellLocation;
-import android.util.Log;
+import trikita.log.Log;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.collector.ParseResult;

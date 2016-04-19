@@ -7,7 +7,7 @@ package info.zamojski.soft.towercollector.collector.validators.specific;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.telephony.CellIdentityGsm;
-import android.util.Log;
+import trikita.log.Log;
 
 public class GsmCellIdentityValidator {
 
