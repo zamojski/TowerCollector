@@ -11,10 +11,12 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.PreferenceManager;
+
 import trikita.log.Log;
+
 import android.widget.Toast;
 
-public class CollectorPreferenceFragment extends HelpfulPreferenceFragment implements OnSharedPreferenceChangeListener {
+public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
 
     private static final String TAG = CollectorPreferenceFragment.class.getSimpleName();
 
@@ -36,8 +38,7 @@ public class CollectorPreferenceFragment extends HelpfulPreferenceFragment imple
         super.onResume();
         PreferenceManager.getDefaultSharedPreferences(getActivity()).registerOnSharedPreferenceChangeListener(this);
         // set summaries
-        CharSequence collectorKeepScreenOnLabel = collectorKeepScreenOnPreference.getEntry();
-        collectorKeepScreenOnPreference.setSummary(formatValueString(R.string.preferences_collector_keep_screen_on_summary, collectorKeepScreenOnLabel));
+        setupListPreferenceSummary(collectorKeepScreenOnPreference, R.string.preferences_collector_keep_screen_on_summary);
     }
 
     @Override

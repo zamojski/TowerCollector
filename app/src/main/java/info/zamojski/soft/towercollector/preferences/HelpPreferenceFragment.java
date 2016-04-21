@@ -8,7 +8,7 @@ import info.zamojski.soft.towercollector.R;
 
 import android.os.Bundle;
 
-public class HelpPreferenceFragment extends HelpfulPreferenceFragment {
+public class HelpPreferenceFragment extends DialogEnabledPreferenceFragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -5,8 +5,10 @@
 package info.zamojski.soft.towercollector.preferences;
 
 import info.zamojski.soft.towercollector.PreferencesActivity;
+import info.zamojski.soft.towercollector.R;
 
 import android.content.Intent;
+import android.preference.ListPreference;
 import android.preference.PreferenceFragment;
 import android.view.MenuItem;
 
@@ -24,5 +26,16 @@ public class PreferenceFragmentBase extends PreferenceFragment {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    protected void setupListPreferenceSummary(ListPreference listPreference, int summaryResourceId) {
+        CharSequence label = listPreference.getEntry();
+        listPreference.setSummary(formatValueString(summaryResourceId, label));
+    }
+
+    protected String formatValueString(int textId, CharSequence value) {
+        String text = getString(textId);
+        String formattedValue = getString(R.string.preferences_current_value_summary_format, value);
+        return text + formattedValue;
     }
 }

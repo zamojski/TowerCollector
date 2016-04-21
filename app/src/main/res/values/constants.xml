@@ -82,6 +82,15 @@
     <string name="preferences_collector_api_version_entries_value_api_17" translatable="false">api_17</string>
     <string name="preferences_collector_api_version_entries_value_api_1" translatable="false">api_1</string>
     <string name="preferences_about_collector_api_version_key" translatable="false">about_collector_api_version</string>
+
+    <string name="preferences_file_logging_level_entries_value_disabled" translatable="false">disabled</string>
+    <string name="preferences_file_logging_level_entries_value_debug" translatable="false">debug</string>
+    <string name="preferences_file_logging_level_entries_value_info" translatable="false">info</string>
+    <string name="preferences_file_logging_level_entries_value_warning" translatable="false">warning</string>
+    <string name="preferences_file_logging_level_entries_value_error" translatable="false">error</string>
+    <string name="preferences_file_logging_level_key" translatable="false">logging_level</string>
+    <string name="preferences_file_logging_level_default_value" translatable="false">@string/preferences_file_logging_level_entries_value_disabled</string>
+
     <string name="preferences_collect_neighboring_cells_key" translatable="false">collect_neighboring_cells</string>
 
     <bool name="preferences_collect_neighboring_cells_default_value" translatable="false">true

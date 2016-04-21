@@ -17,10 +17,12 @@ import org.acra.sender.HttpSender.Type;
 import de.greenrobot.event.EventBus;
 import info.zamojski.soft.towercollector.analytics.GoogleAnalyticsReportingService;
 import info.zamojski.soft.towercollector.analytics.IAnalyticsReportingService;
+import info.zamojski.soft.towercollector.logging.AndroidFilePrinter;
 import info.zamojski.soft.towercollector.providers.AppThemeProvider;
 import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvider;
 
 import android.app.Application;
+
 import trikita.log.Log;
 
 public class MyApplication extends Application {
@@ -42,11 +44,32 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         application = this;
+        // Logging to file is dependent on preferences but this will skip logging of initialization
+        initPreferencesProvider();
+        initLogger();
         initEventBus();
         initACRA();
-        initProviders();
         initTheme();
         initGA();
+    }
+
+    private void initLogger() {
+        // Default configuration
+        Log.usePrinter(Log.ANDROID, true).level(Log.I).useFormat(true);
+        // File logging based on preferences
+        String fileLoggingLevel = getPreferencesProvider().getFileLoggingLevel();
+        if (!fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_disabled))) {
+            if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_debug))) {
+                Log.level(Log.D);
+            } else if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_info))) {
+                Log.level(Log.I);
+            } else if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_warning))) {
+                Log.level(Log.W);
+            } else if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_error))) {
+                Log.level(Log.E);
+            }
+            Log.usePrinter(AndroidFilePrinter.getInstance(), true);
+        }
     }
 
     private void initEventBus() {
@@ -56,7 +79,7 @@ public class MyApplication extends Application {
                 .installDefaultEventBus();
     }
 
-    private void initProviders() {
+    private void initPreferencesProvider() {
         Log.d(TAG, "initProviders(): Initializing preferences");
         prefProvider = new PreferencesProvider(this);
     }

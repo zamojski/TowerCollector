@@ -12,10 +12,12 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.PreferenceManager;
+
 import trikita.log.Log;
+
 import android.widget.Toast;
 
-public class DisplayPreferenceFragment extends HelpfulPreferenceFragment implements OnSharedPreferenceChangeListener {
+public class DisplayPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
 
     private static final String TAG = DisplayPreferenceFragment.class.getSimpleName();
 
@@ -36,8 +38,7 @@ public class DisplayPreferenceFragment extends HelpfulPreferenceFragment impleme
         super.onResume();
         PreferenceManager.getDefaultSharedPreferences(getActivity()).registerOnSharedPreferenceChangeListener(this);
         // set summaries
-        CharSequence appThemeLabel = appThemePreference.getEntry();
-        appThemePreference.setSummary(formatValueString(R.string.preferences_app_theme_summary, appThemeLabel));
+        setupListPreferenceSummary(appThemePreference, R.string.preferences_app_theme_summary);
     }
 
     @Override

@@ -10,11 +10,12 @@ import info.zamojski.soft.towercollector.controls.DialogManager;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.widget.Toast;
 
-public abstract class HelpfulPreferenceFragment extends PreferenceFragmentBase {
+public abstract class DialogEnabledPreferenceFragment extends PreferenceFragmentBase {
 
     protected void setupDialog(int preferenceKey, final int title, final int content) {
         PreferenceScreen preference = (PreferenceScreen) findPreference(getString(preferenceKey));
@@ -64,11 +65,5 @@ public abstract class HelpfulPreferenceFragment extends PreferenceFragmentBase {
                 return true;
             }
         });
-    }
-
-    protected String formatValueString(int textId, CharSequence value) {
-        String text = getString(textId);
-        String formattedValue = getString(R.string.preferences_current_value_summary_format, value);
-        return text + formattedValue;
     }
 }

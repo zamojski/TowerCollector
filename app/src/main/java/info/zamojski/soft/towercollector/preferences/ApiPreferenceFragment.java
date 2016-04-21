@@ -16,7 +16,7 @@ import android.text.TextUtils;
 import trikita.log.Log;
 import android.widget.Toast;
 
-public class ApiPreferenceFragment extends HelpfulPreferenceFragment implements OnSharedPreferenceChangeListener {
+public class ApiPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
 
     private static final String TAG = ApiPreferenceFragment.class.getSimpleName();
 

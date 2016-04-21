@@ -12,14 +12,17 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.PreferenceManager;
+
 import trikita.log.Log;
+
 import android.widget.Toast;
 
-public class AdvancedPreferenceFragment extends HelpfulPreferenceFragment implements OnSharedPreferenceChangeListener {
+public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
 
     private static final String TAG = AdvancedPreferenceFragment.class.getSimpleName();
 
     private ListPreference collectorApiVersionPreference;
+    private ListPreference fileLoggingLevelPreference;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,7 @@ public class AdvancedPreferenceFragment extends HelpfulPreferenceFragment implem
         addPreferencesFromResource(R.xml.preferences_advanced);
 
         collectorApiVersionPreference = (ListPreference) findPreference(getString(R.string.preferences_collector_api_version_key));
+        fileLoggingLevelPreference = (ListPreference) findPreference(getString(R.string.preferences_file_logging_level_key));
 
         setupApiVersionDialog();
 
@@ -48,8 +52,8 @@ public class AdvancedPreferenceFragment extends HelpfulPreferenceFragment implem
         super.onResume();
         PreferenceManager.getDefaultSharedPreferences(getActivity()).registerOnSharedPreferenceChangeListener(this);
         // set summaries
-        CharSequence collectorApiVersionLabel = collectorApiVersionPreference.getEntry();
-        collectorApiVersionPreference.setSummary(formatValueString(R.string.preferences_collector_api_version_summary, collectorApiVersionLabel));
+        setupListPreferenceSummary(collectorApiVersionPreference, R.string.preferences_collector_api_version_summary);
+        setupListPreferenceSummary(fileLoggingLevelPreference, R.string.preferences_file_logging_level_summary);
     }
 
     @Override
@@ -67,6 +71,11 @@ public class AdvancedPreferenceFragment extends HelpfulPreferenceFragment implem
             collectorApiVersionPreference.setSummary(formatValueString(R.string.preferences_collector_api_version_summary, collectorApiVersionLabel));
             setupApiVersionSelection();
             Toast.makeText(getActivity(), R.string.preferences_restart_collector, Toast.LENGTH_SHORT).show();
+        } else if (key.equals(getString(R.string.preferences_file_logging_level_key))) {
+            String fileLoggingLevelValue = fileLoggingLevelPreference.getValue();
+            CharSequence fileLoggingLevelLabel = fileLoggingLevelPreference.getEntry();
+            Log.d(TAG, "onSharedPreferenceChanged(): User set file logging level = \"" + fileLoggingLevelValue + "\"");
+            fileLoggingLevelPreference.setSummary(formatValueString(R.string.preferences_file_logging_level_summary, fileLoggingLevelLabel));
         }
     }
 

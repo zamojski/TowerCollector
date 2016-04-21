@@ -14,7 +14,7 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 
-public class InformationPreferenceFragment extends HelpfulPreferenceFragment {
+public class InformationPreferenceFragment extends DialogEnabledPreferenceFragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

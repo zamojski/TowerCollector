@@ -45,4 +45,23 @@
         <item>@string/preferences_collector_api_version_entries_value_api_17</item>
         <item>@string/preferences_collector_api_version_entries_value_api_1</item>
     </string-array>
+    <string name="preferences_file_logging_level_disabled">Disabled</string>
+    <string name="preferences_file_logging_level_debug">Debug</string>
+    <string name="preferences_file_logging_level_info">Info</string>
+    <string name="preferences_file_logging_level_warning">Warning</string>
+    <string name="preferences_file_logging_level_error">Error</string>
+    <string-array name="preferences_file_logging_level_entries_labels" translatable="false">
+        <item>@string/preferences_file_logging_level_disabled</item>
+        <item>@string/preferences_file_logging_level_debug</item>
+        <item>@string/preferences_file_logging_level_info</item>
+        <item>@string/preferences_file_logging_level_warning</item>
+        <item>@string/preferences_file_logging_level_error</item>
+    </string-array>
+    <string-array name="preferences_file_logging_level_entries_values" translatable="false">
+        <item>@string/preferences_file_logging_level_entries_value_disabled</item>
+        <item>@string/preferences_file_logging_level_entries_value_debug</item>
+        <item>@string/preferences_file_logging_level_entries_value_info</item>
+        <item>@string/preferences_file_logging_level_entries_value_warning</item>
+        <item>@string/preferences_file_logging_level_entries_value_error</item>
+    </string-array>
 </resources>

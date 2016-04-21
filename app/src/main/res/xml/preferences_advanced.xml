@@ -13,6 +13,13 @@
             android:key="@string/preferences_collector_api_version_key"
             android:summary="@string/preferences_collector_api_version_summary"
             android:title="@string/preferences_collector_api_version_title"/>
+        <info.zamojski.soft.towercollector.controls.HtmlSummaryListPreference
+            android:defaultValue="@string/preferences_file_logging_level_default_value"
+            android:entries="@array/preferences_file_logging_level_entries_labels"
+            android:entryValues="@array/preferences_file_logging_level_entries_values"
+            android:key="@string/preferences_file_logging_level_key"
+            android:summary="@string/preferences_file_logging_level_summary"
+            android:title="@string/preferences_file_logging_level_title"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/preferences_category_help_title">
         <PreferenceScreen

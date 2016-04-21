@@ -88,6 +88,11 @@ public class PreferencesProvider {
         return value;
     }
 
+    public String getFileLoggingLevel() {
+        String value = stringPreferenceProvider.getPreference(R.string.preferences_file_logging_level_key, R.string.preferences_file_logging_level_default_value);
+        return value;
+    }
+
     public boolean getShowIntroduction() {
         boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_show_introduction_key, R.bool.preferences_show_introduction_default_value);
         return value;

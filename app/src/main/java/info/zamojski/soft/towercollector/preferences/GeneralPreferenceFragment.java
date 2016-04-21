@@ -13,7 +13,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import trikita.log.Log;
 
-public class GeneralPreferenceFragment extends HelpfulPreferenceFragment implements OnSharedPreferenceChangeListener {
+public class GeneralPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
 
     private static final String TAG = GeneralPreferenceFragment.class.getSimpleName();
 
