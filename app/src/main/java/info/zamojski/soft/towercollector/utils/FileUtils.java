@@ -70,7 +70,7 @@ public class FileUtils {
             dstChannel.transferFrom(srcChannel, 0, srcChannel.size());
             return true;
         } catch (IOException ex) {
-            Log.e(TAG, "copyFile(): Failed to copy file \"" + src + "\" to \"" + dst + "\"", ex);
+            Log.e(TAG, "copyFile(): Failed to copy file \"%s\" to \"%s\"", src, dst, ex);
             return false;
         } finally {
             if (srcChannel != null) {

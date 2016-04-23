@@ -21,25 +21,25 @@ public class GpxExportFormatter implements IGpxFormatter {
 
     private static final Locale LOCALE = Locale.ENGLISH;
 
-    private static final NumberFormat coordsDoubleFormater;
-    private static final NumberFormat gpsDoubleFormater;
-    private static final SimpleDateFormat exportDateFormater;
+    private static final NumberFormat coordsDoubleFormatter;
+    private static final NumberFormat gpsDoubleFormatter;
+    private static final SimpleDateFormat exportDateFormatter;
 
     private static final ICellUtils cellUtils;
 
     static {
-        coordsDoubleFormater = NumberFormat.getNumberInstance(LOCALE);
-        coordsDoubleFormater.setGroupingUsed(false);
-        coordsDoubleFormater.setMinimumFractionDigits(8);
-        coordsDoubleFormater.setMaximumFractionDigits(12);
+        coordsDoubleFormatter = NumberFormat.getNumberInstance(LOCALE);
+        coordsDoubleFormatter.setGroupingUsed(false);
+        coordsDoubleFormatter.setMinimumFractionDigits(8);
+        coordsDoubleFormatter.setMaximumFractionDigits(12);
 
-        gpsDoubleFormater = NumberFormat.getNumberInstance(LOCALE);
-        gpsDoubleFormater.setGroupingUsed(false);
-        gpsDoubleFormater.setMinimumFractionDigits(0);
-        gpsDoubleFormater.setMaximumFractionDigits(2);
+        gpsDoubleFormatter = NumberFormat.getNumberInstance(LOCALE);
+        gpsDoubleFormatter.setGroupingUsed(false);
+        gpsDoubleFormatter.setMinimumFractionDigits(0);
+        gpsDoubleFormatter.setMaximumFractionDigits(2);
 
-        exportDateFormater = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH);
-        exportDateFormater.setTimeZone(TimeZone.getTimeZone("UTC"));
+        exportDateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH);
+        exportDateFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
 
         cellUtils = new GeneralCellUtils();
     }
@@ -131,11 +131,11 @@ public class GpxExportFormatter implements IGpxFormatter {
     }
 
     private String formatCoordinate(double value) {
-        return coordsDoubleFormater.format(value);
+        return coordsDoubleFormatter.format(value);
     }
 
     private String formatGpsValue(double value) {
-        return gpsDoubleFormater.format(value);
+        return gpsDoubleFormatter.format(value);
     }
 
     private String formatDbmSignal(int dbm) {
@@ -146,6 +146,6 @@ public class GpxExportFormatter implements IGpxFormatter {
     }
 
     private String formatDate(long timestamp) {
-        return exportDateFormater.format(new Date(timestamp));
+        return exportDateFormatter.format(new Date(timestamp));
     }
 }

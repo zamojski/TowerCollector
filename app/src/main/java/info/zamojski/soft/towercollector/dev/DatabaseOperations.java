@@ -54,7 +54,7 @@ public class DatabaseOperations {
 
     public static void deleteDatabase(Context context) {
         File dbFile = getDatabasePath(context);
-        Log.d(TAG, "deleteDatabase(): Deleting file " + dbFile);
+        Log.d(TAG, "deleteDatabase(): Deleting file %s", dbFile);
         boolean deleted = dbFile.delete();
         if (deleted) {
             Log.d(TAG, "deleteDatabase(): File deleted");

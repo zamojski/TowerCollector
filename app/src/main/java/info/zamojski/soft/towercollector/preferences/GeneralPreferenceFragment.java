@@ -42,7 +42,7 @@ public class GeneralPreferenceFragment extends DialogEnabledPreferenceFragment i
         if (key.equals(getString(R.string.preferences_tracking_enabled_key))) {
             boolean trackingEnabledDefault = getResources().getBoolean(R.bool.preferences_tracking_enabled_default_value);
             boolean isTrackingEnabled = sharedPreferences.getBoolean(key, trackingEnabledDefault);
-            Log.d(TAG, "onSharedPreferenceChanged(): User set tracking enabled = " + isTrackingEnabled);
+            Log.d(TAG, "onSharedPreferenceChanged(): User set tracking enabled = %s", isTrackingEnabled);
             MyApplication.getAnalytics().setAppOptOut(!isTrackingEnabled);
         }
     }

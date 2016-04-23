@@ -57,10 +57,10 @@ public class Api17PlusMeasurementParser extends MeasurementParser {
                               long timestamp, int minDistance) {
         // if required accuracy was achieved
         if (!locationValidator.isValid(location)) {
-            Log.d(TAG, "parse(): Required accuracy not achieved: " + location.getAccuracy());
+            Log.d(TAG, "parse(): Required accuracy not achieved: %s", location.getAccuracy());
             return ParseResult.AccuracyNotAchieved;
         }
-        Log.d(TAG, "parse(): Required accuracy achieved: " + location.getAccuracy());
+        Log.d(TAG, "parse(): Required accuracy achieved: %s", location.getAccuracy());
         // get last location
         getAndSetLastLocation();
         // create measurement
@@ -88,12 +88,12 @@ public class Api17PlusMeasurementParser extends MeasurementParser {
         for (CellInfo cell : cells) {
             if (!cellValidator.isValid(cell)) {
                 // don't try to create neighboring cells because this may be even more unreliable than on older API
-                Log.d(TAG, "parse(): Cell invalid: " + cell);
+                Log.d(TAG, "parse(): Cell invalid: %s", cell);
                 continue;
             }
             if (!collectNeighboringCells && !cell.isRegistered()) {
                 // skip neighboring cells
-                Log.d(TAG, "parse(): Neighboring cell skipped: " + cell);
+                Log.d(TAG, "parse(): Neighboring cell skipped: %s", cell);
                 continue;
             }
             // copy measurement
@@ -103,7 +103,7 @@ public class Api17PlusMeasurementParser extends MeasurementParser {
             // update measurement with signal strength
             cellSignalConverter.update(measurementCopy, cell);
             // write to database
-            Log.d(TAG, "parse(): Measurement: " + measurementCopy);
+            Log.d(TAG, "parse(): Measurement: %s", measurementCopy);
             measurementsToSave.add(measurementCopy);
         }
         // none of cells are valid
@@ -114,7 +114,7 @@ public class Api17PlusMeasurementParser extends MeasurementParser {
         // temporary solution to keep compatibility with old API and current views
         Measurement mainMeasurement = findFirstMainMeasurement(measurementsToSave);
         // write to database
-        Log.d(TAG, "parse(): Selected as main: " + mainMeasurement);
+        Log.d(TAG, "parse(): Selected as main: %s", mainMeasurement);
         boolean inserted = MeasurementsDatabase.getInstance(MyApplication.getApplication()).insertMeasurements(measurementsToSave.toArray(new Measurement[measurementsToSave.size()]));
         if (inserted) {
             lastSavedLocation = location;
@@ -141,7 +141,7 @@ public class Api17PlusMeasurementParser extends MeasurementParser {
         for (CellInfo cell : cells) {
             String key = cellIdentityConverter.createCellKey(cell);
             if (uniqueCellKeys.contains(key)) {
-                Log.d(TAG, "removeDuplicatedCells(): Remove duplicated cell: " + key);
+                Log.d(TAG, "removeDuplicatedCells(): Remove duplicated cell: %s", key);
                 cellsToRemove.add(cell);
             } else {
                 uniqueCellKeys.add(key);

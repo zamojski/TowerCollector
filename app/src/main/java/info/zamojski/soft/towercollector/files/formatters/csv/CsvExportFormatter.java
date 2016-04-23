@@ -15,19 +15,19 @@ import info.zamojski.soft.towercollector.providers.ICellUtils;
 
 public class CsvExportFormatter extends CsvFormatter {
 
-    private static final NumberFormat gpsDoubleFormater;
-    private static final SimpleDateFormat exportDateFormater;
+    private static final NumberFormat gpsDoubleFormatter;
+    private static final SimpleDateFormat exportDateFormatter;
 
     private static final ICellUtils cellUtils;
 
     static {
-        gpsDoubleFormater = NumberFormat.getNumberInstance(LOCALE);
-        gpsDoubleFormater.setGroupingUsed(false);
-        gpsDoubleFormater.setMinimumFractionDigits(0);
-        gpsDoubleFormater.setMaximumFractionDigits(2);
+        gpsDoubleFormatter = NumberFormat.getNumberInstance(LOCALE);
+        gpsDoubleFormatter.setGroupingUsed(false);
+        gpsDoubleFormatter.setMinimumFractionDigits(0);
+        gpsDoubleFormatter.setMaximumFractionDigits(2);
         cellUtils = new GeneralCellUtils();
-        exportDateFormater = new SimpleDateFormat("\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\"", LOCALE);
-        exportDateFormater.setTimeZone(TimeZone.getTimeZone("UTC"));
+        exportDateFormatter = new SimpleDateFormat("\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\"", LOCALE);
+        exportDateFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
     }
 
     @Override
@@ -97,7 +97,7 @@ public class CsvExportFormatter extends CsvFormatter {
     }
 
     private String formatGpsValue(double value) {
-        return gpsDoubleFormater.format(value);
+        return gpsDoubleFormatter.format(value);
     }
 
     private String formatAsuSignal(int asu) {
@@ -117,6 +117,6 @@ public class CsvExportFormatter extends CsvFormatter {
     }
 
     private String formatDate(long timestamp) {
-        return exportDateFormater.format(new Date(timestamp));
+        return exportDateFormatter.format(new Date(timestamp));
     }
 }

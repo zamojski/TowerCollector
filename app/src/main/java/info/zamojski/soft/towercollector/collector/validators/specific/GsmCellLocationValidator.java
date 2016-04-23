@@ -17,8 +17,8 @@ public class GsmCellLocationValidator {
     public boolean isValid(GsmCellLocation cell, int mcc, int mnc) {
         boolean valid = isValid(cell.getCid(), cell.getLac(), mnc, mcc, cell.getPsc());
         if (!valid) {
-            Log.w(TAG, "isValid(): Invalid GsmCellLocation [mcc=" + mcc + ", mnc =" + mnc + ", lac=" + cell.getLac() + ", cid=" + cell.getCid() + ", psc=" + cell.getPsc() + "]");
-            Log.w(TAG, "isValid(): Invalid GsmCellLocation " + cell);
+            Log.w(TAG, "isValid(): Invalid GsmCellLocation [mcc=%s, mnc =%s, lac=%s, cid=%s, psc=%s]", mcc, mnc, cell.getLac(), cell.getCid(), cell.getPsc());
+            Log.w(TAG, "isValid(): Invalid GsmCellLocation %s", cell);
         }
         return valid;
     }

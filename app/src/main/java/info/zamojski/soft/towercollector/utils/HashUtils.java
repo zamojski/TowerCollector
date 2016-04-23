@@ -29,9 +29,9 @@ public class HashUtils {
             }
             return sb.toString();
         } catch (NoSuchAlgorithmException ex) {
-            Log.e(TAG, "toSha1(): Unsupported hashing algorithm " + hashingAlgorithm, ex);
+            Log.e(TAG, "toSha1(): Unsupported hashing algorithm %s", hashingAlgorithm, ex);
         } catch (UnsupportedEncodingException ex) {
-            Log.e(TAG, "toSha1(): Unsupported encoding " + textEncoding, ex);
+            Log.e(TAG, "toSha1(): Unsupported encoding %s", textEncoding, ex);
         }
         return text;
     }
@@ -39,24 +39,24 @@ public class HashUtils {
     public static String toSha1(double latitude, double longitude, double accuracy, double speed, double bearing, double altitude) {
         final Locale LOCALE = Locale.ENGLISH;
 
-        NumberFormat coordsDoubleFormater = NumberFormat.getNumberInstance(LOCALE);
-        coordsDoubleFormater.setGroupingUsed(false);
-        coordsDoubleFormater.setMinimumFractionDigits(9);
-        coordsDoubleFormater.setMaximumFractionDigits(9);
+        NumberFormat coordsDoubleFormatter = NumberFormat.getNumberInstance(LOCALE);
+        coordsDoubleFormatter.setGroupingUsed(false);
+        coordsDoubleFormatter.setMinimumFractionDigits(9);
+        coordsDoubleFormatter.setMaximumFractionDigits(9);
 
-        NumberFormat gpsDoubleFormater = NumberFormat.getNumberInstance(LOCALE);
-        gpsDoubleFormater.setGroupingUsed(false);
-        gpsDoubleFormater.setMinimumFractionDigits(2);
-        gpsDoubleFormater.setMaximumFractionDigits(2);
+        NumberFormat gpsDoubleFormatter = NumberFormat.getNumberInstance(LOCALE);
+        gpsDoubleFormatter.setGroupingUsed(false);
+        gpsDoubleFormatter.setMinimumFractionDigits(2);
+        gpsDoubleFormatter.setMaximumFractionDigits(2);
 
         StringBuilder sb = new StringBuilder();
 
-        sb.append(coordsDoubleFormater.format(latitude)).append("_");
-        sb.append(coordsDoubleFormater.format(longitude)).append("_");
-        sb.append(gpsDoubleFormater.format(accuracy)).append("_");
-        sb.append(gpsDoubleFormater.format(speed)).append("_");
-        sb.append(gpsDoubleFormater.format(bearing)).append("_");
-        sb.append(gpsDoubleFormater.format(altitude));
+        sb.append(coordsDoubleFormatter.format(latitude)).append("_");
+        sb.append(coordsDoubleFormatter.format(longitude)).append("_");
+        sb.append(gpsDoubleFormatter.format(accuracy)).append("_");
+        sb.append(gpsDoubleFormatter.format(speed)).append("_");
+        sb.append(gpsDoubleFormatter.format(bearing)).append("_");
+        sb.append(gpsDoubleFormatter.format(altitude));
 
         return toSha1(sb.toString());
     }

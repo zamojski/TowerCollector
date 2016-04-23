@@ -107,7 +107,7 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
 
     @Override
     protected void onPostExecute(FileGeneratorResult result) {
-        Log.d(TAG, "onPostExecute(): Showing result: " + result);
+        Log.d(TAG, "onPostExecute(): Showing result: %s", result);
         MyApplication.stopBackgroundTask();
         generatorWrapper.removeProgressListener(this);
         // check result

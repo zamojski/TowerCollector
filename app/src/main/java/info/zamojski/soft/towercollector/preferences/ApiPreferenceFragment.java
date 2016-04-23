@@ -51,14 +51,14 @@ public class ApiPreferenceFragment extends DialogEnabledPreferenceFragment imple
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        Log.d(TAG, "onSharedPreferenceChanged(): Preference value changed: " + key);
+        Log.d(TAG, "onSharedPreferenceChanged(): Preference value changed: %s", key);
         if (key.equals(getString(R.string.preferences_api_key_key))) {
             String apiKeyValue = apiKeyPreference.getText();
-            Log.d(TAG, "onSharedPreferenceChanged(): User set API key = \"" + apiKeyValue + "\"");
+            Log.d(TAG, "onSharedPreferenceChanged(): User set API key = \"%s\"", apiKeyValue);
             boolean isApiKeyEmpty = TextUtils.isEmpty(apiKeyValue);
             apiKeyPreference.setSummary(formatValueString(R.string.preferences_api_key_summary, (!isApiKeyEmpty ? apiKeyValue : getString(R.string.preferences_value_undefined))));
             if (!isApiKeyEmpty && !Validator.isOpenCellIdApiKeyValid(apiKeyValue)) {
-                Log.d(TAG, "onSharedPreferenceChanged(): User defined invalid API key = \"" + apiKeyValue + "\"");
+                Log.d(TAG, "onSharedPreferenceChanged(): User defined invalid API key = \"%s\"", apiKeyValue);
                 Log.i(TAG, "onSharedPreferenceChanged(): User defined invalid API key");
                 Toast.makeText(getActivity(), getString(R.string.preferences_api_key_invalid), Toast.LENGTH_LONG).show();
             }

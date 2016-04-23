@@ -26,7 +26,7 @@ public class ConditionsValidator {
         // check conditions
         boolean valid = (1.1f * distanceDiff >= distanceCondition);
         if (!valid)
-            Log.d(TAG, String.format("isMinDistanceSatisfied(): Failed to achieve destination '%.4f >= %d' condition at 10%% approx. match", distanceDiff, distanceCondition));
+            Log.d(TAG, "isMinDistanceSatisfied(): Failed to achieve destination '%.4f >= %d' condition at 10%% approx. match", distanceDiff, distanceCondition);
         return valid;
     }
 }

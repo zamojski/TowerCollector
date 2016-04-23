@@ -48,7 +48,7 @@ public class UpdateCheckAsyncTask extends AsyncTask<String, Void, UpdateInfo> {
         String updateFeedUrl = urls[0];
         // check for updates and download info
         ResponseData response = NetworkHelper.sendGet(updateFeedUrl);
-        Log.d(TAG, "doInBackground(): Server response: " + response);
+        Log.d(TAG, "doInBackground(): Server response: %s", response);
         if (response.getCode() == 200 && !StringUtils.isNullEmptyOrWhitespace(response.getContent())) {
             // parse response
             try {

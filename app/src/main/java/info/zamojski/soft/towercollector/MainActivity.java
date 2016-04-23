@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(Tab tab) {
-                Log.d(TAG, "onTabSelected() Switching to tab " + tab.getPosition());
+                Log.d(TAG, "onTabSelected() Switching to tab %s", tab.getPosition());
                 // switch to page when tab is selected
                 viewPager.setCurrentItem(tab.getPosition());
             }
@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         boolean isRunning = isCollectorServiceRunning.get();
-        Log.d(TAG, "onPrepareOptionsMenu(): Preparing action bar menu for running = " + isRunning);
+        Log.d(TAG, "onPrepareOptionsMenu(): Preparing action bar menu for running = %s", isRunning);
         // toggle visibility
         startMenu.setVisible(!isRunning);
         stopMenu.setVisible(isRunning);
@@ -272,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onNewIntent(Intent intent) {
-        Log.d(TAG, "onNewIntent(): New intent received: " + intent);
+        Log.d(TAG, "onNewIntent(): New intent received: %s", intent);
         processOnStartIntent(intent);
     }
 
@@ -377,7 +377,7 @@ public class MainActivity extends AppCompatActivity {
                 messageId = R.string.main_help_last_date_time_description;
                 break;
         }
-        Log.d(TAG, "displayHelpOnClick(): Displaying help for title: " + titleId);
+        Log.d(TAG, "displayHelpOnClick(): Displaying help for title: %s", titleId);
         if (titleId != View.NO_ID && messageId != View.NO_ID) {
             AlertDialog dialog = new AlertDialog.Builder(this).setTitle(titleId).setMessage(messageId).setPositiveButton(R.string.dialog_ok, null).create();
             dialog.setCanceledOnTouchOutside(true);
@@ -390,7 +390,7 @@ public class MainActivity extends AppCompatActivity {
         int descriptionId = extras.getInt(UploaderService.INTENT_KEY_RESULT_DESCRIPTION);
         try {
             String descriptionContent = getString(descriptionId);
-            Log.d(TAG, "displayUploadResultDialog(): Received extras: " + descriptionId);
+            Log.d(TAG, "displayUploadResultDialog(): Received extras: %s", descriptionId);
             // display dialog
             AlertDialog alertDialog = new AlertDialog.Builder(this).create();
             alertDialog.setCanceledOnTouchOutside(true);
@@ -403,7 +403,7 @@ public class MainActivity extends AppCompatActivity {
             });
             alertDialog.show();
         } catch (NotFoundException ex) {
-            Log.w(TAG, "displayUploadResultDialog(): Invalid string id received with intent extras: " + descriptionId);
+            Log.w(TAG, "displayUploadResultDialog(): Invalid string id received with intent extras: %s", descriptionId);
             MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
         }
@@ -430,9 +430,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 DownloadLink downloadLink = (DownloadLink) parent.getItemAtPosition(position);
-                Log.d(TAG, "displayNewVersionDownloadOptions(): Selected position: " + downloadLink.getLabel());
+                Log.d(TAG, "displayNewVersionDownloadOptions(): Selected position: %s", downloadLink.getLabel());
                 boolean disableAutoUpdateCheckCheckboxChecked = disableAutoUpdateCheckCheckbox.isChecked();
-                Log.d(TAG, "displayNewVersionDownloadOptions(): Disable update check checkbox checked = " + disableAutoUpdateCheckCheckboxChecked);
+                Log.d(TAG, "displayNewVersionDownloadOptions(): Disable update check checkbox checked = %s", disableAutoUpdateCheckCheckboxChecked);
                 if (disableAutoUpdateCheckCheckboxChecked) {
                     MyApplication.getPreferencesProvider().setUpdateCheckEnabled(false);
                 }
@@ -449,7 +449,7 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_cancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 boolean disableAutoUpdateCheckCheckboxChecked = disableAutoUpdateCheckCheckbox.isChecked();
-                Log.d(TAG, "displayNewVersionDownloadOptions(): Disable update check checkbox checked = " + disableAutoUpdateCheckCheckboxChecked);
+                Log.d(TAG, "displayNewVersionDownloadOptions(): Disable update check checkbox checked = %s", disableAutoUpdateCheckCheckboxChecked);
                 if (disableAutoUpdateCheckCheckboxChecked) {
                     MyApplication.getPreferencesProvider().setUpdateCheckEnabled(false);
                 }
@@ -471,7 +471,7 @@ public class MainActivity extends AppCompatActivity {
                 boolean noRadioDetected = !(packageManager.hasSystemFeature(PackageManager.FEATURE_TELEPHONY) && (packageManager.hasSystemFeature(PackageManager.FEATURE_TELEPHONY_GSM) || packageManager.hasSystemFeature(PackageManager.FEATURE_TELEPHONY_CDMA)));
                 // show dialog if something is not supported
                 if (noRadioDetected) {
-                    Log.d(TAG, "displayNotCompatibleDialog(): Not compatible because of radio: " + noRadioDetected + ", phone type: " + telephonyManager.getPhoneType());
+                    Log.d(TAG, "displayNotCompatibleDialog(): Not compatible because of radio: %s, phone type: %s", noRadioDetected, telephonyManager.getPhoneType());
                     //use custom layout to show "don't show this again" checkbox
                     AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
                     LayoutInflater inflater = LayoutInflater.from(this);
@@ -492,7 +492,7 @@ public class MainActivity extends AppCompatActivity {
                     alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_ok), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             boolean dontShowAgainCheckboxChecked = dontShowAgainCheckbox.isChecked();
-                            Log.d(TAG, "displayNotCompatibleDialog(): Don't show again checkbox checked = " + dontShowAgainCheckboxChecked);
+                            Log.d(TAG, "displayNotCompatibleDialog(): Don't show again checkbox checked = %s", dontShowAgainCheckboxChecked);
                             if (dontShowAgainCheckboxChecked) {
                                 MyApplication.getPreferencesProvider().setShowCompatibilityWarning(false);
                             }
@@ -541,7 +541,7 @@ public class MainActivity extends AppCompatActivity {
             if (MyApplication.getPreferencesProvider().getShowIntroduction()) {
                 return;
             }
-            Log.d(TAG, "displayDevelopersMessages(): Showing changelog between " + previousVersionCode + " and " + currentVersionCode);
+            Log.d(TAG, "displayDevelopersMessages(): Showing changelog between %s and %s", previousVersionCode, currentVersionCode);
             ChangelogProvider provider = new ChangelogProvider(getApplication(), R.raw.changelog);
             ChangelogInfo changelog = provider.getChangelog(previousVersionCode);
             HtmlChangelogFormatter formatter = new HtmlChangelogFormatter();
@@ -590,7 +590,7 @@ public class MainActivity extends AppCompatActivity {
     private void startCollectorService() {
         String runningTaskClassName = MyApplication.getBackgroundTaskName();
         if (runningTaskClassName != null) {
-            Log.d(TAG, "startCollectorService(): Another task is running in background: " + runningTaskClassName);
+            Log.d(TAG, "startCollectorService(): Another task is running in background: %s", runningTaskClassName);
             backgroundTaskHelper.showTaskRunningMessage(runningTaskClassName);
             return;
         }
@@ -624,7 +624,7 @@ public class MainActivity extends AppCompatActivity {
     private void startUploaderServiceWithCheck() {
         String runningTaskClassName = MyApplication.getBackgroundTaskName();
         if (runningTaskClassName != null) {
-            Log.d(TAG, "startUploaderService(): Another task is running in background: " + runningTaskClassName);
+            Log.d(TAG, "startUploaderService(): Another task is running in background: %s", runningTaskClassName);
             backgroundTaskHelper.showTaskRunningMessage(runningTaskClassName);
             return;
         }
@@ -691,7 +691,7 @@ public class MainActivity extends AppCompatActivity {
     private void startExportAsyncTask() {
         String runningTaskClassName = MyApplication.getBackgroundTaskName();
         if (runningTaskClassName != null) {
-            Log.d(TAG, "startExportAsyncTask(): Another task is running in background: " + runningTaskClassName);
+            Log.d(TAG, "startExportAsyncTask(): Another task is running in background: %s", runningTaskClassName);
             backgroundTaskHelper.showTaskRunningMessage(runningTaskClassName);
             return;
         }
@@ -705,7 +705,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int itemIndex) {
                     String selectedItem = fileTypeNames[itemIndex];
-                    Log.d(TAG, "onCreateDialog(): User selected position: " + selectedItem);
+                    Log.d(TAG, "onCreateDialog(): User selected position: %s", selectedItem);
                     // parse response
                     FileType selectedType = FileType.Unknown;
                     // pass selected means of transport
@@ -763,7 +763,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder binder) {
-            Log.d(TAG, "onServiceConnected(): Service connection created for " + name);
+            Log.d(TAG, "onServiceConnected(): Service connection created for %s", name);
             isCollectorServiceRunning.set(true);
             // refresh menu status
             invalidateOptionsMenu();
@@ -776,7 +776,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            Log.d(TAG, "onServiceDisconnected(): Service connection destroyed of " + name);
+            Log.d(TAG, "onServiceDisconnected(): Service connection destroyed of %s", name);
             unbindService(collectorServiceConnection);
             isCollectorServiceRunning.set(false);
             // refresh menu status
@@ -861,7 +861,7 @@ public class MainActivity extends AppCompatActivity {
             long currentDate = DateUtils.getCurrentDateWithoutTime();
             long lastUpdateCheckDate = MyApplication.getPreferencesProvider().getLastUpdateCheckDate();
             long diffInDays = DateUtils.getTimeDiff(currentDate, lastUpdateCheckDate);
-            Log.d(TAG, "checkForNewVersionAvailability(): Last update check performed on: " + new Date(lastUpdateCheckDate).toString() + ", diff to current in days: " + diffInDays);
+            Log.d(TAG, "checkForNewVersionAvailability(): Last update check performed on: %s, diff to current in days: %s", new Date(lastUpdateCheckDate), diffInDays);
             // if currently is at least one day after last check (day, not 24 hrs)
             if (diffInDays >= 1) {
                 // check if network available

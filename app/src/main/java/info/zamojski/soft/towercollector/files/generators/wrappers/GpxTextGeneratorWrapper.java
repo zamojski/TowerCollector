@@ -97,7 +97,7 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
                 Log.d(TAG, "generate(): Export cancelled");
                 return new FileGeneratorResult(GeneratorResult.Cancelled, Reason.Unknown);
             } else {
-                Log.d(TAG, "generate(): All " + measurementsCount + " measurements exported");
+                Log.d(TAG, "generate(): All %s measurements exported", measurementsCount);
                 return new FileGeneratorResult(GeneratorResult.Succeeded, Reason.Unknown);
             }
         } catch (DeviceOperationException ex) {

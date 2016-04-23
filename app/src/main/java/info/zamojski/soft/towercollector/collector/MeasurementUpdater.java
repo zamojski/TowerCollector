@@ -43,14 +43,14 @@ public class MeasurementUpdater {
     private int minDistance;
 
     public synchronized void setLastLocation(Location location, long locationObtainedTime) {
-        Log.d(TAG, "setLastLocation(): Location updated: " + location + " obtained at " + locationObtainedTime);
+        Log.d(TAG, "setLastLocation(): Location updated: %s obtained at %s", location, locationObtainedTime);
         this.lastLocation = location;
         this.lastLocationObtainedTime = locationObtainedTime;
         notifyIfReadyToProcess();
     }
 
     public synchronized void setLastCellInfo(List<CellInfo> cellInfo) {
-        Log.d(TAG, "setLastCellInfo(): Cell info updated: " + cellInfo);
+        Log.d(TAG, "setLastCellInfo(): Cell info updated: %s ", cellInfo);
         this.lastCellInfo = cellInfo;
         this.lastNetworkType = NetworkGroup.Unknown;
         this.lastOperatorName = null;
@@ -59,7 +59,7 @@ public class MeasurementUpdater {
 
     public synchronized void setLastCellLocation(CellLocation cellLocation, NetworkGroup networkType,
                                                  String operatorCode, String operatorName, List<NeighboringCellInfo> neighboringCells) {
-        Log.d(TAG, "setLastCellLocation(): Cell location updated: " + cellLocation + ", network type: " + networkType + ", operator code: " + operatorCode + ", operator name: " + operatorName);
+        Log.d(TAG, "setLastCellLocation(): Cell location updated: %s, network type: %s, operator code: %s, operator name: %s", cellLocation, networkType, operatorCode, operatorName);
         // check if any changes
         boolean cellChanged = (!isCellLocationEqual(lastCellLocation, cellLocation)
                 || lastNetworkType != networkType
@@ -80,12 +80,12 @@ public class MeasurementUpdater {
     }
 
     public synchronized void setLastSignalStrength(SignalStrength signalStrength) {
-        Log.d(TAG, "setLastSignalStrength(): Signal strength updated: " + signalStrength);
+        Log.d(TAG, "setLastSignalStrength(): Signal strength updated: %s", signalStrength);
         this.lastSignalStrength = signalStrength;
     }
 
     public synchronized void setMinDistanceAndInterval(int minDistance, int minInterval) {
-        Log.d(TAG, "setMinDistanceAndInterval(): Min distance: " + minDistance + ", interval: " + minInterval + " updated");
+        Log.d(TAG, "setMinDistanceAndInterval(): Min distance: %s, interval: %s updated", minDistance, minInterval);
         this.minDistance = minDistance;
     }
 
@@ -119,14 +119,14 @@ public class MeasurementUpdater {
             result = (gsm1.getCid() == gsm2.getCid()
                     && gsm1.getLac() == gsm2.getLac()
                     && gsm1.getPsc() == gsm2.getPsc());
-            Log.d(TAG, "isCellLocationEqual(): GSM equals = " + result);
+            Log.d(TAG, "isCellLocationEqual(): GSM equals = %s", result);
         } else if (cl1 instanceof CdmaCellLocation && cl2 instanceof CdmaCellLocation) {
             CdmaCellLocation cdma1 = (CdmaCellLocation) cl1;
             CdmaCellLocation cdma2 = (CdmaCellLocation) cl2;
             result = (cdma1.getBaseStationId() == cdma2.getBaseStationId()
                     && cdma1.getNetworkId() == cdma2.getNetworkId()
                     && cdma1.getSystemId() == cdma2.getSystemId());
-            Log.d(TAG, "isCellLocationEqual(): CDMA equal = " + result);
+            Log.d(TAG, "isCellLocationEqual(): CDMA equal = %s", result);
         } else {
             // different types or nulls
             result = false;

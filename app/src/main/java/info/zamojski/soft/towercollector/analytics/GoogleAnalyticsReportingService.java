@@ -14,7 +14,6 @@ import info.zamojski.soft.towercollector.analytics.internal.Screens;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
 
 import android.app.Application;
-import android.content.Context;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;

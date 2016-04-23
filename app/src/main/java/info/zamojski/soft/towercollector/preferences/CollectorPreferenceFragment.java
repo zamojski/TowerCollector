@@ -55,7 +55,7 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
         } else if (key.equals(getString(R.string.preferences_collector_keep_screen_on_mode_key))) {
             String collectorKeepScreenOnValue = collectorKeepScreenOnPreference.getValue();
             CharSequence collectorKeepScreenOnLabel = collectorKeepScreenOnPreference.getEntry();
-            Log.d(TAG, "onSharedPreferenceChanged(): User set keep screen on = \"" + collectorKeepScreenOnValue + "\"");
+            Log.d(TAG, "onSharedPreferenceChanged(): User set keep screen on = \"%s\"", collectorKeepScreenOnValue);
             collectorKeepScreenOnPreference.setSummary(formatValueString(R.string.preferences_collector_keep_screen_on_summary, collectorKeepScreenOnLabel));
             Toast.makeText(getActivity(), R.string.preferences_restart_collector, Toast.LENGTH_SHORT).show();
         }

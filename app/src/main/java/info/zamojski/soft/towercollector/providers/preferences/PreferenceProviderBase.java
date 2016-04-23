@@ -27,9 +27,9 @@ abstract class PreferenceProviderBase<T> {
         T defaultValue = getPreferenceDefaultValue(defaultValueKey);
         try {
             value = getPreferenceValue(prefs, valueKey, defaultValue);
-            Log.d(getLogTag(), "getPreference(): Preference `" + context.getString(valueKey) + "` loaded with value `" + value + "`");
+            Log.d(getLogTag(), "getPreference(): Preference `%s` loaded with value `%s`", context.getString(valueKey), value);
         } catch (ClassCastException ex) {
-            Log.e(getLogTag(), "getPreference(): Error while loading preference `" + context.getString(valueKey) + "`, restoring default", ex);
+            Log.e(getLogTag(), "getPreference(): Error while loading preference `%s`, restoring default", context.getString(valueKey), ex);
             MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
             value = defaultValue;
@@ -41,7 +41,7 @@ abstract class PreferenceProviderBase<T> {
     }
 
     public void setPreference(int valueKey, T value) {
-        Log.d(getLogTag(), "setPreference(): Preference `" + context.getString(valueKey) + "` value set to `" + value + "`");
+        Log.d(getLogTag(), "setPreference(): Preference `%s` value set to `%s`", context.getString(valueKey), value);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
         setPreferenceValue(editor, valueKey, value);

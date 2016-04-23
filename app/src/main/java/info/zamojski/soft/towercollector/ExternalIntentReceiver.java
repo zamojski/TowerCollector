@@ -76,7 +76,7 @@ public class ExternalIntentReceiver extends BroadcastReceiver {
     private boolean canStartBackgroundService(Context context) {
         String runningTaskClassName = MyApplication.getBackgroundTaskName();
         if (runningTaskClassName != null) {
-            Log.d(TAG, "canStartBackgroundService(): Another task is running in background: " + runningTaskClassName);
+            Log.d(TAG, "canStartBackgroundService(): Another task is running in background: %s", runningTaskClassName);
             BackgroundTaskHelper backgroundTaskHelper = new BackgroundTaskHelper(context);
             backgroundTaskHelper.showTaskRunningMessage(runningTaskClassName);
             return false;

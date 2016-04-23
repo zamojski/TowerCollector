@@ -32,25 +32,15 @@ public class MobileUtils {
                 int mnc = Integer.parseInt(operatorCode.substring(3));
                 return new int[]{mcc, mnc};
             } catch (NumberFormatException ex) {
-                Log.e(TAG, "getMccMncPair(): Cannot parse network operator codes: " + operatorCode, ex);
+                Log.e(TAG, "getMccMncPair(): Cannot parse network operator codes: %s", operatorCode, ex);
             }
         }
         return null;
     }
 
-    public static boolean isSimCardPresent(Context context) {
-        TelephonyManager manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        return (manager.getSimState() == TelephonyManager.SIM_STATE_READY);
-    }
-
-    public static boolean isMultiSimDevice(Context context) {
-        // TODO: using SubscriptionManager
-        throw new UnsupportedOperationException("Not implemented");
-    }
-
     public static boolean isApi17VersionCompatible() {
         boolean result = Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1;
-        Log.d(TAG, "isApi17VersionCompatible(): Result = " + result);
+        Log.d(TAG, "isApi17VersionCompatible(): Result = %s", result);
         return result;
     }
 
@@ -104,7 +94,7 @@ public class MobileUtils {
         }
         CellLocationValidator validator = new CellLocationValidator();
         boolean result = validator.isValid(cell, mcc, mnc);
-        Log.d(TAG, "isApi1CellInfoAvailable(): Result = " + result);
+        Log.d(TAG, "isApi1CellInfoAvailable(): Result = %s", result);
         return result;
     }
 }

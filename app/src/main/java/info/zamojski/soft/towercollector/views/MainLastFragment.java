@@ -90,7 +90,7 @@ public class MainLastFragment extends MainFragmentBase {
     }
 
     private void printMeasurement(Measurement measurement) {
-        Log.d(TAG, "printMeasurement(): Printing last measurement " + measurement);
+        Log.d(TAG, "printMeasurement(): Printing last measurement %s", measurement);
         int networkNameId = NetworkTypeUtils.getNetworkGroupNameResId(measurement.getNetworkType());
         lastNetworkTypeValueTextView.setText(getString(networkNameId));
         lastCellIdValueTextView.setText(String.valueOf(measurement.getCid()));

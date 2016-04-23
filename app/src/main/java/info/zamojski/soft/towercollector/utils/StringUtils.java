@@ -21,7 +21,7 @@ public class StringUtils {
         try {
             encodedContent = URLEncoder.encode(encodedContent, textEncoding);
         } catch (UnsupportedEncodingException ex) {
-            Log.e(TAG, "encodeHtml(): Unsupported encoding " + textEncoding, ex);
+            Log.e(TAG, "encodeHtml(): Unsupported encoding %s", textEncoding, ex);
         }
         return encodedContent.replaceAll("\\+", " ");
     }

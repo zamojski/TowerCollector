@@ -67,14 +67,14 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         if (key.equals(getString(R.string.preferences_collector_api_version_key))) {
             String collectorApiVersionValue = collectorApiVersionPreference.getValue();
             CharSequence collectorApiVersionLabel = collectorApiVersionPreference.getEntry();
-            Log.d(TAG, "onSharedPreferenceChanged(): User set api version = \"" + collectorApiVersionValue + "\"");
+            Log.d(TAG, "onSharedPreferenceChanged(): User set api version = \"%s\"", collectorApiVersionValue);
             collectorApiVersionPreference.setSummary(formatValueString(R.string.preferences_collector_api_version_summary, collectorApiVersionLabel));
             setupApiVersionSelection();
             Toast.makeText(getActivity(), R.string.preferences_restart_collector, Toast.LENGTH_SHORT).show();
         } else if (key.equals(getString(R.string.preferences_file_logging_level_key))) {
             String fileLoggingLevelValue = fileLoggingLevelPreference.getValue();
             CharSequence fileLoggingLevelLabel = fileLoggingLevelPreference.getEntry();
-            Log.d(TAG, "onSharedPreferenceChanged(): User set file logging level = \"" + fileLoggingLevelValue + "\"");
+            Log.d(TAG, "onSharedPreferenceChanged(): User set file logging level = \"%s\"", fileLoggingLevelValue);
             fileLoggingLevelPreference.setSummary(formatValueString(R.string.preferences_file_logging_level_summary, fileLoggingLevelLabel));
         }
     }

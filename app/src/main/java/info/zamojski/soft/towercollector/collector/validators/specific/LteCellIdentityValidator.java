@@ -19,8 +19,8 @@ public class LteCellIdentityValidator {
                 && isMncInRange(cell.getMnc()) && isMccInRange(cell.getMcc())
                 && isPciInRange(cell.getPci()));
         if (!valid) {
-            Log.w(TAG, "isValid(): Invalid CellIdentityLte [mcc=" + cell.getMcc() + ", mnc=" + cell.getMnc() + ", lac=" + cell.getTac() + ", cid=" + cell.getCi() + ", psc=" + cell.getPci() + "]");
-            Log.w(TAG, "isValid(): Invalid CellIdentityLte " + cell);
+            Log.w(TAG, "isValid(): Invalid CellIdentityLte [mcc=%s, mnc=%s, lac=%s, cid=%s, psc=%s]", cell.getMcc(), cell.getMnc(), cell.getTac(), cell.getCi(), cell.getPci());
+            Log.w(TAG, "isValid(): Invalid CellIdentityLte %s", cell);
         }
         return valid;
     }

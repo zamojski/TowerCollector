@@ -52,7 +52,7 @@ public class MeasurementsDatabase {
     }
 
     public boolean insertMeasurements(Measurement[] measurements) {
-        Log.d(TAG, "insertMeasurement(): Inserting " + measurements.length + " measurements");
+        Log.d(TAG, "insertMeasurement(): Inserting %s measurements", measurements.length);
         boolean[] results = new boolean[measurements.length];
         boolean overallResult = true;
         SQLiteDatabase db = helper.getWritableDatabase();
@@ -73,7 +73,7 @@ public class MeasurementsDatabase {
                     values.put(CellsTable.COLUMN_DISCOVERED_AT, System.currentTimeMillis());
                     long rowId = db.insert(CellsTable.TABLE_NAME, null, values);
                     boolean localResult = (rowId != -1);
-                    Log.d(TAG, "insertMeasurement(): Cell inserted = " + localResult);
+                    Log.d(TAG, "insertMeasurement(): Cell inserted = %s", localResult);
                     resultSb.append("\tcell inserted=").append(localResult);
                 }
                 // don't use value returned by insert, because it sometimes returns wrong value -> query always
@@ -92,7 +92,7 @@ public class MeasurementsDatabase {
                     }
                     cursorTotal.close();
                     results[mIndex] = localResult;
-                    Log.d(TAG, "insertMeasurement(): Cell found = " + localResult);
+                    Log.d(TAG, "insertMeasurement(): Cell found = %s", localResult);
                     resultSb.append("\tcell found=").append(localResult);
                 }
                 // calculate hashcode
@@ -110,7 +110,7 @@ public class MeasurementsDatabase {
                     values.put(LocationsTable.COLUMN_GPS_ALTITUDE, measurement.getGpsAltitude());
                     long rowId = db.insert(LocationsTable.TABLE_NAME, null, values);
                     boolean localResult = (rowId != -1);
-                    Log.d(TAG, "insertMeasurement(): Location inserted = " + localResult);
+                    Log.d(TAG, "insertMeasurement(): Location inserted = %s", localResult);
                     resultSb.append("\tlocation inserted=").append(localResult);
                 }
                 // don't use value returned by insert, because it sometimes returns wrong value -> query always
@@ -129,7 +129,7 @@ public class MeasurementsDatabase {
                     }
                     cursorTotal.close();
                     results[mIndex] = localResult;
-                    Log.d(TAG, "insertMeasurement(): Location found = " + localResult);
+                    Log.d(TAG, "insertMeasurement(): Location found = %s", localResult);
                     resultSb.append("\tlocation found=").append(localResult);
                 }
                 // insert measurement (if previous queries returned correct result)
@@ -146,7 +146,7 @@ public class MeasurementsDatabase {
                     long rowId = db.insert(MeasurementsTable.TABLE_NAME, null, values);
                     boolean localResult = (rowId != -1);
                     results[mIndex] &= localResult;
-                    Log.d(TAG, "insertMeasurement(): Measurement inserted = " + localResult);
+                    Log.d(TAG, "insertMeasurement(): Measurement inserted = %s", localResult);
                     resultSb.append("\tmeasurement inserted=").append(localResult);
                 }
                 resultSb.append(";\r\n");
@@ -158,10 +158,10 @@ public class MeasurementsDatabase {
             if (overallResult) {
                 db.setTransactionSuccessful();
                 Log.d(TAG, "insertMeasurements(): Measurements inserted successfully");
-                Log.d(TAG, "insertMeasurements(): Insertion report: " + resultSb.toString());
+                Log.d(TAG, "insertMeasurements(): Insertion report: %s", resultSb.toString());
             } else {
                 Log.d(TAG, "insertMeasurements(): Measurements not inserted");
-                Log.d(TAG, "insertMeasurements(): Insertion report: " + resultSb.toString());
+                Log.d(TAG, "insertMeasurements(): Insertion report: %s", resultSb.toString());
                 // report exception because it shouldn't occur (one time per app run)
                 if (!insertionFailureReported) {
                     Throwable ex = new MeasurementInsertionFailedException("Measurements not inserted", resultSb.toString());
@@ -186,14 +186,14 @@ public class MeasurementsDatabase {
         List<Measurement> measurements = getMeasurements(null, null, null, null, MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " ASC, " + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_ROW_ID + " ASC", "1");
         if (!measurements.isEmpty())
             firstMeasurement = measurements.get(0);
-        Log.d(TAG, "getFirstMeasurement(): " + firstMeasurement);
+        Log.d(TAG, "getFirstMeasurement(): %s", firstMeasurement);
         return firstMeasurement;
     }
 
     public Measurement getLastMeasurement() {
         // Try to get from cache then read from DB
         if (this.lastMeasurementCache != null) {
-            Log.d(TAG, "getLastMeasurement(): Value from cache: " + this.lastMeasurementCache);
+            Log.d(TAG, "getLastMeasurement(): Value from cache: %s", this.lastMeasurementCache);
             return this.lastMeasurementCache;
         }
         Measurement lastMeasurement = null;
@@ -205,7 +205,7 @@ public class MeasurementsDatabase {
         if (!measurements.isEmpty()) {
             lastMeasurement = measurements.get(0);
         }
-        Log.d(TAG, "getLastMeasurement(): Value from DB: " + lastMeasurement);
+        Log.d(TAG, "getLastMeasurement(): Value from DB: %s", lastMeasurement);
         this.lastMeasurementCache = lastMeasurement;
         return lastMeasurement;
     }
@@ -228,7 +228,7 @@ public class MeasurementsDatabase {
     public Statistics getMeasurementsStatistics() {
         // Try to get from cache then read from DB
         if (this.lastStatisticsCache != null) {
-            Log.d(TAG, "getMeasurementsStatistics(): Value from cache: " + this.lastStatisticsCache);
+            Log.d(TAG, "getMeasurementsStatistics(): Value from cache: %s", this.lastStatisticsCache);
             return this.lastStatisticsCache;
         }
         Statistics stats = new Statistics();
@@ -302,7 +302,7 @@ public class MeasurementsDatabase {
             stats.setSinceGlobal(cursor.getLong(cursor.getColumnIndex(globalDiscoveredCellsSince)));
         }
         cursor.close();
-        Log.d(TAG, "getMeasurementsStatistics(): Value from DB: " + stats);
+        Log.d(TAG, "getMeasurementsStatistics(): Value from DB: %s", stats);
         this.lastStatisticsCache = stats;
         return stats;
     }
@@ -321,7 +321,7 @@ public class MeasurementsDatabase {
             stats.setDays(cursor.getInt(cursor.getColumnIndex("TOTAL_DAYS_COUNT")));
         }
         cursor.close();
-        Log.d(TAG, "getAnalyticsStatistics(): " + stats);
+        Log.d(TAG, "getAnalyticsStatistics(): %s", stats);
         return stats;
     }
 
@@ -345,7 +345,7 @@ public class MeasurementsDatabase {
     }
 
     public List<Measurement> getOlderMeasurements(long maxTimestamp, int offset, int limit) {
-        Log.d(TAG, "getOlderMeasurements(): Getting " + limit + " measurements with timestamp <= " + maxTimestamp + " skipping first " + offset);
+        Log.d(TAG, "getOlderMeasurements(): Getting %s measurements with timestamp <= %s skipping first %s", limit, maxTimestamp, offset);
         return getMeasurements(MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " <= ?", new String[]{String.valueOf(maxTimestamp)}, null, null, MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " ASC, " + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_ROW_ID + " ASC", String.valueOf(offset) + ", " + String.valueOf(limit));
     }
 
@@ -432,7 +432,7 @@ public class MeasurementsDatabase {
             int deletedLocations = db.delete(LocationsTable.TABLE_NAME, "1", null);
             int deletedCells = db.delete(CellsTable.TABLE_NAME, "1", null);
             db.setTransactionSuccessful();
-            Log.d(TAG, "deleteAllMeasurements(): Deleted " + deletedMeasurements + " measurements, " + deletedCells + " cells, " + deletedLocations + " locations");
+            Log.d(TAG, "deleteAllMeasurements(): Deleted %s measurements, %s cells, %s locations", deletedMeasurements, deletedCells, deletedLocations);
         } finally {
             invalidateCache();
             db.endTransaction();
@@ -445,7 +445,7 @@ public class MeasurementsDatabase {
             Log.d(TAG, "deleteMeasurements(): Nothing to delete");
             return 0;
         }
-        Log.d(TAG, "deleteMeasurements(): Deleting " + rowIds.length + " measurements");
+        Log.d(TAG, "deleteMeasurements(): Deleting %s measurements", rowIds.length);
         // in transaction
         int deleted = 0;
         SQLiteDatabase db = helper.getWritableDatabase();
@@ -481,7 +481,7 @@ public class MeasurementsDatabase {
                 // if all removed successfully then delete orphaned cells and locations
                 long deletedLocations = db.delete(LocationsTable.TABLE_NAME, LocationsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_LOCATION_ID + " FROM " + MeasurementsTable.TABLE_NAME + ")", null);
                 long deletedCells = db.delete(CellsTable.TABLE_NAME, CellsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_CELL_ID + " FROM " + MeasurementsTable.TABLE_NAME + ")", null);
-                Log.d(TAG, "deleteMeasurements(): Deleted orphaned " + deletedCells + " cells, " + deletedLocations + " locations");
+                Log.d(TAG, "deleteMeasurements(): Deleted orphaned %s cells, %s locations", deletedCells, deletedLocations);
                 db.setTransactionSuccessful();
             } else
                 deleted = 0;
@@ -507,7 +507,7 @@ public class MeasurementsDatabase {
             // open manually to prevent database upgrade or creation
             db = SQLiteDatabase.openDatabase(path.toString(), null, SQLiteDatabase.OPEN_READONLY);
             version = db.getVersion(); // equivalent of PRAGMA user_version
-            Log.d(TAG, "getDatabaseVersion(): Database file version " + version);
+            Log.d(TAG, "getDatabaseVersion(): Database file version %s", version);
         } catch (SQLiteException ex) {
             Log.e(TAG, "getDatabaseVersion(): Database file cannot be opened", ex);
         } finally {
@@ -562,7 +562,7 @@ public class MeasurementsDatabase {
 
         @Override
         public void onCreate(SQLiteDatabase sqliteDatabase) {
-            Log.d(INNER_TAG, "onCreate(): Creating db stucture");
+            Log.d(INNER_TAG, "onCreate(): Creating db structure");
             List<ITable> tables = new ArrayList<ITable>();
             tables.add(new CellsArchiveTable());
             tables.add(new StatsTable());
@@ -580,7 +580,7 @@ public class MeasurementsDatabase {
 
         @Override
         public void onUpgrade(SQLiteDatabase sqliteDatabase, int oldVersion, int newVersion) {
-            Log.d(INNER_TAG, "onUpgrade(): Upgrading db from version " + oldVersion + " to " + newVersion);
+            Log.d(INNER_TAG, "onUpgrade(): Upgrading db from version %s to %s", oldVersion, newVersion);
             DbMigrationHelper migrationHelper = new DbMigrationHelper(sqliteDatabase);
             migrationHelper.upgrade(oldVersion, newVersion);
         }

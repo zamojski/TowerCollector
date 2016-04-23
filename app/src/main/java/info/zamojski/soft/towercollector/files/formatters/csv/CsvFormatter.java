@@ -13,20 +13,20 @@ public abstract class CsvFormatter implements ICsvFormatter {
 
     protected static final Locale LOCALE = Locale.ENGLISH;
 
-    protected static final NumberFormat coordsDoubleFormater;
+    protected static final NumberFormat coordsDoubleFormatter;
 
     protected static String deviceName;
 
     static {
-        coordsDoubleFormater = NumberFormat.getNumberInstance(LOCALE);
-        coordsDoubleFormater.setGroupingUsed(false);
-        coordsDoubleFormater.setMinimumFractionDigits(8);
-        coordsDoubleFormater.setMaximumFractionDigits(12);
+        coordsDoubleFormatter = NumberFormat.getNumberInstance(LOCALE);
+        coordsDoubleFormatter.setGroupingUsed(false);
+        coordsDoubleFormatter.setMinimumFractionDigits(8);
+        coordsDoubleFormatter.setMaximumFractionDigits(12);
 
         deviceName = ApkUtils.getDeviceName();
     }
 
     protected String formatCoordinate(double value) {
-        return coordsDoubleFormater.format(value);
+        return coordsDoubleFormatter.format(value);
     }
 }

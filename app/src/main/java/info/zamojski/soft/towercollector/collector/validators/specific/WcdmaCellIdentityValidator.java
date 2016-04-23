@@ -20,8 +20,8 @@ public class WcdmaCellIdentityValidator {
                 && isMncInRange(cell.getMnc()) && isMccInRange(cell.getMcc())
                 && isPscInRange(cell.getPsc()));
         if (!valid) {
-            Log.w(TAG, "isValid(): Invalid CellIdentityWcdma [mcc=" + cell.getMcc() + ", mnc=" + cell.getMnc() + ", lac=" + cell.getLac() + ", cid=" + cell.getCid() + ", psc=" + cell.getPsc() + "]");
-            Log.w(TAG, "isValid(): Invalid CellIdentityWcdma " + cell);
+            Log.w(TAG, "isValid(): Invalid CellIdentityWcdma [mcc=%s, mnc=%s, lac=%s, cid=%s, psc=%s]", cell.getMcc(), cell.getMnc(), cell.getLac(), cell.getCid(), cell.getPsc());
+            Log.w(TAG, "isValid(): Invalid CellIdentityWcdma %s", cell);
         }
         return valid;
     }
@@ -32,8 +32,8 @@ public class WcdmaCellIdentityValidator {
                 && isMncInRange(cell.getMnc()) && isMccInRange(cell.getMcc())
                 && isPscInRange(cell.getPsc()));
         if (!valid) {
-            Log.w(TAG, "isValid(): Invalid CellIdentityWcdma as Gsm JB_MR1 [mcc=" + cell.getMcc() + ", mnc=" + cell.getMnc() + ", lac=" + cell.getLac() + ", cid=" + cell.getCid() + ", psc=" + cell.getPsc() + "]");
-            Log.w(TAG, "isValid(): Invalid CellIdentityWcdma as Gsm JB_MR1 " + cell);
+            Log.w(TAG, "isValid(): Invalid CellIdentityWcdma as Gsm JB_MR1 [mcc=%s, mnc=%s, lac=%s, cid=%s, psc=%s]", cell.getMcc(), cell.getMnc(), cell.getLac(), cell.getCid(), cell.getPsc());
+            Log.w(TAG, "isValid(): Invalid CellIdentityWcdma as Gsm JB_MR1 %s", cell);
         }
         return valid;
     }

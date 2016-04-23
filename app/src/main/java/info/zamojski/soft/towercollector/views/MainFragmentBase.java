@@ -85,7 +85,7 @@ public abstract class MainFragmentBase extends Fragment {
     }
 
     private void showInvalidSystemTime(boolean show) {
-        Log.d(TAG, "showInvalidSystemTime(): Setting invalid system time visible = " + show);
+        Log.d(TAG, "showInvalidSystemTime(): Setting invalid system time visible = %s", show);
         invalidSystemTimeValueTextView.setTextColor(getResources().getColor(R.color.text_light));
         invalidSystemTimeTableRow.setBackgroundColor(getResources().getColor(R.color.background_needs_attention));
         invalidSystemTimeTableRow.setVisibility(show ? View.VISIBLE : View.GONE);
@@ -102,7 +102,7 @@ public abstract class MainFragmentBase extends Fragment {
     }
 
     private void printGpsStatus(GpsStatus status, float lastAccuracy) {
-        Log.d(TAG, "printGpsStatus(): Showing status " + status + " and accuracy " + lastAccuracy);
+        Log.d(TAG, "printGpsStatus(): Showing status %s and accuracy %s", status, lastAccuracy);
         String statusString;
         int textColorResId;
         int backgroundColorResId;

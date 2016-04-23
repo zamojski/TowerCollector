@@ -18,8 +18,8 @@ public class CdmaCellIdentityValidator {
         boolean valid = (isBidInRange(cell.getBasestationId()) && isNidInRange(cell.getNetworkId())
                 && isSidInRange(cell.getSystemId()));
         if (!valid) {
-            Log.w(TAG, "isValid(): Invalid CellIdentityCdma [sid=" + cell.getSystemId() + ", nid=" + cell.getNetworkId() + ", bid=" + cell.getBasestationId() + "]");
-            Log.w(TAG, "isValid(): Invalid CellIdentityCdma " + cell);
+            Log.w(TAG, "isValid(): Invalid CellIdentityCdma [sid=%s, nid=%s, bid=%s]", cell.getSystemId(), cell.getNetworkId(), cell.getBasestationId());
+            Log.w(TAG, "isValid(): Invalid CellIdentityCdma %s", cell);
         }
         return valid;
     }
