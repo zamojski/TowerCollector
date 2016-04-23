@@ -53,12 +53,14 @@ public class MyApplication extends Application {
         initGA();
     }
 
-    private void initLogger() {
+    public void initLogger() {
         // Default configuration
         Log.usePrinter(Log.ANDROID, true).level(Log.I).useFormat(true);
         // File logging based on preferences
         String fileLoggingLevel = getPreferencesProvider().getFileLoggingLevel();
-        if (!fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_disabled))) {
+        if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_disabled))) {
+            Log.usePrinter(AndroidFilePrinter.getInstance(), false);
+        } else {
             if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_debug))) {
                 Log.level(Log.D);
             } else if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_info))) {

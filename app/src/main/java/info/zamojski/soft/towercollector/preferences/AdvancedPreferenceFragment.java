@@ -4,6 +4,7 @@
 
 package info.zamojski.soft.towercollector.preferences;
 
+import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.utils.MobileUtils;
 
@@ -76,6 +77,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
             CharSequence fileLoggingLevelLabel = fileLoggingLevelPreference.getEntry();
             Log.d(TAG, "onSharedPreferenceChanged(): User set file logging level = \"%s\"", fileLoggingLevelValue);
             fileLoggingLevelPreference.setSummary(formatValueString(R.string.preferences_file_logging_level_summary, fileLoggingLevelLabel));
+            MyApplication.getApplication().initLogger();
         }
     }
 
