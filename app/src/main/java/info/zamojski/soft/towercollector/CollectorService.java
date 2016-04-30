@@ -4,7 +4,7 @@
 
 package info.zamojski.soft.towercollector;
 
-import info.zamojski.soft.towercollector.R;
+import info.zamojski.soft.towercollector.broadcast.ExternalIntentBroadcaster;
 import info.zamojski.soft.towercollector.enums.GpsStatus;
 import info.zamojski.soft.towercollector.enums.KeepScreenOnMode;
 import info.zamojski.soft.towercollector.enums.MeansOfTransport;
@@ -92,6 +92,10 @@ public class CollectorService extends Service {
     private Handler gpsStatusHandler;
     private HandlerThread measurementParserThread;
     private Handler measurementParserHandler;
+
+    private HandlerThread externalBroadcasterThread;
+    private Handler externalBroadcasterHandler;
+    private ExternalIntentBroadcaster externalIntentBroadcaster = new ExternalIntentBroadcaster();
 
     private MeasurementUpdater measurementUpdater = new MeasurementUpdater();
 
@@ -190,6 +194,9 @@ public class CollectorService extends Service {
         float accuracy = getLastGpsAccuracy();
         EventBus.getDefault().postSticky(new GpsStatusChangedEvent(status, accuracy));
 
+        //TODO: only if enabled
+        getExternalBroadcasterHandler().post(externalIntentBroadcaster);
+
         return START_REDELIVER_INTENT;
     }
 
@@ -216,6 +223,7 @@ public class CollectorService extends Service {
             periodicalPhoneStateListener.cancel();
         }
         measurementParser.stop();
+        externalIntentBroadcaster.stop();
         EventBus.getDefault().postSticky(new GpsStatusChangedEvent());
         EventBus.getDefault().unregister(this);
         if (stopRequestBroadcastReceiver != null)
@@ -234,6 +242,8 @@ public class CollectorService extends Service {
             telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
         if (measurementParserThread != null)
             measurementParserThread.quit();
+        if(externalBroadcasterThread!=null)
+            externalBroadcasterThread.quit();
         long duration = (endTime - startTime);
         Statistics endStats = MeasurementsDatabase.getInstance(getApplication()).getMeasurementsStatistics();
         int numberOfCollectedLocations = endStats.getLocationsLocal() - startStats.getLocationsLocal();
@@ -543,6 +553,15 @@ public class CollectorService extends Service {
             measurementParserHandler = new Handler(measurementParserThread.getLooper());
         }
         return measurementParserHandler;
+    }
+
+    private Handler getExternalBroadcasterHandler() {
+        if (externalBroadcasterHandler == null) {
+            externalBroadcasterThread = new HandlerThread("ExternalBroadcasterHandler");
+            externalBroadcasterThread.start();
+            externalBroadcasterHandler = new Handler(externalBroadcasterThread.getLooper());
+        }
+        return externalBroadcasterHandler;
     }
 
     private class LocalBinder extends Binder implements ICollectorService {

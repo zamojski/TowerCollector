@@ -30,6 +30,7 @@ import info.zamojski.soft.towercollector.collector.validators.SystemTimeValidato
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.events.Api17PlusMeasurementProcessingEvent;
 import info.zamojski.soft.towercollector.events.MeasurementSavedEvent;
+import info.zamojski.soft.towercollector.events.MeasurementsCollectedEvent;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.model.Statistics;
 
@@ -123,6 +124,7 @@ public class Api17PlusMeasurementParser extends MeasurementParser {
             // broadcast information to main activity
             Statistics stats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
             EventBus.getDefault().post(new MeasurementSavedEvent(mainMeasurement, stats));
+            EventBus.getDefault().post(new MeasurementsCollectedEvent(measurementsToSave));
             Log.d(TAG, "parse(): Notification updated and measurement broadcasted");
             return ParseResult.Saved;
         } else {
