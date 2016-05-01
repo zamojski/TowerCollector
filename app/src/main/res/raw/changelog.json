@@ -1,12 +1,32 @@
 {
   "Entries": [
     {
-      "VersionCode": 50,
-      "Title":"Changes in version 1.7.5",
-      "Description":"Tower Collector became open source - more on <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> :)",
+      "VersionCode": 1080002,
+      "Title": "Changes in version 1.8.0.2",
+      "Description": "Starting from this version Tower Collector will be available only in English. I made this decision to accelerate development of new features by reducing waiting for translation time to minimum. In the future I will add a glossary and more detailed introduction for novice users in their native language. I'd like to thank all of you who were engaged in app translation over the years and dedicated their own time to Tower Collector. I really appreciate that, thanks!",
       "Messages": [
-        "Improved performance of the app and reducted battery usage when Collector is running.",
-        "Fixed crash when web browser is not insalled on a device.",
+        "Introduced basic Material Design style.",
+        "Added option to start collecting on device boot.",
+        "Changed Preferences to display descriptions in more friendly way.",
+        "Improved contact option in Preferences."
+      ]
+    },
+    {
+      "VersionCode": 51,
+      "Title": "Changes in version 1.7.6",
+      "Description": "Join <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+ Community</a> and try out the new beta version! I'm awaiting you feedback :)",
+      "Messages": [
+        "Fixed inconsistent GPS status shown in notification and on the bar shortly after Collector start.",
+        "Fixed crash when web browser is not installed on a device."
+      ]
+    },
+    {
+      "VersionCode": 50,
+      "Title": "Changes in version 1.7.5",
+      "Description": "Tower Collector became open source - more on <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> :)",
+      "Messages": [
+        "Improved performance of the app and reduced battery usage when Collector is running.",
+        "Fixed crash when web browser is not installed on a device.",
         "Improved notification layout for displaying long text."
       ]
     },
@@ -48,20 +68,6 @@
         "Improved OpenCellID.org upload compatibility.",
         "Added Timing Advance column to exported CSV file for LTE cells.",
         "Added link to official Google+ Community in Preferences."
-      ]
-    },
-    {
-      "VersionCode": 45,
-      "Title": "Changes in version 1.7.0",
-      "Description": "This version introduces many changes related to measurement collecting. They're connected with added support for new methods of reading cell data and keeping screen on. You can find more details below. If you experience any problems please contact me!",
-      "Messages": [
-        "Added support for Android API 17 (4.2+) methods to read cell info while collecting. New method provides more reliable and consistent data. It's also no longer necessary to keep screen on to get cell info and signal strength refreshed.",
-        "Added support for collecting cells using multiple SIM cards on Android 5.1+ (only when using new API).",
-        "Changed 'Keep screen on' option into 'Keep screen on when collecting' which now forces screen to remain on at given brightness level.",
-        "Added 'Keep screen on when visible' option which keeps screen enabled while Main screen is displayed.",
-        "Added option to disable Neighboring Cells collecting.",
-        "Updated Preferences to clearly present currently selected value.",
-        "Reorganized Preferences and added Advanced section."
       ]
     }
   ]
