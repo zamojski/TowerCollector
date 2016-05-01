@@ -14,7 +14,6 @@ import info.zamojski.soft.towercollector.analytics.internal.Screens;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
 
 import android.app.Application;
-import android.content.Context;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
@@ -28,11 +27,12 @@ public class GoogleAnalyticsReportingService implements IAnalyticsReportingServi
     private GoogleAnalytics analytics;
     private Tracker tracker;
 
-    public GoogleAnalyticsReportingService(Application application, boolean trackingEnabled) {
+    public GoogleAnalyticsReportingService(Application application, boolean trackingEnabled, boolean dryRun) {
         this.application = application;
 
         this.analytics = GoogleAnalytics.getInstance(application);
         this.analytics.setAppOptOut(!trackingEnabled);
+        this.analytics.setDryRun(dryRun);
 
         this.tracker = analytics.newTracker(R.xml.global_tracker);
     }
