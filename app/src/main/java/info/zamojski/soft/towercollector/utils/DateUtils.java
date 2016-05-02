@@ -6,6 +6,8 @@ package info.zamojski.soft.towercollector.utils;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 public class DateUtils {
@@ -15,6 +17,10 @@ public class DateUtils {
         long dateTime = System.currentTimeMillis();
         long dateOnly = (dateTime / MILLIS_IN_DAY) * MILLIS_IN_DAY;// like integer division
         return dateOnly;
+    }
+
+    public static Date getCurrentDate() {
+        return new Date(System.currentTimeMillis());
     }
 
     public static long getTimeDiff(long start, long end) {
@@ -36,4 +42,11 @@ public class DateUtils {
         cal.add(Calendar.HOUR_OF_DAY, hours);
         return cal.getTime();
     }
+
+    public static Date getTimeFrom(int year, int month, int day, int hour, int minute, int second) {
+        Calendar calendar = new GregorianCalendar(year, month, day, hour, minute, second);
+        calendar.setTimeZone(TimeZone.getTimeZone("UTC"));
+        return calendar.getTime();
+    }
+
 }
