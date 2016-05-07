@@ -225,7 +225,9 @@ public class CollectorService extends Service {
             periodicalPhoneStateListener.cancel();
         }
         measurementParser.stop();
-        externalIntentBroadcaster.stop();
+        if (externalIntentBroadcaster != null) {
+            externalIntentBroadcaster.stop();
+        }
         EventBus.getDefault().postSticky(new GpsStatusChangedEvent());
         EventBus.getDefault().unregister(this);
         if (stopRequestBroadcastReceiver != null)
