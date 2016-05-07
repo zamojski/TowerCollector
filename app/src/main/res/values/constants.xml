@@ -14,13 +14,11 @@
 
     <string name="preferences_show_compatibility_warning_key" translatable="false">show_compatibility_warning</string>
 
-    <bool name="preferences_show_compatibility_warning_default_value" translatable="false">true
-    </bool>
+    <bool name="preferences_show_compatibility_warning_default_value" translatable="false">true</bool>
 
     <string name="preferences_latest_developer_message_key" translatable="false">latest_developer_message</string>
 
-    <integer name="preferences_latest_developer_message_default_value" translatable="false">1
-    </integer>
+    <integer name="preferences_latest_developer_message_default_value" translatable="false">1</integer>
 
     <string name="preferences_api_key_key" translatable="false">api_key</string>
     <string name="preferences_api_key_default_value" translatable="false"></string>
@@ -34,8 +32,7 @@
 
     <string name="preferences_gps_optimizations_enabled_key" translatable="false">gps_optimizations_enabled_key</string>
 
-    <bool name="preferences_gps_optimizations_enabled_default_value" translatable="false">true
-    </bool>
+    <bool name="preferences_gps_optimizations_enabled_default_value" translatable="false">true</bool>
 
     <string name="preferences_tracking_enabled_key" translatable="false">tracking_enabled_key</string>
 
@@ -52,15 +49,13 @@
 
     <string name="preferences_last_update_check_date_key" translatable="false">last_update_check_date</string>
 
-    <integer name="preferences_last_update_check_date_default_value" translatable="false">0
-    </integer>
+    <integer name="preferences_last_update_check_date_default_value" translatable="false">0</integer>
 
     <string name="preferences_collector_keep_screen_on_mode_key" translatable="false">collector_keep_screen_on_mode</string>
     <string name="preferences_collector_keep_screen_on_mode_default_value" translatable="false">@string/preferences_keep_screen_on_mode_entries_value_disabled</string>
     <string name="preferences_main_keep_screen_on_mode_key" translatable="false">main_keep_screen_on_mode</string>
 
-    <bool name="preferences_main_keep_screen_on_mode_default_value" translatable="false">false
-    </bool>
+    <bool name="preferences_main_keep_screen_on_mode_default_value" translatable="false">false</bool>
 
     <string name="preferences_about_main_keep_screen_on_key" translatable="false">about_main_keep_screen_on</string>
 
@@ -74,9 +69,7 @@
     <string name="preferences_collector_api_version_key" translatable="false">collector_api_version</string>
     <string name="preferences_collector_api_version_default_value" translatable="false">@string/preferences_collector_api_version_entries_value_auto</string>
 
-    <bool name="preferences_collector_api_version_enabled_default_value" translatable="false">
-        false
-    </bool>
+    <bool name="preferences_collector_api_version_enabled_default_value" translatable="false">false</bool>
 
     <string name="preferences_collector_api_version_entries_value_auto" translatable="false">auto</string>
     <string name="preferences_collector_api_version_entries_value_api_17" translatable="false">api_17</string>
@@ -84,8 +77,11 @@
     <string name="preferences_about_collector_api_version_key" translatable="false">about_collector_api_version</string>
     <string name="preferences_collect_neighboring_cells_key" translatable="false">collect_neighboring_cells</string>
 
-    <bool name="preferences_collect_neighboring_cells_default_value" translatable="false">true
-    </bool>
+    <bool name="preferences_collect_neighboring_cells_default_value" translatable="false">true</bool>
+
+    <string name="preferences_notify_measurements_collected_key" translatable="false">notify_measurements_collected</string>
+    <bool name="preferences_notify_measurements_collected_default_value" translatable="false">false</bool>
+    <string name="preferences_about_notify_measurements_collected_key" translatable="false">about_notify_measurements_collected</string>
 
     <string name="preferences_about_neighboring_cells_key" translatable="false">about_neighboring_cells</string>
     <string name="preferences_main_window_recent_tab_key" translatable="false">main_window_recent_tab</string>

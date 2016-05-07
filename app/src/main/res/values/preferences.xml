@@ -80,6 +80,11 @@
     <string name="preferences_collect_neighboring_cells_off_summary">Neighboring cells will be discarded.</string>
     <string name="preferences_about_neighboring_cells_title">About neighboring cells</string>
     <string name="preferences_about_neighboring_cells_summary">Information about neighboring cells.</string>
+    <string name="preferences_notify_measurements_collected_title">Notify about collected measurements</string>
+    <string name="preferences_notify_measurements_collected_on_summary">Other apps will be notified about collected measurements. More info below.</string>
+    <string name="preferences_notify_measurements_collected_off_summary">Notifications to other apps about collected measurements are disabled. More info below.</string>
+    <string name="preferences_about_notify_measurements_collected_title">About notifying of collected measurements</string>
+    <string name="preferences_about_notify_measurements_collected_summary">Information about collected measurements notification to other apps.</string>
     <string name="preferences_main_keep_screen_on_title">Keep screen on when visible</string>
     <string name="preferences_main_keep_screen_on_on_summary">Screen will be kept constantly on when app\'s main screen is displayed.</string>
     <string name="preferences_main_keep_screen_on_off_summary">Screen will controlled by the system when app\'s main screen is displayed.</string>

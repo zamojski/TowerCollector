@@ -16,4 +16,5 @@
     <string name="info_about_collector_api_version_title">Collector API version</string>
     <string name="info_about_main_keep_screen_on_title">Keep screen on when visible</string>
     <string name="info_about_collector_keep_screen_on_title">Keep screen on when collecting</string>
+    <string name="info_about_notify_measurements_collected_title">Notify about collected measurements</string>
 </resources>

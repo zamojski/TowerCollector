@@ -32,6 +32,7 @@ import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.events.LegacyMeasurementProcessingEvent;
 import info.zamojski.soft.towercollector.events.MeasurementSavedEvent;
+import info.zamojski.soft.towercollector.events.MeasurementsCollectedEvent;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.model.Statistics;
 import info.zamojski.soft.towercollector.utils.MobileUtils;
@@ -143,6 +144,7 @@ public class LegacyMeasurementParser extends MeasurementParser {
             // broadcast information to main activity
             Statistics stats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
             EventBus.getDefault().post(new MeasurementSavedEvent(measurement, stats));
+            EventBus.getDefault().post(new MeasurementsCollectedEvent(measurementsToSave));
             Log.d(TAG, "parse(): Notification updated and measurement broadcasted");
             return ParseResult.Saved;
         } else {
