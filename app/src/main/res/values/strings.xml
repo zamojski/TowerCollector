@@ -173,7 +173,7 @@
     <string name="main_help_last_gps_accuracy_description">Accuracy of the position obtained from GPS.</string>
     <string name="main_help_last_date_time_title">Save time</string>
     <string name="main_help_last_date_time_description">Date and time when last measurement was saved.</string>
-    <string name="status_unknown">unknown</string>
+    <string name="status_initializing">initializing</string>
     <string name="status_ok">OK</string>
     <string name="status_low_gps_accuracy">low accuracy %1$.0f %2$s</string>
     <string name="status_no_gps_location">no location</string>

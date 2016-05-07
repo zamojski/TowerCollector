@@ -122,9 +122,9 @@ public abstract class MainFragmentBase extends Fragment {
                 textColorResId = R.color.text_dark;
                 backgroundColorResId = R.color.background_invalid;
                 break;
-            case Unknown:
+            case Initializing:
             default:
-                statusString = getString(R.string.status_unknown);
+                statusString = getString(R.string.status_initializing);
                 textColorResId = R.color.text_light;
                 backgroundColorResId = R.color.background_needs_attention;
                 break;

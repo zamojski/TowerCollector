@@ -4,7 +4,6 @@
 
 package info.zamojski.soft.towercollector;
 
-import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.enums.GpsStatus;
 import info.zamojski.soft.towercollector.enums.KeepScreenOnMode;
 import info.zamojski.soft.towercollector.enums.MeansOfTransport;
@@ -115,7 +114,7 @@ public class CollectorService extends Service {
 
     private Location lastLocation;
     private long lastLocationObtainedTime;
-    private GpsStatus gpsStatus = GpsStatus.Unknown;
+    private GpsStatus gpsStatus = GpsStatus.Initializing;
     private Validity lastIsSystemTimeValid = Validity.Valid;
 
     private SystemTimeValidator systemTimeValidator = new SystemTimeValidator();
@@ -565,7 +564,7 @@ public class CollectorService extends Service {
     private void updateGpsStatus(Location location, long gpsTimestamp, long systemTimestamp) {
         GpsStatus status = getGpsStatus();
         if (location == null) {
-            status = GpsStatus.Unknown;
+            status = GpsStatus.Initializing;
         } else if (!locationValidator.isUpToDate(gpsTimestamp, systemTimestamp)) {
             status = GpsStatus.NoLocation;
         } else if (!locationValidator.hasRequiredAccuracy(location)) {
@@ -707,7 +706,7 @@ public class CollectorService extends Service {
         } else if (status == GpsStatus.NoLocation)
             statusString = getString(R.string.status_no_gps_location);
         else
-            statusString = getString(R.string.status_unknown);// this should never happen
+            statusString = getString(R.string.status_initializing);// this should never happen
         return getString(R.string.collector_notification_status, statusString);
     }
 
