@@ -15,6 +15,7 @@
     <string name="app_title_help">Help</string>
     <string name="app_title_about">About</string>
     <string name="dialog_want_enable_gps">Do you want open location settings to enable GPS?</string>
+    <string name="dialog_could_not_open_network_type_settings">Could not open Android settings. Open them manually to change network type.</string>
     <string name="dialog_could_not_open_gps_settings">Could not open Android settings. Open them and enable GPS positioning.</string>
     <string name="dialog_select_email_app">Select email application</string>
     <string name="dialog_what_is_new">Developer\'s message!</string>
@@ -80,6 +81,7 @@
     <string name="main_menu_export_button">Export</string>
     <string name="main_menu_help_button">Help</string>
     <string name="main_menu_preferences_button">Preferences</string>
+    <string name="main_menu_network_type_button">Network type</string>
     <string name="collector_notification_title">Collecting</string>
     <string name="collector_notification_stats">Today %1$d measurements of %2$d cells.</string>
     <string name="collector_notification_status">GPS status: %s.</string>
