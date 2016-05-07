@@ -1,8 +1,8 @@
 // each of the version numbers must be 0-99
 def versionMajor = 1 // major releases
-def versionMinor = 8 // minor feature releases
+def versionMinor = 9 // minor feature releases
 def versionPatch = 0 // hot fixes
-def versionBuild = 2 // build version
+def versionBuild = 1 // build version
 
 // Double check the versioning
 for (versionPart in [versionPatch, versionMinor, versionMajor, versionBuild]) {
@@ -22,7 +22,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 22
         versionCode versionMajor * 1000000 + versionMinor * 10000 + versionPatch * 100 + versionBuild
-        versionName "${versionMajor}.${versionMinor}.${versionPatch}.${versionBuild}"
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}-beta${versionBuild}"
 
         Properties props = getCustomProperties()
         println 'Defining custom build config fields'

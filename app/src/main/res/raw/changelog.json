@@ -1,6 +1,15 @@
 {
   "Entries": [
     {
+      "VersionCode": 1090001,
+      "Title": "Changes in version 1.9.0-beta1",
+      "Messages": [
+        "Added option to notify other apps about new measurements collected. See more in Collector Preferences.",
+        "Added shortcut to change network type from menu.",
+        "Changed unknown GPS status to initializing."
+      ]
+    },
+    {
       "VersionCode": 1080002,
       "Title": "Changes in version 1.8.0.2",
       "Description": "Starting from this version Tower Collector will be available only in English. I made this decision to accelerate development of new features by reducing waiting for translation time to minimum. In the future I will add a glossary and more detailed introduction for novice users in their native language. I'd like to thank all of you who were engaged in app translation over the years and dedicated their own time to Tower Collector. I really appreciate that, thanks!",
