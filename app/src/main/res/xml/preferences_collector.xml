@@ -48,6 +48,10 @@
             android:key="@string/preferences_about_collector_keep_screen_on_key"
             android:summary="@string/preferences_about_collector_keep_screen_on_summary"
             android:title="@string/preferences_about_collector_keep_screen_on_title" />
+        <PreferenceScreen
+            android:key="@string/preferences_about_notify_measurements_collected_key"
+            android:summary="@string/preferences_about_notify_measurements_collected_summary"
+            android:title="@string/preferences_about_notify_measurements_collected_title" />
     </PreferenceCategory>
 
 </PreferenceScreen>

@@ -29,6 +29,7 @@ public class CollectorPreferenceFragment extends HelpfulPreferenceFragment imple
 
         setupNeighboringCellsDialog();
         setupCollectorKeepScreenOnDialog();
+        setupNotifyMeasurementsCollectedDialog();
     }
 
     @Override
@@ -65,7 +66,11 @@ public class CollectorPreferenceFragment extends HelpfulPreferenceFragment imple
         setupDialog(R.string.preferences_about_neighboring_cells_key, R.string.info_about_neighboring_cells_title, R.raw.info_about_neighboring_cells_content);
     }
 
-    private void setupCollectorKeepScreenOnDialog() {
+    private void setupNotifyMeasurementsCollectedDialog() {
         setupDialog(R.string.preferences_about_collector_keep_screen_on_key, R.string.info_about_collector_keep_screen_on_title, R.raw.info_about_collector_keep_screen_on_content);
+    }
+
+    private void setupCollectorKeepScreenOnDialog() {
+        setupDialog(R.string.preferences_about_notify_measurements_collected_key, R.string.info_about_notify_measurements_collected_title, R.raw.info_about_notify_measurements_collected_content, true);
     }
 }

@@ -81,6 +81,7 @@
 
     <string name="preferences_notify_measurements_collected_key" translatable="false">notify_measurements_collected</string>
     <bool name="preferences_notify_measurements_collected_default_value" translatable="false">false</bool>
+    <string name="preferences_about_notify_measurements_collected_key" translatable="false">about_notify_measurements_collected</string>
 
     <string name="preferences_about_neighboring_cells_key" translatable="false">about_neighboring_cells</string>
     <string name="preferences_main_window_recent_tab_key" translatable="false">main_window_recent_tab</string>
