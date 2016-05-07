@@ -95,7 +95,7 @@ public class CollectorService extends Service {
 
     private HandlerThread externalBroadcasterThread;
     private Handler externalBroadcasterHandler;
-    private ExternalIntentBroadcaster externalIntentBroadcaster = new ExternalIntentBroadcaster();
+    private ExternalIntentBroadcaster externalIntentBroadcaster;
 
     private MeasurementUpdater measurementUpdater = new MeasurementUpdater();
 
@@ -194,8 +194,10 @@ public class CollectorService extends Service {
         float accuracy = getLastGpsAccuracy();
         EventBus.getDefault().postSticky(new GpsStatusChangedEvent(status, accuracy));
 
-        //TODO: only if enabled
-        getExternalBroadcasterHandler().post(externalIntentBroadcaster);
+        if (MyApplication.getPreferencesProvider().getNotifyMeasurementsCollected()) {
+            externalIntentBroadcaster = new ExternalIntentBroadcaster();
+            getExternalBroadcasterHandler().post(externalIntentBroadcaster);
+        }
 
         return START_REDELIVER_INTENT;
     }
@@ -242,7 +244,7 @@ public class CollectorService extends Service {
             telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
         if (measurementParserThread != null)
             measurementParserThread.quit();
-        if(externalBroadcasterThread!=null)
+        if (externalBroadcasterThread != null)
             externalBroadcasterThread.quit();
         long duration = (endTime - startTime);
         Statistics endStats = MeasurementsDatabase.getInstance(getApplication()).getMeasurementsStatistics();
