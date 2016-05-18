@@ -224,7 +224,9 @@ public class CollectorService extends Service {
         if (periodicalPhoneStateListener != null) {
             periodicalPhoneStateListener.cancel();
         }
-        measurementParser.stop();
+        if (measurementParser != null) {
+            measurementParser.stop();
+        }
         if (externalIntentBroadcaster != null) {
             externalIntentBroadcaster.stop();
         }
