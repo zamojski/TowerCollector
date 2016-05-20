@@ -31,6 +31,7 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
 
         setupNeighboringCellsDialog();
         setupCollectorKeepScreenOnDialog();
+        setupNotifyMeasurementsCollectedDialog();
     }
 
     @Override
@@ -50,7 +51,8 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(getString(R.string.preferences_gps_optimizations_enabled_key))
-                || key.equals(getString(R.string.preferences_collect_neighboring_cells_key))) {
+                || key.equals(getString(R.string.preferences_collect_neighboring_cells_key))
+                || key.equals(getString(R.string.preferences_notify_measurements_collected_key))) {
             Toast.makeText(getActivity(), R.string.preferences_restart_collector, Toast.LENGTH_SHORT).show();
         } else if (key.equals(getString(R.string.preferences_collector_keep_screen_on_mode_key))) {
             String collectorKeepScreenOnValue = collectorKeepScreenOnPreference.getValue();
@@ -65,7 +67,11 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
         setupDialog(R.string.preferences_about_neighboring_cells_key, R.string.info_about_neighboring_cells_title, R.raw.info_about_neighboring_cells_content);
     }
 
-    private void setupCollectorKeepScreenOnDialog() {
+    private void setupNotifyMeasurementsCollectedDialog() {
         setupDialog(R.string.preferences_about_collector_keep_screen_on_key, R.string.info_about_collector_keep_screen_on_title, R.raw.info_about_collector_keep_screen_on_content);
+    }
+
+    private void setupCollectorKeepScreenOnDialog() {
+        setupDialog(R.string.preferences_about_notify_measurements_collected_key, R.string.info_about_notify_measurements_collected_title, R.raw.info_about_notify_measurements_collected_content, true);
     }
 }

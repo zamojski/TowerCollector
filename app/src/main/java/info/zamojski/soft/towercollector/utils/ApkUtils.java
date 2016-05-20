@@ -9,7 +9,9 @@ import org.acra.ACRA;
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 
+import android.app.Application;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -68,5 +70,14 @@ public class ApkUtils {
 
     public static String getDeviceName() {
         return Build.MANUFACTURER + " " + Build.MODEL;
+    }
+
+    public static boolean isApkDebuggable(Application application) {
+        PackageManager pm = application.getPackageManager();
+        try {
+            return ((pm.getApplicationInfo(application.getPackageName(), 0).flags & ApplicationInfo.FLAG_DEBUGGABLE) > 0);
+        } catch (NameNotFoundException e) {
+            return false;
+        }
     }
 }

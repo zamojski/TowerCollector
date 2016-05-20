@@ -265,6 +265,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.main_menu_preferences:
                 startPreferencesActivity();
                 return true;
+            case R.id.main_menu_network_type:
+                startNetworkTypeSystemActivity();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -755,6 +758,20 @@ public class MainActivity extends AppCompatActivity {
 
     private void startPreferencesActivity() {
         startActivity(new Intent(this, PreferencesActivity.class));
+    }
+
+    private void startNetworkTypeSystemActivity() {
+        try {
+            startActivity(new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS));
+        } catch (ActivityNotFoundException ex) {
+            Log.w(TAG, "askAndSetGpsEnabled(): Could not open Settings to change network type");
+            MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
+            ACRA.getErrorReporter().handleSilentException(ex);
+            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).setMessage(R.string.dialog_could_not_open_network_type_settings).setPositiveButton(R.string.dialog_ok, null).create();
+            alertDialog.setCanceledOnTouchOutside(true);
+            alertDialog.setCancelable(true);
+            alertDialog.show();
+        }
     }
 
     // ========== SERVICE CONNECTIONS ========== //

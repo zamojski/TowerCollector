@@ -20,6 +20,7 @@ import info.zamojski.soft.towercollector.analytics.IAnalyticsReportingService;
 import info.zamojski.soft.towercollector.logging.AndroidFilePrinter;
 import info.zamojski.soft.towercollector.providers.AppThemeProvider;
 import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvider;
+import info.zamojski.soft.towercollector.utils.ApkUtils;
 
 import android.app.Application;
 
@@ -96,7 +97,8 @@ public class MyApplication extends Application {
     private void initGA() {
         Log.d(TAG, "initGA(): Initializing Google Analytics");
         boolean trackingEnabled = getPreferencesProvider().getTrackingEnabled();
-        analyticsService = new GoogleAnalyticsReportingService(this, trackingEnabled);
+        boolean dryRun = ApkUtils.isApkDebuggable(application);
+        analyticsService = new GoogleAnalyticsReportingService(this, trackingEnabled, dryRun);
     }
 
     private void initACRA() {

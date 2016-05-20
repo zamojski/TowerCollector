@@ -4,7 +4,7 @@
 
 package info.zamojski.soft.towercollector;
 
-import info.zamojski.soft.towercollector.R;
+import info.zamojski.soft.towercollector.broadcast.ExternalIntentBroadcaster;
 import info.zamojski.soft.towercollector.enums.GpsStatus;
 import info.zamojski.soft.towercollector.enums.KeepScreenOnMode;
 import info.zamojski.soft.towercollector.enums.MeansOfTransport;
@@ -93,6 +93,10 @@ public class CollectorService extends Service {
     private HandlerThread measurementParserThread;
     private Handler measurementParserHandler;
 
+    private HandlerThread externalBroadcasterThread;
+    private Handler externalBroadcasterHandler;
+    private ExternalIntentBroadcaster externalIntentBroadcaster;
+
     private MeasurementUpdater measurementUpdater = new MeasurementUpdater();
 
     private float lastGpsAccuracy;
@@ -115,7 +119,7 @@ public class CollectorService extends Service {
 
     private Location lastLocation;
     private long lastLocationObtainedTime;
-    private GpsStatus gpsStatus = GpsStatus.Unknown;
+    private GpsStatus gpsStatus = GpsStatus.Initializing;
     private Validity lastIsSystemTimeValid = Validity.Valid;
 
     private SystemTimeValidator systemTimeValidator = new SystemTimeValidator();
@@ -190,6 +194,11 @@ public class CollectorService extends Service {
         float accuracy = getLastGpsAccuracy();
         EventBus.getDefault().postSticky(new GpsStatusChangedEvent(status, accuracy));
 
+        if (MyApplication.getPreferencesProvider().getNotifyMeasurementsCollected()) {
+            externalIntentBroadcaster = new ExternalIntentBroadcaster();
+            getExternalBroadcasterHandler().post(externalIntentBroadcaster);
+        }
+
         return START_REDELIVER_INTENT;
     }
 
@@ -215,7 +224,12 @@ public class CollectorService extends Service {
         if (periodicalPhoneStateListener != null) {
             periodicalPhoneStateListener.cancel();
         }
-        measurementParser.stop();
+        if (measurementParser != null) {
+            measurementParser.stop();
+        }
+        if (externalIntentBroadcaster != null) {
+            externalIntentBroadcaster.stop();
+        }
         EventBus.getDefault().postSticky(new GpsStatusChangedEvent());
         EventBus.getDefault().unregister(this);
         if (stopRequestBroadcastReceiver != null)
@@ -234,6 +248,8 @@ public class CollectorService extends Service {
             telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
         if (measurementParserThread != null)
             measurementParserThread.quit();
+        if (externalBroadcasterThread != null)
+            externalBroadcasterThread.quit();
         long duration = (endTime - startTime);
         Statistics endStats = MeasurementsDatabase.getInstance(getApplication()).getMeasurementsStatistics();
         int numberOfCollectedLocations = endStats.getLocationsLocal() - startStats.getLocationsLocal();
@@ -545,6 +561,15 @@ public class CollectorService extends Service {
         return measurementParserHandler;
     }
 
+    private Handler getExternalBroadcasterHandler() {
+        if (externalBroadcasterHandler == null) {
+            externalBroadcasterThread = new HandlerThread("ExternalBroadcasterHandler");
+            externalBroadcasterThread.start();
+            externalBroadcasterHandler = new Handler(externalBroadcasterThread.getLooper());
+        }
+        return externalBroadcasterHandler;
+    }
+
     private class LocalBinder extends Binder implements ICollectorService {
         @Override
         public GpsStatus getGpsStatus() {
@@ -565,7 +590,7 @@ public class CollectorService extends Service {
     private void updateGpsStatus(Location location, long gpsTimestamp, long systemTimestamp) {
         GpsStatus status = getGpsStatus();
         if (location == null) {
-            status = GpsStatus.Unknown;
+            status = GpsStatus.Initializing;
         } else if (!locationValidator.isUpToDate(gpsTimestamp, systemTimestamp)) {
             status = GpsStatus.NoLocation;
         } else if (!locationValidator.hasRequiredAccuracy(location)) {
@@ -707,7 +732,7 @@ public class CollectorService extends Service {
         } else if (status == GpsStatus.NoLocation)
             statusString = getString(R.string.status_no_gps_location);
         else
-            statusString = getString(R.string.status_unknown);// this should never happen
+            statusString = getString(R.string.status_initializing);// this should never happen
         return getString(R.string.collector_notification_status, statusString);
     }
 

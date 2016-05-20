@@ -78,6 +78,11 @@ public class PreferencesProvider {
         return value;
     }
 
+    public boolean getNotifyMeasurementsCollected() {
+        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_notify_measurements_collected_key, R.bool.preferences_notify_measurements_collected_default_value);
+        return value;
+    }
+
     public boolean getStartCollectorAtBoot() {
         boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_start_collector_at_boot_key, R.bool.preferences_start_collector_at_boot_default_value);
         return value;
