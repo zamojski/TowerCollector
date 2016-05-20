@@ -5,7 +5,6 @@
 package info.zamojski.soft.towercollector.broadcast;
 
 import android.content.Intent;
-import android.util.Log;
 
 import org.json.JSONException;
 
@@ -17,6 +16,7 @@ import info.zamojski.soft.towercollector.events.MeasurementsCollectedEvent;
 import info.zamojski.soft.towercollector.files.formatters.json.IJsonFormatter;
 import info.zamojski.soft.towercollector.files.formatters.json.JsonBroadcastFormatter;
 import info.zamojski.soft.towercollector.model.Measurement;
+import trikita.log.Log;
 
 public class ExternalIntentBroadcaster implements Runnable {
 
