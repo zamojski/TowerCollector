@@ -5,7 +5,7 @@ The app is designed to help map the extent of mobile phone network coverage of G
 
 
 ## Building
-Project is build using Android Studio 2.0.
+Project is build using Android Studio 2.1.
 
 To build your own signed apk go to "[app/properties](app/properties)" and:
 
