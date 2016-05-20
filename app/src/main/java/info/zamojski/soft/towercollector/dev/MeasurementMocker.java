@@ -9,7 +9,7 @@ import info.zamojski.soft.towercollector.events.MeasurementSavedEvent;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.model.Statistics;
 import info.zamojski.soft.towercollector.utils.DateUtils;
-import info.zamojski.soft.towercollector.utils.Log;
+import trikita.log.Log;
 
 public class MeasurementMocker {
 
