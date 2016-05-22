@@ -55,6 +55,10 @@ public class AndroidFilePrinter implements Log.Printer {
                 }
             }
         }
+        // Skip if storage is unavailable or initialization failed
+        if (osw == null) {
+            return;
+        }
         try {
             osw.write(String.format(Locale.ENGLISH, "%s %s/%s(% 5d): %s\r\n", shortFormat.format(new Date()), LEVELS[level], tag, Process.myPid(), msg));
             osw.flush();
