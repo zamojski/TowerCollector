@@ -76,7 +76,7 @@
     <string name="preferences_about_collector_api_version_title">About Collector API version</string>
     <string name="preferences_about_collector_api_version_summary">Information about differences between API versions.</string>
     <string name="preferences_file_logging_level_title">File logging level</string>
-    <string name="preferences_file_logging_level_summary">Defines messages file logging level. Beware that highly detailed logging may slow down the app and create large log files.</string>
+    <string name="preferences_file_logging_level_summary">Defines messages file logging level. Beware that highly detailed logging may slow down the app and create large log files. External memory must be present.</string>
     <string name="preferences_collect_neighboring_cells_title">Collect neighboring cells</string>
     <string name="preferences_collect_neighboring_cells_on_summary">Neighboring cells will be collected if available.</string>
     <string name="preferences_collect_neighboring_cells_off_summary">Neighboring cells will be discarded.</string>
