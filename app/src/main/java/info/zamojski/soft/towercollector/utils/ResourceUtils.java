@@ -26,7 +26,7 @@ public class ResourceUtils {
             reader.close();
             return builder.toString();
         } catch (Exception ex) {
-            Log.e(TAG, "getRawResource(): Unable to read resource", ex);
+            Log.e("getRawResource(): Unable to read resource", ex);
             return "";
         }
     }

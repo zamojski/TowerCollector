@@ -52,14 +52,14 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
 
     @Override
     protected void onPreExecute() {
-        Log.d(TAG, "onPreExecute(): Starting export");
+        Log.d("onPreExecute(): Starting export");
         MyApplication.startBackgroundTask(this);
         generatorWrapper.addProgressListener(this);
     }
 
     @Override
     protected FileGeneratorResult doInBackground(Void... params) {
-        Log.d(TAG, "doInBackground(): Running export");
+        Log.d("doInBackground(): Running export");
         // set thread name for easier bug tracking in GA
         Thread.currentThread().setName(TAG + ".Worker");
         long startTime = System.currentTimeMillis();
@@ -107,7 +107,7 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
 
     @Override
     protected void onPostExecute(FileGeneratorResult result) {
-        Log.d(TAG, "onPostExecute(): Showing result: %s", result);
+        Log.d("onPostExecute(): Showing result: %s", result);
         MyApplication.stopBackgroundTask();
         generatorWrapper.removeProgressListener(this);
         // check result
@@ -159,7 +159,7 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
 
     @Override
     protected void onCancelled() {
-        Log.d(TAG, "onCancelled(): Export cancelled");
+        Log.d("onCancelled(): Export cancelled");
         MyApplication.stopBackgroundTask();
         generatorWrapper.removeProgressListener(this);
         // hide loading indicator
@@ -188,11 +188,11 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
         device.close();
         File file = new File(device.getPath());
         if (file.exists()) {
-            Log.d(TAG, "deleteFile(): Deleting exported file");
+            Log.d("deleteFile(): Deleting exported file");
             if (file.delete()) {
-                Log.d(TAG, "deleteFile(): Exported file deleted");
+                Log.d("deleteFile(): Exported file deleted");
             } else {
-                Log.d(TAG, "deleteFile(): Cannot delete file after export fail");
+                Log.d("deleteFile(): Cannot delete file after export fail");
             }
         }
     }

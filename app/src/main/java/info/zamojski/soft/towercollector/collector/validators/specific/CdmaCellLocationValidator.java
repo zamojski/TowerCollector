@@ -15,8 +15,8 @@ public class CdmaCellLocationValidator {
         boolean valid = (isBidInRange(cell.getBaseStationId()) && isNidInRange(cell.getNetworkId())
                 && isSidInRange(cell.getSystemId()));
         if (!valid) {
-            Log.w(TAG, "isValid(): Invalid CdmaCellLocation [sid=%s, nid=%s, bid=%s]", cell.getSystemId(), cell.getNetworkId(), cell.getBaseStationId());
-            Log.w(TAG, "isValid(): Invalid CdmaCellLocation %s", cell);
+            Log.w("isValid(): Invalid CdmaCellLocation [sid=%s, nid=%s, bid=%s]", cell.getSystemId(), cell.getNetworkId(), cell.getBaseStationId());
+            Log.w("isValid(): Invalid CdmaCellLocation %s", cell);
         }
         return valid;
     }

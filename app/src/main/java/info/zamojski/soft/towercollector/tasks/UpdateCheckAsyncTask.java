@@ -48,14 +48,14 @@ public class UpdateCheckAsyncTask extends AsyncTask<String, Void, UpdateInfo> {
         String updateFeedUrl = urls[0];
         // check for updates and download info
         ResponseData response = NetworkHelper.sendGet(updateFeedUrl);
-        Log.d(TAG, "doInBackground(): Server response: %s", response);
+        Log.d("doInBackground(): Server response: %s", response);
         if (response.getCode() == 200 && !StringUtils.isNullEmptyOrWhitespace(response.getContent())) {
             // parse response
             try {
                 UpdateInfo updateInfo = responseParser.parse(response.getContent());
                 return updateInfo;
             } catch (UpdateFeedParseException ex) {
-                Log.w(TAG, "doInBackground(): Cannot parse update feed response");
+                Log.w("doInBackground(): Cannot parse update feed response");
                 MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
                 ACRA.getErrorReporter().handleSilentException(ex);
             }

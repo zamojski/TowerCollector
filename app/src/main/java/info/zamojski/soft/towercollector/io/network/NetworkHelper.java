@@ -25,7 +25,7 @@ public class NetworkHelper {
     public static final int READ_TIMEOUT = 30000;
 
     public static ResponseData sendGet(String url) {
-        Log.d(TAG, "sendGet(): Sending get request");
+        Log.d("sendGet(): Sending get request");
 
         try {
             HttpRequest request = HttpRequest.get(url)
@@ -34,13 +34,13 @@ public class NetworkHelper {
                     .readTimeout(READ_TIMEOUT);
             return new ResponseData(request.code(), request.body());
         } catch (HttpRequestException ex) {
-            Log.e(TAG, "sendGet(): Errors encountered", ex);
+            Log.e("sendGet(): Errors encountered", ex);
             return processException(ex);
         }
     }
 
     public static ResponseData sendPost(String url, String appId, String apiKey, String csvContent) {
-        Log.d(TAG, "sendPost(): Sending post request");
+        Log.d("sendPost(): Sending post request");
 
         try {
             HttpRequest request = HttpRequest.post(url)
@@ -55,7 +55,7 @@ public class NetworkHelper {
             request.part("datafile", "TowerCollector_measurements_" + System.currentTimeMillis() + ".csv", "text/csv", csvContent);
             return new ResponseData(request.code(), request.body());
         } catch (HttpRequestException ex) {
-            Log.e(TAG, "sendPost(): Errors encountered", ex);
+            Log.e("sendPost(): Errors encountered", ex);
             return processException(ex);
         }
     }

@@ -70,7 +70,7 @@ public class UploaderService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d(TAG, "onCreate(): Creating service");
+        Log.d("onCreate(): Creating service");
         MyApplication.startBackgroundTask(this);
         // get managers
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -84,7 +84,7 @@ public class UploaderService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
-        Log.d(TAG, "onStartCommand(): Starting service");
+        Log.d("onStartCommand(): Starting service");
         // get API key (intent or extras may be null if the service is being restarted)
         if (intent == null || intent.getExtras() == null) {
             // we hope API key will be valid
@@ -104,13 +104,13 @@ public class UploaderService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.d(TAG, "onDestroy(): Destroying service");
+        Log.d("onDestroy(): Destroying service");
         MyApplication.stopBackgroundTask();
         stopForeground(true);
         if (stopRequestBroadcastReceiver != null)
             unregisterReceiver(stopRequestBroadcastReceiver);
         // display stop reason
-        Log.d(TAG, "onDestroy(): Upload result: %s", uploadResult);
+        Log.d("onDestroy(): Upload result: %s", uploadResult);
         int messageId = R.string.unknown_error;
         int descriptionId = R.string.unknown_error;
         switch (uploadResult) {
@@ -192,7 +192,7 @@ public class UploaderService extends Service {
     private BroadcastReceiver stopRequestBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.d(TAG, "stopRequestBroadcastReceiver.onReceive(): Received broadcast intent: %s", intent);
+            Log.d("stopRequestBroadcastReceiver.onReceive(): Received broadcast intent: %s", intent);
             if (intent.getAction().equals(BROADCAST_INTENT_STOP_SERVICE)) {
                 // stop worker
                 isCancelled.set(true);

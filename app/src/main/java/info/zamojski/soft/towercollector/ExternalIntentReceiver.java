@@ -44,7 +44,7 @@ public class ExternalIntentReceiver extends BroadcastReceiver {
 
     private void startCollectorService(Context context, IntentSource source) {
         if (canStartBackgroundService(context)) {
-            Log.d(TAG, "startCollectorService(): Starting service from broadcast");
+            Log.d("startCollectorService(): Starting service from broadcast");
             Intent intent = getCollectorIntent(context);
             context.startService(intent);
             EventBus.getDefault().post(new CollectorStartedEvent(intent));
@@ -53,7 +53,7 @@ public class ExternalIntentReceiver extends BroadcastReceiver {
     }
 
     private void stopCollectorService(Context context) {
-        Log.d(TAG, "stopCollectorService(): Stopping service from broadcast");
+        Log.d("stopCollectorService(): Stopping service from broadcast");
         context.stopService(getCollectorIntent(context));
     }
 
@@ -63,7 +63,7 @@ public class ExternalIntentReceiver extends BroadcastReceiver {
 
     private void startUploaderService(Context context) {
         if (canStartBackgroundService(context)) {
-            Log.d(TAG, "startCollectorService(): Starting service from broadcast");
+            Log.d("startCollectorService(): Starting service from broadcast");
             context.startService(getUploaderIntent(context));
             MyApplication.getAnalytics().sendUploadStarted(IntentSource.Application);
         }
@@ -76,7 +76,7 @@ public class ExternalIntentReceiver extends BroadcastReceiver {
     private boolean canStartBackgroundService(Context context) {
         String runningTaskClassName = MyApplication.getBackgroundTaskName();
         if (runningTaskClassName != null) {
-            Log.d(TAG, "canStartBackgroundService(): Another task is running in background: %s", runningTaskClassName);
+            Log.d("canStartBackgroundService(): Another task is running in background: %s", runningTaskClassName);
             BackgroundTaskHelper backgroundTaskHelper = new BackgroundTaskHelper(context);
             backgroundTaskHelper.showTaskRunningMessage(runningTaskClassName);
             return false;

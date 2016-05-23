@@ -18,8 +18,8 @@ public class GsmCellIdentityValidator {
         boolean valid = (isCidInRange(cell.getCid()) && isLacInRange(cell.getLac())
                 && isMncInRange(cell.getMnc()) && isMccInRange(cell.getMcc()));
         if (!valid) {
-            Log.w(TAG, "isValid(): Invalid CellIdentityGsm [mcc=%s, mnc=%s, lac=%s, cid=%s, psc=%s]", cell.getMcc(), cell.getMnc(), cell.getLac(), cell.getCid(), cell.getPsc());
-            Log.w(TAG, "isValid(): Invalid CellIdentityGsm %s", cell);
+            Log.w("isValid(): Invalid CellIdentityGsm [mcc=%s, mnc=%s, lac=%s, cid=%s, psc=%s]", cell.getMcc(), cell.getMnc(), cell.getLac(), cell.getCid(), cell.getPsc());
+            Log.w("isValid(): Invalid CellIdentityGsm %s", cell);
         }
         return valid;
     }

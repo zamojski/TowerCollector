@@ -13,7 +13,7 @@ class UpgradeScript6 implements IUpgradeScript {
 
     @Override
     public void performUpgrade(SQLiteDatabase database) {
-        Log.d(TAG, "performUpgrade(): Upgrading db to version 6");
+        Log.d("performUpgrade(): Upgrading db to version 6");
         // create cells archive table
         database.execSQL("CREATE TABLE cells_archive (row_id INTEGER PRIMARY KEY NOT NULL, mcc INTEGER NOT NULL, mnc INTEGER NOT NULL, lac INTEGER NOT NULL, cid INTEGER NOT NULL, psc INTEGER NOT NULL, net_type INTEGER NOT NULL, discovered_at INTEGER NOT NULL, UNIQUE (cid, lac, mnc, mcc, psc) ON CONFLICT IGNORE)");
         // create stats table

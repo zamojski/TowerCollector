@@ -32,7 +32,7 @@ public class MobileUtils {
                 int mnc = Integer.parseInt(operatorCode.substring(3));
                 return new int[]{mcc, mnc};
             } catch (NumberFormatException ex) {
-                Log.e(TAG, "getMccMncPair(): Cannot parse network operator codes: %s", operatorCode, ex);
+                Log.e("getMccMncPair(): Cannot parse network operator codes: %s", operatorCode, ex);
             }
         }
         return null;
@@ -40,7 +40,7 @@ public class MobileUtils {
 
     public static boolean isApi17VersionCompatible() {
         boolean result = Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1;
-        Log.d(TAG, "isApi17VersionCompatible(): Result = %s", result);
+        Log.d("isApi17VersionCompatible(): Result = %s", result);
         return result;
     }
 
@@ -59,17 +59,17 @@ public class MobileUtils {
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         List<CellInfo> cells = telephonyManager.getAllCellInfo();
         if (cells == null || cells.size() == 0) {
-            Log.d(TAG, "isApi17CellInfoAvailable(): Result = no cell info");
+            Log.d("isApi17CellInfoAvailable(): Result = no cell info");
             return false;
         }
         CellIdentityValidator validator = new CellIdentityValidator();
         for (CellInfo cell : cells) {
             if (validator.isValid(cell)) {
-                Log.d(TAG, "isApi17CellInfoAvailable(): Result = true");
+                Log.d("isApi17CellInfoAvailable(): Result = true");
                 return true;
             }
         }
-        Log.d(TAG, "isApi17CellInfoAvailable(): Result = false");
+        Log.d("isApi17CellInfoAvailable(): Result = false");
         return false;
     }
 
@@ -77,7 +77,7 @@ public class MobileUtils {
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         CellLocation cell = telephonyManager.getCellLocation();
         if (cell == null) {
-            Log.d(TAG, "isApi1CellInfoAvailable(): Result = no cell location");
+            Log.d("isApi1CellInfoAvailable(): Result = no cell location");
             return false;
         }
         int mcc = Measurement.UNKNOWN_CID;
@@ -86,7 +86,7 @@ public class MobileUtils {
             String operatorCode = telephonyManager.getNetworkOperator();
             int[] mccMncPair = getMccMncPair(operatorCode);
             if (mccMncPair == null) {
-                Log.d(TAG, "isApi1CellInfoAvailable(): Result = no operator code");
+                Log.d("isApi1CellInfoAvailable(): Result = no operator code");
                 return false;
             }
             mcc = mccMncPair[0];
@@ -94,7 +94,7 @@ public class MobileUtils {
         }
         CellLocationValidator validator = new CellLocationValidator();
         boolean result = validator.isValid(cell, mcc, mnc);
-        Log.d(TAG, "isApi1CellInfoAvailable(): Result = %s", result);
+        Log.d("isApi1CellInfoAvailable(): Result = %s", result);
         return result;
     }
 }

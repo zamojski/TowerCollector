@@ -36,7 +36,7 @@ public class CellLocationSignalConverter {
                 int dbm = ((Integer) method.invoke(signal)).intValue();// rsrp
                 updateLte(m, dbm);
             } catch (Exception ex) {
-                Log.w(TAG, "update(): Cannot read LTE signal strength: %s", signal, ex);
+                Log.w("update(): Cannot read LTE signal strength: %s", signal, ex);
             }
         }
     }
@@ -51,24 +51,24 @@ public class CellLocationSignalConverter {
             return;
         }
         // no way to detect lte so clear current
-        Log.d(TAG, "update(): Clearing signal strength");
+        Log.d("update(): Clearing signal strength");
         updateGsm(m, Measurement.UNKNOWN_SIGNAL);
     }
 
     private void updateGsm(Measurement m, int asu) {
-        Log.d(TAG, "update(): Updating GSM signal strength = %s", asu);
+        Log.d("update(): Updating GSM signal strength = %s", asu);
         if (asu == NeighboringCellInfo.UNKNOWN_RSSI)
             asu = Measurement.UNKNOWN_SIGNAL;
         m.setGsmLocationSignal(asu, UnitConverter.convertGsmAsuToDbm(asu));
     }
 
     private void updateCdma(Measurement m, int dbm) {
-        Log.d(TAG, "update(): Updating CDMA signal strength = %s", dbm);
+        Log.d("update(): Updating CDMA signal strength = %s", dbm);
         m.setCdmaLocationSignal(UnitConverter.convertCdmaDbmToAsu(dbm), dbm);
     }
 
     private void updateLte(Measurement m, int dbm) {
-        Log.d(TAG, "update(): Updating LTE signal strength = %s", dbm);
+        Log.d("update(): Updating LTE signal strength = %s", dbm);
         if (dbm == NeighboringCellInfo.UNKNOWN_RSSI)
             dbm = Measurement.UNKNOWN_SIGNAL;
         m.setGsmLocationSignal(UnitConverter.convertLteDbmToAsu(dbm), dbm);

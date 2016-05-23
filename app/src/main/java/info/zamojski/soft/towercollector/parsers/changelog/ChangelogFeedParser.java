@@ -39,7 +39,7 @@ public class ChangelogFeedParser {
             changelog.addEntries(entries);
             return changelog;
         } catch (JSONException ex) {
-            Log.w(TAG, "parse(): Error while parsing JSON content");
+            Log.w("parse(): Error while parsing JSON content");
             throw new ChangelogFeedParseException("Cannot parse changelog feed: `" + TextUtils.htmlEncode(content) + "`", ex);
         }
     }

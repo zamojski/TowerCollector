@@ -61,14 +61,14 @@ public class LegacyMeasurementParser extends MeasurementParser {
                               long timestamp, int minDistance) {
         // if required accuracy was achieved
         if (!locationValidator.isValid(location)) {
-            Log.d(TAG, "parse(): Required accuracy not achieved: %s", location.getAccuracy());
+            Log.d("parse(): Required accuracy not achieved: %s", location.getAccuracy());
             return ParseResult.AccuracyNotAchieved;
         }
-        Log.d(TAG, "parse(): Required accuracy achieved: %s", location.getAccuracy());
+        Log.d("parse(): Required accuracy achieved: %s", location.getAccuracy());
         // get last location
         getAndSetLastLocation();
         // operator name may be unreliable for CDMA
-        Log.d(TAG, "parse(): Operator name = '%s'", operatorName);
+        Log.d("parse(): Operator name = '%s'", operatorName);
         // get operator codes
         int mcc = Measurement.UNKNOWN_CID;
         int mnc = Measurement.UNKNOWN_CID;
@@ -78,12 +78,12 @@ public class LegacyMeasurementParser extends MeasurementParser {
                 mcc = mccMncPair[0];
                 mnc = mccMncPair[1];
             } else {
-                Log.d(TAG, "parseLocation(): Network operator unknown: %s", operatorCode);
+                Log.d("parseLocation(): Network operator unknown: %s", operatorCode);
             }
         }
         // validate cell
         if (!cellLocationValidator.isValid(cellLocation, mcc, mnc)) {
-            Log.d(TAG, "parse(): Cell invalid");
+            Log.d("parse(): Cell invalid");
             return ParseResult.NoNetworkSignal;
         }
         // create measurement with basic data
@@ -93,15 +93,15 @@ public class LegacyMeasurementParser extends MeasurementParser {
         fixMeasurementTimestamp(measurement, location);
         // if the same cell check distance condition, otherwise accept
         if (lastSavedLocation != null && !conditionsValidator.isMinDistanceSatisfied(lastSavedLocation, location, minDistance)) {
-            Log.d(TAG, "parse(): Distance condition not achieved");
+            Log.d("parse(): Distance condition not achieved");
             return ParseResult.DistanceNotAchieved;
         }
         // check if location has been obtained recently
         if (!locationValidator.isUpToDate(timestamp, System.currentTimeMillis())) {
-            Log.d(TAG, "parse(): Location too old");
+            Log.d("parse(): Location too old");
             return ParseResult.LocationTooOld;
         }
-        Log.d(TAG, "parse(): Destination and time conditions achieved");
+        Log.d("parse(): Destination and time conditions achieved");
         // update measurement with location
         updateMeasurementWithLocation(measurement, location);
         // update measurement with signal strength
@@ -110,7 +110,7 @@ public class LegacyMeasurementParser extends MeasurementParser {
         }
         // create a list of measurements to save
         List<Measurement> measurementsToSave = new ArrayList<Measurement>();
-        Log.d(TAG, "parse(): Main: %s", measurement);
+        Log.d("parse(): Main: %s", measurement);
         measurementsToSave.add(measurement);
         if (collectNeighboringCells) {
             // remove duplicated neighboring cells
@@ -127,28 +127,28 @@ public class LegacyMeasurementParser extends MeasurementParser {
                     // update measurement with signal strength
                     cellSignalConverter.update(neighboringMeasurement, neighboringCell.getRssi());
                     // write to database
-                    Log.d(TAG, "parse(): Neighboring: %s", neighboringMeasurement);
+                    Log.d("parse(): Neighboring: %s", neighboringMeasurement);
                     measurementsToSave.add(neighboringMeasurement);
                 } else {
-                    Log.d(TAG, "parse(): Neighboring cell invalid: %s", neighboringCell);
+                    Log.d("parse(): Neighboring cell invalid: %s", neighboringCell);
                 }
             }
         }
         // write to database
-        Log.d(TAG, "parse(): Main: %s", measurement);
+        Log.d("parse(): Main: %s", measurement);
         boolean inserted = MeasurementsDatabase.getInstance(MyApplication.getApplication()).insertMeasurements(measurementsToSave.toArray(new Measurement[measurementsToSave.size()]));
         if (inserted) {
             lastSavedLocation = location;
             lastSavedMeasurement = measurement;
-            Log.d(TAG, "parse(): Measurement saved");
+            Log.d("parse(): Measurement saved");
             // broadcast information to main activity
             Statistics stats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
             EventBus.getDefault().post(new MeasurementSavedEvent(measurement, stats));
             EventBus.getDefault().post(new MeasurementsCollectedEvent(measurementsToSave));
-            Log.d(TAG, "parse(): Notification updated and measurement broadcasted");
+            Log.d("parse(): Notification updated and measurement broadcasted");
             return ParseResult.Saved;
         } else {
-            Log.e(TAG, "parse(): Error while saving measurement");
+            Log.e("parse(): Error while saving measurement");
             Exception ex = new Exception("Measurement save failed");
             MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
@@ -164,7 +164,7 @@ public class LegacyMeasurementParser extends MeasurementParser {
         for (NeighboringCellInfo cell : neighboringCells) {
             String key = createCellKey(cell, measurement);
             if (uniqueCellKeys.contains(key)) {
-                Log.d(TAG, "removeDuplicatedNeighbors(): Remove duplicated cell: %s", key);
+                Log.d("removeDuplicatedNeighbors(): Remove duplicated cell: %s", key);
                 cellsToRemove.add(cell);
             } else {
                 uniqueCellKeys.add(key);

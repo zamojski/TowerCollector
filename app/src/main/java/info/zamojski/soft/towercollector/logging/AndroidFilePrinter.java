@@ -63,7 +63,7 @@ public class AndroidFilePrinter implements Log.Printer {
             osw.write(String.format(Locale.ENGLISH, "%s %s/%s(% 5d): %s\r\n", shortFormat.format(new Date()), LEVELS[level], tag, Process.myPid(), msg));
             osw.flush();
         } catch (Exception ex) {
-            android.util.Log.e(TAG, "Failed to write log file!", ex);
+            android.util.Log.e("Failed to write log file!", ex);
         }
     }
 
@@ -77,7 +77,7 @@ public class AndroidFilePrinter implements Log.Printer {
             FileOutputStream fis = new FileOutputStream(logFile);
             osw = new OutputStreamWriter(fis);
         } catch (Exception ex) {
-            android.util.Log.e(TAG, "Failed to open log file!", ex);
+            android.util.Log.e("Failed to open log file!", ex);
         }
     }
 }

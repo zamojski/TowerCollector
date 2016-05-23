@@ -28,7 +28,7 @@ public class ExternalIntentBroadcaster implements Runnable {
     private IJsonFormatter formatter = new JsonBroadcastFormatter();
 
     private void sendMeasurementsCollectedBroadcast(List<Measurement> measurements) {
-        Log.i(TAG, "sendMeasurementsCollectedBroadcast(): Sending broadcast to external apps");
+        Log.i("sendMeasurementsCollectedBroadcast(): Sending broadcast to external apps");
 
         try {
             String extra = formatter.formatList(measurements);
@@ -37,9 +37,9 @@ public class ExternalIntentBroadcaster implements Runnable {
             intent.setAction(measurementsCollectedAction);
             intent.putExtra(measurementsExtraKey, extra);
             MyApplication.getApplication().sendBroadcast(intent);
-            Log.d(TAG, "sendMeasurementsCollectedBroadcast(): Broadcasted " + extra);
+            Log.d("sendMeasurementsCollectedBroadcast(): Broadcasted " + extra);
         } catch (JSONException ex) {
-            Log.e(TAG, "serialize(): Failed to serialize list of measurements to JSON", ex);
+            Log.e("serialize(): Failed to serialize list of measurements to JSON", ex);
         }
     }
 

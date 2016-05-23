@@ -36,7 +36,7 @@ public class SplashActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate(): Creating activity");
+        Log.d("onCreate(): Creating activity");
         // set fixed screen orientation
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.splash);
@@ -48,19 +48,19 @@ public class SplashActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d(TAG, "onStart(): Starting splash screen");
+        Log.d("onStart(): Starting splash screen");
         startAsync();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d(TAG, "onStop(): Stopping splash screen");
+        Log.d("onStop(): Stopping splash screen");
     }
 
     @Override
     public void onBackPressed() {
-        Log.d(TAG, "onBackPressed(): Preventing close if db upgrade is running");
+        Log.d("onBackPressed(): Preventing close if db upgrade is running");
         if (databaseUpgradeRunning) {
             Toast.makeText(this, R.string.splash_toast_database_upgrade_running, Toast.LENGTH_SHORT).show();
         } else {
@@ -69,13 +69,13 @@ public class SplashActivity extends Activity {
     }
 
     private void startAsync() {
-        Log.d(TAG, "startAsync(): Creating handler");
+        Log.d("startAsync(): Creating handler");
         getAsyncHandler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 ensureDatabaseUpToDate();
                 startMainActivity();
-                Log.d(TAG, "startAsync(): Closing splash screen window");
+                Log.d("startAsync(): Closing splash screen window");
                 finish();
             }
         }, 0);
@@ -84,7 +84,7 @@ public class SplashActivity extends Activity {
     private void ensureDatabaseUpToDate() {
         int currentDbVersion = MeasurementsDatabase.getDatabaseVersion(getApplication());
         if (currentDbVersion != MeasurementsDatabase.DATABASE_FILE_VERSION) {
-            Log.d(TAG, "ensureDatabaseUpToDate(): Upgrading database");
+            Log.d("ensureDatabaseUpToDate(): Upgrading database");
             databaseUpgradeRunning = true;
             showDetailsMessage();
             // show progress dialog only when migrating database
@@ -97,7 +97,7 @@ public class SplashActivity extends Activity {
     }
 
     private void startMainActivity() {
-        Log.d(TAG, "startMainActivity(): Starting main window");
+        Log.d("startMainActivity(): Starting main window");
         Intent mainActivityIntent = new Intent(SplashActivity.this, MainActivity.class);
         startActivity(mainActivityIntent);
     }

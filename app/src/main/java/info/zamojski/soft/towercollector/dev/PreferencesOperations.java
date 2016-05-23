@@ -53,10 +53,10 @@ public class PreferencesOperations {
         prefEdit.clear();
         boolean cleared = prefEdit.commit();
         if (cleared) {
-            Log.d(TAG, "clearPreferences(): Preferences cleared");
+            Log.d("clearPreferences(): Preferences cleared");
             Toast.makeText(context, "Preferences cleared", Toast.LENGTH_LONG).show();
         } else {
-            Log.e(TAG, "clearPreferences(): Failed to clear preferences");
+            Log.e("clearPreferences(): Failed to clear preferences");
         }
     }
 
@@ -71,13 +71,13 @@ public class PreferencesOperations {
                     output = new ObjectOutputStream(new FileOutputStream(dst));
                     XmlUtils.writeMapXml(prefs.getAll(), output);
                     res = true;
-                    Log.d(TAG, "saveSharedPreferencesToFile(): Preferences exported");
+                    Log.d("saveSharedPreferencesToFile(): Preferences exported");
                 }
-                Log.d(TAG, "saveSharedPreferencesToFile(): External storage is read only");
+                Log.d("saveSharedPreferencesToFile(): External storage is read only");
             }
-            Log.d(TAG, "saveSharedPreferencesToFile(): External storage is not available");
+            Log.d("saveSharedPreferencesToFile(): External storage is not available");
         } catch (Exception ex) {
-            Log.e(TAG, "saveSharedPreferencesToFile(): Cannot export preferences", ex);
+            Log.e("saveSharedPreferencesToFile(): Cannot export preferences", ex);
         } finally {
             try {
                 if (output != null) {
@@ -85,7 +85,7 @@ public class PreferencesOperations {
                     output.close();
                 }
             } catch (IOException ex) {
-                Log.e(TAG, "saveSharedPreferencesToFile(): Failed to close file stream", ex);
+                Log.e("saveSharedPreferencesToFile(): Failed to close file stream", ex);
             }
         }
         return res;
@@ -121,21 +121,21 @@ public class PreferencesOperations {
                             prefEdit.putString(key, ((String) v));
                     }
                     prefEdit.commit();
-                    Log.d(TAG, "loadSharedPreferencesFromFile(): Preferences imported");
+                    Log.d("loadSharedPreferencesFromFile(): Preferences imported");
                     res = true;
                 }
-                Log.d(TAG, "saveSharedPreferencesToFile(): External storage is read only");
+                Log.d("saveSharedPreferencesToFile(): External storage is read only");
             }
-            Log.d(TAG, "saveSharedPreferencesToFile(): External storage is not available");
+            Log.d("saveSharedPreferencesToFile(): External storage is not available");
         } catch (Exception ex) {
-            Log.e(TAG, "loadSharedPreferencesFromFile(): Cannot import preferences", ex);
+            Log.e("loadSharedPreferencesFromFile(): Cannot import preferences", ex);
         } finally {
             try {
                 if (input != null) {
                     input.close();
                 }
             } catch (IOException ex) {
-                Log.e(TAG, "loadSharedPreferencesFromFile(): Failed to close file stream", ex);
+                Log.e("loadSharedPreferencesFromFile(): Failed to close file stream", ex);
             }
         }
         return res;

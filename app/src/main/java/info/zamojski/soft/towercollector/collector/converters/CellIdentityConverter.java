@@ -37,7 +37,7 @@ public class CellIdentityConverter {
             CellInfoGsm gsmCellInfo = (CellInfoGsm) cellInfo;
             CellIdentityGsm identity = gsmCellInfo.getCellIdentity();
             if (wcdmaValidator.isValid(identity)) {
-                Log.d(TAG, "update(): Updating WCDMA reported by API 17 as GSM");
+                Log.d("update(): Updating WCDMA reported by API 17 as GSM");
                 m.setWcdmaCellInfo(identity.getMcc(), identity.getMnc(), identity.getLac(), identity.getCid(), identity.getPsc());
             } else {
                 m.setGsmCellInfo(identity.getMcc(), identity.getMnc(), identity.getLac(), identity.getCid());

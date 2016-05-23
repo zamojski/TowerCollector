@@ -28,7 +28,7 @@ public class LocationValidator {
         // check conditions
         boolean valid = timeDiff <= NO_LOCATION_TIME_DIFF;
         if (!valid)
-            Log.d(TAG, "isUpToDate(): Location is outdated by %d milliseconds > %d", timeDiff, NO_LOCATION_TIME_DIFF);
+            Log.d("isUpToDate(): Location is outdated by %d milliseconds > %d", timeDiff, NO_LOCATION_TIME_DIFF);
         return valid;
         // return true;
     }

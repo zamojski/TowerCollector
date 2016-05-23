@@ -16,7 +16,7 @@ public class MeasurementMocker {
     private static final String TAG = MeasurementMocker.class.getSimpleName();
 
     public static void mockMainActivityData() {
-        Log.d(TAG, "mockMainActivityData(): mocking data");
+        Log.d("mockMainActivityData(): mocking data");
         Measurement m = mockLastMeasurement();
         Statistics stats = mockStatistics();
         MeasurementSavedEvent event = new MeasurementSavedEvent(m, stats);

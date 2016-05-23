@@ -29,9 +29,9 @@ public class HashUtils {
             }
             return sb.toString();
         } catch (NoSuchAlgorithmException ex) {
-            Log.e(TAG, "toSha1(): Unsupported hashing algorithm %s", hashingAlgorithm, ex);
+            Log.e("toSha1(): Unsupported hashing algorithm %s", hashingAlgorithm, ex);
         } catch (UnsupportedEncodingException ex) {
-            Log.e(TAG, "toSha1(): Unsupported encoding %s", textEncoding, ex);
+            Log.e("toSha1(): Unsupported encoding %s", textEncoding, ex);
         }
         return text;
     }

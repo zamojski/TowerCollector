@@ -37,31 +37,31 @@ public class DatabaseOperations {
                 File externalStorage = Environment.getExternalStorageDirectory();
                 if (externalStorage.canWrite()) {
                     FileUtils.copyFile(srcFile, dstFile);
-                    Log.d(TAG, "copyDatabase(): Database " + operation + "ed");
+                    Log.d("copyDatabase(): Database " + operation + "ed");
                     Toast.makeText(context, "Database " + operation + "ed", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    Log.d(TAG, "copyDatabase(): External storage is read only");
+                    Log.d("copyDatabase(): External storage is read only");
                 }
             }
             else {
-                Log.d(TAG, "copyDatabase(): External storage is not available");
+                Log.d("copyDatabase(): External storage is not available");
             }
         } catch (Exception ex) {
-            Log.e(TAG, "copyDatabase(): Cannot " + operation + " database", ex);
+            Log.e("copyDatabase(): Cannot " + operation + " database", ex);
         }
     }
 
     public static void deleteDatabase(Context context) {
         File dbFile = getDatabasePath(context);
-        Log.d(TAG, "deleteDatabase(): Deleting file %s", dbFile);
+        Log.d("deleteDatabase(): Deleting file %s", dbFile);
         boolean deleted = dbFile.delete();
         if (deleted) {
-            Log.d(TAG, "deleteDatabase(): File deleted");
+            Log.d("deleteDatabase(): File deleted");
             MeasurementsDatabase.invalidateInstance(context);
             Toast.makeText(context, "Database file deleted", Toast.LENGTH_LONG).show();
         } else {
-            Log.e(TAG, "deleteDatabase(): Failed to delete database");
+            Log.e("deleteDatabase(): Failed to delete database");
         }
     }
 

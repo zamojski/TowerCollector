@@ -44,7 +44,7 @@ public class CsvTextGeneratorWrapper extends TextGeneratorWrapperBase {
             Measurement lastMeasurement = MeasurementsDatabase.getInstance(context).getLastMeasurement();
             // check if there is anything to upload
             if (measurementsCount == 0 || lastMeasurement == null) {
-                Log.d(TAG, "generate(): Cancelling save due to no data");
+                Log.d("generate(): Cancelling save due to no data");
                 return new FileGeneratorResult(GeneratorResult.NoData, Reason.Unknown);
             }
             // calculate number of upload parts
@@ -72,19 +72,19 @@ public class CsvTextGeneratorWrapper extends TextGeneratorWrapperBase {
             // fix for dialog not closed when upload running in background and data deleted
             notifyProgressListeners(measurementsCount, measurementsCount);
             if (cancel) {
-                Log.d(TAG, "generate(): Export cancelled");
+                Log.d("generate(): Export cancelled");
                 return new FileGeneratorResult(GeneratorResult.Cancelled, Reason.Unknown);
             } else {
-                Log.d(TAG, "generate(): All %s measurements exported", measurementsCount);
+                Log.d("generate(): All %s measurements exported", measurementsCount);
                 return new FileGeneratorResult(GeneratorResult.Succeeded, Reason.Unknown);
             }
         } catch (DeviceOperationException ex) {
-            Log.e(TAG, "generate(): Failed to check external memory compatibility", ex);
+            Log.e("generate(): Failed to check external memory compatibility", ex);
             MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
             return new FileGeneratorResult(GeneratorResult.Failed, ex.getReason());
         } catch (IOException ex) {
-            Log.e(TAG, "generate(): Failed to save data on external memory", ex);
+            Log.e("generate(): Failed to save data on external memory", ex);
             MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
             return new FileGeneratorResult(GeneratorResult.Failed, Reason.Unknown, ex.getMessage());

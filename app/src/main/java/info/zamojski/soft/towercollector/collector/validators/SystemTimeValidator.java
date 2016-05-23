@@ -14,7 +14,7 @@ public class SystemTimeValidator {
 
     public boolean isValid(long systemTime, long gpsTime) {
         long timeDiff = (systemTime - gpsTime);
-        Log.d(TAG, "isValid(): System to gps time difference = %s <= %s", timeDiff, TwoDayTimeDiff);
+        Log.d("isValid(): System to gps time difference = %s <= %s", timeDiff, TwoDayTimeDiff);
         return Math.abs(timeDiff) <= TwoDayTimeDiff;
     }
 

@@ -13,7 +13,7 @@ class UpgradeScript11 implements IUpgradeScript {
 
     @Override
     public void performUpgrade(SQLiteDatabase database) {
-        Log.d(TAG, "performUpgrade(): Upgrading db to version 11");
+        Log.d("performUpgrade(): Upgrading db to version 11");
         // backup old tables
         database.execSQL("ALTER TABLE locations RENAME TO locations_backup");
         database.execSQL("ALTER TABLE measurements RENAME TO measurements_backup");

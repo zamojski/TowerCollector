@@ -76,7 +76,7 @@ public abstract class MeasurementParser implements Runnable {
         long systemTimestamp = measurement.getTimestamp();
         long gpsTimestamp = location.getTime();
         if (!systemTimeValidator.isValid(systemTimestamp, gpsTimestamp)) {
-            Log.d(TAG, "fixMeasurementTimestamp(): Fixing measurement time = %s, gps time = %s", systemTimestamp, gpsTimestamp);
+            Log.d("fixMeasurementTimestamp(): Fixing measurement time = %s, gps time = %s", systemTimestamp, gpsTimestamp);
             measurement.setTimestamp(gpsTimestamp);
         }
     }

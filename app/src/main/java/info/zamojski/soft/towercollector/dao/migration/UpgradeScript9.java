@@ -13,7 +13,7 @@ class UpgradeScript9 implements IUpgradeScript {
 
     @Override
     public void performUpgrade(SQLiteDatabase database) {
-        Log.d(TAG, "performUpgrade(): Upgrading db to version 9");
+        Log.d("performUpgrade(): Upgrading db to version 9");
         // backup old table
         database.execSQL("ALTER TABLE measurements RENAME TO measurements_backup");
         // drop indexes and trigger on old table

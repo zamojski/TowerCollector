@@ -17,7 +17,7 @@ class UpgradeScript10 implements IUpgradeScript {
 
     @Override
     public void performUpgrade(SQLiteDatabase database) {
-        Log.d(TAG, "performUpgrade(): Upgrading db to version 10");
+        Log.d("performUpgrade(): Upgrading db to version 10");
         // backup old tables
         database.execSQL("ALTER TABLE measurements RENAME TO measurements_backup;");
         database.execSQL("ALTER TABLE cells RENAME TO cells_backup;");

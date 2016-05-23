@@ -34,7 +34,7 @@ public class ApkUtils {
             PackageInfo pi = context.getPackageManager().getPackageInfo(packageName, 0);
             currentAppVersion = pi.versionCode;
         } catch (PackageManager.NameNotFoundException ex) {
-            Log.e(TAG, "getApkVersionCode(): Current version number not found", ex);
+            Log.e("getApkVersionCode(): Current version number not found", ex);
             MyApplication.getAnalytics().sendException(ex, Boolean.TRUE);
             ACRA.getErrorReporter().handleSilentException(ex);
         }
@@ -47,7 +47,7 @@ public class ApkUtils {
             PackageInfo pi = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
             currentAppVersion = pi.versionName;
         } catch (PackageManager.NameNotFoundException ex) {
-            Log.e(TAG, "getApkVersionName(): Current version name not found", ex);
+            Log.e("getApkVersionName(): Current version name not found", ex);
             MyApplication.getAnalytics().sendException(ex, Boolean.TRUE);
             ACRA.getErrorReporter().handleSilentException(ex);
         }

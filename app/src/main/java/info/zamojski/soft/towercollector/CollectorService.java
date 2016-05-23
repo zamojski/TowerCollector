@@ -132,7 +132,7 @@ public class CollectorService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d(TAG, "onCreate(): Creating service");
+        Log.d("onCreate(): Creating service");
         MyApplication.startBackgroundTask(this);
         // get managers
         telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
@@ -153,12 +153,12 @@ public class CollectorService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
-        Log.d(TAG, "onStartCommand(): Starting service");
+        Log.d("onStartCommand(): Starting service");
         // get locomotion mode
         transportMode = (MeansOfTransport) intent.getSerializableExtra(CollectorService.INTENT_KEY_TRANSPORT_MODE);
         if (transportMode == null)
             transportMode = (MyApplication.getPreferencesProvider().getGpsOptimizationsEnabled() ? MeansOfTransport.Universal : MeansOfTransport.Fixed);
-        Log.d(TAG, "onStartCommand(): Selected transport mode: %s", transportMode);
+        Log.d("onStartCommand(): Selected transport mode: %s", transportMode);
         String keepScreenOnModeString = intent.getStringExtra(CollectorService.INTENT_KEY_KEEP_SCREEN_ON_MODE);
         if (keepScreenOnModeString == null)
             keepScreenOnModeString = MyApplication.getPreferencesProvider().getCollectorKeepScreenOnMode();
@@ -168,7 +168,7 @@ public class CollectorService extends Service {
             keepScreenOnMode = KeepScreenOnMode.Dimmed;
         else
             keepScreenOnMode = KeepScreenOnMode.Disabled;
-        Log.d(TAG, "onStartCommand(): Keep screen on mode: %s", keepScreenOnModeString);
+        Log.d("onStartCommand(): Keep screen on mode: %s", keepScreenOnModeString);
         // save interval (max by default, because it may be reconnected in a moment)
         currentIntervalValue.set(transportMode.getMaxTime());
         measurementUpdater.setMinDistanceAndInterval(transportMode.getDistance(), transportMode.getMaxTime());
@@ -178,10 +178,10 @@ public class CollectorService extends Service {
         registerPhoneStateListener();
         // listen for GPS location change
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, STATIC_LISTENER_INTERVAL, STATIC_LISTENER_DISTANCE, staticLocationListener);
-        Log.d(TAG, "onStartCommand(): Static location listener started");
+        Log.d("onStartCommand(): Static location listener started");
         synchronized (dynamicLocationListenerLock) {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, currentIntervalValue.get(), 0, dynamicLocationListener);
-            Log.d(TAG, "onStartCommand(): Service started with min distance: 0 and min time: %s", currentIntervalValue.get());
+            Log.d("onStartCommand(): Service started with min distance: 0 and min time: %s", currentIntervalValue.get());
         }
 
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
@@ -204,13 +204,13 @@ public class CollectorService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        Log.d(TAG, "onBind(): Binding to service");
+        Log.d("onBind(): Binding to service");
         return binder;
     }
 
     @Override
     public void onDestroy() {
-        Log.d(TAG, "onDestroy(): Destroying service");
+        Log.d("onDestroy(): Destroying service");
         if (periodicalWakeLockAcquirer != null) {
             periodicalWakeLockAcquirer.cancel();
         }
@@ -265,13 +265,13 @@ public class CollectorService extends Service {
 
     private synchronized void updateNotification(Statistics statistics) {
         Notification notification = notificationHelper.updateNotification(statistics);
-        Log.d(TAG, "updateNotification(): Setting statistics: %s", statistics);
+        Log.d("updateNotification(): Setting statistics: %s", statistics);
         notificationManager.notify(NOTIFICATION_ID, notification);
     }
 
     private synchronized void updateNotification(String notificationText) {
         Notification notification = notificationHelper.updateNotification(notificationText);
-        Log.d(TAG, "updateNotification(): Setting text: %s", notificationText);
+        Log.d("updateNotification(): Setting text: %s", notificationText);
         notificationManager.notify(NOTIFICATION_ID, notification);
     }
 
@@ -380,9 +380,9 @@ public class CollectorService extends Service {
         // get network operator (may be unreliable for CDMA)
         String networkOperatorCode = telephonyManager.getNetworkOperator();
         String networkOperatorName = telephonyManager.getNetworkOperatorName();
-        Log.d(TAG, "processCellLocation(): Operator code = '%s', name = '%s'", networkOperatorCode, networkOperatorName);
+        Log.d("processCellLocation(): Operator code = '%s', name = '%s'", networkOperatorCode, networkOperatorName);
         List<NeighboringCellInfo> neighboringCells = telephonyManager.getNeighboringCellInfo();
-        Log.d(TAG, "processCellLocation(): Reported %s neighboring cells", neighboringCells.size());
+        Log.d("processCellLocation(): Reported %s neighboring cells", neighboringCells.size());
         measurementUpdater.setLastCellLocation(cellLocation, networkType, networkOperatorCode, networkOperatorName, neighboringCells);
     }
 
@@ -481,10 +481,10 @@ public class CollectorService extends Service {
             // change only if it makes difference (probably utilizes less CPU time)
             int intervalDiff = Math.abs(currentIntervalValue.get() - interval);
             if (intervalDiff < 300) {
-                Log.d(TAG, "updateDynamicInterval(): Skipping GPS reconnection because of too small interval difference: %s", intervalDiff);
+                Log.d("updateDynamicInterval(): Skipping GPS reconnection because of too small interval difference: %s", intervalDiff);
                 return;
             }
-            Log.d(TAG, "updateDynamicInterval(): New interval calculated: %s difference to previous %s", interval, intervalDiff);
+            Log.d("updateDynamicInterval(): New interval calculated: %s difference to previous %s", interval, intervalDiff);
             // save calculated interval
             currentIntervalValue.set(interval);
             measurementUpdater.setMinDistanceAndInterval(transportMode.getDistance(), interval);
@@ -492,7 +492,7 @@ public class CollectorService extends Service {
             synchronized (dynamicLocationListenerLock) {
                 locationManager.removeUpdates(dynamicLocationListener);
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, currentIntervalValue.get(), 0, dynamicLocationListener);
-                Log.d(TAG, "updateDynamicInterval(): GPS reconnected with min distance: %s and min time: %s", transportMode.getDistance(), currentIntervalValue);
+                Log.d("updateDynamicInterval(): GPS reconnected with min distance: %s and min time: %s", transportMode.getDistance(), currentIntervalValue);
             }
             conditionsNotAchievedCounter = CONDITIONS_NOT_ACHIEVED_COUNTER_INIT;
             return;
@@ -500,7 +500,7 @@ public class CollectorService extends Service {
                 || result == ParseResult.DistanceNotAchieved) {
             if (currentIntervalValue.get() != transportMode.getMaxTime()) {
                 if (conditionsNotAchievedCounter <= 0) {
-                    Log.d(TAG, "updateDynamicInterval(): GPS reconnected with max interval: %s because of fail: %s", transportMode.getMaxTime(), result);
+                    Log.d("updateDynamicInterval(): GPS reconnected with max interval: %s because of fail: %s", transportMode.getMaxTime(), result);
                     // restore and save interval (increment to max because we don't get appropriate result at all)
                     int newInterval = Math.min(currentIntervalValue.get() + 500, transportMode.getMaxTime());
                     currentIntervalValue.set(newInterval);
@@ -512,21 +512,21 @@ public class CollectorService extends Service {
                     conditionsNotAchievedCounter = CONDITIONS_NOT_ACHIEVED_COUNTER_INIT;
                     return;
                 } else {
-                    Log.d(TAG, "updateDynamicInterval(): Skipping GPS reconnection because of fail: %s", result);
+                    Log.d("updateDynamicInterval(): Skipping GPS reconnection because of fail: %s", result);
                     conditionsNotAchievedCounter--;
                     return;
                 }
             } else {
-                Log.d(TAG, "updateDynamicInterval(): GPS failed because of: %s but not reconnected with same parameters", result);
+                Log.d("updateDynamicInterval(): GPS failed because of: %s but not reconnected with same parameters", result);
                 return;
             }
         } else if (result == ParseResult.LocationTooOld) {
-            Log.d(TAG, "updateDynamicInterval(): Skipping GPS reconnection because location is too old");
+            Log.d("updateDynamicInterval(): Skipping GPS reconnection because location is too old");
             // TODO: consider reconnection
             setGpsStatus(GpsStatus.NoLocation);
             return;
         } else {// only when SaveFailed
-            Log.d(TAG, "updateDynamicInterval(): Skipping GPS reconnection");
+            Log.d("updateDynamicInterval(): Skipping GPS reconnection");
             return;
         }
     }
@@ -536,7 +536,7 @@ public class CollectorService extends Service {
     private BroadcastReceiver stopRequestBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.d(TAG, "stopRequestBroadcastReceiver.onReceive(): Received broadcast intent: %s", intent);
+            Log.d("stopRequestBroadcastReceiver.onReceive(): Received broadcast intent: %s", intent);
             if (intent.getAction().equals(BROADCAST_INTENT_STOP_SERVICE)) {
                 stopSelf();
             }
@@ -598,7 +598,7 @@ public class CollectorService extends Service {
         } else {
             status = GpsStatus.Ok;
         }
-        Log.d(TAG, "updateGpsStatus(): Updating gps status = %s", status);
+        Log.d("updateGpsStatus(): Updating gps status = %s", status);
         setGpsStatus(status);
     }
 
@@ -606,13 +606,13 @@ public class CollectorService extends Service {
         boolean valid = systemTimeValidator.isValid(System.currentTimeMillis(), location.getTime());
         if (valid) {
             if (lastIsSystemTimeValid != Validity.Valid) {
-                Log.d(TAG, "updateSystemTimeChange(): Setting system time to valid");
+                Log.d("updateSystemTimeChange(): Setting system time to valid");
                 EventBus.getDefault().postSticky(new SystemTimeChangedEvent(Validity.Valid));
                 lastIsSystemTimeValid = Validity.Valid;
             }
         } else {
             if (lastIsSystemTimeValid != Validity.Invalid) {
-                Log.d(TAG, "updateSystemTimeChange(): Setting system time to invalid");
+                Log.d("updateSystemTimeChange(): Setting system time to invalid");
                 EventBus.getDefault().postSticky(new SystemTimeChangedEvent(Validity.Invalid));
                 lastIsSystemTimeValid = Validity.Invalid;
             }
@@ -631,18 +631,18 @@ public class CollectorService extends Service {
     };
 
     private void scheduleNextGpsStatusCheck() {
-        Log.d(TAG, "scheduleNextGpsStatusCheck(): Setting next GPS status check");
+        Log.d("scheduleNextGpsStatusCheck(): Setting next GPS status check");
         getGpsStatusHandler().postDelayed(gpsStatusCheck, GPS_STATUS_CHECK_INTERVAL);
     }
 
     private void cancelNextGpsStatusCheck() {
-        Log.d(TAG, "cancelNextGpsStatusCheck(): Cancelling GPS status check");
+        Log.d("cancelNextGpsStatusCheck(): Cancelling GPS status check");
         getGpsStatusHandler().removeCallbacks(gpsStatusCheck);
     }
 
     private void registerWakeLockAcquirer() {
         if (keepScreenOnMode == KeepScreenOnMode.Disabled) {
-            Log.d(TAG, "registerWakeLockAcquirer(): WakeLock not configured");
+            Log.d("registerWakeLockAcquirer(): WakeLock not configured");
             return;
         }
         periodicalWakeLockAcquirer = new Timer();
@@ -699,7 +699,7 @@ public class CollectorService extends Service {
     }
 
     private void setGpsStatus(GpsStatus status) {
-        Log.d(TAG, "setGpsStatus(): Setting gps status = %s", status);
+        Log.d("setGpsStatus(): Setting gps status = %s", status);
         boolean statusChanged = (this.gpsStatus != status);
         this.gpsStatus = status;
         float accuracy = getLastGpsAccuracy();
@@ -741,7 +741,7 @@ public class CollectorService extends Service {
     }
 
     public void setLastGpsAccuracy(Location location) {
-        Log.d(TAG, "setLastGpsAccuracy(): Setting last gps accuracy = %s", location.getAccuracy());
+        Log.d("setLastGpsAccuracy(): Setting last gps accuracy = %s", location.getAccuracy());
         this.lastGpsAccuracy = (location.hasAccuracy() ? location.getAccuracy() : 1000);
     }
 

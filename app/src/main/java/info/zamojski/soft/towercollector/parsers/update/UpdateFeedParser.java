@@ -37,7 +37,7 @@ public class UpdateFeedParser {
             updateInfo.addDownloadLinks(downloadLinks);
             return updateInfo;
         } catch (JSONException ex) {
-            Log.w(TAG, "parse(): Error while parsing JSON response");
+            Log.w("parse(): Error while parsing JSON response");
             throw new UpdateFeedParseException("Cannot parse update feed: `" + TextUtils.htmlEncode(content) + "`", ex);
         }
     }

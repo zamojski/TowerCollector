@@ -70,21 +70,21 @@ public class FileUtils {
             dstChannel.transferFrom(srcChannel, 0, srcChannel.size());
             return true;
         } catch (IOException ex) {
-            Log.e(TAG, "copyFile(): Failed to copy file \"%s\" to \"%s\"", src, dst, ex);
+            Log.e("copyFile(): Failed to copy file \"%s\" to \"%s\"", src, dst, ex);
             return false;
         } finally {
             if (srcChannel != null) {
                 try {
                     srcChannel.close();
                 } catch (IOException ex) {
-                    Log.e(TAG, "copyFile(): Failed to close source channel", ex);
+                    Log.e("copyFile(): Failed to close source channel", ex);
                 }
             }
             if (dstChannel != null) {
                 try {
                     dstChannel.close();
                 } catch (IOException ex) {
-                    Log.e(TAG, "copyFile(): Failed to close destination channel", ex);
+                    Log.e("copyFile(): Failed to close destination channel", ex);
                 }
             }
         }

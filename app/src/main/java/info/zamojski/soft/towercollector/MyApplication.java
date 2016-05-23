@@ -76,33 +76,33 @@ public class MyApplication extends Application {
     }
 
     private void initEventBus() {
-        Log.d(TAG, "initEventBus(): Initializing EventBus");
+        Log.d("initEventBus(): Initializing EventBus");
         EventBus.builder()
                 .throwSubscriberException(EVENTBUS_SUBSCRIBER_CAN_THROW)
                 .installDefaultEventBus();
     }
 
     private void initPreferencesProvider() {
-        Log.d(TAG, "initProviders(): Initializing preferences");
+        Log.d("initProviders(): Initializing preferences");
         prefProvider = new PreferencesProvider(this);
     }
 
     public void initTheme() {
-        Log.d(TAG, "initTheme(): Initializing theme");
+        Log.d("initTheme(): Initializing theme");
         String appThemeName = getPreferencesProvider().getAppTheme();
         AppThemeProvider themeProvider = new AppThemeProvider(this);
         appTheme = themeProvider.getTheme(appThemeName);
     }
 
     private void initGA() {
-        Log.d(TAG, "initGA(): Initializing Google Analytics");
+        Log.d("initGA(): Initializing Google Analytics");
         boolean trackingEnabled = getPreferencesProvider().getTrackingEnabled();
         boolean dryRun = ApkUtils.isApkDebuggable(application);
         analyticsService = new GoogleAnalyticsReportingService(this, trackingEnabled, dryRun);
     }
 
     private void initACRA() {
-        Log.d(TAG, "initACRA(): Initializing ACRA");
+        Log.d("initACRA(): Initializing ACRA");
         ACRAConfiguration config = ACRA.getNewDefaultConfig(this);
         // Configure connection
         config.setSendReportsInDevMode(BuildConfig.ACRA_SEND_REPORTS_IN_DEV_MODE);

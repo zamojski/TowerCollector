@@ -80,7 +80,7 @@ public class MainStatsFragment extends MainFragmentBase {
     }
 
     private void printStatistics(Statistics stats) {
-        Log.d(TAG, "printStatistics(): Showing stats %s", stats);
+        Log.d("printStatistics(): Showing stats %s", stats);
         long sinceLocal = stats.getSinceLocal();
         if (sinceLocal == 0)
             sinceLocal = System.currentTimeMillis();

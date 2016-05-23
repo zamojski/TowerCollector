@@ -45,7 +45,7 @@ public class ChangelogProvider {
             changelog.removeEntries(entriesToRemove);
             return changelog;
         } catch (ChangelogFeedParseException ex) {
-            Log.e(TAG, "getChangelog(): Failed to parse changelog", ex);
+            Log.e("getChangelog(): Failed to parse changelog", ex);
             return new ChangelogInfo();
         }
     }

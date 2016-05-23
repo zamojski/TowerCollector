@@ -13,7 +13,7 @@ class UpgradeScript3 implements IUpgradeScript {
 
     @Override
     public void performUpgrade(SQLiteDatabase database) {
-        Log.d(TAG, "performUpgrade(): Upgrading db to version 3");
+        Log.d("performUpgrade(): Upgrading db to version 3");
         // backup old table
         database.execSQL("ALTER TABLE measurements RENAME TO measurements_backup");
         // drop index on old table

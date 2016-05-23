@@ -23,7 +23,7 @@ public class DatabaseUpgradeTask {
     }
 
     public void upgrade() {
-        Log.d(TAG, "doInBackground(): Loading data and running migration if necessary");
+        Log.d("doInBackground(): Loading data and running migration if necessary");
         try {
             // invalidate database (protects against crash when database swapped while application paused - generally for testing)
             MeasurementsDatabase.invalidateInstance(MyApplication.getApplication());
@@ -35,7 +35,7 @@ public class DatabaseUpgradeTask {
             long duration = (endTime - startTime);
             MyApplication.getAnalytics().sendMigrationFinished(duration, oldDbVersion, stats);
         } catch (RuntimeException ex) {
-            Log.e(TAG, "doInBackground(): Database migration crashed", ex);
+            Log.e("doInBackground(): Database migration crashed", ex);
             MyApplication.getAnalytics().sendException(ex, Boolean.TRUE);
             ACRA.getErrorReporter().handleSilentException(ex);
             throw ex;

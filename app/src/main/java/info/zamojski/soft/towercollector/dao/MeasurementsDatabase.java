@@ -52,7 +52,7 @@ public class MeasurementsDatabase {
     }
 
     public boolean insertMeasurements(Measurement[] measurements) {
-        Log.d(TAG, "insertMeasurement(): Inserting %s measurements", measurements.length);
+        Log.d("insertMeasurement(): Inserting %s measurements", measurements.length);
         boolean[] results = new boolean[measurements.length];
         boolean overallResult = true;
         SQLiteDatabase db = helper.getWritableDatabase();
@@ -73,7 +73,7 @@ public class MeasurementsDatabase {
                     values.put(CellsTable.COLUMN_DISCOVERED_AT, System.currentTimeMillis());
                     long rowId = db.insert(CellsTable.TABLE_NAME, null, values);
                     boolean localResult = (rowId != -1);
-                    Log.d(TAG, "insertMeasurement(): Cell inserted = %s", localResult);
+                    Log.d("insertMeasurement(): Cell inserted = %s", localResult);
                     resultSb.append("\tcell inserted=").append(localResult);
                 }
                 // don't use value returned by insert, because it sometimes returns wrong value -> query always
@@ -92,7 +92,7 @@ public class MeasurementsDatabase {
                     }
                     cursorTotal.close();
                     results[mIndex] = localResult;
-                    Log.d(TAG, "insertMeasurement(): Cell found = %s", localResult);
+                    Log.d("insertMeasurement(): Cell found = %s", localResult);
                     resultSb.append("\tcell found=").append(localResult);
                 }
                 // calculate hashcode
@@ -110,7 +110,7 @@ public class MeasurementsDatabase {
                     values.put(LocationsTable.COLUMN_GPS_ALTITUDE, measurement.getGpsAltitude());
                     long rowId = db.insert(LocationsTable.TABLE_NAME, null, values);
                     boolean localResult = (rowId != -1);
-                    Log.d(TAG, "insertMeasurement(): Location inserted = %s", localResult);
+                    Log.d("insertMeasurement(): Location inserted = %s", localResult);
                     resultSb.append("\tlocation inserted=").append(localResult);
                 }
                 // don't use value returned by insert, because it sometimes returns wrong value -> query always
@@ -129,7 +129,7 @@ public class MeasurementsDatabase {
                     }
                     cursorTotal.close();
                     results[mIndex] = localResult;
-                    Log.d(TAG, "insertMeasurement(): Location found = %s", localResult);
+                    Log.d("insertMeasurement(): Location found = %s", localResult);
                     resultSb.append("\tlocation found=").append(localResult);
                 }
                 // insert measurement (if previous queries returned correct result)
@@ -146,7 +146,7 @@ public class MeasurementsDatabase {
                     long rowId = db.insert(MeasurementsTable.TABLE_NAME, null, values);
                     boolean localResult = (rowId != -1);
                     results[mIndex] &= localResult;
-                    Log.d(TAG, "insertMeasurement(): Measurement inserted = %s", localResult);
+                    Log.d("insertMeasurement(): Measurement inserted = %s", localResult);
                     resultSb.append("\tmeasurement inserted=").append(localResult);
                 }
                 resultSb.append(";\r\n");
@@ -157,11 +157,11 @@ public class MeasurementsDatabase {
             }
             if (overallResult) {
                 db.setTransactionSuccessful();
-                Log.d(TAG, "insertMeasurements(): Measurements inserted successfully");
-                Log.d(TAG, "insertMeasurements(): Insertion report: %s", resultSb.toString());
+                Log.d("insertMeasurements(): Measurements inserted successfully");
+                Log.d("insertMeasurements(): Insertion report: %s", resultSb.toString());
             } else {
-                Log.d(TAG, "insertMeasurements(): Measurements not inserted");
-                Log.d(TAG, "insertMeasurements(): Insertion report: %s", resultSb.toString());
+                Log.d("insertMeasurements(): Measurements not inserted");
+                Log.d("insertMeasurements(): Insertion report: %s", resultSb.toString());
                 // report exception because it shouldn't occur (one time per app run)
                 if (!insertionFailureReported) {
                     Throwable ex = new MeasurementInsertionFailedException("Measurements not inserted", resultSb.toString());
@@ -186,14 +186,14 @@ public class MeasurementsDatabase {
         List<Measurement> measurements = getMeasurements(null, null, null, null, MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " ASC, " + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_ROW_ID + " ASC", "1");
         if (!measurements.isEmpty())
             firstMeasurement = measurements.get(0);
-        Log.d(TAG, "getFirstMeasurement(): %s", firstMeasurement);
+        Log.d("getFirstMeasurement(): %s", firstMeasurement);
         return firstMeasurement;
     }
 
     public Measurement getLastMeasurement() {
         // Try to get from cache then read from DB
         if (this.lastMeasurementCache != null) {
-            Log.d(TAG, "getLastMeasurement(): Value from cache: %s", this.lastMeasurementCache);
+            Log.d("getLastMeasurement(): Value from cache: %s", this.lastMeasurementCache);
             return this.lastMeasurementCache;
         }
         Measurement lastMeasurement = null;
@@ -205,14 +205,14 @@ public class MeasurementsDatabase {
         if (!measurements.isEmpty()) {
             lastMeasurement = measurements.get(0);
         }
-        Log.d(TAG, "getLastMeasurement(): Value from DB: %s", lastMeasurement);
+        Log.d("getLastMeasurement(): Value from DB: %s", lastMeasurement);
         this.lastMeasurementCache = lastMeasurement;
         return lastMeasurement;
     }
 
     public int getAllMeasurementsCount() {
         int count = 0;
-        Log.d(TAG, "getAllMeasurementsCount(): Getting number of measurements");
+        Log.d("getAllMeasurementsCount(): Getting number of measurements");
         SQLiteDatabase db = helper.getReadableDatabase();
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
         queryBuilder.setTables(MeasurementsTable.TABLE_NAME);
@@ -228,7 +228,7 @@ public class MeasurementsDatabase {
     public Statistics getMeasurementsStatistics() {
         // Try to get from cache then read from DB
         if (this.lastStatisticsCache != null) {
-            Log.d(TAG, "getMeasurementsStatistics(): Value from cache: %s", this.lastStatisticsCache);
+            Log.d("getMeasurementsStatistics(): Value from cache: %s", this.lastStatisticsCache);
             return this.lastStatisticsCache;
         }
         Statistics stats = new Statistics();
@@ -276,9 +276,9 @@ public class MeasurementsDatabase {
         String globalDiscoveredSinceQuery = "SELECT " + CellsTable.COLUMN_DISCOVERED_AT + " AS " + globalDiscoveredCellsSince
                 + " FROM " + CellsTable.TABLE_NAME + " UNION SELECT " + CellsArchiveTable.COLUMN_DISCOVERED_AT
                 + " FROM " + CellsArchiveTable.TABLE_NAME + " ORDER BY " + CellsTable.COLUMN_DISCOVERED_AT + " ASC LIMIT 0, 1";
-        //Log.d(TAG, todayDiscoveredCellsQuery);
-        //Log.d(TAG, localDiscoveredCellsQuery);
-        //Log.d(TAG, globalDiscoveredCellsQuery);
+        //Log.d(todayDiscoveredCellsQuery);
+        //Log.d(localDiscoveredCellsQuery);
+        //Log.d(globalDiscoveredCellsQuery);
         String query = "SELECT * FROM ((" + todayCellsLocationsQuery + ") "
                 + "JOIN (" + todayDiscoveredCellsQuery + ") "
                 + "JOIN (" + localCellsQuery + ") "
@@ -287,7 +287,7 @@ public class MeasurementsDatabase {
                 + "JOIN (" + globalLocationsQuery + ") "
                 + "JOIN (" + globalDiscoveredCellsQuery + ") "
                 + "JOIN (" + globalDiscoveredSinceQuery + "))";
-        // Log.d(TAG, query);
+        // Log.d(query);
         Cursor cursor = db.rawQuery(query, selectionArgs);
         if (cursor.moveToNext()) {
             stats.setCellsToday(cursor.getInt(cursor.getColumnIndex(todayCellsCount)));
@@ -302,18 +302,18 @@ public class MeasurementsDatabase {
             stats.setSinceGlobal(cursor.getLong(cursor.getColumnIndex(globalDiscoveredCellsSince)));
         }
         cursor.close();
-        Log.d(TAG, "getMeasurementsStatistics(): Value from DB: %s", stats);
+        Log.d("getMeasurementsStatistics(): Value from DB: %s", stats);
         this.lastStatisticsCache = stats;
         return stats;
     }
 
     public AnalyticsStatistics getAnalyticsStatistics() {
-        Log.d(TAG, "getAnalyticsStatistics(): Getting analytics stats");
+        Log.d("getAnalyticsStatistics(): Getting analytics stats");
         AnalyticsStatistics stats = new AnalyticsStatistics();
         SQLiteDatabase db = helper.getReadableDatabase();
         // get all in one query (raw is the only possible solution)
         String query = "SELECT * FROM (SELECT COUNT(*) AS TOTAL_CELLS_COUNT FROM " + CellsTable.TABLE_NAME + ") JOIN (SELECT COUNT(*) AS TOTAL_LOCATIONS_COUNT, COUNT(DISTINCT DATE(" + MeasurementsTable.COLUMN_MEASURED_AT + " / 1000, 'unixepoch')) AS TOTAL_DAYS_COUNT FROM " + MeasurementsTable.TABLE_NAME + ")";
-        // Log.d(TAG, query);
+        // Log.d(query);
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToNext()) {
             stats.setCells(cursor.getInt(cursor.getColumnIndex("TOTAL_CELLS_COUNT")));
@@ -321,17 +321,17 @@ public class MeasurementsDatabase {
             stats.setDays(cursor.getInt(cursor.getColumnIndex("TOTAL_DAYS_COUNT")));
         }
         cursor.close();
-        Log.d(TAG, "getAnalyticsStatistics(): %s", stats);
+        Log.d("getAnalyticsStatistics(): %s", stats);
         return stats;
     }
 
     public Boundaries getLocationBounds() {
-        Log.d(TAG, "getLocationBounds(): Getting GPS bounds");
+        Log.d("getLocationBounds(): Getting GPS bounds");
         Boundaries boundaries = null;
         SQLiteDatabase db = helper.getReadableDatabase();
         // get all in one query (raw is the only possible solution)
         String query = "SELECT MIN(" + LocationsTable.COLUMN_LATITUDE + ") AS MIN_LAT, MIN(" + LocationsTable.COLUMN_LONGITUDE + ") AS MIN_LON, MAX(" + LocationsTable.COLUMN_LATITUDE + ") AS MAX_LAT, MAX(" + LocationsTable.COLUMN_LONGITUDE + ") AS MAX_LON FROM " + LocationsTable.TABLE_NAME;
-        // Log.d(TAG, query);
+        // Log.d(query);
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToNext()) {
             double minLat = cursor.getDouble(cursor.getColumnIndex("MIN_LAT"));
@@ -345,12 +345,12 @@ public class MeasurementsDatabase {
     }
 
     public List<Measurement> getOlderMeasurements(long maxTimestamp, int offset, int limit) {
-        Log.d(TAG, "getOlderMeasurements(): Getting %s measurements with timestamp <= %s skipping first %s", limit, maxTimestamp, offset);
+        Log.d("getOlderMeasurements(): Getting %s measurements with timestamp <= %s skipping first %s", limit, maxTimestamp, offset);
         return getMeasurements(MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " <= ?", new String[]{String.valueOf(maxTimestamp)}, null, null, MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " ASC, " + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_ROW_ID + " ASC", String.valueOf(offset) + ", " + String.valueOf(limit));
     }
 
     private List<Measurement> getMeasurements(String selection, String[] selectionArgs, String groupBy, String having, String sortOrder, String limit) {
-        Log.d(TAG, "getMeasurements(): Getting selected measurements");
+        Log.d("getMeasurements(): Getting selected measurements");
         List<Measurement> measurementList = new ArrayList<Measurement>(128);
         SQLiteDatabase db = helper.getReadableDatabase();
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
@@ -376,7 +376,7 @@ public class MeasurementsDatabase {
                 CellsTable.TABLE_NAME + "." + CellsTable.COLUMN_MNC,
                 CellsTable.TABLE_NAME + "." + CellsTable.COLUMN_MCC,
                 CellsTable.TABLE_NAME + "." + CellsTable.COLUMN_NET_TYPE};
-        // Log.d(TAG, queryBuilder.buildQuery(returnedColumns, selection, selectionArgs, groupBy, having, sortOrder, limit));
+        // Log.d(queryBuilder.buildQuery(returnedColumns, selection, selectionArgs, groupBy, having, sortOrder, limit));
         Cursor cursor = queryBuilder.query(db, returnedColumns, selection, selectionArgs, groupBy, having, sortOrder, limit);
         int rowIdColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_ROW_ID);
         int mccColumnIndex = cursor.getColumnIndex(CellsTable.COLUMN_MCC);
@@ -423,7 +423,7 @@ public class MeasurementsDatabase {
     }
 
     public int deleteAllMeasurements() {
-        Log.d(TAG, "deleteAllMeasurements(): Deleting all measurements");
+        Log.d("deleteAllMeasurements(): Deleting all measurements");
         SQLiteDatabase db = helper.getWritableDatabase();
         db.beginTransaction();
         int deletedMeasurements = 0;
@@ -432,7 +432,7 @@ public class MeasurementsDatabase {
             int deletedLocations = db.delete(LocationsTable.TABLE_NAME, "1", null);
             int deletedCells = db.delete(CellsTable.TABLE_NAME, "1", null);
             db.setTransactionSuccessful();
-            Log.d(TAG, "deleteAllMeasurements(): Deleted %s measurements, %s cells, %s locations", deletedMeasurements, deletedCells, deletedLocations);
+            Log.d("deleteAllMeasurements(): Deleted %s measurements, %s cells, %s locations", deletedMeasurements, deletedCells, deletedLocations);
         } finally {
             invalidateCache();
             db.endTransaction();
@@ -442,10 +442,10 @@ public class MeasurementsDatabase {
 
     public int deleteMeasurements(int[] rowIds) {
         if (rowIds == null || rowIds.length == 0) {
-            Log.d(TAG, "deleteMeasurements(): Nothing to delete");
+            Log.d("deleteMeasurements(): Nothing to delete");
             return 0;
         }
-        Log.d(TAG, "deleteMeasurements(): Deleting %s measurements", rowIds.length);
+        Log.d("deleteMeasurements(): Deleting %s measurements", rowIds.length);
         // in transaction
         int deleted = 0;
         SQLiteDatabase db = helper.getWritableDatabase();
@@ -481,7 +481,7 @@ public class MeasurementsDatabase {
                 // if all removed successfully then delete orphaned cells and locations
                 long deletedLocations = db.delete(LocationsTable.TABLE_NAME, LocationsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_LOCATION_ID + " FROM " + MeasurementsTable.TABLE_NAME + ")", null);
                 long deletedCells = db.delete(CellsTable.TABLE_NAME, CellsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_CELL_ID + " FROM " + MeasurementsTable.TABLE_NAME + ")", null);
-                Log.d(TAG, "deleteMeasurements(): Deleted orphaned %s cells, %s locations", deletedCells, deletedLocations);
+                Log.d("deleteMeasurements(): Deleted orphaned %s cells, %s locations", deletedCells, deletedLocations);
                 db.setTransactionSuccessful();
             } else
                 deleted = 0;
@@ -507,9 +507,9 @@ public class MeasurementsDatabase {
             // open manually to prevent database upgrade or creation
             db = SQLiteDatabase.openDatabase(path.toString(), null, SQLiteDatabase.OPEN_READONLY);
             version = db.getVersion(); // equivalent of PRAGMA user_version
-            Log.d(TAG, "getDatabaseVersion(): Database file version %s", version);
+            Log.d("getDatabaseVersion(): Database file version %s", version);
         } catch (SQLiteException ex) {
-            Log.e(TAG, "getDatabaseVersion(): Database file cannot be opened", ex);
+            Log.e("getDatabaseVersion(): Database file cannot be opened", ex);
         } finally {
             if (db != null)
                 db.close();
@@ -520,15 +520,15 @@ public class MeasurementsDatabase {
     // ========== FORCE DATABASE UPGRADE ========== //
 
     public void forceDatabaseUpgrade() {
-        Log.d(TAG, "forceDatabaseUpgrade(): Forcing database upgrade");
+        Log.d("forceDatabaseUpgrade(): Forcing database upgrade");
         SQLiteDatabase db = helper.getWritableDatabase();
         try {
             // read something to prevent from being removed while optimization (I hope)
             Cursor cursor = db.rawQuery("SELECT 1", null);
             cursor.close();
-            Log.d(TAG, "forceDatabaseUpgrade(): Database successfully opened for R/W");
+            Log.d("forceDatabaseUpgrade(): Database successfully opened for R/W");
         } catch (SQLiteException ex) {
-            Log.e(TAG, "forceDatabaseUpgrade(): Failed to open for R/W", ex);
+            Log.e("forceDatabaseUpgrade(): Failed to open for R/W", ex);
         }
     }
 
