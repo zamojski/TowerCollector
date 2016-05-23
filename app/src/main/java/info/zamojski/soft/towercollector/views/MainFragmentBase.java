@@ -41,7 +41,7 @@ public abstract class MainFragmentBase extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.d(getTag(), "onResume(): Registering broadcast receiver");
+        Log.d("onResume(): Registering broadcast receiver");
         EventBus.getDefault().registerSticky(this);
         configureOnResume();
     }
@@ -49,7 +49,7 @@ public abstract class MainFragmentBase extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        Log.d(getTag(), "onPause(): Unregistering broadcast receiver");
+        Log.d("onPause(): Unregistering broadcast receiver");
         EventBus.getDefault().unregister(this);
         configureOnPause();
     }

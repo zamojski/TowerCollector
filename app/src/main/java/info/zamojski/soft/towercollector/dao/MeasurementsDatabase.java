@@ -580,7 +580,7 @@ public class MeasurementsDatabase {
 
         @Override
         public void onUpgrade(SQLiteDatabase sqliteDatabase, int oldVersion, int newVersion) {
-            Log.d(INNER_TAG, "onUpgrade(): Upgrading db from version %s to %s", oldVersion, newVersion);
+            Log.d(INNER_TAG, String.format("onUpgrade(): Upgrading db from version %s to %s", oldVersion, newVersion));
             DbMigrationHelper migrationHelper = new DbMigrationHelper(sqliteDatabase);
             migrationHelper.upgrade(oldVersion, newVersion);
         }

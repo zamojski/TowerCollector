@@ -293,7 +293,7 @@ public class UploaderService extends Service {
                 //    fileDevice.open();
                 //    fileDevice.write(csvContent);
                 //    fileDevice.close();
-                //    Log.d(INNER_TAG, "run(): Uploaded file saved as: %s", fileDevice.getPath());
+                //    Log.d(INNER_TAG, String.format("run(): Uploaded file saved as: %s", fileDevice.getPath()));
                 //} catch (info.zamojski.soft.towercollector.files.DeviceOperationException ex) {
                 //    Log.d(INNER_TAG, "run(): Uploaded file generation problem", ex);
                 //} catch (IOException ex) {
@@ -301,7 +301,7 @@ public class UploaderService extends Service {
                 //}
                 // send request
                 ResponseData response = NetworkHelper.sendPost(uploadUrl, appId, apiKey, csvContent);
-                Log.d(INNER_TAG, "run(): Server response: %s", response);
+                Log.d(INNER_TAG, String.format("run(): Server response: %s", response));
                 // check whether it makes sense to continue
                 if (response.getCode() == 0) {
                     uploadResult = UploadResult.ConnectionError;
@@ -335,7 +335,7 @@ public class UploaderService extends Service {
                             break;
                         } else {
                             if (response.getCode() == 200 && "0,OK".equalsIgnoreCase(trimmedResponseContent)) {
-                                Log.d(INNER_TAG, "run(): Uploaded %s measurements", measurements.size());
+                                Log.d(INNER_TAG, String.format("run(): Uploaded %s measurements"), measurements.size());
                                 uploadResult = UploadResult.PartiallySucceeded;
                                 succeededParts++;
                             } else {

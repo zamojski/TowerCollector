@@ -312,7 +312,7 @@ public class CollectorService extends Service {
                     Log.d(INNER_TAG, "onCellInfoChanged(): Null reported");
                     return;
                 }
-                Log.d(INNER_TAG, "onCellInfoChanged(): Number of cells: %s", cellInfo.size());
+                Log.d(INNER_TAG, String.format("onCellInfoChanged(): Number of cells: %s", cellInfo.size()));
                 processCellInfo(cellInfo);
             }
         };
@@ -329,7 +329,7 @@ public class CollectorService extends Service {
                     Log.d(INNER_TAG, "run(): Null reported");
                     return;
                 }
-                Log.d(INNER_TAG, "run(): Number of cells: %s", cellInfo.size());
+                Log.d(INNER_TAG, String.format("run(): Number of cells: %s", cellInfo.size()));
                 processCellInfo(cellInfo);
             }
         }, 0, CELL_UPDATE_INTERVAL);
@@ -346,12 +346,12 @@ public class CollectorService extends Service {
             public void onSignalStrengthsChanged(SignalStrength signalStrength) {
                 // in GSM networks, ASU is equal to the RSSI (received signal strength indicator, see TS 27.007)
                 measurementUpdater.setLastSignalStrength(signalStrength);
-                Log.d(INNER_TAG, "onSignalStrengthsChanged(): Signal strength = %s", signalStrength);
+                Log.d(INNER_TAG, String.format("onSignalStrengthsChanged(): Signal strength = %s", signalStrength));
             }
 
             @Override
             public void onCellLocationChanged(CellLocation cellLocation) {
-                Log.d(INNER_TAG, "onCellLocationChanged(): %s", cellLocation);
+                Log.d(INNER_TAG, String.format("onCellLocationChanged(): %s", cellLocation));
                 processCellLocation(cellLocation);
             }
         };
@@ -363,7 +363,7 @@ public class CollectorService extends Service {
             @Override
             public void run() {
                 CellLocation cellLocation = telephonyManager.getCellLocation();
-                Log.d(INNER_TAG, "run(): %s", cellLocation);
+                Log.d(INNER_TAG, String.format("run(): %s", cellLocation));
                 processCellLocation(cellLocation);
             }
         }, 0, CELL_UPDATE_INTERVAL);
@@ -406,22 +406,22 @@ public class CollectorService extends Service {
                     statusString = "UNKNOWN";
                     break;
             }
-            Log.d(INNER_TAG, "onStatusChanged(): %s", statusString);
+            Log.d(INNER_TAG, String.format("onStatusChanged(): %s", statusString));
         }
 
         @Override
         public void onProviderEnabled(String provider) {
-            Log.d(INNER_TAG, "onProviderEnabled(): %s", provider);
+            Log.d(INNER_TAG, String.format("onProviderEnabled(): %s", provider));
         }
 
         @Override
         public void onProviderDisabled(String provider) {
-            Log.d(INNER_TAG, "onProviderDisabled(): %s", provider);
+            Log.d(INNER_TAG, String.format("onProviderDisabled(): %s", provider));
         }
 
         @Override
         public void onLocationChanged(Location location) {
-            Log.d(INNER_TAG, "onLocationChanged(): %s", location);
+            Log.d(INNER_TAG, String.format("onLocationChanged(): %s", location));
             lastLocation = location;
             long locationObtainedTime = System.currentTimeMillis();
             lastLocationObtainedTime = locationObtainedTime;
@@ -452,7 +452,7 @@ public class CollectorService extends Service {
 
         @Override
         public void onLocationChanged(Location location) {
-            Log.d(INNER_TAG, "onLocationChanged(): %s", location);
+            Log.d(INNER_TAG, String.format("onLocationChanged(): %s", location));
             lastLocation = location;
             long locationObtainedTime = System.currentTimeMillis();
             lastLocationObtainedTime = locationObtainedTime;
