@@ -34,6 +34,8 @@ public class MyApplication extends Application {
     private static MyApplication application;
     private static PreferencesProvider prefProvider;
 
+    private static Thread.UncaughtExceptionHandler defaultHandler;
+
     private static int appTheme;
 
     private static String backgroundTaskName = null;
@@ -50,8 +52,21 @@ public class MyApplication extends Application {
         initLogger();
         initEventBus();
         initACRA();
+        // Exception handling must be initialized after ACRA to obtain crash details
+        initUnhandledExceptionHandler();
         initTheme();
         initGA();
+    }
+
+    private void initUnhandledExceptionHandler() {
+        defaultHandler = Thread.getDefaultUncaughtExceptionHandler();
+        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(Thread thread, Throwable ex) {
+                Log.e("CRASHED", ex);
+                defaultHandler.uncaughtException(thread, ex);
+            }
+        });
     }
 
     public void initLogger() {
