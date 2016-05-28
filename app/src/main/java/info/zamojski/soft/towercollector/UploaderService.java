@@ -335,7 +335,7 @@ public class UploaderService extends Service {
                             break;
                         } else {
                             if (response.getCode() == 200 && "0,OK".equalsIgnoreCase(trimmedResponseContent)) {
-                                Log.d(INNER_TAG, String.format("run(): Uploaded %s measurements"), measurements.size());
+                                Log.d(INNER_TAG, String.format("run(): Uploaded %s measurements", measurements.size()));
                                 uploadResult = UploadResult.PartiallySucceeded;
                                 succeededParts++;
                             } else {
