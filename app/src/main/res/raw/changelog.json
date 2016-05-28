@@ -1,6 +1,13 @@
 {
   "Entries": [
     {
+      "VersionCode": 1090004,
+      "Title": "Changes in version 1.9.0-beta4",
+      "Messages": [
+        "Fixed crash when uploading measurements."
+      ]
+    },
+    {
       "VersionCode": 1090003,
       "Title": "Changes in version 1.9.0-beta3",
       "Messages": [
