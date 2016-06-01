@@ -289,18 +289,22 @@ public class CollectorService extends Service {
                 } else {
                     registerApi1PhoneStateListener();
                 }
-            } else {
+            } else if (getString(R.string.preferences_collector_api_version_entries_value_api_17).equals(collectorApiVersion)) {
                 // API 17 forced
                 registerApi17PhoneStateListener();
+            } else {
+                // API 1 forced
+                registerApi1PhoneStateListener();
             }
         } else {
-            // API 1 forced
+            // API 1 forced due to incompatibility
             registerApi1PhoneStateListener();
         }
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void registerApi17PhoneStateListener() {
+        Log.d("Registering API 17 phone state listener");
         boolean collectNeighboringCells = MyApplication.getPreferencesProvider().getCollectNeighboringCells();
         measurementParser = new MeasurementParserFactory().CreateApi17Parser(transportMode.getAccuracy(), collectNeighboringCells);
         getMeasurementParserHandler().post(measurementParser);
@@ -337,6 +341,7 @@ public class CollectorService extends Service {
     }
 
     private void registerApi1PhoneStateListener() {
+        Log.d("Registering API 1 phone state listener");
         boolean collectNeighboringCells = MyApplication.getPreferencesProvider().getCollectNeighboringCells();
         measurementParser = new MeasurementParserFactory().CreateApi1Parser(transportMode.getAccuracy(), collectNeighboringCells);
         getMeasurementParserHandler().post(measurementParser);
