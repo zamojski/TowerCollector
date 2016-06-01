@@ -60,6 +60,7 @@ import android.telephony.NeighboringCellInfo;
 import android.telephony.PhoneStateListener;
 import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
+
 import trikita.log.Log;
 
 public class CollectorService extends Service {
@@ -382,7 +383,7 @@ public class CollectorService extends Service {
         String networkOperatorName = telephonyManager.getNetworkOperatorName();
         Log.d("processCellLocation(): Operator code = '%s', name = '%s'", networkOperatorCode, networkOperatorName);
         List<NeighboringCellInfo> neighboringCells = telephonyManager.getNeighboringCellInfo();
-        Log.d("processCellLocation(): Reported %s neighboring cells", neighboringCells.size());
+        Log.d("processCellLocation(): Reported %s neighboring cells", (neighboringCells != null ? neighboringCells.size() : null));
         measurementUpdater.setLastCellLocation(cellLocation, networkType, networkOperatorCode, networkOperatorName, neighboringCells);
     }
 
