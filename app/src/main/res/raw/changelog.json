@@ -1,6 +1,14 @@
 {
   "Entries": [
     {
+      "VersionCode": 1090106,
+      "Title": "Changes in version 1.9.1",
+      "Messages": [
+        "Fixed crash when starting Collector on some devices.",
+        "Fixed forced Collector API version 1 not applied correctly."
+      ]
+    },
+    {
       "VersionCode": 1090005,
       "Title": "Changes in version 1.9.0",
       "Messages": [
