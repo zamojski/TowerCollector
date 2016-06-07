@@ -64,7 +64,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
+
 import trikita.log.Log;
+
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -93,9 +95,12 @@ public class MainActivity extends AppCompatActivity {
     private String exportedFileAbsolutePath;
     private boolean showExportFinishedDialog = false;
 
+    private Boolean canStartNetworkTypeSystemActivityResult = null;
+
     private Menu mainMenu;
     private MenuItem startMenu;
     private MenuItem stopMenu;
+    private MenuItem networkTypeMenu;
 
     private boolean isMinimized = false;
 
@@ -232,6 +237,7 @@ public class MainActivity extends AppCompatActivity {
         // save references
         startMenu = menu.findItem(R.id.main_menu_start);
         stopMenu = menu.findItem(R.id.main_menu_stop);
+        networkTypeMenu = menu.findItem(R.id.main_menu_network_type);
         mainMenu = menu;// store the menu in an local variable for hardware key
         return true;
     }
@@ -243,6 +249,8 @@ public class MainActivity extends AppCompatActivity {
         // toggle visibility
         startMenu.setVisible(!isRunning);
         stopMenu.setVisible(isRunning);
+        boolean networkTypeAvailable = canStartNetworkTypeSystemActivity();
+        networkTypeMenu.setVisible(networkTypeAvailable);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -758,6 +766,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void startPreferencesActivity() {
         startActivity(new Intent(this, PreferencesActivity.class));
+    }
+
+    private boolean canStartNetworkTypeSystemActivity() {
+        if (canStartNetworkTypeSystemActivityResult == null) {
+            canStartNetworkTypeSystemActivityResult = (new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS).resolveActivity(getPackageManager()) != null);
+        }
+        return canStartNetworkTypeSystemActivityResult;
     }
 
     private void startNetworkTypeSystemActivity() {
