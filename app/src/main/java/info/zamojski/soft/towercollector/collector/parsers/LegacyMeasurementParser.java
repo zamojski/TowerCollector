@@ -110,7 +110,6 @@ public class LegacyMeasurementParser extends MeasurementParser {
         }
         // create a list of measurements to save
         List<Measurement> measurementsToSave = new ArrayList<Measurement>();
-        Log.d("parse(): Main: %s", measurement);
         measurementsToSave.add(measurement);
         if (collectNeighboringCells) {
             // remove duplicated neighboring cells
