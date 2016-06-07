@@ -113,7 +113,7 @@ public class CollectorService extends Service {
 
     private int conditionsNotAchievedCounter = CONDITIONS_NOT_ACHIEVED_COUNTER_INIT;
     private AtomicInteger currentIntervalValue = new AtomicInteger();//TODO: get rid when on same thread reconnected after procesisng received event
-    private MeansOfTransport transportMode;
+    private MeansOfTransport transportMode = MeansOfTransport.Fixed;
 
     private long startTime;
     private Statistics startStats;
