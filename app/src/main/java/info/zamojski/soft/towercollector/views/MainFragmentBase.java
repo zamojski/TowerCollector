@@ -7,7 +7,10 @@ package info.zamojski.soft.towercollector.views;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-import de.greenrobot.event.EventBus;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.enums.GpsStatus;
@@ -17,7 +20,9 @@ import info.zamojski.soft.towercollector.events.SystemTimeChangedEvent;
 import info.zamojski.soft.towercollector.utils.UnitConverter;
 
 import android.support.v4.app.Fragment;
+
 import trikita.log.Log;
+
 import android.view.View;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -42,7 +47,7 @@ public abstract class MainFragmentBase extends Fragment {
     public void onResume() {
         super.onResume();
         Log.d("onResume(): Registering broadcast receiver");
-        EventBus.getDefault().registerSticky(this);
+        EventBus.getDefault().register(this);
         configureOnResume();
     }
 
@@ -80,7 +85,8 @@ public abstract class MainFragmentBase extends Fragment {
         dateTimeFormatStandard = new SimpleDateFormat(getString(R.string.date_time_format_standard), new Locale(getString(R.string.locale)));
     }
 
-    public void onEventMainThread(SystemTimeChangedEvent event) {
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(SystemTimeChangedEvent event) {
         showInvalidSystemTime(event.isValid() == Validity.Invalid);
     }
 
@@ -91,7 +97,8 @@ public abstract class MainFragmentBase extends Fragment {
         invalidSystemTimeTableRow.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
-    public void onEventMainThread(GpsStatusChangedEvent event) {
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(GpsStatusChangedEvent event) {
         if (event.isEnabled()) {
             GpsStatus status = event.getStatus();
             float accuracy = event.getAccuracy();

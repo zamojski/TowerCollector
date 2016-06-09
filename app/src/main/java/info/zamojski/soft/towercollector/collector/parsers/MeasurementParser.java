@@ -4,7 +4,7 @@
 
 package info.zamojski.soft.towercollector.collector.parsers;
 
-import de.greenrobot.event.EventBus;
+import org.greenrobot.eventbus.EventBus;
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.collector.ParseResult;
 import info.zamojski.soft.towercollector.collector.validators.ConditionsValidator;

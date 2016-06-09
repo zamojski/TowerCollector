@@ -15,7 +15,8 @@ import org.acra.config.ConfigurationBuilder;
 import org.acra.sender.HttpSender.Method;
 import org.acra.sender.HttpSender.Type;
 
-import de.greenrobot.event.EventBus;
+import org.greenrobot.eventbus.EventBus;
+
 import info.zamojski.soft.towercollector.analytics.GoogleAnalyticsReportingService;
 import info.zamojski.soft.towercollector.analytics.IAnalyticsReportingService;
 import info.zamojski.soft.towercollector.logging.AndroidFilePrinter;

@@ -17,11 +17,16 @@ import info.zamojski.soft.towercollector.utils.NetworkTypeUtils;
 import info.zamojski.soft.towercollector.utils.UnitConverter;
 
 import android.os.Bundle;
+
 import trikita.log.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public class MainLastFragment extends MainFragmentBase {
 
@@ -67,12 +72,14 @@ public class MainLastFragment extends MainFragmentBase {
         lastDateTimeValueTextView = (TextView) view.findViewById(R.id.main_last_date_time_value_textview);
     }
 
-    public void onEventMainThread(MeasurementSavedEvent event) {
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(MeasurementSavedEvent event) {
         Measurement measurement = event.getMeasurement();
         printOrClearMeasurement(measurement);
     }
 
-    public void onEventMainThread(PrintMainWindowEvent event) {
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(PrintMainWindowEvent event) {
         getAndPrintOrClearMeasurement();
     }
 

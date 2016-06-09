@@ -4,7 +4,7 @@
 
 package info.zamojski.soft.towercollector;
 
-import de.greenrobot.event.EventBus;
+import org.greenrobot.eventbus.EventBus;
 import info.zamojski.soft.towercollector.analytics.IntentSource;
 import info.zamojski.soft.towercollector.events.CollectorStartedEvent;
 import info.zamojski.soft.towercollector.utils.BackgroundTaskHelper;

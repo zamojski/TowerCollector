@@ -11,13 +11,16 @@ import java.util.Set;
 
 import org.acra.ACRA;
 
-import de.greenrobot.event.EventBus;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import android.location.Location;
 import android.telephony.CellLocation;
 import android.telephony.NeighboringCellInfo;
 import android.telephony.SignalStrength;
 import android.telephony.gsm.GsmCellLocation;
+
 import trikita.log.Log;
 
 import info.zamojski.soft.towercollector.MyApplication;
@@ -184,12 +187,12 @@ public class LegacyMeasurementParser extends MeasurementParser {
         StringBuilder sb = new StringBuilder();
         int lac = measurement.getLac();
         int cid = measurement.getCid();
-        sb.append(lac)
-                .append("_").append(cid);
+        sb.append(lac).append("_").append(cid);
         return sb.toString();
     }
 
-    public void onEventBackgroundThread(LegacyMeasurementProcessingEvent event) {
+    @Subscribe(threadMode = ThreadMode.BACKGROUND)
+    public void onEvent(LegacyMeasurementProcessingEvent event) {
         ParseResult result = parse(event.getLastLocation(), event.getLastCellLocation(), event.getLastSignalStrength(),
                 event.getLastNetworkType(), event.getLastOperatorCode(), event.getLastOperatorName(),
                 event.getNeighboringCells(), event.getLastLocationObtainedTime(), event.getMinDistance());

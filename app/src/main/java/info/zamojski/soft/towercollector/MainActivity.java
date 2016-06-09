@@ -81,7 +81,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import de.greenrobot.event.EventBus;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -938,7 +940,8 @@ public class MainActivity extends AppCompatActivity {
         return fileTypes;
     }
 
-    public void onEventMainThread(CollectorStartedEvent event) {
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(CollectorStartedEvent event) {
         bindService(event.getIntent(), collectorServiceConnection, 0);
     }
 

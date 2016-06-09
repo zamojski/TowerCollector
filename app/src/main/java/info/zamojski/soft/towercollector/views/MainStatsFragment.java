@@ -14,11 +14,16 @@ import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
 import info.zamojski.soft.towercollector.model.Statistics;
 
 import android.os.Bundle;
+
 import trikita.log.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public class MainStatsFragment extends MainFragmentBase {
 
@@ -69,12 +74,14 @@ public class MainStatsFragment extends MainFragmentBase {
         mainStatsGlobalTitlePattern = getString(R.string.main_stats_global_title);
     }
 
-    public void onEventMainThread(MeasurementSavedEvent event) {
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(MeasurementSavedEvent event) {
         Statistics stats = event.getStatistics();
         printStatistics(stats);
     }
 
-    public void onEventMainThread(PrintMainWindowEvent event) {
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(PrintMainWindowEvent event) {
         Statistics stats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
         printStatistics(stats);
     }

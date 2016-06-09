@@ -32,7 +32,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import de.greenrobot.event.EventBus;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import android.annotation.TargetApi;
 import android.app.Notification;
@@ -469,7 +471,8 @@ public class CollectorService extends Service {
 
     // ========== EVENTS ========== //
 
-    public void onEventMainThread(MeasurementProcessedEvent event) {
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(MeasurementProcessedEvent event) {
         float speed = 0;
         if (event instanceof MeasurementSavedEvent) {
             MeasurementSavedEvent savedEvent = (MeasurementSavedEvent) event;

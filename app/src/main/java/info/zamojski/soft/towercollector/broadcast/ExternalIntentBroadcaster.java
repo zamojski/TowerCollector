@@ -6,11 +6,13 @@ package info.zamojski.soft.towercollector.broadcast;
 
 import android.content.Intent;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 
 import java.util.List;
 
-import de.greenrobot.event.EventBus;
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.events.MeasurementsCollectedEvent;
 import info.zamojski.soft.towercollector.files.formatters.json.IJsonFormatter;
@@ -43,7 +45,8 @@ public class ExternalIntentBroadcaster implements Runnable {
         }
     }
 
-    public void onEventBackgroundThread(MeasurementsCollectedEvent event) {
+    @Subscribe(threadMode = ThreadMode.BACKGROUND)
+    public void onEvent(MeasurementsCollectedEvent event) {
         sendMeasurementsCollectedBroadcast(event.getMeasurements());
     }
 

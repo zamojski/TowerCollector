@@ -11,12 +11,15 @@ import java.util.Set;
 
 import org.acra.ACRA;
 
-import de.greenrobot.event.EventBus;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import android.annotation.TargetApi;
 import android.location.Location;
 import android.os.Build;
 import android.telephony.CellInfo;
+
 import trikita.log.Log;
 
 import info.zamojski.soft.towercollector.MyApplication;
@@ -164,7 +167,8 @@ public class Api17PlusMeasurementParser extends MeasurementParser {
         return mainMeasurement;
     }
 
-    public void onEventBackgroundThread(Api17PlusMeasurementProcessingEvent event) {
+    @Subscribe(threadMode = ThreadMode.BACKGROUND)
+    public void onEvent(Api17PlusMeasurementProcessingEvent event) {
         ParseResult result = parse(event.getLastLocation(), event.getLastCellInfo(),
                 System.currentTimeMillis(), event.getMinDistance());
         // when saved different event is published
