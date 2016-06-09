@@ -8,9 +8,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.acra.ACRA;
-import org.acra.ACRAConfiguration;
 import org.acra.ACRAConstants;
 import org.acra.ReportField;
+import org.acra.config.ACRAConfiguration;
+import org.acra.config.ConfigurationBuilder;
 import org.acra.sender.HttpSender.Method;
 import org.acra.sender.HttpSender.Type;
 
@@ -118,18 +119,19 @@ public class MyApplication extends Application {
 
     private void initACRA() {
         Log.d("initACRA(): Initializing ACRA");
-        ACRAConfiguration config = ACRA.getNewDefaultConfig(this);
+        ConfigurationBuilder configBuilder = new ConfigurationBuilder(this);
         // Configure connection
-        config.setSendReportsInDevMode(BuildConfig.ACRA_SEND_REPORTS_IN_DEV_MODE);
-        config.setFormUri(BuildConfig.ACRA_FORM_URI);
-        config.setFormUriBasicAuthLogin(BuildConfig.ACRA_FORM_URI_BASIC_AUTH_LOGIN);
-        config.setFormUriBasicAuthPassword(BuildConfig.ACRA_FORM_URI_BASIC_AUTH_PASSWORD);
-        config.setHttpMethod(Method.valueOf(BuildConfig.ACRA_HTTP_METHOD));
-        config.setReportType(Type.valueOf(BuildConfig.ACRA_REPORT_TYPE));
-        config.setExcludeMatchingSharedPreferencesKeys(new String[]{"api_key"});
+        configBuilder.setSendReportsInDevMode(BuildConfig.ACRA_SEND_REPORTS_IN_DEV_MODE);
+        configBuilder.setFormUri(BuildConfig.ACRA_FORM_URI);
+        configBuilder.setFormUriBasicAuthLogin(BuildConfig.ACRA_FORM_URI_BASIC_AUTH_LOGIN);
+        configBuilder.setFormUriBasicAuthPassword(BuildConfig.ACRA_FORM_URI_BASIC_AUTH_PASSWORD);
+        configBuilder.setHttpMethod(Method.valueOf(BuildConfig.ACRA_HTTP_METHOD));
+        configBuilder.setReportType(Type.valueOf(BuildConfig.ACRA_REPORT_TYPE));
+        configBuilder.setExcludeMatchingSharedPreferencesKeys(new String[]{"api_key"});
         // Configure reported content
         ReportField[] customReportContent = getCustomAcraReportFields();
-        config.setCustomReportContent(customReportContent);
+        configBuilder.setCustomReportContent(customReportContent);
+        ACRAConfiguration config = configBuilder.build();
         ACRA.init(this, config);
     }
 
