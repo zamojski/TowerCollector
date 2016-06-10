@@ -53,6 +53,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources.NotFoundException;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -772,16 +773,16 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean canStartNetworkTypeSystemActivity() {
         if (canStartNetworkTypeSystemActivityResult == null) {
-            canStartNetworkTypeSystemActivityResult = (new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS).resolveActivity(getPackageManager()) != null);
+            canStartNetworkTypeSystemActivityResult = (createDataRoamingSettingsIntent().resolveActivity(getPackageManager()) != null);
         }
         return canStartNetworkTypeSystemActivityResult;
     }
 
     private void startNetworkTypeSystemActivity() {
         try {
-            startActivity(new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS));
+            startActivity(createDataRoamingSettingsIntent());
         } catch (ActivityNotFoundException ex) {
-            Log.w("askAndSetGpsEnabled(): Could not open Settings to change network type");
+            Log.w("askAndSetGpsEnabled(): Could not open Settings to change network type", ex);
             MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
             AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).setMessage(R.string.dialog_could_not_open_network_type_settings).setPositiveButton(R.string.dialog_ok, null).create();
@@ -789,6 +790,17 @@ public class MainActivity extends AppCompatActivity {
             alertDialog.setCancelable(true);
             alertDialog.show();
         }
+    }
+
+    private Intent createDataRoamingSettingsIntent() {
+        Intent intent = new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS);
+        // Theoretically this is not needed starting from 4.0.1 but it sometimes fail
+        // bug https://code.google.com/p/android/issues/detail?id=13368
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+            ComponentName componentName = new ComponentName("com.android.phone", "com.android.phone.Settings");
+            intent.setComponent(componentName);
+        }
+        return intent;
     }
 
     // ========== SERVICE CONNECTIONS ========== //
