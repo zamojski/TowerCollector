@@ -1,6 +1,16 @@
 {
   "Entries": [
     {
+      "VersionCode": 1090207,
+      "Title": "Changes in version 1.9.2",
+      "Messages": [
+        "Fixed crash when stopping Collector on some devices.",
+        "Fixed network type settings not opened on Android Ice Cream Sandwich.",
+        "Hidden 'Network type' menu item if system is unable to open it.",
+        "Improved error handling."
+      ]
+    },
+    {
       "VersionCode": 1090106,
       "Title": "Changes in version 1.9.1",
       "Messages": [
@@ -76,17 +86,6 @@
       "Messages": [
         "Small improvements in GPS optimization parameters.",
         "Improved network error handling."
-      ]
-    },
-    {
-      "VersionCode": 46,
-      "Title": "Changes in version 1.7.1",
-      "Description": "<a href=\"https://plus.google.com/communities/105724371687131986494\"><b><big>Check out official Google+ community page!</big></b></a><br/><br/>You can find there useful information, links, post ideas and ask questions.",
-      "Messages": [
-        "Fixed milliseconds saving in exported CSV file.",
-        "Improved OpenCellID.org upload compatibility.",
-        "Added Timing Advance column to exported CSV file for LTE cells.",
-        "Added link to official Google+ Community in Preferences."
       ]
     }
   ]
