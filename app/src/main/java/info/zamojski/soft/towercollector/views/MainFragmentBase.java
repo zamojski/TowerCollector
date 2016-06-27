@@ -85,7 +85,7 @@ public abstract class MainFragmentBase extends Fragment {
         dateTimeFormatStandard = new SimpleDateFormat(getString(R.string.date_time_format_standard), new Locale(getString(R.string.locale)));
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onEvent(SystemTimeChangedEvent event) {
         showInvalidSystemTime(event.isValid() == Validity.Invalid);
     }
@@ -97,7 +97,7 @@ public abstract class MainFragmentBase extends Fragment {
         invalidSystemTimeTableRow.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onEvent(GpsStatusChangedEvent event) {
         if (event.isEnabled()) {
             GpsStatus status = event.getStatus();
