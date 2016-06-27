@@ -1,6 +1,13 @@
 {
   "Entries": [
     {
+      "VersionCode": 1090308,
+      "Title": "Changes in version 1.9.3",
+      "Messages": [
+        "Fixed 'GPS status' and 'incorrect system time' information not updated correctly."
+      ]
+    },
+    {
       "VersionCode": 1090207,
       "Title": "Changes in version 1.9.2",
       "Messages": [
@@ -78,14 +85,6 @@
         "Removed network operator name field.",
         "Improved error handling.",
         "Many internal changes and improvements."
-      ]
-    },
-    {
-      "VersionCode": 47,
-      "Title": "Changes in version 1.7.2",
-      "Messages": [
-        "Small improvements in GPS optimization parameters.",
-        "Improved network error handling."
       ]
     }
   ]
