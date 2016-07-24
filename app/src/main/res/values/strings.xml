@@ -29,6 +29,8 @@
     <string name="dialog_keep">Keep</string>
     <string name="dialog_delete">Delete</string>
     <string name="dialog_dont_show_again">Don\'t show this again</string>
+    <string name="dialog_proceed">Proceed</string>
+    <string name="dialog_permission_settings">Settings</string>
     <string name="main_dialog_api_key_invalid_title">Invalid API key</string>
     <string name="main_dialog_api_key_invalid_message">Your API key set in Preferences is probably invalid</string>
     <string name="main_dialog_api_key_empty_title">Missing API key</string>

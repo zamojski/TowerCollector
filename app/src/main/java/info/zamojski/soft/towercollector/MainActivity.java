@@ -26,6 +26,7 @@ import info.zamojski.soft.towercollector.utils.DateUtils;
 import info.zamojski.soft.towercollector.utils.FileUtils;
 import info.zamojski.soft.towercollector.utils.GpsUtils;
 import info.zamojski.soft.towercollector.utils.NetworkUtils;
+import info.zamojski.soft.towercollector.utils.PermissionUtils;
 import info.zamojski.soft.towercollector.utils.StorageUtils;
 import info.zamojski.soft.towercollector.utils.UpdateDialogArrayAdapter;
 import info.zamojski.soft.towercollector.utils.StringUtils;
@@ -40,6 +41,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.acra.ACRA;
 
+import android.Manifest;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
 import android.app.AlertDialog;
@@ -66,6 +68,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
 
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.OnNeverAskAgain;
+import permissions.dispatcher.OnPermissionDenied;
+import permissions.dispatcher.OnShowRationale;
+import permissions.dispatcher.PermissionRequest;
+import permissions.dispatcher.RuntimePermissions;
 import trikita.log.Log;
 
 import android.view.KeyEvent;
@@ -86,6 +94,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+@RuntimePermissions
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -271,7 +280,8 @@ public class MainActivity extends AppCompatActivity {
                 startUploaderServiceWithCheck();
                 return true;
             case R.id.main_menu_export:
-                startExportAsyncTask();
+                // NOTE: delegate the permission handling to generated method
+                MainActivityPermissionsDispatcher.startExportAsyncTaskWithCheck(this);
                 return true;
             case R.id.main_menu_preferences:
                 startPreferencesActivity();
@@ -702,7 +712,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplication(), R.string.uploader_already_running, Toast.LENGTH_LONG).show();
     }
 
-    private void startExportAsyncTask() {
+    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    void startExportAsyncTask() {
         String runningTaskClassName = MyApplication.getBackgroundTaskName();
         if (runningTaskClassName != null) {
             Log.d("startExportAsyncTask(): Another task is running in background: %s", runningTaskClassName);
@@ -765,6 +776,48 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(getApplication(), R.string.export_toast_no_storage, Toast.LENGTH_LONG).show();
         }
+    }
+
+    @OnShowRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    void onStartExportShowRationale(final PermissionRequest request) {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.permission_required)
+                .setMessage(R.string.permission_export_rationale_message)
+                .setCancelable(true)
+                .setPositiveButton(R.string.dialog_proceed, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        request.proceed();
+                    }
+                })
+                .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        request.cancel();
+                    }
+                })
+                .show();
+    }
+
+    @OnPermissionDenied(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    void onStartExportPermissionDenied() {
+        Toast.makeText(this, R.string.permission_export_denied_message, Toast.LENGTH_LONG).show();
+    }
+
+    @OnNeverAskAgain(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    void onStartExportNeverAskAgain() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.permission_denied)
+                .setMessage(R.string.permission_export_never_ask_again_message)
+                .setCancelable(true)
+                .setPositiveButton(R.string.dialog_permission_settings, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        PermissionUtils.openAppSettings(MainActivity.this);
+                    }
+                })
+                .setNegativeButton(R.string.dialog_cancel, null)
+                .show();
     }
 
     private void startPreferencesActivity() {
@@ -833,6 +886,14 @@ public class MainActivity extends AppCompatActivity {
             collectorServiceBinder = null;
         }
     };
+
+    // ========== PERMISSION REQUEST HANDLING ========== //
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // NOTE: delegate the permission handling to generated method
+        MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
+    }
 
     // ========== MISCELLANEOUS ========== //
 

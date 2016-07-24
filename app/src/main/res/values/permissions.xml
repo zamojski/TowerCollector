@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+    <string name="permission_required">Permission required</string>
+    <string name="permission_denied">Permission denied</string>
+    <string name="permission_export_rationale_message">Storage permission must be granted to export measurements to a file</string>
+    <string name="permission_export_denied_message">Cancelling measurements export due to denied permission</string>
+    <string name="permission_export_never_ask_again_message">Measurements export is unavailable due to denied storage permission</string>
+</resources>
