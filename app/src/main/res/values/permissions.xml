@@ -8,4 +8,7 @@
     <string name="permission_export_rationale_message">Storage permission must be granted to export measurements to a file</string>
     <string name="permission_export_denied_message">Cancelling measurements export due to denied permission</string>
     <string name="permission_export_never_ask_again_message">Measurements export is unavailable due to denied storage permission</string>
+    <string name="permission_logging_rationale_message">Storage permission must be granted to use file logging</string>
+    <string name="permission_logging_denied_message">Disabling file logging due to denied permission</string>
+    <string name="permission_logging_never_ask_again_message">File logging is unavailable due to denied storage permission</string>
 </resources>

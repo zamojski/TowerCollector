@@ -24,8 +24,10 @@ import info.zamojski.soft.towercollector.providers.AppThemeProvider;
 import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvider;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
 
+import android.Manifest;
 import android.app.Application;
 
+import info.zamojski.soft.towercollector.utils.PermissionUtils;
 import trikita.log.Log;
 
 public class MyApplication extends Application {
@@ -73,22 +75,24 @@ public class MyApplication extends Application {
 
     public void initLogger() {
         // Default configuration
-        Log.usePrinter(Log.ANDROID, true).level(Log.I).useFormat(true);
+        Log.usePrinter(Log.ANDROID, true).level(Log.D).useFormat(true);
         // File logging based on preferences
         String fileLoggingLevel = getPreferencesProvider().getFileLoggingLevel();
         if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_disabled))) {
             Log.usePrinter(AndroidFilePrinter.getInstance(), false);
         } else {
-            if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_debug))) {
-                Log.level(Log.D);
-            } else if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_info))) {
-                Log.level(Log.I);
-            } else if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_warning))) {
-                Log.level(Log.W);
-            } else if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_error))) {
-                Log.level(Log.E);
+            if (PermissionUtils.hasPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_debug))) {
+                    Log.level(Log.D);
+                } else if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_info))) {
+                    Log.level(Log.I);
+                } else if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_warning))) {
+                    Log.level(Log.W);
+                } else if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_error))) {
+                    Log.level(Log.E);
+                }
+                Log.usePrinter(AndroidFilePrinter.getInstance(), true);
             }
-            Log.usePrinter(AndroidFilePrinter.getInstance(), true);
         }
     }
 
