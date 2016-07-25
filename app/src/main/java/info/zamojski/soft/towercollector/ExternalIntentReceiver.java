@@ -5,13 +5,18 @@
 package info.zamojski.soft.towercollector;
 
 import org.greenrobot.eventbus.EventBus;
+
 import info.zamojski.soft.towercollector.analytics.IntentSource;
 import info.zamojski.soft.towercollector.events.CollectorStartedEvent;
 import info.zamojski.soft.towercollector.utils.BackgroundTaskHelper;
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
+
+import info.zamojski.soft.towercollector.utils.PermissionUtils;
 import trikita.log.Log;
 
 public class ExternalIntentReceiver extends BroadcastReceiver {
@@ -43,13 +48,18 @@ public class ExternalIntentReceiver extends BroadcastReceiver {
     }
 
     private void startCollectorService(Context context, IntentSource source) {
-        if (canStartBackgroundService(context)) {
-            Log.d("startCollectorService(): Starting service from broadcast");
-            Intent intent = getCollectorIntent(context);
-            context.startService(intent);
-            EventBus.getDefault().post(new CollectorStartedEvent(intent));
-            MyApplication.getAnalytics().sendCollectorStarted(source);
+        if (!canStartBackgroundService(context)) {
+            return;
         }
+        if (!hasAllCollectorRequiredPermissions(context)) {
+            showCollectorPermissionsDenied(context);
+            return;
+        }
+        Log.d("startCollectorService(): Starting service from broadcast");
+        Intent intent = getCollectorIntent(context);
+        context.startService(intent);
+        EventBus.getDefault().post(new CollectorStartedEvent(intent));
+        MyApplication.getAnalytics().sendCollectorStarted(source);
     }
 
     private void stopCollectorService(Context context) {
@@ -62,11 +72,11 @@ public class ExternalIntentReceiver extends BroadcastReceiver {
     }
 
     private void startUploaderService(Context context) {
-        if (canStartBackgroundService(context)) {
-            Log.d("startCollectorService(): Starting service from broadcast");
-            context.startService(getUploaderIntent(context));
-            MyApplication.getAnalytics().sendUploadStarted(IntentSource.Application);
-        }
+        if (!canStartBackgroundService(context))
+            return;
+        Log.d("startCollectorService(): Starting service from broadcast");
+        context.startService(getUploaderIntent(context));
+        MyApplication.getAnalytics().sendUploadStarted(IntentSource.Application);
     }
 
     private Intent getUploaderIntent(Context context) {
@@ -82,5 +92,14 @@ public class ExternalIntentReceiver extends BroadcastReceiver {
             return false;
         }
         return true;
+    }
+
+    private boolean hasAllCollectorRequiredPermissions(Context context) {
+        return PermissionUtils.hasPermissions(context, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_PHONE_STATE);
+    }
+
+    private void showCollectorPermissionsDenied(Context context) {
+        Log.d("showCollectorPermissionsDenied(): Cannot start collector due to denied permissions");
+        Toast.makeText(context, R.string.permission_collector_denied_intent_message, Toast.LENGTH_LONG).show();
     }
 }

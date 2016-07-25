@@ -22,4 +22,13 @@ public class PermissionUtils {
         myAppSettings.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(myAppSettings);
     }
+
+    public static boolean hasPermissions(Context context, String... permissions) {
+        for (String permission : permissions) {
+            if (!hasPermission(context, permission)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

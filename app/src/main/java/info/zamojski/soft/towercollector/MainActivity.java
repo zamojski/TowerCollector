@@ -61,6 +61,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.provider.Settings;
+import android.support.annotation.StringRes;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.TabLayout.Tab;
 import android.support.v4.view.ViewPager;
@@ -221,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setCurrentItem(recentTabIndex);
         // if coming back from Android settings rerun the action
         if (showAskForLocationSettingsDialog) {
-            startCollectorService();
+            startCollectorServiceWithCheck();
         }
         // if keep on is checked
         if (MyApplication.getPreferencesProvider().getMainKeepScreenOnMode()) {
@@ -271,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
         // start action
         switch (item.getItemId()) {
             case R.id.main_menu_start:
-                startCollectorService();
+                startCollectorServiceWithCheck();
                 return true;
             case R.id.main_menu_stop:
                 stopCollectorService();
@@ -611,10 +612,10 @@ public class MainActivity extends AppCompatActivity {
 
     // ========== MENU START/STOP METHODS ========== //
 
-    private void startCollectorService() {
+    private void startCollectorServiceWithCheck() {
         String runningTaskClassName = MyApplication.getBackgroundTaskName();
         if (runningTaskClassName != null) {
-            Log.d("startCollectorService(): Another task is running in background: %s", runningTaskClassName);
+            Log.d("startCollectorServiceWithCheck(): Another task is running in background: %s", runningTaskClassName);
             backgroundTaskHelper.showTaskRunningMessage(runningTaskClassName);
             return;
         }
@@ -623,22 +624,42 @@ public class MainActivity extends AppCompatActivity {
             // checking for airplane mode
             boolean inAirplaneMode = displayInAirplaneModeDialog();
             if (!inAirplaneMode) {
-                Log.d("startCollectorService(): Air plane mode off, starting service");
-                // create intent
-                final Intent intent = new Intent(this, CollectorService.class);
-                // pass means of transport inside intent
-                boolean gpsOptimizationsEnabled = MyApplication.getPreferencesProvider().getGpsOptimizationsEnabled();
-                MeansOfTransport selectedType = (gpsOptimizationsEnabled ? MeansOfTransport.Universal : MeansOfTransport.Fixed);
-                intent.putExtra(CollectorService.INTENT_KEY_TRANSPORT_MODE, selectedType);
-                // pass screen on mode
-                final String keepScreenOnMode = MyApplication.getPreferencesProvider().getCollectorKeepScreenOnMode();
-                intent.putExtra(CollectorService.INTENT_KEY_KEEP_SCREEN_ON_MODE, keepScreenOnMode);
-                // start service
-                startService(intent);
-                EventBus.getDefault().post(new CollectorStartedEvent(intent));
-                MyApplication.getAnalytics().sendCollectorStarted(IntentSource.User);
+                MainActivityPermissionsDispatcher.startCollectorServiceWithCheck(MainActivity.this);
             }
         }
+    }
+
+    @NeedsPermission({Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void startCollectorService() {
+        Log.d("startCollectorService(): Air plane mode off, starting service");
+        // create intent
+        final Intent intent = new Intent(this, CollectorService.class);
+        // pass means of transport inside intent
+        boolean gpsOptimizationsEnabled = MyApplication.getPreferencesProvider().getGpsOptimizationsEnabled();
+        MeansOfTransport selectedType = (gpsOptimizationsEnabled ? MeansOfTransport.Universal : MeansOfTransport.Fixed);
+        intent.putExtra(CollectorService.INTENT_KEY_TRANSPORT_MODE, selectedType);
+        // pass screen on mode
+        final String keepScreenOnMode = MyApplication.getPreferencesProvider().getCollectorKeepScreenOnMode();
+        intent.putExtra(CollectorService.INTENT_KEY_KEEP_SCREEN_ON_MODE, keepScreenOnMode);
+        // start service
+        startService(intent);
+        EventBus.getDefault().post(new CollectorStartedEvent(intent));
+        MyApplication.getAnalytics().sendCollectorStarted(IntentSource.User);
+    }
+
+    @OnShowRationale({Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void onStartCollectorShowRationale(PermissionRequest request) {
+        onShowRationale(request, R.string.permission_collector_rationale_message);
+    }
+
+    @OnPermissionDenied({Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void onStartCollectorPermissionDenied() {
+        onPermissionDenied(R.string.permission_collector_denied_message);
+    }
+
+    @OnNeverAskAgain({Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void onStartCollectorNeverAskAgain() {
+        onNeverAskAgain(R.string.permission_collector_never_ask_again_message);
     }
 
     private void stopCollectorService() {
@@ -779,45 +800,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @OnShowRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-    void onStartExportShowRationale(final PermissionRequest request) {
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.permission_required)
-                .setMessage(R.string.permission_export_rationale_message)
-                .setCancelable(true)
-                .setPositiveButton(R.string.dialog_proceed, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        request.proceed();
-                    }
-                })
-                .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        request.cancel();
-                    }
-                })
-                .show();
+    void onStartExportShowRationale(PermissionRequest request) {
+        onShowRationale(request, R.string.permission_export_rationale_message);
     }
 
     @OnPermissionDenied(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     void onStartExportPermissionDenied() {
-        Toast.makeText(this, R.string.permission_export_denied_message, Toast.LENGTH_LONG).show();
+        onPermissionDenied(R.string.permission_export_denied_message);
     }
 
     @OnNeverAskAgain(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     void onStartExportNeverAskAgain() {
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.permission_denied)
-                .setMessage(R.string.permission_export_never_ask_again_message)
-                .setCancelable(true)
-                .setPositiveButton(R.string.dialog_permission_settings, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        PermissionUtils.openAppSettings(MainActivity.this);
-                    }
-                })
-                .setNegativeButton(R.string.dialog_cancel, null)
-                .show();
+        onNeverAskAgain(R.string.permission_export_never_ask_again_message);
     }
 
     private void startPreferencesActivity() {
@@ -895,6 +889,45 @@ public class MainActivity extends AppCompatActivity {
         MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
     }
 
+    private void onShowRationale(final PermissionRequest request, @StringRes int messageResId) {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.permission_required)
+                .setMessage(messageResId)
+                .setCancelable(true)
+                .setPositiveButton(R.string.dialog_proceed, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        request.proceed();
+                    }
+                })
+                .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        request.cancel();
+                    }
+                })
+                .show();
+    }
+
+    private void onPermissionDenied(@StringRes int messageResId) {
+        Toast.makeText(this, messageResId, Toast.LENGTH_LONG).show();
+    }
+
+    private void onNeverAskAgain(@StringRes int messageResId) {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.permission_denied)
+                .setMessage(messageResId)
+                .setCancelable(true)
+                .setPositiveButton(R.string.dialog_permission_settings, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        PermissionUtils.openAppSettings(MainActivity.this);
+                    }
+                })
+                .setNegativeButton(R.string.dialog_cancel, null)
+                .show();
+    }
+
     // ========== MISCELLANEOUS ========== //
 
     private boolean isServiceRunning(String serviceClassName) {
@@ -948,7 +981,7 @@ public class MainActivity extends AppCompatActivity {
                     dialog.cancel();
                     if (GpsUtils.isGpsEnabled(getApplication())) {
                         Log.d("askAndSetGpsEnabled(): provider enabled in the meantime");
-                        startCollectorService();
+                        startCollectorServiceWithCheck();
                     } else {
                         isGpsEnabled = false;
                         showAskForLocationSettingsDialog = false;

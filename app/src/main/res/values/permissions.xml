@@ -11,4 +11,8 @@
     <string name="permission_logging_rationale_message">Storage permission must be granted to use file logging</string>
     <string name="permission_logging_denied_message">Disabling file logging due to denied permission</string>
     <string name="permission_logging_never_ask_again_message">File logging is unavailable due to denied storage permission</string>
+    <string name="permission_collector_rationale_message">Location and phone permissions must be granted to collect measurements</string>
+    <string name="permission_collector_denied_message">Cancelling measurement collecting due to denied permissions</string>
+    <string name="permission_collector_never_ask_again_message">Measurement collecting is unavailable due to denied location and/or phone permissions</string>
+    <string name="permission_collector_denied_intent_message">Cancelling measurement collecting due to denied permissions, open the app to grant necessary permissions first</string>
 </resources>
