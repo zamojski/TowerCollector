@@ -174,4 +174,8 @@ public class MyApplication extends Application {
     public synchronized static String getBackgroundTaskName() {
         return backgroundTaskName;
     }
+
+    public synchronized static boolean isBackgroundTaskRunning(Class clazz) {
+        return (backgroundTaskName != null && backgroundTaskName.equals(clazz.getName()));
+    }
 }

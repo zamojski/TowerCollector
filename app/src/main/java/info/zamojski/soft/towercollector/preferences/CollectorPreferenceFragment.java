@@ -4,6 +4,8 @@
 
 package info.zamojski.soft.towercollector.preferences;
 
+import info.zamojski.soft.towercollector.CollectorService;
+import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 
 import android.content.SharedPreferences;
@@ -53,13 +55,17 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
         if (key.equals(getString(R.string.preferences_gps_optimizations_enabled_key))
                 || key.equals(getString(R.string.preferences_collect_neighboring_cells_key))
                 || key.equals(getString(R.string.preferences_notify_measurements_collected_key))) {
-            Toast.makeText(getActivity(), R.string.preferences_restart_collector, Toast.LENGTH_SHORT).show();
+            if (MyApplication.isBackgroundTaskRunning(CollectorService.class)) {
+                Toast.makeText(getActivity(), R.string.preferences_restart_collector, Toast.LENGTH_SHORT).show();
+            }
         } else if (key.equals(getString(R.string.preferences_collector_keep_screen_on_mode_key))) {
             String collectorKeepScreenOnValue = collectorKeepScreenOnPreference.getValue();
             CharSequence collectorKeepScreenOnLabel = collectorKeepScreenOnPreference.getEntry();
             Log.d("onSharedPreferenceChanged(): User set keep screen on = \"%s\"", collectorKeepScreenOnValue);
             collectorKeepScreenOnPreference.setSummary(formatValueString(R.string.preferences_collector_keep_screen_on_summary, collectorKeepScreenOnLabel));
-            Toast.makeText(getActivity(), R.string.preferences_restart_collector, Toast.LENGTH_SHORT).show();
+            if (MyApplication.isBackgroundTaskRunning(CollectorService.class)) {
+                Toast.makeText(getActivity(), R.string.preferences_restart_collector, Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

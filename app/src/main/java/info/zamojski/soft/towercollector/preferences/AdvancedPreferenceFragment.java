@@ -4,6 +4,7 @@
 
 package info.zamojski.soft.towercollector.preferences;
 
+import info.zamojski.soft.towercollector.CollectorService;
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.utils.MobileUtils;
@@ -98,7 +99,9 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
             Log.d("onSharedPreferenceChanged(): User set api version = \"%s\"", collectorApiVersionValue);
             collectorApiVersionPreference.setSummary(formatValueString(R.string.preferences_collector_api_version_summary, collectorApiVersionLabel));
             setupApiVersionSelection();
-            Toast.makeText(getActivity(), R.string.preferences_restart_collector, Toast.LENGTH_SHORT).show();
+            if (MyApplication.isBackgroundTaskRunning(CollectorService.class)) {
+                Toast.makeText(getActivity(), R.string.preferences_restart_collector, Toast.LENGTH_SHORT).show();
+            }
         } else if (key.equals(getString(R.string.preferences_file_logging_level_key))) {
             String fileLoggingLevelValue = fileLoggingLevelPreference.getValue();
             CharSequence fileLoggingLevelLabel = fileLoggingLevelPreference.getEntry();
