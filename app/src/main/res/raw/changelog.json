@@ -1,6 +1,14 @@
 {
   "Entries": [
     {
+      "VersionCode": 1100009,
+      "Title": "Changes in version 1.10.0",
+      "Messages": [
+        "Introducing support for granting Android permissions at runtime.",
+        "Improved display of 'restart needed' message in Preferences."
+      ]
+    },
+    {
       "VersionCode": 1090308,
       "Title": "Changes in version 1.9.3",
       "Messages": [
@@ -41,7 +49,7 @@
       "Title": "Changes in version 1.8.0",
       "Description": "Starting from this version Tower Collector will be available only in English. I made this decision to accelerate development of new features by reducing waiting for translation time to minimum. In the future I will add a glossary and more detailed introduction for novice users in their native language. I'd like to thank all of you who were engaged in app translation over the years and dedicated their own time to Tower Collector. I really appreciate that, thanks!",
       "Messages": [
-        "Introduced basic Material Design style.",
+        "Introducing basic Material Design style.",
         "Added option to start collecting on device boot.",
         "Changed Preferences to display descriptions in more friendly way.",
         "Improved contact option in Preferences."
@@ -72,19 +80,6 @@
       "Description": "<a href=\"https://plus.google.com/communities/105724371687131986494\"><b><big>Official Google+ community</big></b></a>",
       "Messages": [
         "Fixed wrong description color and content in Collector and Advanced preferences."
-      ]
-    },
-    {
-      "VersionCode": 48,
-      "Title": "Changes in version 1.7.3",
-      "Description": "<a href=\"https://plus.google.com/communities/105724371687131986494\"><b><big>Official Google+ community</big></b></a><br/><br/><b>Incorrect measurements and cells saved on this device were removed as a result of fixes, so that their number could be reduced!</b>",
-      "Messages": [
-        "Fixed wrong measurements saved with only PSC value different for UMTS networks when using API 1.",
-        "Fixed crash on Android 4.2 when processing measurements using API 17.",
-        "Fixed serving and neighboring cells saved in reversed order when using API 1.",
-        "Removed network operator name field.",
-        "Improved error handling.",
-        "Many internal changes and improvements."
       ]
     }
   ]
