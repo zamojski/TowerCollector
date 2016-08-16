@@ -15,13 +15,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 24
+    buildToolsVersion "24.0.1"
 
     defaultConfig {
         applicationId "info.zamojski.soft.towercollector"
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode versionMajor * 1000000 + versionMinor * 10000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
 
@@ -79,10 +79,10 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:support-v4:23.4.0'
-    compile 'com.android.support:support-v13:23.4.0'
+    compile 'com.android.support:support-v4:24.1.1'
+    compile 'com.android.support:support-v13:24.1.1'
     //compile 'com.android.support:appcompat-v7:22.2.1'
-    compile 'com.android.support:design:23.4.0'
+    compile 'com.android.support:design:24.1.1'
     compile 'com.google.android.gms:play-services-analytics:8.4.0'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'ch.acra:acra:4.8.5'
