@@ -136,8 +136,7 @@ public class MyApplication extends Application {
         // Configure reported content
         ReportField[] customReportContent = getCustomAcraReportFields();
         configBuilder.setCustomReportContent(customReportContent);
-        ACRAConfiguration config = configBuilder.build();
-        ACRA.init(this, config);
+        ACRA.init(this, configBuilder);
     }
 
     private ReportField[] getCustomAcraReportFields() {
