@@ -1,7 +1,7 @@
 {
   "Entries": [
     {
-      "VersionCode": 1100009,
+      "VersionCode": 1100010,
       "Title": "Changes in version 1.10.0",
       "Messages": [
         "Introducing support for granting Android permissions at runtime.",

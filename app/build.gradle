@@ -2,7 +2,7 @@
 def versionMajor = 1 // major releases
 def versionMinor = 10 // minor feature releases
 def versionPatch = 0 // hot fixes
-def versionBuild = 9 // build version
+def versionBuild = 10 // build version
 
 // Double check the versioning
 for (versionPart in [versionPatch, versionMinor, versionMajor, versionBuild]) {
