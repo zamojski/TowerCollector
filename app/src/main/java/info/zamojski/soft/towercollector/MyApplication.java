@@ -143,6 +143,8 @@ public class MyApplication extends Application {
         List<ReportField> customizedFields = Arrays.asList(ACRAConstants.DEFAULT_REPORT_FIELDS);
         // remove Device ID to make sure it will not be included in report
         customizedFields.remove(ReportField.DEVICE_ID);
+        // remove BuildConfig to avoid leakage of configuration data in report
+        customizedFields.remove(ReportField.BUILD_CONFIG);
         return customizedFields.toArray(new ReportField[customizedFields.size()]);
     }
 
