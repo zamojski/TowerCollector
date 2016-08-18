@@ -19,9 +19,9 @@ import android.widget.Toast;
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
 import trikita.log.Log;
 
-public class ExternalIntentReceiver extends BroadcastReceiver {
+public class ExternalBroadcastReceiver extends BroadcastReceiver {
 
-    private static final String TAG = ExternalIntentReceiver.class.getSimpleName();
+    private static final String TAG = ExternalBroadcastReceiver.class.getSimpleName();
 
     private final String quickBootPowerOnAction = "android.intent.action.QUICKBOOT_POWERON";
 

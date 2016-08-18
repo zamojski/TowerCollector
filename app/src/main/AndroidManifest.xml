@@ -48,7 +48,7 @@
             android:exported="false"/>
 
         <receiver
-            android:name=".ExternalIntentReceiver"
+            android:name=".ExternalBroadcastReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
