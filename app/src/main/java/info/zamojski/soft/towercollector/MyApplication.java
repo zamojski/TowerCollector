@@ -4,6 +4,7 @@
 
 package info.zamojski.soft.towercollector;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -140,7 +141,7 @@ public class MyApplication extends Application {
     }
 
     private ReportField[] getCustomAcraReportFields() {
-        List<ReportField> customizedFields = Arrays.asList(ACRAConstants.DEFAULT_REPORT_FIELDS);
+        List<ReportField> customizedFields = new ArrayList<ReportField>(Arrays.asList(ACRAConstants.DEFAULT_REPORT_FIELDS));
         // remove Device ID to make sure it will not be included in report
         customizedFields.remove(ReportField.DEVICE_ID);
         // remove BuildConfig to avoid leakage of configuration data in report
