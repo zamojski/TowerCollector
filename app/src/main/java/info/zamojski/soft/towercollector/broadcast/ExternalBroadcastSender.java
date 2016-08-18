@@ -20,18 +20,20 @@ import info.zamojski.soft.towercollector.files.formatters.json.JsonBroadcastForm
 import info.zamojski.soft.towercollector.model.Measurement;
 import trikita.log.Log;
 
-public class ExternalIntentBroadcaster implements Runnable {
+public class ExternalBroadcastSender implements Runnable {
 
-    private static final String TAG = ExternalIntentBroadcaster.class.getSimpleName();
+    private static final String TAG = ExternalBroadcastSender.class.getSimpleName();
 
     private final String measurementsCollectedAction = "info.zamojski.soft.towercollector.MEASUREMENTS_COLLECTED";
     private final String measurementsExtraKey = "measurements";
 
-    private IJsonFormatter formatter = new JsonBroadcastFormatter();
+    private IJsonFormatter formatter;
 
     private void sendMeasurementsCollectedBroadcast(List<Measurement> measurements) {
         Log.i("sendMeasurementsCollectedBroadcast(): Sending broadcast to external apps");
-
+        if (formatter == null) {
+            formatter = new JsonBroadcastFormatter();
+        }
         try {
             String extra = formatter.formatList(measurements);
             // Send broadcast
@@ -41,7 +43,7 @@ public class ExternalIntentBroadcaster implements Runnable {
             MyApplication.getApplication().sendBroadcast(intent);
             Log.d("sendMeasurementsCollectedBroadcast(): Broadcasted " + extra);
         } catch (JSONException ex) {
-            Log.e("serialize(): Failed to serialize list of measurements to JSON", ex);
+            Log.e("sendMeasurementsCollectedBroadcast(): Failed to serialize list of measurements to JSON", ex);
         }
     }
 

@@ -4,7 +4,7 @@
 
 package info.zamojski.soft.towercollector;
 
-import info.zamojski.soft.towercollector.broadcast.ExternalIntentBroadcaster;
+import info.zamojski.soft.towercollector.broadcast.ExternalBroadcastSender;
 import info.zamojski.soft.towercollector.enums.GpsStatus;
 import info.zamojski.soft.towercollector.enums.KeepScreenOnMode;
 import info.zamojski.soft.towercollector.enums.MeansOfTransport;
@@ -96,9 +96,9 @@ public class CollectorService extends Service {
     private HandlerThread measurementParserThread;
     private Handler measurementParserHandler;
 
-    private HandlerThread externalBroadcasterThread;
-    private Handler externalBroadcasterHandler;
-    private ExternalIntentBroadcaster externalIntentBroadcaster;
+    private HandlerThread externalBroadcastSenderThread;
+    private Handler externalBroadcastSenderHandler;
+    private ExternalBroadcastSender externalBroadcastSender;
 
     private MeasurementUpdater measurementUpdater = new MeasurementUpdater();
 
@@ -198,8 +198,8 @@ public class CollectorService extends Service {
         EventBus.getDefault().postSticky(new GpsStatusChangedEvent(status, accuracy));
 
         if (MyApplication.getPreferencesProvider().getNotifyMeasurementsCollected()) {
-            externalIntentBroadcaster = new ExternalIntentBroadcaster();
-            getExternalBroadcasterHandler().post(externalIntentBroadcaster);
+            externalBroadcastSender = new ExternalBroadcastSender();
+            getExternalBroadcastSenderHandler().post(externalBroadcastSender);
         }
 
         return START_REDELIVER_INTENT;
@@ -230,8 +230,8 @@ public class CollectorService extends Service {
         if (measurementParser != null) {
             measurementParser.stop();
         }
-        if (externalIntentBroadcaster != null) {
-            externalIntentBroadcaster.stop();
+        if (externalBroadcastSender != null) {
+            externalBroadcastSender.stop();
         }
         EventBus.getDefault().postSticky(new GpsStatusChangedEvent());
         EventBus.getDefault().unregister(this);
@@ -251,8 +251,8 @@ public class CollectorService extends Service {
             telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
         if (measurementParserThread != null)
             measurementParserThread.quit();
-        if (externalBroadcasterThread != null)
-            externalBroadcasterThread.quit();
+        if (externalBroadcastSenderThread != null)
+            externalBroadcastSenderThread.quit();
         long duration = (endTime - startTime);
         Statistics endStats = MeasurementsDatabase.getInstance(getApplication()).getMeasurementsStatistics();
         int numberOfCollectedLocations = endStats.getLocationsLocal() - startStats.getLocationsLocal();
@@ -570,13 +570,13 @@ public class CollectorService extends Service {
         return measurementParserHandler;
     }
 
-    private Handler getExternalBroadcasterHandler() {
-        if (externalBroadcasterHandler == null) {
-            externalBroadcasterThread = new HandlerThread("ExternalBroadcasterHandler");
-            externalBroadcasterThread.start();
-            externalBroadcasterHandler = new Handler(externalBroadcasterThread.getLooper());
+    private Handler getExternalBroadcastSenderHandler() {
+        if (externalBroadcastSenderHandler == null) {
+            externalBroadcastSenderThread = new HandlerThread("ExternalBroadcastSenderHandler");
+            externalBroadcastSenderThread.start();
+            externalBroadcastSenderHandler = new Handler(externalBroadcastSenderThread.getLooper());
         }
-        return externalBroadcasterHandler;
+        return externalBroadcastSenderHandler;
     }
 
     private class LocalBinder extends Binder implements ICollectorService {
