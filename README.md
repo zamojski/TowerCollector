@@ -7,11 +7,9 @@ The app is designed to help map the extent of mobile phone network coverage of G
 
 Tower Collector is available for free on the Google Play store:
 
-https://play.google.com/store/apps/details?id=info.zamojski.soft.towercollector&hl=en
+https://play.google.com/store/apps/details?id=info.zamojski.soft.towercollector
 
-[<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"
-      alt="Get it on Google Play"
-      height="80">](https://play.google.com/store/apps/details?id=info.zamojski.soft.towercollector)
+[<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" height="80">](https://play.google.com/store/apps/details?id=info.zamojski.soft.towercollector)
 
 ## Building
 This project is build using Android Studio 2.1.
