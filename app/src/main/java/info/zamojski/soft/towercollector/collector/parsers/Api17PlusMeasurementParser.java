@@ -20,6 +20,7 @@ import android.location.Location;
 import android.os.Build;
 import android.telephony.CellInfo;
 
+import info.zamojski.soft.towercollector.model.CellsCount;
 import trikita.log.Log;
 
 import info.zamojski.soft.towercollector.MyApplication;
@@ -125,8 +126,10 @@ public class Api17PlusMeasurementParser extends MeasurementParser {
             lastSavedMeasurement = mainMeasurement;
             Log.d("parse(): Measurement saved");
             // broadcast information to main activity
+            int mainCount = countMainMeasurements(measurementsToSave);
+            CellsCount cellsCount = new CellsCount(mainCount, measurementsToSave.size() - mainCount);
             Statistics stats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
-            EventBus.getDefault().post(new MeasurementSavedEvent(mainMeasurement, stats));
+            EventBus.getDefault().post(new MeasurementSavedEvent(mainMeasurement, cellsCount, stats));
             EventBus.getDefault().post(new MeasurementsCollectedEvent(measurementsToSave));
             Log.d("parse(): Notification updated and measurement broadcasted");
             return ParseResult.Saved;
@@ -165,6 +168,16 @@ public class Api17PlusMeasurementParser extends MeasurementParser {
             }
         }
         return mainMeasurement;
+    }
+
+    private int countMainMeasurements(List<Measurement> measurements) {
+        int count = 0;
+        for (Measurement m : measurements) {
+            if (!m.isNeighboring()) {
+                count++;
+            }
+        }
+        return count;
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)

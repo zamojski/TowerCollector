@@ -361,6 +361,10 @@ public class MainActivity extends AppCompatActivity {
                 titleId = R.string.main_help_global_cells_title;
                 messageId = R.string.main_help_global_cells_description;
                 break;
+            case R.id.main_last_number_of_cells_tablerow:
+                titleId = R.string.mail_help_last_number_of_cells_title;
+                messageId = R.string.mail_help_last_number_of_cells_description;
+                break;
             case R.id.main_last_network_type_tablerow:
                 titleId = R.string.main_help_last_network_type_title;
                 messageId = R.string.main_help_last_network_type_description;

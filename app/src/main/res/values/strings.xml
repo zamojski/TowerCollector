@@ -62,6 +62,8 @@
     <string name="main_stats_global_locations_label">Measurements:</string>
     <string name="main_stats_global_cells_label">Discovered cells:</string>
     <string name="main_last_cell_title">Last saved measurement</string>
+    <string name="main_last_number_of_cells_label">Main / neighboring:</string>
+    <string name="main_last_number_of_cells_value" translatable="false">%1$d / %2$d</string>
     <string name="main_last_network_type_label">Network type:</string>
     <string name="main_last_cell_id_label">Cell ID:</string>
     <string name="main_last_lac_label">LAC:</string>
@@ -157,6 +159,8 @@
     <string name="main_help_global_locations_description">Number of measurements collected by the application since the beginning.</string>
     <string name="main_help_global_cells_title">Total number of discovered cells</string>
     <string name="main_help_global_cells_description">Number of newly discovered (unique) cells collected by the application since the beginning.</string>
+    <string name="mail_help_last_number_of_cells_title">Number of cells</string>
+    <string name="mail_help_last_number_of_cells_description">Number of main and neighboring cells to which the phone had access to.</string>
     <string name="main_help_last_network_type_title">Network type</string>
     <string name="main_help_last_network_type_description">The type of mobile network to which the phone was connected.</string>
     <string name="main_help_last_cell_id_title">Cell Tower ID</string>

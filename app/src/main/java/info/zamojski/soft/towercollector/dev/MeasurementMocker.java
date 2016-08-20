@@ -5,7 +5,9 @@
 package info.zamojski.soft.towercollector.dev;
 
 import org.greenrobot.eventbus.EventBus;
+
 import info.zamojski.soft.towercollector.events.MeasurementSavedEvent;
+import info.zamojski.soft.towercollector.model.CellsCount;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.model.Statistics;
 import info.zamojski.soft.towercollector.utils.DateUtils;
@@ -18,8 +20,9 @@ public class MeasurementMocker {
     public static void mockMainActivityData() {
         Log.d("mockMainActivityData(): mocking data");
         Measurement m = mockLastMeasurement();
+        CellsCount cellsCount = mockCellsCount();
         Statistics stats = mockStatistics();
-        MeasurementSavedEvent event = new MeasurementSavedEvent(m, stats);
+        MeasurementSavedEvent event = new MeasurementSavedEvent(m, cellsCount, stats);
         EventBus.getDefault().postSticky(event);
     }
 
@@ -40,6 +43,10 @@ public class MeasurementMocker {
         m.setLteSignalInfo(46, -94, 76);
 
         return m;
+    }
+
+    private static CellsCount mockCellsCount() {
+        return new CellsCount(1, 3);
     }
 
     private static Statistics mockStatistics() {

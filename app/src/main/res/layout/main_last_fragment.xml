@@ -38,6 +38,29 @@
             </TableRow>
 
             <TableRow
+                android:id="@+id/main_last_number_of_cells_tablerow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="displayHelpOnClick">
+
+                <TextView
+                    android:id="@+id/main_last_number_of_cells_label_textview"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    android:text="@string/main_last_number_of_cells_label"
+                    tools:context=".MainActivity"/>
+
+                <TextView
+                    android:id="@+id/main_last_number_of_cells_value_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    tools:context=".MainActivity"/>
+            </TableRow>
+
+            <TableRow
                 android:id="@+id/main_last_network_type_tablerow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

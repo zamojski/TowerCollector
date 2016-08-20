@@ -21,6 +21,7 @@ import android.telephony.NeighboringCellInfo;
 import android.telephony.SignalStrength;
 import android.telephony.gsm.GsmCellLocation;
 
+import info.zamojski.soft.towercollector.model.CellsCount;
 import trikita.log.Log;
 
 import info.zamojski.soft.towercollector.MyApplication;
@@ -144,8 +145,9 @@ public class LegacyMeasurementParser extends MeasurementParser {
             lastSavedMeasurement = measurement;
             Log.d("parse(): Measurement saved");
             // broadcast information to main activity
+            CellsCount cellsCount = new CellsCount(1, measurementsToSave.size() - 1);
             Statistics stats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
-            EventBus.getDefault().post(new MeasurementSavedEvent(measurement, stats));
+            EventBus.getDefault().post(new MeasurementSavedEvent(measurement, cellsCount, stats));
             EventBus.getDefault().post(new MeasurementsCollectedEvent(measurementsToSave));
             Log.d("parse(): Notification updated and measurement broadcasted");
             return ParseResult.Saved;

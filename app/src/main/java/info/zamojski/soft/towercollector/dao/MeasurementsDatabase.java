@@ -9,6 +9,7 @@ import info.zamojski.soft.towercollector.dao.migration.DbMigrationHelper;
 import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
 import info.zamojski.soft.towercollector.model.Boundaries;
+import info.zamojski.soft.towercollector.model.CellsCount;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.model.Statistics;
 import info.zamojski.soft.towercollector.utils.HashUtils;
@@ -27,6 +28,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
+
 import trikita.log.Log;
 
 public class MeasurementsDatabase {
@@ -43,8 +45,9 @@ public class MeasurementsDatabase {
     private static volatile MeasurementsDatabase instance = null;
 
     private boolean insertionFailureReported = false;
-    
+
     private Measurement lastMeasurementCache;
+    private CellsCount lastCellsCountCache;
     private Statistics lastStatisticsCache;
 
     private MeasurementsDatabase(Context context) {
@@ -118,9 +121,9 @@ public class MeasurementsDatabase {
                 {
                     SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
                     queryBuilder.setTables(LocationsTable.TABLE_NAME);
-                    String[] columns = new String[] { CellsTable.COLUMN_ROW_ID };
+                    String[] columns = new String[]{CellsTable.COLUMN_ROW_ID};
                     String selection = LocationsTable.COLUMN_HASHCODE + " = ?";
-                    String[] selectionArgs = new String[] { locationHashCode };
+                    String[] selectionArgs = new String[]{locationHashCode};
                     Cursor cursorTotal = queryBuilder.query(db, columns, selection, selectionArgs, null, null, null);
                     boolean localResult = false;
                     if (cursorTotal.moveToNext()) {
@@ -208,6 +211,32 @@ public class MeasurementsDatabase {
         Log.d("getLastMeasurement(): Value from DB: %s", lastMeasurement);
         this.lastMeasurementCache = lastMeasurement;
         return lastMeasurement;
+    }
+
+    public CellsCount getLastCellsCount() {
+        // Try to get from cache then read from DB
+        if (this.lastCellsCountCache != null) {
+            Log.d("getLastCellsCount(): Value from cache: %s", this.lastCellsCountCache);
+            return this.lastCellsCountCache;
+        }
+        CellsCount lastCellsCount = new CellsCount();
+        SQLiteDatabase db = helper.getReadableDatabase();
+        final String totalCount = "TOTAL_COUNT";
+        final String mainCount = "MAIN_COUNT";
+        String query = "SELECT (SELECT COUNT(" + MeasurementsTable.COLUMN_MEASURED_AT + ") FROM " + MeasurementsTable.TABLE_NAME + " WHERE " + MeasurementsTable.COLUMN_MEASURED_AT + " = m." + MeasurementsTable.COLUMN_MEASURED_AT + ") AS " + totalCount + ","
+                + " (SELECT COUNT(" + MeasurementsTable.COLUMN_MEASURED_AT + ") FROM " + MeasurementsTable.TABLE_NAME + " WHERE " + MeasurementsTable.COLUMN_MEASURED_AT + " = m." + MeasurementsTable.COLUMN_MEASURED_AT + " AND " + MeasurementsTable.COLUMN_NEIGHBORING + " = 0) AS " + mainCount + ""
+                + " FROM " + MeasurementsTable.TABLE_NAME + " m ORDER BY m." + MeasurementsTable.COLUMN_MEASURED_AT + " DESC LIMIT 0, 1";
+        // Log.d(query);
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToNext()) {
+            int total = cursor.getInt(cursor.getColumnIndex(totalCount));
+            int main = cursor.getInt(cursor.getColumnIndex(mainCount));
+            lastCellsCount = new CellsCount(main, total - main);
+        }
+        cursor.close();
+        Log.d("getLastCellsCount(): Value from DB: %s", lastCellsCount);
+        this.lastCellsCountCache = lastCellsCount;
+        return lastCellsCount;
     }
 
     public int getAllMeasurementsCount() {
@@ -466,8 +495,7 @@ public class MeasurementsDatabase {
                 for (int j = 0; j < (upper - lower); j++) {
                     if (j == 0) {
                         whereClauseBuilder.append("?");
-                    }
-                    else {
+                    } else {
                         whereClauseBuilder.append(", ?");
                     }
                     whereArgs[j] = String.valueOf(rowIds[lower + j]);
@@ -491,9 +519,10 @@ public class MeasurementsDatabase {
         }
         return deleted;
     }
-    
+
     private void invalidateCache() {
         lastMeasurementCache = null;
+        lastCellsCountCache = null;
         lastStatisticsCache = null;
     }
 

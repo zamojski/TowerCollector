@@ -12,6 +12,7 @@ import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.events.MeasurementSavedEvent;
 import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
+import info.zamojski.soft.towercollector.model.CellsCount;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.utils.NetworkTypeUtils;
 import info.zamojski.soft.towercollector.utils.UnitConverter;
@@ -32,6 +33,7 @@ public class MainLastFragment extends MainFragmentBase {
 
     private static final String TAG = MainLastFragment.class.getSimpleName();
 
+    private TextView lastNumberOfCellsValueTextView;
     private TextView lastNetworkTypeValueTextView;
     private TextView lastCellIdValueTextView;
     private TextView lastMccValueTextView;
@@ -44,8 +46,7 @@ public class MainLastFragment extends MainFragmentBase {
     private TextView lastDateTimeValueTextView;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.main_last_fragment, container, false);
         configureControls(rootView);
         return rootView;
@@ -60,6 +61,7 @@ public class MainLastFragment extends MainFragmentBase {
     @Override
     protected void configureControls(View view) {
         super.configureControls(view);
+        lastNumberOfCellsValueTextView = (TextView) view.findViewById(R.id.main_last_number_of_cells_value_textview);
         lastNetworkTypeValueTextView = (TextView) view.findViewById(R.id.main_last_network_type_value_textview);
         lastCellIdValueTextView = (TextView) view.findViewById(R.id.main_last_cell_id_value_textview);
         lastMccValueTextView = (TextView) view.findViewById(R.id.main_last_mcc_value_textview);
@@ -75,7 +77,8 @@ public class MainLastFragment extends MainFragmentBase {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(MeasurementSavedEvent event) {
         Measurement measurement = event.getMeasurement();
-        printOrClearMeasurement(measurement);
+        CellsCount cellsCount = event.getCellsCount();
+        printOrClearMeasurement(measurement, cellsCount);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -85,19 +88,21 @@ public class MainLastFragment extends MainFragmentBase {
 
     private void getAndPrintOrClearMeasurement() {
         Measurement measurement = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getLastMeasurement();
-        printOrClearMeasurement(measurement);
+        CellsCount cellsCount = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getLastCellsCount();
+        printOrClearMeasurement(measurement, cellsCount);
     }
 
-    private void printOrClearMeasurement(Measurement measurement) {
+    private void printOrClearMeasurement(Measurement measurement, CellsCount cellsCount) {
         if (measurement != null) {
-            printMeasurement(measurement);
+            printMeasurement(measurement, cellsCount);
         } else {
             clearMeasurement();
         }
     }
 
-    private void printMeasurement(Measurement measurement) {
+    private void printMeasurement(Measurement measurement, CellsCount cellsCount) {
         Log.d("printMeasurement(): Printing last measurement %s", measurement);
+        lastNumberOfCellsValueTextView.setText(getString(R.string.main_last_number_of_cells_value, cellsCount.getMain(), cellsCount.getNeighboring()));
         int networkNameId = NetworkTypeUtils.getNetworkGroupNameResId(measurement.getNetworkType());
         lastNetworkTypeValueTextView.setText(getString(networkNameId));
         lastCellIdValueTextView.setText(String.valueOf(measurement.getCid()));
@@ -121,6 +126,7 @@ public class MainLastFragment extends MainFragmentBase {
 
     private void clearMeasurement() {
         Log.d("clearMeasurement(): Clearing last measurement");
+        lastNumberOfCellsValueTextView.setText("");
         lastNetworkTypeValueTextView.setText("");
         lastCellIdValueTextView.setText("");
         lastMccValueTextView.setText("");
