@@ -27,6 +27,7 @@ import info.zamojski.soft.towercollector.utils.ApkUtils;
 
 import android.Manifest;
 import android.app.Application;
+import android.widget.Toast;
 
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
 import trikita.log.Log;
@@ -93,6 +94,8 @@ public class MyApplication extends Application {
                     Log.level(Log.E);
                 }
                 Log.usePrinter(AndroidFilePrinter.getInstance(), true);
+            } else {
+                Toast.makeText(this, R.string.permission_logging_denied_temporarily_message, Toast.LENGTH_LONG).show();
             }
         }
     }
