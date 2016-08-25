@@ -1,6 +1,15 @@
 {
   "Entries": [
     {
+      "VersionCode": 1110011,
+      "Title": "Changes in version 1.11.0",
+      "Messages": [
+        "Added number of main and neighboring cells to main screen.",
+        "Improved insufficient permissions handling.",
+        "Updated external components."
+      ]
+    },
+    {
       "VersionCode": 1100010,
       "Title": "Changes in version 1.10.0",
       "Messages": [
@@ -72,14 +81,6 @@
         "Improved performance of the app and reduced battery usage when Collector is running.",
         "Fixed crash when web browser is not installed on a device.",
         "Improved notification layout for displaying long text."
-      ]
-    },
-    {
-      "VersionCode": 49,
-      "Title": "Changes in version 1.7.4",
-      "Description": "<a href=\"https://plus.google.com/communities/105724371687131986494\"><b><big>Official Google+ community</big></b></a>",
-      "Messages": [
-        "Fixed wrong description color and content in Collector and Advanced preferences."
       ]
     }
   ]
