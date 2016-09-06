@@ -4,6 +4,10 @@
 
 package info.zamojski.soft.towercollector.files.formatters.csv;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.providers.ICellUtils;
@@ -13,10 +17,13 @@ import info.zamojski.soft.towercollector.utils.StringUtils;
 public class CsvUploadFormatter extends CsvFormatter {
 
     private static final ICellUtils cellUtils;
+    private static final SimpleDateFormat uploadDateFormatter;
 
     static {
         cellUtils = new OpencellidCellUtils();
         deviceName = StringUtils.substring(deviceName, 0, 50);
+        uploadDateFormatter = new SimpleDateFormat("\"yyyy-MM-dd HH:mm:ss.SSS'Z'\"", LOCALE);
+        uploadDateFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
     }
 
     @Override
@@ -97,7 +104,7 @@ public class CsvUploadFormatter extends CsvFormatter {
             sb.append(ta);
         sb.append(',');
 
-        sb.append(m.getTimestamp());
+        sb.append(formatDate(m.getTimestamp()));
         sb.append(',');
 
         sb.append(convertToInt(m.getGpsAccuracy()));
@@ -132,5 +139,9 @@ public class CsvUploadFormatter extends CsvFormatter {
         else
             signalString = "";
         return signalString;
+    }
+
+    private String formatDate(long timestamp) {
+        return uploadDateFormatter.format(new Date(timestamp));
     }
 }
