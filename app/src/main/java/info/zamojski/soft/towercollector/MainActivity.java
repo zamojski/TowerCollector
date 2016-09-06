@@ -765,6 +765,7 @@ public class MainActivity extends AppCompatActivity {
                     String extension;
                     switch (selectedType) {
                         case Csv:
+                        case CsvOcid:
                             extension = "csv";
                             break;
                         case Gpx:

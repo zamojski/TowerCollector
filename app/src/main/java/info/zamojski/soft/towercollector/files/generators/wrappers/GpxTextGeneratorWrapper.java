@@ -10,13 +10,14 @@ import java.util.List;
 import org.acra.ACRA;
 
 import android.content.Context;
+
+import info.zamojski.soft.towercollector.files.formatters.gpx.GpxExportFormatter;
 import trikita.log.Log;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.enums.GeneratorResult;
 import info.zamojski.soft.towercollector.files.DeviceOperationException;
 import info.zamojski.soft.towercollector.files.FileGeneratorResult;
-import info.zamojski.soft.towercollector.files.TextGeneratorFactory;
 import info.zamojski.soft.towercollector.files.DeviceOperationException.Reason;
 import info.zamojski.soft.towercollector.files.devices.IWritableTextDevice;
 import info.zamojski.soft.towercollector.files.formatters.gpx.IGpxFormatter;
@@ -36,7 +37,7 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
     public GpxTextGeneratorWrapper(Context context, IWritableTextDevice device) {
         this.context = context;
         this.device = device;
-        this.generator = TextGeneratorFactory.CreateGpxExportGenerator(device);
+        this.generator = new GpxTextGenerator(new GpxExportFormatter(), device);
     }
 
     @Override

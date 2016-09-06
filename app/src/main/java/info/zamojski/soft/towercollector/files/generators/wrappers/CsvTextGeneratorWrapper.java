@@ -10,6 +10,7 @@ import java.util.List;
 import org.acra.ACRA;
 
 import android.content.Context;
+
 import trikita.log.Log;
 
 import info.zamojski.soft.towercollector.MyApplication;
@@ -17,7 +18,6 @@ import info.zamojski.soft.towercollector.enums.GeneratorResult;
 import info.zamojski.soft.towercollector.files.DeviceOperationException;
 import info.zamojski.soft.towercollector.files.FileGeneratorResult;
 import info.zamojski.soft.towercollector.files.DeviceOperationException.Reason;
-import info.zamojski.soft.towercollector.files.TextGeneratorFactory;
 import info.zamojski.soft.towercollector.files.devices.IWritableTextDevice;
 import info.zamojski.soft.towercollector.files.formatters.csv.ICsvFormatter;
 import info.zamojski.soft.towercollector.files.generators.CsvTextGenerator;
@@ -30,10 +30,10 @@ public class CsvTextGeneratorWrapper extends TextGeneratorWrapperBase {
 
     private CsvTextGenerator<ICsvFormatter, IWritableTextDevice> generator;
 
-    public CsvTextGeneratorWrapper(Context context, IWritableTextDevice device) {
+    public CsvTextGeneratorWrapper(Context context, IWritableTextDevice device, ICsvFormatter formatter) {
         this.context = context;
         this.device = device;
-        this.generator = TextGeneratorFactory.CreateCsvExportGenerator(device);
+        this.generator = new CsvTextGenerator(formatter, device);
     }
 
     public FileGeneratorResult generate() {

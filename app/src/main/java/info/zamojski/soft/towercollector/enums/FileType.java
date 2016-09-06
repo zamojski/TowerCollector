@@ -5,5 +5,5 @@
 package info.zamojski.soft.towercollector.enums;
 
 public enum FileType {
-    Unknown, Csv, Gpx
+    Unknown, Csv, CsvOcid, Gpx
 }

@@ -11,6 +11,8 @@ import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.FileType;
 import info.zamojski.soft.towercollector.files.FileGeneratorResult;
 import info.zamojski.soft.towercollector.files.devices.FileTextDevice;
+import info.zamojski.soft.towercollector.files.formatters.csv.CsvExportFormatter;
+import info.zamojski.soft.towercollector.files.formatters.csv.CsvUploadFormatter;
 import info.zamojski.soft.towercollector.files.generators.wrappers.CsvTextGeneratorWrapper;
 import info.zamojski.soft.towercollector.files.generators.wrappers.GpxTextGeneratorWrapper;
 import info.zamojski.soft.towercollector.files.generators.wrappers.interfaces.IProgressListener;
@@ -27,7 +29,9 @@ import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
+
 import trikita.log.Log;
+
 import android.widget.Toast;
 
 public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorResult> implements IProgressListener {
@@ -175,7 +179,9 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
     private IProgressiveTextGeneratorWrapper CreateTextGeneratorWrapper(FileType fileType) {
         switch (fileType) {
             case Csv:
-                return new CsvTextGeneratorWrapper(context, device);
+                return new CsvTextGeneratorWrapper(context, device, new CsvExportFormatter());
+            case CsvOcid:
+                return new CsvTextGeneratorWrapper(context, device, new CsvUploadFormatter());
             case Gpx:
                 return new GpxTextGeneratorWrapper(context, device);
             default:

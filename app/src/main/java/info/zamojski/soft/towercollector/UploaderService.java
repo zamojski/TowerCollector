@@ -6,10 +6,8 @@ package info.zamojski.soft.towercollector;
 
 import info.zamojski.soft.towercollector.enums.UploadResult;
 import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
-import info.zamojski.soft.towercollector.files.TextGeneratorFactory;
-import info.zamojski.soft.towercollector.files.devices.IWritableTextDevice;
 import info.zamojski.soft.towercollector.files.devices.MemoryTextDevice;
-import info.zamojski.soft.towercollector.files.formatters.csv.ICsvFormatter;
+import info.zamojski.soft.towercollector.files.formatters.csv.CsvUploadFormatter;
 import info.zamojski.soft.towercollector.files.generators.CsvTextGenerator;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.io.network.NetworkHelper;
@@ -39,7 +37,9 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
 import android.text.TextUtils;
+
 import trikita.log.Log;
+
 import android.widget.Toast;
 
 public class UploaderService extends Service {
@@ -270,7 +270,7 @@ public class UploaderService extends Service {
 
                 // create generator instance
                 MemoryTextDevice device = new MemoryTextDevice();
-                CsvTextGenerator<ICsvFormatter, IWritableTextDevice> generator = TextGeneratorFactory.CreateCsvUploadGenerator(device);
+                CsvTextGenerator<CsvUploadFormatter, MemoryTextDevice> generator = new CsvTextGenerator<>(new CsvUploadFormatter(), device);
                 // write measurements
                 try {
                     device.open();

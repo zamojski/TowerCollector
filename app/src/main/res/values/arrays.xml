@@ -9,10 +9,12 @@
     <string-array name="export_formats_labels">
         <item>CSV</item>
         <item>GPX</item>
+        <item>CSV for OpenCellID.org</item>
     </string-array>
     <string-array name="export_formats_values" translatable="false">
         <item>Csv</item>
         <item>Gpx</item>
+        <item>CsvOcid</item>
     </string-array>
     <string-array name="preferences_keep_screen_on_mode_entries_labels" translatable="false">
         <item>@string/preferences_keep_screen_on_mode_disabled</item>
