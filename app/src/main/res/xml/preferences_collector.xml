@@ -33,6 +33,13 @@
             android:title="@string/preferences_collector_keep_screen_on_title" />
 
         <SwitchPreference
+            android:defaultValue="@bool/preferences_hide_collector_notification_default_value"
+            android:key="@string/preferences_hide_collector_notification_key"
+            android:summaryOff="@string/preferences_hide_collector_notification_off_summary"
+            android:summaryOn="@string/preferences_hide_collector_notification_on_summary"
+            android:title="@string/preferences_hide_collector_notification_title" />
+
+        <SwitchPreference
             android:defaultValue="@bool/preferences_start_collector_at_boot_default_value"
             android:key="@string/preferences_start_collector_at_boot_key"
             android:summaryOff="@string/preferences_start_collector_at_boot_off_summary"

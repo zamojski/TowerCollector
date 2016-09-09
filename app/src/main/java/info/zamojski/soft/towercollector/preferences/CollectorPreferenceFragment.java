@@ -10,12 +10,14 @@ import info.zamojski.soft.towercollector.R;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.PreferenceManager;
 
 import trikita.log.Log;
 
+import android.preference.SwitchPreference;
 import android.widget.Toast;
 
 public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
@@ -23,6 +25,7 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
     private static final String TAG = CollectorPreferenceFragment.class.getSimpleName();
 
     private ListPreference collectorKeepScreenOnPreference;
+    private SwitchPreference hideCollectorNotificationPreference;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,10 +33,18 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
         addPreferencesFromResource(R.xml.preferences_collector);
 
         collectorKeepScreenOnPreference = (ListPreference) findPreference(getString(R.string.preferences_collector_keep_screen_on_mode_key));
+        hideCollectorNotificationPreference = (SwitchPreference) findPreference(getString(R.string.preferences_hide_collector_notification_key));
 
         setupNeighboringCellsDialog();
         setupCollectorKeepScreenOnDialog();
         setupNotifyMeasurementsCollectedDialog();
+
+        setupHideCollectorNotificationEditable();
+    }
+
+    private void setupHideCollectorNotificationEditable() {
+        boolean editable = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN);
+        hideCollectorNotificationPreference.setEnabled(editable);
     }
 
     @Override
@@ -54,7 +65,8 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(getString(R.string.preferences_gps_optimizations_enabled_key))
                 || key.equals(getString(R.string.preferences_collect_neighboring_cells_key))
-                || key.equals(getString(R.string.preferences_notify_measurements_collected_key))) {
+                || key.equals(getString(R.string.preferences_notify_measurements_collected_key))
+                || key.equals(getString(R.string.preferences_hide_collector_notification_key))) {
             if (MyApplication.isBackgroundTaskRunning(CollectorService.class)) {
                 Toast.makeText(getActivity(), R.string.preferences_restart_collector, Toast.LENGTH_SHORT).show();
             }

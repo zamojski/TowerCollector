@@ -141,7 +141,8 @@ public class CollectorService extends Service {
         telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationHelper = new CollectorNotificationHelper(this);
+        boolean hideNotification = MyApplication.getPreferencesProvider().getHideCollectorNotification();
+        notificationHelper = new CollectorNotificationHelper(this, hideNotification);
         // create notification
         startStats = MeasurementsDatabase.getInstance(getApplication()).getMeasurementsStatistics();
         startTime = lastLocationObtainedTime = System.currentTimeMillis();

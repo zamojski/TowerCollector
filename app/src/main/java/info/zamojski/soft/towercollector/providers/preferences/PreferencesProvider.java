@@ -83,6 +83,11 @@ public class PreferencesProvider {
         return value;
     }
 
+    public boolean getHideCollectorNotification() {
+        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_hide_collector_notification_key, R.bool.preferences_hide_collector_notification_default_value);
+        return value;
+    }
+
     public boolean getStartCollectorAtBoot() {
         boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_start_collector_at_boot_key, R.bool.preferences_start_collector_at_boot_default_value);
         return value;

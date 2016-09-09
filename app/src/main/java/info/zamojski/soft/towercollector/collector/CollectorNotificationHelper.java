@@ -18,11 +18,13 @@ import android.support.v4.app.NotificationCompat;
 public class CollectorNotificationHelper {
 
     private Context context;
-    NotificationCompat.Builder builder;
+    private NotificationCompat.Builder builder;
+    private boolean hideNotification;
 
-    public CollectorNotificationHelper(Context context) {
+    public CollectorNotificationHelper(Context context, boolean hideNotification) {
         this.context = context;
         this.builder = new NotificationCompat.Builder(context);
+        this.hideNotification = hideNotification;
     }
 
     public Notification createNotification(String notificationText) {
@@ -46,6 +48,9 @@ public class CollectorNotificationHelper {
         builder.setOngoing(true);
         builder.setWhen(System.currentTimeMillis());
         builder.setOnlyAlertOnce(true);
+        if (hideNotification) {
+            builder.setPriority(NotificationCompat.PRIORITY_MIN);
+        }
         // set intent
         PendingIntent mainActivityIntent = createOpenMainActivityIntent();
         builder.setContentIntent(mainActivityIntent);
