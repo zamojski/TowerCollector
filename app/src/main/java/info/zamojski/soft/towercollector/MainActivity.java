@@ -466,12 +466,19 @@ public class MainActivity extends AppCompatActivity {
                     MyApplication.getPreferencesProvider().setUpdateCheckEnabled(false);
                 }
                 MyApplication.getAnalytics().sendUpdateAction(downloadLink.getLabel());
-                String link = downloadLink.getLink();
-                try {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(link)));
-                } catch (ActivityNotFoundException ex) {
-                    Toast.makeText(getApplication(), R.string.web_browser_missing, Toast.LENGTH_LONG).show();
+                String[] links = downloadLink.getLinks();
+                boolean startActivityFailed = false;
+                for (String link : links) {
+                    startActivityFailed = false;
+                    try {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(link)));
+                        break;
+                    } catch (ActivityNotFoundException ex) {
+                        startActivityFailed = true;
+                    }
                 }
+                if (startActivityFailed)
+                    Toast.makeText(getApplication(), R.string.web_browser_missing, Toast.LENGTH_LONG).show();
                 alertDialog.dismiss();
             }
         });

@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.text.TextUtils;
+
 import trikita.log.Log;
 
 import info.zamojski.soft.towercollector.model.UpdateInfo;
@@ -22,8 +23,9 @@ public class UpdateFeedParser {
     private static final String VERSION_CODE = "VersionCode";
     private static final String VERSION_NAME = "VersionName";
     private static final String VERSION_DOWNLOAD_LINKS = "DownloadLinks";
-    private static final String VERSION_DOWNLOAD_LABEL = "Label";
-    private static final String VERSION_DOWNLOAD_LINK = "Link";
+    private static final String VERSION_LABEL = "Label";
+    private static final String VERSION_LINK = "Link";
+    private static final String VERSION_LINKS = "Links";
 
     public UpdateInfo parse(String content) throws UpdateFeedParseException {
         try {
@@ -52,8 +54,9 @@ public class UpdateFeedParser {
 
     private DownloadLink[] getDownloadLinks(JSONObject object) throws JSONException {
         JSONArray array = object.optJSONArray(VERSION_DOWNLOAD_LINKS);
-        if (array == null)
+        if (array == null) {
             return new DownloadLink[0];
+        }
         int numberOfLinks = array.length();
         DownloadLink[] links = new DownloadLink[numberOfLinks];
         for (int i = 0; i < numberOfLinks; i++) {
@@ -63,8 +66,17 @@ public class UpdateFeedParser {
     }
 
     private DownloadLink getDownloadLink(JSONObject object) throws JSONException {
-        String label = object.getString(VERSION_DOWNLOAD_LABEL);
-        String link = object.getString(VERSION_DOWNLOAD_LINK);
-        return new DownloadLink(label, link);
+        String label = object.getString(VERSION_LABEL);
+        String singleLink = object.getString(VERSION_LINK);
+        JSONArray array = object.optJSONArray(VERSION_LINKS);
+        if (array == null) {
+            return new DownloadLink(label, new String[]{singleLink});
+        }
+        int numberOfLinks = array.length();
+        String[] multipleLinks = new String[numberOfLinks];
+        for (int i = 0; i < numberOfLinks; i++) {
+            multipleLinks[i] = array.getString(i);
+        }
+        return new DownloadLink(label, multipleLinks);
     }
 }

@@ -45,19 +45,19 @@ public class UpdateInfo implements Serializable {
         private static final long serialVersionUID = 2834764366113140232L;
 
         private String label;
-        private String link;
+        private String[] links;
 
-        public DownloadLink(String label, String link) {
+        public DownloadLink(String label, String[] links) {
             this.label = label;
-            this.link = link;
+            this.links = links;
         }
 
         public String getLabel() {
             return label;
         }
 
-        public String getLink() {
-            return link;
+        public String[] getLinks() {
+            return links;
         }
     }
 }
