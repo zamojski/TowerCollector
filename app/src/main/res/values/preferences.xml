@@ -72,7 +72,7 @@
     <string name="preferences_open_source_licenses_link_title">Open source licenses</string>
     <string name="preferences_open_source_licenses_link_summary">Presents information about licenses of used open source components.</string>
     <string name="preferences_external_integration_link_title">External integration</string>
-    <string name="preferences_external_integration_link_summary">Displays information about integration with external applications like Tasker or Llama.</string>
+    <string name="preferences_external_integration_link_summary">Displays information about integration with external applications like Tasker, Automate or Llama.</string>
     <string name="preferences_collector_api_version_title">Collector API version</string>
     <string name="preferences_collector_api_version_summary">Defines API version used to get cell info.</string>
     <string name="preferences_about_collector_api_version_title">About Collector API version</string>
