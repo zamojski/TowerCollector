@@ -61,6 +61,8 @@
     <string name="preferences_website_link_summary">Opens developer\'s website containing description and app stores download links.</string>
     <string name="preferences_contact_email_link_title">Contact developer</string>
     <string name="preferences_contact_email_link_summary">Sends an email with your problems, questions and ideas to the developer.</string>
+    <string name="preferences_facebook_community_link_title">Facebook Community</string>
+    <string name="preferences_facebook_community_link_summary">Opens Facebook Community page where you can find useful information, links, post ideas and ask questions.</string>
     <string name="preferences_google_plus_community_link_title">Google+ Community</string>
     <string name="preferences_google_plus_community_link_summary">Opens Google+ Community page where you can find useful information, links, post ideas and ask questions.</string>
     <string name="preferences_translate_link_title">Translate</string>

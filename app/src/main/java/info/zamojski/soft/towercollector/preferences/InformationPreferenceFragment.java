@@ -22,6 +22,7 @@ public class InformationPreferenceFragment extends DialogEnabledPreferenceFragme
         addPreferencesFromResource(R.xml.preferences_information);
 
         setupWebsiteLink();
+        setupFacebookCommunityLink();
         setupGooglePlusCommunityLink();
         setupTranslationToolLink();
 
@@ -55,6 +56,10 @@ public class InformationPreferenceFragment extends DialogEnabledPreferenceFragme
 
     private void setupWebsiteLink() {
         setupOpenInDefault(R.string.preferences_website_link_key, R.string.preferences_website_link);
+    }
+
+    private void setupFacebookCommunityLink() {
+        setupOpenInDefault(R.string.preferences_facebook_community_link_key, R.string.preferences_facebook_community_link);
     }
 
     private void setupGooglePlusCommunityLink() {
