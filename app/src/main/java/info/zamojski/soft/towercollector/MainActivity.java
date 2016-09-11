@@ -96,7 +96,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 @RuntimePermissions
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -114,6 +114,8 @@ public class MainActivity extends AppCompatActivity {
     private MenuItem startMenu;
     private MenuItem stopMenu;
     private MenuItem networkTypeMenu;
+
+    private TabLayout tabLayout;
 
     private boolean isMinimized = false;
 
@@ -141,27 +143,10 @@ public class MainActivity extends AppCompatActivity {
         pageAdapter = new MainActivityPagerAdapter(getSupportFragmentManager(), getApplication());
         viewPager = (ViewPager) findViewById(R.id.main_pager);
         viewPager.setAdapter(pageAdapter);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.main_tab_layout);
+        tabLayout = (TabLayout) findViewById(R.id.main_tab_layout);
         tabLayout.setupWithViewPager(viewPager);
 
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(Tab tab) {
-                Log.d("onTabSelected() Switching to tab %s", tab.getPosition());
-                // switch to page when tab is selected
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(Tab tab) {
-                // nothing
-            }
-
-            @Override
-            public void onTabReselected(Tab tab) {
-                // nothing
-            }
-        });
+        tabLayout.addOnTabSelectedListener(this);
 
         backgroundTaskHelper = new BackgroundTaskHelper(this);
 
@@ -185,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("onDestroy(): Unbinding from service");
         if (isCollectorServiceRunning.get())
             unbindService(collectorServiceConnection);
+        tabLayout.removeOnTabSelectedListener(this);
     }
 
     @Override
@@ -311,6 +297,23 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return super.onKeyUp(keyCode, event);
+    }
+
+    @Override
+    public void onTabSelected(Tab tab) {
+        Log.d("onTabSelected() Switching to tab %s", tab.getPosition());
+        // switch to page when tab is selected
+        viewPager.setCurrentItem(tab.getPosition());
+    }
+
+    @Override
+    public void onTabUnselected(Tab tab) {
+        // nothing
+    }
+
+    @Override
+    public void onTabReselected(Tab tab) {
+        // nothing
     }
 
     // ========== UI ========== //
@@ -1009,6 +1012,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkForNewVersionAvailability() {
         boolean isAutoUpdateEnabled = MyApplication.getPreferencesProvider().getUpdateCheckEnabled();
+        MyApplication.getAnalytics().sendPrefsUpdateCheckEnabled(isAutoUpdateEnabled);
         if (isAutoUpdateEnabled) {
             long currentDate = DateUtils.getCurrentDateWithoutTime();
             long lastUpdateCheckDate = MyApplication.getPreferencesProvider().getLastUpdateCheckDate();
