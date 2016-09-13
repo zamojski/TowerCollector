@@ -198,10 +198,12 @@ public class CollectorService extends Service {
         float accuracy = getLastGpsAccuracy();
         EventBus.getDefault().postSticky(new GpsStatusChangedEvent(status, accuracy));
 
-        if (MyApplication.getPreferencesProvider().getNotifyMeasurementsCollected()) {
+        boolean notifyCollected = MyApplication.getPreferencesProvider().getNotifyMeasurementsCollected();
+        if (notifyCollected) {
             externalBroadcastSender = new ExternalBroadcastSender();
             getExternalBroadcastSenderHandler().post(externalBroadcastSender);
         }
+        MyApplication.getAnalytics().sendPrefsNotifyMeasurementsCollected(notifyCollected);
 
         return START_REDELIVER_INTENT;
     }
@@ -283,6 +285,7 @@ public class CollectorService extends Service {
 
     private void registerPhoneStateListener() {
         String collectorApiVersion = MyApplication.getPreferencesProvider().getCollectorApiVersion();
+        MyApplication.getAnalytics().sendPrefsCollectorApiVersion(collectorApiVersion);
         // double check to avoid fail in production caused by invalid settings
         if (MobileUtils.isApi17VersionCompatible()) {
             if (getString(R.string.preferences_collector_api_version_entries_value_auto).equals(collectorApiVersion)) {
@@ -341,6 +344,7 @@ public class CollectorService extends Service {
                 processCellInfo(cellInfo);
             }
         }, 0, CELL_UPDATE_INTERVAL);
+        MyApplication.getAnalytics().sendCollectorApiVersionUsed(getString(R.string.preferences_collector_api_version_entries_value_api_17));
     }
 
     private void registerApi1PhoneStateListener() {
@@ -376,6 +380,7 @@ public class CollectorService extends Service {
                 processCellLocation(cellLocation);
             }
         }, 0, CELL_UPDATE_INTERVAL);
+        MyApplication.getAnalytics().sendCollectorApiVersionUsed(getString(R.string.preferences_collector_api_version_entries_value_api_1));
     }
 
     private void processCellInfo(List<CellInfo> cellInfo) {

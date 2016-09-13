@@ -11,5 +11,9 @@ public class Action {
     public static final String Export = "Export";
     public static final String Update = "Update";
     public static final String Upload = "Upload";
+    public static final String UpdateCheckEnabled = "UpdateCheckEnabled";
+    public static final String NotifyMeasurementsCollectedEnabled = "NotifyMeasurementsCollectedEnabled";
+    public static final String AppTheme = "AppTheme";
+    public static final String CollectorApiVersion = "CollectorApiVersion";
 
 }

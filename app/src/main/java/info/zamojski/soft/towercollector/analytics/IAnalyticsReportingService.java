@@ -32,6 +32,8 @@ public interface IAnalyticsReportingService {
 
     void sendCollectorFinished(long duration, String transportMode, AnalyticsStatistics stats);
 
+    void sendCollectorApiVersionUsed(String apiVersion);
+
     void sendUploadStarted(IntentSource source);
 
     void sendUploadFinished(long duration, String networkType, AnalyticsStatistics stats);
@@ -45,5 +47,13 @@ public interface IAnalyticsReportingService {
     void sendExportKeepAction();
 
     void sendExportUploadAction();
+
+    void sendPrefsUpdateCheckEnabled(boolean enabled);
+
+    void sendPrefsNotifyMeasurementsCollected(boolean enabled);
+
+    void sendPrefsAppTheme(String theme);
+
+    void sendPrefsCollectorApiVersion(String apiVersion);
 
 }

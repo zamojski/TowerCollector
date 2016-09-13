@@ -187,6 +187,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         isMinimized = false;
         EventBus.getDefault().register(this);
         MyApplication.getAnalytics().sendMainActivityStarted();
+
+        String appThemeName = MyApplication.getPreferencesProvider().getAppTheme();
+        MyApplication.getAnalytics().sendPrefsAppTheme(appThemeName);
     }
 
     @Override

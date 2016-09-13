@@ -131,6 +131,14 @@ public class GoogleAnalyticsReportingService implements IAnalyticsReportingServi
     }
 
     @Override
+    public void sendCollectorApiVersionUsed(String apiVersion) {
+        this.tracker.send(new HitBuilders.EventBuilder(Category.Runtime, Action.CollectorApiVersion)
+                .setLabel(apiVersion)
+                .setValue(1L)
+                .build());
+    }
+
+    @Override
     public void sendUploadStarted(IntentSource source) {
         this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, Action.Upload)
                 .setLabel(convertToStartLabel(source))
@@ -195,10 +203,43 @@ public class GoogleAnalyticsReportingService implements IAnalyticsReportingServi
         sendExportAction(Label.Upload);
     }
 
+    @Override
+    public void sendPrefsUpdateCheckEnabled(boolean enabled) {
+        sendBooleanValue(Action.UpdateCheckEnabled, enabled);
+    }
+
+    @Override
+    public void sendPrefsNotifyMeasurementsCollected(boolean enabled) {
+        sendBooleanValue(Action.NotifyMeasurementsCollectedEnabled, enabled);
+    }
+
+    @Override
+    public void sendPrefsAppTheme(String theme) {
+        this.tracker.send(new HitBuilders.EventBuilder(Category.Preferences, Action.AppTheme)
+                .setLabel(theme)
+                .setValue(1L)
+                .build());
+    }
+
+    @Override
+    public void sendPrefsCollectorApiVersion(String apiVersion) {
+        this.tracker.send(new HitBuilders.EventBuilder(Category.Preferences, Action.CollectorApiVersion)
+                .setLabel(apiVersion)
+                .setValue(1L)
+                .build());
+    }
+
     private void sendExportAction(String action) {
         this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, Action.Export)
                 .setLabel(action)
                 .setValue(1L)
+                .build());
+    }
+
+    private void sendBooleanValue(String action, boolean value) {
+        this.tracker.send(new HitBuilders.EventBuilder(Category.Preferences, action)
+                .setLabel(Label.Usage)
+                .setValue(value ? 1L : 0L)
                 .build());
     }
 

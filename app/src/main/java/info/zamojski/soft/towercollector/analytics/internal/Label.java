@@ -14,5 +14,5 @@ public class Label {
     public static final String Keep = "Keep";
     public static final String Upload = "Upload";
     public static final String Delete = "Delete";
-
+    public static final String Usage = "Usage";
 }

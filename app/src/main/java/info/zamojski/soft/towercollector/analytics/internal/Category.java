@@ -7,5 +7,7 @@ package info.zamojski.soft.towercollector.analytics.internal;
 public class Category {
 
     public static final String Tasks = "Tasks";
+    public static final String Preferences = "Preferences";
+    public static final String Runtime = "Runtime";
 
 }
