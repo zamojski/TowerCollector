@@ -1,6 +1,16 @@
 {
   "Entries": [
     {
+      "VersionCode": 1120012,
+      "Title": "Changes in version 1.12.0",
+      "Description": "Join Tower Collector community on <a href=\"https://www.facebook.com/towercollector/\">Facebook (new!)</a> or <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> to get help and share your ideas :)",
+      "Messages": [
+        "Added export to CSV using OpenCellID.org values formatting (can be uploaded on website).",
+        "Added option to hide Collector notification from lock screen and status bar unless expanded on Android 4.1+.",
+        "Improved auto update source selection to open app market if possible and then website."
+      ]
+    },
+    {
       "VersionCode": 1110011,
       "Title": "Changes in version 1.11.0",
       "Messages": [
@@ -32,55 +42,6 @@
         "Fixed network type settings not opened on Android Ice Cream Sandwich.",
         "Hidden 'Network type' menu item if system is unable to open it.",
         "Improved error handling."
-      ]
-    },
-    {
-      "VersionCode": 1090106,
-      "Title": "Changes in version 1.9.1",
-      "Messages": [
-        "Fixed crash when starting Collector on some devices.",
-        "Fixed forced Collector API version 1 not applied correctly."
-      ]
-    },
-    {
-      "VersionCode": 1090005,
-      "Title": "Changes in version 1.9.0",
-      "Messages": [
-        "Added option to notify other apps about new measurements collected. See more in Collector Preferences.",
-        "Added option log execution details to file for problem investigation purposes.",
-        "Added shortcut to change network type from menu.",
-        "Fixed crash when stopping Collector in some rare cases.",
-        "Changed unknown GPS status to initializing."
-      ]
-    },
-    {
-      "VersionCode": 1080002,
-      "Title": "Changes in version 1.8.0",
-      "Description": "Starting from this version Tower Collector will be available only in English. I made this decision to accelerate development of new features by reducing waiting for translation time to minimum. In the future I will add a glossary and more detailed introduction for novice users in their native language. I'd like to thank all of you who were engaged in app translation over the years and dedicated their own time to Tower Collector. I really appreciate that, thanks!",
-      "Messages": [
-        "Introducing basic Material Design style.",
-        "Added option to start collecting on device boot.",
-        "Changed Preferences to display descriptions in more friendly way.",
-        "Improved contact option in Preferences."
-      ]
-    },
-    {
-      "VersionCode": 51,
-      "Title": "Changes in version 1.7.6",
-      "Description": "Join <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+ Community</a> and try out the new beta version! I'm awaiting you feedback :)",
-      "Messages": [
-        "Fixed inconsistent GPS status shown in notification and on the bar shortly after Collector start.",
-        "Fixed crash when web browser is not installed on a device."
-      ]
-    },
-    {
-      "VersionCode": 50,
-      "Title": "Changes in version 1.7.5",
-      "Description": "Tower Collector became open source - more on <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> :)",
-      "Messages": [
-        "Improved performance of the app and reduced battery usage when Collector is running.",
-        "Fixed crash when web browser is not installed on a device.",
-        "Improved notification layout for displaying long text."
       ]
     }
   ]
