@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     protected void onStart() {
         super.onStart();
         Log.d("onStart(): Binding to service");
-        isCollectorServiceRunning.set(isServiceRunning(CollectorService.SERVICE_FULL_NAME));
+        isCollectorServiceRunning.set(ApkUtils.isServiceRunning(CollectorService.SERVICE_FULL_NAME));
         if (isCollectorServiceRunning.get()) {
             bindService(new Intent(this, CollectorService.class), collectorServiceConnection, 0);
         }
@@ -741,7 +741,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private void startUploaderService(String apiKey) {
         // start task
-        if (!isServiceRunning(UploaderService.SERVICE_FULL_NAME)) {
+        if (!ApkUtils.isServiceRunning(UploaderService.SERVICE_FULL_NAME)) {
             Intent intent = new Intent(MainActivity.this, UploaderService.class);
             intent.putExtra(UploaderService.INTENT_KEY_APIKEY, apiKey);
             startService(intent);
@@ -947,17 +947,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     }
 
     // ========== MISCELLANEOUS ========== //
-
-    private boolean isServiceRunning(String serviceClassName) {
-        ActivityManager activityManager = (ActivityManager) getApplication().getSystemService(Context.ACTIVITY_SERVICE);
-        List<RunningServiceInfo> services = activityManager.getRunningServices(Integer.MAX_VALUE);
-        for (RunningServiceInfo runningServiceInfo : services) {
-            if (runningServiceInfo.service.getClassName().equals(serviceClassName)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     private void askAndSetGpsEnabled() {
         if (GpsUtils.isGpsEnabled(getApplication())) {

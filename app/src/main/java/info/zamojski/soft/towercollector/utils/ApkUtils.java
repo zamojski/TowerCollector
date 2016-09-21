@@ -9,6 +9,7 @@ import org.acra.ACRA;
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 
+import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -16,6 +17,9 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
+
+import java.util.List;
+
 import trikita.log.Log;
 
 public class ApkUtils {
@@ -79,5 +83,16 @@ public class ApkUtils {
         } catch (NameNotFoundException e) {
             return false;
         }
+    }
+
+    public static boolean isServiceRunning(String serviceClassName) {
+        ActivityManager activityManager = (ActivityManager) MyApplication.getApplication().getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningServiceInfo> services = activityManager.getRunningServices(Integer.MAX_VALUE);
+        for (ActivityManager.RunningServiceInfo runningServiceInfo : services) {
+            if (runningServiceInfo.service.getClassName().equals(serviceClassName)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
