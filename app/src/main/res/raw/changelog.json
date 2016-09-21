@@ -1,6 +1,14 @@
 {
   "Entries": [
     {
+      "VersionCode": 1130013,
+      "Title": "Changes in version 1.13.0-beta1",
+      "Description": "Join Tower Collector community on <a href=\"https://www.facebook.com/towercollector/\">Facebook (new!)</a> or <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> to get help and share your ideas :)",
+      "Messages": [
+        "Improved app performance and shortened startup time."
+      ]
+    },
+    {
       "VersionCode": 1120012,
       "Title": "Changes in version 1.12.0",
       "Description": "Join Tower Collector community on <a href=\"https://www.facebook.com/towercollector/\">Facebook (new!)</a> or <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> to get help and share your ideas :)",
