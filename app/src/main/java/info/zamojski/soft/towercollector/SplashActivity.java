@@ -94,6 +94,9 @@ public class SplashActivity extends Activity {
             hideDetailsMessage();
             databaseUpgradeRunning = false;
         }
+        // Load last measurement and stats into cache
+        MeasurementsDatabase.getInstance(getApplication()).getLastMeasurement();
+        MeasurementsDatabase.getInstance(getApplication()).getMeasurementsStatistics();
     }
 
     private void startMainActivity() {
