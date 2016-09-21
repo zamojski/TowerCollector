@@ -31,6 +31,8 @@ public class AndroidFilePrinter implements Log.Printer {
 
     private boolean firstRun = true;
 
+    private int minLevel = Log.I;
+
     private static AndroidFilePrinter instance = new AndroidFilePrinter();
 
     private AndroidFilePrinter() {
@@ -41,8 +43,16 @@ public class AndroidFilePrinter implements Log.Printer {
         return instance;
     }
 
+    public void setMinLevel(int minLevel) {
+        this.minLevel = minLevel;
+    }
+
     @Override
     public void print(int level, String tag, String msg) {
+        // Check logging level set specifically on this logger
+        if (level < minLevel) {
+            return;
+        }
         if (firstRun) {
             Class clazz = AndroidFilePrinter.class;
             synchronized (clazz) {

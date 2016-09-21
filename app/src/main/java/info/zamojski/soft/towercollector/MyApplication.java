@@ -11,7 +11,6 @@ import java.util.List;
 import org.acra.ACRA;
 import org.acra.ACRAConstants;
 import org.acra.ReportField;
-import org.acra.config.ACRAConfiguration;
 import org.acra.config.ConfigurationBuilder;
 import org.acra.sender.HttpSender.Method;
 import org.acra.sender.HttpSender.Type;
@@ -77,7 +76,8 @@ public class MyApplication extends Application {
 
     public void initLogger() {
         // Default configuration
-        Log.usePrinter(Log.ANDROID, true).level(Log.D).useFormat(true);
+        int consoleLogLevel = BuildConfig.DEBUG ? Log.V : Log.I;
+        Log.usePrinter(Log.ANDROID, true).level(consoleLogLevel).useFormat(true);
         // File logging based on preferences
         String fileLoggingLevel = getPreferencesProvider().getFileLoggingLevel();
         if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_disabled))) {
@@ -85,13 +85,17 @@ public class MyApplication extends Application {
         } else {
             if (PermissionUtils.hasPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                 if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_debug))) {
-                    Log.level(Log.D);
+                    AndroidFilePrinter.getInstance().setMinLevel(Log.D);
+                    Log.level(Math.min(consoleLogLevel, Log.D));
                 } else if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_info))) {
-                    Log.level(Log.I);
+                    AndroidFilePrinter.getInstance().setMinLevel(Log.I);
+                    Log.level(Math.min(consoleLogLevel, Log.I));
                 } else if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_warning))) {
-                    Log.level(Log.W);
+                    AndroidFilePrinter.getInstance().setMinLevel(Log.W);
+                    Log.level(Math.min(consoleLogLevel, Log.W));
                 } else if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_error))) {
-                    Log.level(Log.E);
+                    AndroidFilePrinter.getInstance().setMinLevel(Log.E);
+                    Log.level(Math.min(consoleLogLevel, Log.E));
                 }
                 Log.usePrinter(AndroidFilePrinter.getInstance(), true);
             } else {
