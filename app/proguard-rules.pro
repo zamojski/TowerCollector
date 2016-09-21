@@ -104,11 +104,5 @@
 
 # Trikita Log Tag
 -keepclassmembers class ** {
-    private static final String TAG = *;
+    static final String TAG;
 }
-
-# Only required if you use AsyncExecutor
-#keepclassmembers class * extends de.greenrobot.event.util.ThrowableFailureEvent {
-#    (java.lang.Throwable);
-#}
-#
