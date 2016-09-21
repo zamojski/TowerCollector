@@ -54,10 +54,10 @@ public class MyApplication extends Application {
         // Logging to file is dependent on preferences but this will skip logging of initialization
         initPreferencesProvider();
         initLogger();
-        initEventBus();
         initACRA();
         // Exception handling must be initialized after ACRA to obtain crash details
         initUnhandledExceptionHandler();
+        initEventBus();
         initTheme();
         initGA();
     }
