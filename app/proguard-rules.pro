@@ -53,7 +53,7 @@
     public <init>(android.content.Context);
     public <init>(android.content.Context, android.util.AttributeSet);
     public <init>(android.content.Context, android.util.AttributeSet, int);
-#inherited    public void set*(...);
+    #inherited    public void set*(...);
 }
 
 # Event handlers can be specified in the layout files e.g. android:onClick="nextButton_onClick", I borrowed this method name notation from .NET
@@ -92,8 +92,14 @@
 #inherited -keepattributes *Annotation*
 
 # EventBus
+#inherited -keepattributes *Annotation*
 -keepclassmembers class ** {
-    public void onEvent*(**);
+    @org.greenrobot.eventbus.Subscribe <methods>;
+}
+-keep enum org.greenrobot.eventbus.ThreadMode { *; }
+# Only required if you use AsyncExecutor
+-keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
+    <init>(java.lang.Throwable);
 }
 
 # Trikita Log Tag
