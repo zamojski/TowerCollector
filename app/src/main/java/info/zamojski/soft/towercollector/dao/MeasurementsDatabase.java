@@ -194,10 +194,11 @@ public class MeasurementsDatabase {
     }
 
     public Measurement getLastMeasurement() {
-        // Try to get from cache then read from DB
-        if (this.lastMeasurementCache != null) {
-            Log.d("getLastMeasurement(): Value from cache: %s", this.lastMeasurementCache);
-            return this.lastMeasurementCache;
+        // Try to get from cache then read from DB (copy to local to avoid null if invalidated in the meantime)
+        Measurement lastMeasurementCacheCopy = this.lastMeasurementCache;
+        if (lastMeasurementCacheCopy != null) {
+            Log.d("getLastMeasurement(): Value from cache: %s", lastMeasurementCacheCopy);
+            return lastMeasurementCacheCopy;
         }
         Measurement lastMeasurement = null;
         List<Measurement> measurements = getMeasurements(null, null, null, null,
@@ -214,10 +215,11 @@ public class MeasurementsDatabase {
     }
 
     public CellsCount getLastCellsCount() {
-        // Try to get from cache then read from DB
-        if (this.lastCellsCountCache != null) {
-            Log.d("getLastCellsCount(): Value from cache: %s", this.lastCellsCountCache);
-            return this.lastCellsCountCache;
+        // Try to get from cache then read from DB (copy to local to avoid null if invalidated in the meantime)
+        CellsCount lastCellsCountCacheCopy = this.lastCellsCountCache;
+        if (lastCellsCountCacheCopy != null) {
+            Log.d("getLastCellsCount(): Value from cache: %s", lastCellsCountCacheCopy);
+            return lastCellsCountCacheCopy;
         }
         CellsCount lastCellsCount = new CellsCount();
         SQLiteDatabase db = helper.getReadableDatabase();
@@ -255,10 +257,11 @@ public class MeasurementsDatabase {
     }
 
     public Statistics getMeasurementsStatistics() {
-        // Try to get from cache then read from DB
-        if (this.lastStatisticsCache != null) {
-            Log.d("getMeasurementsStatistics(): Value from cache: %s", this.lastStatisticsCache);
-            return this.lastStatisticsCache;
+        // Try to get from cache then read from DB (copy to local to avoid null if invalidated in the meantime)
+        Statistics lastStatisticsCacheCopy = this.lastStatisticsCache;
+        if (lastStatisticsCacheCopy != null) {
+            Log.d("getMeasurementsStatistics(): Value from cache: %s", lastStatisticsCacheCopy);
+            return lastStatisticsCacheCopy;
         }
         Statistics stats = new Statistics();
         SQLiteDatabase db = helper.getReadableDatabase();
