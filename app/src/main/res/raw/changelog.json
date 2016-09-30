@@ -1,11 +1,13 @@
 {
   "Entries": [
     {
-      "VersionCode": 1130013,
-      "Title": "Changes in version 1.13.0-beta1",
-      "Description": "Join Tower Collector community on <a href=\"https://www.facebook.com/towercollector/\">Facebook (new!)</a> or <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> to get help and share your ideas :)",
+      "VersionCode": 1130014,
+      "Title": "Changes in version 1.13.0",
+      "Description": "Join Tower Collector community on <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> or <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> to get help and share your ideas :)",
       "Messages": [
-        "Improved app performance and shortened startup time."
+        "Improved app performance and shortened startup time.",
+        "Fixed crash when refreshing statistics.",
+        "Fixed formatting issue in CSV files when GPS altitude over 1000 m."
       ]
     },
     {
@@ -40,16 +42,6 @@
       "Title": "Changes in version 1.9.3",
       "Messages": [
         "Fixed 'GPS status' and 'incorrect system time' information not updated correctly."
-      ]
-    },
-    {
-      "VersionCode": 1090207,
-      "Title": "Changes in version 1.9.2",
-      "Messages": [
-        "Fixed crash when stopping Collector on some devices.",
-        "Fixed network type settings not opened on Android Ice Cream Sandwich.",
-        "Hidden 'Network type' menu item if system is unable to open it.",
-        "Improved error handling."
       ]
     }
   ]
