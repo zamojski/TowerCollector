@@ -15,6 +15,8 @@ public abstract class CsvFormatter implements ICsvFormatter {
 
     protected static final NumberFormat coordsDoubleFormatter;
 
+    protected static final NumberFormat intFormatter;
+
     protected static String deviceName;
 
     static {
@@ -23,10 +25,18 @@ public abstract class CsvFormatter implements ICsvFormatter {
         coordsDoubleFormatter.setMinimumFractionDigits(8);
         coordsDoubleFormatter.setMaximumFractionDigits(12);
 
+        intFormatter = NumberFormat.getNumberInstance(LOCALE);
+        intFormatter.setParseIntegerOnly(true);
+        intFormatter.setGroupingUsed(false);
+
         deviceName = ApkUtils.getDeviceName();
     }
 
     protected String formatCoordinate(double value) {
         return coordsDoubleFormatter.format(value);
+    }
+
+    protected String formatInt(int value) {
+        return intFormatter.format(value);
     }
 }

@@ -42,17 +42,17 @@ public class CsvExportFormatter extends CsvFormatter {
         // mcc value only when defined
         int mcc = m.getMcc();
         if (mcc != Measurement.UNKNOWN_CID)
-            sb.append(mcc);
+            sb.append(formatInt(mcc));
         sb.append(',');
-        sb.append(m.getMnc());
+        sb.append(formatInt(m.getMnc()));
         sb.append(',');
-        sb.append(m.getLac());
+        sb.append(formatInt(m.getLac()));
         sb.append(',');
-        sb.append(m.getCid());
+        sb.append(formatInt(m.getCid()));
         sb.append(',');
         int psc = m.getPsc();
         if (psc != Measurement.UNKNOWN_CID)
-            sb.append(psc);
+            sb.append(formatInt(psc));
         sb.append(',');
 
         sb.append(formatAsuSignal(m.getAsu()));
@@ -61,7 +61,7 @@ public class CsvExportFormatter extends CsvFormatter {
         sb.append(',');
         int ta = m.getTa();
         if (ta != Measurement.UNKNOWN_SIGNAL)
-            sb.append(ta);
+            sb.append(formatInt(ta));
         sb.append(',');
 
         sb.append(formatCoordinate(m.getLatitude()));

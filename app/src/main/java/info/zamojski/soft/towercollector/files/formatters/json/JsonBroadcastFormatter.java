@@ -27,6 +27,8 @@ public class JsonBroadcastFormatter implements IJsonFormatter {
     private static final NumberFormat gpsDoubleFormatter;
     private static final SimpleDateFormat exportDateFormatter;
 
+    protected static final NumberFormat intFormatter;
+
     private static final ICellUtils cellUtils;
 
     static {
@@ -34,11 +36,18 @@ public class JsonBroadcastFormatter implements IJsonFormatter {
         coordsDoubleFormatter.setGroupingUsed(false);
         coordsDoubleFormatter.setMinimumFractionDigits(8);
         coordsDoubleFormatter.setMaximumFractionDigits(12);
+
         gpsDoubleFormatter = NumberFormat.getNumberInstance(LOCALE);
         gpsDoubleFormatter.setGroupingUsed(false);
         gpsDoubleFormatter.setMinimumFractionDigits(0);
         gpsDoubleFormatter.setMaximumFractionDigits(2);
+
+        intFormatter = NumberFormat.getNumberInstance(LOCALE);
+        intFormatter.setParseIntegerOnly(true);
+        intFormatter.setGroupingUsed(false);
+
         cellUtils = new GeneralCellUtils();
+
         exportDateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", LOCALE);
         exportDateFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
     }
@@ -63,9 +72,9 @@ public class JsonBroadcastFormatter implements IJsonFormatter {
         for (Measurement m : ms) {
             JSONObject cell = new JSONObject();
             cell.put("mcc", formatNullable(m.getMcc(), Measurement.UNKNOWN_CID));
-            cell.put("mnc", m.getMnc());
-            cell.put("lac", m.getLac());
-            cell.put("cell_id", m.getCid());
+            cell.put("mnc", formatInt(m.getMnc()));
+            cell.put("lac", formatInt(m.getLac()));
+            cell.put("cell_id", formatInt(m.getCid()));
             cell.put("psc", formatNullable(m.getPsc(), Measurement.UNKNOWN_CID));
             cell.put("asu", formatNullable(m.getAsu(), Measurement.UNKNOWN_SIGNAL));
             cell.put("dbm", formatNullable(m.getDbm(), Measurement.UNKNOWN_SIGNAL));
@@ -80,7 +89,7 @@ public class JsonBroadcastFormatter implements IJsonFormatter {
 
     private Object formatNullable(int value, int invalid) {
         if (value != invalid)
-            return value;
+            return formatInt(value);
         return JSONObject.NULL;
     }
 
@@ -94,5 +103,9 @@ public class JsonBroadcastFormatter implements IJsonFormatter {
 
     private String formatDate(long timestamp) {
         return exportDateFormatter.format(new Date(timestamp));
+    }
+
+    private String formatInt(int value) {
+        return intFormatter.format(value);
     }
 }
