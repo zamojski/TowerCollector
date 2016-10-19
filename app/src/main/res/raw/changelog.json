@@ -1,6 +1,11 @@
 {
   "Entries": [
     {
+      "VersionCode": 1130015,
+      "Title": "Don't miss the chance!",
+      "Description": "Don't let the others decide, have influence - <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSe_JGw4u5z5MXQ5krsLMbcKUVRYFpbxHDsAvdutMLuJQ0ks9Q/viewform\">vote for your most wanted features!</a><br/><br/>Join Tower Collector community on <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> or <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> to get updated :)"
+    },
+    {
       "VersionCode": 1130014,
       "Title": "Changes in version 1.13.0",
       "Description": "Join Tower Collector community on <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> or <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> to get help and share your ideas :)",
@@ -35,13 +40,6 @@
       "Messages": [
         "Introducing support for granting Android permissions at runtime.",
         "Improved display of 'restart needed' message in Preferences."
-      ]
-    },
-    {
-      "VersionCode": 1090308,
-      "Title": "Changes in version 1.9.3",
-      "Messages": [
-        "Fixed 'GPS status' and 'incorrect system time' information not updated correctly."
       ]
     }
   ]
