@@ -8,48 +8,26 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.TimeZone;
 
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.providers.GeneralCellUtils;
 import info.zamojski.soft.towercollector.providers.ICellUtils;
 
-public class JsonBroadcastFormatter implements IJsonFormatter {
+public class JsonBroadcastFormatter extends JsonFormatterBase implements IJsonFormatter {
 
-    protected static final Locale LOCALE = Locale.ENGLISH;
-
-    private static final NumberFormat coordsDoubleFormatter;
-    private static final NumberFormat gpsDoubleFormatter;
     private static final SimpleDateFormat exportDateFormatter;
-
-    protected static final NumberFormat intFormatter;
 
     private static final ICellUtils cellUtils;
 
     static {
-        coordsDoubleFormatter = NumberFormat.getNumberInstance(LOCALE);
-        coordsDoubleFormatter.setGroupingUsed(false);
-        coordsDoubleFormatter.setMinimumFractionDigits(8);
-        coordsDoubleFormatter.setMaximumFractionDigits(12);
-
-        gpsDoubleFormatter = NumberFormat.getNumberInstance(LOCALE);
-        gpsDoubleFormatter.setGroupingUsed(false);
-        gpsDoubleFormatter.setMinimumFractionDigits(0);
-        gpsDoubleFormatter.setMaximumFractionDigits(2);
-
-        intFormatter = NumberFormat.getNumberInstance(LOCALE);
-        intFormatter.setParseIntegerOnly(true);
-        intFormatter.setGroupingUsed(false);
-
-        cellUtils = new GeneralCellUtils();
-
         exportDateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", LOCALE);
         exportDateFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+        cellUtils = new GeneralCellUtils();
     }
 
     @Override
@@ -87,25 +65,7 @@ public class JsonBroadcastFormatter implements IJsonFormatter {
         return root.toString();
     }
 
-    private Object formatNullable(int value, int invalid) {
-        if (value != invalid)
-            return formatInt(value);
-        return JSONObject.NULL;
-    }
-
-    private String formatCoordinate(double value) {
-        return coordsDoubleFormatter.format(value);
-    }
-
-    private String formatGpsValue(double value) {
-        return gpsDoubleFormatter.format(value);
-    }
-
     private String formatDate(long timestamp) {
         return exportDateFormatter.format(new Date(timestamp));
-    }
-
-    private String formatInt(int value) {
-        return intFormatter.format(value);
     }
 }
