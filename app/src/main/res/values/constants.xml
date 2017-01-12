@@ -7,6 +7,7 @@
     <string name="app_name" translatable="false">Tower Collector</string>
     <string name="app_id" translatable="false">TowerCollector %s</string>
     <string name="upload_url_opencellid_org" translatable="false">http://www.opencellid.org/measure/uploadCsv</string>
+    <string name="upload_url_mls" translatable="false">https://location.services.mozilla.com/v2/geosubmit?key=%s</string>
     <string name="preferences_current_value_summary_format" translatable="false"><![CDATA[<br/><b>[%s]</b>]]></string>
     <string name="preferences_show_introduction_key" translatable="false">show_introduction</string>
 
