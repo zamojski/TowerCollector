@@ -1,6 +1,15 @@
 {
   "Entries": [
     {
+      "VersionCode": 1140016,
+      "Title": "Changes in version 1.14.0",
+      "Description": "It's almost 8 months since last update of Tower Collector. During that time many private matters occupied almost all of my spare time. I plan to come back to more active development soon. Meanwhile OpenCellID database has been acquired by Unwired Labs which become new maintainer. I wish them good luck and hope they will cooperate with OCID community as ENAiKOON did for couple of years!",
+      "Messages": [
+        "Updated API key validation rule to support new OCID format.",
+        "Updated API key (token) registration link."
+      ]
+    },
+    {
       "VersionCode": 1130015,
       "Title": "Don't miss the chance!",
       "Description": "Don't let the others decide, have influence - <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSe_JGw4u5z5MXQ5krsLMbcKUVRYFpbxHDsAvdutMLuJQ0ks9Q/viewform\">vote for your most wanted features!</a><br/><br/>Join Tower Collector community on <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> or <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> to get updated :)"
@@ -32,14 +41,6 @@
         "Added number of main and neighboring cells to main screen.",
         "Improved insufficient permissions handling.",
         "Updated external components."
-      ]
-    },
-    {
-      "VersionCode": 1100010,
-      "Title": "Changes in version 1.10.0",
-      "Messages": [
-        "Introducing support for granting Android permissions at runtime.",
-        "Improved display of 'restart needed' message in Preferences."
       ]
     }
   ]
