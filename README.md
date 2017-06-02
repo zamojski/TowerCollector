@@ -12,7 +12,7 @@ https://play.google.com/store/apps/details?id=info.zamojski.soft.towercollector
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" height="80">](https://play.google.com/store/apps/details?id=info.zamojski.soft.towercollector)
 
 ## Building
-This project is build using Android Studio 2.1.
+This project is build using Android Studio 2.3.2.
 
 To build your own signed apk go to "[app/properties](app/properties)" and:
 
