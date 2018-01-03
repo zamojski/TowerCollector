@@ -13,4 +13,9 @@ public class GpsUtils {
         LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
+
+    public static boolean isGpsAvailable(Context context) {
+        LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        return (locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER));
+    }
 }

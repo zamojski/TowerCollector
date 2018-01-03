@@ -24,6 +24,7 @@ import info.zamojski.soft.towercollector.collector.validators.SystemTimeValidato
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
 import info.zamojski.soft.towercollector.model.Statistics;
+import info.zamojski.soft.towercollector.utils.GpsUtils;
 import info.zamojski.soft.towercollector.utils.NetworkTypeUtils;
 import info.zamojski.soft.towercollector.utils.MobileUtils;
 
@@ -62,6 +63,7 @@ import android.telephony.NeighboringCellInfo;
 import android.telephony.PhoneStateListener;
 import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
+import android.widget.Toast;
 
 import trikita.log.Log;
 
@@ -180,6 +182,12 @@ public class CollectorService extends Service {
         // listen for RSSI (ASU) and cell change
         periodicalPhoneStateListener = new Timer();
         registerPhoneStateListener();
+        // make sure GPS is available on the device otherwise the following lines will throw an exception
+        if(!GpsUtils.isGpsAvailable(this)) {
+            Log.w("onStartCommand(): GPS is unavailable, stopping");
+            Toast.makeText(this, R.string.collector_gps_unavailable, Toast.LENGTH_LONG).show();
+            stopSelf();
+        }
         // listen for GPS location change
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, STATIC_LISTENER_INTERVAL, STATIC_LISTENER_DISTANCE, staticLocationListener);
         Log.d("onStartCommand(): Static location listener started");

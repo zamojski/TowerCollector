@@ -89,6 +89,7 @@
     <string name="collector_notification_title">Collecting</string>
     <string name="collector_notification_stats">Today %1$d measurements of %2$d cells.</string>
     <string name="collector_notification_status">GPS status: %s.</string>
+    <string name="collector_gps_unavailable">Cannot start collecting because GPS is unavailable.</string>
     <string name="uploader_notification_title">Uploading</string>
     <string name="uploader_notification_progress_info">Part %1$d of %2$d. Select to abort.</string>
     <string name="uploader_result_dialog_title">Upload result</string>
