@@ -167,6 +167,10 @@ public class UploaderService extends Service {
                 messageId = R.string.uploader_rejected;
                 descriptionId = R.string.uploader_rejected_description;
                 break;
+            case PermissionDenied:
+                messageId = R.string.permission_denied;
+                descriptionId = R.string.permission_uploader_denied_message;
+                break;
         }
         Toast.makeText(this, messageId, Toast.LENGTH_LONG).show();
         // update notification according to result
@@ -300,69 +304,75 @@ public class UploaderService extends Service {
                 //    Log.d(INNER_TAG, "run(): Uploaded file generation problem", ex);
                 //}
                 // send request
-                ResponseData response = NetworkHelper.sendPost(uploadUrl, appId, apiKey, csvContent);
-                Log.d(INNER_TAG, String.format("run(): Server response: %s", response));
-                // check whether it makes sense to continue
-                if (response.getCode() == 0) {
-                    uploadResult = UploadResult.ConnectionError;
-                    break;
-                } else if (response.getCode() == 400) {
-                    uploadResult = UploadResult.InvalidInputData;
-                    break;
-                } else if (response.getCode() == 401 || response.getCode() == 403) {
-                    uploadResult = UploadResult.InvalidApiKey;
-                    break;
-                } else if (response.getCode() == 500) {
-                    uploadResult = UploadResult.ServerInternalError;
-                    break;
-                } else if (response.getCode() == 503) {
-                    uploadResult = UploadResult.ServerTemporarilyNotAvailable;
-                    break;
-                } else if (response.getCode() >= 400 && response.getCode() <= 599) {
-                    uploadResult = UploadResult.ServerNotAvailable;
-                    break;
-                } else {
-                    // check response
-                    String responseContent = response.getContent();
-                    if (TextUtils.isEmpty(responseContent)) {
-                        uploadResult = UploadResult.Rejected;
+                try {
+                    ResponseData response = NetworkHelper.sendPost(uploadUrl, appId, apiKey, csvContent);
+                    Log.d(INNER_TAG, String.format("run(): Server response: %s", response));
+                    // check whether it makes sense to continue
+                    if (response.getCode() == 0) {
+                        uploadResult = UploadResult.ConnectionError;
+                        break;
+                    } else if (response.getCode() == 400) {
+                        uploadResult = UploadResult.InvalidInputData;
+                        break;
+                    } else if (response.getCode() == 401 || response.getCode() == 403) {
+                        uploadResult = UploadResult.InvalidApiKey;
+                        break;
+                    } else if (response.getCode() == 500) {
+                        uploadResult = UploadResult.ServerInternalError;
+                        break;
+                    } else if (response.getCode() == 503) {
+                        uploadResult = UploadResult.ServerTemporarilyNotAvailable;
+                        break;
+                    } else if (response.getCode() >= 400 && response.getCode() <= 599) {
+                        uploadResult = UploadResult.ServerNotAvailable;
                         break;
                     } else {
-                        String trimmedResponseContent = responseContent.trim();
-                        // validate response content (just for sure)
-                        if (trimmedResponseContent.equalsIgnoreCase("Error: Authorization failed. Check your API key.")) {
-                            uploadResult = UploadResult.InvalidApiKey;
+                        // check response
+                        String responseContent = response.getContent();
+                        if (TextUtils.isEmpty(responseContent)) {
+                            uploadResult = UploadResult.Rejected;
                             break;
                         } else {
-                            if (response.getCode() == 200 && "0,OK".equalsIgnoreCase(trimmedResponseContent)) {
-                                Log.d(INNER_TAG, String.format("run(): Uploaded %s measurements", measurements.size()));
-                                uploadResult = UploadResult.PartiallySucceeded;
-                                succeededParts++;
-                            } else {
-                                // don't report captive portals
-                                if (response.getCode() != 302) {
-                                    RuntimeException ex = new UploadFailedException(response);
-                                    ACRA.getErrorReporter().handleSilentException(ex);
-                                }
-                                uploadResult = UploadResult.Failed;
+                            String trimmedResponseContent = responseContent.trim();
+                            // validate response content (just for sure)
+                            if (trimmedResponseContent.equalsIgnoreCase("Error: Authorization failed. Check your API key.")) {
+                                uploadResult = UploadResult.InvalidApiKey;
                                 break;
+                            } else {
+                                if (response.getCode() == 200 && "0,OK".equalsIgnoreCase(trimmedResponseContent)) {
+                                    Log.d(INNER_TAG, String.format("run(): Uploaded %s measurements", measurements.size()));
+                                    uploadResult = UploadResult.PartiallySucceeded;
+                                    succeededParts++;
+                                } else {
+                                    // don't report captive portals
+                                    if (response.getCode() != 302) {
+                                        RuntimeException ex = new UploadFailedException(response);
+                                        ACRA.getErrorReporter().handleSilentException(ex);
+                                    }
+                                    uploadResult = UploadResult.Failed;
+                                    break;
+                                }
                             }
                         }
                     }
-                }
-                // delete sent measurements
-                int j = 0;
-                int[] rowIds = new int[measurements.size()];
-                for (Measurement m : measurements) {
-                    rowIds[j++] = m.getRowId();
-                }
-                int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).deleteMeasurements(rowIds);
-                if (numberOfDeleted == 0) {
-                    uploadResult = UploadResult.DeleteFailed;
+                    // delete sent measurements
+                    int j = 0;
+                    int[] rowIds = new int[measurements.size()];
+                    for (Measurement m : measurements) {
+                        rowIds[j++] = m.getRowId();
+                    }
+                    int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).deleteMeasurements(rowIds);
+                    if (numberOfDeleted == 0) {
+                        uploadResult = UploadResult.DeleteFailed;
+                        break;
+                    }
+                    // broadcast part uploaded (if error not encountered earlier)
+                    EventBus.getDefault().post(new PrintMainWindowEvent());
+                } catch (SecurityException ex) {
+                    Log.e("run(): internet permission is denied", ex);
+                    uploadResult = UploadResult.PermissionDenied;
                     break;
                 }
-                // broadcast part uploaded (if error not encountered earlier)
-                EventBus.getDefault().post(new PrintMainWindowEvent());
             }
             // sum up results and update notification
             if (uploadResult == UploadResult.PartiallySucceeded) {

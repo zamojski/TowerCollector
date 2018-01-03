@@ -5,5 +5,5 @@
 package info.zamojski.soft.towercollector.enums;
 
 public enum UploadResult {
-    NotStarted, NoData, InvalidApiKey, InvalidInputData, Cancelled, DeleteFailed, ConnectionError, ServerInternalError, ServerTemporarilyNotAvailable, ServerNotAvailable, Failed, Rejected, Succeeded, PartiallySucceeded
+    NotStarted, NoData, InvalidApiKey, InvalidInputData, Cancelled, DeleteFailed, ConnectionError, ServerInternalError, ServerTemporarilyNotAvailable, ServerNotAvailable, Failed, Rejected, Succeeded, PartiallySucceeded, PermissionDenied
 }

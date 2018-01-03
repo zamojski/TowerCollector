@@ -101,6 +101,5 @@ public class NetworkHelper {
         public String toString() {
             return "ResponseData [code=" + code + ", content=" + content + "]";
         }
-
     }
 }

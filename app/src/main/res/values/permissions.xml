@@ -16,4 +16,5 @@
     <string name="permission_collector_denied_message">Cancelling measurement collecting due to denied permissions</string>
     <string name="permission_collector_never_ask_again_message">Measurement collecting is unavailable due to denied location and/or phone permissions</string>
     <string name="permission_collector_denied_intent_message">Cancelling measurement collecting due to denied permissions, open the app to grant necessary permissions first</string>
+    <string name="permission_uploader_denied_message">Upload cancelled due to denied internet permission.</string>
 </resources>
