@@ -603,7 +603,7 @@ public class CollectorService extends Service {
     }
 
     private void updateGpsStatus(Location location, long gpsTimestamp, long systemTimestamp) {
-        GpsStatus status = getGpsStatus();
+        GpsStatus status;
         if (location == null) {
             status = GpsStatus.Initializing;
         } else if (!locationValidator.isUpToDate(gpsTimestamp, systemTimestamp)) {
@@ -618,6 +618,10 @@ public class CollectorService extends Service {
     }
 
     private void updateSystemTimeChange(Location location) {
+        if(location == null) {
+            Log.w("updateSystemTimeChange(): Location is null");
+            return;
+        }
         boolean valid = systemTimeValidator.isValid(System.currentTimeMillis(), location.getTime());
         if (valid) {
             if (lastIsSystemTimeValid != Validity.Valid) {
@@ -756,6 +760,10 @@ public class CollectorService extends Service {
     }
 
     public void setLastGpsAccuracy(Location location) {
+        if(location == null) {
+            Log.w("setLastGpsAccuracy(): Location is null");
+            return;
+        }
         Log.d("setLastGpsAccuracy(): Setting last gps accuracy = %s", location.getAccuracy());
         this.lastGpsAccuracy = (location.hasAccuracy() ? location.getAccuracy() : 1000);
     }
