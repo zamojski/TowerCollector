@@ -11,10 +11,10 @@ import java.util.List;
 import org.acra.ACRA;
 import org.acra.ACRAConstants;
 import org.acra.ReportField;
-import org.acra.config.ConfigurationBuilder;
-import org.acra.sender.HttpSender.Method;
-import org.acra.sender.HttpSender.Type;
-
+import org.acra.config.CoreConfigurationBuilder;
+import org.acra.config.HttpSenderConfigurationBuilder;
+import org.acra.data.StringFormat;
+import org.acra.sender.HttpSender;
 import org.greenrobot.eventbus.EventBus;
 
 import info.zamojski.soft.towercollector.analytics.GoogleAnalyticsReportingService;
@@ -131,18 +131,22 @@ public class MyApplication extends Application {
 
     private void initACRA() {
         Log.d("initACRA(): Initializing ACRA");
-        ConfigurationBuilder configBuilder = new ConfigurationBuilder(this);
+
+        CoreConfigurationBuilder configBuilder = new CoreConfigurationBuilder(this);
         // Configure connection
+        configBuilder.setBuildConfigClass(BuildConfig.class);
         configBuilder.setSendReportsInDevMode(BuildConfig.ACRA_SEND_REPORTS_IN_DEV_MODE);
-        configBuilder.setFormUri(BuildConfig.ACRA_FORM_URI);
-        configBuilder.setFormUriBasicAuthLogin(BuildConfig.ACRA_FORM_URI_BASIC_AUTH_LOGIN);
-        configBuilder.setFormUriBasicAuthPassword(BuildConfig.ACRA_FORM_URI_BASIC_AUTH_PASSWORD);
-        configBuilder.setHttpMethod(Method.valueOf(BuildConfig.ACRA_HTTP_METHOD));
-        configBuilder.setReportType(Type.valueOf(BuildConfig.ACRA_REPORT_TYPE));
+        configBuilder.setReportFormat(StringFormat.valueOf(BuildConfig.ACRA_REPORT_TYPE));
         configBuilder.setExcludeMatchingSharedPreferencesKeys(new String[]{"api_key"});
+        configBuilder.setReportContent(getCustomAcraReportFields());
         // Configure reported content
-        ReportField[] customReportContent = getCustomAcraReportFields();
-        configBuilder.setCustomReportContent(customReportContent);
+        HttpSenderConfigurationBuilder httpPluginConfigBuilder = configBuilder.getPluginConfigurationBuilder(HttpSenderConfigurationBuilder.class);
+        httpPluginConfigBuilder.setUri(BuildConfig.ACRA_FORM_URI);
+        httpPluginConfigBuilder.setBasicAuthLogin(BuildConfig.ACRA_FORM_URI_BASIC_AUTH_LOGIN);
+        httpPluginConfigBuilder.setBasicAuthPassword(BuildConfig.ACRA_FORM_URI_BASIC_AUTH_PASSWORD);
+        httpPluginConfigBuilder.setHttpMethod(HttpSender.Method.valueOf(BuildConfig.ACRA_HTTP_METHOD));
+        httpPluginConfigBuilder.setEnabled(true);
+
         ACRA.init(this, configBuilder);
     }
 

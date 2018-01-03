@@ -87,7 +87,7 @@ dependencies {
     compile 'com.android.support:design:26.1.0'
     compile 'com.google.android.gms:play-services-analytics:9.8.0'
     compile 'org.greenrobot:eventbus:3.1.1'
-    compile 'ch.acra:acra:4.9.1'
+    compile 'ch.acra:acra-http:5.0.0'
     compile 'org.sufficientlysecure:html-textview:3.5'
     compile 'com.github.kevinsawicki:http-request:6.0'
     compile 'co.trikita:log:1.1.5'
