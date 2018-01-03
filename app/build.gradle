@@ -63,11 +63,14 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
+    flavorDimensions "default"
     productFlavors {
         develop {
             versionName android.defaultConfig.versionName + '-dev'
+            dimension "default"
         }
         stable {
+            dimension "default"
         }
     }
     lintOptions {
