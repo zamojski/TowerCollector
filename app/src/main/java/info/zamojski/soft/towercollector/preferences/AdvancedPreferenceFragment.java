@@ -55,7 +55,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
                 } else {
                     Log.d("onFileLoggingLevelChangeListener(): Requesting permission");
                     // NOTE: delegate the permission handling to generated method
-                    AdvancedPreferenceFragmentPermissionsDispatcher.requestLoggerChangeWithCheck(AdvancedPreferenceFragment.this);
+                    AdvancedPreferenceFragmentPermissionsDispatcher.requestLoggerChangeWithPermissionCheck(AdvancedPreferenceFragment.this);
                 }
                 return true;
             }

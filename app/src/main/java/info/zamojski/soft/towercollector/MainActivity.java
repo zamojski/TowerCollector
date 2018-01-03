@@ -271,7 +271,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 return true;
             case R.id.main_menu_export:
                 // NOTE: delegate the permission handling to generated method
-                MainActivityPermissionsDispatcher.startExportAsyncTaskWithCheck(this);
+                MainActivityPermissionsDispatcher.startExportAsyncTaskWithPermissionCheck(this);
                 return true;
             case R.id.main_menu_preferences:
                 startPreferencesActivity();
@@ -641,7 +641,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             // checking for airplane mode
             boolean inAirplaneMode = displayInAirplaneModeDialog();
             if (!inAirplaneMode) {
-                MainActivityPermissionsDispatcher.startCollectorServiceWithCheck(MainActivity.this);
+                MainActivityPermissionsDispatcher.startCollectorServiceWithPermissionCheck(MainActivity.this);
             }
         }
     }
