@@ -4,6 +4,7 @@
 
 package info.zamojski.soft.towercollector.controls;
 
+import org.sufficientlysecure.htmltextview.HtmlResImageGetter;
 import org.sufficientlysecure.htmltextview.HtmlTextView;
 
 import info.zamojski.soft.towercollector.R;
@@ -36,9 +37,9 @@ public class DialogManager {
         HtmlTextView messageView = (HtmlTextView) dialogLayout.findViewById(R.id.html_info_dialog_textview);
         messageView.setTextAppearance(context, (largeText ? android.R.style.TextAppearance_Medium : android.R.style.TextAppearance_Small));
         if (messageId != null) {
-            messageView.setHtmlFromRawResource(context, messageId, true);
+            messageView.setHtml(messageId, new HtmlResImageGetter(messageView));
         } else {
-            messageView.setHtmlFromString(message, true);
+            messageView.setHtml(message, new HtmlResImageGetter(messageView));
         }
         // don't move above settings content because it won't work
         messageView.setTextIsSelectable(textIsSelectable);
