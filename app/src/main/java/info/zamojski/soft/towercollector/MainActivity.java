@@ -4,46 +4,7 @@
 
 package info.zamojski.soft.towercollector;
 
-import info.zamojski.soft.towercollector.analytics.IntentSource;
-import info.zamojski.soft.towercollector.enums.FileType;
-import info.zamojski.soft.towercollector.enums.MeansOfTransport;
-import info.zamojski.soft.towercollector.enums.Validity;
-import info.zamojski.soft.towercollector.events.CollectorStartedEvent;
-import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
-import info.zamojski.soft.towercollector.events.SystemTimeChangedEvent;
-import info.zamojski.soft.towercollector.controls.DialogManager;
-import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
-import info.zamojski.soft.towercollector.model.ChangelogInfo;
-import info.zamojski.soft.towercollector.model.UpdateInfo;
-import info.zamojski.soft.towercollector.model.UpdateInfo.DownloadLink;
-import info.zamojski.soft.towercollector.providers.ChangelogProvider;
-import info.zamojski.soft.towercollector.providers.HtmlChangelogFormatter;
-import info.zamojski.soft.towercollector.tasks.ExportFileAsyncTask;
-import info.zamojski.soft.towercollector.tasks.UpdateCheckAsyncTask;
-import info.zamojski.soft.towercollector.utils.ApkUtils;
-import info.zamojski.soft.towercollector.utils.BackgroundTaskHelper;
-import info.zamojski.soft.towercollector.utils.DateUtils;
-import info.zamojski.soft.towercollector.utils.FileUtils;
-import info.zamojski.soft.towercollector.utils.GpsUtils;
-import info.zamojski.soft.towercollector.utils.NetworkUtils;
-import info.zamojski.soft.towercollector.utils.PermissionUtils;
-import info.zamojski.soft.towercollector.utils.StorageUtils;
-import info.zamojski.soft.towercollector.utils.UpdateDialogArrayAdapter;
-import info.zamojski.soft.towercollector.utils.StringUtils;
-import info.zamojski.soft.towercollector.utils.Validator;
-import info.zamojski.soft.towercollector.views.MainActivityPagerAdapter;
-
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicBoolean;
-
-import org.acra.ACRA;
-
 import android.Manifest;
-import android.app.ActivityManager;
-import android.app.ActivityManager.RunningServiceInfo;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
@@ -68,15 +29,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
-
-import permissions.dispatcher.NeedsPermission;
-import permissions.dispatcher.OnNeverAskAgain;
-import permissions.dispatcher.OnPermissionDenied;
-import permissions.dispatcher.OnShowRationale;
-import permissions.dispatcher.PermissionRequest;
-import permissions.dispatcher.RuntimePermissions;
-import trikita.log.Log;
-
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -91,9 +43,52 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.acra.ACRA;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import info.zamojski.soft.towercollector.analytics.IntentSource;
+import info.zamojski.soft.towercollector.controls.DialogManager;
+import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
+import info.zamojski.soft.towercollector.enums.FileType;
+import info.zamojski.soft.towercollector.enums.MeansOfTransport;
+import info.zamojski.soft.towercollector.enums.Validity;
+import info.zamojski.soft.towercollector.events.CollectorStartedEvent;
+import info.zamojski.soft.towercollector.events.GpsStatusChangedEvent;
+import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
+import info.zamojski.soft.towercollector.events.SystemTimeChangedEvent;
+import info.zamojski.soft.towercollector.model.ChangelogInfo;
+import info.zamojski.soft.towercollector.model.UpdateInfo;
+import info.zamojski.soft.towercollector.model.UpdateInfo.DownloadLink;
+import info.zamojski.soft.towercollector.providers.ChangelogProvider;
+import info.zamojski.soft.towercollector.providers.HtmlChangelogFormatter;
+import info.zamojski.soft.towercollector.tasks.ExportFileAsyncTask;
+import info.zamojski.soft.towercollector.tasks.UpdateCheckAsyncTask;
+import info.zamojski.soft.towercollector.utils.ApkUtils;
+import info.zamojski.soft.towercollector.utils.BackgroundTaskHelper;
+import info.zamojski.soft.towercollector.utils.DateUtils;
+import info.zamojski.soft.towercollector.utils.FileUtils;
+import info.zamojski.soft.towercollector.utils.GpsUtils;
+import info.zamojski.soft.towercollector.utils.NetworkUtils;
+import info.zamojski.soft.towercollector.utils.PermissionUtils;
+import info.zamojski.soft.towercollector.utils.StorageUtils;
+import info.zamojski.soft.towercollector.utils.StringUtils;
+import info.zamojski.soft.towercollector.utils.UpdateDialogArrayAdapter;
+import info.zamojski.soft.towercollector.utils.Validator;
+import info.zamojski.soft.towercollector.views.MainActivityPagerAdapter;
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.OnNeverAskAgain;
+import permissions.dispatcher.OnPermissionDenied;
+import permissions.dispatcher.OnShowRationale;
+import permissions.dispatcher.PermissionRequest;
+import permissions.dispatcher.RuntimePermissions;
+import trikita.log.Log;
 
 @RuntimePermissions
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
@@ -1057,6 +1052,15 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(CollectorStartedEvent event) {
         bindService(event.getIntent(), collectorServiceConnection, 0);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onEvent(GpsStatusChangedEvent event) {
+        if (!event.isEnabled()) {
+            isCollectorServiceRunning.set(false);
+            invalidateOptionsMenu();
+            hideInvalidSystemTime();
+        }
     }
 
     // ========== INNER OBJECTS ========== //

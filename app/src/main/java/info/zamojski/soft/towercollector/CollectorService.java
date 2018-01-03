@@ -181,21 +181,30 @@ public class CollectorService extends Service {
         locationValidator = new LocationValidator(transportMode.getAccuracy());
         // listen for RSSI (ASU) and cell change
         periodicalPhoneStateListener = new Timer();
-        registerPhoneStateListener();
+        try {
+            registerPhoneStateListener();
+        } catch (SecurityException ex) {
+            Log.e("onStartCommand(): coarse location permission is denied", ex);
+            stopSelfOnError();
+        }
         // make sure GPS is available on the device otherwise the following lines will throw an exception
-        if(!GpsUtils.isGpsAvailable(this)) {
+        if (!GpsUtils.isGpsAvailable(this)) {
             Log.w("onStartCommand(): GPS is unavailable, stopping");
             Toast.makeText(this, R.string.collector_gps_unavailable, Toast.LENGTH_LONG).show();
             stopSelf();
         }
-        // listen for GPS location change
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, STATIC_LISTENER_INTERVAL, STATIC_LISTENER_DISTANCE, staticLocationListener);
-        Log.d("onStartCommand(): Static location listener started");
-        synchronized (dynamicLocationListenerLock) {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, currentIntervalValue.get(), 0, dynamicLocationListener);
-            Log.d("onStartCommand(): Service started with min distance: 0 and min time: %s", currentIntervalValue.get());
+        try {
+            // listen for GPS location change
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, STATIC_LISTENER_INTERVAL, STATIC_LISTENER_DISTANCE, staticLocationListener);
+            Log.d("onStartCommand(): Static location listener started");
+            synchronized (dynamicLocationListenerLock) {
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, currentIntervalValue.get(), 0, dynamicLocationListener);
+                Log.d("onStartCommand(): Service started with min distance: 0 and min time: %s", currentIntervalValue.get());
+            }
+        } catch (SecurityException ex) {
+            Log.e("onStartCommand(): fine location permission is denied", ex);
+            stopSelfOnError();
         }
-
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         registerWakeLockAcquirer();
 
@@ -343,13 +352,18 @@ public class CollectorService extends Service {
             @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
             @Override
             public void run() {
-                List<CellInfo> cellInfo = telephonyManager.getAllCellInfo();
-                if (cellInfo == null) {
-                    Log.d(INNER_TAG, "run(): Null reported");
-                    return;
+                try {
+                    List<CellInfo> cellInfo = telephonyManager.getAllCellInfo();
+                    if (cellInfo == null) {
+                        Log.d(INNER_TAG, "run(): Null reported");
+                        return;
+                    }
+                    Log.d(INNER_TAG, String.format("run(): Number of cells: %s", cellInfo.size()));
+                    processCellInfo(cellInfo);
+                } catch (SecurityException ex) {
+                    Log.e(INNER_TAG, "run(): coarse location or phone  permission is denied", ex);
+                    stopSelfOnError();
                 }
-                Log.d(INNER_TAG, String.format("run(): Number of cells: %s", cellInfo.size()));
-                processCellInfo(cellInfo);
             }
         }, 0, CELL_UPDATE_INTERVAL);
         MyApplication.getAnalytics().sendCollectorApiVersionUsed(getString(R.string.preferences_collector_api_version_entries_value_api_17));
@@ -372,8 +386,14 @@ public class CollectorService extends Service {
 
             @Override
             public void onCellLocationChanged(CellLocation cellLocation) {
-                Log.d(INNER_TAG, String.format("onCellLocationChanged(): %s", cellLocation));
-                processCellLocation(cellLocation);
+                try {
+                    Log.d(INNER_TAG, String.format("onCellLocationChanged(): %s", cellLocation));
+                    List<NeighboringCellInfo> neighboringCells = telephonyManager.getNeighboringCellInfo();
+                    processCellLocation(cellLocation, neighboringCells);
+                } catch (SecurityException ex) {
+                    Log.e(INNER_TAG, "onCellLocationChanged(): coarse location or phone permission is denied", ex);
+                    stopSelfOnError();
+                }
             }
         };
         telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS | PhoneStateListener.LISTEN_CELL_LOCATION);
@@ -383,9 +403,15 @@ public class CollectorService extends Service {
 
             @Override
             public void run() {
-                CellLocation cellLocation = telephonyManager.getCellLocation();
-                Log.d(INNER_TAG, String.format("run(): %s", cellLocation));
-                processCellLocation(cellLocation);
+                try {
+                    CellLocation cellLocation = telephonyManager.getCellLocation();
+                    Log.d(INNER_TAG, String.format("run(): %s", cellLocation));
+                    List<NeighboringCellInfo> neighboringCells = telephonyManager.getNeighboringCellInfo();
+                    processCellLocation(cellLocation, neighboringCells);
+                } catch (SecurityException ex) {
+                    Log.e(INNER_TAG, "run(): coarse location or phone permission is denied", ex);
+                    stopSelfOnError();
+                }
             }
         }, 0, CELL_UPDATE_INTERVAL);
         MyApplication.getAnalytics().sendCollectorApiVersionUsed(getString(R.string.preferences_collector_api_version_entries_value_api_1));
@@ -395,7 +421,7 @@ public class CollectorService extends Service {
         measurementUpdater.setLastCellInfo(cellInfo);
     }
 
-    private void processCellLocation(CellLocation cellLocation) {
+    private void processCellLocation(CellLocation cellLocation, List<NeighboringCellInfo> neighboringCells) {
         // get network type
         int networkTypeInt = telephonyManager.getNetworkType();
         NetworkGroup networkType = NetworkTypeUtils.getNetworkGroup(networkTypeInt);
@@ -403,7 +429,6 @@ public class CollectorService extends Service {
         String networkOperatorCode = telephonyManager.getNetworkOperator();
         String networkOperatorName = telephonyManager.getNetworkOperatorName();
         Log.d("processCellLocation(): Operator code = '%s', name = '%s'", networkOperatorCode, networkOperatorName);
-        List<NeighboringCellInfo> neighboringCells = telephonyManager.getNeighboringCellInfo();
         Log.d("processCellLocation(): Reported %s neighboring cells", (neighboringCells != null ? neighboringCells.size() : null));
         measurementUpdater.setLastCellLocation(cellLocation, networkType, networkOperatorCode, networkOperatorName, neighboringCells);
     }
@@ -445,8 +470,7 @@ public class CollectorService extends Service {
         public void onLocationChanged(Location location) {
             Log.d(INNER_TAG, String.format("onLocationChanged(): %s", location));
             lastLocation = location;
-            long locationObtainedTime = System.currentTimeMillis();
-            lastLocationObtainedTime = locationObtainedTime;
+            lastLocationObtainedTime = System.currentTimeMillis();
             setLastGpsAccuracy(lastLocation);
             updateGpsStatus(lastLocation, lastLocationObtainedTime, System.currentTimeMillis());
             updateSystemTimeChange(lastLocation);
@@ -512,10 +536,15 @@ public class CollectorService extends Service {
             currentIntervalValue.set(interval);
             measurementUpdater.setMinDistanceAndInterval(transportMode.getDistance(), interval);
             // reconnect gps
-            synchronized (dynamicLocationListenerLock) {
-                locationManager.removeUpdates(dynamicLocationListener);
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, currentIntervalValue.get(), 0, dynamicLocationListener);
-                Log.d("updateDynamicInterval(): GPS reconnected with min distance: %s and min time: %s", transportMode.getDistance(), currentIntervalValue);
+            try {
+                synchronized (dynamicLocationListenerLock) {
+                    locationManager.removeUpdates(dynamicLocationListener);
+                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, currentIntervalValue.get(), 0, dynamicLocationListener);
+                    Log.d("updateDynamicInterval(): GPS reconnected with min distance: %s and min time: %s", transportMode.getDistance(), currentIntervalValue);
+                }
+            } catch (SecurityException ex) {
+                Log.e("updateDynamicInterval(): fine location permission is denied", ex);
+                stopSelfOnError();
             }
             conditionsNotAchievedCounter = CONDITIONS_NOT_ACHIEVED_COUNTER_INIT;
             return;
@@ -528,9 +557,14 @@ public class CollectorService extends Service {
                     int newInterval = Math.min(currentIntervalValue.get() + 500, transportMode.getMaxTime());
                     currentIntervalValue.set(newInterval);
                     measurementUpdater.setMinDistanceAndInterval(transportMode.getDistance(), newInterval);
-                    synchronized (dynamicLocationListenerLock) {
-                        locationManager.removeUpdates(dynamicLocationListener);
-                        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, transportMode.getMaxTime(), 0, dynamicLocationListener);
+                    try {
+                        synchronized (dynamicLocationListenerLock) {
+                            locationManager.removeUpdates(dynamicLocationListener);
+                            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, transportMode.getMaxTime(), 0, dynamicLocationListener);
+                        }
+                    } catch (SecurityException ex) {
+                        Log.e("updateDynamicInterval(): fine location permission is denied", ex);
+                        stopSelfOnError();
                     }
                     conditionsNotAchievedCounter = CONDITIONS_NOT_ACHIEVED_COUNTER_INIT;
                     return;
@@ -626,7 +660,7 @@ public class CollectorService extends Service {
     }
 
     private void updateSystemTimeChange(Location location) {
-        if(location == null) {
+        if (location == null) {
             Log.w("updateSystemTimeChange(): Location is null");
             return;
         }
@@ -768,7 +802,7 @@ public class CollectorService extends Service {
     }
 
     public void setLastGpsAccuracy(Location location) {
-        if(location == null) {
+        if (location == null) {
             Log.w("setLastGpsAccuracy(): Location is null");
             return;
         }
@@ -778,5 +812,10 @@ public class CollectorService extends Service {
 
     public Validity getLastIsSystemTimeValid() {
         return this.lastIsSystemTimeValid;
+    }
+
+    private void stopSelfOnError() {
+        Toast.makeText(MyApplication.getApplication(), R.string.permission_collector_denied_message, Toast.LENGTH_LONG).show();
+        stopSelf();
     }
 }
