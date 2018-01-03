@@ -19,7 +19,7 @@ public class DatabaseOperations {
     private static final String TAG = DatabaseOperations.class.getSimpleName();
 
     public static void importDatabase(Context context) {
-        File srcFile = getDatabaseExportPath();
+        File srcFile = getDatabaseImportPath();
         File dstFile = getDatabasePath(context);
         copyDatabase(context, srcFile, dstFile, "import");
     }
@@ -69,7 +69,7 @@ public class DatabaseOperations {
         return context.getDatabasePath(MeasurementsDatabase.DATABASE_FILE_NAME);
     }
 
-    private static File getDatabaseExportPath() {
+    private static File getDatabaseImportPath() {
         return new File(FileUtils.getExternalStorageAppDir(),
                 MeasurementsDatabase.DATABASE_FILE_NAME);
     }
