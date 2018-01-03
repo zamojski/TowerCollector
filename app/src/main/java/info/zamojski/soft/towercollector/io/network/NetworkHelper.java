@@ -16,6 +16,8 @@ import org.acra.ACRA;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.github.kevinsawicki.http.HttpRequest.HttpRequestException;
 
+import javax.net.ssl.SSLHandshakeException;
+
 import trikita.log.Log;
 
 public class NetworkHelper {
@@ -65,7 +67,8 @@ public class NetworkHelper {
         if (!(originalException instanceof UnknownHostException)
                 && !(originalException instanceof SocketTimeoutException)
                 && !(originalException instanceof SocketException)
-                && !(originalException instanceof EOFException)) {
+                && !(originalException instanceof EOFException)
+                && !(originalException instanceof SSLHandshakeException)) {
             // known exceptions suppressed
             MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
