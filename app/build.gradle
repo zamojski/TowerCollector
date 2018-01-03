@@ -14,13 +14,13 @@ for (versionPart in [versionPatch, versionMinor, versionMajor, versionBuild]) {
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "25.0.3"
+    compileSdkVersion 26
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         applicationId "info.zamojski.soft.towercollector"
         minSdkVersion 14
-        targetSdkVersion 24
+        targetSdkVersion 26
         versionCode versionMajor * 1000000 + versionMinor * 10000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
 
@@ -81,10 +81,10 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:support-v4:24.2.1'
-    compile 'com.android.support:support-v13:24.2.1'
+    compile 'com.android.support:support-v4:26.1.0'
+    compile 'com.android.support:support-v13:26.1.0'
     //compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.android.support:design:24.2.1'
+    compile 'com.android.support:design:26.1.0'
     compile 'com.google.android.gms:play-services-analytics:9.8.0'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'ch.acra:acra:4.9.1'
