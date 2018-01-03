@@ -19,6 +19,7 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.AsyncTask;
+
 import trikita.log.Log;
 
 public class UpdateCheckAsyncTask extends AsyncTask<String, Void, UpdateInfo> {
@@ -47,18 +48,23 @@ public class UpdateCheckAsyncTask extends AsyncTask<String, Void, UpdateInfo> {
         // get update feed url
         String updateFeedUrl = urls[0];
         // check for updates and download info
-        ResponseData response = NetworkHelper.sendGet(updateFeedUrl);
-        Log.d("doInBackground(): Server response: %s", response);
-        if (response.getCode() == 200 && !StringUtils.isNullEmptyOrWhitespace(response.getContent())) {
-            // parse response
-            try {
-                UpdateInfo updateInfo = responseParser.parse(response.getContent());
-                return updateInfo;
-            } catch (UpdateFeedParseException ex) {
-                Log.w("doInBackground(): Cannot parse update feed response");
-                MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
-                ACRA.getErrorReporter().handleSilentException(ex);
+        try {
+            ResponseData response = NetworkHelper.sendGet(updateFeedUrl);
+            Log.d("doInBackground(): Server response: %s", response);
+            if (response.getCode() == 200 && !StringUtils.isNullEmptyOrWhitespace(response.getContent())) {
+                // parse response
+                try {
+                    UpdateInfo updateInfo = responseParser.parse(response.getContent());
+                    return updateInfo;
+                } catch (UpdateFeedParseException ex) {
+                    Log.w("doInBackground(): Cannot parse update feed response");
+                    MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
+                    ACRA.getErrorReporter().handleSilentException(ex);
+                }
             }
+        } catch (SecurityException ex) {
+            // for the rare case when user has custom rom with possibility to disable any permission
+            Log.e("doInBackground(): internet permission is denied", ex);
         }
         return null;
     }
