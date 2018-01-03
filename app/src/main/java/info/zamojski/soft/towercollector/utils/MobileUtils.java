@@ -44,6 +44,12 @@ public class MobileUtils {
         return result;
     }
 
+    public static boolean isApi26VersionCompatible() {
+        boolean result = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
+        Log.d("isApi26VersionCompatible(): Result = %s", result);
+        return result;
+    }
+
     public static boolean isApi17FullyCompatible(Context context) {
         return (isApi17VersionCompatible() && isApi17CellInfoAvailable(context));
     }

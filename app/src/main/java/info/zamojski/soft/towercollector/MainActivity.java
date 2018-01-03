@@ -659,7 +659,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         final String keepScreenOnMode = MyApplication.getPreferencesProvider().getCollectorKeepScreenOnMode();
         intent.putExtra(CollectorService.INTENT_KEY_KEEP_SCREEN_ON_MODE, keepScreenOnMode);
         // start service
-        startService(intent);
+        ApkUtils.startServiceSafely(this, intent);
         EventBus.getDefault().post(new CollectorStartedEvent(intent));
         MyApplication.getAnalytics().sendCollectorStarted(IntentSource.User);
     }
@@ -744,7 +744,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         if (!ApkUtils.isServiceRunning(UploaderService.SERVICE_FULL_NAME)) {
             Intent intent = new Intent(MainActivity.this, UploaderService.class);
             intent.putExtra(UploaderService.INTENT_KEY_APIKEY, apiKey);
-            startService(intent);
+            ApkUtils.startServiceSafely(this, intent);
             MyApplication.getAnalytics().sendUploadStarted(IntentSource.User);
         } else
             Toast.makeText(getApplication(), R.string.uploader_already_running, Toast.LENGTH_LONG).show();

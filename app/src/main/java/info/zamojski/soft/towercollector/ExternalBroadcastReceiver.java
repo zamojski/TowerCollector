@@ -8,6 +8,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import info.zamojski.soft.towercollector.analytics.IntentSource;
 import info.zamojski.soft.towercollector.events.CollectorStartedEvent;
+import info.zamojski.soft.towercollector.utils.ApkUtils;
 import info.zamojski.soft.towercollector.utils.BackgroundTaskHelper;
 
 import android.Manifest;
@@ -57,7 +58,8 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         }
         Log.d("startCollectorService(): Starting service from broadcast");
         Intent intent = getCollectorIntent(context);
-        context.startService(intent);
+
+        ApkUtils.startServiceSafely(context, intent);
         EventBus.getDefault().post(new CollectorStartedEvent(intent));
         MyApplication.getAnalytics().sendCollectorStarted(source);
     }
@@ -75,7 +77,7 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         if (!canStartBackgroundService(context))
             return;
         Log.d("startCollectorService(): Starting service from broadcast");
-        context.startService(getUploaderIntent(context));
+        ApkUtils.startServiceSafely(context, getUploaderIntent(context));
         MyApplication.getAnalytics().sendUploadStarted(IntentSource.Application);
     }
 
