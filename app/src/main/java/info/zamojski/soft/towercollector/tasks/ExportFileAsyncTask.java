@@ -13,8 +13,10 @@ import info.zamojski.soft.towercollector.files.FileGeneratorResult;
 import info.zamojski.soft.towercollector.files.devices.FileTextDevice;
 import info.zamojski.soft.towercollector.files.formatters.csv.CsvExportFormatter;
 import info.zamojski.soft.towercollector.files.formatters.csv.CsvUploadFormatter;
+import info.zamojski.soft.towercollector.files.formatters.json.JsonMozillaFormatter;
 import info.zamojski.soft.towercollector.files.generators.wrappers.CsvTextGeneratorWrapper;
 import info.zamojski.soft.towercollector.files.generators.wrappers.GpxTextGeneratorWrapper;
+import info.zamojski.soft.towercollector.files.generators.wrappers.JsonTextGeneratorWrapper;
 import info.zamojski.soft.towercollector.files.generators.wrappers.interfaces.IProgressListener;
 import info.zamojski.soft.towercollector.files.generators.wrappers.interfaces.IProgressiveTextGeneratorWrapper;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
@@ -184,6 +186,8 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
                 return new CsvTextGeneratorWrapper(context, device, new CsvUploadFormatter());
             case Gpx:
                 return new GpxTextGeneratorWrapper(context, device);
+            case JsonMls:
+                return new JsonTextGeneratorWrapper(context, device);
             default:
                 throw new UnsupportedOperationException("This type of file is not supported");
         }

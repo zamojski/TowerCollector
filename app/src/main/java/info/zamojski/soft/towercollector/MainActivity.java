@@ -779,6 +779,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                         case Gpx:
                             extension = "gpx";
                             break;
+                        case JsonMls:
+                            extension = "json";
+                            break;
                         default:
                             // cancel
                             extension = null;

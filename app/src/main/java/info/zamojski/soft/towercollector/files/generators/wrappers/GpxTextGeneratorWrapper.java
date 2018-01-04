@@ -43,16 +43,16 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
     @Override
     public FileGeneratorResult generate() {
         try {
-            // get number of measurements to upload
+            // get number of measurements to process
             int measurementsCount = MeasurementsDatabase.getInstance(context).getAllMeasurementsCount();
             // get last measurement row id
             Measurement lastMeasurement = MeasurementsDatabase.getInstance(context).getLastMeasurement();
-            // check if there is anything to upload
+            // check if there is anything to process
             if (measurementsCount == 0 || lastMeasurement == null) {
                 Log.d("generate(): Cancelling save due to no data");
                 return new FileGeneratorResult(GeneratorResult.NoData, Reason.Unknown);
             }
-            // calculate number of upload parts
+            // calculate number of parts
             final int MEASUREMENTS_PER_PART = 400;
             int partsCount = 1;
             if (measurementsCount > MEASUREMENTS_PER_PART) {
@@ -92,7 +92,7 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
             // write footer
             generator.writeFooter();
             device.close();
-            // fix for dialog not closed when upload running in background and data deleted
+            // fix for dialog not closed when operation is running in background and data deleted
             notifyProgressListeners(measurementsCount, measurementsCount);
             if (cancel) {
                 Log.d("generate(): Export cancelled");
