@@ -50,9 +50,9 @@ public class JsonBroadcastFormatter extends JsonFormatterBase implements IJsonFo
         for (Measurement m : ms) {
             JSONObject cell = new JSONObject();
             cell.put("mcc", formatNullable(m.getMcc(), Measurement.UNKNOWN_CID));
-            cell.put("mnc", formatInt(m.getMnc()));
-            cell.put("lac", formatInt(m.getLac()));
-            cell.put("cell_id", formatInt(m.getCid()));
+            cell.put("mnc", m.getMnc());
+            cell.put("lac", m.getLac());
+            cell.put("cell_id", m.getCid());
             cell.put("psc", formatNullable(m.getPsc(), Measurement.UNKNOWN_CID));
             cell.put("asu", formatNullable(m.getAsu(), Measurement.UNKNOWN_SIGNAL));
             cell.put("dbm", formatNullable(m.getDbm(), Measurement.UNKNOWN_SIGNAL));

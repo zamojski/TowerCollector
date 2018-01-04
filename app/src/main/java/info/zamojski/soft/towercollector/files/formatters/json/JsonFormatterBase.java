@@ -6,51 +6,27 @@ package info.zamojski.soft.towercollector.files.formatters.json;
 
 import org.json.JSONObject;
 
-import java.text.NumberFormat;
+import java.math.BigDecimal;
 import java.util.Locale;
-
-import info.zamojski.soft.towercollector.providers.GeneralCellUtils;
-import info.zamojski.soft.towercollector.providers.ICellUtils;
 
 public abstract class JsonFormatterBase {
     protected static final Locale LOCALE = Locale.ENGLISH;
 
-    private static final NumberFormat coordsDoubleFormatter;
-    private static final NumberFormat gpsDoubleFormatter;
-
-    protected static final NumberFormat intFormatter;
-
-    static {
-        coordsDoubleFormatter = NumberFormat.getNumberInstance(LOCALE);
-        coordsDoubleFormatter.setGroupingUsed(false);
-        coordsDoubleFormatter.setMinimumFractionDigits(8);
-        coordsDoubleFormatter.setMaximumFractionDigits(12);
-
-        gpsDoubleFormatter = NumberFormat.getNumberInstance(LOCALE);
-        gpsDoubleFormatter.setGroupingUsed(false);
-        gpsDoubleFormatter.setMinimumFractionDigits(0);
-        gpsDoubleFormatter.setMaximumFractionDigits(2);
-
-        intFormatter = NumberFormat.getNumberInstance(LOCALE);
-        intFormatter.setParseIntegerOnly(true);
-        intFormatter.setGroupingUsed(false);
-    }
+    private static final int COORDS_PRECISION = 12;
+    private static final int GPS_VALUE_PRECISION = 2;
+    private static final int ROUNDING_METHOD = BigDecimal.ROUND_HALF_EVEN;
 
     protected Object formatNullable(int value, int invalid) {
-        if (value != invalid)
-            return formatInt(value);
-        return JSONObject.NULL;
+        if (value == invalid)
+            return JSONObject.NULL;
+        return value;
     }
 
-    protected String formatCoordinate(double value) {
-        return coordsDoubleFormatter.format(value);
+    protected double formatCoordinate(double value) {
+        return new BigDecimal(value).setScale(COORDS_PRECISION, ROUNDING_METHOD).doubleValue();
     }
 
-    protected String formatGpsValue(double value) {
-        return gpsDoubleFormatter.format(value);
-    }
-
-    protected String formatInt(int value) {
-        return intFormatter.format(value);
+    protected double formatGpsValue(double value) {
+        return new BigDecimal(value).setScale(GPS_VALUE_PRECISION, ROUNDING_METHOD).doubleValue();
     }
 }
