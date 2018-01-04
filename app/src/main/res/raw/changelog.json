@@ -1,7 +1,7 @@
 {
   "Entries": [
     {
-      "VersionCode": 1150018,
+      "VersionCode": 1150019,
       "Title": "Changes in version 1.15.0",
       "Messages": [
         "Improved compatibility with Android Oreo.",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "VersionCode": 1140016,
+      "VersionCode": 1140017,
       "Title": "Changes in version 1.14.0",
       "Description": "It's almost 8 months since last update of Tower Collector. During that time many private matters occupied almost all of my spare time. I plan to come back to more active development soon. Meanwhile OpenCellID database has been acquired by Unwired Labs which become new maintainer. I wish them good luck and hope they will cooperate with OCID community as ENAiKOON did for couple of years!",
       "Messages": [
