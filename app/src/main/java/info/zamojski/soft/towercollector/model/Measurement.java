@@ -164,6 +164,24 @@ public class Measurement implements Serializable {
         this.lac = lac;
     }
 
+    public int getLongCid() {
+        if (cid <= 65536)
+            return UNKNOWN_CID;
+        return cid;
+    }
+
+    public int getShortCid() {
+        if (cid <= 65536)
+            return UNKNOWN_CID;
+        return cid % 65536;
+    }
+
+    public int getRnc() {
+        if (cid <= 65536)
+            return UNKNOWN_CID;
+        return cid / 65536;
+    }
+
     public int getCid() {
         return cid;
     }

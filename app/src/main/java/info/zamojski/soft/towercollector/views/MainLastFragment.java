@@ -10,6 +10,7 @@ import java.util.Locale;
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
+import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.events.MeasurementSavedEvent;
 import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
 import info.zamojski.soft.towercollector.model.CellsCount;
@@ -24,6 +25,7 @@ import trikita.log.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -33,8 +35,14 @@ public class MainLastFragment extends MainFragmentBase {
 
     private static final String TAG = MainLastFragment.class.getSimpleName();
 
+    private TableRow lastLongCellIdValueTableRow;
+    private TableRow lastCellIdRncValueTableRow;
+    private TableRow lastCellIdValueTableRow;
+
     private TextView lastNumberOfCellsValueTextView;
     private TextView lastNetworkTypeValueTextView;
+    private TextView lastLongCellIdValueTextView;
+    private TextView lastCellIdRncValueTextView;
     private TextView lastCellIdValueTextView;
     private TextView lastMccValueTextView;
     private TextView lastMncValueTextView;
@@ -44,6 +52,8 @@ public class MainLastFragment extends MainFragmentBase {
     private TextView lastLongitudeValueTextView;
     private TextView lastGpsAccuracyValueTextView;
     private TextView lastDateTimeValueTextView;
+
+    private Locale locale;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,14 +65,21 @@ public class MainLastFragment extends MainFragmentBase {
     @Override
     protected void configureOnResume() {
         super.configureOnResume();
+        locale = new Locale(getString(R.string.locale));
         getAndPrintOrClearMeasurement();
     }
 
     @Override
     protected void configureControls(View view) {
         super.configureControls(view);
+        lastLongCellIdValueTableRow = (TableRow) view.findViewById(R.id.main_last_long_cell_id_tablerow);
+        lastCellIdRncValueTableRow = (TableRow) view.findViewById(R.id.main_last_cell_id_rnc_tablerow);
+        lastCellIdValueTableRow = (TableRow) view.findViewById(R.id.main_last_cell_id_tablerow);
+
         lastNumberOfCellsValueTextView = (TextView) view.findViewById(R.id.main_last_number_of_cells_value_textview);
         lastNetworkTypeValueTextView = (TextView) view.findViewById(R.id.main_last_network_type_value_textview);
+        lastLongCellIdValueTextView = (TextView) view.findViewById(R.id.main_last_long_cell_id_value_textview);
+        lastCellIdRncValueTextView = (TextView) view.findViewById(R.id.main_last_cell_id_rnc_value_textview);
         lastCellIdValueTextView = (TextView) view.findViewById(R.id.main_last_cell_id_value_textview);
         lastMccValueTextView = (TextView) view.findViewById(R.id.main_last_mcc_value_textview);
         lastMncValueTextView = (TextView) view.findViewById(R.id.main_last_mnc_value_textview);
@@ -105,6 +122,18 @@ public class MainLastFragment extends MainFragmentBase {
         lastNumberOfCellsValueTextView.setText(getString(R.string.main_last_number_of_cells_value, cellsCount.getMain(), cellsCount.getNeighboring()));
         int networkNameId = NetworkTypeUtils.getNetworkGroupNameResId(measurement.getNetworkType());
         lastNetworkTypeValueTextView.setText(getString(networkNameId));
+        // only for UMTS with valid CID
+        if (measurement.getNetworkType() == NetworkGroup.Wcdma && measurement.getLongCid() != Measurement.UNKNOWN_CID) {
+            lastLongCellIdValueTableRow.setVisibility(View.VISIBLE);
+            lastCellIdRncValueTableRow.setVisibility(View.VISIBLE);
+            lastCellIdValueTableRow.setVisibility(View.GONE);
+        } else {
+            lastLongCellIdValueTableRow.setVisibility(View.GONE);
+            lastCellIdRncValueTableRow.setVisibility(View.GONE);
+            lastCellIdValueTableRow.setVisibility(View.VISIBLE);
+        }
+        lastLongCellIdValueTextView.setText(String.valueOf(measurement.getLongCid()));
+        lastCellIdRncValueTextView.setText(String.format(locale, getString(R.string.main_last_cell_id_rnc_value), measurement.getShortCid(), measurement.getRnc()));
         lastCellIdValueTextView.setText(String.valueOf(measurement.getCid()));
         lastMccValueTextView.setText((measurement.getMcc() != Measurement.UNKNOWN_CID ? String.valueOf(measurement.getMcc()) : ""));
         lastMncValueTextView.setText(String.valueOf(measurement.getMnc()));
@@ -114,10 +143,10 @@ public class MainLastFragment extends MainFragmentBase {
         } else {
             lastSignalStrengthValueTextView.setText(getString(R.string.main_signal_strength_not_available));
         }
-        lastLatitudeValueTextView.setText(String.format(new Locale(getString(R.string.locale)), getString(R.string.main_last_latitude_value), measurement.getLatitude()));
-        lastLongitudeValueTextView.setText(String.format(new Locale(getString(R.string.locale)), getString(R.string.main_last_longitude_value), measurement.getLongitude()));
+        lastLatitudeValueTextView.setText(String.format(locale, getString(R.string.main_last_latitude_value), measurement.getLatitude()));
+        lastLongitudeValueTextView.setText(String.format(locale, getString(R.string.main_last_longitude_value), measurement.getLongitude()));
         if (measurement.getGpsAccuracy() != Measurement.GPS_VALUE_NOT_AVAILABLE)
-            lastGpsAccuracyValueTextView.setText(String.format(new Locale(getString(R.string.locale)), getString(R.string.main_last_gps_accuracy_value),
+            lastGpsAccuracyValueTextView.setText(String.format(locale, getString(R.string.main_last_gps_accuracy_value),
                     (useImperialUnits ? UnitConverter.convertMetersToFeet(measurement.getGpsAccuracy()) : measurement.getGpsAccuracy()), preferredLengthUnit));
         else
             lastGpsAccuracyValueTextView.setText(getString(R.string.main_gps_accuracy_not_available));
@@ -138,5 +167,4 @@ public class MainLastFragment extends MainFragmentBase {
         lastGpsAccuracyValueTextView.setText("");
         lastDateTimeValueTextView.setText("");
     }
-
 }

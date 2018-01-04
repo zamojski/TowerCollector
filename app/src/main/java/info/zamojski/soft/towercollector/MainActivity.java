@@ -370,6 +370,14 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 titleId = R.string.main_help_last_network_type_title;
                 messageId = R.string.main_help_last_network_type_description;
                 break;
+            case R.id.main_last_long_cell_id_tablerow:
+                titleId = R.string.main_help_last_long_cell_id_title;
+                messageId = R.string.main_help_last_long_cell_id_description;
+                break;
+            case R.id.main_last_cell_id_rnc_tablerow:
+                titleId = R.string.main_help_last_cell_id_rnc_title;
+                messageId = R.string.main_help_last_cell_id_rnc_description;
+                break;
             case R.id.main_last_cell_id_tablerow:
                 titleId = R.string.main_help_last_cell_id_title;
                 messageId = R.string.main_help_last_cell_id_description;

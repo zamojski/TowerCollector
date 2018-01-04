@@ -65,6 +65,9 @@
     <string name="main_last_number_of_cells_label">Main / neighboring:</string>
     <string name="main_last_number_of_cells_value" translatable="false">%1$d / %2$d</string>
     <string name="main_last_network_type_label">Network type:</string>
+    <string name="main_last_long_cell_id_label">Long Cell ID:</string>
+    <string name="main_last_cell_id_rnc_label">Cell ID / RNC:</string>
+    <string name="main_last_cell_id_rnc_value" translatable="false">%1$d / %2$d</string>
     <string name="main_last_cell_id_label">Cell ID:</string>
     <string name="main_last_lac_label">LAC:</string>
     <string name="main_last_mcc_label">MCC:</string>
@@ -164,6 +167,10 @@
     <string name="mail_help_last_number_of_cells_description">Number of main and neighboring cells to which the phone had access to.</string>
     <string name="main_help_last_network_type_title">Network type</string>
     <string name="main_help_last_network_type_description">The type of mobile network to which the phone was connected.</string>
+    <string name="main_help_last_long_cell_id_title">Long Cell Tower ID</string>
+    <string name="main_help_last_long_cell_id_description">The long unique cell tower identifier to which the phone was connected. The LCID also called UTRAN CID is a concatenation of RNC (ID of the Radio Network Controller) and Cell ID (unique ID of the Cell Tower). This ID is defined only for UMTS networks.</string>
+    <string name="main_help_last_cell_id_rnc_title">Cell Tower ID / RNC</string>
+    <string name="main_help_last_cell_id_rnc_description">The unique cell tower identifier and RNC (ID of the Radio Network Controller) to which the phone was connected. This ID is defined only for UMTS networks.</string>
     <string name="main_help_last_cell_id_title">Cell Tower ID</string>
     <string name="main_help_last_cell_id_description">The unique cell tower identifier to which the phone was connected.</string>
     <string name="main_help_last_lac_title">Location Area Code</string>
