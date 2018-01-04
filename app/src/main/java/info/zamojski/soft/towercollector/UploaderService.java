@@ -10,8 +10,9 @@ import info.zamojski.soft.towercollector.files.devices.MemoryTextDevice;
 import info.zamojski.soft.towercollector.files.formatters.csv.CsvUploadFormatter;
 import info.zamojski.soft.towercollector.files.generators.CsvTextGenerator;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
-import info.zamojski.soft.towercollector.io.network.NetworkHelper;
-import info.zamojski.soft.towercollector.io.network.NetworkHelper.ResponseData;
+import info.zamojski.soft.towercollector.io.network.IUploadClient;
+import info.zamojski.soft.towercollector.io.network.OcidUploadClient;
+import info.zamojski.soft.towercollector.io.network.RequestResult;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.uploader.UploaderNotificationHelper;
@@ -36,7 +37,6 @@ import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
-import android.text.TextUtils;
 
 import trikita.log.Log;
 
@@ -122,7 +122,7 @@ public class UploaderService extends Service {
                 messageId = R.string.uploader_invalid_api_key;
                 descriptionId = R.string.uploader_invalid_api_key_description;
                 break;
-            case InvalidInputData:
+            case InvalidData:
                 messageId = R.string.uploader_invalid_input_data;
                 descriptionId = R.string.uploader_invalid_input_data_description;
                 break;
@@ -131,9 +131,9 @@ public class UploaderService extends Service {
                 descriptionId = R.string.uploader_aborted_description;
                 break;
             case NotStarted:
-            case Succeeded:
-                messageId = R.string.uploader_succeeded;
-                descriptionId = R.string.uploader_succeeded_description;
+            case Success:
+                messageId = R.string.uploader_success;
+                descriptionId = R.string.uploader_success_description;
                 break;
             case PartiallySucceeded:
                 messageId = R.string.uploader_partially_succeeded;
@@ -147,25 +147,13 @@ public class UploaderService extends Service {
                 messageId = R.string.uploader_connection_error;
                 descriptionId = R.string.uploader_connection_error_description;
                 break;
-            case ServerInternalError:
-                messageId = R.string.uploader_server_internal_error;
-                descriptionId = R.string.uploader_server_internal_error_description;
+            case ServerError:
+                messageId = R.string.uploader_server_error;
+                descriptionId = R.string.uploader_server_error_description;
                 break;
-            case ServerTemporarilyNotAvailable:
-                messageId = R.string.uploader_server_temporarily_not_available;
-                descriptionId = R.string.uploader_server_temporarily_not_available_description;
-                break;
-            case ServerNotAvailable:
-                messageId = R.string.uploader_server_not_available_error;
-                descriptionId = R.string.uploader_server_not_available_error_description;
-                break;
-            case Failed:
-                messageId = R.string.uploader_failed;
-                descriptionId = R.string.uploader_failed_description;
-                break;
-            case Rejected:
-                messageId = R.string.uploader_rejected;
-                descriptionId = R.string.uploader_rejected_description;
+            case Failure:
+                messageId = R.string.uploader_failure;
+                descriptionId = R.string.uploader_failure_description;
                 break;
             case PermissionDenied:
                 messageId = R.string.permission_denied;
@@ -285,7 +273,7 @@ public class UploaderService extends Service {
                     Log.e(INNER_TAG, "run(): Error while generating file", ex);
                     MyApplication.getAnalytics().sendException(ex, Boolean.TRUE);
                     ACRA.getErrorReporter().handleSilentException(ex);
-                    uploadResult = UploadResult.Failed;
+                    uploadResult = UploadResult.Failure;
                 }
                 // get content
                 String csvContent = device.read();
@@ -305,55 +293,31 @@ public class UploaderService extends Service {
                 //}
                 // send request
                 try {
-                    ResponseData response = NetworkHelper.sendPost(uploadUrl, appId, apiKey, csvContent);
+                    IUploadClient client = new OcidUploadClient(uploadUrl, appId, apiKey);
+                    RequestResult response = client.uploadMeasurements(csvContent);
                     Log.d(INNER_TAG, String.format("run(): Server response: %s", response));
                     // check whether it makes sense to continue
-                    if (response.getCode() == 0) {
+                    if (response == RequestResult.ConfigurationError) {
+                        uploadResult = UploadResult.InvalidData;
+                        break;
+                    } else if (response == RequestResult.ServerError) {
+                        uploadResult = UploadResult.ServerError;
+                        break;
+                    } else if (response == RequestResult.ConnectionError) {
                         uploadResult = UploadResult.ConnectionError;
                         break;
-                    } else if (response.getCode() == 400) {
-                        uploadResult = UploadResult.InvalidInputData;
+                    } else if (response == RequestResult.Failure) {
+                        uploadResult = UploadResult.Failure;
                         break;
-                    } else if (response.getCode() == 401 || response.getCode() == 403) {
+                    } else if (response == RequestResult.InvalidApiKey) {
                         uploadResult = UploadResult.InvalidApiKey;
                         break;
-                    } else if (response.getCode() == 500) {
-                        uploadResult = UploadResult.ServerInternalError;
-                        break;
-                    } else if (response.getCode() == 503) {
-                        uploadResult = UploadResult.ServerTemporarilyNotAvailable;
-                        break;
-                    } else if (response.getCode() >= 400 && response.getCode() <= 599) {
-                        uploadResult = UploadResult.ServerNotAvailable;
-                        break;
+                    } else if (response == RequestResult.Success) {
+                        Log.d(INNER_TAG, String.format("run(): Uploaded %s measurements", measurements.size()));
+                        uploadResult = UploadResult.PartiallySucceeded;
+                        succeededParts++;
                     } else {
-                        // check response
-                        String responseContent = response.getContent();
-                        if (TextUtils.isEmpty(responseContent)) {
-                            uploadResult = UploadResult.Rejected;
-                            break;
-                        } else {
-                            String trimmedResponseContent = responseContent.trim();
-                            // validate response content (just for sure)
-                            if (trimmedResponseContent.equalsIgnoreCase("Error: Authorization failed. Check your API key.")) {
-                                uploadResult = UploadResult.InvalidApiKey;
-                                break;
-                            } else {
-                                if (response.getCode() == 200 && "0,OK".equalsIgnoreCase(trimmedResponseContent)) {
-                                    Log.d(INNER_TAG, String.format("run(): Uploaded %s measurements", measurements.size()));
-                                    uploadResult = UploadResult.PartiallySucceeded;
-                                    succeededParts++;
-                                } else {
-                                    // don't report captive portals
-                                    if (response.getCode() != 302) {
-                                        RuntimeException ex = new UploadFailedException(response);
-                                        ACRA.getErrorReporter().handleSilentException(ex);
-                                    }
-                                    uploadResult = UploadResult.Failed;
-                                    break;
-                                }
-                            }
-                        }
+                        throw new UnsupportedOperationException(String.format("Unsupported upload result %s", response));
                     }
                     // delete sent measurements
                     int j = 0;
@@ -377,7 +341,7 @@ public class UploaderService extends Service {
             // sum up results and update notification
             if (uploadResult == UploadResult.PartiallySucceeded) {
                 // we can be sure that everything was ok (because we stop on error)
-                uploadResult = UploadResult.Succeeded;
+                uploadResult = UploadResult.Success;
             } else if (uploadResult != UploadResult.DeleteFailed) {
                 // can be cancelled or failed after uploading few parts (but not all)
                 if (succeededParts > 0) {
@@ -386,7 +350,7 @@ public class UploaderService extends Service {
             }
 
             // send stats only when succeeded
-            if (uploadResult == UploadResult.Succeeded || uploadResult == UploadResult.PartiallySucceeded) {
+            if (uploadResult == UploadResult.Success || uploadResult == UploadResult.PartiallySucceeded) {
                 long endTime = System.currentTimeMillis();
                 long duration = (endTime - startTime);
                 String networkType = NetworkUtils.getNetworkType(getApplication());
@@ -400,18 +364,6 @@ public class UploaderService extends Service {
             // broadcast upload finished and stop service
             EventBus.getDefault().post(new PrintMainWindowEvent());
             stopSelf();
-        }
-
-        private class UploadFailedException extends RuntimeException {
-            private static final long serialVersionUID = -8046748553665290986L;
-
-            public UploadFailedException(ResponseData data) {
-                this(String.valueOf(data));
-            }
-
-            public UploadFailedException(String message) {
-                super(message);
-            }
         }
     }
 }
