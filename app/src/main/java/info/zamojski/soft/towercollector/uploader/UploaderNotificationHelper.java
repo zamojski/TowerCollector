@@ -7,24 +7,32 @@ package info.zamojski.soft.towercollector.uploader;
 import info.zamojski.soft.towercollector.MainActivity;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.UploaderService;
+import info.zamojski.soft.towercollector.utils.NotificationHelperBase;
 
+import android.annotation.TargetApi;
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
-public class UploaderNotificationHelper {
+public class UploaderNotificationHelper extends NotificationHelperBase {
 
     private Context context;
     NotificationCompat.Builder builder;
 
     public UploaderNotificationHelper(Context context) {
         this.context = context;
-        this.builder = new NotificationCompat.Builder(context);
+        this.builder = new NotificationCompat.Builder(context, UPLOADER_NOTIFICATION_CHANNEL_ID);
     }
 
-    public Notification createNotification() {
+    public Notification createNotification(NotificationManager notificationManager) {
+        if (isUsingNotificationChannel()) {
+            createNotificationChannel(notificationManager);
+        }
         String notificationText = context.getString(R.string.uploader_starting);
         return prepareNotification(notificationText);
     }
@@ -88,4 +96,12 @@ public class UploaderNotificationHelper {
         return pendingIntent;
     }
 
+    @TargetApi(Build.VERSION_CODES.O)
+    private void createNotificationChannel(NotificationManager notificationManager) {
+        NotificationChannel channel = new NotificationChannel(
+                UPLOADER_NOTIFICATION_CHANNEL_ID,
+                context.getString(R.string.uploader_notification_channel_name),
+                NotificationManager.IMPORTANCE_DEFAULT);
+        notificationManager.createNotificationChannel(channel);
+    }
 }

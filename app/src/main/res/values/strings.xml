@@ -89,10 +89,12 @@
     <string name="main_menu_help_button">Help</string>
     <string name="main_menu_preferences_button">Preferences</string>
     <string name="main_menu_network_type_button">Network type</string>
+    <string name="collector_notification_channel_name">Collector</string>
     <string name="collector_notification_title">Collecting</string>
     <string name="collector_notification_stats">Today %1$d measurements of %2$d cells.</string>
     <string name="collector_notification_status">GPS status: %s.</string>
     <string name="collector_gps_unavailable">Cannot start collecting because GPS is unavailable.</string>
+    <string name="uploader_notification_channel_name">Uploader</string>
     <string name="uploader_notification_title">Uploading</string>
     <string name="uploader_notification_progress_info">Part %1$d of %2$d. Select to abort.</string>
     <string name="uploader_result_dialog_title">Upload result</string>
@@ -125,6 +127,7 @@
     <string name="uploader_server_temporarily_not_available_description">Server is currently not available because it is overloaded or down for maintenance. Please try again later.</string>
     <string name="uploader_server_not_available_error">Server unavailable or access denied.</string>
     <string name="uploader_server_not_available_error_description">Application has send request to a server method which not exists, is temporary unavailable or it is protected. Maybe something is wrong on server side, but please check if you have latest application version. If you encounter this problem for a long time, please let me know.</string>
+    <string name="other_notification_channel_name">Other</string>
     <string name="export_toast_storage_read_only">External storage is read only.</string>
     <string name="export_toast_no_storage">External storage not found.</string>
     <string name="export_dialog_format_selection_title">Select format:</string>

@@ -151,7 +151,7 @@ public class CollectorService extends Service {
         EventBus.getDefault().register(this);
         // register receiver
         registerReceiver(stopRequestBroadcastReceiver, new IntentFilter(BROADCAST_INTENT_STOP_SERVICE));
-        Notification notification = notificationHelper.createNotification(getGpsStatusNotificationText(getGpsStatus()));
+        Notification notification = notificationHelper.createNotification(notificationManager, getGpsStatusNotificationText(getGpsStatus()));
         // start as foreground service to prevent from killing
         startForeground(NOTIFICATION_ID, notification);
     }

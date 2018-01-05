@@ -231,7 +231,7 @@ public class UploaderService extends Service {
             registerReceiver(stopRequestBroadcastReceiver, new IntentFilter(BROADCAST_INTENT_STOP_SERVICE));
 
             // start as foreground service to prevent from killing
-            Notification notification = notificationHelper.createNotification();
+            Notification notification = notificationHelper.createNotification(notificationManager);
             startForeground(UploaderService.NOTIFICATION_ID, notification);
 
             // get number of measurements to upload

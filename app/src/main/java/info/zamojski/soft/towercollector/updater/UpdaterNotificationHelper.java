@@ -9,24 +9,32 @@ import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.model.UpdateInfo;
 import info.zamojski.soft.towercollector.tasks.UpdateCheckAsyncTask;
+import info.zamojski.soft.towercollector.utils.NotificationHelperBase;
 
+import android.annotation.TargetApi;
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
-public class UpdaterNotificationHelper {
+public class UpdaterNotificationHelper extends NotificationHelperBase {
 
     private Context context;
     NotificationCompat.Builder builder;
 
     public UpdaterNotificationHelper(Context context) {
         this.context = context;
-        this.builder = new NotificationCompat.Builder(context);
+        this.builder = new NotificationCompat.Builder(context, OTHER_NOTIFICATION_CHANNEL_ID);
     }
 
-    public Notification createNotification(UpdateInfo updateInfo) {
+    public Notification createNotification(NotificationManager notificationManager, UpdateInfo updateInfo) {
+        if (isUsingNotificationChannel()) {
+            createNotificationChannel(notificationManager);
+        }
         // set style
         builder.setSmallIcon(R.drawable.app_notification_icon);
         builder.setAutoCancel(true);
@@ -52,4 +60,12 @@ public class UpdaterNotificationHelper {
         return pendingIntent;
     }
 
+    @TargetApi(Build.VERSION_CODES.O)
+    private void createNotificationChannel(NotificationManager notificationManager) {
+        NotificationChannel channel = new NotificationChannel(
+                OTHER_NOTIFICATION_CHANNEL_ID,
+                context.getString(R.string.other_notification_channel_name),
+                NotificationManager.IMPORTANCE_DEFAULT);
+        notificationManager.createNotificationChannel(channel);
+    }
 }

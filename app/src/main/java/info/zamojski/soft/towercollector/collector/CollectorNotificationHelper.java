@@ -8,14 +8,19 @@ import info.zamojski.soft.towercollector.CollectorService;
 import info.zamojski.soft.towercollector.MainActivity;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.model.Statistics;
+import info.zamojski.soft.towercollector.utils.NotificationHelperBase;
 
+import android.annotation.TargetApi;
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
-public class CollectorNotificationHelper {
+public class CollectorNotificationHelper extends NotificationHelperBase {
 
     private Context context;
     private NotificationCompat.Builder builder;
@@ -23,11 +28,14 @@ public class CollectorNotificationHelper {
 
     public CollectorNotificationHelper(Context context, boolean hideNotification) {
         this.context = context;
-        this.builder = new NotificationCompat.Builder(context);
         this.hideNotification = hideNotification;
+        this.builder = new NotificationCompat.Builder(context, COLLECTOR_NOTIFICATION_CHANNEL_ID);
     }
 
-    public Notification createNotification(String notificationText) {
+    public Notification createNotification(NotificationManager notificationManager, String notificationText) {
+        if (isUsingNotificationChannel()) {
+            createNotificationChannel(notificationManager);
+        }
         return prepareNotification(notificationText);
     }
 
@@ -48,7 +56,7 @@ public class CollectorNotificationHelper {
         builder.setOngoing(true);
         builder.setWhen(System.currentTimeMillis());
         builder.setOnlyAlertOnce(true);
-        if (hideNotification) {
+        if (hideNotification && isUsingNotificationPriority()) {
             builder.setPriority(NotificationCompat.PRIORITY_MIN);
         }
         // set intent
@@ -82,4 +90,12 @@ public class CollectorNotificationHelper {
         return pendingIntent;
     }
 
+    @TargetApi(Build.VERSION_CODES.O)
+    private void createNotificationChannel(NotificationManager notificationManager) {
+        NotificationChannel channel = new NotificationChannel(
+                COLLECTOR_NOTIFICATION_CHANNEL_ID,
+                context.getString(R.string.collector_notification_channel_name),
+                hideNotification ? NotificationManager.IMPORTANCE_MIN : NotificationManager.IMPORTANCE_DEFAULT);
+        notificationManager.createNotificationChannel(channel);
+    }
 }

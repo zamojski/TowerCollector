@@ -83,7 +83,7 @@ public class UpdateCheckAsyncTask extends AsyncTask<String, Void, UpdateInfo> {
     private void displayNewVersionAvailableNotification(UpdateInfo updateInfo) {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationHelper = new UpdaterNotificationHelper(context);
-        Notification notification = notificationHelper.createNotification(updateInfo);
+        Notification notification = notificationHelper.createNotification(notificationManager, updateInfo);
         notificationManager.notify(NOTIFICATION_ID, notification);
     }
 }
