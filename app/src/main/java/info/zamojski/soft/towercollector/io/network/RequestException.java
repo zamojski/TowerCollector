@@ -2,8 +2,10 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package info.zamojski.soft.towercollector.enums;
+package info.zamojski.soft.towercollector.io.network;
 
-public enum FileType {
-    Unknown, Csv, CsvOcid, Gpx, JsonMls
+public class RequestException extends RuntimeException {
+    public RequestException(String message) {
+        super(message);
+    }
 }

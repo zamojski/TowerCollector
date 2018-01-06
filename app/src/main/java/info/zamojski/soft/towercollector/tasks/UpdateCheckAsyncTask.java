@@ -7,13 +7,11 @@ package info.zamojski.soft.towercollector.tasks;
 import org.acra.ACRA;
 
 import info.zamojski.soft.towercollector.MyApplication;
-import info.zamojski.soft.towercollector.io.network.NetworkHelper;
-import info.zamojski.soft.towercollector.io.network.NetworkHelper.ResponseData;
+import info.zamojski.soft.towercollector.io.network.UpdateClient;
 import info.zamojski.soft.towercollector.model.UpdateInfo;
 import info.zamojski.soft.towercollector.parsers.update.UpdateFeedParseException;
 import info.zamojski.soft.towercollector.parsers.update.UpdateFeedParser;
 import info.zamojski.soft.towercollector.updater.UpdaterNotificationHelper;
-import info.zamojski.soft.towercollector.utils.StringUtils;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -49,12 +47,13 @@ public class UpdateCheckAsyncTask extends AsyncTask<String, Void, UpdateInfo> {
         String updateFeedUrl = urls[0];
         // check for updates and download info
         try {
-            ResponseData response = NetworkHelper.sendGet(updateFeedUrl);
+            UpdateClient client = new UpdateClient(updateFeedUrl);
+            String response = client.fetchUpdates();
             Log.d("doInBackground(): Server response: %s", response);
-            if (response.getCode() == 200 && !StringUtils.isNullEmptyOrWhitespace(response.getContent())) {
+            if (response != null) {
                 // parse response
                 try {
-                    UpdateInfo updateInfo = responseParser.parse(response.getContent());
+                    UpdateInfo updateInfo = responseParser.parse(response);
                     return updateInfo;
                 } catch (UpdateFeedParseException ex) {
                     Log.w("doInBackground(): Cannot parse update feed response");

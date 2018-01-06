@@ -4,38 +4,38 @@
 
 package info.zamojski.soft.towercollector.files.generators.wrappers;
 
-import java.io.IOException;
-import java.util.List;
+import android.content.Context;
 
 import org.acra.ACRA;
 
-import android.content.Context;
-
-import trikita.log.Log;
+import java.io.IOException;
+import java.util.List;
 
 import info.zamojski.soft.towercollector.MyApplication;
+import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.GeneratorResult;
 import info.zamojski.soft.towercollector.files.DeviceOperationException;
 import info.zamojski.soft.towercollector.files.FileGeneratorResult;
-import info.zamojski.soft.towercollector.files.DeviceOperationException.Reason;
 import info.zamojski.soft.towercollector.files.devices.IWritableTextDevice;
-import info.zamojski.soft.towercollector.files.formatters.csv.ICsvFormatter;
-import info.zamojski.soft.towercollector.files.generators.CsvTextGenerator;
-import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
+import info.zamojski.soft.towercollector.files.formatters.json.IJsonFormatter;
+import info.zamojski.soft.towercollector.files.formatters.json.JsonMozillaFormatter;
+import info.zamojski.soft.towercollector.files.generators.JsonTextGenerator;
 import info.zamojski.soft.towercollector.model.Measurement;
+import trikita.log.Log;
 
-public class CsvTextGeneratorWrapper extends TextGeneratorWrapperBase {
+public class JsonTextGeneratorWrapper extends TextGeneratorWrapperBase {
 
-    private final String TAG = CsvTextGeneratorWrapper.class.getSimpleName();
+    private final String TAG = JsonTextGeneratorWrapper.class.getSimpleName();
 
-    private CsvTextGenerator<ICsvFormatter, IWritableTextDevice> generator;
+    private JsonTextGenerator<IJsonFormatter, IWritableTextDevice> generator;
 
-    public CsvTextGeneratorWrapper(Context context, IWritableTextDevice device, ICsvFormatter formatter) {
+    public JsonTextGeneratorWrapper(Context context, IWritableTextDevice device) {
         this.context = context;
         this.device = device;
-        this.generator = new CsvTextGenerator(formatter, device);
+        this.generator = new JsonTextGenerator(new JsonMozillaFormatter(), device);
     }
 
+    @Override
     public FileGeneratorResult generate() {
         try {
             // get number of measurements to process
@@ -45,7 +45,7 @@ public class CsvTextGeneratorWrapper extends TextGeneratorWrapperBase {
             // check if there is anything to process
             if (measurementsCount == 0 || lastMeasurement == null) {
                 Log.d("generate(): Cancelling save due to no data");
-                return new FileGeneratorResult(GeneratorResult.NoData, Reason.Unknown);
+                return new FileGeneratorResult(GeneratorResult.NoData, DeviceOperationException.Reason.Unknown);
             }
             // calculate number of parts
             final int MEASUREMENTS_PER_PART = 400;
@@ -55,14 +55,12 @@ public class CsvTextGeneratorWrapper extends TextGeneratorWrapperBase {
             }
             device.open();
             notifyProgressListeners(0, measurementsCount);
-            // write header
-            generator.writeHeader();
             // get measurements in loop
             for (int i = 0; i < partsCount; i++) {
                 // get from database
                 List<Measurement> measurements = MeasurementsDatabase.getInstance(context).getOlderMeasurements(lastMeasurement.getTimestamp(), i * MEASUREMENTS_PER_PART, MEASUREMENTS_PER_PART);
                 // write to file
-                generator.writeEntryChunk(measurements);
+                generator.writeEntries(measurements);
                 notifyProgressListeners(i * MEASUREMENTS_PER_PART + measurements.size(), measurementsCount);
                 if (cancel) {
                     break;
@@ -73,10 +71,10 @@ public class CsvTextGeneratorWrapper extends TextGeneratorWrapperBase {
             notifyProgressListeners(measurementsCount, measurementsCount);
             if (cancel) {
                 Log.d("generate(): Export cancelled");
-                return new FileGeneratorResult(GeneratorResult.Cancelled, Reason.Unknown);
+                return new FileGeneratorResult(GeneratorResult.Cancelled, DeviceOperationException.Reason.Unknown);
             } else {
                 Log.d("generate(): All %s measurements exported", measurementsCount);
-                return new FileGeneratorResult(GeneratorResult.Succeeded, Reason.Unknown);
+                return new FileGeneratorResult(GeneratorResult.Succeeded, DeviceOperationException.Reason.Unknown);
             }
         } catch (DeviceOperationException ex) {
             Log.e("generate(): Failed to check external memory compatibility", ex);
@@ -87,11 +85,10 @@ public class CsvTextGeneratorWrapper extends TextGeneratorWrapperBase {
             Log.e("generate(): Failed to save data on external memory", ex);
             MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
-            return new FileGeneratorResult(GeneratorResult.Failed, Reason.Unknown, ex.getMessage());
+            return new FileGeneratorResult(GeneratorResult.Failed, DeviceOperationException.Reason.Unknown, ex.getMessage());
         } finally {
             // just for sure
             device.close();
         }
     }
-
 }
