@@ -1,6 +1,16 @@
 {
   "Entries": [
     {
+      "VersionCode": 1160020,
+      "Title": "Changes in version 1.16.0",
+      "Description": "Join Tower Collector community on <a href=\"https://www.facebook.com/towercollector/\">Facebook (new!)</a> or <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> to get help and share your ideas :)",
+      "Messages": [
+        "Added export to JSON using Mozilla Location Services (MLS) values formatting.",
+        "Display Long CID (UTRAN CID) and CID+RNC for WCDMA networks on Main screen.",
+        "Improved compatibility with Android Oreo."
+      ]
+    },
+    {
       "VersionCode": 1150019,
       "Title": "Changes in version 1.15.0",
       "Messages": [
@@ -31,16 +41,6 @@
         "Improved app performance and shortened startup time.",
         "Fixed crash when refreshing statistics.",
         "Fixed formatting issue in CSV files when GPS altitude over 1000 m."
-      ]
-    },
-    {
-      "VersionCode": 1120012,
-      "Title": "Changes in version 1.12.0",
-      "Description": "Join Tower Collector community on <a href=\"https://www.facebook.com/towercollector/\">Facebook (new!)</a> or <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> to get help and share your ideas :)",
-      "Messages": [
-        "Added export to CSV using OpenCellID.org values formatting (can be uploaded on website).",
-        "Added option to hide Collector notification from lock screen and status bar unless expanded on Android 4.1+.",
-        "Improved auto update source selection to open app market if possible and then website."
       ]
     }
   ]
