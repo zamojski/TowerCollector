@@ -17,8 +17,8 @@ import info.zamojski.soft.towercollector.tasks.ExportFileAsyncTask;
 public class NotificationHelperBase {
 
     protected static final String COLLECTOR_NOTIFICATION_CHANNEL_ID = "collector_notification_channel";
-    protected static final String UPLOADER_NOTIFICATION_CHANNEL_ID = "collector_notification_channel";
-    protected static final String OTHER_NOTIFICATION_CHANNEL_ID = "collector_notification_channel";
+    protected static final String UPLOADER_NOTIFICATION_CHANNEL_ID = "uploader_notification_channel";
+    protected static final String OTHER_NOTIFICATION_CHANNEL_ID = "other_notification_channel";
 
     protected boolean isUsingNotificationChannel() {
         return (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O);
