@@ -55,6 +55,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.telephony.CellInfo;
@@ -185,7 +186,7 @@ public class CollectorService extends Service {
             registerPhoneStateListener();
         } catch (SecurityException ex) {
             Log.e("onStartCommand(): coarse location permission is denied", ex);
-            stopSelfOnError();
+            stopSelf();
         }
         // make sure GPS is available on the device otherwise the following lines will throw an exception
         if (!GpsUtils.isGpsAvailable(this)) {
@@ -203,7 +204,7 @@ public class CollectorService extends Service {
             }
         } catch (SecurityException ex) {
             Log.e("onStartCommand(): fine location permission is denied", ex);
-            stopSelfOnError();
+            stopSelf();
         }
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         registerWakeLockAcquirer();
@@ -344,7 +345,12 @@ public class CollectorService extends Service {
                 processCellInfo(cellInfo);
             }
         };
-        telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_CELL_INFO);
+        try {
+            telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_CELL_INFO);
+        } catch (SecurityException ex) {
+            Log.e("registerApi17PhoneStateListener(): coarse location permission is denied", ex);
+            stopSelf();
+        }
         // run scheduled cell listener
         periodicalPhoneStateListener.schedule(new TimerTask() {
             private final String INNER_TAG = TAG + ".Periodical" + PhoneStateListener.class.getSimpleName();
@@ -362,7 +368,7 @@ public class CollectorService extends Service {
                     processCellInfo(cellInfo);
                 } catch (SecurityException ex) {
                     Log.e(INNER_TAG, "run(): coarse location or phone  permission is denied", ex);
-                    stopSelfOnError();
+                    stopSelf();
                 }
             }
         }, 0, CELL_UPDATE_INTERVAL);
@@ -392,11 +398,16 @@ public class CollectorService extends Service {
                     processCellLocation(cellLocation, neighboringCells);
                 } catch (SecurityException ex) {
                     Log.e(INNER_TAG, "onCellLocationChanged(): coarse location or phone permission is denied", ex);
-                    stopSelfOnError();
+                    stopSelf();
                 }
             }
         };
-        telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS | PhoneStateListener.LISTEN_CELL_LOCATION);
+        try {
+            telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS | PhoneStateListener.LISTEN_CELL_LOCATION);
+        } catch (SecurityException ex) {
+            Log.e("registerApi1PhoneStateListener(): coarse location permission is denied", ex);
+            stopSelf();
+        }
         // run scheduled cell listener
         periodicalPhoneStateListener.schedule(new TimerTask() {
             private final String INNER_TAG = TAG + ".Periodical" + PhoneStateListener.class.getSimpleName();
@@ -410,7 +421,7 @@ public class CollectorService extends Service {
                     processCellLocation(cellLocation, neighboringCells);
                 } catch (SecurityException ex) {
                     Log.e(INNER_TAG, "run(): coarse location or phone permission is denied", ex);
-                    stopSelfOnError();
+                    stopSelf();
                 }
             }
         }, 0, CELL_UPDATE_INTERVAL);
@@ -544,7 +555,7 @@ public class CollectorService extends Service {
                 }
             } catch (SecurityException ex) {
                 Log.e("updateDynamicInterval(): fine location permission is denied", ex);
-                stopSelfOnError();
+                stopSelf();
             }
             conditionsNotAchievedCounter = CONDITIONS_NOT_ACHIEVED_COUNTER_INIT;
             return;
@@ -564,7 +575,7 @@ public class CollectorService extends Service {
                         }
                     } catch (SecurityException ex) {
                         Log.e("updateDynamicInterval(): fine location permission is denied", ex);
-                        stopSelfOnError();
+                        stopSelf();
                     }
                     conditionsNotAchievedCounter = CONDITIONS_NOT_ACHIEVED_COUNTER_INIT;
                     return;
@@ -812,10 +823,5 @@ public class CollectorService extends Service {
 
     public Validity getLastIsSystemTimeValid() {
         return this.lastIsSystemTimeValid;
-    }
-
-    private void stopSelfOnError() {
-        Toast.makeText(MyApplication.getApplication(), R.string.permission_collector_denied_message, Toast.LENGTH_LONG).show();
-        stopSelf();
     }
 }

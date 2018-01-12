@@ -18,6 +18,7 @@ import android.telephony.CellLocation;
 import android.telephony.TelephonyManager;
 import android.telephony.gsm.GsmCellLocation;
 import android.text.TextUtils;
+
 import trikita.log.Log;
 
 public class MobileUtils {
@@ -63,7 +64,13 @@ public class MobileUtils {
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private static boolean isApi17CellInfoAvailable(Context context) {
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        List<CellInfo> cells = telephonyManager.getAllCellInfo();
+        List<CellInfo> cells;
+        try {
+            cells = telephonyManager.getAllCellInfo();
+        } catch (SecurityException ex) {
+            Log.d("isApi17CellInfoAvailable(): Result = coarse location permission is denied", ex);
+            return false;
+        }
         if (cells == null || cells.size() == 0) {
             Log.d("isApi17CellInfoAvailable(): Result = no cell info");
             return false;
@@ -81,7 +88,13 @@ public class MobileUtils {
 
     private static boolean isApi1CellInfoAvailable(Context context) {
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        CellLocation cell = telephonyManager.getCellLocation();
+        CellLocation cell;
+        try {
+            cell = telephonyManager.getCellLocation();
+        } catch (SecurityException ex) {
+            Log.d("isApi1CellInfoAvailable(): Result = coarse location permission is denied", ex);
+            return false;
+        }
         if (cell == null) {
             Log.d("isApi1CellInfoAvailable(): Result = no cell location");
             return false;
