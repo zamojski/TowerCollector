@@ -1,6 +1,14 @@
 {
   "Entries": [
     {
+      "VersionCode": 1170021,
+      "Title": "Changes in version 1.17.0",
+      "Description": "Join Tower Collector community on <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> or <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> to get help and share your ideas :)",
+      "Messages": [
+        "Improved error handling."
+      ]
+    },
+    {
       "VersionCode": 1160020,
       "Title": "Changes in version 1.16.0",
       "Description": "Join Tower Collector community on <a href=\"https://www.facebook.com/towercollector/\">Facebook (new!)</a> or <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> to get help and share your ideas :)",
@@ -32,16 +40,6 @@
       "VersionCode": 1130015,
       "Title": "Don't miss the chance!",
       "Description": "Don't let the others decide, have influence - <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSe_JGw4u5z5MXQ5krsLMbcKUVRYFpbxHDsAvdutMLuJQ0ks9Q/viewform\">vote for your most wanted features!</a><br/><br/>Join Tower Collector community on <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> or <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> to get updated :)"
-    },
-    {
-      "VersionCode": 1130014,
-      "Title": "Changes in version 1.13.0",
-      "Description": "Join Tower Collector community on <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> or <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> to get help and share your ideas :)",
-      "Messages": [
-        "Improved app performance and shortened startup time.",
-        "Fixed crash when refreshing statistics.",
-        "Fixed formatting issue in CSV files when GPS altitude over 1000 m."
-      ]
     }
   ]
 }
