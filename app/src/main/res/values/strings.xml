@@ -2,7 +2,7 @@
 <!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<resources>
+<resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
     <string name="locale">en</string>
     <string name="unit_length_metric">m</string>
     <string name="unit_length_imperial">ft</string>
@@ -44,7 +44,7 @@
     <string name="main_toast_background_task_already_running_uploader">Uploader service is running.</string>
     <string name="main_toast_background_task_already_running_export">Export task is running.</string>
     <string name="main_toast_background_task_already_running_unknown">Background task is running.</string>
-    <string name="main_toast_background_task_already_running_common">%s Please stop it before starting another task.</string>
+    <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> Please stop it before starting another task.</string>
     <string name="enabled">enabled</string>
     <string name="disabled">disabled</string>
     <string name="unknown_error">Unknown error occurred!</string>
@@ -55,31 +55,31 @@
     <string name="date_time_format_standard">yyyy-MM-dd HH:mm:ss</string>
     <string name="main_gps_status_label">GPS status:</string>
     <string name="main_stats_today_title">Today</string>
-    <string name="main_stats_local_title">Local since %s</string>
+    <string name="main_stats_local_title">Local since <xliff:g id="date_time">%s</xliff:g></string>
     <string name="main_stats_locations_label">Measurements:</string>
     <string name="main_stats_cells_label">Cells (discovered):</string>
-    <string name="main_stats_global_title">Total since %s</string>
+    <string name="main_stats_global_title">Total since <xliff:g id="date_time">%s</xliff:g></string>
     <string name="main_stats_global_locations_label">Measurements:</string>
     <string name="main_stats_global_cells_label">Discovered cells:</string>
     <string name="main_last_cell_title">Last saved measurement</string>
     <string name="main_last_number_of_cells_label">Main / neighboring:</string>
-    <string name="main_last_number_of_cells_value" translatable="false">%1$d / %2$d</string>
+    <string name="main_last_number_of_cells_value" translatable="false"><xliff:g id="number_of_main">%1$d</xliff:g> / <xliff:g id="number_of_neighboring">%2$d</xliff:g></string>
     <string name="main_last_network_type_label">Network type:</string>
     <string name="main_last_long_cell_id_label">Long Cell ID:</string>
     <string name="main_last_cell_id_rnc_label">Cell ID / RNC:</string>
-    <string name="main_last_cell_id_rnc_value" translatable="false">%1$d / %2$d</string>
+    <string name="main_last_cell_id_rnc_value" translatable="false"><xliff:g id="short_cell_id">%1$d</xliff:g> / <xliff:g id="rnc">%2$d</xliff:g></string>
     <string name="main_last_cell_id_label">Cell ID:</string>
     <string name="main_last_lac_label">LAC:</string>
     <string name="main_last_mcc_label">MCC:</string>
     <string name="main_last_mnc_label">MNC:</string>
     <string name="main_last_signal_strength_label">Signal strength:</string>
-    <string name="main_last_signal_strength_value">%d dBm</string>
+    <string name="main_last_signal_strength_value" translatable="false"><xliff:g id="signal_strength">%d</xliff:g> dBm</string>
     <string name="main_last_latitude_label">Latitude:</string>
-    <string name="main_last_latitude_value">%.8f&#176;</string>
+    <string name="main_last_latitude_value" translatable="false"><xliff:g id="latitude">%.8f&#176;</xliff:g></string>
     <string name="main_last_longitude_label">Longitude:</string>
-    <string name="main_last_longitude_value">%.8f&#176;</string>
+    <string name="main_last_longitude_value" translatable="false"><xliff:g id="longitude">%.8f&#176;</xliff:g></string>
     <string name="main_last_gps_accuracy_label">Accuracy:</string>
-    <string name="main_last_gps_accuracy_value">%1$.2f %2$s</string>
+    <string name="main_last_gps_accuracy_value" translatable="false"><xliff:g id="accuracy_value">%1$.2f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="main_last_date_time_label">Save time:</string>
     <string name="main_menu_start_button">Start collecting</string>
     <string name="main_menu_stop_button">Stop collecting</string>
@@ -91,12 +91,12 @@
     <string name="main_menu_network_type_button">Network type</string>
     <string name="collector_notification_channel_name">Collector</string>
     <string name="collector_notification_title">Collecting</string>
-    <string name="collector_notification_stats">Today %1$d measurements of %2$d cells.</string>
-    <string name="collector_notification_status">GPS status: %s.</string>
+    <string name="collector_notification_stats">Today <xliff:g id="number_of_measurements">%1$d</xliff:g> measurements of <xliff:g id="number_of_cells">%2$d</xliff:g> cells.</string>
+    <string name="collector_notification_status">GPS status: <xliff:g id="status">%s</xliff:g>.</string>
     <string name="collector_gps_unavailable">Cannot start collecting because GPS is unavailable.</string>
     <string name="uploader_notification_channel_name">Uploader</string>
     <string name="uploader_notification_title">Uploading</string>
-    <string name="uploader_notification_progress_info">Part %1$d of %2$d. Select to abort.</string>
+    <string name="uploader_notification_progress_info">Part <xliff:g id="part_number">%1$d</xliff:g> of <xliff:g id="total_parts">%2$d</xliff:g>. Select to abort.</string>
     <string name="uploader_result_dialog_title">Upload result</string>
     <string name="uploader_starting">Starting upload&#8230;</string>
     <string name="uploader_aborting">Aborting upload&#8230;</string>
@@ -128,8 +128,8 @@
     <string name="export_dialog_progress_title">Exporting</string>
     <string name="export_dialog_progress_message">Saving to \"TowerCollector\" folder on external memory with current date and time as file name.</string>
     <string name="export_dialog_finished_title">Export successful</string>
-    <string name="export_dialog_finished_message">File saved as %s.\n\n<i>Please consider contribution to OpenCellID.org by uploading your measurements!</i></string>
-    <string name="export_toast_failed">Export failed: %s.</string>
+    <string name="export_dialog_finished_message">File saved as <xliff:g id="file_name">%s</xliff:g>.\n\n<i>Please consider contribution to OpenCellID.org by uploading your measurements!</i></string>
+    <string name="export_toast_failed">Export failed: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">unknown error</string>
     <string name="export_toast_failed_cause_directory_not_exists">cannot create directory</string>
     <string name="export_toast_failed_cause_directory_not_writable">directory is read-only</string>
@@ -188,7 +188,7 @@
     <string name="main_help_last_date_time_description">Date and time when last measurement was saved.</string>
     <string name="status_initializing">initializing</string>
     <string name="status_ok">OK</string>
-    <string name="status_low_gps_accuracy">low accuracy %1$.0f %2$s</string>
+    <string name="status_low_gps_accuracy">low accuracy <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">no location</string>
     <string name="invalid_system_time">System date/time is invalid</string>
     <string name="web_browser_missing">Please install web browser to open the page</string>
