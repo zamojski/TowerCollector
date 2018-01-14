@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- This Source Code Form is subject to the terms of the Mozilla Public
+<?xml version="1.0" encoding="utf-8"?><!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,15 +16,14 @@
             android:id="@+id/dont_show_again_dialog_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium">
-        </TextView>
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            tools:text="Sample content"></TextView>
 
         <CheckBox
             android:id="@+id/dont_show_again_dialog_checkbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/dialog_dont_show_again">
-        </CheckBox>
+            android:text="@string/dialog_dont_show_again"></CheckBox>
     </LinearLayout>
 
 </ScrollView>

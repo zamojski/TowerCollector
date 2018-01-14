@@ -1,16 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- This Source Code Form is subject to the terms of the Mozilla Public
+<?xml version="1.0" encoding="utf-8"?><!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <include layout="@layout/main_gps_status_fragment"/>
+    <include layout="@layout/main_gps_status_fragment" />
 
-    <include layout="@layout/main_invalid_system_time_fragment"/>
+    <include layout="@layout/main_invalid_system_time_fragment" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -36,7 +35,7 @@
                     android:padding="@dimen/padding_small"
                     android:text="@string/main_stats_today_title"
                     android:textStyle="bold"
-                    tools:context=".MainActivity"/>
+                    tools:context=".MainActivity" />
             </TableRow>
 
             <TableRow
@@ -52,14 +51,15 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_small"
                     android:text="@string/main_stats_locations_label"
-                    tools:context=".MainActivity"/>
+                    tools:context=".MainActivity" />
 
                 <TextView
                     android:id="@+id/main_stats_today_locations_value_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_small"
-                    tools:context=".MainActivity"/>
+                    tools:context=".MainActivity"
+                    tools:text="12" />
             </TableRow>
 
             <TableRow
@@ -75,14 +75,15 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_small"
                     android:text="@string/main_stats_cells_label"
-                    tools:context=".MainActivity"/>
+                    tools:context=".MainActivity" />
 
                 <TextView
                     android:id="@+id/main_stats_today_cells_value_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_small"
-                    tools:context=".MainActivity"/>
+                    tools:context=".MainActivity"
+                    tools:text="1 (0)" />
             </TableRow>
 
             <TableRow
@@ -100,7 +101,7 @@
                     android:padding="@dimen/padding_small"
                     android:text="@string/main_stats_local_title"
                     android:textStyle="bold"
-                    tools:context=".MainActivity"/>
+                    tools:context=".MainActivity" />
             </TableRow>
 
             <TableRow
@@ -116,14 +117,15 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_small"
                     android:text="@string/main_stats_locations_label"
-                    tools:context=".MainActivity"/>
+                    tools:context=".MainActivity" />
 
                 <TextView
                     android:id="@+id/main_stats_local_locations_value_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_small"
-                    tools:context=".MainActivity"/>
+                    tools:context=".MainActivity"
+                    tools:text="123" />
             </TableRow>
 
             <TableRow
@@ -139,14 +141,15 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_small"
                     android:text="@string/main_stats_cells_label"
-                    tools:context=".MainActivity"/>
+                    tools:context=".MainActivity" />
 
                 <TextView
                     android:id="@+id/main_stats_local_cells_value_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_small"
-                    tools:context=".MainActivity"/>
+                    tools:context=".MainActivity"
+                    tools:text="12 (3)" />
             </TableRow>
 
             <TableRow
@@ -164,7 +167,7 @@
                     android:padding="@dimen/padding_small"
                     android:text="@string/main_stats_global_title"
                     android:textStyle="bold"
-                    tools:context=".MainActivity"/>
+                    tools:context=".MainActivity" />
             </TableRow>
 
             <TableRow
@@ -180,14 +183,15 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_small"
                     android:text="@string/main_stats_global_locations_label"
-                    tools:context=".MainActivity"/>
+                    tools:context=".MainActivity" />
 
                 <TextView
                     android:id="@+id/main_stats_global_locations_value_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_small"
-                    tools:context=".MainActivity"/>
+                    tools:context=".MainActivity"
+                    tools:text="123456" />
             </TableRow>
 
             <TableRow
@@ -203,14 +207,15 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_small"
                     android:text="@string/main_stats_global_cells_label"
-                    tools:context=".MainActivity"/>
+                    tools:context=".MainActivity" />
 
                 <TextView
                     android:id="@+id/main_stats_global_cells_value_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_small"
-                    tools:context=".MainActivity"/>
+                    tools:context=".MainActivity"
+                    tools:text="1234" />
             </TableRow>
         </TableLayout>
     </ScrollView>

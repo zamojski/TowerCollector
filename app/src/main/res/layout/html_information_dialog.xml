@@ -16,6 +16,7 @@
         <org.sufficientlysecure.htmltextview.HtmlTextView
             android:id="@+id/html_info_dialog_textview"
             android:layout_width="match_parent"
+            tools:text="Sample content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
