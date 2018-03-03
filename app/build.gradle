@@ -1,3 +1,7 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
 // each of the version numbers must be 0-99
 def versionMajor = 1 // major releases
 def versionMinor = 17 // minor feature releases
