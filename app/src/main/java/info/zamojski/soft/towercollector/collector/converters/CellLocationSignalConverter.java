@@ -12,6 +12,7 @@ import info.zamojski.soft.towercollector.utils.UnitConverter;
 
 import android.telephony.NeighboringCellInfo;
 import android.telephony.SignalStrength;
+
 import trikita.log.Log;
 
 public class CellLocationSignalConverter {
@@ -19,6 +20,9 @@ public class CellLocationSignalConverter {
     private static final String TAG = CellLocationSignalConverter.class.getSimpleName();
 
     private Method lteDbmMethod;
+    private Method lteSignalStrengthMethod;
+    private Method wcdmaRscpMethod;
+    private Method wcdmaEcioMethod;
 
     // http://www.truiton.com/2014/08/android-onsignalstrengthschanged-lte-strength-measurement/
     public void update(Measurement m, SignalStrength signal) {
@@ -29,14 +33,36 @@ public class CellLocationSignalConverter {
             int dbm = signal.getCdmaDbm();// rssi
             updateCdma(m, dbm);
         }
-        // try to convert if lte network
-        if (m.getAsu() == Measurement.UNKNOWN_SIGNAL) {
+        // try to convert if lte network or network being reported as GSM is in fact WCDMA
+        if (m.getAsu() == Measurement.UNKNOWN_SIGNAL || m.getAsu() == 0) {
             try {
-                Method method = getLteDbmMethod();
-                int dbm = ((Integer) method.invoke(signal)).intValue();// rsrp
+                Method rscpMethod = getWcdmaRscpMethod();
+                int rscp = (Integer) rscpMethod.invoke(signal);// rscp
+                Method ecioMethod = getWcdmaEcioMethod();
+                int ecio = (Integer) ecioMethod.invoke(signal);// ecio
+                int rssi = rscp - ecio;// rssi
+                updateGsm(m, rssi);
+            } catch (Exception ex) {
+                Log.w("update(): Cannot read WCDMA signal strength from RSCP/ECIO: %s", signal, ex);
+            }
+        }
+        // try to convert if lte network or network being reported as GSM is in fact LTE
+        if (m.getAsu() == Measurement.UNKNOWN_SIGNAL || m.getAsu() == 0) {
+            try {
+                Method dbmMethod = getLteDbmMethod();
+                int dbm = (Integer) dbmMethod.invoke(signal);// rsrp
                 updateLte(m, dbm);
             } catch (Exception ex) {
-                Log.w("update(): Cannot read LTE signal strength: %s", signal, ex);
+                Log.w("update(): Cannot read LTE signal strength from RSRP: %s", signal, ex);
+            }
+        }
+        if (m.getAsu() == Measurement.UNKNOWN_SIGNAL || m.getAsu() == 0) {
+            try {
+                Method strengthMethod = getLteSignalStrengthMethod();
+                int asu = (Integer) strengthMethod.invoke(signal);// asu
+                updateLte(m, asu);
+            } catch (Exception ex) {
+                Log.w("update(): Cannot read LTE signal strength from ASU: %s", signal, ex);
             }
         }
     }
@@ -59,7 +85,11 @@ public class CellLocationSignalConverter {
         Log.d("update(): Updating GSM signal strength = %s", asu);
         if (asu == NeighboringCellInfo.UNKNOWN_RSSI)
             asu = Measurement.UNKNOWN_SIGNAL;
-        m.setGsmLocationSignal(asu, UnitConverter.convertGsmAsuToDbm(asu));
+        // NOTE: for GSM asu is always positive but RSSI negative
+        if (asu >= 0)
+            m.setGsmLocationSignal(asu, UnitConverter.convertGsmAsuToDbm(asu));
+        else
+            m.setGsmLocationSignal(UnitConverter.convertGsmDbmToAsu(asu), asu);
     }
 
     private void updateCdma(Measurement m, int dbm) {
@@ -71,13 +101,39 @@ public class CellLocationSignalConverter {
         Log.d("update(): Updating LTE signal strength = %s", dbm);
         if (dbm == NeighboringCellInfo.UNKNOWN_RSSI)
             dbm = Measurement.UNKNOWN_SIGNAL;
-        m.setGsmLocationSignal(UnitConverter.convertLteDbmToAsu(dbm), dbm);
+        // NOTE: for LTE asu is always positive but RSRP negative
+        if (dbm >= 0)
+            m.setGsmLocationSignal(dbm, UnitConverter.convertLteAsuToDbm(dbm));
+        else
+            m.setGsmLocationSignal(UnitConverter.convertLteDbmToAsu(dbm), dbm);
     }
 
     private Method getLteDbmMethod() throws NoSuchMethodException {
         if (lteDbmMethod == null) {
+            //getwcdmarscp
             lteDbmMethod = SignalStrength.class.getMethod("getLteDbm", new Class[0]);
         }
         return lteDbmMethod;
+    }
+
+    private Method getLteSignalStrengthMethod() throws NoSuchMethodException {
+        if (lteSignalStrengthMethod == null) {
+            lteSignalStrengthMethod = SignalStrength.class.getMethod("getLteSignalStrength", new Class[0]);
+        }
+        return lteSignalStrengthMethod;
+    }
+
+    public Method getWcdmaRscpMethod() throws NoSuchMethodException {
+        if (wcdmaRscpMethod == null) {
+            wcdmaRscpMethod = SignalStrength.class.getMethod("getWcdmaRscp", new Class[0]);
+        }
+        return wcdmaRscpMethod;
+    }
+
+    public Method getWcdmaEcioMethod() throws NoSuchMethodException {
+        if (wcdmaEcioMethod == null) {
+            wcdmaEcioMethod = SignalStrength.class.getMethod("getWcdmaEcio", new Class[0]);
+        }
+        return wcdmaEcioMethod;
     }
 }
