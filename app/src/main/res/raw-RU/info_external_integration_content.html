@@ -1,0 +1,15 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+
+<p>Tower Collector выставляет задачи, которые будут работать с другими приложениями, которые посылают <i>intent</i>, такие как Tasker, Automate или Llama. Вы должны использовать <i>Broadcast</i> для всех активностей, определённых ниже. Для получения более подробной информации как сделать такую интеграцию, смотрите раздел Помощь.<br />
+<i>Вы не можете выставлять более одной задачи в одно и то же время в приложении!</i></p>
+<h3>Запустить сборщик</h3>
+<p>Сборщик будет запущен с использованием параметров указанных в Настройках. Действие:</p>
+<code>info.zamojski.soft.towercollector.COLLECTOR_START</code>
+<h3>Остановить Сборщик</h3>
+<p>Сборщик будет остановлен немедленно. Действие:</p>
+<code>info.zamojski.soft.towercollector.COLLECTOR_STOP</code>
+<h3>Запустить Выгрузку</h3>
+<p>Выгрузка будет запущена с API-ключом, указанным в Настройка. Действие:</p>
+<code>info.zamojski.soft.towercollector.UPLOADER_START</code>

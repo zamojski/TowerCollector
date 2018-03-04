@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+    <string name="permission_required">Не хватает прав доступа</string>
+    <string name="permission_denied">Доступ запрещён</string>
+    <string name="permission_export_rationale_message">Необходимы права доступа к хранилищу для экспорта измерений в файл</string>
+    <string name="permission_export_denied_message">Отмена экспорта измерений до тех пор пока не будут даны необходимые права доступа</string>
+    <string name="permission_export_never_ask_again_message">Экспорт измерений недоступен пока нет прав доступа к хранилищу</string>
+    <string name="permission_logging_rationale_message">Необходимы права доступа к хранилищу для использования журналирования</string>
+    <string name="permission_logging_denied_message">Журналирование отключено из-за отсутствия прав доступа к хранилищу</string>
+    <string name="permission_logging_never_ask_again_message">Журналирование недоступно пока нет прав доступа к хранилищу</string>
+    <string name="permission_logging_denied_temporarily_message">Временное отключение журналирования пока нет прав доступа к хранилищу</string>
+    <string name="permission_collector_rationale_message">Чтобы собирать измерения необходимо дать доступ к местоположению устройства</string>
+    <string name="permission_collector_denied_message">Отмена сбора измерений до тех пор пока не будут даны необходимые права доступа</string>
+    <string name="permission_collector_never_ask_again_message">Сбор измерений недоступен пока нет прав доступа к местоположению и/или телефону</string>
+    <string name="permission_collector_denied_intent_message">Отмена сбора измерений до тех пор пока не будут даны права доступа, сначала откройте приложение чтобы дать необходиые права доступа</string>
+    <string name="permission_uploader_denied_message">Загрузка отменена, т.к. нет доступа к интернету.</string>
+</resources>
