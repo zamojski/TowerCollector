@@ -1,6 +1,15 @@
 {
   "Entries": [
     {
+      "VersionCode": 1180022,
+      "Title": "Changes in version 1.18.0",
+      "Description": "Do you want to see the app in your language? Help me with <a href=\"http://i18n.zamojski.info/\">translations</a>! Dutch, French, Hungarian, Portuguese, Spanish are partially done but require volunteers - apply on the website or send me an email to start.",
+      "Messages": [
+        "Add German, Polish and Russian translations. Thank you for all the effort :)",
+        "Improved signal strength calculation for API 1 on Huawei devices."
+      ]
+    },
+    {
       "VersionCode": 1170021,
       "Title": "Changes in version 1.17.0",
       "Description": "Join Tower Collector community on <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> or <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> to get help and share your ideas :)",
@@ -35,11 +44,6 @@
         "Updated API key validation rule to support new OCID format.",
         "Updated API key (token) registration link."
       ]
-    },
-    {
-      "VersionCode": 1130015,
-      "Title": "Don't miss the chance!",
-      "Description": "Don't let the others decide, have influence - <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSe_JGw4u5z5MXQ5krsLMbcKUVRYFpbxHDsAvdutMLuJQ0ks9Q/viewform\">vote for your most wanted features!</a><br/><br/>Join Tower Collector community on <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> or <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> to get updated :)"
     }
   ]
 }
