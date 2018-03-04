@@ -27,7 +27,7 @@ class UpgradeScript6 implements IUpgradeScript {
         // backup old table
         database.execSQL("ALTER TABLE cells RENAME TO cells_backup");
         // add new column with default null value
-        database.execSQL("ALTER TABLE cells_backup ADD COLUMN discovered_at INTEGER NULL");
+        database.execSQL("ALTER TABLE cells_backup ADD COLUMN discovered_at INTEGER DEFAULT NULL");
         // update value based on existing data
         database.execSQL("UPDATE cells_backup SET discovered_at = (SELECT MIN(measured_at) FROM measurements m WHERE m.cell_id = cells_backup.row_id)");
         // create new table

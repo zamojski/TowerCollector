@@ -17,7 +17,7 @@ class UpgradeScript5 implements IUpgradeScript {
         // create new table
         database.execSQL("CREATE TABLE operators (row_id INTEGER PRIMARY KEY NOT NULL, name VARCHAR(50) NOT NULL, UNIQUE (name) ON CONFLICT IGNORE)");
         // add new column to measurements
-        database.execSQL("ALTER TABLE measurements ADD COLUMN operator_id INTEGER NULL REFERENCES operators(row_id)");
+        database.execSQL("ALTER TABLE measurements ADD COLUMN operator_id INTEGER DEFAULT NULL REFERENCES operators(row_id)");
     }
 
 }

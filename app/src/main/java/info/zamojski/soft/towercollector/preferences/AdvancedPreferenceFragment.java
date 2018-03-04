@@ -51,12 +51,11 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 if (newValue.equals(getString(R.string.preferences_file_logging_level_entries_value_disabled))) {
                     Log.d("onFileLoggingLevelChangeListener(): Disabling logger");
-                    requestLoggerChange();
                 } else {
                     Log.d("onFileLoggingLevelChangeListener(): Requesting permission");
-                    // NOTE: delegate the permission handling to generated method
-                    AdvancedPreferenceFragmentPermissionsDispatcher.requestLoggerChangeWithPermissionCheck(AdvancedPreferenceFragment.this);
                 }
+                // NOTE: delegate the permission handling to generated method
+                AdvancedPreferenceFragmentPermissionsDispatcher.requestLoggerChangeWithPermissionCheck(AdvancedPreferenceFragment.this);
                 return true;
             }
         });

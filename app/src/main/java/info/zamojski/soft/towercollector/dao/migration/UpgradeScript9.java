@@ -21,11 +21,11 @@ class UpgradeScript9 implements IUpgradeScript {
         database.execSQL("DROP INDEX IF EXISTS IX_measurements_cell_id");
         database.execSQL("DROP TRIGGER IF EXISTS update_measurements_stats");
         // add new column with default null value
-        database.execSQL("ALTER TABLE measurements_backup ADD COLUMN neighboring INTEGER NULL");
+        database.execSQL("ALTER TABLE measurements_backup ADD COLUMN neighboring INTEGER DEFAULT NULL");
         // update value based on existing data
         database.execSQL("UPDATE measurements_backup SET neighboring = 0");
         // create new table
-        database.execSQL("CREATE TABLE measurements (row_id INTEGER PRIMARY KEY NOT NULL, cell_id INTEGER NOT NULL, neighboring INTEGER NOT NULL, ta INTEGER NOT NULL, asu INTEGER NOT NULL, dbm INTEGER NOT NULL, lat REAL NOT NULL, lon REAL NOT NULL, accuracy REAL NOT NULL, speed REAL NOT NULL, bearing REAL NOT NULL, altitude REAL NOT NULL, measured_at INTEGER NOT NULL, operator_id INTEGER NULL, FOREIGN KEY(cell_id) REFERENCES cells(row_id) FOREIGN KEY(operator_id) REFERENCES operators(row_id))");
+        database.execSQL("CREATE TABLE measurements (row_id INTEGER PRIMARY KEY NOT NULL, cell_id INTEGER NOT NULL, neighboring INTEGER NOT NULL, ta INTEGER NOT NULL, asu INTEGER NOT NULL, dbm INTEGER NOT NULL, lat REAL NOT NULL, lon REAL NOT NULL, accuracy REAL NOT NULL, speed REAL NOT NULL, bearing REAL NOT NULL, altitude REAL NOT NULL, measured_at INTEGER NOT NULL, operator_id INTEGER DEFAULT NULL, FOREIGN KEY(cell_id) REFERENCES cells(row_id), FOREIGN KEY(operator_id) REFERENCES operators(row_id))");
         database.execSQL("CREATE INDEX 'IX_measurements_measured_at' on measurements (measured_at DESC)");
         database.execSQL("CREATE INDEX 'IX_measurements_cell_id' on measurements (cell_id ASC)");
         // create on delete trigger
