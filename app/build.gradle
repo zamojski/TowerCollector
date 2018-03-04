@@ -77,9 +77,6 @@ android {
             dimension "default"
         }
     }
-    lintOptions {
-        disable 'MissingTranslation'
-    }
 }
 
 dependencies {
