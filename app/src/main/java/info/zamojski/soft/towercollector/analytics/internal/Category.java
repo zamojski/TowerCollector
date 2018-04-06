@@ -9,5 +9,6 @@ public class Category {
     public static final String Tasks = "Tasks";
     public static final String Preferences = "Preferences";
     public static final String Runtime = "Runtime";
+    public static final String Help = "Help";
 
 }

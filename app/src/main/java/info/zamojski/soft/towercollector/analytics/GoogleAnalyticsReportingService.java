@@ -229,6 +229,14 @@ public class GoogleAnalyticsReportingService implements IAnalyticsReportingServi
                 .build());
     }
 
+    @Override
+    public void sendHelpDialogOpened(String dialogName) {
+        this.tracker.send(new HitBuilders.EventBuilder(Category.Help, Action.Open)
+        .setLabel(dialogName)
+        .setValue(1L)
+        .build());
+    }
+
     private void sendExportAction(String action) {
         this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, Action.Export)
                 .setLabel(action)

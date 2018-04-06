@@ -15,5 +15,6 @@ public class Action {
     public static final String NotifyMeasurementsCollectedEnabled = "NotifyMeasurementsCollectedEnabled";
     public static final String AppTheme = "AppTheme";
     public static final String CollectorApiVersion = "CollectorApiVersion";
+    public static final String Open = "Open";
 
 }

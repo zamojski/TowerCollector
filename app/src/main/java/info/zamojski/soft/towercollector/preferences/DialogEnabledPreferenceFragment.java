@@ -4,6 +4,7 @@
 
 package info.zamojski.soft.towercollector.preferences;
 
+import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.controls.DialogManager;
 
@@ -21,12 +22,13 @@ public abstract class DialogEnabledPreferenceFragment extends PreferenceFragment
         setupDialog(preferenceKey, title, content, false);
     }
 
-    protected void setupDialog(int preferenceKey, final int title, final int content, final boolean textIsSelectable) {
+    protected void setupDialog(final int preferenceKey, final int title, final int content, final boolean textIsSelectable) {
         PreferenceScreen preference = (PreferenceScreen) findPreference(getString(preferenceKey));
         preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 DialogManager.createHtmlInfoDialog(getActivity(), title, content, false, textIsSelectable).show();
+                MyApplication.getAnalytics().sendHelpDialogOpened(getString(preferenceKey));
                 return true;
             }
         });
@@ -49,12 +51,13 @@ public abstract class DialogEnabledPreferenceFragment extends PreferenceFragment
         });
     }
 
-    protected void setupDialog(int preferenceKey, final int title, final String content) {
+    protected void setupDialog(final int preferenceKey, final int title, final String content) {
         PreferenceScreen preference = (PreferenceScreen) findPreference(getString(preferenceKey));
         preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 DialogManager.createHtmlInfoDialog(getActivity(), title, content, false, false).show();
+                MyApplication.getAnalytics().sendHelpDialogOpened(getString(preferenceKey));
                 return true;
             }
         });

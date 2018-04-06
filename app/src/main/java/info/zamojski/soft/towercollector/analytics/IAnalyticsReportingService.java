@@ -56,4 +56,5 @@ public interface IAnalyticsReportingService {
 
     void sendPrefsCollectorApiVersion(String apiVersion);
 
+    void sendHelpDialogOpened(String dialogName);
 }
