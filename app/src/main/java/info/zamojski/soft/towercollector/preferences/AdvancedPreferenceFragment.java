@@ -4,11 +4,6 @@
 
 package info.zamojski.soft.towercollector.preferences;
 
-import info.zamojski.soft.towercollector.CollectorService;
-import info.zamojski.soft.towercollector.MyApplication;
-import info.zamojski.soft.towercollector.R;
-import info.zamojski.soft.towercollector.utils.MobileUtils;
-
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -17,8 +12,16 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
+import android.preference.SwitchPreference;
+import android.widget.Toast;
 
+import info.zamojski.soft.towercollector.BuildConfig;
+import info.zamojski.soft.towercollector.CollectorService;
+import info.zamojski.soft.towercollector.MyApplication;
+import info.zamojski.soft.towercollector.R;
+import info.zamojski.soft.towercollector.utils.MobileUtils;
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
@@ -27,8 +30,6 @@ import permissions.dispatcher.OnShowRationale;
 import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 import trikita.log.Log;
-
-import android.widget.Toast;
 
 @RuntimePermissions
 public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
@@ -61,18 +62,8 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         });
 
         setupApiVersionDialog();
-
         setupApiVersionSelection();
-    }
-
-    private void setupApiVersionSelection() {
-        boolean api17Compatible = MobileUtils.isApi17VersionCompatible();
-        if (api17Compatible) {
-            collectorApiVersionPreference.setEnabled(true);
-        } else {
-            collectorApiVersionPreference.setValue(getString(R.string.preferences_collector_api_version_entries_value_api_1));
-            collectorApiVersionPreference.setEnabled(false);
-        }
+        setupErrorReportingAvailability();
     }
 
     @Override
@@ -110,12 +101,27 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         }
     }
 
-    private void onFileLoggingLevelChanged() {
-
-    }
-
     private void setupApiVersionDialog() {
         setupDialog(R.string.preferences_about_collector_api_version_key, R.string.info_about_collector_api_version_title, R.raw.info_about_collector_api_version_content);
+    }
+
+    private void setupApiVersionSelection() {
+        boolean api17Compatible = MobileUtils.isApi17VersionCompatible();
+        if (api17Compatible) {
+            collectorApiVersionPreference.setEnabled(true);
+        } else {
+            collectorApiVersionPreference.setValue(getString(R.string.preferences_collector_api_version_entries_value_api_1));
+            collectorApiVersionPreference.setEnabled(false);
+        }
+    }
+
+    private void setupErrorReportingAvailability() {
+        boolean available = BuildConfig.ACRA_SETTINGS_AVAILABLE;
+        if (!available) {
+            PreferenceCategory settingsCategoryPreference = (PreferenceCategory) findPreference(getString(R.string.preferences_advanced_category_settings_key));
+            SwitchPreference errorReportingSilentPreference = (SwitchPreference) findPreference(getString(R.string.preferences_error_reporting_silent_key));
+            settingsCategoryPreference.removePreference(errorReportingSilentPreference);
+        }
     }
 
     @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)

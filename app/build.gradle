@@ -14,6 +14,11 @@ for (versionPart in [versionPatch, versionMinor, versionMajor, versionBuild]) {
     assert versionPart <= 99
 }
 
+ext.rotEnabled = false
+
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+import groovy.io.FileType
 
 apply plugin: 'com.android.application'
 
@@ -33,14 +38,17 @@ android {
         assert props
         // ACRA
         buildConfigField "Boolean", "ACRA_SEND_REPORTS_IN_DEV_MODE", props['acra_sendReportsInDevMode']
+        buildConfigField "Boolean", "ACRA_SETTINGS_AVAILABLE", props['acra_settings_available']
         buildConfigField "String", "ACRA_FORM_URI", props['acra_formUri']
         buildConfigField "String", "ACRA_HTTP_METHOD", props['acra_httpMethod']
         buildConfigField "String", "ACRA_REPORT_TYPE", props['acra_reportType']
-        buildConfigField "String", "ACRA_FORM_URI_BASIC_AUTH_LOGIN", props['acra_formUriBasicAuthLogin']
-        buildConfigField "String", "ACRA_FORM_URI_BASIC_AUTH_PASSWORD", props['acra_formUriBasicAuthPassword']
+        buildConfigField "String", "ACRA_FORM_URI_BASIC_AUTH_LOGIN", rot135(props['acra_formUriBasicAuthLogin'])
+        buildConfigField "String", "ACRA_FORM_URI_BASIC_AUTH_PASSWORD", rotHex(props['acra_formUriBasicAuthPassword'])
+        // Analytics
+        buildConfigField "Boolean", "ANALYTICS_AVAILABLE", props['analytics_available']
         // Other
         buildConfigField "String", "UPDATE_CHECK_FEED_URI", props['other_updateCheckFeedUri']
-        buildConfigField "String", "CONTACT_EMAIL", props['other_contactEmail']
+        buildConfigField "String", "CONTACT_EMAIL", rot135(props['other_contactEmail'])
     }
     signingConfigs {
         release {
@@ -67,32 +75,40 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
-    flavorDimensions "default"
+    flavorDimensions "environment", "market"
     productFlavors {
         develop {
-            versionName android.defaultConfig.versionName + '-dev'
-            dimension "default"
+            versionNameSuffix '-dev'
+            dimension "environment"
         }
-        stable {
-            dimension "default"
+        production {
+            dimension "environment"
+        }
+        official {
+            dimension "market"
+        }
+        fdroid {
+            versionNameSuffix "-fdroid"
+            dimension "market"
         }
     }
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:support-v4:26.1.0'
-    compile 'com.android.support:support-v13:26.1.0'
-    //compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.android.support:design:26.1.0'
-    compile 'com.google.android.gms:play-services-analytics:11.8.0'
-    compile 'org.greenrobot:eventbus:3.1.1'
-    compile 'ch.acra:acra-http:5.0.0'
-    compile 'org.sufficientlysecure:html-textview:3.5'
-    compile 'com.github.kevinsawicki:http-request:6.0'
-    compile 'co.trikita:log:1.1.5'
-    compile 'com.github.hotchemi:permissionsdispatcher:3.1.0'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support:support-v4:26.1.0'
+    implementation 'com.android.support:support-v13:26.1.0'
+    //implementation 'com.android.support:appcompat-v7:24.2.1'
+    implementation 'com.android.support:design:26.1.0'
+    officialImplementation 'com.google.android.gms:play-services-analytics:11.8.0'
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'ch.acra:acra-http:5.0.0'
+    implementation 'ch.acra:acra-notification:5.0.0'
+    implementation 'org.sufficientlysecure:html-textview:3.5'
+    implementation 'com.github.kevinsawicki:http-request:6.0'
+    implementation 'co.trikita:log:1.1.5'
+    implementation 'com.github.hotchemi:permissionsdispatcher:3.1.0'
     annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
 }
 
@@ -103,7 +119,7 @@ allprojects {
         def props = getCustomProperties()
         assert props
         // Signing
-        if(android.signingConfigs.hasProperty(configName)) {
+        if (android.signingConfigs.hasProperty(configName)) {
             println 'Defining custom signing configuration'
             def signFile = file(props['sign_storeFile'])
             assert signFile.exists()
@@ -115,28 +131,91 @@ allprojects {
     }
 }
 
-
 Properties getCustomProperties() {
-    def propsFile = rootProject.file('app/properties/private.properties')
-
+    def currentFlavor = getCurrentFlavor(2)
+    // Existing file is required to generate flavors
+    def propsFile = rootProject.file("app/properties/example.properties")
+    if (currentFlavor) {
+        rotEnabled = true
+        propsFile = rootProject.file("app/properties/private-${currentFlavor}.properties")
+        if (!propsFile.exists()) {
+            propsFile = rootProject.file("app/properties/private.properties")
+        }
+    }
     if (propsFile.exists()) {
-        println 'Loading private custom properties configuration'
+        println "Loading private custom properties configuration from: $propsFile"
         def props = new Properties()
         props.load(new FileInputStream(propsFile))
-        println props
+        //println props
         return props
     }
     return null
 }
 
+String getCurrentFlavor(int dimensionIndex) {
+    def gradle = getGradle()
+    def taskRequest = gradle.getStartParameter().getTaskRequests().toString()
+
+    def taskName = taskRequest.contains('assemble') ? 'assemble' : 'generate'
+    def regex = "$taskName([A-Z]\\w*)([A-Z]\\w*)(Release|Debug)"
+    Pattern pattern = Pattern.compile(regex)
+
+    Matcher matcher = pattern.matcher(taskRequest)
+    if (matcher.find())
+        return matcher.group(dimensionIndex).toLowerCase()
+    println "Gradle flavor name not found"
+    return null;
+}
+
+String rot135(String s) {
+    if (!rotEnabled) {
+        println 'Rot disabled'
+        return s
+    }
+    StringBuilder sb = new StringBuilder()
+    for (int i = 0; i < s.length(); i++) {
+        int num = s[i]
+        if ((num >= 97 && num <= 109) || (num >= 65 && num <= 77)) {
+            num += 13
+        } else if ((num >= 110 && num <= 122) || (num >= 78 && num <= 90)) {
+            num -= 13
+        } else if (num >= 48 && num <= 52) {
+            num += 5
+        } else if (num >= 53 && num <= 57) {
+            num -= 5
+        }
+        sb.append((char) num)
+    }
+    return sb.toString()
+}
+
+String rotHex(String s) {
+    if (!rotEnabled) {
+        println 'Rot disabled'
+        return s
+    }
+    StringBuilder sb = new StringBuilder()
+    for (int i = 0; i < s.length(); i++) {
+        int num = s[i]
+        if ((num >= 97 && num <= 99) || (num >= 65 && num <= 67)) {
+            num += 3
+        } else if ((num >= 100 && num <= 102) || (num >= 68 && num <= 70)) {
+            num -= 3
+        } else if (num >= 48 && num <= 52) {
+            num += 5
+        } else if (num >= 53 && num <= 57) {
+            num -= 5
+        }
+        sb.append((char) num)
+    }
+    return sb.toString()
+}
 
 // Custom tasks
-import groovy.io.FileType
-
 List<String> getSourceFiles() {
     def files = []
-    getProjectDir().eachFileRecurse (FileType.FILES) { file ->
-        if(file.name.endsWith('.java')) {
+    getProjectDir().eachFileRecurse(FileType.FILES) { file ->
+        if (file.name.endsWith('.java')) {
             files << file
         }
     }
@@ -153,18 +232,25 @@ def uncommentLoggingOne(path) {
     new File(path).write(content, 'UTF-8')
 }
 
-task commentLoggingAll << {
-    description = 'Comments all verbose and debug calls to Log class'
-    getSourceFiles().each {
-        commentLoggingOne(it.path)
+task commentLoggingAll {
+    doLast {
+        description = 'Comments all verbose and debug calls to Log class'
+        getSourceFiles().each {
+            commentLoggingOne(it.path)
+        }
     }
 }
 
-task uncommentLoggingAll << {
-    description = 'Uncomments all verbose and debug calls to Log class'
-    getSourceFiles().each {
-        uncommentLoggingOne(it.path)
+task uncommentLoggingAll {
+    doLast {
+        description = 'Uncomments all verbose and debug calls to Log class'
+        getSourceFiles().each {
+            uncommentLoggingOne(it.path)
+        }
     }
 }
 
-apply plugin: 'com.google.gms.google-services'
+if (getCurrentFlavor(2) == 'official') {
+    println 'Applying Google Services plugin'
+    apply plugin: 'com.google.gms.google-services'
+}

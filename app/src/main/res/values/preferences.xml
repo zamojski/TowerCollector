@@ -48,6 +48,9 @@
     <string name="preferences_tracking_enabled_off_summary">Anonymous usage statistics are disabled. See below what might be send if enabled.</string>
     <string name="preferences_about_tracking_title">About usage statistics</string>
     <string name="preferences_about_tracking_summary">Information about what and why is being shared.</string>
+    <string name="preferences_error_reporting_silent_title">Auto send error reports</string>
+    <string name="preferences_error_reporting_silent_on_summary">The app will automatically send error reports which help to fix the problem.</string>
+    <string name="preferences_error_reporting_silent_off_summary">The app will ask you for confirmation before sending report which may help to fix the problem.</string>
     <string name="preferences_update_check_enabled_title">Auto update check</string>
     <string name="preferences_update_check_enabled_on_summary">The app will notify you when new version is available.</string>
     <string name="preferences_update_check_enabled_off_summary">Periodical checks for new version availability are disabled.</string>

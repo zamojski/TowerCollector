@@ -45,6 +45,11 @@ public class PreferencesProvider {
         return value;
     }
 
+    public boolean getReportErrorsSilently() {
+        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_error_reporting_silent_key, R.bool.preferences_error_reporting_silent_default_value);
+        return value;
+    }
+
     public boolean getUpdateCheckEnabled() {
         boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_update_check_enabled_key, R.bool.preferences_update_check_enabled_default_value);
         return value;

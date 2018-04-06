@@ -35,11 +35,20 @@
 
     <bool name="preferences_gps_optimizations_enabled_default_value" translatable="false">true</bool>
 
+    <string name="preferences_general_category_settings_key" translatable="false">general_category_settings_key</string>
+    <string name="preferences_general_category_help_key" translatable="false">general_category_help_key</string>
+    <string name="preferences_advanced_category_settings_key" translatable="false">advanced_category_settings_key</string>
+
     <string name="preferences_tracking_enabled_key" translatable="false">tracking_enabled_key</string>
 
     <bool name="preferences_tracking_enabled_default_value" translatable="false">true</bool>
 
     <string name="preferences_about_tracking_key" translatable="false">about_tracking</string>
+
+    <string name="preferences_error_reporting_silent_key" translatable="false">acra.alwaysaccept</string>
+
+    <bool name="preferences_error_reporting_silent_default_value" translatable="false">true</bool>
+
     <string name="preferences_app_theme_mode_key" translatable="false">preferences_app_theme_mode</string>
     <string name="preferences_app_theme_mode_default_value" translatable="false">@string/preferences_app_theme_mode_entries_value_light</string>
     <string name="preferences_app_theme_mode_entries_value_light" translatable="false">light</string>

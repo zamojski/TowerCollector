@@ -13,11 +13,12 @@ import org.acra.ACRAConstants;
 import org.acra.ReportField;
 import org.acra.config.CoreConfigurationBuilder;
 import org.acra.config.HttpSenderConfigurationBuilder;
+import org.acra.config.NotificationConfigurationBuilder;
 import org.acra.data.StringFormat;
 import org.acra.sender.HttpSender;
 import org.greenrobot.eventbus.EventBus;
 
-import info.zamojski.soft.towercollector.analytics.GoogleAnalyticsReportingService;
+import info.zamojski.soft.towercollector.analytics.AnalyticsServiceFactory;
 import info.zamojski.soft.towercollector.analytics.IAnalyticsReportingService;
 import info.zamojski.soft.towercollector.logging.AndroidFilePrinter;
 import info.zamojski.soft.towercollector.providers.AppThemeProvider;
@@ -25,6 +26,7 @@ import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvid
 
 import android.Manifest;
 import android.app.Application;
+import android.app.NotificationManager;
 import android.widget.Toast;
 
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
@@ -59,7 +61,7 @@ public class MyApplication extends Application {
         initUnhandledExceptionHandler();
         initEventBus();
         initTheme();
-        initGA();
+        initAnalytics();
     }
 
     private void initUnhandledExceptionHandler() {
@@ -122,11 +124,9 @@ public class MyApplication extends Application {
         appTheme = themeProvider.getTheme(appThemeName);
     }
 
-    private void initGA() {
-        Log.d("initGA(): Initializing Google Analytics");
-        boolean trackingEnabled = getPreferencesProvider().getTrackingEnabled();
-        boolean dryRun = BuildConfig.DEBUG;
-        analyticsService = new GoogleAnalyticsReportingService(this, trackingEnabled, dryRun);
+    private void initAnalytics() {
+        Log.d("initAnalytics(): Initializing analytics");
+        analyticsService = new AnalyticsServiceFactory().createInstance();
     }
 
     private void initACRA() {
@@ -146,6 +146,20 @@ public class MyApplication extends Application {
         httpPluginConfigBuilder.setBasicAuthPassword(BuildConfig.ACRA_FORM_URI_BASIC_AUTH_PASSWORD);
         httpPluginConfigBuilder.setHttpMethod(HttpSender.Method.valueOf(BuildConfig.ACRA_HTTP_METHOD));
         httpPluginConfigBuilder.setEnabled(true);
+        // Configure interaction method
+        NotificationConfigurationBuilder notificationConfigBuilder = configBuilder.getPluginConfigurationBuilder(NotificationConfigurationBuilder.class);
+        notificationConfigBuilder.setResChannelName(R.string.error_reporting_notification_channel_name);
+        notificationConfigBuilder.setResChannelImportance(NotificationManager.IMPORTANCE_DEFAULT);
+        notificationConfigBuilder.setResIcon(R.drawable.app_notification_icon);
+        notificationConfigBuilder.setResTitle(R.string.error_reporting_notification_title);
+        notificationConfigBuilder.setResText(R.string.error_reporting_notification_text);
+        notificationConfigBuilder.setResTickerText(R.string.error_reporting_notification_title);
+        notificationConfigBuilder.setResSendButtonText(R.string.dialog_send);
+        notificationConfigBuilder.setResDiscardButtonText(R.string.dialog_cancel);
+        notificationConfigBuilder.setSendOnClick(true);
+        notificationConfigBuilder.setResSendWithCommentButtonText(R.string.dialog_send_comment);
+        notificationConfigBuilder.setResCommentPrompt(R.string.error_reporting_notification_comment_prompt);
+        notificationConfigBuilder.setEnabled(!getPreferencesProvider().getReportErrorsSilently());
 
         ACRA.init(this, configBuilder);
     }
