@@ -10,7 +10,6 @@
     <string name="unit_speed_imperial">mph</string>
     <string name="network_type_unknown">Unknown</string>
     <string name="network_group_unknown">Unknown</string>
-    <string name="app_title_main">Main</string>
     <string name="app_title_preferences">Preferences</string>
     <string name="app_title_help">Help</string>
     <string name="app_title_about">About</string>
