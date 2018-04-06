@@ -1,0 +1,15 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+
+<p>O Tower Collector expõe tarefas a serem executadas por outras aplicações que enviam <i>intents</i> como o Tasker, o Automate ou o Llama. Você precisa usar o tipo <i>Broadcast</i> para todas as atividades definidas abaixo. Para mais informações de como fazer essa integração verifique a ajuda dessas aplicações.<br />
+<i>Como dentro do app você não pode iniciar mais de uma tarefa ao mesmo tempo!</i></p>
+<h3>Iniciar o Coletor</h3>
+<p>O Coletor será inicializado usando as configurações definidas nas Preferências. Action:</p>
+<code>info.zamojski.soft.towercollector.COLLECTOR_START</code>
+<h3>Parar o Coletor</h3>
+<p>O Coletor será parado imediatamente. Action:</p>
+<code>info.zamojski.soft.towercollector.COLLECTOR_STOP</code>
+<h3>Iniciar o Upload</h3>
+<p>O Upload será inicializado com a chave de API definida nas Preferências. Action:</p>
+<code>info.zamojski.soft.towercollector.UPLOADER_START</code>
