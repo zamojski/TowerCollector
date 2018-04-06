@@ -55,19 +55,19 @@ public class InformationPreferenceFragment extends DialogEnabledPreferenceFragme
     }
 
     private void setupWebsiteLink() {
-        setupOpenInDefault(R.string.preferences_website_link_key, R.string.preferences_website_link);
+        setupOpenInDefaultWebBrowser(R.string.preferences_website_link_key, R.string.preferences_website_link);
     }
 
     private void setupFacebookCommunityLink() {
-        setupOpenInDefault(R.string.preferences_facebook_community_link_key, R.string.preferences_facebook_community_link);
+        setupOpenInDefaultWebBrowser(R.string.preferences_facebook_community_link_key, R.string.preferences_facebook_community_link);
     }
 
     private void setupGooglePlusCommunityLink() {
-        setupOpenInDefault(R.string.preferences_google_plus_community_link_key, R.string.preferences_google_plus_community_link);
+        setupOpenInDefaultWebBrowser(R.string.preferences_google_plus_community_link_key, R.string.preferences_google_plus_community_link);
     }
 
     private void setupTranslationToolLink() {
-        setupOpenInDefault(R.string.preferences_translate_link_key, R.string.preferences_translation_tool_link);
+        setupOpenInDefaultWebBrowser(R.string.preferences_translate_link_key, R.string.preferences_translation_tool_link);
     }
 
     private void setupPrivacyStatementDialog() {

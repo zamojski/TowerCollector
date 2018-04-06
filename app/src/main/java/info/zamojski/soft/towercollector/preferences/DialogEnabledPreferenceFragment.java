@@ -18,14 +18,7 @@ import android.widget.Toast;
 public abstract class DialogEnabledPreferenceFragment extends PreferenceFragmentBase {
 
     protected void setupDialog(int preferenceKey, final int title, final int content) {
-        PreferenceScreen preference = (PreferenceScreen) findPreference(getString(preferenceKey));
-        preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                DialogManager.createHtmlInfoDialog(getActivity(), title, content, false, false).show();
-                return true;
-            }
-        });
+        setupDialog(preferenceKey, title, content, false);
     }
 
     protected void setupDialog(int preferenceKey, final int title, final int content, final boolean textIsSelectable) {
@@ -39,7 +32,7 @@ public abstract class DialogEnabledPreferenceFragment extends PreferenceFragment
         });
     }
 
-    protected void setupOpenInDefault(int preferenceKey, final int urlResourceId) {
+    protected void setupOpenInDefaultWebBrowser(int preferenceKey, final int urlResourceId) {
         PreferenceScreen preference = (PreferenceScreen) findPreference(getString(preferenceKey));
         preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override

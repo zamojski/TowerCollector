@@ -66,7 +66,7 @@ public class ApiPreferenceFragment extends DialogEnabledPreferenceFragment imple
     }
 
     private void setupRegisterApiKeyLink() {
-        setupOpenInDefault(R.string.preferences_api_key_link_key, R.string.preferences_opencellid_org_sign_up_link);
+        setupOpenInDefaultWebBrowser(R.string.preferences_api_key_link_key, R.string.preferences_opencellid_org_sign_up_link);
     }
 
     private void setupApiKeyFormatDialog() {
