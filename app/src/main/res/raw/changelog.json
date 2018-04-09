@@ -1,11 +1,20 @@
 {
   "Entries": [
     {
+      "VersionCode": 1190023,
+      "Title": "Changes in version 1.19.0",
+      "Description": "Do you want to see the app in your language? Help me with <a href=\"http://i18n.zamojski.info/\">translations</a>! Catalan, Dutch, French, Hungarian, Spanish are partially done but require volunteers - apply on the website or send me an email to start.",
+      "Messages": [
+        "Added Portuguese translation. Thank you for all the effort :)",
+        "Created special version of Tower Collector for F-Droid open source repository. I still need some help to make the build running, please <a href=\"https://github.com/zamojski/TowerCollector/issues/25\">help me</a>."
+      ]
+    },
+    {
       "VersionCode": 1180022,
       "Title": "Changes in version 1.18.0",
       "Description": "Do you want to see the app in your language? Help me with <a href=\"http://i18n.zamojski.info/\">translations</a>! Dutch, French, Hungarian, Portuguese, Spanish are partially done but require volunteers - apply on the website or send me an email to start.",
       "Messages": [
-        "Add German, Polish and Russian translations. Thank you for all the effort :)",
+        "Added German, Polish and Russian translations. Thank you for all the effort :)",
         "Improved signal strength calculation for API 1 on Huawei devices."
       ]
     },
@@ -34,15 +43,6 @@
         "Improved compatibility with Android Oreo.",
         "Improved insufficient permissions handling.",
         "Updated external components."
-      ]
-    },
-    {
-      "VersionCode": 1140017,
-      "Title": "Changes in version 1.14.0",
-      "Description": "It's almost 8 months since last update of Tower Collector. During that time many private matters occupied almost all of my spare time. I plan to come back to more active development soon. Meanwhile OpenCellID database has been acquired by Unwired Labs which become new maintainer. I wish them good luck and hope they will cooperate with OCID community as ENAiKOON did for couple of years!",
-      "Messages": [
-        "Updated API key validation rule to support new OCID format.",
-        "Updated API key (token) registration link."
       ]
     }
   ]
