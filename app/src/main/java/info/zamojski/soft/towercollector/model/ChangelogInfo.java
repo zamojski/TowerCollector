@@ -34,6 +34,10 @@ public class ChangelogInfo implements Serializable {
         }
     }
 
+    public boolean isEmpty() {
+        return this.entries.isEmpty();
+    }
+
     public static class ChangelogEntry implements Serializable {
 
         private static final long serialVersionUID = -4193198152281670744L;

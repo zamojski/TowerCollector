@@ -589,6 +589,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             Log.d("displayDevelopersMessages(): Showing changelog between %s and %s", previousVersionCode, currentVersionCode);
             ChangelogProvider provider = new ChangelogProvider(getApplication(), R.raw.changelog);
             ChangelogInfo changelog = provider.getChangelog(previousVersionCode);
+            if (changelog.isEmpty())
+                return;
             HtmlChangelogFormatter formatter = new HtmlChangelogFormatter();
             String message = formatter.formatChangelog(changelog);
             DialogManager.createHtmlInfoDialog(this, R.string.dialog_what_is_new, message, false, false).show();
