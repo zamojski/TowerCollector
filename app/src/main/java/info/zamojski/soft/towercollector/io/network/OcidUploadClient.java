@@ -52,7 +52,7 @@ public class OcidUploadClient extends ClientBase implements IUploadClient {
         if (code >= 500 && code <= 599) {
             return RequestResult.ServerError;
         }
-        if (code == 401 || code == 403 || "Error: Authorization failed. Check your API key.".equalsIgnoreCase(body)) {
+        if (code == 401 || code == 403 || "Err: Invalid token".equalsIgnoreCase(body)) {
             RuntimeException ex = new RequestException(body);
             reportException(ex);
             return RequestResult.InvalidApiKey;
