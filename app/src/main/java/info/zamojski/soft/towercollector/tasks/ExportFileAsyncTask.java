@@ -22,6 +22,7 @@ import info.zamojski.soft.towercollector.files.generators.wrappers.interfaces.IP
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
 import info.zamojski.soft.towercollector.utils.FileUtils;
 import info.zamojski.soft.towercollector.utils.StringUtils;
+import timber.log.Timber;
 
 import java.io.File;
 
@@ -32,13 +33,10 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 
-import trikita.log.Log;
 
 import android.widget.Toast;
 
 public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorResult> implements IProgressListener {
-
-    private final String TAG = ExportFileAsyncTask.class.getSimpleName();
 
     public static final String ABSOLUTE_PATH = "EXPORTED_FILE_ABSOLUTE_PATH";
     private Context context;
@@ -58,16 +56,16 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
 
     @Override
     protected void onPreExecute() {
-        Log.d("onPreExecute(): Starting export");
+        Timber.d("onPreExecute(): Starting export");
         MyApplication.startBackgroundTask(this);
         generatorWrapper.addProgressListener(this);
     }
 
     @Override
     protected FileGeneratorResult doInBackground(Void... params) {
-        Log.d("doInBackground(): Running export");
+        Timber.d("doInBackground(): Running export");
         // set thread name for easier bug tracking in GA
-        Thread.currentThread().setName(TAG + ".Worker");
+        Thread.currentThread().setName(ExportFileAsyncTask.class.getSimpleName() + ".Worker");
         long startTime = System.currentTimeMillis();
         // run generator
         FileGeneratorResult result = generatorWrapper.generate();
@@ -113,7 +111,7 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
 
     @Override
     protected void onPostExecute(FileGeneratorResult result) {
-        Log.d("onPostExecute(): Showing result: %s", result);
+        Timber.d("onPostExecute(): Showing result: %s", result);
         MyApplication.stopBackgroundTask();
         generatorWrapper.removeProgressListener(this);
         // check result
@@ -165,7 +163,7 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
 
     @Override
     protected void onCancelled() {
-        Log.d("onCancelled(): Export cancelled");
+        Timber.d("onCancelled(): Export cancelled");
         MyApplication.stopBackgroundTask();
         generatorWrapper.removeProgressListener(this);
         // hide loading indicator
@@ -198,11 +196,11 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
         device.close();
         File file = new File(device.getPath());
         if (file.exists()) {
-            Log.d("deleteFile(): Deleting exported file");
+            Timber.d("deleteFile(): Deleting exported file");
             if (file.delete()) {
-                Log.d("deleteFile(): Exported file deleted");
+                Timber.d("deleteFile(): Exported file deleted");
             } else {
-                Log.d("deleteFile(): Cannot delete file after export fail");
+                Timber.d("deleteFile(): Cannot delete file after export fail");
             }
         }
     }

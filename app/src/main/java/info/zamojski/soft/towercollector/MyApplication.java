@@ -20,21 +20,22 @@ import org.greenrobot.eventbus.EventBus;
 
 import info.zamojski.soft.towercollector.analytics.AnalyticsServiceFactory;
 import info.zamojski.soft.towercollector.analytics.IAnalyticsReportingService;
-import info.zamojski.soft.towercollector.logging.AndroidFilePrinter;
+import info.zamojski.soft.towercollector.logging.ConsoleLoggingTree;
+import info.zamojski.soft.towercollector.logging.FileLoggingTree;
 import info.zamojski.soft.towercollector.providers.AppThemeProvider;
 import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvider;
 
 import android.Manifest;
 import android.app.Application;
 import android.app.NotificationManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
-import trikita.log.Log;
+import timber.log.Timber;
 
 public class MyApplication extends Application {
 
-    private static final String TAG = MyApplication.class.getSimpleName();
 
     private static IAnalyticsReportingService analyticsService;
     private static MyApplication application;
@@ -69,7 +70,7 @@ public class MyApplication extends Application {
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
             @Override
             public void uncaughtException(Thread thread, Throwable ex) {
-                Log.e("CRASHED", ex);
+                Timber.e(ex, "CRASHED");
                 defaultHandler.uncaughtException(thread, ex);
             }
         });
@@ -77,60 +78,58 @@ public class MyApplication extends Application {
 
     public void initLogger() {
         // Default configuration
-        int consoleLogLevel = BuildConfig.DEBUG ? Log.V : Log.I;
-        Log.usePrinter(Log.ANDROID, true).level(consoleLogLevel).useFormat(true);
+        int consoleLogLevel = BuildConfig.DEBUG ? Log.VERBOSE : Log.INFO;
         // File logging based on preferences
-        String fileLoggingLevel = getPreferencesProvider().getFileLoggingLevel();
-        if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_disabled))) {
-            Log.usePrinter(AndroidFilePrinter.getInstance(), false);
+        String fileLoggingLevelString = getPreferencesProvider().getFileLoggingLevel();
+        if (fileLoggingLevelString.equals(getString(R.string.preferences_file_logging_level_entries_value_disabled))) {
+            Timber.uproot(FileLoggingTree.INSTANCE);
         } else {
             if (PermissionUtils.hasPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_debug))) {
-                    AndroidFilePrinter.getInstance().setMinLevel(Log.D);
-                    Log.level(Math.min(consoleLogLevel, Log.D));
-                } else if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_info))) {
-                    AndroidFilePrinter.getInstance().setMinLevel(Log.I);
-                    Log.level(Math.min(consoleLogLevel, Log.I));
-                } else if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_warning))) {
-                    AndroidFilePrinter.getInstance().setMinLevel(Log.W);
-                    Log.level(Math.min(consoleLogLevel, Log.W));
-                } else if (fileLoggingLevel.equals(getString(R.string.preferences_file_logging_level_entries_value_error))) {
-                    AndroidFilePrinter.getInstance().setMinLevel(Log.E);
-                    Log.level(Math.min(consoleLogLevel, Log.E));
+                int fileLogLevel = Log.ERROR;
+                if (fileLoggingLevelString.equals(getString(R.string.preferences_file_logging_level_entries_value_debug))) {
+                    fileLogLevel = Log.DEBUG;
+                } else if (fileLoggingLevelString.equals(getString(R.string.preferences_file_logging_level_entries_value_info))) {
+                    fileLogLevel = Log.INFO;
+                } else if (fileLoggingLevelString.equals(getString(R.string.preferences_file_logging_level_entries_value_warning))) {
+                    fileLogLevel = Log.WARN;
+                } else if (fileLoggingLevelString.equals(getString(R.string.preferences_file_logging_level_entries_value_error))) {
+                    fileLogLevel = Log.ERROR;
                 }
-                Log.usePrinter(AndroidFilePrinter.getInstance(), true);
+                consoleLogLevel = Math.min(consoleLogLevel, fileLogLevel);
+                Timber.plant(FileLoggingTree.INSTANCE.setPriority(fileLogLevel));
             } else {
                 Toast.makeText(this, R.string.permission_logging_denied_temporarily_message, Toast.LENGTH_LONG).show();
             }
         }
+        Timber.plant(ConsoleLoggingTree.INSTANCE.setPriority(consoleLogLevel));
     }
 
     private void initEventBus() {
-        Log.d("initEventBus(): Initializing EventBus");
+        Timber.d("initEventBus(): Initializing EventBus");
         EventBus.builder()
                 .throwSubscriberException(EVENTBUS_SUBSCRIBER_CAN_THROW)
                 .installDefaultEventBus();
     }
 
     private void initPreferencesProvider() {
-        Log.d("initProviders(): Initializing preferences");
+        Timber.d("initProviders(): Initializing preferences");
         prefProvider = new PreferencesProvider(this);
     }
 
     public void initTheme() {
-        Log.d("initTheme(): Initializing theme");
+        Timber.d("initTheme(): Initializing theme");
         String appThemeName = getPreferencesProvider().getAppTheme();
         AppThemeProvider themeProvider = new AppThemeProvider(this);
         appTheme = themeProvider.getTheme(appThemeName);
     }
 
     private void initAnalytics() {
-        Log.d("initAnalytics(): Initializing analytics");
+        Timber.d("initAnalytics(): Initializing analytics");
         analyticsService = new AnalyticsServiceFactory().createInstance();
     }
 
     private void initACRA() {
-        Log.d("initACRA(): Initializing ACRA");
+        Timber.d("initACRA(): Initializing ACRA");
 
         CoreConfigurationBuilder configBuilder = new CoreConfigurationBuilder(this);
         // Configure connection

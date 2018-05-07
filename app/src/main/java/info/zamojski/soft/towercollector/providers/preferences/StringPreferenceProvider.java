@@ -11,15 +11,8 @@ import android.content.res.Resources;
 
 class StringPreferenceProvider extends PreferenceProviderBase<String> {
 
-    private static final String TAG = StringPreferenceProvider.class.getSimpleName();
-
     public StringPreferenceProvider(Context context) {
         super(context);
-    }
-
-    @Override
-    String getLogTag() {
-        return TAG;
     }
 
     @Override

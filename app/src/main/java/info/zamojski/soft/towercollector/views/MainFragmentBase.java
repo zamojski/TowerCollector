@@ -18,10 +18,10 @@ import info.zamojski.soft.towercollector.enums.Validity;
 import info.zamojski.soft.towercollector.events.GpsStatusChangedEvent;
 import info.zamojski.soft.towercollector.events.SystemTimeChangedEvent;
 import info.zamojski.soft.towercollector.utils.UnitConverter;
+import timber.log.Timber;
 
 import android.support.v4.app.Fragment;
 
-import trikita.log.Log;
 
 import android.view.View;
 import android.widget.TableRow;
@@ -29,7 +29,6 @@ import android.widget.TextView;
 
 public abstract class MainFragmentBase extends Fragment {
 
-    private static final String TAG = MainFragmentBase.class.getSimpleName();
 
     private TableRow gpsStatusTableRow;
     private TextView gpsStatusLabelTextView;
@@ -46,7 +45,7 @@ public abstract class MainFragmentBase extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("onResume(): Registering broadcast receiver");
+        Timber.d("onResume(): Registering broadcast receiver");
         EventBus.getDefault().register(this);
         configureOnResume();
     }
@@ -54,7 +53,7 @@ public abstract class MainFragmentBase extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        Log.d("onPause(): Unregistering broadcast receiver");
+        Timber.d("onPause(): Unregistering broadcast receiver");
         EventBus.getDefault().unregister(this);
         configureOnPause();
     }
@@ -91,7 +90,7 @@ public abstract class MainFragmentBase extends Fragment {
     }
 
     private void showInvalidSystemTime(boolean show) {
-        Log.d("showInvalidSystemTime(): Setting invalid system time visible = %s", show);
+        Timber.d("showInvalidSystemTime(): Setting invalid system time visible = %s", show);
         invalidSystemTimeValueTextView.setTextColor(getResources().getColor(R.color.text_light));
         invalidSystemTimeTableRow.setBackgroundColor(getResources().getColor(R.color.background_needs_attention));
         invalidSystemTimeTableRow.setVisibility(show ? View.VISIBLE : View.GONE);
@@ -109,7 +108,7 @@ public abstract class MainFragmentBase extends Fragment {
     }
 
     private void printGpsStatus(GpsStatus status, float lastAccuracy) {
-        Log.d("printGpsStatus(): Showing status %s and accuracy %s", status, lastAccuracy);
+        Timber.d("printGpsStatus(): Showing status %s and accuracy %s", status, lastAccuracy);
         String statusString;
         int textColorResId;
         int backgroundColorResId;
@@ -146,7 +145,7 @@ public abstract class MainFragmentBase extends Fragment {
     }
 
     private void hideGpsStatus() {
-        Log.d("hideGpsStatus(): Hiding status");
+        Timber.d("hideGpsStatus(): Hiding status");
         gpsStatusTableRow.setVisibility(View.GONE);
     }
 

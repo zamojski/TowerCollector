@@ -6,6 +6,7 @@ package info.zamojski.soft.towercollector;
 
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.tasks.DatabaseUpgradeTask;
+import timber.log.Timber;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,14 +15,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
-import trikita.log.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class SplashActivity extends Activity {
 
-    private static final String TAG = SplashActivity.class.getSimpleName();
 
     private DatabaseUpgradeTask databaseMigrationTask;
 
@@ -36,7 +35,7 @@ public class SplashActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("onCreate(): Creating activity");
+        Timber.d("onCreate(): Creating activity");
         // set fixed screen orientation
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.splash);
@@ -48,19 +47,19 @@ public class SplashActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d("onStart(): Starting splash screen");
+        Timber.d("onStart(): Starting splash screen");
         startAsync();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d("onStop(): Stopping splash screen");
+        Timber.d("onStop(): Stopping splash screen");
     }
 
     @Override
     public void onBackPressed() {
-        Log.d("onBackPressed(): Preventing close if db upgrade is running");
+        Timber.d("onBackPressed(): Preventing close if db upgrade is running");
         if (databaseUpgradeRunning) {
             Toast.makeText(this, R.string.splash_toast_database_upgrade_running, Toast.LENGTH_SHORT).show();
         } else {
@@ -69,13 +68,13 @@ public class SplashActivity extends Activity {
     }
 
     private void startAsync() {
-        Log.d("startAsync(): Creating handler");
+        Timber.d("startAsync(): Creating handler");
         getAsyncHandler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 ensureDatabaseUpToDate();
                 startMainActivity();
-                Log.d("startAsync(): Closing splash screen window");
+                Timber.d("startAsync(): Closing splash screen window");
                 finish();
             }
         }, 0);
@@ -84,7 +83,7 @@ public class SplashActivity extends Activity {
     private void ensureDatabaseUpToDate() {
         int currentDbVersion = MeasurementsDatabase.getDatabaseVersion(getApplication());
         if (currentDbVersion != MeasurementsDatabase.DATABASE_FILE_VERSION) {
-            Log.d("ensureDatabaseUpToDate(): Upgrading database");
+            Timber.d("ensureDatabaseUpToDate(): Upgrading database");
             databaseUpgradeRunning = true;
             showDetailsMessage();
             // show progress dialog only when migrating database
@@ -100,7 +99,7 @@ public class SplashActivity extends Activity {
     }
 
     private void startMainActivity() {
-        Log.d("startMainActivity(): Starting main window");
+        Timber.d("startMainActivity(): Starting main window");
         Intent mainActivityIntent = new Intent(SplashActivity.this, MainActivity.class);
         startActivity(mainActivityIntent);
     }
@@ -131,7 +130,7 @@ public class SplashActivity extends Activity {
 
     private Handler getAsyncHandler() {
         if (asyncHandlerThread == null) {
-            asyncHandlerThread = new HandlerThread(TAG + ".AsyncHandler");
+            asyncHandlerThread = new HandlerThread(SplashActivity.class.getSimpleName() + ".AsyncHandler");
             asyncHandlerThread.start();
         }
         if (asyncHandler == null) {

@@ -9,11 +9,11 @@ import java.net.URLEncoder;
 
 import android.text.TextUtils;
 
-import trikita.log.Log;
+import timber.log.Timber;
+
 
 public class StringUtils {
 
-    private static final String TAG = StringUtils.class.getSimpleName();
 
     public static String encodeHtml(String content) {
         final String textEncoding = "UTF-8";
@@ -21,7 +21,7 @@ public class StringUtils {
         try {
             encodedContent = URLEncoder.encode(encodedContent, textEncoding);
         } catch (UnsupportedEncodingException ex) {
-            Log.e("encodeHtml(): Unsupported encoding %s", textEncoding, ex);
+            Timber.e(ex, "encodeHtml(): Unsupported encoding %s", textEncoding);
         }
         return encodedContent.replaceAll("\\+", " ");
     }

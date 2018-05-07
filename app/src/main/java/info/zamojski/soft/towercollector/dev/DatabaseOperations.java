@@ -8,15 +8,13 @@ import java.io.File;
 
 import android.content.Context;
 import android.os.Environment;
-import trikita.log.Log;
 import android.widget.Toast;
 
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.utils.FileUtils;
+import timber.log.Timber;
 
 public class DatabaseOperations {
-
-    private static final String TAG = DatabaseOperations.class.getSimpleName();
 
     public static void importDatabase(Context context) {
         File srcFile = getDatabaseImportPath();
@@ -37,31 +35,29 @@ public class DatabaseOperations {
                 File externalStorage = Environment.getExternalStorageDirectory();
                 if (externalStorage.canWrite()) {
                     FileUtils.copyFile(srcFile, dstFile);
-                    Log.d("copyDatabase(): Database " + operation + "ed");
+                    Timber.d("copyDatabase(): Database " + operation + "ed");
                     Toast.makeText(context, "Database " + operation + "ed", Toast.LENGTH_LONG).show();
+                } else {
+                    Timber.d("copyDatabase(): External storage is read only");
                 }
-                else {
-                    Log.d("copyDatabase(): External storage is read only");
-                }
-            }
-            else {
-                Log.d("copyDatabase(): External storage is not available");
+            } else {
+                Timber.d("copyDatabase(): External storage is not available");
             }
         } catch (Exception ex) {
-            Log.e("copyDatabase(): Cannot " + operation + " database", ex);
+            Timber.e(ex, "copyDatabase(): Cannot " + operation + " database");
         }
     }
 
     public static void deleteDatabase(Context context) {
         File dbFile = getDatabasePath(context);
-        Log.d("deleteDatabase(): Deleting file %s", dbFile);
+        Timber.d("deleteDatabase(): Deleting file %s", dbFile);
         boolean deleted = dbFile.delete();
         if (deleted) {
-            Log.d("deleteDatabase(): File deleted");
+            Timber.d("deleteDatabase(): File deleted");
             MeasurementsDatabase.invalidateInstance(context);
             Toast.makeText(context, "Database file deleted", Toast.LENGTH_LONG).show();
         } else {
-            Log.e("deleteDatabase(): Failed to delete database");
+            Timber.e("deleteDatabase(): Failed to delete database");
         }
     }
 

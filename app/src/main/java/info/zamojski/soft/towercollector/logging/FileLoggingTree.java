@@ -4,6 +4,10 @@
 
 package info.zamojski.soft.towercollector.logging;
 
+import android.os.Environment;
+import android.os.Process;
+import android.util.Log;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
@@ -11,57 +15,46 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import android.os.Environment;
-import android.os.Process;
-
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
 import info.zamojski.soft.towercollector.utils.FileUtils;
-import trikita.log.Log;
+import timber.log.Timber;
 
-public class AndroidFilePrinter implements Log.Printer {
+public class FileLoggingTree extends Timber.DebugTree {
 
-    private static final String TAG = AndroidFilePrinter.class.getSimpleName();
+    private static final String TAG = FileLoggingTree.class.getSimpleName();
 
-    private final static String[] LEVELS = new String[]{"V", "D", "I", "W", "E"};
+    private static final String[] LEVELS = new String[]{"disabled", "undefined", "V", "D", "I", "W", "E"};
+    private static final int DISABLED = 0;
 
-    private final static SimpleDateFormat shortFormat = new SimpleDateFormat("MM-dd-HH:mm:ss.SSS", Locale.getDefault());
+    private final static SimpleDateFormat shortDateFormat = new SimpleDateFormat("MM-dd-HH:mm:ss.SSS", Locale.getDefault());
 
     private OutputStreamWriter osw;
-
     private boolean firstRun = true;
+    private int priority = DISABLED;
 
-    private int minLevel = Log.I;
+    public final static FileLoggingTree INSTANCE = new FileLoggingTree();
 
-    private static AndroidFilePrinter instance = new AndroidFilePrinter();
-
-    private AndroidFilePrinter() {
-        // Singleton
+    private FileLoggingTree() {
+        // Avoid instantiation
     }
 
-    public static AndroidFilePrinter getInstance() {
-        return instance;
-    }
-
-    public void setMinLevel(int minLevel) {
-        this.minLevel = minLevel;
+    public FileLoggingTree setPriority(int priority) {
+        this.priority = priority;
+        return this;
     }
 
     @Override
-    public void print(int level, String tag, String msg) {
-        // Check logging level set specifically on this logger
-        if (level < minLevel) {
-            return;
-        }
+    protected void log(int priority, String tag, String message, Throwable t) {
         if (firstRun) {
-            Class clazz = AndroidFilePrinter.class;
+            Class clazz = FileLoggingTree.class;
             synchronized (clazz) {
                 if (firstRun) {
                     initialize();
                     firstRun = false;
                     // write identification data once initialization finished
-                    print(Log.D, TAG, ApkUtils.getDeviceName());
-                    print(Log.D, TAG, ApkUtils.getApkVersionName(MyApplication.getApplication()));
+                    log(Log.DEBUG, ApkUtils.getDeviceName());
+                    log(Log.DEBUG, ApkUtils.getApkVersionName(MyApplication.getApplication()));
                 }
             }
         }
@@ -70,11 +63,16 @@ public class AndroidFilePrinter implements Log.Printer {
             return;
         }
         try {
-            osw.write(String.format(Locale.ENGLISH, "%s %s/%s(% 5d): %s\r\n", shortFormat.format(new Date()), LEVELS[level], tag, Process.myPid(), msg));
+            osw.write(String.format(Locale.ENGLISH, "%s %s/%s(% 5d): %s\r\n", shortDateFormat.format(new Date()), LEVELS[priority], tag, Process.myPid(), message));
             osw.flush();
         } catch (Exception ex) {
-            android.util.Log.e(TAG, "Failed to write log file!", ex);
+            Timber.e(ex, "Failed to write log file!");
         }
+    }
+
+    @Override
+    protected boolean isLoggable(String tag, int priority) {
+        return (this.priority > 0 && this.priority <= priority);
     }
 
     private void initialize() {
@@ -87,7 +85,7 @@ public class AndroidFilePrinter implements Log.Printer {
             FileOutputStream fis = new FileOutputStream(logFile);
             osw = new OutputStreamWriter(fis);
         } catch (Exception ex) {
-            android.util.Log.e(TAG, "Failed to open log file!", ex);
+            Timber.e(ex, "Failed to open log file!");
         }
     }
 }

@@ -13,14 +13,13 @@ import info.zamojski.soft.towercollector.collector.validators.SystemTimeValidato
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.events.MeasurementProcessedEvent;
 import info.zamojski.soft.towercollector.model.Measurement;
+import timber.log.Timber;
 
 import android.location.Location;
 import android.location.LocationManager;
-import trikita.log.Log;
 
 public abstract class MeasurementParser implements Runnable {
 
-    private static final String TAG = MeasurementParser.class.getSimpleName();
 
     protected float MAX_REASONABLE_SPEED = 500.0f; // in m/s
 
@@ -76,7 +75,7 @@ public abstract class MeasurementParser implements Runnable {
         long systemTimestamp = measurement.getTimestamp();
         long gpsTimestamp = location.getTime();
         if (!systemTimeValidator.isValid(systemTimestamp, gpsTimestamp)) {
-            Log.d("fixMeasurementTimestamp(): Fixing measurement time = %s, gps time = %s", systemTimestamp, gpsTimestamp);
+            Timber.d("fixMeasurementTimestamp(): Fixing measurement time = %s, gps time = %s", systemTimestamp, gpsTimestamp);
             measurement.setTimestamp(gpsTimestamp);
         }
     }

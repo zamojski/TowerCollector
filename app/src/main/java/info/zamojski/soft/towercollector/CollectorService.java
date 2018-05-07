@@ -27,6 +27,7 @@ import info.zamojski.soft.towercollector.model.Statistics;
 import info.zamojski.soft.towercollector.utils.GpsUtils;
 import info.zamojski.soft.towercollector.utils.NetworkTypeUtils;
 import info.zamojski.soft.towercollector.utils.MobileUtils;
+import timber.log.Timber;
 
 import java.util.List;
 import java.util.Timer;
@@ -66,11 +67,9 @@ import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
 import android.widget.Toast;
 
-import trikita.log.Log;
 
 public class CollectorService extends Service {
 
-    private static final String TAG = CollectorService.class.getSimpleName();
 
     public static final String SERVICE_FULL_NAME = CollectorService.class.getCanonicalName();
     public static final String BROADCAST_INTENT_STOP_SERVICE = SERVICE_FULL_NAME + ".CollectorStop";
@@ -138,7 +137,7 @@ public class CollectorService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d("onCreate(): Creating service");
+        Timber.d("onCreate(): Creating service");
         MyApplication.startBackgroundTask(this);
         // get managers
         telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
@@ -160,12 +159,12 @@ public class CollectorService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
-        Log.d("onStartCommand(): Starting service");
+        Timber.d("onStartCommand(): Starting service");
         // get locomotion mode
         transportMode = (MeansOfTransport) intent.getSerializableExtra(CollectorService.INTENT_KEY_TRANSPORT_MODE);
         if (transportMode == null)
             transportMode = (MyApplication.getPreferencesProvider().getGpsOptimizationsEnabled() ? MeansOfTransport.Universal : MeansOfTransport.Fixed);
-        Log.d("onStartCommand(): Selected transport mode: %s", transportMode);
+        Timber.d("onStartCommand(): Selected transport mode: %s", transportMode);
         String keepScreenOnModeString = intent.getStringExtra(CollectorService.INTENT_KEY_KEEP_SCREEN_ON_MODE);
         if (keepScreenOnModeString == null)
             keepScreenOnModeString = MyApplication.getPreferencesProvider().getCollectorKeepScreenOnMode();
@@ -175,7 +174,7 @@ public class CollectorService extends Service {
             keepScreenOnMode = KeepScreenOnMode.Dimmed;
         else
             keepScreenOnMode = KeepScreenOnMode.Disabled;
-        Log.d("onStartCommand(): Keep screen on mode: %s", keepScreenOnModeString);
+        Timber.d("onStartCommand(): Keep screen on mode: %s", keepScreenOnModeString);
         // save interval (max by default, because it may be reconnected in a moment)
         currentIntervalValue.set(transportMode.getMaxTime());
         measurementUpdater.setMinDistanceAndInterval(transportMode.getDistance(), transportMode.getMaxTime());
@@ -185,25 +184,25 @@ public class CollectorService extends Service {
         try {
             registerPhoneStateListener();
         } catch (SecurityException ex) {
-            Log.e("onStartCommand(): coarse location permission is denied", ex);
+            Timber.e(ex, "onStartCommand(): coarse location permission is denied");
             stopSelf();
         }
         // make sure GPS is available on the device otherwise the following lines will throw an exception
         if (!GpsUtils.isGpsAvailable(this)) {
-            Log.w("onStartCommand(): GPS is unavailable, stopping");
+            Timber.w("onStartCommand(): GPS is unavailable, stopping");
             Toast.makeText(this, R.string.collector_gps_unavailable, Toast.LENGTH_LONG).show();
             stopSelf();
         }
         try {
             // listen for GPS location change
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, STATIC_LISTENER_INTERVAL, STATIC_LISTENER_DISTANCE, staticLocationListener);
-            Log.d("onStartCommand(): Static location listener started");
+            Timber.d("onStartCommand(): Static location listener started");
             synchronized (dynamicLocationListenerLock) {
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, currentIntervalValue.get(), 0, dynamicLocationListener);
-                Log.d("onStartCommand(): Service started with min distance: 0 and min time: %s", currentIntervalValue.get());
+                Timber.d("onStartCommand(): Service started with min distance: 0 and min time: %s", currentIntervalValue.get());
             }
         } catch (SecurityException ex) {
-            Log.e("onStartCommand(): fine location permission is denied", ex);
+            Timber.e(ex, "onStartCommand(): fine location permission is denied");
             stopSelf();
         }
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
@@ -228,13 +227,13 @@ public class CollectorService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        Log.d("onBind(): Binding to service");
+        Timber.d("onBind(): Binding to service");
         return binder;
     }
 
     @Override
     public void onDestroy() {
-        Log.d("onDestroy(): Destroying service");
+        Timber.d("onDestroy(): Destroying service");
         if (periodicalWakeLockAcquirer != null) {
             periodicalWakeLockAcquirer.cancel();
         }
@@ -289,13 +288,13 @@ public class CollectorService extends Service {
 
     private synchronized void updateNotification(Statistics statistics) {
         Notification notification = notificationHelper.updateNotification(statistics);
-        Log.d("updateNotification(): Setting statistics: %s", statistics);
+        Timber.d("updateNotification(): Setting statistics: %s", statistics);
         notificationManager.notify(NOTIFICATION_ID, notification);
     }
 
     private synchronized void updateNotification(String notificationText) {
         Notification notification = notificationHelper.updateNotification(notificationText);
-        Log.d("updateNotification(): Setting text: %s", notificationText);
+        Timber.d("updateNotification(): Setting text: %s", notificationText);
         notificationManager.notify(NOTIFICATION_ID, notification);
     }
 
@@ -328,32 +327,32 @@ public class CollectorService extends Service {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void registerApi17PhoneStateListener() {
-        Log.d("Registering API 17 phone state listener");
+        Timber.d("Registering API 17 phone state listener");
         boolean collectNeighboringCells = MyApplication.getPreferencesProvider().getCollectNeighboringCells();
         measurementParser = new MeasurementParserFactory().CreateApi17Parser(transportMode.getAccuracy(), collectNeighboringCells);
         getMeasurementParserHandler().post(measurementParser);
         phoneStateListener = new PhoneStateListener() {
-            private final String INNER_TAG = TAG + ".Api17Plus" + PhoneStateListener.class.getSimpleName();
+            private final String INNER_TAG = CollectorService.class.getSimpleName() + ".Api17Plus" + PhoneStateListener.class.getSimpleName();
 
             @Override
             public void onCellInfoChanged(List<CellInfo> cellInfo) {
                 if (cellInfo == null) {
-                    Log.d(INNER_TAG, "onCellInfoChanged(): Null reported");
+                    Timber.tag(INNER_TAG).d("onCellInfoChanged(): Null reported");
                     return;
                 }
-                Log.d(INNER_TAG, String.format("onCellInfoChanged(): Number of cells: %s", cellInfo.size()));
+                Timber.tag(INNER_TAG).d("onCellInfoChanged(): Number of cells: %s", cellInfo.size());
                 processCellInfo(cellInfo);
             }
         };
         try {
-            telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_CELL_INFO);
+            telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS | PhoneStateListener.LISTEN_CELL_INFO);
         } catch (SecurityException ex) {
-            Log.e("registerApi17PhoneStateListener(): coarse location permission is denied", ex);
+            Timber.e(ex, "registerApi17PhoneStateListener(): coarse location permission is denied");
             stopSelf();
         }
         // run scheduled cell listener
         periodicalPhoneStateListener.schedule(new TimerTask() {
-            private final String INNER_TAG = TAG + ".Periodical" + PhoneStateListener.class.getSimpleName();
+            private final String INNER_TAG = CollectorService.class.getSimpleName() + ".Periodical" + PhoneStateListener.class.getSimpleName();
 
             @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
             @Override
@@ -361,13 +360,13 @@ public class CollectorService extends Service {
                 try {
                     List<CellInfo> cellInfo = telephonyManager.getAllCellInfo();
                     if (cellInfo == null) {
-                        Log.d(INNER_TAG, "run(): Null reported");
+                        Timber.tag(INNER_TAG).d("run(): Null reported");
                         return;
                     }
-                    Log.d(INNER_TAG, String.format("run(): Number of cells: %s", cellInfo.size()));
+                    Timber.tag(INNER_TAG).d("run(): Number of cells: %s", cellInfo.size());
                     processCellInfo(cellInfo);
                 } catch (SecurityException ex) {
-                    Log.e(INNER_TAG, "run(): coarse location or phone  permission is denied", ex);
+                    Timber.tag(INNER_TAG).e(ex, "run(): coarse location or phone  permission is denied");
                     stopSelf();
                 }
             }
@@ -376,28 +375,28 @@ public class CollectorService extends Service {
     }
 
     private void registerApi1PhoneStateListener() {
-        Log.d("Registering API 1 phone state listener");
+        Timber.d("Registering API 1 phone state listener");
         boolean collectNeighboringCells = MyApplication.getPreferencesProvider().getCollectNeighboringCells();
         measurementParser = new MeasurementParserFactory().CreateApi1Parser(transportMode.getAccuracy(), collectNeighboringCells);
         getMeasurementParserHandler().post(measurementParser);
         phoneStateListener = new PhoneStateListener() {
-            private final String INNER_TAG = TAG + ".Legacy" + PhoneStateListener.class.getSimpleName();
+            private final String INNER_TAG = CollectorService.class.getSimpleName() + ".Legacy" + PhoneStateListener.class.getSimpleName();
 
             @Override
             public void onSignalStrengthsChanged(SignalStrength signalStrength) {
                 // in GSM networks, ASU is equal to the RSSI (received signal strength indicator, see TS 27.007)
                 measurementUpdater.setLastSignalStrength(signalStrength);
-                Log.d(INNER_TAG, String.format("onSignalStrengthsChanged(): Signal strength = %s", signalStrength));
+                Timber.tag(INNER_TAG).d("onSignalStrengthsChanged(): Signal strength = %s", signalStrength);
             }
 
             @Override
             public void onCellLocationChanged(CellLocation cellLocation) {
                 try {
-                    Log.d(INNER_TAG, String.format("onCellLocationChanged(): %s", cellLocation));
+                    Timber.tag(INNER_TAG).d("onCellLocationChanged(): %s", cellLocation);
                     List<NeighboringCellInfo> neighboringCells = telephonyManager.getNeighboringCellInfo();
                     processCellLocation(cellLocation, neighboringCells);
                 } catch (SecurityException ex) {
-                    Log.e(INNER_TAG, "onCellLocationChanged(): coarse location or phone permission is denied", ex);
+                    Timber.tag(INNER_TAG).e(ex, "onCellLocationChanged(): coarse location or phone permission is denied");
                     stopSelf();
                 }
             }
@@ -405,22 +404,22 @@ public class CollectorService extends Service {
         try {
             telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS | PhoneStateListener.LISTEN_CELL_LOCATION);
         } catch (SecurityException ex) {
-            Log.e("registerApi1PhoneStateListener(): coarse location permission is denied", ex);
+            Timber.e(ex, "registerApi1PhoneStateListener(): coarse location permission is denied");
             stopSelf();
         }
         // run scheduled cell listener
         periodicalPhoneStateListener.schedule(new TimerTask() {
-            private final String INNER_TAG = TAG + ".Periodical" + PhoneStateListener.class.getSimpleName();
+            private final String INNER_TAG = CollectorService.class.getSimpleName() + ".Periodical" + PhoneStateListener.class.getSimpleName();
 
             @Override
             public void run() {
                 try {
                     CellLocation cellLocation = telephonyManager.getCellLocation();
-                    Log.d(INNER_TAG, String.format("run(): %s", cellLocation));
+                    Timber.tag(INNER_TAG).d("run(): %s", cellLocation);
                     List<NeighboringCellInfo> neighboringCells = telephonyManager.getNeighboringCellInfo();
                     processCellLocation(cellLocation, neighboringCells);
                 } catch (SecurityException ex) {
-                    Log.e(INNER_TAG, "run(): coarse location or phone permission is denied", ex);
+                    Timber.tag(INNER_TAG).e(ex, "run(): coarse location or phone permission is denied");
                     stopSelf();
                 }
             }
@@ -439,13 +438,13 @@ public class CollectorService extends Service {
         // get network operator (may be unreliable for CDMA)
         String networkOperatorCode = telephonyManager.getNetworkOperator();
         String networkOperatorName = telephonyManager.getNetworkOperatorName();
-        Log.d("processCellLocation(): Operator code = '%s', name = '%s'", networkOperatorCode, networkOperatorName);
-        Log.d("processCellLocation(): Reported %s neighboring cells", (neighboringCells != null ? neighboringCells.size() : null));
+        Timber.d("processCellLocation(): Operator code = '%s', name = '%s'", networkOperatorCode, networkOperatorName);
+        Timber.d("processCellLocation(): Reported %s neighboring cells", (neighboringCells != null ? neighboringCells.size() : null));
         measurementUpdater.setLastCellLocation(cellLocation, networkType, networkOperatorCode, networkOperatorName, neighboringCells);
     }
 
     private LocationListener staticLocationListener = new LocationListener() {
-        private final String INNER_TAG = TAG + ".Static" + LocationListener.class.getSimpleName();
+        private final String INNER_TAG = CollectorService.class.getSimpleName() + ".Static" + LocationListener.class.getSimpleName();
 
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -464,22 +463,22 @@ public class CollectorService extends Service {
                     statusString = "UNKNOWN";
                     break;
             }
-            Log.d(INNER_TAG, String.format("onStatusChanged(): %s", statusString));
+            Timber.tag(INNER_TAG).d("onStatusChanged(): %s", statusString);
         }
 
         @Override
         public void onProviderEnabled(String provider) {
-            Log.d(INNER_TAG, String.format("onProviderEnabled(): %s", provider));
+            Timber.tag(INNER_TAG).d("onProviderEnabled(): %s", provider);
         }
 
         @Override
         public void onProviderDisabled(String provider) {
-            Log.d(INNER_TAG, String.format("onProviderDisabled(): %s", provider));
+            Timber.tag(INNER_TAG).d("onProviderDisabled(): %s", provider);
         }
 
         @Override
         public void onLocationChanged(Location location) {
-            Log.d(INNER_TAG, String.format("onLocationChanged(): %s", location));
+            Timber.tag(INNER_TAG).d("onLocationChanged(): %s", location);
             lastLocation = location;
             lastLocationObtainedTime = System.currentTimeMillis();
             setLastGpsAccuracy(lastLocation);
@@ -490,7 +489,7 @@ public class CollectorService extends Service {
     };
 
     private LocationListener dynamicLocationListener = new LocationListener() {
-        private final String INNER_TAG = TAG + ".Dynamic" + LocationListener.class.getSimpleName();
+        private final String INNER_TAG = CollectorService.class.getSimpleName() + ".Dynamic" + LocationListener.class.getSimpleName();
 
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -509,7 +508,7 @@ public class CollectorService extends Service {
 
         @Override
         public void onLocationChanged(Location location) {
-            Log.d(INNER_TAG, String.format("onLocationChanged(): %s", location));
+            Timber.tag(INNER_TAG).d("onLocationChanged(): %s", location);
             lastLocation = location;
             long locationObtainedTime = System.currentTimeMillis();
             lastLocationObtainedTime = locationObtainedTime;
@@ -539,10 +538,10 @@ public class CollectorService extends Service {
             // change only if it makes difference (probably utilizes less CPU time)
             int intervalDiff = Math.abs(currentIntervalValue.get() - interval);
             if (intervalDiff < 300) {
-                Log.d("updateDynamicInterval(): Skipping GPS reconnection because of too small interval difference: %s", intervalDiff);
+                Timber.d("updateDynamicInterval(): Skipping GPS reconnection because of too small interval difference: %s", intervalDiff);
                 return;
             }
-            Log.d("updateDynamicInterval(): New interval calculated: %s difference to previous %s", interval, intervalDiff);
+            Timber.d("updateDynamicInterval(): New interval calculated: %s difference to previous %s", interval, intervalDiff);
             // save calculated interval
             currentIntervalValue.set(interval);
             measurementUpdater.setMinDistanceAndInterval(transportMode.getDistance(), interval);
@@ -551,10 +550,10 @@ public class CollectorService extends Service {
                 synchronized (dynamicLocationListenerLock) {
                     locationManager.removeUpdates(dynamicLocationListener);
                     locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, currentIntervalValue.get(), 0, dynamicLocationListener);
-                    Log.d("updateDynamicInterval(): GPS reconnected with min distance: %s and min time: %s", transportMode.getDistance(), currentIntervalValue);
+                    Timber.d("updateDynamicInterval(): GPS reconnected with min distance: %s and min time: %s", transportMode.getDistance(), currentIntervalValue);
                 }
             } catch (SecurityException ex) {
-                Log.e("updateDynamicInterval(): fine location permission is denied", ex);
+                Timber.e(ex, "updateDynamicInterval(): fine location permission is denied");
                 stopSelf();
             }
             conditionsNotAchievedCounter = CONDITIONS_NOT_ACHIEVED_COUNTER_INIT;
@@ -563,7 +562,7 @@ public class CollectorService extends Service {
                 || result == ParseResult.DistanceNotAchieved) {
             if (currentIntervalValue.get() != transportMode.getMaxTime()) {
                 if (conditionsNotAchievedCounter <= 0) {
-                    Log.d("updateDynamicInterval(): GPS reconnected with max interval: %s because of fail: %s", transportMode.getMaxTime(), result);
+                    Timber.d("updateDynamicInterval(): GPS reconnected with max interval: %s because of fail: %s", transportMode.getMaxTime(), result);
                     // restore and save interval (increment to max because we don't get appropriate result at all)
                     int newInterval = Math.min(currentIntervalValue.get() + 500, transportMode.getMaxTime());
                     currentIntervalValue.set(newInterval);
@@ -574,27 +573,27 @@ public class CollectorService extends Service {
                             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, transportMode.getMaxTime(), 0, dynamicLocationListener);
                         }
                     } catch (SecurityException ex) {
-                        Log.e("updateDynamicInterval(): fine location permission is denied", ex);
+                        Timber.e(ex, "updateDynamicInterval(): fine location permission is denied");
                         stopSelf();
                     }
                     conditionsNotAchievedCounter = CONDITIONS_NOT_ACHIEVED_COUNTER_INIT;
                     return;
                 } else {
-                    Log.d("updateDynamicInterval(): Skipping GPS reconnection because of fail: %s", result);
+                    Timber.d("updateDynamicInterval(): Skipping GPS reconnection because of fail: %s", result);
                     conditionsNotAchievedCounter--;
                     return;
                 }
             } else {
-                Log.d("updateDynamicInterval(): GPS failed because of: %s but not reconnected with same parameters", result);
+                Timber.d("updateDynamicInterval(): GPS failed because of: %s but not reconnected with same parameters", result);
                 return;
             }
         } else if (result == ParseResult.LocationTooOld) {
-            Log.d("updateDynamicInterval(): Skipping GPS reconnection because location is too old");
+            Timber.d("updateDynamicInterval(): Skipping GPS reconnection because location is too old");
             // TODO: consider reconnection
             setGpsStatus(GpsStatus.NoLocation);
             return;
         } else {// only when SaveFailed
-            Log.d("updateDynamicInterval(): Skipping GPS reconnection");
+            Timber.d("updateDynamicInterval(): Skipping GPS reconnection");
             return;
         }
     }
@@ -602,9 +601,11 @@ public class CollectorService extends Service {
     // ========== BROADCAST RECEIVERS ========== //
 
     private BroadcastReceiver stopRequestBroadcastReceiver = new BroadcastReceiver() {
+        private final String INNER_TAG = CollectorService.class.getSimpleName() + ".StopRequest" + BroadcastReceiver.class.getSimpleName();
+
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.d("stopRequestBroadcastReceiver.onReceive(): Received broadcast intent: %s", intent);
+            Timber.tag(INNER_TAG).d("stopRequestBroadcastReceiver.onReceive(): Received broadcast intent: %s", intent);
             if (intent.getAction().equals(BROADCAST_INTENT_STOP_SERVICE)) {
                 stopSelf();
             }
@@ -666,25 +667,25 @@ public class CollectorService extends Service {
         } else {
             status = GpsStatus.Ok;
         }
-        Log.d("updateGpsStatus(): Updating gps status = %s", status);
+        Timber.d("updateGpsStatus(): Updating gps status = %s", status);
         setGpsStatus(status);
     }
 
     private void updateSystemTimeChange(Location location) {
         if (location == null) {
-            Log.w("updateSystemTimeChange(): Location is null");
+            Timber.w("updateSystemTimeChange(): Location is null");
             return;
         }
         boolean valid = systemTimeValidator.isValid(System.currentTimeMillis(), location.getTime());
         if (valid) {
             if (lastIsSystemTimeValid != Validity.Valid) {
-                Log.d("updateSystemTimeChange(): Setting system time to valid");
+                Timber.d("updateSystemTimeChange(): Setting system time to valid");
                 EventBus.getDefault().postSticky(new SystemTimeChangedEvent(Validity.Valid));
                 lastIsSystemTimeValid = Validity.Valid;
             }
         } else {
             if (lastIsSystemTimeValid != Validity.Invalid) {
-                Log.d("updateSystemTimeChange(): Setting system time to invalid");
+                Timber.d("updateSystemTimeChange(): Setting system time to invalid");
                 EventBus.getDefault().postSticky(new SystemTimeChangedEvent(Validity.Invalid));
                 lastIsSystemTimeValid = Validity.Invalid;
             }
@@ -692,44 +693,44 @@ public class CollectorService extends Service {
     }
 
     private Runnable gpsStatusCheck = new Runnable() {
-        private final String INNER_TAG = TAG + ".GpsStatusCheckRunnable";
+        private final String INNER_TAG = CollectorService.class.getSimpleName() + ".GpsStatusCheckRunnable";
 
         @Override
         public void run() {
-            Log.d(INNER_TAG, "run(): GPS status check performed");
+            Timber.tag(INNER_TAG).d("run(): GPS status check performed");
             updateGpsStatus(lastLocation, lastLocationObtainedTime, System.currentTimeMillis());
             scheduleNextGpsStatusCheck();
         }
     };
 
     private void scheduleNextGpsStatusCheck() {
-        Log.d("scheduleNextGpsStatusCheck(): Setting next GPS status check");
+        Timber.d("scheduleNextGpsStatusCheck(): Setting next GPS status check");
         getGpsStatusHandler().postDelayed(gpsStatusCheck, GPS_STATUS_CHECK_INTERVAL);
     }
 
     private void cancelNextGpsStatusCheck() {
-        Log.d("cancelNextGpsStatusCheck(): Cancelling GPS status check");
+        Timber.d("cancelNextGpsStatusCheck(): Cancelling GPS status check");
         getGpsStatusHandler().removeCallbacks(gpsStatusCheck);
     }
 
     private void registerWakeLockAcquirer() {
         if (keepScreenOnMode == KeepScreenOnMode.Disabled) {
-            Log.d("registerWakeLockAcquirer(): WakeLock not configured");
+            Timber.d("registerWakeLockAcquirer(): WakeLock not configured");
             return;
         }
         periodicalWakeLockAcquirer = new Timer();
         // run scheduled cell listener
         periodicalWakeLockAcquirer.schedule(new TimerTask() {
-            private final String INNER_TAG = TAG + ".Periodical" + WakeLock.class.getSimpleName() + "Acquirer";
+            private final String INNER_TAG = CollectorService.class.getSimpleName() + ".Periodical" + WakeLock.class.getSimpleName() + "Acquirer";
 
             @Override
             public void run() {
                 synchronized (reacquireWakeLockLock) {
                     WakeLock oldWakeLock = wakeLock;
-                    Log.d(INNER_TAG, "run(): New WakeLock acquire");
+                    Timber.tag(INNER_TAG).d("run(): New WakeLock acquire");
                     wakeLock = createWakeLock(keepScreenOnMode);
                     wakeLock.acquire(WAKE_LOCK_TIMEOUT);
-                    Log.d(INNER_TAG, "run(): Old WakeLock release");
+                    Timber.tag(INNER_TAG).d("run(): Old WakeLock release");
                     if (oldWakeLock != null && oldWakeLock.isHeld())
                         oldWakeLock.release();
                 }
@@ -771,7 +772,7 @@ public class CollectorService extends Service {
     }
 
     private void setGpsStatus(GpsStatus status) {
-        Log.d("setGpsStatus(): Setting gps status = %s", status);
+        Timber.d("setGpsStatus(): Setting gps status = %s", status);
         boolean statusChanged = (this.gpsStatus != status);
         this.gpsStatus = status;
         float accuracy = getLastGpsAccuracy();
@@ -814,10 +815,10 @@ public class CollectorService extends Service {
 
     public void setLastGpsAccuracy(Location location) {
         if (location == null) {
-            Log.w("setLastGpsAccuracy(): Location is null");
+            Timber.w("setLastGpsAccuracy(): Location is null");
             return;
         }
-        Log.d("setLastGpsAccuracy(): Setting last gps accuracy = %s", location.getAccuracy());
+        Timber.d("setLastGpsAccuracy(): Setting last gps accuracy = %s", location.getAccuracy());
         this.lastGpsAccuracy = (location.hasAccuracy() ? location.getAccuracy() : 1000);
     }
 

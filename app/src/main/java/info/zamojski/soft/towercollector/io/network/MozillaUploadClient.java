@@ -7,10 +7,10 @@ package info.zamojski.soft.towercollector.io.network;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.github.kevinsawicki.http.HttpRequest.HttpRequestException;
 
-import trikita.log.Log;
+import timber.log.Timber;
+
 
 public class MozillaUploadClient extends ClientBase implements IUploadClient {
-    private static final String TAG = MozillaUploadClient.class.getSimpleName();
 
     private final String uploadUrl;
 
@@ -20,7 +20,7 @@ public class MozillaUploadClient extends ClientBase implements IUploadClient {
 
     @Override
     public RequestResult uploadMeasurements(String content) {
-        Log.d("uploadMeasurements(): Sending post request");
+        Timber.d("uploadMeasurements(): Sending post request");
         try {
             HttpRequest request = HttpRequest.post(uploadUrl)
                     .followRedirects(false)
@@ -31,7 +31,7 @@ public class MozillaUploadClient extends ClientBase implements IUploadClient {
             request.send(content);
             return handleResponse(request.code(), request.body());
         } catch (HttpRequestException ex) {
-            Log.d("uploadMeasurements(): Errors encountered", ex);
+            Timber.e(ex, "uploadMeasurements(): Errors encountered");
             reportExceptionWithSuppress(ex);
             return RequestResult.Failure;
         }

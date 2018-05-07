@@ -4,11 +4,11 @@
 
 package info.zamojski.soft.towercollector.analytics;
 
-import trikita.log.Log;
+import timber.log.Timber;
 
 public class AnalyticsServiceFactory {
     public IAnalyticsReportingService createInstance() {
-        Log.d("createInstance(): Creating Fake Analytics");
+        Timber.d("createInstance(): Creating Fake Analytics");
         return new FakeAnalyticsReportingService();
     }
 }

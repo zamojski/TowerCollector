@@ -5,15 +5,15 @@
 package info.zamojski.soft.towercollector.dao.migration;
 
 import android.database.sqlite.SQLiteDatabase;
-import trikita.log.Log;
+
+import timber.log.Timber;
 
 class UpgradeScript4 implements IUpgradeScript {
 
-    private static final String TAG = UpgradeScript4.class.getSimpleName();
 
     @Override
     public void performUpgrade(SQLiteDatabase database) {
-        Log.d("performUpgrade(): Upgrading db to version 4");
+        Timber.d("performUpgrade(): Upgrading db to version 4");
         // backup old tables
         database.execSQL("ALTER TABLE measurements RENAME TO measurements_backup");
         database.execSQL("ALTER TABLE cells RENAME TO cells_backup");

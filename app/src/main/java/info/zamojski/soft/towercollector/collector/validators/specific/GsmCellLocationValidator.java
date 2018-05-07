@@ -5,20 +5,19 @@
 package info.zamojski.soft.towercollector.collector.validators.specific;
 
 import info.zamojski.soft.towercollector.model.Measurement;
+import timber.log.Timber;
 
 import android.telephony.NeighboringCellInfo;
 import android.telephony.gsm.GsmCellLocation;
-import trikita.log.Log;
 
 public class GsmCellLocationValidator {
 
-    private static final String TAG = GsmCellLocationValidator.class.getSimpleName();
 
     public boolean isValid(GsmCellLocation cell, int mcc, int mnc) {
         boolean valid = isValid(cell.getCid(), cell.getLac(), mnc, mcc, cell.getPsc());
         if (!valid) {
-            Log.w("isValid(): Invalid GsmCellLocation [mcc=%s, mnc =%s, lac=%s, cid=%s, psc=%s]", mcc, mnc, cell.getLac(), cell.getCid(), cell.getPsc());
-            Log.w("isValid(): Invalid GsmCellLocation %s", cell);
+            Timber.w("isValid(): Invalid GsmCellLocation [mcc=%s, mnc =%s, lac=%s, cid=%s, psc=%s]", mcc, mnc, cell.getLac(), cell.getCid(), cell.getPsc());
+            Timber.w("isValid(): Invalid GsmCellLocation %s", cell);
         }
         return valid;
     }

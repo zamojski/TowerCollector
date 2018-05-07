@@ -18,6 +18,7 @@ import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.uploader.UploaderNotificationHelper;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
 import info.zamojski.soft.towercollector.utils.NetworkUtils;
+import timber.log.Timber;
 
 import java.io.IOException;
 import java.util.List;
@@ -38,13 +39,11 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
 
-import trikita.log.Log;
 
 import android.widget.Toast;
 
 public class UploaderService extends Service {
 
-    private static final String TAG = UploaderService.class.getSimpleName();
 
     public static final String SERVICE_FULL_NAME = UploaderService.class.getCanonicalName();
     public static final String BROADCAST_INTENT_STOP_SERVICE = SERVICE_FULL_NAME + ".UploaderCancel";
@@ -70,7 +69,7 @@ public class UploaderService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d("onCreate(): Creating service");
+        Timber.d("onCreate(): Creating service");
         MyApplication.startBackgroundTask(this);
         // get managers
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -84,7 +83,7 @@ public class UploaderService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
-        Log.d("onStartCommand(): Starting service");
+        Timber.d("onStartCommand(): Starting service");
         // get API key (intent or extras may be null if the service is being restarted)
         if (intent == null || intent.getExtras() == null) {
             // we hope API key will be valid
@@ -104,13 +103,13 @@ public class UploaderService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.d("onDestroy(): Destroying service");
+        Timber.d("onDestroy(): Destroying service");
         MyApplication.stopBackgroundTask();
         stopForeground(true);
         if (stopRequestBroadcastReceiver != null)
             unregisterReceiver(stopRequestBroadcastReceiver);
         // display stop reason
-        Log.d("onDestroy(): Upload result: %s", uploadResult);
+        Timber.d("onDestroy(): Upload result: %s", uploadResult);
         int messageId = R.string.unknown_error;
         int descriptionId = R.string.unknown_error;
         switch (uploadResult) {
@@ -184,7 +183,7 @@ public class UploaderService extends Service {
     private BroadcastReceiver stopRequestBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.d("stopRequestBroadcastReceiver.onReceive(): Received broadcast intent: %s", intent);
+            Timber.d("stopRequestBroadcastReceiver.onReceive(): Received broadcast intent: %s", intent);
             if (intent.getAction().equals(BROADCAST_INTENT_STOP_SERVICE)) {
                 // stop worker
                 isCancelled.set(true);
@@ -211,7 +210,7 @@ public class UploaderService extends Service {
 
     private class UploaderThread implements Runnable {
 
-        private final String INNER_TAG = TAG + "." + UploaderThread.class.getSimpleName();
+        private final String INNER_TAG = UploaderService.class.getSimpleName() + "." + UploaderThread.class.getSimpleName();
 
         @Override
         public void run() {
@@ -230,7 +229,7 @@ public class UploaderService extends Service {
 
             // check if there is anything to upload
             if (measurementsCount == 0 || lastMeasurement == null) {
-                Log.d(INNER_TAG, "run(): Cancelling upload due to no data to upload");
+                Timber.tag(INNER_TAG).d("run(): Cancelling upload due to no data to upload");
                 uploadResult = UploadResult.NoData;
                 stopSelf();
                 return;
@@ -270,7 +269,7 @@ public class UploaderService extends Service {
                     generator.writeEntryChunk(measurements);
                 } catch (IOException ex) {
                     // this should never happen for MemoryTextDevice
-                    Log.e(INNER_TAG, "run(): Error while generating file", ex);
+                    Timber.tag(INNER_TAG).e(ex, "run(): Error while generating file");
                     MyApplication.getAnalytics().sendException(ex, Boolean.TRUE);
                     ACRA.getErrorReporter().handleSilentException(ex);
                     uploadResult = UploadResult.Failure;
@@ -285,17 +284,17 @@ public class UploaderService extends Service {
                 //    fileDevice.open();
                 //    fileDevice.write(csvContent);
                 //    fileDevice.close();
-                //    Log.d(INNER_TAG, String.format("run(): Uploaded file saved as: %s", fileDevice.getPath()));
+                //    Timber.tag(INNER_TAG).d("run(): Uploaded file saved as: %s", fileDevice.getPath());
                 //} catch (info.zamojski.soft.towercollector.files.DeviceOperationException ex) {
-                //    Log.d(INNER_TAG, "run(): Uploaded file generation problem", ex);
+                //    Timber.tag(INNER_TAG).d(ex, "run(): Uploaded file generation problem");
                 //} catch (IOException ex) {
-                //    Log.d(INNER_TAG, "run(): Uploaded file generation problem", ex);
+                //    Timber.tag(INNER_TAG).d(ex, "run(): Uploaded file generation problem");
                 //}
                 // send request
                 try {
                     IUploadClient client = new OcidUploadClient(uploadUrl, appId, apiKey);
                     RequestResult response = client.uploadMeasurements(csvContent);
-                    Log.d(INNER_TAG, String.format("run(): Server response: %s", response));
+                    Timber.tag(INNER_TAG).d("run(): Server response: %s", response);
                     // check whether it makes sense to continue
                     if (response == RequestResult.ConfigurationError) {
                         uploadResult = UploadResult.InvalidData;
@@ -313,7 +312,7 @@ public class UploaderService extends Service {
                         uploadResult = UploadResult.InvalidApiKey;
                         break;
                     } else if (response == RequestResult.Success) {
-                        Log.d(INNER_TAG, String.format("run(): Uploaded %s measurements", measurements.size()));
+                        Timber.tag(INNER_TAG).d("run(): Uploaded %s measurements", measurements.size());
                         uploadResult = UploadResult.PartiallySucceeded;
                         succeededParts++;
                     } else {
@@ -333,7 +332,7 @@ public class UploaderService extends Service {
                     // broadcast part uploaded (if error not encountered earlier)
                     EventBus.getDefault().post(new PrintMainWindowEvent());
                 } catch (SecurityException ex) {
-                    Log.e("run(): internet permission is denied", ex);
+                    Timber.tag(INNER_TAG).e(ex, "run(): internet permission is denied");
                     uploadResult = UploadResult.PermissionDenied;
                     break;
                 }

@@ -5,11 +5,11 @@
 package info.zamojski.soft.towercollector.collector.validators;
 
 import android.location.Location;
-import trikita.log.Log;
+
+import timber.log.Timber;
 
 public class LocationValidator {
 
-    private static final String TAG = LocationValidator.class.getSimpleName();
 
     public static final long NO_LOCATION_TIME_DIFF = 5 * 60 * 1000;// 5 minutes
 
@@ -28,7 +28,7 @@ public class LocationValidator {
         // check conditions
         boolean valid = timeDiff <= NO_LOCATION_TIME_DIFF;
         if (!valid)
-            Log.d("isUpToDate(): Location is outdated by %d milliseconds > %d", timeDiff, NO_LOCATION_TIME_DIFF);
+            Timber.d("isUpToDate(): Location is outdated by %d milliseconds > %d", timeDiff, NO_LOCATION_TIME_DIFF);
         return valid;
         // return true;
     }

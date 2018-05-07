@@ -9,15 +9,14 @@ import java.lang.reflect.Method;
 import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.utils.UnitConverter;
+import timber.log.Timber;
 
 import android.telephony.NeighboringCellInfo;
 import android.telephony.SignalStrength;
 
-import trikita.log.Log;
 
 public class CellLocationSignalConverter {
 
-    private static final String TAG = CellLocationSignalConverter.class.getSimpleName();
 
     private Method lteDbmMethod;
     private Method lteSignalStrengthMethod;
@@ -43,7 +42,7 @@ public class CellLocationSignalConverter {
                 int rssi = rscp - ecio;// rssi
                 updateGsm(m, rssi);
             } catch (Exception ex) {
-                Log.w("update(): Cannot read WCDMA signal strength from RSCP/ECIO: %s", signal, ex);
+                Timber.w(ex, "update(): Cannot read WCDMA signal strength from RSCP/ECIO: %s", signal);
             }
         }
         // try to convert if lte network or network being reported as GSM is in fact LTE
@@ -53,7 +52,7 @@ public class CellLocationSignalConverter {
                 int dbm = (Integer) dbmMethod.invoke(signal);// rsrp
                 updateLte(m, dbm);
             } catch (Exception ex) {
-                Log.w("update(): Cannot read LTE signal strength from RSRP: %s", signal, ex);
+                Timber.w(ex, "update(): Cannot read LTE signal strength from RSRP: %s", signal);
             }
         }
         if (m.getAsu() == Measurement.UNKNOWN_SIGNAL || m.getAsu() == 0) {
@@ -62,7 +61,7 @@ public class CellLocationSignalConverter {
                 int asu = (Integer) strengthMethod.invoke(signal);// asu
                 updateLte(m, asu);
             } catch (Exception ex) {
-                Log.w("update(): Cannot read LTE signal strength from ASU: %s", signal, ex);
+                Timber.w(ex, "update(): Cannot read LTE signal strength from ASU: %s", signal);
             }
         }
     }
@@ -77,12 +76,12 @@ public class CellLocationSignalConverter {
             return;
         }
         // no way to detect lte so clear current
-        Log.d("update(): Clearing signal strength");
+        Timber.d("update(): Clearing signal strength");
         updateGsm(m, Measurement.UNKNOWN_SIGNAL);
     }
 
     private void updateGsm(Measurement m, int asu) {
-        Log.d("update(): Updating GSM signal strength = %s", asu);
+        Timber.d("update(): Updating GSM signal strength = %s", asu);
         if (asu == NeighboringCellInfo.UNKNOWN_RSSI)
             asu = Measurement.UNKNOWN_SIGNAL;
         // NOTE: for GSM asu is always positive but RSSI negative
@@ -93,12 +92,12 @@ public class CellLocationSignalConverter {
     }
 
     private void updateCdma(Measurement m, int dbm) {
-        Log.d("update(): Updating CDMA signal strength = %s", dbm);
+        Timber.d("update(): Updating CDMA signal strength = %s", dbm);
         m.setCdmaLocationSignal(UnitConverter.convertCdmaDbmToAsu(dbm), dbm);
     }
 
     private void updateLte(Measurement m, int dbm) {
-        Log.d("update(): Updating LTE signal strength = %s", dbm);
+        Timber.d("update(): Updating LTE signal strength = %s", dbm);
         if (dbm == NeighboringCellInfo.UNKNOWN_RSSI)
             dbm = Measurement.UNKNOWN_SIGNAL;
         // NOTE: for LTE asu is always positive but RSRP negative

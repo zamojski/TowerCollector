@@ -7,11 +7,11 @@ package info.zamojski.soft.towercollector.collector.validators.specific;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.telephony.CellIdentityLte;
-import trikita.log.Log;
+
+import timber.log.Timber;
 
 public class LteCellIdentityValidator {
 
-    private static final String TAG = LteCellIdentityValidator.class.getSimpleName();
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public boolean isValid(CellIdentityLte cell) {
@@ -19,8 +19,8 @@ public class LteCellIdentityValidator {
                 && isMncInRange(cell.getMnc()) && isMccInRange(cell.getMcc())
                 && isPciInRange(cell.getPci()));
         if (!valid) {
-            Log.w("isValid(): Invalid CellIdentityLte [mcc=%s, mnc=%s, lac=%s, cid=%s, psc=%s]", cell.getMcc(), cell.getMnc(), cell.getTac(), cell.getCi(), cell.getPci());
-            Log.w("isValid(): Invalid CellIdentityLte %s", cell);
+            Timber.w("isValid(): Invalid CellIdentityLte [mcc=%s, mnc=%s, lac=%s, cid=%s, psc=%s]", cell.getMcc(), cell.getMnc(), cell.getTac(), cell.getCi(), cell.getPci());
+            Timber.w("isValid(): Invalid CellIdentityLte %s", cell);
         }
         return valid;
     }

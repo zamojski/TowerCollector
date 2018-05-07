@@ -11,15 +11,8 @@ import android.content.res.Resources;
 
 class BooleanPreferenceProvider extends PreferenceProviderBase<Boolean> {
 
-    private static final String TAG = BooleanPreferenceProvider.class.getSimpleName();
-
     public BooleanPreferenceProvider(Context context) {
         super(context);
-    }
-
-    @Override
-    String getLogTag() {
-        return TAG;
     }
 
     @Override

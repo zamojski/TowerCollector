@@ -8,6 +8,7 @@ import org.acra.ACRA;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
+import timber.log.Timber;
 
 import android.annotation.TargetApi;
 import android.app.ActivityManager;
@@ -19,10 +20,8 @@ import android.os.Build;
 
 import java.util.List;
 
-import trikita.log.Log;
 
 public class ApkUtils {
-    private static final String TAG = ApkUtils.class.getSimpleName();
 
     public static final String ANDROID_MARKET_STORE_PACKAGE_NAME = "com.google.market";
     public static final String GOOGLE_PLAY_STORE_PACKAGE_NAME = "com.android.vending";
@@ -37,7 +36,7 @@ public class ApkUtils {
             PackageInfo pi = context.getPackageManager().getPackageInfo(packageName, 0);
             currentAppVersion = pi.versionCode;
         } catch (PackageManager.NameNotFoundException ex) {
-            Log.e("getApkVersionCode(): Current version number not found", ex);
+            Timber.e(ex, "getApkVersionCode(): Current version number not found");
             MyApplication.getAnalytics().sendException(ex, Boolean.TRUE);
             ACRA.getErrorReporter().handleSilentException(ex);
         }
@@ -50,7 +49,7 @@ public class ApkUtils {
             PackageInfo pi = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
             currentAppVersion = pi.versionName;
         } catch (PackageManager.NameNotFoundException ex) {
-            Log.e("getApkVersionName(): Current version name not found", ex);
+            Timber.e(ex, "getApkVersionName(): Current version name not found");
             MyApplication.getAnalytics().sendException(ex, Boolean.TRUE);
             ACRA.getErrorReporter().handleSilentException(ex);
         }
@@ -88,7 +87,7 @@ public class ApkUtils {
 
     @TargetApi(Build.VERSION_CODES.O)
     public static void startServiceSafely(Context context, Intent intent) {
-        if(MobileUtils.isApi26VersionCompatible()) {
+        if (MobileUtils.isApi26VersionCompatible()) {
             context.startForegroundService(intent);
         } else {
             context.startService(intent);

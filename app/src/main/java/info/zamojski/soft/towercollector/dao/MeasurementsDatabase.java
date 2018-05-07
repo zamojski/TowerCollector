@@ -13,6 +13,7 @@ import info.zamojski.soft.towercollector.model.CellsCount;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.model.Statistics;
 import info.zamojski.soft.towercollector.utils.HashUtils;
+import timber.log.Timber;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -29,11 +30,9 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 
-import trikita.log.Log;
 
 public class MeasurementsDatabase {
 
-    private static final String TAG = MeasurementsDatabase.class.getSimpleName();
 
     public static final String DATABASE_FILE_NAME = "measurements.db";
     public static final int DATABASE_FILE_VERSION = 11;
@@ -55,7 +54,7 @@ public class MeasurementsDatabase {
     }
 
     public boolean insertMeasurements(Measurement[] measurements) {
-        Log.d("insertMeasurement(): Inserting %s measurements", measurements.length);
+        Timber.d("insertMeasurement(): Inserting %s measurements", measurements.length);
         boolean[] results = new boolean[measurements.length];
         boolean overallResult = true;
         SQLiteDatabase db = helper.getWritableDatabase();
@@ -76,7 +75,7 @@ public class MeasurementsDatabase {
                     values.put(CellsTable.COLUMN_DISCOVERED_AT, System.currentTimeMillis());
                     long rowId = db.insert(CellsTable.TABLE_NAME, null, values);
                     boolean localResult = (rowId != -1);
-                    Log.d("insertMeasurement(): Cell inserted = %s", localResult);
+                    Timber.d("insertMeasurement(): Cell inserted = %s", localResult);
                     resultSb.append("\tcell inserted=").append(localResult);
                 }
                 // don't use value returned by insert, because it sometimes returns wrong value -> query always
@@ -95,7 +94,7 @@ public class MeasurementsDatabase {
                     }
                     cursorTotal.close();
                     results[mIndex] = localResult;
-                    Log.d("insertMeasurement(): Cell found = %s", localResult);
+                    Timber.d("insertMeasurement(): Cell found = %s", localResult);
                     resultSb.append("\tcell found=").append(localResult);
                 }
                 // calculate hashcode
@@ -113,7 +112,7 @@ public class MeasurementsDatabase {
                     values.put(LocationsTable.COLUMN_GPS_ALTITUDE, measurement.getGpsAltitude());
                     long rowId = db.insert(LocationsTable.TABLE_NAME, null, values);
                     boolean localResult = (rowId != -1);
-                    Log.d("insertMeasurement(): Location inserted = %s", localResult);
+                    Timber.d("insertMeasurement(): Location inserted = %s", localResult);
                     resultSb.append("\tlocation inserted=").append(localResult);
                 }
                 // don't use value returned by insert, because it sometimes returns wrong value -> query always
@@ -132,7 +131,7 @@ public class MeasurementsDatabase {
                     }
                     cursorTotal.close();
                     results[mIndex] = localResult;
-                    Log.d("insertMeasurement(): Location found = %s", localResult);
+                    Timber.d("insertMeasurement(): Location found = %s", localResult);
                     resultSb.append("\tlocation found=").append(localResult);
                 }
                 // insert measurement (if previous queries returned correct result)
@@ -149,7 +148,7 @@ public class MeasurementsDatabase {
                     long rowId = db.insert(MeasurementsTable.TABLE_NAME, null, values);
                     boolean localResult = (rowId != -1);
                     results[mIndex] &= localResult;
-                    Log.d("insertMeasurement(): Measurement inserted = %s", localResult);
+                    Timber.d("insertMeasurement(): Measurement inserted = %s", localResult);
                     resultSb.append("\tmeasurement inserted=").append(localResult);
                 }
                 resultSb.append(";\r\n");
@@ -160,11 +159,11 @@ public class MeasurementsDatabase {
             }
             if (overallResult) {
                 db.setTransactionSuccessful();
-                Log.d("insertMeasurements(): Measurements inserted successfully");
-                Log.d("insertMeasurements(): Insertion report: %s", resultSb.toString());
+                Timber.d("insertMeasurements(): Measurements inserted successfully");
+                Timber.d("insertMeasurements(): Insertion report: %s", resultSb.toString());
             } else {
-                Log.d("insertMeasurements(): Measurements not inserted");
-                Log.d("insertMeasurements(): Insertion report: %s", resultSb.toString());
+                Timber.d("insertMeasurements(): Measurements not inserted");
+                Timber.d("insertMeasurements(): Insertion report: %s", resultSb.toString());
                 // report exception because it shouldn't occur (one time per app run)
                 if (!insertionFailureReported) {
                     Throwable ex = new MeasurementInsertionFailedException("Measurements not inserted", resultSb.toString());
@@ -189,7 +188,7 @@ public class MeasurementsDatabase {
         List<Measurement> measurements = getMeasurements(null, null, null, null, MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " ASC, " + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_ROW_ID + " ASC", "1");
         if (!measurements.isEmpty())
             firstMeasurement = measurements.get(0);
-        Log.d("getFirstMeasurement(): %s", firstMeasurement);
+        Timber.d("getFirstMeasurement(): %s", firstMeasurement);
         return firstMeasurement;
     }
 
@@ -197,7 +196,7 @@ public class MeasurementsDatabase {
         // Try to get from cache then read from DB (copy to local to avoid null if invalidated in the meantime)
         Measurement lastMeasurementCacheCopy = this.lastMeasurementCache;
         if (lastMeasurementCacheCopy != null) {
-            Log.d("getLastMeasurement(): Value from cache: %s", lastMeasurementCacheCopy);
+            Timber.d("getLastMeasurement(): Value from cache: %s", lastMeasurementCacheCopy);
             return lastMeasurementCacheCopy;
         }
         Measurement lastMeasurement = null;
@@ -209,7 +208,7 @@ public class MeasurementsDatabase {
         if (!measurements.isEmpty()) {
             lastMeasurement = measurements.get(0);
         }
-        Log.d("getLastMeasurement(): Value from DB: %s", lastMeasurement);
+        Timber.d("getLastMeasurement(): Value from DB: %s", lastMeasurement);
         this.lastMeasurementCache = lastMeasurement;
         return lastMeasurement;
     }
@@ -218,7 +217,7 @@ public class MeasurementsDatabase {
         // Try to get from cache then read from DB (copy to local to avoid null if invalidated in the meantime)
         CellsCount lastCellsCountCacheCopy = this.lastCellsCountCache;
         if (lastCellsCountCacheCopy != null) {
-            Log.d("getLastCellsCount(): Value from cache: %s", lastCellsCountCacheCopy);
+            Timber.d("getLastCellsCount(): Value from cache: %s", lastCellsCountCacheCopy);
             return lastCellsCountCacheCopy;
         }
         CellsCount lastCellsCount = new CellsCount();
@@ -236,14 +235,14 @@ public class MeasurementsDatabase {
             lastCellsCount = new CellsCount(main, total - main);
         }
         cursor.close();
-        Log.d("getLastCellsCount(): Value from DB: %s", lastCellsCount);
+        Timber.d("getLastCellsCount(): Value from DB: %s", lastCellsCount);
         this.lastCellsCountCache = lastCellsCount;
         return lastCellsCount;
     }
 
     public int getAllMeasurementsCount() {
         int count = 0;
-        Log.d("getAllMeasurementsCount(): Getting number of measurements");
+        Timber.d("getAllMeasurementsCount(): Getting number of measurements");
         SQLiteDatabase db = helper.getReadableDatabase();
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
         queryBuilder.setTables(MeasurementsTable.TABLE_NAME);
@@ -260,7 +259,7 @@ public class MeasurementsDatabase {
         // Try to get from cache then read from DB (copy to local to avoid null if invalidated in the meantime)
         Statistics lastStatisticsCacheCopy = this.lastStatisticsCache;
         if (lastStatisticsCacheCopy != null) {
-            Log.d("getMeasurementsStatistics(): Value from cache: %s", lastStatisticsCacheCopy);
+            Timber.d("getMeasurementsStatistics(): Value from cache: %s", lastStatisticsCacheCopy);
             return lastStatisticsCacheCopy;
         }
         Statistics stats = new Statistics();
@@ -334,13 +333,13 @@ public class MeasurementsDatabase {
             stats.setSinceGlobal(cursor.getLong(cursor.getColumnIndex(globalDiscoveredCellsSince)));
         }
         cursor.close();
-        Log.d("getMeasurementsStatistics(): Value from DB: %s", stats);
+        Timber.d("getMeasurementsStatistics(): Value from DB: %s", stats);
         this.lastStatisticsCache = stats;
         return stats;
     }
 
     public AnalyticsStatistics getAnalyticsStatistics() {
-        Log.d("getAnalyticsStatistics(): Getting analytics stats");
+        Timber.d("getAnalyticsStatistics(): Getting analytics stats");
         AnalyticsStatistics stats = new AnalyticsStatistics();
         SQLiteDatabase db = helper.getReadableDatabase();
         // get all in one query (raw is the only possible solution)
@@ -353,12 +352,12 @@ public class MeasurementsDatabase {
             stats.setDays(cursor.getInt(cursor.getColumnIndex("TOTAL_DAYS_COUNT")));
         }
         cursor.close();
-        Log.d("getAnalyticsStatistics(): %s", stats);
+        Timber.d("getAnalyticsStatistics(): %s", stats);
         return stats;
     }
 
     public Boundaries getLocationBounds() {
-        Log.d("getLocationBounds(): Getting GPS bounds");
+        Timber.d("getLocationBounds(): Getting GPS bounds");
         Boundaries boundaries = null;
         SQLiteDatabase db = helper.getReadableDatabase();
         // get all in one query (raw is the only possible solution)
@@ -377,12 +376,12 @@ public class MeasurementsDatabase {
     }
 
     public List<Measurement> getOlderMeasurements(long maxTimestamp, int offset, int limit) {
-        Log.d("getOlderMeasurements(): Getting %s measurements with timestamp <= %s skipping first %s", limit, maxTimestamp, offset);
+        Timber.d("getOlderMeasurements(): Getting %s measurements with timestamp <= %s skipping first %s", limit, maxTimestamp, offset);
         return getMeasurements(MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " <= ?", new String[]{String.valueOf(maxTimestamp)}, null, null, MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " ASC, " + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_ROW_ID + " ASC", String.valueOf(offset) + ", " + String.valueOf(limit));
     }
 
     private List<Measurement> getMeasurements(String selection, String[] selectionArgs, String groupBy, String having, String sortOrder, String limit) {
-        Log.d("getMeasurements(): Getting selected measurements");
+        Timber.d("getMeasurements(): Getting selected measurements");
         List<Measurement> measurementList = new ArrayList<Measurement>(128);
         SQLiteDatabase db = helper.getReadableDatabase();
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
@@ -455,7 +454,7 @@ public class MeasurementsDatabase {
     }
 
     public int deleteAllMeasurements() {
-        Log.d("deleteAllMeasurements(): Deleting all measurements");
+        Timber.d("deleteAllMeasurements(): Deleting all measurements");
         SQLiteDatabase db = helper.getWritableDatabase();
         db.beginTransaction();
         int deletedMeasurements = 0;
@@ -464,7 +463,7 @@ public class MeasurementsDatabase {
             int deletedLocations = db.delete(LocationsTable.TABLE_NAME, "1", null);
             int deletedCells = db.delete(CellsTable.TABLE_NAME, "1", null);
             db.setTransactionSuccessful();
-            Log.d("deleteAllMeasurements(): Deleted %s measurements, %s cells, %s locations", deletedMeasurements, deletedCells, deletedLocations);
+            Timber.d("deleteAllMeasurements(): Deleted %s measurements, %s cells, %s locations", deletedMeasurements, deletedCells, deletedLocations);
         } finally {
             invalidateCache();
             db.endTransaction();
@@ -474,10 +473,10 @@ public class MeasurementsDatabase {
 
     public int deleteMeasurements(int[] rowIds) {
         if (rowIds == null || rowIds.length == 0) {
-            Log.d("deleteMeasurements(): Nothing to delete");
+            Timber.d("deleteMeasurements(): Nothing to delete");
             return 0;
         }
-        Log.d("deleteMeasurements(): Deleting %s measurements", rowIds.length);
+        Timber.d("deleteMeasurements(): Deleting %s measurements", rowIds.length);
         // in transaction
         int deleted = 0;
         SQLiteDatabase db = helper.getWritableDatabase();
@@ -512,7 +511,7 @@ public class MeasurementsDatabase {
                 // if all removed successfully then delete orphaned cells and locations
                 long deletedLocations = db.delete(LocationsTable.TABLE_NAME, LocationsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_LOCATION_ID + " FROM " + MeasurementsTable.TABLE_NAME + ")", null);
                 long deletedCells = db.delete(CellsTable.TABLE_NAME, CellsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_CELL_ID + " FROM " + MeasurementsTable.TABLE_NAME + ")", null);
-                Log.d("deleteMeasurements(): Deleted orphaned %s cells, %s locations", deletedCells, deletedLocations);
+                Timber.d("deleteMeasurements(): Deleted orphaned %s cells, %s locations", deletedCells, deletedLocations);
                 db.setTransactionSuccessful();
             } else
                 deleted = 0;
@@ -539,9 +538,9 @@ public class MeasurementsDatabase {
             // open manually to prevent database upgrade or creation
             db = SQLiteDatabase.openDatabase(path.toString(), null, SQLiteDatabase.OPEN_READONLY);
             version = db.getVersion(); // equivalent of PRAGMA user_version
-            Log.d("getDatabaseVersion(): Database file version %s", version);
+            Timber.d("getDatabaseVersion(): Database file version %s", version);
         } catch (SQLiteException ex) {
-            Log.e("getDatabaseVersion(): Database file cannot be opened", ex);
+            Timber.e(ex, "getDatabaseVersion(): Database file cannot be opened");
         } finally {
             if (db != null)
                 db.close();
@@ -552,15 +551,15 @@ public class MeasurementsDatabase {
     // ========== FORCE DATABASE UPGRADE ========== //
 
     public void forceDatabaseUpgrade() {
-        Log.d("forceDatabaseUpgrade(): Forcing database upgrade");
+        Timber.d("forceDatabaseUpgrade(): Forcing database upgrade");
         SQLiteDatabase db = helper.getWritableDatabase();
         try {
             // read something to prevent from being removed while optimization (I hope)
             Cursor cursor = db.rawQuery("SELECT 1", null);
             cursor.close();
-            Log.d("forceDatabaseUpgrade(): Database successfully opened for R/W");
+            Timber.d("forceDatabaseUpgrade(): Database successfully opened for R/W");
         } catch (SQLiteException ex) {
-            Log.e("forceDatabaseUpgrade(): Failed to open for R/W", ex);
+            Timber.e(ex, "forceDatabaseUpgrade(): Failed to open for R/W");
         }
     }
 
@@ -586,7 +585,7 @@ public class MeasurementsDatabase {
     // ========== INNER OBJECTS ========== //
 
     private static class MeasurementsOpenHelper extends SQLiteOpenHelper {
-        private static final String INNER_TAG = TAG + "." + MeasurementsOpenHelper.class.getSimpleName();
+        private static final String INNER_TAG = MeasurementsDatabase.class.getSimpleName() + "." + MeasurementsOpenHelper.class.getSimpleName();
 
         MeasurementsOpenHelper(Context context) {
             super(context, DATABASE_FILE_NAME, null, DATABASE_FILE_VERSION);
@@ -594,7 +593,7 @@ public class MeasurementsDatabase {
 
         @Override
         public void onCreate(SQLiteDatabase sqliteDatabase) {
-            Log.d(INNER_TAG, "onCreate(): Creating db structure");
+            Timber.tag(INNER_TAG).d("onCreate(): Creating db structure");
             List<ITable> tables = new ArrayList<ITable>();
             tables.add(new CellsArchiveTable());
             tables.add(new StatsTable());
@@ -612,7 +611,7 @@ public class MeasurementsDatabase {
 
         @Override
         public void onUpgrade(SQLiteDatabase sqliteDatabase, int oldVersion, int newVersion) {
-            Log.d(INNER_TAG, String.format("onUpgrade(): Upgrading db from version %s to %s", oldVersion, newVersion));
+            Timber.tag(INNER_TAG).d("onUpgrade(): Upgrading db from version %s to %s", oldVersion, newVersion);
             DbMigrationHelper migrationHelper = new DbMigrationHelper(sqliteDatabase);
             migrationHelper.upgrade(oldVersion, newVersion);
         }

@@ -15,11 +15,10 @@ import android.preference.SwitchPreference;
 import info.zamojski.soft.towercollector.BuildConfig;
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
-import trikita.log.Log;
+import timber.log.Timber;
 
 public class GeneralPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
 
-    private static final String TAG = GeneralPreferenceFragment.class.getSimpleName();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,7 +45,7 @@ public class GeneralPreferenceFragment extends DialogEnabledPreferenceFragment i
         if (key.equals(getString(R.string.preferences_tracking_enabled_key))) {
             boolean trackingEnabledDefault = getResources().getBoolean(R.bool.preferences_tracking_enabled_default_value);
             boolean isTrackingEnabled = sharedPreferences.getBoolean(key, trackingEnabledDefault);
-            Log.d("onSharedPreferenceChanged(): User set tracking enabled = %s", isTrackingEnabled);
+            Timber.d("onSharedPreferenceChanged(): User set tracking enabled = %s", isTrackingEnabled);
             MyApplication.getAnalytics().setAppOptOut(!isTrackingEnabled);
         }
     }

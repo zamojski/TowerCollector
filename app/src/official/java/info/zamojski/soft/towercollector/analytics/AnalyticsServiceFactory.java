@@ -6,11 +6,11 @@ package info.zamojski.soft.towercollector.analytics;
 
 import info.zamojski.soft.towercollector.BuildConfig;
 import info.zamojski.soft.towercollector.MyApplication;
-import trikita.log.Log;
+import timber.log.Timber;
 
 public class AnalyticsServiceFactory {
     public IAnalyticsReportingService createInstance() {
-        Log.d("createInstance(): Creating Google Analytics");
+        Timber.d("createInstance(): Creating Google Analytics");
         boolean trackingEnabled = MyApplication.getApplication().getPreferencesProvider().getTrackingEnabled();
         boolean dryRun = BuildConfig.DEBUG;
         return new GoogleAnalyticsReportingService(MyApplication.getApplication(), trackingEnabled, dryRun);

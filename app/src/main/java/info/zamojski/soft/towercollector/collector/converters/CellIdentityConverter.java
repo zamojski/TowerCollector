@@ -6,6 +6,7 @@ package info.zamojski.soft.towercollector.collector.converters;
 
 import info.zamojski.soft.towercollector.collector.validators.specific.WcdmaCellIdentityValidator;
 import info.zamojski.soft.towercollector.model.Measurement;
+import timber.log.Timber;
 
 import android.annotation.TargetApi;
 import android.os.Build;
@@ -18,12 +19,10 @@ import android.telephony.CellInfoCdma;
 import android.telephony.CellInfoGsm;
 import android.telephony.CellInfoLte;
 import android.telephony.CellInfoWcdma;
-import trikita.log.Log;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class CellIdentityConverter {
 
-    private static final String TAG = CellIdentityConverter.class.getSimpleName();
 
     private final WcdmaCellIdentityValidator wcdmaValidator;
 
@@ -37,7 +36,7 @@ public class CellIdentityConverter {
             CellInfoGsm gsmCellInfo = (CellInfoGsm) cellInfo;
             CellIdentityGsm identity = gsmCellInfo.getCellIdentity();
             if (wcdmaValidator.isValid(identity)) {
-                Log.d("update(): Updating WCDMA reported by API 17 as GSM");
+                Timber.d("update(): Updating WCDMA reported by API 17 as GSM");
                 m.setWcdmaCellInfo(identity.getMcc(), identity.getMnc(), identity.getLac(), identity.getCid(), identity.getPsc());
             } else {
                 m.setGsmCellInfo(identity.getMcc(), identity.getMnc(), identity.getLac(), identity.getCid());

@@ -12,7 +12,6 @@ import org.acra.ACRA;
 import android.content.Context;
 
 import info.zamojski.soft.towercollector.files.formatters.gpx.GpxExportFormatter;
-import trikita.log.Log;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.enums.GeneratorResult;
@@ -27,10 +26,10 @@ import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.model.Boundaries;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
+import timber.log.Timber;
 
 public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
 
-    private final String TAG = GpxTextGeneratorWrapper.class.getSimpleName();
 
     private GpxTextGenerator<IGpxFormatter, IWritableTextDevice> generator;
 
@@ -49,7 +48,7 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
             Measurement lastMeasurement = MeasurementsDatabase.getInstance(context).getLastMeasurement();
             // check if there is anything to process
             if (measurementsCount == 0 || lastMeasurement == null) {
-                Log.d("generate(): Cancelling save due to no data");
+                Timber.d("generate(): Cancelling save due to no data");
                 return new FileGeneratorResult(GeneratorResult.NoData, Reason.Unknown);
             }
             // calculate number of parts
@@ -95,19 +94,19 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
             // fix for dialog not closed when operation is running in background and data deleted
             notifyProgressListeners(measurementsCount, measurementsCount);
             if (cancel) {
-                Log.d("generate(): Export cancelled");
+                Timber.d("generate(): Export cancelled");
                 return new FileGeneratorResult(GeneratorResult.Cancelled, Reason.Unknown);
             } else {
-                Log.d("generate(): All %s measurements exported", measurementsCount);
+                Timber.d("generate(): All %s measurements exported", measurementsCount);
                 return new FileGeneratorResult(GeneratorResult.Succeeded, Reason.Unknown);
             }
         } catch (DeviceOperationException ex) {
-            Log.e("generate(): Failed to check external memory compatibility", ex);
+            Timber.e(ex, "generate(): Failed to check external memory compatibility");
             MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
             return new FileGeneratorResult(GeneratorResult.Failed, ex.getReason());
         } catch (IOException ex) {
-            Log.e("generate(): Failed to save data on external memory", ex);
+            Timber.e(ex, "generate(): Failed to save data on external memory");
             MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
             return new FileGeneratorResult(GeneratorResult.Failed, Reason.Unknown, ex.getMessage());

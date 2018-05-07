@@ -12,17 +12,16 @@ import info.zamojski.soft.towercollector.model.UpdateInfo;
 import info.zamojski.soft.towercollector.parsers.update.UpdateFeedParseException;
 import info.zamojski.soft.towercollector.parsers.update.UpdateFeedParser;
 import info.zamojski.soft.towercollector.updater.UpdaterNotificationHelper;
+import timber.log.Timber;
 
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import trikita.log.Log;
 
 public class UpdateCheckAsyncTask extends AsyncTask<String, Void, UpdateInfo> {
 
-    private static final String TAG = UpdateCheckAsyncTask.class.getSimpleName();
 
     public static final String TASK_FULL_NAME = UpdateCheckAsyncTask.class.getCanonicalName();
     public static final String INTENT_KEY_UPDATE_INFO = UpdateInfo.class.getCanonicalName();
@@ -49,21 +48,21 @@ public class UpdateCheckAsyncTask extends AsyncTask<String, Void, UpdateInfo> {
         try {
             UpdateClient client = new UpdateClient(updateFeedUrl);
             String response = client.fetchUpdates();
-            Log.d("doInBackground(): Server response: %s", response);
+            Timber.d("doInBackground(): Server response: %s", response);
             if (response != null) {
                 // parse response
                 try {
                     UpdateInfo updateInfo = responseParser.parse(response);
                     return updateInfo;
                 } catch (UpdateFeedParseException ex) {
-                    Log.w("doInBackground(): Cannot parse update feed response");
+                    Timber.w("doInBackground(): Cannot parse update feed response");
                     MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
                     ACRA.getErrorReporter().handleSilentException(ex);
                 }
             }
         } catch (SecurityException ex) {
             // for the rare case when user has custom rom with possibility to disable any permission
-            Log.e("doInBackground(): internet permission is denied", ex);
+            Timber.e(ex, "doInBackground(): internet permission is denied");
         }
         return null;
     }

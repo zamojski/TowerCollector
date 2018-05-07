@@ -11,6 +11,7 @@ import org.greenrobot.eventbus.EventBus;
 import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.events.Api17PlusMeasurementProcessingEvent;
 import info.zamojski.soft.towercollector.events.LegacyMeasurementProcessingEvent;
+import timber.log.Timber;
 
 import android.location.Location;
 import android.telephony.CellInfo;
@@ -19,11 +20,9 @@ import android.telephony.NeighboringCellInfo;
 import android.telephony.SignalStrength;
 import android.telephony.cdma.CdmaCellLocation;
 import android.telephony.gsm.GsmCellLocation;
-import trikita.log.Log;
 
 public class MeasurementUpdater {
 
-    private static final String TAG = MeasurementUpdater.class.getSimpleName();
 
     private final List<NeighboringCellInfo> EMPTY_NEIGHBORING_CELL_LIST = new ArrayList<NeighboringCellInfo>(0);
 
@@ -43,14 +42,14 @@ public class MeasurementUpdater {
     private int minDistance;
 
     public synchronized void setLastLocation(Location location, long locationObtainedTime) {
-        Log.d("setLastLocation(): Location updated: %s obtained at %s", location, locationObtainedTime);
+        Timber.d("setLastLocation(): Location updated: %s obtained at %s", location, locationObtainedTime);
         this.lastLocation = location;
         this.lastLocationObtainedTime = locationObtainedTime;
         notifyIfReadyToProcess();
     }
 
     public synchronized void setLastCellInfo(List<CellInfo> cellInfo) {
-        Log.d("setLastCellInfo(): Cell info updated: %s ", cellInfo);
+        Timber.d("setLastCellInfo(): Cell info updated: %s ", cellInfo);
         this.lastCellInfo = cellInfo;
         this.lastNetworkType = NetworkGroup.Unknown;
         this.lastOperatorName = null;
@@ -59,7 +58,7 @@ public class MeasurementUpdater {
 
     public synchronized void setLastCellLocation(CellLocation cellLocation, NetworkGroup networkType,
                                                  String operatorCode, String operatorName, List<NeighboringCellInfo> neighboringCells) {
-        Log.d("setLastCellLocation(): Cell location updated: %s, network type: %s, operator code: %s, operator name: %s", cellLocation, networkType, operatorCode, operatorName);
+        Timber.d("setLastCellLocation(): Cell location updated: %s, network type: %s, operator code: %s, operator name: %s", cellLocation, networkType, operatorCode, operatorName);
         // check if any changes
         boolean cellChanged = (!isCellLocationEqual(lastCellLocation, cellLocation)
                 || lastNetworkType != networkType
@@ -80,22 +79,22 @@ public class MeasurementUpdater {
     }
 
     public synchronized void setLastSignalStrength(SignalStrength signalStrength) {
-        Log.d("setLastSignalStrength(): Signal strength updated: %s", signalStrength);
+        Timber.d("setLastSignalStrength(): Signal strength updated: %s", signalStrength);
         this.lastSignalStrength = signalStrength;
     }
 
     public synchronized void setMinDistanceAndInterval(int minDistance, int minInterval) {
-        Log.d("setMinDistanceAndInterval(): Min distance: %s, interval: %s updated", minDistance, minInterval);
+        Timber.d("setMinDistanceAndInterval(): Min distance: %s, interval: %s updated", minDistance, minInterval);
         this.minDistance = minDistance;
     }
 
     private void notifyIfReadyToProcess() {
         if (isApi17PlusCompleted()) {
-            Log.d("notifyIfReadyToProcess(): Api17Plus collected");
+            Timber.d("notifyIfReadyToProcess(): Api17Plus collected");
             Api17PlusMeasurementProcessingEvent event = new Api17PlusMeasurementProcessingEvent(lastLocation, lastCellInfo, minDistance);
             EventBus.getDefault().post(event);
         } else if (isLegacyCompleted()) {
-            Log.d("notifyIfReadyToProcess(): Legacy collected");
+            Timber.d("notifyIfReadyToProcess(): Legacy collected");
             LegacyMeasurementProcessingEvent event = new LegacyMeasurementProcessingEvent(lastLocation, lastLocationObtainedTime,
                     lastCellLocation, lastSignalStrength, lastNetworkType, lastOperatorCode, lastOperatorName,
                     neighboringCells, minDistance);
@@ -119,18 +118,18 @@ public class MeasurementUpdater {
             result = (gsm1.getCid() == gsm2.getCid()
                     && gsm1.getLac() == gsm2.getLac()
                     && gsm1.getPsc() == gsm2.getPsc());
-            Log.d("isCellLocationEqual(): GSM equals = %s", result);
+            Timber.d("isCellLocationEqual(): GSM equals = %s", result);
         } else if (cl1 instanceof CdmaCellLocation && cl2 instanceof CdmaCellLocation) {
             CdmaCellLocation cdma1 = (CdmaCellLocation) cl1;
             CdmaCellLocation cdma2 = (CdmaCellLocation) cl2;
             result = (cdma1.getBaseStationId() == cdma2.getBaseStationId()
                     && cdma1.getNetworkId() == cdma2.getNetworkId()
                     && cdma1.getSystemId() == cdma2.getSystemId());
-            Log.d("isCellLocationEqual(): CDMA equal = %s", result);
+            Timber.d("isCellLocationEqual(): CDMA equal = %s", result);
         } else {
             // different types or nulls
             result = false;
-            Log.d("isCellLocationEqual(): Different types or nulls");
+            Timber.d("isCellLocationEqual(): Different types or nulls");
         }
         return result;
     }

@@ -7,18 +7,17 @@ package info.zamojski.soft.towercollector.preferences;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.controls.TrimmedEditTextPreference;
 import info.zamojski.soft.towercollector.utils.Validator;
+import timber.log.Timber;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
-import trikita.log.Log;
 import android.widget.Toast;
 
 public class ApiPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
 
-    private static final String TAG = ApiPreferenceFragment.class.getSimpleName();
 
     private TrimmedEditTextPreference apiKeyPreference;
 
@@ -51,15 +50,15 @@ public class ApiPreferenceFragment extends DialogEnabledPreferenceFragment imple
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        Log.d("onSharedPreferenceChanged(): Preference value changed: %s", key);
+        Timber.d("onSharedPreferenceChanged(): Preference value changed: %s", key);
         if (key.equals(getString(R.string.preferences_api_key_key))) {
             String apiKeyValue = apiKeyPreference.getText();
-            Log.d("onSharedPreferenceChanged(): User set API key = \"%s\"", apiKeyValue);
+            Timber.d("onSharedPreferenceChanged(): User set API key = \"%s\"", apiKeyValue);
             boolean isApiKeyEmpty = TextUtils.isEmpty(apiKeyValue);
             apiKeyPreference.setSummary(formatValueString(R.string.preferences_api_key_summary, (!isApiKeyEmpty ? apiKeyValue : getString(R.string.preferences_value_undefined))));
             if (!isApiKeyEmpty && !Validator.isOpenCellIdApiKeyValid(apiKeyValue)) {
-                Log.d("onSharedPreferenceChanged(): User defined invalid API key = \"%s\"", apiKeyValue);
-                Log.i("onSharedPreferenceChanged(): User defined invalid API key");
+                Timber.d("onSharedPreferenceChanged(): User defined invalid API key = \"%s\"", apiKeyValue);
+                Timber.i("onSharedPreferenceChanged(): User defined invalid API key");
                 Toast.makeText(getActivity(), getString(R.string.preferences_api_key_invalid), Toast.LENGTH_LONG).show();
             }
         }

@@ -12,16 +12,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.text.TextUtils;
-import trikita.log.Log;
 
 import info.zamojski.soft.towercollector.model.ChangelogInfo;
 import info.zamojski.soft.towercollector.model.ChangelogInfo.ChangelogEntry;
 import info.zamojski.soft.towercollector.parsers.update.UpdateFeedParser;
 import info.zamojski.soft.towercollector.utils.StringUtils;
+import timber.log.Timber;
 
 public class ChangelogFeedParser {
 
-    private static final String TAG = UpdateFeedParser.class.getSimpleName();
 
     private static final String ENTRIES = "Entries";
     private static final String VERSION_CODE = "VersionCode";
@@ -39,7 +38,7 @@ public class ChangelogFeedParser {
             changelog.addEntries(entries);
             return changelog;
         } catch (JSONException ex) {
-            Log.w("parse(): Error while parsing JSON content");
+            Timber.w("parse(): Error while parsing JSON content");
             throw new ChangelogFeedParseException("Cannot parse changelog feed: `" + TextUtils.htmlEncode(content) + "`", ex);
         }
     }

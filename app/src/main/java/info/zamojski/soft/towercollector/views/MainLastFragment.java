@@ -17,10 +17,10 @@ import info.zamojski.soft.towercollector.model.CellsCount;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.utils.NetworkTypeUtils;
 import info.zamojski.soft.towercollector.utils.UnitConverter;
+import timber.log.Timber;
 
 import android.os.Bundle;
 
-import trikita.log.Log;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +33,6 @@ import org.greenrobot.eventbus.ThreadMode;
 
 public class MainLastFragment extends MainFragmentBase {
 
-    private static final String TAG = MainLastFragment.class.getSimpleName();
 
     private TableRow lastLongCellIdValueTableRow;
     private TableRow lastCellIdRncValueTableRow;
@@ -118,7 +117,7 @@ public class MainLastFragment extends MainFragmentBase {
     }
 
     private void printMeasurement(Measurement measurement, CellsCount cellsCount) {
-        Log.d("printMeasurement(): Printing last measurement %s", measurement);
+        Timber.d("printMeasurement(): Printing last measurement %s", measurement);
         lastNumberOfCellsValueTextView.setText(getString(R.string.main_last_number_of_cells_value, cellsCount.getMain(), cellsCount.getNeighboring()));
         int networkNameId = NetworkTypeUtils.getNetworkGroupNameResId(measurement.getNetworkType());
         lastNetworkTypeValueTextView.setText(getString(networkNameId));
@@ -154,7 +153,7 @@ public class MainLastFragment extends MainFragmentBase {
     }
 
     private void clearMeasurement() {
-        Log.d("clearMeasurement(): Clearing last measurement");
+        Timber.d("clearMeasurement(): Clearing last measurement");
         lastNumberOfCellsValueTextView.setText("");
         lastNetworkTypeValueTextView.setText("");
         lastCellIdValueTextView.setText("");

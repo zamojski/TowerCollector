@@ -9,12 +9,11 @@ import org.acra.ACRA;
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
+import timber.log.Timber;
 
-import trikita.log.Log;
 
 public class DatabaseUpgradeTask {
 
-    private static final String TAG = DatabaseUpgradeTask.class.getSimpleName();
 
     private int oldDbVersion;
 
@@ -23,7 +22,7 @@ public class DatabaseUpgradeTask {
     }
 
     public void upgrade() {
-        Log.d("doInBackground(): Loading data and running migration if necessary");
+        Timber.d("doInBackground(): Loading data and running migration if necessary");
         try {
             // invalidate database (protects against crash when database swapped while application paused - generally for testing)
             MeasurementsDatabase.invalidateInstance(MyApplication.getApplication());
@@ -35,7 +34,7 @@ public class DatabaseUpgradeTask {
             long duration = (endTime - startTime);
             MyApplication.getAnalytics().sendMigrationFinished(duration, oldDbVersion, stats);
         } catch (RuntimeException ex) {
-            Log.e("doInBackground(): Database migration crashed", ex);
+            Timber.e(ex, "doInBackground(): Database migration crashed");
             MyApplication.getAnalytics().sendException(ex, Boolean.TRUE);
             ACRA.getErrorReporter().handleSilentException(ex);
             throw ex;

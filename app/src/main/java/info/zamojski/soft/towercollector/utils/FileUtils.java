@@ -15,11 +15,11 @@ import java.util.Locale;
 
 import android.os.Environment;
 
-import trikita.log.Log;
+import timber.log.Timber;
+
 
 public class FileUtils {
 
-    private static final String TAG = FileUtils.class.getSimpleName();
 
     public static String combinePath(String path1, String path2) {
         return new File(new File(path1), path2).getPath();
@@ -70,21 +70,21 @@ public class FileUtils {
             dstChannel.transferFrom(srcChannel, 0, srcChannel.size());
             return true;
         } catch (IOException ex) {
-            Log.e("copyFile(): Failed to copy file \"%s\" to \"%s\"", src, dst, ex);
+            Timber.e(ex, "copyFile(): Failed to copy file \"%s\" to \"%s\"", src, dst);
             return false;
         } finally {
             if (srcChannel != null) {
                 try {
                     srcChannel.close();
                 } catch (IOException ex) {
-                    Log.e("copyFile(): Failed to close source channel", ex);
+                    Timber.e(ex, "copyFile(): Failed to close source channel");
                 }
             }
             if (dstChannel != null) {
                 try {
                     dstChannel.close();
                 } catch (IOException ex) {
-                    Log.e("copyFile(): Failed to close destination channel", ex);
+                    Timber.e(ex, "copyFile(): Failed to close destination channel");
                 }
             }
         }

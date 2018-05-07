@@ -7,10 +7,9 @@ package info.zamojski.soft.towercollector.io.network;
 import com.github.kevinsawicki.http.HttpRequest;
 
 import info.zamojski.soft.towercollector.utils.StringUtils;
-import trikita.log.Log;
+import timber.log.Timber;
 
 public class UpdateClient extends ClientBase {
-    private static final String TAG = UpdateClient.class.getSimpleName();
 
     private String url;
 
@@ -19,7 +18,7 @@ public class UpdateClient extends ClientBase {
     }
 
     public String fetchUpdates() {
-        Log.d("fetchUpdates(): Sending get request");
+        Timber.d("fetchUpdates(): Sending get request");
         try {
             HttpRequest request = HttpRequest.get(url)
                     .followRedirects(false)
@@ -27,7 +26,7 @@ public class UpdateClient extends ClientBase {
                     .readTimeout(READ_TIMEOUT);
             return handleResponse(request.code(), request.body());
         } catch (HttpRequest.HttpRequestException ex) {
-            Log.d("fetchUpdates(): Errors encountered", ex);
+            Timber.d(ex, "fetchUpdates(): Errors encountered");
             reportExceptionWithSuppress(ex);
             return null;
         }

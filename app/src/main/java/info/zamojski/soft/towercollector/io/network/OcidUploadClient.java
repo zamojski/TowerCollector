@@ -6,10 +6,10 @@ package info.zamojski.soft.towercollector.io.network;
 
 import com.github.kevinsawicki.http.HttpRequest;
 
-import trikita.log.Log;
+import timber.log.Timber;
+
 
 public class OcidUploadClient extends ClientBase implements IUploadClient {
-    private static final String TAG = OcidUploadClient.class.getSimpleName();
 
     private String url;
     private String appId;
@@ -23,7 +23,7 @@ public class OcidUploadClient extends ClientBase implements IUploadClient {
 
     @Override
     public RequestResult uploadMeasurements(String content) {
-        Log.d("uploadMeasurements(): Sending post request");
+        Timber.d("uploadMeasurements(): Sending post request");
         try {
             HttpRequest request = HttpRequest.post(url)
                     .followRedirects(false)
@@ -37,7 +37,7 @@ public class OcidUploadClient extends ClientBase implements IUploadClient {
             request.part("datafile", "TowerCollector_measurements_" + System.currentTimeMillis() + ".csv", "text/csv", content);
             return handleResponse(request.code(), request.body());
         } catch (HttpRequest.HttpRequestException ex) {
-            Log.d("uploadMeasurements(): Errors encountered", ex);
+            Timber.d(ex, "uploadMeasurements(): Errors encountered");
             reportExceptionWithSuppress(ex);
             return RequestResult.Failure;
         }

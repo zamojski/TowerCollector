@@ -4,17 +4,17 @@
 
 package info.zamojski.soft.towercollector.collector.validators;
 
-import trikita.log.Log;
+
+import timber.log.Timber;
 
 public class SystemTimeValidator {
 
-    private static final String TAG = SystemTimeValidator.class.getSimpleName();
 
     private static final long TwoDayTimeDiff = 2 * 24 * 60 * 60 * 1000;
 
     public boolean isValid(long systemTime, long gpsTime) {
         long timeDiff = (systemTime - gpsTime);
-        Log.d("isValid(): System to gps time difference = %s <= %s", timeDiff, TwoDayTimeDiff);
+        Timber.d("isValid(): System to gps time difference = %s <= %s", timeDiff, TwoDayTimeDiff);
         return Math.abs(timeDiff) <= TwoDayTimeDiff;
     }
 

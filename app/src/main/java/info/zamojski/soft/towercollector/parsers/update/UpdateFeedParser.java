@@ -10,15 +10,14 @@ import org.json.JSONObject;
 
 import android.text.TextUtils;
 
-import trikita.log.Log;
 
 import info.zamojski.soft.towercollector.model.UpdateInfo;
 import info.zamojski.soft.towercollector.model.UpdateInfo.DownloadLink;
 import info.zamojski.soft.towercollector.utils.StringUtils;
+import timber.log.Timber;
 
 public class UpdateFeedParser {
 
-    private static final String TAG = UpdateFeedParser.class.getSimpleName();
 
     private static final String VERSION_CODE = "VersionCode";
     private static final String VERSION_NAME = "VersionName";
@@ -39,7 +38,7 @@ public class UpdateFeedParser {
             updateInfo.addDownloadLinks(downloadLinks);
             return updateInfo;
         } catch (JSONException ex) {
-            Log.w("parse(): Error while parsing JSON response");
+            Timber.w("parse(): Error while parsing JSON response");
             throw new UpdateFeedParseException("Cannot parse update feed: `" + TextUtils.htmlEncode(content) + "`", ex);
         }
     }

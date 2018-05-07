@@ -7,19 +7,19 @@ package info.zamojski.soft.towercollector.collector.validators.specific;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.telephony.CellIdentityGsm;
-import trikita.log.Log;
+
+import timber.log.Timber;
 
 public class GsmCellIdentityValidator {
 
-    private static final String TAG = GsmCellIdentityValidator.class.getSimpleName();
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public boolean isValid(CellIdentityGsm cell) {
         boolean valid = (isCidInRange(cell.getCid()) && isLacInRange(cell.getLac())
                 && isMncInRange(cell.getMnc()) && isMccInRange(cell.getMcc()));
         if (!valid) {
-            Log.w("isValid(): Invalid CellIdentityGsm [mcc=%s, mnc=%s, lac=%s, cid=%s, psc=%s]", cell.getMcc(), cell.getMnc(), cell.getLac(), cell.getCid(), cell.getPsc());
-            Log.w("isValid(): Invalid CellIdentityGsm %s", cell);
+            Timber.w("isValid(): Invalid CellIdentityGsm [mcc=%s, mnc=%s, lac=%s, cid=%s, psc=%s]", cell.getMcc(), cell.getMnc(), cell.getLac(), cell.getCid(), cell.getPsc());
+            Timber.w("isValid(): Invalid CellIdentityGsm %s", cell);
         }
         return valid;
     }

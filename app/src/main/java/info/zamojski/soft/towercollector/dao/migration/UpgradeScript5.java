@@ -5,15 +5,15 @@
 package info.zamojski.soft.towercollector.dao.migration;
 
 import android.database.sqlite.SQLiteDatabase;
-import trikita.log.Log;
+
+import timber.log.Timber;
 
 class UpgradeScript5 implements IUpgradeScript {
 
-    private static final String TAG = UpgradeScript5.class.getSimpleName();
 
     @Override
     public void performUpgrade(SQLiteDatabase database) {
-        Log.d("performUpgrade(): Upgrading db to version 5");
+        Timber.d("performUpgrade(): Upgrading db to version 5");
         // create new table
         database.execSQL("CREATE TABLE operators (row_id INTEGER PRIMARY KEY NOT NULL, name VARCHAR(50) NOT NULL, UNIQUE (name) ON CONFLICT IGNORE)");
         // add new column to measurements

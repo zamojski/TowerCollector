@@ -11,14 +11,12 @@ import info.zamojski.soft.towercollector.model.CellsCount;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.model.Statistics;
 import info.zamojski.soft.towercollector.utils.DateUtils;
-import trikita.log.Log;
+import timber.log.Timber;
 
 public class MeasurementMocker {
 
-    private static final String TAG = MeasurementMocker.class.getSimpleName();
-
     public static void mockMainActivityData() {
-        Log.d("mockMainActivityData(): mocking data");
+        Timber.d("mockMainActivityData(): mocking data");
         Measurement m = mockLastMeasurement();
         CellsCount cellsCount = mockCellsCount();
         Statistics stats = mockStatistics();

@@ -110,9 +110,9 @@ dependencies {
     implementation 'ch.acra:acra-notification:5.0.0'
     implementation 'org.sufficientlysecure:html-textview:3.5'
     implementation 'com.github.kevinsawicki:http-request:6.0'
-    implementation 'co.trikita:log:1.1.5'
     implementation 'com.github.hotchemi:permissionsdispatcher:3.1.0'
     annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
+    implementation 'com.jakewharton.timber:timber:4.7.0'
 }
 
 allprojects {

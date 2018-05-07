@@ -7,19 +7,19 @@ package info.zamojski.soft.towercollector.collector.validators.specific;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.telephony.CellIdentityCdma;
-import trikita.log.Log;
+
+import timber.log.Timber;
 
 public class CdmaCellIdentityValidator {
 
-    private static final String TAG = CdmaCellIdentityValidator.class.getSimpleName();
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public boolean isValid(CellIdentityCdma cell) {
         boolean valid = (isBidInRange(cell.getBasestationId()) && isNidInRange(cell.getNetworkId())
                 && isSidInRange(cell.getSystemId()));
         if (!valid) {
-            Log.w("isValid(): Invalid CellIdentityCdma [sid=%s, nid=%s, bid=%s]", cell.getSystemId(), cell.getNetworkId(), cell.getBasestationId());
-            Log.w("isValid(): Invalid CellIdentityCdma %s", cell);
+            Timber.w("isValid(): Invalid CellIdentityCdma [sid=%s, nid=%s, bid=%s]", cell.getSystemId(), cell.getNetworkId(), cell.getBasestationId());
+            Timber.w("isValid(): Invalid CellIdentityCdma %s", cell);
         }
         return valid;
     }

@@ -7,6 +7,7 @@ package info.zamojski.soft.towercollector.utils;
 import info.zamojski.soft.towercollector.collector.validators.CellIdentityValidator;
 import info.zamojski.soft.towercollector.collector.validators.CellLocationValidator;
 import info.zamojski.soft.towercollector.model.Measurement;
+import timber.log.Timber;
 
 import java.util.List;
 
@@ -19,11 +20,9 @@ import android.telephony.TelephonyManager;
 import android.telephony.gsm.GsmCellLocation;
 import android.text.TextUtils;
 
-import trikita.log.Log;
 
 public class MobileUtils {
 
-    private static final String TAG = MobileUtils.class.getSimpleName();
 
     public static int[] getMccMncPair(String operatorCode) {
         // mcc and mnc is concatenated in the networkOperatorString (the first 3 chars is the mcc and the last 2 is the mnc)
@@ -33,7 +32,7 @@ public class MobileUtils {
                 int mnc = Integer.parseInt(operatorCode.substring(3));
                 return new int[]{mcc, mnc};
             } catch (NumberFormatException ex) {
-                Log.e("getMccMncPair(): Cannot parse network operator codes: %s", operatorCode, ex);
+                Timber.e(ex, "getMccMncPair(): Cannot parse network operator codes: %s", operatorCode);
             }
         }
         return null;
@@ -41,13 +40,13 @@ public class MobileUtils {
 
     public static boolean isApi17VersionCompatible() {
         boolean result = Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1;
-        Log.d("isApi17VersionCompatible(): Result = %s", result);
+        Timber.d("isApi17VersionCompatible(): Result = %s", result);
         return result;
     }
 
     public static boolean isApi26VersionCompatible() {
         boolean result = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
-        Log.d("isApi26VersionCompatible(): Result = %s", result);
+        Timber.d("isApi26VersionCompatible(): Result = %s", result);
         return result;
     }
 
@@ -68,21 +67,21 @@ public class MobileUtils {
         try {
             cells = telephonyManager.getAllCellInfo();
         } catch (SecurityException ex) {
-            Log.d("isApi17CellInfoAvailable(): Result = coarse location permission is denied", ex);
+            Timber.d(ex, "isApi17CellInfoAvailable(): Result = coarse location permission is denied");
             return false;
         }
         if (cells == null || cells.size() == 0) {
-            Log.d("isApi17CellInfoAvailable(): Result = no cell info");
+            Timber.d("isApi17CellInfoAvailable(): Result = no cell info");
             return false;
         }
         CellIdentityValidator validator = new CellIdentityValidator();
         for (CellInfo cell : cells) {
             if (validator.isValid(cell)) {
-                Log.d("isApi17CellInfoAvailable(): Result = true");
+                Timber.d("isApi17CellInfoAvailable(): Result = true");
                 return true;
             }
         }
-        Log.d("isApi17CellInfoAvailable(): Result = false");
+        Timber.d("isApi17CellInfoAvailable(): Result = false");
         return false;
     }
 
@@ -92,11 +91,11 @@ public class MobileUtils {
         try {
             cell = telephonyManager.getCellLocation();
         } catch (SecurityException ex) {
-            Log.d("isApi1CellInfoAvailable(): Result = coarse location permission is denied", ex);
+            Timber.d(ex, "isApi1CellInfoAvailable(): Result = coarse location permission is denied");
             return false;
         }
         if (cell == null) {
-            Log.d("isApi1CellInfoAvailable(): Result = no cell location");
+            Timber.d("isApi1CellInfoAvailable(): Result = no cell location");
             return false;
         }
         int mcc = Measurement.UNKNOWN_CID;
@@ -105,7 +104,7 @@ public class MobileUtils {
             String operatorCode = telephonyManager.getNetworkOperator();
             int[] mccMncPair = getMccMncPair(operatorCode);
             if (mccMncPair == null) {
-                Log.d("isApi1CellInfoAvailable(): Result = no operator code");
+                Timber.d("isApi1CellInfoAvailable(): Result = no operator code");
                 return false;
             }
             mcc = mccMncPair[0];
@@ -113,7 +112,7 @@ public class MobileUtils {
         }
         CellLocationValidator validator = new CellLocationValidator();
         boolean result = validator.isValid(cell, mcc, mnc);
-        Log.d("isApi1CellInfoAvailable(): Result = %s", result);
+        Timber.d("isApi1CellInfoAvailable(): Result = %s", result);
         return result;
     }
 }

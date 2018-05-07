@@ -88,12 +88,11 @@ import permissions.dispatcher.OnPermissionDenied;
 import permissions.dispatcher.OnShowRationale;
 import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
-import trikita.log.Log;
+import timber.log.Timber;
 
 @RuntimePermissions
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
 
     private AtomicBoolean isCollectorServiceRunning = new AtomicBoolean(false);
     private boolean isGpsEnabled = false;
@@ -127,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(MyApplication.getCurrentAppTheme());
         super.onCreate(savedInstanceState);
-        Log.d("onCreate(): Creating activity");
+        Timber.d("onCreate(): Creating activity");
         // set fixed screen orientation
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.main);
@@ -162,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d("onDestroy(): Unbinding from service");
+        Timber.d("onDestroy(): Unbinding from service");
         if (isCollectorServiceRunning.get())
             unbindService(collectorServiceConnection);
         tabLayout.removeOnTabSelectedListener(this);
@@ -171,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d("onStart(): Binding to service");
+        Timber.d("onStart(): Binding to service");
         isCollectorServiceRunning.set(ApkUtils.isServiceRunning(CollectorService.SERVICE_FULL_NAME));
         if (isCollectorServiceRunning.get()) {
             bindService(new Intent(this, CollectorService.class), collectorServiceConnection, 0);
@@ -198,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("onResume(): Resuming");
+        Timber.d("onResume(): Resuming");
         // print on UI
         EventBus.getDefault().post(new PrintMainWindowEvent());
         // restore recent tab
@@ -219,7 +218,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d("onPause(): Pausing");
+        Timber.d("onPause(): Pausing");
         // remember current tab
         int currentTabIndex = viewPager.getCurrentItem();
         MyApplication.getPreferencesProvider().setMainWindowRecentTab(currentTabIndex);
@@ -229,7 +228,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        Log.d("onCreateOptionsMenu(): Loading action bar");
+        Timber.d("onCreateOptionsMenu(): Loading action bar");
         getMenuInflater().inflate(R.menu.main, menu);
         // save references
         startMenu = menu.findItem(R.id.main_menu_start);
@@ -242,7 +241,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         boolean isRunning = isCollectorServiceRunning.get();
-        Log.d("onPrepareOptionsMenu(): Preparing action bar menu for running = %s", isRunning);
+        Timber.d("onPrepareOptionsMenu(): Preparing action bar menu for running = %s", isRunning);
         // toggle visibility
         startMenu.setVisible(!isRunning);
         stopMenu.setVisible(isRunning);
@@ -281,7 +280,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     @Override
     public void onNewIntent(Intent intent) {
-        Log.d("onNewIntent(): New intent received: %s", intent);
+        Timber.d("onNewIntent(): New intent received: %s", intent);
         processOnStartIntent(intent);
     }
 
@@ -289,7 +288,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_MENU) {
             if (event.getAction() == KeyEvent.ACTION_UP && mainMenu != null) {
-                Log.i("onKeyUp(): Hardware menu key pressed");
+                Timber.i("onKeyUp(): Hardware menu key pressed");
                 mainMenu.performIdentifierAction(R.id.main_menu_more, 0);
                 return true;
             }
@@ -299,7 +298,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     @Override
     public void onTabSelected(Tab tab) {
-        Log.d("onTabSelected() Switching to tab %s", tab.getPosition());
+        Timber.d("onTabSelected() Switching to tab %s", tab.getPosition());
         // switch to page when tab is selected
         viewPager.setCurrentItem(tab.getPosition());
     }
@@ -415,7 +414,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 messageId = R.string.main_help_last_date_time_description;
                 break;
         }
-        Log.d("displayHelpOnClick(): Displaying help for title: %s", titleId);
+        Timber.d("displayHelpOnClick(): Displaying help for title: %s", titleId);
         if (titleId != View.NO_ID && messageId != View.NO_ID) {
             AlertDialog dialog = new AlertDialog.Builder(this).setTitle(titleId).setMessage(messageId).setPositiveButton(R.string.dialog_ok, null).create();
             dialog.setCanceledOnTouchOutside(true);
@@ -428,7 +427,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         int descriptionId = extras.getInt(UploaderService.INTENT_KEY_RESULT_DESCRIPTION);
         try {
             String descriptionContent = getString(descriptionId);
-            Log.d("displayUploadResultDialog(): Received extras: %s", descriptionId);
+            Timber.d("displayUploadResultDialog(): Received extras: %s", descriptionId);
             // display dialog
             AlertDialog alertDialog = new AlertDialog.Builder(this).create();
             alertDialog.setCanceledOnTouchOutside(true);
@@ -441,7 +440,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             });
             alertDialog.show();
         } catch (NotFoundException ex) {
-            Log.w("displayUploadResultDialog(): Invalid string id received with intent extras: %s", descriptionId);
+            Timber.w("displayUploadResultDialog(): Invalid string id received with intent extras: %s", descriptionId);
             MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
         }
@@ -468,9 +467,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 DownloadLink downloadLink = (DownloadLink) parent.getItemAtPosition(position);
-                Log.d("displayNewVersionDownloadOptions(): Selected position: %s", downloadLink.getLabel());
+                Timber.d("displayNewVersionDownloadOptions(): Selected position: %s", downloadLink.getLabel());
                 boolean disableAutoUpdateCheckCheckboxChecked = disableAutoUpdateCheckCheckbox.isChecked();
-                Log.d("displayNewVersionDownloadOptions(): Disable update check checkbox checked = %s", disableAutoUpdateCheckCheckboxChecked);
+                Timber.d("displayNewVersionDownloadOptions(): Disable update check checkbox checked = %s", disableAutoUpdateCheckCheckboxChecked);
                 if (disableAutoUpdateCheckCheckboxChecked) {
                     MyApplication.getPreferencesProvider().setUpdateCheckEnabled(false);
                 }
@@ -494,7 +493,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_cancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 boolean disableAutoUpdateCheckCheckboxChecked = disableAutoUpdateCheckCheckbox.isChecked();
-                Log.d("displayNewVersionDownloadOptions(): Disable update check checkbox checked = %s", disableAutoUpdateCheckCheckboxChecked);
+                Timber.d("displayNewVersionDownloadOptions(): Disable update check checkbox checked = %s", disableAutoUpdateCheckCheckboxChecked);
                 if (disableAutoUpdateCheckCheckboxChecked) {
                     MyApplication.getPreferencesProvider().setUpdateCheckEnabled(false);
                 }
@@ -516,7 +515,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 boolean noRadioDetected = !(packageManager.hasSystemFeature(PackageManager.FEATURE_TELEPHONY) && (packageManager.hasSystemFeature(PackageManager.FEATURE_TELEPHONY_GSM) || packageManager.hasSystemFeature(PackageManager.FEATURE_TELEPHONY_CDMA)));
                 // show dialog if something is not supported
                 if (noRadioDetected) {
-                    Log.d("displayNotCompatibleDialog(): Not compatible because of radio: %s, phone type: %s", noRadioDetected, telephonyManager.getPhoneType());
+                    Timber.d("displayNotCompatibleDialog(): Not compatible because of radio: %s, phone type: %s", noRadioDetected, telephonyManager.getPhoneType());
                     //use custom layout to show "don't show this again" checkbox
                     AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
                     LayoutInflater inflater = LayoutInflater.from(this);
@@ -537,7 +536,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                     alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_ok), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             boolean dontShowAgainCheckboxChecked = dontShowAgainCheckbox.isChecked();
-                            Log.d("displayNotCompatibleDialog(): Don't show again checkbox checked = %s", dontShowAgainCheckboxChecked);
+                            Timber.d("displayNotCompatibleDialog(): Don't show again checkbox checked = %s", dontShowAgainCheckboxChecked);
                             if (dontShowAgainCheckboxChecked) {
                                 MyApplication.getPreferencesProvider().setShowCompatibilityWarning(false);
                             }
@@ -554,7 +553,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         // check if in airplane mode
         boolean inAirplaneMode = NetworkUtils.isInAirplaneMode(getApplication());
         if (inAirplaneMode) {
-            Log.d("displayInAirplaneModeDialog(): Device is in airplane mode");
+            Timber.d("displayInAirplaneModeDialog(): Device is in airplane mode");
             AlertDialog alertDialog = new AlertDialog.Builder(this).create();
             alertDialog.setCanceledOnTouchOutside(true);
             alertDialog.setCancelable(true);
@@ -571,7 +570,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private void displayIntroduction() {
         if (MyApplication.getPreferencesProvider().getShowIntroduction()) {
-            Log.d("displayIntroduction(): Showing introduction");
+            Timber.d("displayIntroduction(): Showing introduction");
             DialogManager.createHtmlInfoDialog(this, R.string.info_introduction_title, R.raw.info_introduction_content, false, false).show();
             MyApplication.getPreferencesProvider().setShowIntroduction(false);
         }
@@ -586,7 +585,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             if (MyApplication.getPreferencesProvider().getShowIntroduction()) {
                 return;
             }
-            Log.d("displayDevelopersMessages(): Showing changelog between %s and %s", previousVersionCode, currentVersionCode);
+            Timber.d("displayDevelopersMessages(): Showing changelog between %s and %s", previousVersionCode, currentVersionCode);
             ChangelogProvider provider = new ChangelogProvider(getApplication(), R.raw.changelog);
             ChangelogInfo changelog = provider.getChangelog(previousVersionCode);
             if (changelog.isEmpty())
@@ -637,7 +636,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private void startCollectorServiceWithCheck() {
         String runningTaskClassName = MyApplication.getBackgroundTaskName();
         if (runningTaskClassName != null) {
-            Log.d("startCollectorServiceWithCheck(): Another task is running in background: %s", runningTaskClassName);
+            Timber.d("startCollectorServiceWithCheck(): Another task is running in background: %s", runningTaskClassName);
             backgroundTaskHelper.showTaskRunningMessage(runningTaskClassName);
             return;
         }
@@ -653,7 +652,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     @NeedsPermission({Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void startCollectorService() {
-        Log.d("startCollectorService(): Air plane mode off, starting service");
+        Timber.d("startCollectorService(): Air plane mode off, starting service");
         // create intent
         final Intent intent = new Intent(this, CollectorService.class);
         // pass means of transport inside intent
@@ -691,7 +690,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private void startUploaderServiceWithCheck() {
         String runningTaskClassName = MyApplication.getBackgroundTaskName();
         if (runningTaskClassName != null) {
-            Log.d("startUploaderService(): Another task is running in background: %s", runningTaskClassName);
+            Timber.d("startUploaderService(): Another task is running in background: %s", runningTaskClassName);
             backgroundTaskHelper.showTaskRunningMessage(runningTaskClassName);
             return;
         }
@@ -759,7 +758,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     void startExportAsyncTask() {
         String runningTaskClassName = MyApplication.getBackgroundTaskName();
         if (runningTaskClassName != null) {
-            Log.d("startExportAsyncTask(): Another task is running in background: %s", runningTaskClassName);
+            Timber.d("startExportAsyncTask(): Another task is running in background: %s", runningTaskClassName);
             backgroundTaskHelper.showTaskRunningMessage(runningTaskClassName);
             return;
         }
@@ -773,7 +772,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 @Override
                 public void onClick(DialogInterface dialog, int itemIndex) {
                     String selectedItem = fileTypeNames[itemIndex];
-                    Log.d("onCreateDialog(): User selected position: %s", selectedItem);
+                    Timber.d("onCreateDialog(): User selected position: %s", selectedItem);
                     // parse response
                     FileType selectedType = FileType.Unknown;
                     // pass selected means of transport
@@ -855,7 +854,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         try {
             startActivity(createDataRoamingSettingsIntent());
         } catch (ActivityNotFoundException ex) {
-            Log.w("askAndSetGpsEnabled(): Could not open Settings to change network type", ex);
+            Timber.w("askAndSetGpsEnabled(): Could not open Settings to change network type", ex);
             MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
             AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).setMessage(R.string.dialog_could_not_open_network_type_settings).setPositiveButton(R.string.dialog_ok, null).create();
@@ -882,7 +881,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder binder) {
-            Log.d("onServiceConnected(): Service connection created for %s", name);
+            Timber.d("onServiceConnected(): Service connection created for %s", name);
             isCollectorServiceRunning.set(true);
             // refresh menu status
             invalidateOptionsMenu();
@@ -895,7 +894,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            Log.d("onServiceDisconnected(): Service connection destroyed of %s", name);
+            Timber.d("onServiceDisconnected(): Service connection destroyed of %s", name);
             unbindService(collectorServiceConnection);
             isCollectorServiceRunning.set(false);
             // refresh menu status
@@ -958,16 +957,16 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private void askAndSetGpsEnabled() {
         if (GpsUtils.isGpsEnabled(getApplication())) {
-            Log.d("askAndSetGpsEnabled(): GPS enabled");
+            Timber.d("askAndSetGpsEnabled(): GPS enabled");
             isGpsEnabled = true;
             showAskForLocationSettingsDialog = false;
         } else {
-            Log.d("askAndSetGpsEnabled(): GPS disabled, asking user");
+            Timber.d("askAndSetGpsEnabled(): GPS disabled, asking user");
             isGpsEnabled = false;
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage(R.string.dialog_want_enable_gps).setPositiveButton(R.string.dialog_yes, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    Log.d("askAndSetGpsEnabled(): display settings");
+                    Timber.d("askAndSetGpsEnabled(): display settings");
                     Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                     try {
                         startActivity(intent);
@@ -978,7 +977,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                             startActivity(intent);
                             showAskForLocationSettingsDialog = true;
                         } catch (ActivityNotFoundException ex2) {
-                            Log.w("askAndSetGpsEnabled(): Could not open Settings to enable GPS");
+                            Timber.w("askAndSetGpsEnabled(): Could not open Settings to enable GPS");
                             MyApplication.getAnalytics().sendException(ex2, Boolean.FALSE);
                             ACRA.getErrorReporter().handleSilentException(ex2);
                             AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).setMessage(R.string.dialog_could_not_open_gps_settings).setPositiveButton(R.string.dialog_ok, null).create();
@@ -992,10 +991,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 }
             }).setNegativeButton(R.string.dialog_no, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    Log.d("askAndSetGpsEnabled(): cancel");
+                    Timber.d("askAndSetGpsEnabled(): cancel");
                     dialog.cancel();
                     if (GpsUtils.isGpsEnabled(getApplication())) {
-                        Log.d("askAndSetGpsEnabled(): provider enabled in the meantime");
+                        Timber.d("askAndSetGpsEnabled(): provider enabled in the meantime");
                         startCollectorServiceWithCheck();
                     } else {
                         isGpsEnabled = false;
@@ -1017,7 +1016,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             long currentDate = DateUtils.getCurrentDateWithoutTime();
             long lastUpdateCheckDate = MyApplication.getPreferencesProvider().getLastUpdateCheckDate();
             long diffInDays = DateUtils.getTimeDiff(currentDate, lastUpdateCheckDate);
-            Log.d("checkForNewVersionAvailability(): Last update check performed on: %s, diff to current in days: %s", new Date(lastUpdateCheckDate), diffInDays);
+            Timber.d("checkForNewVersionAvailability(): Last update check performed on: %s, diff to current in days: %s", new Date(lastUpdateCheckDate), diffInDays);
             // if currently is at least one day after last check (day, not 24 hrs)
             if (diffInDays >= 1) {
                 // check if network available
@@ -1030,7 +1029,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                     }
                     MyApplication.getPreferencesProvider().setLastUpdateCheckDate(currentDate);
                 } else {
-                    Log.d("checkForNewVersionAvailability(): No active network connection");
+                    Timber.d("checkForNewVersionAvailability(): No active network connection");
                 }
             }
         }
@@ -1050,7 +1049,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     }
 
     private Map<String, FileType> getFileTypes() {
-        Log.d("getFileTypes(): Loading file types");
+        Timber.d("getFileTypes(): Loading file types");
         final String[] resLabels = getResources().getStringArray(R.array.export_formats_labels);
         final String[] resValues = getResources().getStringArray(R.array.export_formats_values);
         Map<String, FileType> fileTypes = new LinkedHashMap<String, FileType>();

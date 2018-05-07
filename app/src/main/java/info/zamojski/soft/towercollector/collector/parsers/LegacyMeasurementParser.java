@@ -22,7 +22,6 @@ import android.telephony.SignalStrength;
 import android.telephony.gsm.GsmCellLocation;
 
 import info.zamojski.soft.towercollector.model.CellsCount;
-import trikita.log.Log;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.collector.ParseResult;
@@ -40,10 +39,10 @@ import info.zamojski.soft.towercollector.events.MeasurementsCollectedEvent;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.model.Statistics;
 import info.zamojski.soft.towercollector.utils.MobileUtils;
+import timber.log.Timber;
 
 public class LegacyMeasurementParser extends MeasurementParser {
 
-    private static final String TAG = LegacyMeasurementParser.class.getSimpleName();
 
     private CellLocationValidator cellLocationValidator;
 
@@ -65,14 +64,14 @@ public class LegacyMeasurementParser extends MeasurementParser {
                               long timestamp, int minDistance) {
         // if required accuracy was achieved
         if (!locationValidator.isValid(location)) {
-            Log.d("parse(): Required accuracy not achieved: %s", location.getAccuracy());
+            Timber.d("parse(): Required accuracy not achieved: %s", location.getAccuracy());
             return ParseResult.AccuracyNotAchieved;
         }
-        Log.d("parse(): Required accuracy achieved: %s", location.getAccuracy());
+        Timber.d("parse(): Required accuracy achieved: %s", location.getAccuracy());
         // get last location
         getAndSetLastLocation();
         // operator name may be unreliable for CDMA
-        Log.d("parse(): Operator name = '%s'", operatorName);
+        Timber.d("parse(): Operator name = '%s'", operatorName);
         // get operator codes
         int mcc = Measurement.UNKNOWN_CID;
         int mnc = Measurement.UNKNOWN_CID;
@@ -82,12 +81,12 @@ public class LegacyMeasurementParser extends MeasurementParser {
                 mcc = mccMncPair[0];
                 mnc = mccMncPair[1];
             } else {
-                Log.d("parseLocation(): Network operator unknown: %s", operatorCode);
+                Timber.d("parseLocation(): Network operator unknown: %s", operatorCode);
             }
         }
         // validate cell
         if (!cellLocationValidator.isValid(cellLocation, mcc, mnc)) {
-            Log.d("parse(): Cell invalid");
+            Timber.d("parse(): Cell invalid");
             return ParseResult.NoNetworkSignal;
         }
         // create measurement with basic data
@@ -97,15 +96,15 @@ public class LegacyMeasurementParser extends MeasurementParser {
         fixMeasurementTimestamp(measurement, location);
         // if the same cell check distance condition, otherwise accept
         if (lastSavedLocation != null && !conditionsValidator.isMinDistanceSatisfied(lastSavedLocation, location, minDistance)) {
-            Log.d("parse(): Distance condition not achieved");
+            Timber.d("parse(): Distance condition not achieved");
             return ParseResult.DistanceNotAchieved;
         }
         // check if location has been obtained recently
         if (!locationValidator.isUpToDate(timestamp, System.currentTimeMillis())) {
-            Log.d("parse(): Location too old");
+            Timber.d("parse(): Location too old");
             return ParseResult.LocationTooOld;
         }
-        Log.d("parse(): Destination and time conditions achieved");
+        Timber.d("parse(): Destination and time conditions achieved");
         // update measurement with location
         updateMeasurementWithLocation(measurement, location);
         // update measurement with signal strength
@@ -130,29 +129,29 @@ public class LegacyMeasurementParser extends MeasurementParser {
                     // update measurement with signal strength
                     cellSignalConverter.update(neighboringMeasurement, neighboringCell.getRssi());
                     // write to database
-                    Log.d("parse(): Neighboring: %s", neighboringMeasurement);
+                    Timber.d("parse(): Neighboring: %s", neighboringMeasurement);
                     measurementsToSave.add(neighboringMeasurement);
                 } else {
-                    Log.d("parse(): Neighboring cell invalid: %s", neighboringCell);
+                    Timber.d("parse(): Neighboring cell invalid: %s", neighboringCell);
                 }
             }
         }
         // write to database
-        Log.d("parse(): Main: %s", measurement);
+        Timber.d("parse(): Main: %s", measurement);
         boolean inserted = MeasurementsDatabase.getInstance(MyApplication.getApplication()).insertMeasurements(measurementsToSave.toArray(new Measurement[measurementsToSave.size()]));
         if (inserted) {
             lastSavedLocation = location;
             lastSavedMeasurement = measurement;
-            Log.d("parse(): Measurement saved");
+            Timber.d("parse(): Measurement saved");
             // broadcast information to main activity
             CellsCount cellsCount = new CellsCount(1, measurementsToSave.size() - 1);
             Statistics stats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
             EventBus.getDefault().post(new MeasurementSavedEvent(measurement, cellsCount, stats));
             EventBus.getDefault().post(new MeasurementsCollectedEvent(measurementsToSave));
-            Log.d("parse(): Notification updated and measurement broadcasted");
+            Timber.d("parse(): Notification updated and measurement broadcasted");
             return ParseResult.Saved;
         } else {
-            Log.e("parse(): Error while saving measurement");
+            Timber.e("parse(): Error while saving measurement");
             Exception ex = new Exception("Measurement save failed");
             MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
@@ -168,7 +167,7 @@ public class LegacyMeasurementParser extends MeasurementParser {
         for (NeighboringCellInfo cell : neighboringCells) {
             String key = createCellKey(cell, measurement);
             if (uniqueCellKeys.contains(key)) {
-                Log.d("removeDuplicatedNeighbors(): Remove duplicated cell: %s", key);
+                Timber.d("removeDuplicatedNeighbors(): Remove duplicated cell: %s", key);
                 cellsToRemove.add(cell);
             } else {
                 uniqueCellKeys.add(key);

@@ -18,11 +18,10 @@ import info.zamojski.soft.towercollector.events.MeasurementsCollectedEvent;
 import info.zamojski.soft.towercollector.files.formatters.json.IJsonFormatter;
 import info.zamojski.soft.towercollector.files.formatters.json.JsonBroadcastFormatter;
 import info.zamojski.soft.towercollector.model.Measurement;
-import trikita.log.Log;
+import timber.log.Timber;
 
 public class ExternalBroadcastSender implements Runnable {
 
-    private static final String TAG = ExternalBroadcastSender.class.getSimpleName();
 
     private final String measurementsCollectedAction = "info.zamojski.soft.towercollector.MEASUREMENTS_COLLECTED";
     private final String measurementsExtraKey = "measurements";
@@ -30,7 +29,7 @@ public class ExternalBroadcastSender implements Runnable {
     private IJsonFormatter formatter;
 
     private void sendMeasurementsCollectedBroadcast(List<Measurement> measurements) {
-        Log.i("sendMeasurementsCollectedBroadcast(): Sending broadcast to external apps");
+        Timber.i("sendMeasurementsCollectedBroadcast(): Sending broadcast to external apps");
         if (formatter == null) {
             formatter = new JsonBroadcastFormatter();
         }
@@ -41,9 +40,9 @@ public class ExternalBroadcastSender implements Runnable {
             intent.setAction(measurementsCollectedAction);
             intent.putExtra(measurementsExtraKey, extra);
             MyApplication.getApplication().sendBroadcast(intent);
-            Log.d("sendMeasurementsCollectedBroadcast(): Broadcasted " + extra);
+            Timber.d("sendMeasurementsCollectedBroadcast(): Broadcasted " + extra);
         } catch (JSONException ex) {
-            Log.e("sendMeasurementsCollectedBroadcast(): Failed to serialize list of measurements to JSON", ex);
+            Timber.e(ex, "sendMeasurementsCollectedBroadcast(): Failed to serialize list of measurements to JSON");
         }
     }
 

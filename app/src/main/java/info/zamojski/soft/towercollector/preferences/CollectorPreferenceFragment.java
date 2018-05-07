@@ -7,6 +7,7 @@ package info.zamojski.soft.towercollector.preferences;
 import info.zamojski.soft.towercollector.CollectorService;
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
+import timber.log.Timber;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
@@ -15,14 +16,12 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.PreferenceManager;
 
-import trikita.log.Log;
 
 import android.preference.SwitchPreference;
 import android.widget.Toast;
 
 public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
 
-    private static final String TAG = CollectorPreferenceFragment.class.getSimpleName();
 
     private ListPreference collectorKeepScreenOnPreference;
     private SwitchPreference hideCollectorNotificationPreference;
@@ -73,7 +72,7 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
         } else if (key.equals(getString(R.string.preferences_collector_keep_screen_on_mode_key))) {
             String collectorKeepScreenOnValue = collectorKeepScreenOnPreference.getValue();
             CharSequence collectorKeepScreenOnLabel = collectorKeepScreenOnPreference.getEntry();
-            Log.d("onSharedPreferenceChanged(): User set keep screen on = \"%s\"", collectorKeepScreenOnValue);
+            Timber.d("onSharedPreferenceChanged(): User set keep screen on = \"%s\"", collectorKeepScreenOnValue);
             collectorKeepScreenOnPreference.setSummary(formatValueString(R.string.preferences_collector_keep_screen_on_summary, collectorKeepScreenOnLabel));
             if (MyApplication.isBackgroundTaskRunning(CollectorService.class)) {
                 Toast.makeText(getActivity(), R.string.preferences_restart_collector, Toast.LENGTH_SHORT).show();

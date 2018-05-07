@@ -8,12 +8,11 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 import android.content.Context;
-import trikita.log.Log;
 import android.util.TypedValue;
 
-public class ResourceUtils {
+import timber.log.Timber;
 
-    private static final String TAG = ResourceUtils.class.getSimpleName();
+public class ResourceUtils {
 
     public static String getRawResource(Context context, int resourceId) {
         try {
@@ -26,7 +25,7 @@ public class ResourceUtils {
             reader.close();
             return builder.toString();
         } catch (Exception ex) {
-            Log.e("getRawResource(): Unable to read resource", ex);
+            Timber.e(ex, "getRawResource(): Unable to read resource");
             return "";
         }
     }
@@ -36,5 +35,4 @@ public class ResourceUtils {
         context.getTheme().resolveAttribute(resourceId, typedvalueattr, true);
         return String.format("#%06X", (0xFFFFFF & context.getResources().getColor(typedvalueattr.resourceId)));
     }
-
 }

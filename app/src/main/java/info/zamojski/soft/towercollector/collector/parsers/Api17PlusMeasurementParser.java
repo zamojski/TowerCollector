@@ -21,7 +21,6 @@ import android.os.Build;
 import android.telephony.CellInfo;
 
 import info.zamojski.soft.towercollector.model.CellsCount;
-import trikita.log.Log;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.collector.ParseResult;
@@ -37,11 +36,11 @@ import info.zamojski.soft.towercollector.events.MeasurementSavedEvent;
 import info.zamojski.soft.towercollector.events.MeasurementsCollectedEvent;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.model.Statistics;
+import timber.log.Timber;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
 public class Api17PlusMeasurementParser extends MeasurementParser {
 
-    private static final String TAG = Api17PlusMeasurementParser.class.getSimpleName();
 
     private CellIdentityValidator cellValidator;
 
@@ -62,10 +61,10 @@ public class Api17PlusMeasurementParser extends MeasurementParser {
                               long timestamp, int minDistance) {
         // if required accuracy was achieved
         if (!locationValidator.isValid(location)) {
-            Log.d("parse(): Required accuracy not achieved: %s", location.getAccuracy());
+            Timber.d("parse(): Required accuracy not achieved: %s", location.getAccuracy());
             return ParseResult.AccuracyNotAchieved;
         }
-        Log.d("parse(): Required accuracy achieved: %s", location.getAccuracy());
+        Timber.d("parse(): Required accuracy achieved: %s", location.getAccuracy());
         // get last location
         getAndSetLastLocation();
         // create measurement
@@ -74,15 +73,15 @@ public class Api17PlusMeasurementParser extends MeasurementParser {
         fixMeasurementTimestamp(measurement, location);
         // if the same cell check distance condition, otherwise accept
         if (lastSavedLocation != null && !conditionsValidator.isMinDistanceSatisfied(lastSavedLocation, location, minDistance)) {
-            Log.d("parse(): Distance condition not achieved");
+            Timber.d("parse(): Distance condition not achieved");
             return ParseResult.DistanceNotAchieved;
         }
         // check if location has been obtained recently
         if (!locationValidator.isUpToDate(timestamp, System.currentTimeMillis())) {
-            Log.d("parse(): Location too old");
+            Timber.d("parse(): Location too old");
             return ParseResult.LocationTooOld;
         }
-        Log.d("parse(): Destination and time conditions achieved");
+        Timber.d("parse(): Destination and time conditions achieved");
         // update measurement with location
         updateMeasurementWithLocation(measurement, location);
         // remove duplicated cells
@@ -93,12 +92,12 @@ public class Api17PlusMeasurementParser extends MeasurementParser {
         for (CellInfo cell : cells) {
             if (!cellValidator.isValid(cell)) {
                 // don't try to create neighboring cells because this may be even more unreliable than on older API
-                Log.d("parse(): Cell invalid: %s", cell);
+                Timber.d("parse(): Cell invalid: %s", cell);
                 continue;
             }
             if (!collectNeighboringCells && !cell.isRegistered()) {
                 // skip neighboring cells
-                Log.d("parse(): Neighboring cell skipped: %s", cell);
+                Timber.d("parse(): Neighboring cell skipped: %s", cell);
                 continue;
             }
             // copy measurement
@@ -108,33 +107,33 @@ public class Api17PlusMeasurementParser extends MeasurementParser {
             // update measurement with signal strength
             cellSignalConverter.update(measurementCopy, cell);
             // write to database
-            Log.d("parse(): Measurement: %s", measurementCopy);
+            Timber.d("parse(): Measurement: %s", measurementCopy);
             measurementsToSave.add(measurementCopy);
         }
         // none of cells are valid
         if (measurementsToSave.isEmpty()) {
-            Log.d("parse(): All cells invalid or skipped");
+            Timber.d("parse(): All cells invalid or skipped");
             return ParseResult.NoNetworkSignal;
         }
         // temporary solution to keep compatibility with old API and current views
         Measurement mainMeasurement = findFirstMainMeasurement(measurementsToSave);
         // write to database
-        Log.d("parse(): Selected as main: %s", mainMeasurement);
+        Timber.d("parse(): Selected as main: %s", mainMeasurement);
         boolean inserted = MeasurementsDatabase.getInstance(MyApplication.getApplication()).insertMeasurements(measurementsToSave.toArray(new Measurement[measurementsToSave.size()]));
         if (inserted) {
             lastSavedLocation = location;
             lastSavedMeasurement = mainMeasurement;
-            Log.d("parse(): Measurement saved");
+            Timber.d("parse(): Measurement saved");
             // broadcast information to main activity
             int mainCount = countMainMeasurements(measurementsToSave);
             CellsCount cellsCount = new CellsCount(mainCount, measurementsToSave.size() - mainCount);
             Statistics stats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
             EventBus.getDefault().post(new MeasurementSavedEvent(mainMeasurement, cellsCount, stats));
             EventBus.getDefault().post(new MeasurementsCollectedEvent(measurementsToSave));
-            Log.d("parse(): Notification updated and measurement broadcasted");
+            Timber.d("parse(): Notification updated and measurement broadcasted");
             return ParseResult.Saved;
         } else {
-            Log.e("parse(): Error while saving measurement");
+            Timber.e("parse(): Error while saving measurement");
             Exception ex = new Exception("Measurement save failed");
             MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
@@ -149,7 +148,7 @@ public class Api17PlusMeasurementParser extends MeasurementParser {
         for (CellInfo cell : cells) {
             String key = cellIdentityConverter.createCellKey(cell);
             if (uniqueCellKeys.contains(key)) {
-                Log.d("removeDuplicatedCells(): Remove duplicated cell: %s", key);
+                Timber.d("removeDuplicatedCells(): Remove duplicated cell: %s", key);
                 cellsToRemove.add(cell);
             } else {
                 uniqueCellKeys.add(key);

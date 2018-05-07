@@ -10,11 +10,11 @@ import java.security.NoSuchAlgorithmException;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-import trikita.log.Log;
+import timber.log.Timber;
+
 
 public class HashUtils {
 
-    private static final String TAG = HashUtils.class.getSimpleName();
 
     public static String toSha1(String text) {
         final String hashingAlgorithm = "SHA-1";
@@ -29,9 +29,9 @@ public class HashUtils {
             }
             return sb.toString();
         } catch (NoSuchAlgorithmException ex) {
-            Log.e("toSha1(): Unsupported hashing algorithm %s", hashingAlgorithm, ex);
+            Timber.e(ex, "toSha1(): Unsupported hashing algorithm %s", hashingAlgorithm);
         } catch (UnsupportedEncodingException ex) {
-            Log.e("toSha1(): Unsupported encoding %s", textEncoding, ex);
+            Timber.e(ex, "toSha1(): Unsupported encoding %s", textEncoding);
         }
         return text;
     }

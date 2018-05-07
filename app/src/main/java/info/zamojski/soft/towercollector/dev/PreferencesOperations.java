@@ -5,6 +5,7 @@
 package info.zamojski.soft.towercollector.dev;
 
 import info.zamojski.soft.towercollector.utils.FileUtils;
+import timber.log.Timber;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,14 +21,12 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Environment;
 import android.preference.PreferenceManager;
-import trikita.log.Log;
 import android.widget.Toast;
 
 import com.example.android.internal.util.XmlUtils;
 
 public class PreferencesOperations {
 
-    private static final String TAG = PreferencesOperations.class.getSimpleName();
 
     public static void importPreferences(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -53,10 +52,10 @@ public class PreferencesOperations {
         prefEdit.clear();
         boolean cleared = prefEdit.commit();
         if (cleared) {
-            Log.d("clearPreferences(): Preferences cleared");
+            Timber.d("clearPreferences(): Preferences cleared");
             Toast.makeText(context, "Preferences cleared", Toast.LENGTH_LONG).show();
         } else {
-            Log.e("clearPreferences(): Failed to clear preferences");
+            Timber.e("clearPreferences(): Failed to clear preferences");
         }
     }
 
@@ -71,13 +70,13 @@ public class PreferencesOperations {
                     output = new ObjectOutputStream(new FileOutputStream(dst));
                     XmlUtils.writeMapXml(prefs.getAll(), output);
                     res = true;
-                    Log.d("saveSharedPreferencesToFile(): Preferences exported");
+                    Timber.d("saveSharedPreferencesToFile(): Preferences exported");
                 }
-                Log.d("saveSharedPreferencesToFile(): External storage is read only");
+                Timber.d("saveSharedPreferencesToFile(): External storage is read only");
             }
-            Log.d("saveSharedPreferencesToFile(): External storage is not available");
+            Timber.d("saveSharedPreferencesToFile(): External storage is not available");
         } catch (Exception ex) {
-            Log.e("saveSharedPreferencesToFile(): Cannot export preferences", ex);
+            Timber.e(ex, "saveSharedPreferencesToFile(): Cannot export preferences");
         } finally {
             try {
                 if (output != null) {
@@ -85,7 +84,7 @@ public class PreferencesOperations {
                     output.close();
                 }
             } catch (IOException ex) {
-                Log.e("saveSharedPreferencesToFile(): Failed to close file stream", ex);
+                Timber.e(ex, "saveSharedPreferencesToFile(): Failed to close file stream");
             }
         }
         return res;
@@ -121,21 +120,21 @@ public class PreferencesOperations {
                             prefEdit.putString(key, ((String) v));
                     }
                     prefEdit.commit();
-                    Log.d("loadSharedPreferencesFromFile(): Preferences imported");
+                    Timber.d("loadSharedPreferencesFromFile(): Preferences imported");
                     res = true;
                 }
-                Log.d("saveSharedPreferencesToFile(): External storage is read only");
+                Timber.d("saveSharedPreferencesToFile(): External storage is read only");
             }
-            Log.d("saveSharedPreferencesToFile(): External storage is not available");
+            Timber.d("saveSharedPreferencesToFile(): External storage is not available");
         } catch (Exception ex) {
-            Log.e("loadSharedPreferencesFromFile(): Cannot import preferences", ex);
+            Timber.e(ex, "loadSharedPreferencesFromFile(): Cannot import preferences");
         } finally {
             try {
                 if (input != null) {
                     input.close();
                 }
             } catch (IOException ex) {
-                Log.e("loadSharedPreferencesFromFile(): Failed to close file stream", ex);
+                Timber.e(ex, "loadSharedPreferencesFromFile(): Failed to close file stream");
             }
         }
         return res;

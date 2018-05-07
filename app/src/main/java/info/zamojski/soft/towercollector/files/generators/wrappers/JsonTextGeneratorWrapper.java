@@ -21,11 +21,10 @@ import info.zamojski.soft.towercollector.files.formatters.json.IJsonFormatter;
 import info.zamojski.soft.towercollector.files.formatters.json.JsonMozillaFormatter;
 import info.zamojski.soft.towercollector.files.generators.JsonTextGenerator;
 import info.zamojski.soft.towercollector.model.Measurement;
-import trikita.log.Log;
+import timber.log.Timber;
 
 public class JsonTextGeneratorWrapper extends TextGeneratorWrapperBase {
 
-    private final String TAG = JsonTextGeneratorWrapper.class.getSimpleName();
 
     private JsonTextGenerator<IJsonFormatter, IWritableTextDevice> generator;
 
@@ -44,7 +43,7 @@ public class JsonTextGeneratorWrapper extends TextGeneratorWrapperBase {
             Measurement lastMeasurement = MeasurementsDatabase.getInstance(context).getLastMeasurement();
             // check if there is anything to process
             if (measurementsCount == 0 || lastMeasurement == null) {
-                Log.d("generate(): Cancelling save due to no data");
+                Timber.d("generate(): Cancelling save due to no data");
                 return new FileGeneratorResult(GeneratorResult.NoData, DeviceOperationException.Reason.Unknown);
             }
             // calculate number of parts
@@ -70,19 +69,19 @@ public class JsonTextGeneratorWrapper extends TextGeneratorWrapperBase {
             // fix for dialog not closed when operation is running in background and data deleted
             notifyProgressListeners(measurementsCount, measurementsCount);
             if (cancel) {
-                Log.d("generate(): Export cancelled");
+                Timber.d("generate(): Export cancelled");
                 return new FileGeneratorResult(GeneratorResult.Cancelled, DeviceOperationException.Reason.Unknown);
             } else {
-                Log.d("generate(): All %s measurements exported", measurementsCount);
+                Timber.d("generate(): All %s measurements exported", measurementsCount);
                 return new FileGeneratorResult(GeneratorResult.Succeeded, DeviceOperationException.Reason.Unknown);
             }
         } catch (DeviceOperationException ex) {
-            Log.e("generate(): Failed to check external memory compatibility", ex);
+            Timber.e(ex, "generate(): Failed to check external memory compatibility");
             MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
             return new FileGeneratorResult(GeneratorResult.Failed, ex.getReason());
         } catch (IOException ex) {
-            Log.e("generate(): Failed to save data on external memory", ex);
+            Timber.e(ex, "generate(): Failed to save data on external memory");
             MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
             return new FileGeneratorResult(GeneratorResult.Failed, DeviceOperationException.Reason.Unknown, ex.getMessage());

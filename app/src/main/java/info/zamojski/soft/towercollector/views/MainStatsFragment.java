@@ -12,10 +12,10 @@ import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.events.MeasurementSavedEvent;
 import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
 import info.zamojski.soft.towercollector.model.Statistics;
+import timber.log.Timber;
 
 import android.os.Bundle;
 
-import trikita.log.Log;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +27,6 @@ import org.greenrobot.eventbus.ThreadMode;
 
 public class MainStatsFragment extends MainFragmentBase {
 
-    private static final String TAG = MainStatsFragment.class.getSimpleName();
 
     private TextView mainStatsLocalTitleTextView;
     private TextView mainStatsGlobalTitleTextView;
@@ -87,7 +86,7 @@ public class MainStatsFragment extends MainFragmentBase {
     }
 
     private void printStatistics(Statistics stats) {
-        Log.d("printStatistics(): Showing stats %s", stats);
+        Timber.d("printStatistics(): Showing stats %s", stats);
         long sinceLocal = stats.getSinceLocal();
         if (sinceLocal == 0)
             sinceLocal = System.currentTimeMillis();

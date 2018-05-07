@@ -6,6 +6,7 @@ package info.zamojski.soft.towercollector.preferences;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
+import timber.log.Timber;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
@@ -13,13 +14,11 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.PreferenceManager;
 
-import trikita.log.Log;
 
 import android.widget.Toast;
 
 public class DisplayPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
 
-    private static final String TAG = DisplayPreferenceFragment.class.getSimpleName();
 
     private ListPreference appThemePreference;
 
@@ -52,7 +51,7 @@ public class DisplayPreferenceFragment extends DialogEnabledPreferenceFragment i
         if (key.equals(getString(R.string.preferences_app_theme_mode_key))) {
             String appThemeValue = appThemePreference.getValue();
             CharSequence appThemeLabel = appThemePreference.getEntry();
-            Log.d("onSharedPreferenceChanged(): User set app theme = \"%s\"", appThemeValue);
+            Timber.d("onSharedPreferenceChanged(): User set app theme = \"%s\"", appThemeValue);
             appThemePreference.setSummary(formatValueString(R.string.preferences_app_theme_summary, appThemeLabel));
             MyApplication.getApplication().initTheme();
             Toast.makeText(getActivity(), R.string.preferences_restart_app, Toast.LENGTH_SHORT).show();

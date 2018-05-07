@@ -14,13 +14,12 @@ import info.zamojski.soft.towercollector.model.ChangelogInfo.ChangelogEntry;
 import info.zamojski.soft.towercollector.parsers.changelog.ChangelogFeedParseException;
 import info.zamojski.soft.towercollector.parsers.changelog.ChangelogFeedParser;
 
-import trikita.log.Log;
 
 import info.zamojski.soft.towercollector.utils.ResourceUtils;
+import timber.log.Timber;
 
 public class ChangelogProvider {
 
-    private static final String TAG = ChangelogProvider.class.getSimpleName();
 
     private Context context;
     private int changelogId;
@@ -45,7 +44,7 @@ public class ChangelogProvider {
             changelog.removeEntries(entriesToRemove);
             return changelog;
         } catch (ChangelogFeedParseException ex) {
-            Log.e("getChangelog(): Failed to parse changelog", ex);
+            Timber.e(ex, "getChangelog(): Failed to parse changelog");
             return new ChangelogInfo();
         }
     }

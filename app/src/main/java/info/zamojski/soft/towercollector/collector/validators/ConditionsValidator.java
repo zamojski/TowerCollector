@@ -5,13 +5,12 @@
 package info.zamojski.soft.towercollector.collector.validators;
 
 import android.location.Location;
-import trikita.log.Log;
 
 import info.zamojski.soft.towercollector.model.Measurement;
+import timber.log.Timber;
 
 public class ConditionsValidator {
 
-    private static final String TAG = ConditionsValidator.class.getSimpleName();
 
     public boolean isSameCell(Measurement m1, Measurement m2) {
         return (m1.getCid() == m2.getCid() && m1.getLac() == m2.getLac()
@@ -26,7 +25,7 @@ public class ConditionsValidator {
         // check conditions
         boolean valid = (1.1f * distanceDiff >= distanceCondition);
         if (!valid)
-            Log.d("isMinDistanceSatisfied(): Failed to achieve destination '%.4f >= %d' condition at 10%% approx. match", distanceDiff, distanceCondition);
+            Timber.d("isMinDistanceSatisfied(): Failed to achieve destination '%.4f >= %d' condition at 10%% approx. match", distanceDiff, distanceCondition);
         return valid;
     }
 }

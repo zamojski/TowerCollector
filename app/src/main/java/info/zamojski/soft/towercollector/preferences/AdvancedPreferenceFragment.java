@@ -29,12 +29,11 @@ import permissions.dispatcher.OnPermissionDenied;
 import permissions.dispatcher.OnShowRationale;
 import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
-import trikita.log.Log;
+import timber.log.Timber;
 
 @RuntimePermissions
 public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
 
-    private static final String TAG = AdvancedPreferenceFragment.class.getSimpleName();
 
     private ListPreference collectorApiVersionPreference;
     private ListPreference fileLoggingLevelPreference;
@@ -51,9 +50,9 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 if (newValue.equals(getString(R.string.preferences_file_logging_level_entries_value_disabled))) {
-                    Log.d("onFileLoggingLevelChangeListener(): Disabling logger");
+                    Timber.d("onFileLoggingLevelChangeListener(): Disabling logger");
                 } else {
-                    Log.d("onFileLoggingLevelChangeListener(): Requesting permission");
+                    Timber.d("onFileLoggingLevelChangeListener(): Requesting permission");
                 }
                 // NOTE: delegate the permission handling to generated method
                 AdvancedPreferenceFragmentPermissionsDispatcher.requestLoggerChangeWithPermissionCheck(AdvancedPreferenceFragment.this);
@@ -86,7 +85,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         if (key.equals(getString(R.string.preferences_collector_api_version_key))) {
             String collectorApiVersionValue = collectorApiVersionPreference.getValue();
             CharSequence collectorApiVersionLabel = collectorApiVersionPreference.getEntry();
-            Log.d("onSharedPreferenceChanged(): User set api version = \"%s\"", collectorApiVersionValue);
+            Timber.d("onSharedPreferenceChanged(): User set api version = \"%s\"", collectorApiVersionValue);
             collectorApiVersionPreference.setSummary(formatValueString(R.string.preferences_collector_api_version_summary, collectorApiVersionLabel));
             setupApiVersionSelection();
             if (MyApplication.isBackgroundTaskRunning(CollectorService.class)) {
@@ -95,7 +94,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         } else if (key.equals(getString(R.string.preferences_file_logging_level_key))) {
             String fileLoggingLevelValue = fileLoggingLevelPreference.getValue();
             CharSequence fileLoggingLevelLabel = fileLoggingLevelPreference.getEntry();
-            Log.d("onSharedPreferenceChanged(): User set file logging level = \"%s\"", fileLoggingLevelValue);
+            Timber.d("onSharedPreferenceChanged(): User set file logging level = \"%s\"", fileLoggingLevelValue);
             fileLoggingLevelPreference.setSummary(formatValueString(R.string.preferences_file_logging_level_summary, fileLoggingLevelLabel));
             // NOTE: configuration reapplied in PreferenceChangeListener
         }
@@ -126,7 +125,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
 
     @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     void requestLoggerChange() {
-        Log.d("requestLoggerChange(): Reinitializing logger");
+        Timber.d("requestLoggerChange(): Reinitializing logger");
         MyApplication.getApplication().initLogger();
     }
 

@@ -18,11 +18,10 @@ import android.content.Intent;
 import android.widget.Toast;
 
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
-import trikita.log.Log;
+import timber.log.Timber;
 
 public class ExternalBroadcastReceiver extends BroadcastReceiver {
 
-    private static final String TAG = ExternalBroadcastReceiver.class.getSimpleName();
 
     private final String quickBootPowerOnAction = "android.intent.action.QUICKBOOT_POWERON";
 
@@ -56,7 +55,7 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
             showCollectorPermissionsDenied(context);
             return;
         }
-        Log.d("startCollectorService(): Starting service from broadcast");
+        Timber.d("startCollectorService(): Starting service from broadcast");
         Intent intent = getCollectorIntent(context);
 
         ApkUtils.startServiceSafely(context, intent);
@@ -65,7 +64,7 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
     }
 
     private void stopCollectorService(Context context) {
-        Log.d("stopCollectorService(): Stopping service from broadcast");
+        Timber.d("stopCollectorService(): Stopping service from broadcast");
         context.stopService(getCollectorIntent(context));
     }
 
@@ -76,7 +75,7 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
     private void startUploaderService(Context context) {
         if (!canStartBackgroundService(context))
             return;
-        Log.d("startCollectorService(): Starting service from broadcast");
+        Timber.d("startCollectorService(): Starting service from broadcast");
         ApkUtils.startServiceSafely(context, getUploaderIntent(context));
         MyApplication.getAnalytics().sendUploadStarted(IntentSource.Application);
     }
@@ -88,7 +87,7 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
     private boolean canStartBackgroundService(Context context) {
         String runningTaskClassName = MyApplication.getBackgroundTaskName();
         if (runningTaskClassName != null) {
-            Log.d("canStartBackgroundService(): Another task is running in background: %s", runningTaskClassName);
+            Timber.d("canStartBackgroundService(): Another task is running in background: %s", runningTaskClassName);
             BackgroundTaskHelper backgroundTaskHelper = new BackgroundTaskHelper(context);
             backgroundTaskHelper.showTaskRunningMessage(runningTaskClassName);
             return false;
@@ -101,7 +100,7 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
     }
 
     private void showCollectorPermissionsDenied(Context context) {
-        Log.d("showCollectorPermissionsDenied(): Cannot start collector due to denied permissions");
+        Timber.d("showCollectorPermissionsDenied(): Cannot start collector due to denied permissions");
         Toast.makeText(context, R.string.permission_collector_denied_intent_message, Toast.LENGTH_LONG).show();
     }
 }
