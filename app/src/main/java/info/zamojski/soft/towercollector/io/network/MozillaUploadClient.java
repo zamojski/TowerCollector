@@ -4,13 +4,19 @@
 
 package info.zamojski.soft.towercollector.io.network;
 
-import com.github.kevinsawicki.http.HttpRequest;
-import com.github.kevinsawicki.http.HttpRequest.HttpRequestException;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import timber.log.Timber;
 
-
 public class MozillaUploadClient extends ClientBase implements IUploadClient {
+
+    private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     private final String uploadUrl;
 
@@ -22,15 +28,22 @@ public class MozillaUploadClient extends ClientBase implements IUploadClient {
     public RequestResult uploadMeasurements(String content) {
         Timber.d("uploadMeasurements(): Sending post request");
         try {
-            HttpRequest request = HttpRequest.post(uploadUrl)
-                    .followRedirects(false)
-                    .connectTimeout(CONN_TIMEOUT)
-                    .readTimeout(READ_TIMEOUT);
+            OkHttpClient client = new OkHttpClient()
+                    .newBuilder()
+                    .connectTimeout(CONN_TIMEOUT, TimeUnit.MILLISECONDS)
+                    .readTimeout(READ_TIMEOUT, TimeUnit.MILLISECONDS)
+                    .build();
+
             // add json as request content
-            request.header("Content-Type", "application/json");
-            request.send(content);
-            return handleResponse(request.code(), request.body());
-        } catch (HttpRequestException ex) {
+            RequestBody requestBody = RequestBody.create(JSON, content);
+            Request request = new Request.Builder()
+                    .url(uploadUrl)
+                    .post(requestBody)
+                    .build();
+
+            Response response = client.newCall(request).execute();
+            return handleResponse(response.code(), response.body().string());
+        } catch (IOException ex) {
             Timber.e(ex, "uploadMeasurements(): Errors encountered");
             reportExceptionWithSuppress(ex);
             return RequestResult.Failure;

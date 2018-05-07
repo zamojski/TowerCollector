@@ -4,11 +4,10 @@
 
 package info.zamojski.soft.towercollector.io.network;
 
-import com.github.kevinsawicki.http.HttpRequest;
-
 import org.acra.ACRA;
 
 import java.io.EOFException;
+import java.io.IOException;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
@@ -20,7 +19,7 @@ public abstract class ClientBase {
     protected static final int CONN_TIMEOUT = 30000;
     protected static final int READ_TIMEOUT = 30000;
 
-    protected void reportExceptionWithSuppress(HttpRequest.HttpRequestException ex) {
+    protected void reportExceptionWithSuppress(IOException ex) {
         Throwable originalException = ex.getCause();
         // suppress known exceptions
         if (originalException instanceof UnknownHostException

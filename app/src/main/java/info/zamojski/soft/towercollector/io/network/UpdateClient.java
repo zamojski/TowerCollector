@@ -4,9 +4,13 @@
 
 package info.zamojski.soft.towercollector.io.network;
 
-import com.github.kevinsawicki.http.HttpRequest;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import info.zamojski.soft.towercollector.utils.StringUtils;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import timber.log.Timber;
 
 public class UpdateClient extends ClientBase {
@@ -20,12 +24,20 @@ public class UpdateClient extends ClientBase {
     public String fetchUpdates() {
         Timber.d("fetchUpdates(): Sending get request");
         try {
-            HttpRequest request = HttpRequest.get(url)
-                    .followRedirects(false)
-                    .connectTimeout(CONN_TIMEOUT)
-                    .readTimeout(READ_TIMEOUT);
-            return handleResponse(request.code(), request.body());
-        } catch (HttpRequest.HttpRequestException ex) {
+            OkHttpClient client = new OkHttpClient()
+                    .newBuilder()
+                    .connectTimeout(CONN_TIMEOUT, TimeUnit.MILLISECONDS)
+                    .readTimeout(READ_TIMEOUT, TimeUnit.MILLISECONDS)
+                    .build();
+
+            Request request = new Request.Builder()
+                    .url(url)
+                    .get()
+                    .build();
+
+            Response response = client.newCall(request).execute();
+            return handleResponse(response.code(), response.body().string());
+        } catch (IOException ex) {
             Timber.d(ex, "fetchUpdates(): Errors encountered");
             reportExceptionWithSuppress(ex);
             return null;

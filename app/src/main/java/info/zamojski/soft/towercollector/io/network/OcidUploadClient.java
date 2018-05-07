@@ -4,12 +4,20 @@
 
 package info.zamojski.soft.towercollector.io.network;
 
-import com.github.kevinsawicki.http.HttpRequest;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import timber.log.Timber;
 
-
 public class OcidUploadClient extends ClientBase implements IUploadClient {
+
+    private static final MediaType CSV = MediaType.parse("text/csv");
 
     private String url;
     private String appId;
@@ -25,18 +33,26 @@ public class OcidUploadClient extends ClientBase implements IUploadClient {
     public RequestResult uploadMeasurements(String content) {
         Timber.d("uploadMeasurements(): Sending post request");
         try {
-            HttpRequest request = HttpRequest.post(url)
-                    .followRedirects(false)
-                    .connectTimeout(CONN_TIMEOUT)
-                    .readTimeout(READ_TIMEOUT);
-            // add API key
-            request.part("key", apiKey);
-            // add app name
-            request.part("appId", appId);
-            // add file data as file
-            request.part("datafile", "TowerCollector_measurements_" + System.currentTimeMillis() + ".csv", "text/csv", content);
-            return handleResponse(request.code(), request.body());
-        } catch (HttpRequest.HttpRequestException ex) {
+            OkHttpClient client = new OkHttpClient()
+                    .newBuilder()
+                    .connectTimeout(CONN_TIMEOUT, TimeUnit.MILLISECONDS)
+                    .readTimeout(READ_TIMEOUT, TimeUnit.MILLISECONDS)
+                    .build();
+
+            RequestBody requestBody = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("key", apiKey)
+                    .addFormDataPart("appId", appId)
+                    .addFormDataPart("datafile", "TowerCollector_measurements_" + System.currentTimeMillis() + ".csv", RequestBody.create(CSV, content))
+                    .build(); // RequestBody.create(JSON, content);
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(requestBody)
+                    .build();
+
+            Response response = client.newCall(request).execute();
+            return handleResponse(response.code(), response.body().string());
+        } catch (IOException ex) {
             Timber.d(ex, "uploadMeasurements(): Errors encountered");
             reportExceptionWithSuppress(ex);
             return RequestResult.Failure;
