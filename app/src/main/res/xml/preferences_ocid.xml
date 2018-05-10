@@ -5,27 +5,34 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory android:title="@string/preferences_category_settings_title">
+        <SwitchPreference
+            android:defaultValue="@bool/preferences_opencellid_enabled_default_value"
+            android:key="@string/preferences_opencellid_enabled_key"
+            android:summaryOff="@string/preferences_opencellid_enabled_off_summary"
+            android:summaryOn="@string/preferences_opencellid_enabled_on_summary"
+            android:title="@string/preferences_opencellid_enabled_title" />
+
         <info.zamojski.soft.towercollector.controls.TrimmedEditTextPreference
             android:defaultValue="@string/preferences_api_key_default_value"
             android:inputType="text"
             android:key="@string/preferences_api_key_key"
             android:summary="@string/preferences_api_key_summary"
-            android:title="@string/preferences_api_key_title"/>
+            android:title="@string/preferences_api_key_title" />
 
         <PreferenceScreen
             android:key="@string/preferences_api_key_link_key"
             android:summary="@string/preferences_api_key_link_summary"
-            android:title="@string/preferences_api_key_link_title"/>
+            android:title="@string/preferences_api_key_link_title" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/preferences_category_help_title">
         <PreferenceScreen
             android:key="@string/preferences_about_api_key_key"
             android:summary="@string/preferences_about_api_key_summary"
-            android:title="@string/preferences_about_api_key_title"/>
+            android:title="@string/preferences_about_api_key_title" />
         <PreferenceScreen
             android:key="@string/preferences_about_opencellid_project_key"
             android:summary="@string/preferences_about_opencellid_project_summary"
-            android:title="@string/preferences_about_opencellid_project_title"/>
+            android:title="@string/preferences_about_opencellid_project_title" />
     </PreferenceCategory>
 
 </PreferenceScreen>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/preferences_category_settings_title">
+        <SwitchPreference
+            android:defaultValue="@bool/preferences_mls_enabled_default_value"
+            android:key="@string/preferences_mls_enabled_key"
+            android:summaryOff="@string/preferences_mls_enabled_off_summary"
+            android:summaryOn="@string/preferences_mls_enabled_on_summary"
+            android:title="@string/preferences_mls_enabled_title" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/preferences_category_help_title">
+        <PreferenceScreen
+            android:key="@string/preferences_about_mls_project_key"
+            android:summary="@string/preferences_about_mls_project_summary"
+            android:title="@string/preferences_about_mls_project_title" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

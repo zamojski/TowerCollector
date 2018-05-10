@@ -16,15 +16,14 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-public class ApiPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
-
+public class OcidPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
 
     private TrimmedEditTextPreference apiKeyPreference;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.preferences_api);
+        addPreferencesFromResource(R.xml.preferences_ocid);
 
         apiKeyPreference = (TrimmedEditTextPreference) findPreference(getString(R.string.preferences_api_key_key));
 

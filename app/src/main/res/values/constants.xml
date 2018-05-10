@@ -9,17 +9,18 @@
     <string name="upload_url_opencellid_org" translatable="false">http://www.opencellid.org/measure/uploadCsv</string>
     <string name="upload_url_mls" translatable="false">https://location.services.mozilla.com/v2/geosubmit?key=<xliff:g id="api_key">%s</xliff:g></string>
     <string name="preferences_current_value_summary_format" translatable="false"><![CDATA[<br/><b>[%s]</b>]]></string>
-    <string name="preferences_show_introduction_key" translatable="false">show_introduction</string>
 
+    <string name="preferences_show_introduction_key" translatable="false">show_introduction</string>
     <bool name="preferences_show_introduction_default_value" translatable="false">true</bool>
 
     <string name="preferences_show_compatibility_warning_key" translatable="false">show_compatibility_warning</string>
-
     <bool name="preferences_show_compatibility_warning_default_value" translatable="false">true</bool>
 
     <string name="preferences_latest_developer_message_key" translatable="false">latest_developer_message</string>
-
     <integer name="preferences_latest_developer_message_default_value" translatable="false">1</integer>
+
+    <string name="preferences_opencellid_enabled_key" translatable="false">opencellid_enabled</string>
+    <bool name="preferences_opencellid_enabled_default_value" translatable="false">true</bool>
 
     <string name="preferences_api_key_key" translatable="false">api_key</string>
     <string name="preferences_api_key_default_value" translatable="false"></string>
@@ -27,12 +28,15 @@
     <string name="preferences_opencellid_org_sign_up_link" translatable="false">http://www.opencellid.org/#register</string>
     <string name="preferences_about_api_key_key" translatable="false">about_api_key</string>
     <string name="preferences_about_opencellid_project_key" translatable="false">about_opencellid</string>
-    <string name="preferences_imperial_units_key" translatable="false">imperial_units_key</string>
 
+    <string name="preferences_mls_enabled_key" translatable="false">mls_enabled</string>
+    <bool name="preferences_mls_enabled_default_value" translatable="false">true</bool>
+    <string name="preferences_about_mls_project_key">about_mls_project</string>
+
+    <string name="preferences_imperial_units_key" translatable="false">imperial_units_key</string>
     <bool name="preferences_imperial_units_default_value" translatable="false">false</bool>
 
     <string name="preferences_gps_optimizations_enabled_key" translatable="false">gps_optimizations_enabled_key</string>
-
     <bool name="preferences_gps_optimizations_enabled_default_value" translatable="false">true</bool>
 
     <string name="preferences_general_category_settings_key" translatable="false">general_category_settings_key</string>
@@ -40,13 +44,10 @@
     <string name="preferences_advanced_category_settings_key" translatable="false">advanced_category_settings_key</string>
 
     <string name="preferences_tracking_enabled_key" translatable="false">tracking_enabled_key</string>
-
     <bool name="preferences_tracking_enabled_default_value" translatable="false">true</bool>
-
     <string name="preferences_about_tracking_key" translatable="false">about_tracking</string>
 
     <string name="preferences_error_reporting_silent_key" translatable="false">acra.alwaysaccept</string>
-
     <bool name="preferences_error_reporting_silent_default_value" translatable="false">true</bool>
 
     <string name="preferences_app_theme_mode_key" translatable="false">preferences_app_theme_mode</string>
@@ -56,29 +57,27 @@
     <string name="preferences_update_check_enabled_key" translatable="false">auto_update_check_enabled</string>
 
     <bool name="preferences_update_check_enabled_default_value" translatable="false">true</bool>
-
     <string name="preferences_last_update_check_date_key" translatable="false">last_update_check_date</string>
-
     <integer name="preferences_last_update_check_date_default_value" translatable="false">0</integer>
 
     <string name="preferences_collector_keep_screen_on_mode_key" translatable="false">collector_keep_screen_on_mode</string>
     <string name="preferences_collector_keep_screen_on_mode_default_value" translatable="false">@string/preferences_keep_screen_on_mode_entries_value_disabled</string>
+    <string name="preferences_about_collector_keep_screen_on_key" translatable="false">about_collector_keep_screen_on</string>
+
     <string name="preferences_main_keep_screen_on_mode_key" translatable="false">main_keep_screen_on_mode</string>
-
     <bool name="preferences_main_keep_screen_on_mode_default_value" translatable="false">false</bool>
-
     <string name="preferences_about_main_keep_screen_on_key" translatable="false">about_main_keep_screen_on</string>
-    <bool name="preferences_hide_collector_notification_default_value" translatable="false">false</bool>
 
+    <bool name="preferences_hide_collector_notification_default_value" translatable="false">false</bool>
     <string name="preferences_hide_collector_notification_key" translatable="false">hide_collector_notification</string>
 
     <bool name="preferences_start_collector_at_boot_default_value" translatable="false">false</bool>
-
     <string name="preferences_start_collector_at_boot_key" translatable="false">start_collector_at_boot</string>
-    <string name="preferences_about_collector_keep_screen_on_key" translatable="false">about_collector_keep_screen_on</string>
+
     <string name="preferences_keep_screen_on_mode_entries_value_disabled" translatable="false">disabled</string>
     <string name="preferences_keep_screen_on_mode_entries_value_dim" translatable="false">dim</string>
     <string name="preferences_keep_screen_on_mode_entries_value_full" translatable="false">full</string>
+
     <string name="preferences_collector_api_version_key" translatable="false">collector_api_version</string>
     <string name="preferences_collector_api_version_default_value" translatable="false">@string/preferences_collector_api_version_entries_value_auto</string>
 
@@ -98,7 +97,6 @@
     <string name="preferences_file_logging_level_default_value" translatable="false">@string/preferences_file_logging_level_entries_value_disabled</string>
 
     <string name="preferences_collect_neighboring_cells_key" translatable="false">collect_neighboring_cells</string>
-
     <bool name="preferences_collect_neighboring_cells_default_value" translatable="false">true</bool>
 
     <string name="preferences_notify_measurements_collected_key" translatable="false">notify_measurements_collected</string>

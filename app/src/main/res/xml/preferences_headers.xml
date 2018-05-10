@@ -5,9 +5,13 @@
 <preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
 
     <header
-        android:fragment="info.zamojski.soft.towercollector.preferences.ApiPreferenceFragment"
+        android:fragment="info.zamojski.soft.towercollector.preferences.OcidPreferenceFragment"
         android:summary="@string/preferences_header_api_summary"
         android:title="@string/preferences_header_api_title"/>
+    <header
+        android:fragment="info.zamojski.soft.towercollector.preferences.MlsPreferenceFragment"
+        android:summary="@string/preferences_header_mls_summary"
+        android:title="@string/preferences_header_mls_title"/>
     <header
         android:fragment="info.zamojski.soft.towercollector.preferences.DisplayPreferenceFragment"
         android:summary="@string/preferences_header_display_summary"

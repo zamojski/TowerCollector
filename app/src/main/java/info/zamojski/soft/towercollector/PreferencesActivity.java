@@ -5,7 +5,8 @@
 package info.zamojski.soft.towercollector;
 
 import info.zamojski.soft.towercollector.preferences.AdvancedPreferenceFragment;
-import info.zamojski.soft.towercollector.preferences.ApiPreferenceFragment;
+import info.zamojski.soft.towercollector.preferences.MlsPreferenceFragment;
+import info.zamojski.soft.towercollector.preferences.OcidPreferenceFragment;
 import info.zamojski.soft.towercollector.preferences.CollectorPreferenceFragment;
 import info.zamojski.soft.towercollector.preferences.DisplayPreferenceFragment;
 import info.zamojski.soft.towercollector.preferences.GeneralPreferenceFragment;
@@ -82,7 +83,8 @@ public class PreferencesActivity extends AppCompatPreferenceActivity {
     @Override
     protected boolean isValidFragment(String fragmentName) {
         return (AdvancedPreferenceFragment.class.getName().equals(fragmentName)
-                || ApiPreferenceFragment.class.getName().equals(fragmentName)
+                || OcidPreferenceFragment.class.getName().equals(fragmentName)
+                || MlsPreferenceFragment.class.getName().equals(fragmentName)
                 || CollectorPreferenceFragment.class.getName().equals(fragmentName)
                 || DisplayPreferenceFragment.class.getName().equals(fragmentName)
                 || GeneralPreferenceFragment.class.getName().equals(fragmentName)

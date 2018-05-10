@@ -143,4 +143,14 @@ public class PreferencesProvider {
     public void setMainWindowRecentTab(int tabIndex) {
         integerPreferenceProvider.setPreference(R.string.preferences_main_window_recent_tab_key, tabIndex);
     }
+
+    public boolean isOpenCellIdUploadEnabled() {
+        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_opencellid_enabled_key, R.bool.preferences_opencellid_enabled_default_value);
+        return value;
+    }
+
+    public boolean isMlsUploadEnabled() {
+        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_mls_enabled_key, R.bool.preferences_mls_enabled_default_value);
+        return value;
+    }
 }
