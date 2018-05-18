@@ -82,7 +82,9 @@ public class MyApplication extends Application {
         // File logging based on preferences
         String fileLoggingLevelString = getPreferencesProvider().getFileLoggingLevel();
         if (fileLoggingLevelString.equals(getString(R.string.preferences_file_logging_level_entries_value_disabled))) {
-            Timber.uproot(FileLoggingTree.INSTANCE);
+            if (Timber.forest().contains(FileLoggingTree.INSTANCE)) {
+                Timber.uproot(FileLoggingTree.INSTANCE);
+            }
         } else {
             if (PermissionUtils.hasPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                 int fileLogLevel = Log.ERROR;
