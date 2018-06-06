@@ -2,18 +2,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-// each of the version numbers must be 0-99
-def versionMajor = 1 // major releases
-def versionMinor = 19 // minor feature releases
-def versionPatch = 0 // hot fixes
-def versionBuild = 23 // build version
-
-// Double check the versioning
-for (versionPart in [versionPatch, versionMinor, versionMajor, versionBuild]) {
-    assert 0 <= versionPart
-    assert versionPart <= 99
-}
-
 ext.rotEnabled = false
 
 import java.util.regex.Matcher
@@ -30,8 +18,8 @@ android {
         applicationId "info.zamojski.soft.towercollector"
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode versionMajor * 1000000 + versionMinor * 10000 + versionPatch * 100 + versionBuild
-        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+        versionCode 1190023
+        versionName "1.19.0"
 
         Properties props = getCustomProperties()
         println 'Defining custom build config fields'
