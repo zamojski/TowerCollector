@@ -1,6 +1,17 @@
 {
   "Entries": [
     {
+      "VersionCode": 1200024,
+      "Title": "Changes in version 1.20.0",
+      "Description": "Tower Collector is now available in <a href=\"https://f-droid.org/packages/info.zamojski.soft.towercollector/\">official F-Droid repository</a>! Special thanks to takiainen, est31 and IzzySoft for help :)",
+      "Messages": [
+        "Fix wrong order of labels for Export dialog for Portuguese and Russian languages.",
+        "Fix invalid API key recognized as connection error during upload.",
+        "Improve code compatibility with F-Droid repository rules.",
+        "Add option to import/export internal preferences and database (use on your own risk!)."
+      ]
+    },
+    {
       "VersionCode": 1190023,
       "Title": "Changes in version 1.19.0",
       "Description": "Do you want to see the app in your language? Help me with <a href=\"http://i18n.zamojski.info/\">translations</a>! Catalan, Dutch, French, Hungarian, Spanish are partially done but require volunteers - apply on the website or send me an email to start.",
@@ -34,15 +45,6 @@
         "Added export to JSON using Mozilla Location Services (MLS) values formatting.",
         "Display Long CID (UTRAN CID) and CID+RNC for WCDMA networks on Main screen.",
         "Improved compatibility with Android Oreo."
-      ]
-    },
-    {
-      "VersionCode": 1150019,
-      "Title": "Changes in version 1.15.0",
-      "Messages": [
-        "Improved compatibility with Android Oreo.",
-        "Improved insufficient permissions handling.",
-        "Updated external components."
       ]
     }
   ]

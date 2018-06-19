@@ -198,5 +198,5 @@
     <string name="invalid_system_time">System date/time is invalid</string>
     <string name="web_browser_missing">Please install web browser to open the page</string>
     <string name="unsafe_operation_warning_title">Unsafe operation</string>
-    <string name="unsafe_operation_warning_message">This option can break the app\'s configuration. In such case you have to clear the app data in Android settings. You need to fully close and reopen the app to see the changes!\n\nYou use it on your own risk!</string>
+    <string name="unsafe_operation_warning_message">This option can break the app\'s configuration and result in crash. In such case you have to clear the app data in Android settings. You need to fully close and reopen the app to see the changes!\n\nYou use it on your own risk!</string>
 </resources>
