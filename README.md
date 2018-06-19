@@ -9,7 +9,9 @@ Tower Collector is available for free on the Google Play store:
 
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" height="80">](https://play.google.com/store/apps/details?id=info.zamojski.soft.towercollector)
 
-It's also available through F-Droid via the [IzzyOnDroid F-Droid compatible Repository](https://apt.izzysoft.de/fdroid/). In this repo, you can find Tower Collector [here](https://apt.izzysoft.de/fdroid/index/apk/info.zamojski.soft.towercollector).
+and on official F-Droid catalog:
+
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/packages/info.zamojski.soft.towercollector/)
 
 ## Building
 This project is build using Android Studio 3.0.1.
