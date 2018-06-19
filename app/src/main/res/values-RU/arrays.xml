@@ -7,10 +7,10 @@
     <string name="preferences_keep_screen_on_mode_dim">Минимальная яркость</string>
     <string name="preferences_keep_screen_on_mode_full">Максимальная яркость</string>
     <string-array name="export_formats_labels">
-        <item>CSV для OpenCellID.org</item>
-        <item>JSON для сервисов Mozilla Location</item>
         <item>CSV</item>
         <item>GPX</item>
+        <item>CSV для OpenCellID.org</item>
+        <item>JSON для сервисов Mozilla Location</item>
     </string-array>
     <string-array name="preferences_app_theme_mode_entries_labels">
         <item>Тёмная</item>

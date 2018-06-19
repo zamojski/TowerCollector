@@ -7,10 +7,10 @@
     <string name="preferences_keep_screen_on_mode_dim">Escurecido</string>
     <string name="preferences_keep_screen_on_mode_full">Brilho total</string>
     <string-array name="export_formats_labels">
-        <item>CSV para OpenCellID.org</item>
-        <item>JSON para Mozilla Location Services</item>
         <item>CSV</item>
         <item>GPX</item>
+        <item>CSV para OpenCellID.org</item>
+        <item>JSON para Mozilla Location Services</item>
     </string-array>
     <string-array name="preferences_app_theme_mode_entries_labels">
         <item>Escuro</item>
