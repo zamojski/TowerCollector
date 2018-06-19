@@ -197,4 +197,5 @@
     <string name="status_no_gps_location">no location</string>
     <string name="invalid_system_time">System date/time is invalid</string>
     <string name="web_browser_missing">Please install web browser to open the page</string>
+    <string name="uploader_all_sites_disabled">All upload sites are disabled in Preferences.</string>
 </resources>

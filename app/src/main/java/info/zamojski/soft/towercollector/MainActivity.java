@@ -690,10 +690,20 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private void startUploaderServiceWithCheck() {
         String runningTaskClassName = MyApplication.getBackgroundTaskName();
         if (runningTaskClassName != null) {
-            Timber.d("startUploaderService(): Another task is running in background: %s", runningTaskClassName);
+            Timber.d("startUploaderServiceWithCheck(): Another task is running in background: %s", runningTaskClassName);
             backgroundTaskHelper.showTaskRunningMessage(runningTaskClassName);
             return;
         }
+        boolean ocidUploadEnabled = MyApplication.getPreferencesProvider().isOpenCellIdUploadEnabled();
+        boolean mlsUploadEnabled = MyApplication.getPreferencesProvider().isMlsUploadEnabled();
+        Timber.i("startUploaderServiceWithCheck(): Upload for OCID = " + ocidUploadEnabled + ", MLS = " + mlsUploadEnabled);
+        if(!ocidUploadEnabled && !mlsUploadEnabled) {
+            Toast.makeText(getApplication(), R.string.uploader_all_sites_disabled, Toast.LENGTH_LONG).show();
+            return;
+        }
+
+
+
         // check API key
         String apiKey = MyApplication.getPreferencesProvider().getApiKey();
         if (!Validator.isOpenCellIdApiKeyValid(apiKey)) {
