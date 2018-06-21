@@ -24,6 +24,12 @@ public class DatabaseOperations {
 
     public static void exportDatabase(Context context) {
         File srcFile = getDatabasePath(context);
+        File dstFile = getDatabaseExportPath();
+        copyDatabase(context, srcFile, dstFile, "export");
+    }
+
+    public static void exportDatabaseUnique(Context context) {
+        File srcFile = getDatabasePath(context);
         File dstFile = getDatabaseExportUniquePath();
         copyDatabase(context, srcFile, dstFile, "export");
     }
@@ -66,6 +72,11 @@ public class DatabaseOperations {
     }
 
     private static File getDatabaseImportPath() {
+        return new File(FileUtils.getExternalStorageAppDir(),
+                MeasurementsDatabase.DATABASE_FILE_NAME);
+    }
+
+    private static File getDatabaseExportPath() {
         return new File(FileUtils.getExternalStorageAppDir(),
                 MeasurementsDatabase.DATABASE_FILE_NAME);
     }

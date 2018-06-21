@@ -21,6 +21,8 @@ import info.zamojski.soft.towercollector.BuildConfig;
 import info.zamojski.soft.towercollector.CollectorService;
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
+import info.zamojski.soft.towercollector.dev.DatabaseOperations;
+import info.zamojski.soft.towercollector.dev.PreferencesOperations;
 import info.zamojski.soft.towercollector.utils.MobileUtils;
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
 import permissions.dispatcher.NeedsPermission;
@@ -33,7 +35,6 @@ import timber.log.Timber;
 
 @RuntimePermissions
 public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
-
 
     private ListPreference collectorApiVersionPreference;
     private ListPreference fileLoggingLevelPreference;
@@ -63,6 +64,50 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         setupApiVersionDialog();
         setupApiVersionSelection();
         setupErrorReportingAvailability();
+        setupDatabaseImport();
+        setupDatabaseExport();
+        setupPreferencesImport();
+        setupPreferencesExport();
+    }
+
+    private void setupDatabaseImport() {
+        showConfirmationDialog(R.string.preferences_import_database_key, R.string.unsafe_operation_warning_title,
+                R.string.unsafe_operation_warning_message, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DatabaseOperations.importDatabase(MyApplication.getApplication());
+                    }
+                });
+    }
+
+    private void setupDatabaseExport() {
+        showConfirmationDialog(R.string.preferences_export_database_key, R.string.unsafe_operation_warning_title,
+                R.string.unsafe_operation_warning_message, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DatabaseOperations.exportDatabase(MyApplication.getApplication());
+                    }
+                });
+    }
+
+    private void setupPreferencesImport() {
+        showConfirmationDialog(R.string.preferences_import_preferences_key, R.string.unsafe_operation_warning_title,
+                R.string.unsafe_operation_warning_message, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        PreferencesOperations.importPreferences(MyApplication.getApplication());
+                    }
+                });
+    }
+
+    private void setupPreferencesExport() {
+        showConfirmationDialog(R.string.preferences_export_preferences_key, R.string.unsafe_operation_warning_title,
+                R.string.unsafe_operation_warning_message, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        PreferencesOperations.exportPreferences(MyApplication.getApplication());
+                    }
+                });
     }
 
     @Override

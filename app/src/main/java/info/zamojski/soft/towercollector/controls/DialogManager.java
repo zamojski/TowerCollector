@@ -11,6 +11,7 @@ import info.zamojski.soft.towercollector.R;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -43,6 +44,20 @@ public class DialogManager {
         }
         // don't move above settings content because it won't work
         messageView.setTextIsSelectable(textIsSelectable);
+
+        AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(true);
+        return dialog;
+    }
+
+    public static AlertDialog createConfirmationDialog(Context context, int titleId, int messageId, DialogInterface.OnClickListener confirmedAction) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        builder.setPositiveButton(R.string.dialog_proceed, confirmedAction);
+        builder.setNegativeButton(R.string.dialog_cancel, null);
+
+        builder.setTitle(titleId);
+        builder.setMessage(messageId);
 
         AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(true);

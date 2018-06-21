@@ -27,13 +27,14 @@ import com.example.android.internal.util.XmlUtils;
 
 public class PreferencesOperations {
 
-
     public static void importPreferences(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         File srcFile = getPreferencesExportPath();
         boolean loaded = loadSharedPreferencesFromFile(prefs, srcFile);
         if (loaded) {
             Toast.makeText(context, "Preferences imported", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(context, "Failed to import preferences", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -43,6 +44,8 @@ public class PreferencesOperations {
         boolean saved = saveSharedPreferencesToFile(prefs, dstFile);
         if (saved) {
             Toast.makeText(context, "Preferences exported", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(context, "Failed to export preferences", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -109,17 +112,17 @@ public class PreferencesOperations {
                         String key = entry.getKey();
 
                         if (v instanceof Boolean)
-                            prefEdit.putBoolean(key, ((Boolean) v).booleanValue());
+                            prefEdit.putBoolean(key, (Boolean) v);
                         else if (v instanceof Float)
-                            prefEdit.putFloat(key, ((Float) v).floatValue());
+                            prefEdit.putFloat(key, (Float) v);
                         else if (v instanceof Integer)
-                            prefEdit.putInt(key, ((Integer) v).intValue());
+                            prefEdit.putInt(key, (Integer) v);
                         else if (v instanceof Long)
-                            prefEdit.putLong(key, ((Long) v).longValue());
+                            prefEdit.putLong(key, (Long) v);
                         else if (v instanceof String)
                             prefEdit.putString(key, ((String) v));
                     }
-                    prefEdit.commit();
+                    prefEdit.apply();
                     Timber.d("loadSharedPreferencesFromFile(): Preferences imported");
                     res = true;
                 }

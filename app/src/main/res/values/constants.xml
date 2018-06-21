@@ -97,6 +97,11 @@
     <string name="preferences_file_logging_level_key" translatable="false">logging_level</string>
     <string name="preferences_file_logging_level_default_value" translatable="false">@string/preferences_file_logging_level_entries_value_disabled</string>
 
+    <string name="preferences_import_database_key" translatable="false">import_database</string>
+    <string name="preferences_export_database_key" translatable="false">export_database</string>
+    <string name="preferences_import_preferences_key" translatable="false">import_preferences</string>
+    <string name="preferences_export_preferences_key" translatable="false">export_preferences</string>
+
     <string name="preferences_collect_neighboring_cells_key" translatable="false">collect_neighboring_cells</string>
 
     <bool name="preferences_collect_neighboring_cells_default_value" translatable="false">true</bool>

@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!-- This Source Code Form is subject to the terms of the Mozilla Public
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
@@ -27,6 +28,22 @@
             android:summaryOff="@string/preferences_error_reporting_silent_off_summary"
             android:summaryOn="@string/preferences_error_reporting_silent_on_summary"
             android:title="@string/preferences_error_reporting_silent_title" />
+        <PreferenceScreen
+            android:key="@string/preferences_import_database_key"
+            android:summary="@string/preferences_import_database_summary"
+            android:title="@string/preferences_import_database_title" />
+        <PreferenceScreen
+            android:key="@string/preferences_export_database_key"
+            android:summary="@string/preferences_export_database_summary"
+            android:title="@string/preferences_export_database_title" />
+        <PreferenceScreen
+            android:key="@string/preferences_import_preferences_key"
+            android:summary="@string/preferences_import_preferences_summary"
+            android:title="@string/preferences_import_preferences_title" />
+        <PreferenceScreen
+            android:key="@string/preferences_export_preferences_key"
+            android:summary="@string/preferences_export_preferences_summary"
+            android:title="@string/preferences_export_preferences_title" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/preferences_category_help_title">
         <PreferenceScreen

@@ -9,9 +9,9 @@ import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.controls.DialogManager;
 
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.widget.Toast;
@@ -58,6 +58,17 @@ public abstract class DialogEnabledPreferenceFragment extends PreferenceFragment
             public boolean onPreferenceClick(Preference preference) {
                 DialogManager.createHtmlInfoDialog(getActivity(), title, content, false, false).show();
                 MyApplication.getAnalytics().sendHelpDialogOpened(getString(preferenceKey));
+                return true;
+            }
+        });
+    }
+
+    protected void showConfirmationDialog(final int preferenceKey, final int title, final int content, final DialogInterface.OnClickListener confirmedAction) {
+        PreferenceScreen preference = (PreferenceScreen) findPreference(getString(preferenceKey));
+        preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                DialogManager.createConfirmationDialog(getActivity(), title, content, confirmedAction).show();
                 return true;
             }
         });
