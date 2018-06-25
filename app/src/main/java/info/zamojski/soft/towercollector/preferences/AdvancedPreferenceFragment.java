@@ -81,13 +81,13 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
     }
 
     private void setupDatabaseExport() {
-        showConfirmationDialog(R.string.preferences_export_database_key, R.string.unsafe_operation_warning_title,
-                R.string.unsafe_operation_warning_message, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        DatabaseOperations.exportDatabase(MyApplication.getApplication());
-                    }
-                });
+        setupOnClick(R.string.preferences_export_database_key, new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                DatabaseOperations.exportDatabase(MyApplication.getApplication());
+                return true;
+            }
+        });
     }
 
     private void setupPreferencesImport() {
@@ -101,13 +101,13 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
     }
 
     private void setupPreferencesExport() {
-        showConfirmationDialog(R.string.preferences_export_preferences_key, R.string.unsafe_operation_warning_title,
-                R.string.unsafe_operation_warning_message, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        PreferencesOperations.exportPreferences(MyApplication.getApplication());
-                    }
-                });
+        setupOnClick(R.string.preferences_export_preferences_key, new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                PreferencesOperations.exportPreferences(MyApplication.getApplication());
+                return true;
+            }
+        });
     }
 
     @Override

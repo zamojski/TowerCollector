@@ -73,4 +73,9 @@ public abstract class DialogEnabledPreferenceFragment extends PreferenceFragment
             }
         });
     }
+
+    protected void setupOnClick(final int preferenceKey, final Preference.OnPreferenceClickListener clickAction) {
+        PreferenceScreen preference = (PreferenceScreen) findPreference(getString(preferenceKey));
+        preference.setOnPreferenceClickListener(clickAction);
+    }
 }
