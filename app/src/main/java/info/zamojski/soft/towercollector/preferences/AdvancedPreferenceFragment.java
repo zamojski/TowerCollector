@@ -75,7 +75,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
                 R.string.unsafe_operation_warning_message, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        DatabaseOperations.importDatabase(MyApplication.getApplication());
+                        AdvancedPreferenceFragmentPermissionsDispatcher.importDatabaseWithPermissionCheck(AdvancedPreferenceFragment.this);
                     }
                 });
     }
@@ -84,7 +84,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         setupOnClick(R.string.preferences_export_database_key, new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                DatabaseOperations.exportDatabase(MyApplication.getApplication());
+                AdvancedPreferenceFragmentPermissionsDispatcher.exportDatabaseWithPermissionCheck(AdvancedPreferenceFragment.this);
                 return true;
             }
         });
@@ -95,7 +95,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
                 R.string.unsafe_operation_warning_message, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        PreferencesOperations.importPreferences(MyApplication.getApplication());
+                        AdvancedPreferenceFragmentPermissionsDispatcher.importPreferencesWithPermissionCheck(AdvancedPreferenceFragment.this);
                     }
                 });
     }
@@ -104,7 +104,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         setupOnClick(R.string.preferences_export_preferences_key, new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                PreferencesOperations.exportPreferences(MyApplication.getApplication());
+                AdvancedPreferenceFragmentPermissionsDispatcher.exportPreferencesWithPermissionCheck(AdvancedPreferenceFragment.this);
                 return true;
             }
         });
@@ -174,11 +174,35 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         MyApplication.getApplication().initLogger();
     }
 
+    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    void importDatabase() {
+        Timber.d("importDatabase(): Importing database");
+        DatabaseOperations.importDatabase(MyApplication.getApplication());
+    }
+
+    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    void exportDatabase() {
+        Timber.d("exportDatabase(): Exporting database");
+        DatabaseOperations.exportDatabase(MyApplication.getApplication());
+    }
+
+    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    void importPreferences() {
+        Timber.d("importPreferences(): Importing preferences");
+        PreferencesOperations.importPreferences(MyApplication.getApplication());
+    }
+
+    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    void exportPreferences() {
+        Timber.d("exportPreferences(): Exporting preferences");
+        PreferencesOperations.exportPreferences(MyApplication.getApplication());
+    }
+
     @OnShowRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     void onLoggerChangeShowRationale(final PermissionRequest request) {
         new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.permission_required)
-                .setMessage(R.string.permission_logging_rationale_message)
+                .setMessage(R.string.permission_storage_rationale_message)
                 .setCancelable(true)
                 .setPositiveButton(R.string.dialog_proceed, new DialogInterface.OnClickListener() {
                     @Override
@@ -198,7 +222,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
     @OnPermissionDenied(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     void onLoggerChangePermissionDenied() {
         fileLoggingLevelPreference.setValue(getString(R.string.preferences_file_logging_level_entries_value_disabled));
-        Toast.makeText(getActivity(), R.string.permission_logging_denied_message, Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), R.string.permission_storage_denied_message, Toast.LENGTH_LONG).show();
     }
 
     @OnNeverAskAgain(Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -206,7 +230,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         fileLoggingLevelPreference.setValue(getString(R.string.preferences_file_logging_level_entries_value_disabled));
         new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.permission_denied)
-                .setMessage(R.string.permission_logging_never_ask_again_message)
+                .setMessage(R.string.permission_storage_never_ask_again_message)
                 .setCancelable(true)
                 .setPositiveButton(R.string.dialog_permission_settings, new DialogInterface.OnClickListener() {
                     @Override
