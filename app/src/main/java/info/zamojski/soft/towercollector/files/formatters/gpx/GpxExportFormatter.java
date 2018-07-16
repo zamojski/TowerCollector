@@ -9,6 +9,7 @@ import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.providers.GeneralCellUtils;
 import info.zamojski.soft.towercollector.providers.ICellUtils;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
+
 import org.stockchart.utils.DoubleUtils;
 
 import java.text.NumberFormat;
@@ -91,11 +92,13 @@ public class GpxExportFormatter implements IGpxFormatter {
         }
         sb.append(String.format(LOCALE, "        <time>%s</time>\r\n", formatDate(m.getTimestamp())));
         int mcc = m.getMcc();
-        sb.append(String.format(LOCALE, "        <name><![CDATA[%sMNC %s, LAC %s, CID %s, Signal strength %s dBm, Network %s, GPS accuracy %s m%s]]></name>\r\n",
+        int psc = m.getPsc();
+        sb.append(String.format(LOCALE, "        <name><![CDATA[%sMNC %s, LAC %s, CID %s, %sSignal strength %s dBm, Network %s, GPS accuracy %s m%s]]></name>\r\n",
                 (mcc != Measurement.UNKNOWN_CID ? String.format(LOCALE, "MCC %s, ", formatInt(mcc)) : ""),
                 formatInt(m.getMnc()),
                 formatInt(m.getLac()),
                 formatInt(m.getCid()),
+                (psc != Measurement.UNKNOWN_CID ? String.format(LOCALE, "PSC %s, ", formatInt(psc)) : ""),
                 formatDbmSignal(m.getDbm()),
                 cellUtils.getSystemType(m.getNetworkType()),
                 formatGpsValue(m.getGpsAccuracy()),
