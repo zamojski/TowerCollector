@@ -23,6 +23,11 @@ public class JsonTextGenerator<TFormatter extends IJsonFormatter, TDevice extend
         this.device = device;
     }
 
+    public void writeHeader() throws IOException {
+        String header = this.formatter.formatHeader();
+        this.device.write(header);
+    }
+
     public void writeEntries(List<Measurement> ms) throws IOException {
         try {
             String entry = this.formatter.formatList(ms);
@@ -30,6 +35,16 @@ public class JsonTextGenerator<TFormatter extends IJsonFormatter, TDevice extend
         } catch (JSONException ex) {
             throw new IOException("Invalid json format.", ex);
         }
+    }
+
+    public void writeNewSegment() throws IOException {
+        String newSegment = this.formatter.formatNewSegment();
+        this.device.write(newSegment);
+    }
+
+    public void writeFooter() throws IOException {
+        String footer = this.formatter.formatFooter();
+        this.device.write(footer);
     }
 
     public String getMimeType() {

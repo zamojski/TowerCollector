@@ -12,6 +12,11 @@ import info.zamojski.soft.towercollector.model.Measurement;
 
 public interface IJsonFormatter {
 
+    String formatHeader();
+
     String formatList(List<Measurement> ms) throws JSONException;
 
+    String formatNewSegment();
+
+    String formatFooter();
 }

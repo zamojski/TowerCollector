@@ -13,7 +13,6 @@ import info.zamojski.soft.towercollector.files.FileGeneratorResult;
 import info.zamojski.soft.towercollector.files.devices.FileTextDevice;
 import info.zamojski.soft.towercollector.files.formatters.csv.CsvExportFormatter;
 import info.zamojski.soft.towercollector.files.formatters.csv.CsvUploadFormatter;
-import info.zamojski.soft.towercollector.files.formatters.json.JsonMozillaFormatter;
 import info.zamojski.soft.towercollector.files.generators.wrappers.CsvTextGeneratorWrapper;
 import info.zamojski.soft.towercollector.files.generators.wrappers.GpxTextGeneratorWrapper;
 import info.zamojski.soft.towercollector.files.generators.wrappers.JsonTextGeneratorWrapper;

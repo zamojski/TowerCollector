@@ -4,8 +4,6 @@
 
 package info.zamojski.soft.towercollector.files.formatters.json;
 
-import org.json.JSONObject;
-
 import java.math.BigDecimal;
 import java.util.Locale;
 
@@ -15,12 +13,6 @@ public abstract class JsonFormatterBase {
     private static final int COORDS_PRECISION = 12;
     private static final int GPS_VALUE_PRECISION = 2;
     private static final int ROUNDING_METHOD = BigDecimal.ROUND_HALF_EVEN;
-
-    protected Object formatNullable(int value, int invalid) {
-        if (value == invalid)
-            return JSONObject.NULL;
-        return value;
-    }
 
     protected double formatCoordinate(double value) {
         return new BigDecimal(value).setScale(COORDS_PRECISION, ROUNDING_METHOD).doubleValue();

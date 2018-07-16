@@ -4,51 +4,42 @@
 
 package info.zamojski.soft.towercollector.files.formatters.json;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
 
 import info.zamojski.soft.towercollector.model.Measurement;
-import info.zamojski.soft.towercollector.providers.ICellUtils;
-import info.zamojski.soft.towercollector.providers.MozillaCellUtils;
 
-public class JsonMozillaUploadFormatter extends JsonMozillaFormatterBase implements IJsonFormatter {
-
-    private static final ICellUtils cellUtils;
-
-    static {
-        cellUtils = new MozillaCellUtils();
-    }
+public class JsonMozillaExportFormatter extends JsonMozillaFormatterBase implements IJsonFormatter {
 
     @Override
     public String formatHeader() {
-        return "";
+        return "{\n\"items\":[\n";
     }
 
     @Override
     public String formatList(List<Measurement> ms) throws JSONException {
-        if (ms.size() == 0) {
-            return new JSONObject().toString();
-        }
-        JSONArray items = new JSONArray();
+        StringBuilder sb = new StringBuilder();
         List<JSONObject> rawItems = formatItems(ms);
+        boolean notFirst = false;
         for (JSONObject rawItem : rawItems) {
-            items.put(rawItem);
+            if (notFirst) {
+                sb.append(",\n");
+            }
+            notFirst = true;
+            sb.append(rawItem.toString());
         }
-        JSONObject root = new JSONObject();
-        root.put("items", items);
-        return root.toString();
+        return sb.toString();
     }
 
     @Override
     public String formatNewSegment() {
-        return "";
+        return ",\n";
     }
 
     @Override
     public String formatFooter() {
-        return "";
+        return "\n]\n}";
     }
 }

@@ -31,6 +31,11 @@ public class JsonBroadcastFormatter extends JsonFormatterBase implements IJsonFo
     }
 
     @Override
+    public String formatHeader() {
+        return "";
+    }
+
+    @Override
     public String formatList(List<Measurement> ms) throws JSONException {
         if (ms.size() == 0) {
             return new JSONObject().toString();
@@ -65,7 +70,23 @@ public class JsonBroadcastFormatter extends JsonFormatterBase implements IJsonFo
         return root.toString();
     }
 
+    @Override
+    public String formatNewSegment() {
+        return "";
+    }
+
+    @Override
+    public String formatFooter() {
+        return "";
+    }
+
     private String formatDate(long timestamp) {
         return exportDateFormatter.format(new Date(timestamp));
+    }
+
+    private Object formatNullable(int value, int invalid) {
+        if (value == invalid)
+            return JSONObject.NULL;
+        return value;
     }
 }
