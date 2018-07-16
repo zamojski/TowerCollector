@@ -22,10 +22,7 @@ public abstract class ClientBase {
     protected void reportExceptionWithSuppress(IOException ex) {
         Throwable originalException = ex.getCause();
         // suppress known exceptions
-        if (originalException instanceof UnknownHostException
-                || originalException instanceof SocketTimeoutException
-                || originalException instanceof SocketException
-                || originalException instanceof EOFException) {
+        if (isSuppressed(ex) || isSuppressed(originalException)) {
             return;
         }
         reportException(ex);
@@ -34,5 +31,12 @@ public abstract class ClientBase {
     protected void reportException(Exception ex) {
         MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
         ACRA.getErrorReporter().handleSilentException(ex);
+    }
+
+    private boolean isSuppressed(Throwable throwable) {
+        return (throwable instanceof UnknownHostException
+                || throwable instanceof SocketTimeoutException
+                || throwable instanceof SocketException
+                || throwable instanceof EOFException);
     }
 }
