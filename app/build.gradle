@@ -18,8 +18,8 @@ android {
         applicationId "info.zamojski.soft.towercollector"
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 1200125
-        versionName "1.20.1"
+        versionCode 1210026
+        versionName "1.21.0"
 
         Properties props = getCustomProperties()
         println 'Defining custom build config fields'

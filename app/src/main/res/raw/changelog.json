@@ -1,6 +1,17 @@
 {
   "Entries": [
     {
+      "VersionCode": 1210026,
+      "Title": "Changes in version 1.21.0",
+      "Description": "Do you want to see the app in your language? Help me with <a href=\"http://i18n.zamojski.info/\">translations</a>! Catalan, Dutch, French, Hungarian, Spanish, Swedish are partially done but require volunteers - apply on the website or send me an email to start.",
+      "Messages": [
+        "Fix export to MLS JSON creating invalid files.",
+        "Fix runtime permissions not checked before import and export of database or preferences.",
+        "Add PSC value to exported GPX file.",
+        "Improve network exception handling."
+      ]
+    },
+    {
       "VersionCode": 1200024,
       "Title": "Changes in version 1.20.0",
       "Description": "Tower Collector is now available in <a href=\"https://f-droid.org/packages/info.zamojski.soft.towercollector/\">official F-Droid repository</a>! Special thanks to takiainen, est31 and IzzySoft for help :)",
@@ -35,16 +46,6 @@
       "Description": "Join Tower Collector community on <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> or <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> to get help and share your ideas :)",
       "Messages": [
         "Improved error handling."
-      ]
-    },
-    {
-      "VersionCode": 1160020,
-      "Title": "Changes in version 1.16.0",
-      "Description": "Join Tower Collector community on <a href=\"https://www.facebook.com/towercollector/\">Facebook (new!)</a> or <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> to get help and share your ideas :)",
-      "Messages": [
-        "Added export to JSON using Mozilla Location Services (MLS) values formatting.",
-        "Display Long CID (UTRAN CID) and CID+RNC for WCDMA networks on Main screen.",
-        "Improved compatibility with Android Oreo."
       ]
     }
   ]
