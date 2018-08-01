@@ -4,8 +4,10 @@
 
 package info.zamojski.soft.towercollector.logging;
 
+import android.annotation.SuppressLint;
 import android.os.Environment;
 import android.os.Process;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.io.File;
@@ -44,11 +46,11 @@ public class FileLoggingTree extends Timber.DebugTree {
         return this;
     }
 
+    @SuppressLint("LogNotTimber")
     @Override
-    protected void log(int priority, String tag, String message, Throwable t) {
+    protected void log(int priority, String tag, @NonNull String message, Throwable t) {
         if (firstRun) {
-            Class clazz = FileLoggingTree.class;
-            synchronized (clazz) {
+            synchronized (FileLoggingTree.class) {
                 if (firstRun) {
                     initialize();
                     firstRun = false;
@@ -66,7 +68,7 @@ public class FileLoggingTree extends Timber.DebugTree {
             osw.write(String.format(Locale.ENGLISH, "%s %s/%s(% 5d): %s\r\n", shortDateFormat.format(new Date()), LEVELS[priority], tag, Process.myPid(), message));
             osw.flush();
         } catch (Exception ex) {
-            Timber.e(ex, "Failed to write log file!");
+            Log.e(TAG, "Failed to write log file!", ex);
         }
     }
 
@@ -75,6 +77,7 @@ public class FileLoggingTree extends Timber.DebugTree {
         return (this.priority > 0 && this.priority <= priority);
     }
 
+    @SuppressLint("LogNotTimber")
     private void initialize() {
         try {
             File logDir = new File(Environment.getExternalStorageDirectory().getPath(), "TowerCollector");
@@ -85,7 +88,7 @@ public class FileLoggingTree extends Timber.DebugTree {
             FileOutputStream fis = new FileOutputStream(logFile);
             osw = new OutputStreamWriter(fis);
         } catch (Exception ex) {
-            Timber.e(ex, "Failed to open log file!");
+            Log.e(TAG, "Failed to open log file!", ex);
         }
     }
 }
