@@ -2,10 +2,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package info.zamojski.soft.towercollector;
+package info.zamojski.soft.towercollector.broadcast;
 
 import org.greenrobot.eventbus.EventBus;
 
+import info.zamojski.soft.towercollector.CollectorService;
+import info.zamojski.soft.towercollector.MyApplication;
+import info.zamojski.soft.towercollector.R;
+import info.zamojski.soft.towercollector.UploaderService;
 import info.zamojski.soft.towercollector.analytics.IntentSource;
 import info.zamojski.soft.towercollector.events.CollectorStartedEvent;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
@@ -22,24 +26,23 @@ import timber.log.Timber;
 
 public class ExternalBroadcastReceiver extends BroadcastReceiver {
 
+    private static final String quickBootPowerOnAction = "android.intent.action.QUICKBOOT_POWERON";
 
-    private final String quickBootPowerOnAction = "android.intent.action.QUICKBOOT_POWERON";
+    private static final String collectorStartAction = "info.zamojski.soft.towercollector.COLLECTOR_START";
+    private static final String collectorStopAction = "info.zamojski.soft.towercollector.COLLECTOR_STOP";
 
-    private final String collectorStartAction = "info.zamojski.soft.towercollector.COLLECTOR_START";
-    private final String collectorStopAction = "info.zamojski.soft.towercollector.COLLECTOR_STOP";
-
-    private final String uploaderStartAction = "info.zamojski.soft.towercollector.UPLOADER_START";
+    private static final String uploaderStartAction = "info.zamojski.soft.towercollector.UPLOADER_START";
 
     @Override
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
-        if (action.equals(collectorStartAction)) {
+        if (collectorStartAction.equals(action)) {
             startCollectorService(context, IntentSource.Application);
-        } else if (action.equals(collectorStopAction)) {
+        } else if (collectorStopAction.equals(action)) {
             stopCollectorService(context);
-        } else if (action.equals(uploaderStartAction)) {
+        } else if (uploaderStartAction.equals(action)) {
             startUploaderService(context);
-        } else if (action.equals(Intent.ACTION_BOOT_COMPLETED) || action.equals(quickBootPowerOnAction)) {
+        } else if (Intent.ACTION_BOOT_COMPLETED.equals(action) || quickBootPowerOnAction.equals(action)) {
             boolean startAtBootEnabled = MyApplication.getPreferencesProvider().getStartCollectorAtBoot();
             if (startAtBootEnabled) {
                 startCollectorService(context, IntentSource.System);

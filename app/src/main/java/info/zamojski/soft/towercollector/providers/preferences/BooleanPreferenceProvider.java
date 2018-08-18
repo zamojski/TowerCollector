@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
+import android.support.annotation.BoolRes;
+import android.support.annotation.StringRes;
 
 class BooleanPreferenceProvider extends PreferenceProviderBase<Boolean> {
 
@@ -16,19 +18,19 @@ class BooleanPreferenceProvider extends PreferenceProviderBase<Boolean> {
     }
 
     @Override
-    Boolean getPreferenceDefaultValue(int defaultValueKey) {
+    Boolean getPreferenceDefaultValue(@BoolRes int defaultValueKey) {
         Resources resources = context.getResources();
         return resources.getBoolean(defaultValueKey);
     }
 
     @Override
-    Boolean getPreferenceValue(SharedPreferences prefs, int valueKey, Boolean defaultValue) {
+    Boolean getPreferenceValue(SharedPreferences prefs, @StringRes int valueKey, Boolean defaultValue) {
         String key = context.getString(valueKey);
         return prefs.getBoolean(key, defaultValue);
     }
 
     @Override
-    void setPreferenceValue(Editor editor, int valueKey, Boolean value) {
+    void setPreferenceValue(Editor editor, @StringRes int valueKey, Boolean value) {
         String key = context.getString(valueKey);
         editor.putBoolean(key, value);
     }

@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
+import android.support.annotation.StringRes;
 
 class StringPreferenceProvider extends PreferenceProviderBase<String> {
 
@@ -16,19 +17,19 @@ class StringPreferenceProvider extends PreferenceProviderBase<String> {
     }
 
     @Override
-    String getPreferenceDefaultValue(int defaultValueKey) {
+    String getPreferenceDefaultValue(@StringRes int defaultValueKey) {
         Resources resources = context.getResources();
         return resources.getString(defaultValueKey);
     }
 
     @Override
-    String getPreferenceValue(SharedPreferences prefs, int valueKey, String defaultValue) {
+    String getPreferenceValue(SharedPreferences prefs, @StringRes int valueKey, String defaultValue) {
         String key = context.getString(valueKey);
         return prefs.getString(key, defaultValue);
     }
 
     @Override
-    void setPreferenceValue(Editor editor, int valueKey, String value) {
+    void setPreferenceValue(Editor editor, @StringRes int valueKey, String value) {
         String key = context.getString(valueKey);
         editor.putString(key, value);
     }
