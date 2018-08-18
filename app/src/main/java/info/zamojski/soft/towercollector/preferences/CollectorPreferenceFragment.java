@@ -22,9 +22,9 @@ import android.widget.Toast;
 
 public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
 
-
     private ListPreference collectorKeepScreenOnPreference;
     private SwitchPreference hideCollectorNotificationPreference;
+    private ListPreference collectorLowBatteryActionPreference;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,7 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
 
         collectorKeepScreenOnPreference = (ListPreference) findPreference(getString(R.string.preferences_collector_keep_screen_on_mode_key));
         hideCollectorNotificationPreference = (SwitchPreference) findPreference(getString(R.string.preferences_hide_collector_notification_key));
+        collectorLowBatteryActionPreference = (ListPreference) findPreference(getString(R.string.preferences_collector_low_battery_action_key));
 
         setupNeighboringCellsDialog();
         setupCollectorKeepScreenOnDialog();
@@ -52,6 +53,7 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
         PreferenceManager.getDefaultSharedPreferences(getActivity()).registerOnSharedPreferenceChangeListener(this);
         // set summaries
         setupListPreferenceSummary(collectorKeepScreenOnPreference, R.string.preferences_collector_keep_screen_on_summary);
+        setupListPreferenceSummary(collectorLowBatteryActionPreference, R.string.preferences_collector_low_battery_action_summary);
     }
 
     @Override
@@ -77,6 +79,11 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
             if (MyApplication.isBackgroundTaskRunning(CollectorService.class)) {
                 Toast.makeText(getActivity(), R.string.preferences_restart_collector, Toast.LENGTH_SHORT).show();
             }
+        } else if (key.equals(getString(R.string.preferences_collector_low_battery_action_key))) {
+            String collectorLowBatteryActionValue = collectorLowBatteryActionPreference.getValue();
+            CharSequence collectorLowBatteryActionLabel = collectorLowBatteryActionPreference.getEntry();
+            Timber.d("onSharedPreferenceChanged(): User set low battery action = \"%s\"", collectorLowBatteryActionValue);
+            collectorLowBatteryActionPreference.setSummary(formatValueString(R.string.preferences_collector_low_battery_action_summary, collectorLowBatteryActionLabel));
         }
     }
 
