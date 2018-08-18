@@ -10,11 +10,10 @@ import java.security.NoSuchAlgorithmException;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+import info.zamojski.soft.towercollector.model.Measurement;
 import timber.log.Timber;
 
-
 public class HashUtils {
-
 
     public static String toSha1(String text) {
         final String hashingAlgorithm = "SHA-1";
@@ -34,6 +33,10 @@ public class HashUtils {
             Timber.e(ex, "toSha1(): Unsupported encoding %s", textEncoding);
         }
         return text;
+    }
+
+    public static String toSha1(Measurement m) {
+        return toSha1(m.getLatitude(), m.getLongitude(), m.getGpsAccuracy(), m.getGpsSpeed(), m.getGpsBearing(), m.getGpsAltitude());
     }
 
     public static String toSha1(double latitude, double longitude, double accuracy, double speed, double bearing, double altitude) {

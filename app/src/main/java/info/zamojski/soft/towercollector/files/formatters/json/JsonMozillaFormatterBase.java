@@ -81,8 +81,7 @@ public abstract class JsonMozillaFormatterBase extends JsonFormatterBase {
             if (m.getNetworkType() == NetworkGroup.Cdma || m.getMcc() == Measurement.UNKNOWN_CID)
                 continue; // Not supported
 
-            String locationHashCode = HashUtils.toSha1(m.getLatitude(), m.getLongitude(), m.getGpsAccuracy(),
-                    m.getGpsSpeed(), m.getGpsBearing(), m.getGpsAltitude());
+            String locationHashCode = HashUtils.toSha1(m);
             if (!groups.containsKey(locationHashCode)) {
                 groups.put(locationHashCode, new ArrayList<Measurement>());
             }

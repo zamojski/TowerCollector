@@ -96,8 +96,7 @@ public class MeasurementsDatabase {
                     resultSb.append("\tcell found=").append(localResult);
                 }
                 // calculate hashcode
-                String locationHashCode = HashUtils.toSha1(measurement.getLatitude(), measurement.getLongitude(), measurement.getGpsAccuracy(),
-                        measurement.getGpsSpeed(), measurement.getGpsBearing(), measurement.getGpsAltitude());
+                String locationHashCode = HashUtils.toSha1(measurement);
                 // insert location
                 {
                     ContentValues values = new ContentValues();
