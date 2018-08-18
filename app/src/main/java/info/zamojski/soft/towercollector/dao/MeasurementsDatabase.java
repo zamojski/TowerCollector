@@ -206,6 +206,25 @@ public class MeasurementsDatabase {
         return lastMeasurement;
     }
 
+    public List<Measurement> getLastMeasurements() {
+        Measurement lastMeasurement = getLastMeasurement();
+        if (lastMeasurement == null) {
+            Timber.d("getLastMeasurements(): No measurements in DB");
+            return new ArrayList<>(0);
+        }
+        String locationHashCode = HashUtils.toSha1(lastMeasurement);
+        String selection = LocationsTable.TABLE_NAME + "." + LocationsTable.COLUMN_HASHCODE + " = ?"
+                + " AND " + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_NEIGHBORING + " = ?";
+        String[] selectionArgs = new String[]{locationHashCode, String.valueOf(0)};
+        List<Measurement> lastMeasurements = getMeasurements(selection, selectionArgs, null, null,
+                MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " DESC, "
+                        + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_NEIGHBORING + " DESC, "
+                        + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_ROW_ID + " DESC",
+                null);
+        Timber.d("getLastMeasurements(): Last %s main measurements from DB for measurement %s", lastMeasurements.size(), lastMeasurement.getRowId());
+        return lastMeasurements;
+    }
+
     public CellsCount getLastCellsCount() {
         // Try to get from cache then read from DB (copy to local to avoid null if invalidated in the meantime)
         CellsCount lastCellsCountCacheCopy = this.lastCellsCountCache;

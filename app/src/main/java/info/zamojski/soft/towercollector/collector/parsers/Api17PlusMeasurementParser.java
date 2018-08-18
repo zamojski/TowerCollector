@@ -71,10 +71,27 @@ public class Api17PlusMeasurementParser extends MeasurementParser {
         Measurement measurement = new Measurement();
         // fix time if incorrect
         fixMeasurementTimestamp(measurement, location);
+        // remove duplicated cells
+        removeDuplicatedCells(cells);
         // if the same cell check distance condition, otherwise accept
         if (lastSavedLocation != null && !conditionsValidator.isMinDistanceSatisfied(lastSavedLocation, location, minDistance)) {
-            Timber.d("parse(): Distance condition not achieved");
-            return ParseResult.DistanceNotAchieved;
+            List<Measurement> lastMeasurements = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getLastMeasurements();
+            List<String> lastMeasurementsCellKeys = new ArrayList<>();
+            for (Measurement lastMeasurement : lastMeasurements) {
+                lastMeasurementsCellKeys.add(cellIdentityConverter.createCellKey(lastMeasurement));
+            }
+            int mainCellsChanged = 0;
+            for (CellInfo cell : cells) {
+                if (cell.isRegistered() && !lastMeasurementsCellKeys.contains(cellIdentityConverter.createCellKey(cell))) {
+                    mainCellsChanged++;
+                }
+            }
+            if (mainCellsChanged > 0) {
+                Timber.d("parse(): Distance condition not achieved but %s main cells changed", mainCellsChanged);
+            } else {
+                Timber.d("parse(): Distance condition not achieved");
+                return ParseResult.DistanceNotAchieved;
+            }
         }
         // check if location has been obtained recently
         if (!locationValidator.isUpToDate(timestamp, System.currentTimeMillis())) {
@@ -84,8 +101,6 @@ public class Api17PlusMeasurementParser extends MeasurementParser {
         Timber.d("parse(): Destination and time conditions achieved");
         // update measurement with location
         updateMeasurementWithLocation(measurement, location);
-        // remove duplicated cells
-        removeDuplicatedCells(cells);
         // create a list of measurements to save
         List<Measurement> measurementsToSave = new ArrayList<Measurement>();
         // loop through all cells
