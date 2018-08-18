@@ -30,9 +30,7 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 
-
 public class MeasurementsDatabase {
-
 
     public static final String DATABASE_FILE_NAME = "measurements.db";
     public static final int DATABASE_FILE_VERSION = 11;
@@ -177,10 +175,6 @@ public class MeasurementsDatabase {
             db.endTransaction();
         }
         return overallResult;
-    }
-
-    public boolean insertMeasurement(Measurement measurement) {
-        return insertMeasurements(new Measurement[]{measurement});
     }
 
     public Measurement getFirstMeasurement() {
@@ -435,7 +429,7 @@ public class MeasurementsDatabase {
             measurement.setLac(cursor.getInt(lacColumnIndex));
             measurement.setCid(cursor.getInt(cidColumnIndex));
             measurement.setNetworkType(NetworkGroup.fromValue(cursor.getInt(netTypeColumnIndex)));
-            measurement.setNeighboring(cursor.getInt(neighboringColumnIndex) == 1 ? true : false);
+            measurement.setNeighboring(cursor.getInt(neighboringColumnIndex) == 1);
             measurement.setPsc(cursor.getInt(pscColumnIndex));
             measurement.setTa(cursor.getInt(taColumnIndex));
             measurement.setAsu(cursor.getInt(asuColumnIndex));

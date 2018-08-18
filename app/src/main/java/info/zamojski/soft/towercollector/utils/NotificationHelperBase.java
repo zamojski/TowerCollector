@@ -4,15 +4,7 @@
 
 package info.zamojski.soft.towercollector.utils;
 
-import android.content.Context;
 import android.os.Build;
-import android.view.View;
-import android.widget.Toast;
-
-import info.zamojski.soft.towercollector.CollectorService;
-import info.zamojski.soft.towercollector.R;
-import info.zamojski.soft.towercollector.UploaderService;
-import info.zamojski.soft.towercollector.tasks.ExportFileAsyncTask;
 
 public class NotificationHelperBase {
 

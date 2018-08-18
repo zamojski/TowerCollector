@@ -22,7 +22,6 @@ import timber.log.Timber;
 
 public class ExternalBroadcastSender implements Runnable {
 
-
     private final String measurementsCollectedAction = "info.zamojski.soft.towercollector.MEASUREMENTS_COLLECTED";
     private final String measurementsExtraKey = "measurements";
 
