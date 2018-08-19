@@ -10,28 +10,32 @@ import android.content.Context;
 import android.os.Environment;
 import android.widget.Toast;
 
+import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.utils.FileUtils;
 import timber.log.Timber;
 
 public class DatabaseOperations {
 
+    private static final String OPERATION_IMPORT = "import";
+    private static final String OPERATION_EXPORT = "export";
+
     public static void importDatabase(Context context) {
         File srcFile = getDatabaseImportPath();
         File dstFile = getDatabasePath(context);
-        copyDatabase(context, srcFile, dstFile, "import");
+        copyDatabase(context, srcFile, dstFile, OPERATION_IMPORT);
     }
 
     public static void exportDatabase(Context context) {
         File srcFile = getDatabasePath(context);
         File dstFile = getDatabaseExportPath();
-        copyDatabase(context, srcFile, dstFile, "export");
+        copyDatabase(context, srcFile, dstFile, OPERATION_EXPORT);
     }
 
     public static void exportDatabaseUnique(Context context) {
         File srcFile = getDatabasePath(context);
         File dstFile = getDatabaseExportUniquePath();
-        copyDatabase(context, srcFile, dstFile, "export");
+        copyDatabase(context, srcFile, dstFile, OPERATION_EXPORT);
     }
 
     private static void copyDatabase(Context context, File srcFile, File dstFile, String operation) {
@@ -42,15 +46,19 @@ public class DatabaseOperations {
                 if (externalStorage.canWrite()) {
                     FileUtils.copyFile(srcFile, dstFile);
                     Timber.d("copyDatabase(): Database " + operation + "ed");
-                    Toast.makeText(context, "Database " + operation + "ed", Toast.LENGTH_LONG).show();
+                    int operationMessage = operation.equals(OPERATION_IMPORT) ? R.string.database_import_message : R.string.database_export_message;
+                    Toast.makeText(context, operationMessage, Toast.LENGTH_LONG).show();
                 } else {
                     Timber.d("copyDatabase(): External storage is read only");
+                    Toast.makeText(context, R.string.export_toast_storage_read_only, Toast.LENGTH_LONG).show();
                 }
             } else {
                 Timber.d("copyDatabase(): External storage is not available");
+                Toast.makeText(context, R.string.export_toast_no_storage, Toast.LENGTH_LONG).show();
             }
         } catch (Exception ex) {
             Timber.e(ex, "copyDatabase(): Cannot " + operation + " database");
+            Toast.makeText(context, R.string.database_import_export_failed_message, Toast.LENGTH_LONG).show();
         }
     }
 

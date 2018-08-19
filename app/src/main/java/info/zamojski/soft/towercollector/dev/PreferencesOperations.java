@@ -4,6 +4,7 @@
 
 package info.zamojski.soft.towercollector.dev;
 
+import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.utils.FileUtils;
 import timber.log.Timber;
 
@@ -30,22 +31,22 @@ public class PreferencesOperations {
     public static void importPreferences(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         File srcFile = getPreferencesExportPath();
-        boolean loaded = loadSharedPreferencesFromFile(prefs, srcFile);
+        boolean loaded = loadSharedPreferencesFromFile(context, prefs, srcFile);
         if (loaded) {
-            Toast.makeText(context, "Preferences imported", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.preferences_import_message, Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(context, "Failed to import preferences", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.preferences_import_export_failed_message, Toast.LENGTH_LONG).show();
         }
     }
 
     public static void exportPreferences(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         File dstFile = getPreferencesExportPath();
-        boolean saved = saveSharedPreferencesToFile(prefs, dstFile);
+        boolean saved = saveSharedPreferencesToFile(context, prefs, dstFile);
         if (saved) {
-            Toast.makeText(context, "Preferences exported", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.preferences_export_message, Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(context, "Failed to export preferences", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.preferences_import_export_failed_message, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -62,7 +63,7 @@ public class PreferencesOperations {
         }
     }
 
-    private static boolean saveSharedPreferencesToFile(SharedPreferences prefs, File dst) {
+    private static boolean saveSharedPreferencesToFile(Context context, SharedPreferences prefs, File dst) {
         boolean res = false;
         ObjectOutputStream output = null;
         try {
@@ -76,8 +77,10 @@ public class PreferencesOperations {
                     Timber.d("saveSharedPreferencesToFile(): Preferences exported");
                 }
                 Timber.d("saveSharedPreferencesToFile(): External storage is read only");
+                Toast.makeText(context, R.string.export_toast_storage_read_only, Toast.LENGTH_LONG).show();
             }
             Timber.d("saveSharedPreferencesToFile(): External storage is not available");
+            Toast.makeText(context, R.string.export_toast_no_storage, Toast.LENGTH_LONG).show();
         } catch (Exception ex) {
             Timber.e(ex, "saveSharedPreferencesToFile(): Cannot export preferences");
         } finally {
@@ -93,7 +96,7 @@ public class PreferencesOperations {
         return res;
     }
 
-    private static boolean loadSharedPreferencesFromFile(SharedPreferences prefs, File src) {
+    private static boolean loadSharedPreferencesFromFile(Context context, SharedPreferences prefs, File src) {
         boolean res = false;
         ObjectInputStream input = null;
         try {
@@ -127,8 +130,10 @@ public class PreferencesOperations {
                     res = true;
                 }
                 Timber.d("saveSharedPreferencesToFile(): External storage is read only");
+                Toast.makeText(context, R.string.export_toast_storage_read_only, Toast.LENGTH_LONG).show();
             }
             Timber.d("saveSharedPreferencesToFile(): External storage is not available");
+            Toast.makeText(context, R.string.export_toast_no_storage, Toast.LENGTH_LONG).show();
         } catch (Exception ex) {
             Timber.e(ex, "loadSharedPreferencesFromFile(): Cannot import preferences");
         } finally {
