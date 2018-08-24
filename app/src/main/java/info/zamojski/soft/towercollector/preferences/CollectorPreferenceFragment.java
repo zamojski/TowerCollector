@@ -14,6 +14,7 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
 
 
@@ -23,7 +24,6 @@ import android.widget.Toast;
 public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
 
     private ListPreference collectorKeepScreenOnPreference;
-    private SwitchPreference hideCollectorNotificationPreference;
     private ListPreference collectorLowBatteryActionPreference;
 
     @Override
@@ -32,19 +32,22 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
         addPreferencesFromResource(R.xml.preferences_collector);
 
         collectorKeepScreenOnPreference = (ListPreference) findPreference(getString(R.string.preferences_collector_keep_screen_on_mode_key));
-        hideCollectorNotificationPreference = (SwitchPreference) findPreference(getString(R.string.preferences_hide_collector_notification_key));
         collectorLowBatteryActionPreference = (ListPreference) findPreference(getString(R.string.preferences_collector_low_battery_action_key));
 
         setupNeighboringCellsDialog();
         setupCollectorKeepScreenOnDialog();
         setupNotifyMeasurementsCollectedDialog();
 
-        setupHideCollectorNotificationEditable();
+        setupHideCollectorNotificationAvailability();
     }
 
-    private void setupHideCollectorNotificationEditable() {
-        boolean editable = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN);
-        hideCollectorNotificationPreference.setEnabled(editable);
+    private void setupHideCollectorNotificationAvailability() {
+        boolean available = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN && Build.VERSION.SDK_INT < Build.VERSION_CODES.O);
+        if (!available) {
+            PreferenceCategory settingsCategoryPreference = (PreferenceCategory) findPreference(getString(R.string.preferences_general_category_settings_key));
+            SwitchPreference hideCollectorNotificationPreference = (SwitchPreference) findPreference(getString(R.string.preferences_hide_collector_notification_key));
+            settingsCategoryPreference.removePreference(hideCollectorNotificationPreference);
+        }
     }
 
     @Override

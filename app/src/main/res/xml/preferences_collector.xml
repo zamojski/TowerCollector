@@ -4,7 +4,9 @@
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="@string/preferences_category_settings_title">
+    <PreferenceCategory
+        android:key="@string/preferences_general_category_settings_key"
+        android:title="@string/preferences_category_settings_title">
         <SwitchPreference
             android:defaultValue="@bool/preferences_gps_optimizations_enabled_default_value"
             android:key="@string/preferences_gps_optimizations_enabled_key"

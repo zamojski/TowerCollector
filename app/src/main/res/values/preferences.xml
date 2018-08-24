@@ -101,7 +101,7 @@
     <string name="preferences_about_collector_keep_screen_on_summary">Information how this option works and when to use it.</string>
     <string name="preferences_hide_collector_notification_title">Hide notification</string>
     <string name="preferences_hide_collector_notification_on_summary">Notification will be hidden from lock screen and status bar unless expanded. Behavior may vary between devices.</string>
-    <string name="preferences_hide_collector_notification_off_summary">Notification will be visible all the time. Android 4.1 or newer is required to change.</string>
+    <string name="preferences_hide_collector_notification_off_summary">Notification will be visible all the time.</string>
     <string name="preferences_start_collector_at_boot_title">Start collecting at device boot</string>
     <string name="preferences_start_collector_at_boot_on_summary">Collecting will be automatically started at device boot. The app must be installed on internal memory to make it working.</string>
     <string name="preferences_start_collector_at_boot_off_summary">The app will not start collecting at device boot. The app can be installed anywhere.</string>
