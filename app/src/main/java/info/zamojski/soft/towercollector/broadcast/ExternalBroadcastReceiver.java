@@ -12,13 +12,13 @@ import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.UploaderService;
 import info.zamojski.soft.towercollector.analytics.IntentSource;
 import info.zamojski.soft.towercollector.events.CollectorStartedEvent;
-import info.zamojski.soft.towercollector.utils.ApkUtils;
 import info.zamojski.soft.towercollector.utils.BackgroundTaskHelper;
 
 import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
@@ -61,7 +61,7 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         Timber.d("startCollectorService(): Starting service from broadcast");
         Intent intent = getCollectorIntent(context);
 
-        ApkUtils.startServiceSafely(context, intent);
+        ContextCompat.startForegroundService(context, intent);
         EventBus.getDefault().post(new CollectorStartedEvent(intent));
         MyApplication.getAnalytics().sendCollectorStarted(source);
     }
@@ -79,7 +79,7 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         if (!canStartBackgroundService(context))
             return;
         Timber.d("startCollectorService(): Starting service from broadcast");
-        ApkUtils.startServiceSafely(context, getUploaderIntent(context));
+        ContextCompat.startForegroundService(context, getUploaderIntent(context));
         MyApplication.getAnalytics().sendUploadStarted(IntentSource.Application);
     }
 

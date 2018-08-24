@@ -4,22 +4,19 @@
 
 package info.zamojski.soft.towercollector.utils;
 
-import org.acra.ACRA;
-
-import info.zamojski.soft.towercollector.MyApplication;
-import info.zamojski.soft.towercollector.R;
-import timber.log.Timber;
-
-import android.annotation.TargetApi;
 import android.app.ActivityManager;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 
+import org.acra.ACRA;
+
 import java.util.List;
 
+import info.zamojski.soft.towercollector.MyApplication;
+import info.zamojski.soft.towercollector.R;
+import timber.log.Timber;
 
 public class ApkUtils {
 
@@ -83,14 +80,5 @@ public class ApkUtils {
             }
         }
         return false;
-    }
-
-    @TargetApi(Build.VERSION_CODES.O)
-    public static void startServiceSafely(Context context, Intent intent) {
-        if (MobileUtils.isApi26VersionCompatible()) {
-            context.startForegroundService(intent);
-        } else {
-            context.startService(intent);
-        }
     }
 }

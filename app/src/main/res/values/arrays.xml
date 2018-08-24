@@ -28,7 +28,7 @@
         <item>@string/preferences_keep_screen_on_mode_entries_value_dim</item>
         <item>@string/preferences_keep_screen_on_mode_entries_value_full</item>
     </string-array>
-    <string-array name="preferences_collector_low_battery_action_entries_labels" translatable="false">
+    <string-array name="preferences_collector_low_battery_action_entries_labels">
         <item>Nothing</item>
         <item>Stop collecting</item>
     </string-array>

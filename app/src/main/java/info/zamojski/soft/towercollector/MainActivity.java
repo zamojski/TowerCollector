@@ -25,6 +25,7 @@ import android.provider.Settings;
 import android.support.annotation.StringRes;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.TabLayout.Tab;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -663,7 +664,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         final String keepScreenOnMode = MyApplication.getPreferencesProvider().getCollectorKeepScreenOnMode();
         intent.putExtra(CollectorService.INTENT_KEY_KEEP_SCREEN_ON_MODE, keepScreenOnMode);
         // start service
-        ApkUtils.startServiceSafely(this, intent);
+        ContextCompat.startForegroundService(this, intent);
         EventBus.getDefault().post(new CollectorStartedEvent(intent));
         MyApplication.getAnalytics().sendCollectorStarted(IntentSource.User);
     }
@@ -748,7 +749,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         if (!ApkUtils.isServiceRunning(UploaderService.SERVICE_FULL_NAME)) {
             Intent intent = new Intent(MainActivity.this, UploaderService.class);
             intent.putExtra(UploaderService.INTENT_KEY_APIKEY, apiKey);
-            ApkUtils.startServiceSafely(this, intent);
+            ContextCompat.startForegroundService(this, intent);
             MyApplication.getAnalytics().sendUploadStarted(IntentSource.User);
         } else
             Toast.makeText(getApplication(), R.string.uploader_already_running, Toast.LENGTH_LONG).show();
@@ -854,7 +855,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         try {
             startActivity(createDataRoamingSettingsIntent());
         } catch (ActivityNotFoundException ex) {
-            Timber.w("askAndSetGpsEnabled(): Could not open Settings to change network type", ex);
+            Timber.w(ex, "askAndSetGpsEnabled(): Could not open Settings to change network type");
             MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
             AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).setMessage(R.string.dialog_could_not_open_network_type_settings).setPositiveButton(R.string.dialog_ok, null).create();
