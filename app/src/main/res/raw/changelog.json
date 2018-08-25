@@ -1,6 +1,19 @@
 {
   "Entries": [
     {
+      "VersionCode": 1220027,
+      "Title": "Changes in version 1.22.0",
+      "Description": "Do you want to see the app in your language? Help me with <a href=\"http://i18n.zamojski.info/\">translations</a>! some languages are partially done but require volunteers - apply on the website or send me an email to start.",
+      "Messages": [
+        "Add option to stop collector when battery is getting low.",
+        "Add collecting measurements when at least one of main cell changes even without move.",
+        "Remove option to hide Collector notification on Oreo and newer because Android automatically increases channel importance to DEFAULT level for foreground services. <a href=\"https://zamojski.info/FAQ,Tower-Collector.html#OreoNotificationSound\">See more</a>.",
+        "Fix exception when logging to file.",
+        "Improve compatibility with Android P.",
+        "Updated translations and new language - Ukrainian."
+      ]
+    },
+    {
       "VersionCode": 1210026,
       "Title": "Changes in version 1.21.0",
       "Description": "Do you want to see the app in your language? Help me with <a href=\"http://i18n.zamojski.info/\">translations</a>! Catalan, Dutch, French, Hungarian, Spanish, Swedish are partially done but require volunteers - apply on the website or send me an email to start.",
@@ -38,14 +51,6 @@
       "Messages": [
         "Added German, Polish and Russian translations. Thank you for all the effort :)",
         "Improved signal strength calculation for API 1 on Huawei devices."
-      ]
-    },
-    {
-      "VersionCode": 1170021,
-      "Title": "Changes in version 1.17.0",
-      "Description": "Join Tower Collector community on <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> or <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> to get help and share your ideas :)",
-      "Messages": [
-        "Improved error handling."
       ]
     }
   ]
