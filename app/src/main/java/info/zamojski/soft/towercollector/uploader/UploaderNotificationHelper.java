@@ -101,7 +101,7 @@ public class UploaderNotificationHelper extends NotificationHelperBase {
         NotificationChannel channel = new NotificationChannel(
                 UPLOADER_NOTIFICATION_CHANNEL_ID,
                 context.getString(R.string.uploader_notification_channel_name),
-                NotificationManager.IMPORTANCE_DEFAULT);
+                NotificationManager.IMPORTANCE_LOW); // Android will automatically promote to DEFAULT but in case they change their mind I leave it here
         notificationManager.createNotificationChannel(channel);
     }
 }
