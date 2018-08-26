@@ -48,6 +48,9 @@
     <string name="preferences_tracking_enabled_off_summary">Estatísticas de uso anônimas estão desabilitadas. Veja abaixo o que pode ser enviado se habilitada.</string>
     <string name="preferences_about_tracking_title">Sobre estatísticas de uso</string>
     <string name="preferences_about_tracking_summary">Informações sobre o quê e por quê está sendo compartilhado.</string>
+    <string name="preferences_error_reporting_silent_title">Enviar automaticamente relatórios de erros</string>
+    <string name="preferences_error_reporting_silent_on_summary">O app irá enviar automaticamente relatórios de erros que ajudam a resolver o problema.</string>
+    <string name="preferences_error_reporting_silent_off_summary">O app irá te pedir pela confirmação antes de enviar relatórios de erros que ajudam a resolver o problema.</string>
     <string name="preferences_update_check_enabled_title">Atualização automática</string>
     <string name="preferences_update_check_enabled_on_summary">O aplicativo te notificará quando uma nova versão estiver disponível.</string>
     <string name="preferences_update_check_enabled_off_summary">Verificações periódicas por novas versões disponíveis estão desabilitadas.</string>
@@ -98,8 +101,18 @@
     <string name="preferences_about_collector_keep_screen_on_summary">Informação sobre como esta opção funciona e quando usá-la.</string>
     <string name="preferences_hide_collector_notification_title">Ocultar notificação</string>
     <string name="preferences_hide_collector_notification_on_summary">Notificações ficarão ocultas da tela de bloqueio e da barra de status a não ser que sejam expandidas. O comportamento pode variar entre dispositivos.</string>
-    <string name="preferences_hide_collector_notification_off_summary">A notificação ficará visível todo o tempo. É necessário ter Android 4.1 ou mais novo para alterar.</string>
+    <string name="preferences_hide_collector_notification_off_summary">A notificação ficará visível todo o tempo.</string>
     <string name="preferences_start_collector_at_boot_title">Inicia a coleta no boot do dispositivo.</string>
     <string name="preferences_start_collector_at_boot_on_summary">A coleta será iniciada automaticamente no boot do dispositivo. O aplicativo deve estar instalado na memória interna para que isso funcione.</string>
     <string name="preferences_start_collector_at_boot_off_summary">O aplicativo não iniciará a coleta no boot do dispositivo. O aplicativo pode estar instalado em qualquer lugar.</string>
+    <string name="preferences_collector_low_battery_action_title">Ação quando a bateria está baixa</string>
+    <string name="preferences_collector_low_battery_action_summary">Define o que acontece quando o nível de bateria está baixo e o coletor está rodando.</string>
+    <string name="preferences_import_database_title">Importar banco de dados</string>
+    <string name="preferences_import_database_summary">Importa o banco de dados interno do app a partir do arquivo measurements.db localizado na pasta do TowerCollector.</string>
+    <string name="preferences_export_database_title">Exportar banco de dados</string>
+    <string name="preferences_export_database_summary">Exporta o banco de dados interno do app para o arquivo measurements.db localizado na pasta do TowerCollector.</string>
+    <string name="preferences_import_preferences_title">Importar preferências</string>
+    <string name="preferences_import_preferences_summary">Importa as preferências internas do app a partir do arquivo preferences.xml localizado na pasta do TowerCollector.</string>
+    <string name="preferences_export_preferences_title">Exportar preferências</string>
+    <string name="preferences_export_preferences_summary">Exporta as preferências internas do app para o arquivo preferences.xml localizado na pasta do TowerCollector.</string>
 </resources>

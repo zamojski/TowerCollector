@@ -5,7 +5,7 @@
 <p>O Tower Collector pode notificar outros apps instalados no sistema ao fazer o broadcast de <i>intents</i>. Para mais informações de como escutar e consumir estas notificações consulte a ajuda daquele app.</p>
 <h3>Evento de medições coletadas</h3>
 <p>O coletor pode enviar um <i>intent</i> toda vez que um novo conjunto de medições é coletado se assim estiver configurado em Preferências. O conteúdo da notificação será uma estrutura JSON com coisas comuns, como horário e GPS. Nomes e valores dos campos são mapeados da mesma forma que no arquivo CSV exportado.<br />
-A lista de campos usados pelas células depende do tipo (net_type). Valores não suportados ou faltantes serão setados com <code>null</code>.</p>
+A lista de campos usados pelas células depende do tipo (net_type). Valores não suportados ou faltantes serão definidos com <code>null</code>.</p>
 <ul>
     <li>GSM - mcc, mnc, lac, cell_id, asu, dbm</li>
     <li>UMTS - mcc, mnc, lac, cell_id, psc, asu, dbm</li>

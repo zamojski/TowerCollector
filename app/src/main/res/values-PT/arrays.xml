@@ -12,6 +12,10 @@
         <item>CSV para OpenCellID.org</item>
         <item>JSON para Mozilla Location Services</item>
     </string-array>
+    <string-array name="preferences_collector_low_battery_action_entries_labels">
+        <item>Nada</item>
+        <item>Parar a coleta</item>
+    </string-array>
     <string-array name="preferences_app_theme_mode_entries_labels">
         <item>Escuro</item>
         <item>Claro</item>

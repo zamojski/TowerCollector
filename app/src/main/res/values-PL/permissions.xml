@@ -8,6 +8,9 @@
     <string name="permission_export_rationale_message">Eksport próbek do pliku wymaga przyznania uprawnień dostępu do pamięci</string>
     <string name="permission_export_denied_message">Anulowano eksport próbek z powodu braku uprawnień</string>
     <string name="permission_export_never_ask_again_message">Eksport próbek jest niemożliwy z powodu braku uprawnień dostępu do pamięci</string>
+    <string name="permission_storage_rationale_message">Dostęp do pamięci musi zostać przyznany by używać tej funkcji</string>
+    <string name="permission_storage_denied_message">Anulowano operację z powodu braku uprawnień</string>
+    <string name="permission_storage_never_ask_again_message">Funkcja jest niedostępna z powodu braku uprawnień dostępu do pamięci</string>
     <string name="permission_logging_denied_temporarily_message">Logowanie do pliku tymczasowo wyłączone z powodu braku uprawnień do pamięci</string>
     <string name="permission_collector_rationale_message">Zbieranie próbek wymaga przyznania uprawnień dostępu do lokalizacji i telefonu</string>
     <string name="permission_collector_denied_message">Anulowano zbieranie próbek z powodu braku uprawnień</string>

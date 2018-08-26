@@ -27,6 +27,8 @@
     <string name="dialog_upload">Prześlij</string>
     <string name="dialog_keep">Zachowaj</string>
     <string name="dialog_delete">Usuń</string>
+    <string name="dialog_send">Wyślij</string>
+    <string name="dialog_send_comment">Wyślij komentarz</string>
     <string name="dialog_dont_show_again">Nie pokazuj tego ponownie</string>
     <string name="dialog_proceed">Kontynuuj</string>
     <string name="dialog_permission_settings">Ustawienia</string>
@@ -115,6 +117,10 @@
     <string name="uploader_server_error">Błąd serwera</string>
     <string name="uploader_server_error_description">Serwer zwrócił informację o błędzie wewnętrznym, co może oznaczać iż jest przeciążony, tymczasowo niedostępny lub przeprowadzane są prace administracyjne. Spróbuj ponownie później. Jeżeli problem będzie występował przez dłuższy czas, to proszę o kontakt.</string>
     <string name="other_notification_channel_name">Pozostałe</string>
+    <string name="error_reporting_notification_channel_name">Raportowanie błędów</string>
+    <string name="error_reporting_notification_title">Wystąpił niespodziewany błąd</string>
+    <string name="error_reporting_notification_text">Aplikacja przestała działać. Proszę prześlij raport błędu, aby pomóc w jego naprawie.</string>
+    <string name="error_reporting_notification_comment_prompt">Dodaj swój komentarz</string>
     <string name="export_toast_storage_read_only">Pamięć zewnętrzna jest dostępna tylko do odczytu.</string>
     <string name="export_toast_no_storage">Pamięć zewnętrzna nie jest dostępna.</string>
     <string name="export_dialog_format_selection_title">Wybierz format:</string>
@@ -185,4 +191,12 @@
     <string name="status_no_gps_location">brak lokacji</string>
     <string name="invalid_system_time">Data/czas w systemie jest nieprawidłowy</string>
     <string name="web_browser_missing">Zainstaluj przeglądarkę internetową, aby otworzyć stronę</string>
+    <string name="unsafe_operation_warning_title">Niebezpieczna operacja</string>
+    <string name="unsafe_operation_warning_message">Ta opcja może uszkodzić konfigurację aplikacji i spowodować jej awarię. W takim przypadku musisz wyczyścić dane aplikacji w ustawieniach Androida. Musisz całkowicie zamknąć aplikację, a następnie otworzyć ją ponownie, aby zobaczyć zmiany!\n\nUżywasz na własne ryzyko!</string>
+    <string name="database_import_message">Baza danych zaimportowana</string>
+    <string name="database_export_message">Baza danych wyeksportowana</string>
+    <string name="database_import_export_failed_message">Operacja na bazie danych nie powiodła się</string>
+    <string name="preferences_import_message">Ustawienia zaimportowane</string>
+    <string name="preferences_export_message">Ustawienia wyeksportowane</string>
+    <string name="preferences_import_export_failed_message">Operacja na ustawieniach nie powiodła się</string>
 </resources>

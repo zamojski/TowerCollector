@@ -48,6 +48,9 @@
     <string name="preferences_tracking_enabled_off_summary">Anonyme Benutzungsstatistiken sind deaktiviert. Siehe weiter unten was bei aktivierten Statistiken gesendet würde.</string>
     <string name="preferences_about_tracking_title">Über Benutzungsstatistiken</string>
     <string name="preferences_about_tracking_summary">Informationen darüber was gesendet wird und warum.</string>
+    <string name="preferences_error_reporting_silent_title">Fehlerberichte automatisch senden</string>
+    <string name="preferences_error_reporting_silent_on_summary">Die App wird automatisch Fehlerberichte senden, die bei der Fehlerbehebung helfen.</string>
+    <string name="preferences_error_reporting_silent_off_summary">Die App wird Sie um Bestätigung für das Senden eines Fehlerberichts bitten, der helfen kann das Problem zu lösen.</string>
     <string name="preferences_update_check_enabled_title">Automatische Suche nach Updates</string>
     <string name="preferences_update_check_enabled_on_summary">Diese App wird Sie benachrichtigen wenn eine neue Version verfügbar ist.</string>
     <string name="preferences_update_check_enabled_off_summary">Periodische Prüfungen auf neue Versionen sind deaktiviert.</string>
@@ -98,8 +101,18 @@
     <string name="preferences_about_collector_keep_screen_on_summary">Informationen darüber was diese Option bewirkt und wann sie am besten eingesetzt wird.</string>
     <string name="preferences_hide_collector_notification_title">Benachrichtigungen verbergen</string>
     <string name="preferences_hide_collector_notification_on_summary">Benachrichtigungen werden nicht am Sperrbildschirm und in der Statusbar angezeigt wenn diese nicht aufgezogen ist. Das Verhalten kann sich zwischen Geräten unterscheiden.</string>
-    <string name="preferences_hide_collector_notification_off_summary">Benachrichtigungen sind immer sichtbar. Android 4.1 wird benötigt um dies zu ändern.</string>
+    <string name="preferences_hide_collector_notification_off_summary">Benachrichtigungen sind immer sichtbar.</string>
     <string name="preferences_start_collector_at_boot_title">Erfassung direkt nach Bootvorgang starten</string>
     <string name="preferences_start_collector_at_boot_on_summary">Die Erfassung wird direkt nach dem Hochfahren des Geräts gestartet. Dazu muss die App im internen Speicher installiert sein.</string>
     <string name="preferences_start_collector_at_boot_off_summary">Die App wird nach dem Hochfahren nicht automatisch mit der Erfassung starten. Deswegen kann sie überall installiert werden.</string>
+    <string name="preferences_collector_low_battery_action_title">Aktion bei niedrigem Akkustand</string>
+    <string name="preferences_collector_low_battery_action_summary">Legt fest was bei einer laufenden Erfassung gemacht werden soll wenn der Akkustand niedrig wird.</string>
+    <string name="preferences_import_database_title">Datenbank importieren</string>
+    <string name="preferences_import_database_summary">Importiert die App-interne Datenbank aus der Datei measurements.db aus dem TowerCollector-Verzeichnis.</string>
+    <string name="preferences_export_database_title">Datenbank exportieren</string>
+    <string name="preferences_export_database_summary">Exportiert die app-interne Datenbank in die Datei measurements.db in das TowerCollector-Verzeichnis.</string>
+    <string name="preferences_import_preferences_title">Einstellungen importieren</string>
+    <string name="preferences_import_preferences_summary">Importiert die app-internen Einstellungen aus der Datei preferences.xml aus dem TowerCollector-Verzeichnis.</string>
+    <string name="preferences_export_preferences_title">Einstellungen exportieren</string>
+    <string name="preferences_export_preferences_summary">Exportiert die app-internen Einstellungen in die Datei preferences.xml in das TowerCollector-Verzeichnis.</string>
 </resources>

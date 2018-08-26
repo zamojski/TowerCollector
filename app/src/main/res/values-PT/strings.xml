@@ -27,6 +27,8 @@
     <string name="dialog_upload">Upload</string>
     <string name="dialog_keep">Manter</string>
     <string name="dialog_delete">Apagar</string>
+    <string name="dialog_send">Enviar</string>
+    <string name="dialog_send_comment">Enviar comentário</string>
     <string name="dialog_dont_show_again">Não exiba isto novamente</string>
     <string name="dialog_proceed">Continuar</string>
     <string name="dialog_permission_settings">Configurações</string>
@@ -115,6 +117,10 @@
     <string name="uploader_server_error">Erro de servidor</string>
     <string name="uploader_server_error_description">O servidor retornou um erro interno que pode significar que ele está sobrecarregado, indisponível temporariamente ou fora para manutenção. Tente novamente mais tarde. Se o problema persistir por muito tempo, favor me informar.</string>
     <string name="other_notification_channel_name">Outro</string>
+    <string name="error_reporting_notification_channel_name">Reportar erro</string>
+    <string name="error_reporting_notification_title">Ocorreu um erro inexperado</string>
+    <string name="error_reporting_notification_text">O app travou. Favor enviar um relatório de erros para ajudar a resolver o problema.</string>
+    <string name="error_reporting_notification_comment_prompt">Adicione seu comentário</string>
     <string name="export_toast_storage_read_only">Armazenamento externo é somente leitura.</string>
     <string name="export_toast_no_storage">Armazenamento externo não encontrado.</string>
     <string name="export_dialog_format_selection_title">Selecione formato:</string>
@@ -185,4 +191,12 @@
     <string name="status_no_gps_location">sem posicionamento</string>
     <string name="invalid_system_time">Data/hora do sistema está inválido</string>
     <string name="web_browser_missing">Favor instalar navegador web para abrir a página</string>
+    <string name="unsafe_operation_warning_title">Operação não-segura</string>
+    <string name="unsafe_operation_warning_message">Esta opção pode quebrar as configurações do app e resultar em um travamento. Neste caso você terá de limpar os dados do app nas configurações do Android. Você precisará fechar completamente o app e reabrí-lo para visualizar as alterações!\n\nUse por sua conta e risco!</string>
+    <string name="database_import_message">Banco de dados importado</string>
+    <string name="database_export_message">Banco de dados exportado</string>
+    <string name="database_import_export_failed_message">Operação com banco de dados falhou</string>
+    <string name="preferences_import_message">As preferências foram importadas</string>
+    <string name="preferences_export_message">As preferências foram exportadas</string>
+    <string name="preferences_import_export_failed_message">Operação com as preferências falhou</string>
 </resources>

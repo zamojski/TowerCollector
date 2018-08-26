@@ -8,6 +8,9 @@
     <string name="permission_export_rationale_message">Permissão de armazenamento deve ser concedido para exportar medições para um arquivo</string>
     <string name="permission_export_denied_message">Cancelando exportação de medições devido a permissão negada</string>
     <string name="permission_export_never_ask_again_message">Exportação de medições está indisponível devido a permissão de armazenamento negada</string>
+    <string name="permission_storage_rationale_message">É preciso conceder permissões de armazenamento para usar a função</string>
+    <string name="permission_storage_denied_message">Cancelando a operação devido à permissão negada</string>
+    <string name="permission_storage_never_ask_again_message">A função não está disponível devido à permissão de armazenamento negada</string>
     <string name="permission_logging_denied_temporarily_message">Temporariamente desabilitando logging em arquivo devido a permissão de armazenamento negada</string>
     <string name="permission_collector_rationale_message">Permissões de localização e de telefone devem ser concedidas para coletar as medições</string>
     <string name="permission_collector_denied_message">Cancelando coleta de medições devido a permissões negadas</string>
