@@ -16,6 +16,7 @@ import java.util.List;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -64,7 +65,9 @@ public class PreferencesActivity extends AppCompatPreferenceActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                finish();
+                if (!super.onOptionsItemSelected(item)) {
+                    NavUtils.navigateUpFromSameTask(this);
+                }
                 return true;
         }
         return super.onOptionsItemSelected(item);
