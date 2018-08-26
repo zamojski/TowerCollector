@@ -1,0 +1,15 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+
+<p>Колектор сот виставляє завдання для запуску інших програм, які надсилають <i>intents</ i>, як Tasker, Automate або Llama. Вам потрібно використовувати тип <i> Broadcast </ i> для всіх дій, визначених нижче. Для отримання додаткової інформації про те, як зробити таку інтеграцію перевірити інструкцію програми<br />
+<i> Як у додатку, ви не можете розпочати більше одного завдання одночасно! </ i></p>
+<h3>Запуск колектора </h3>
+<p>Колектор буде запущений з використанням параметрів, визначених у Параметрах. Дія:</p>
+<code>info.zamojski.soft.towercollector.COLLECTOR_START</code>
+<h3>Зупинити колектор</h3>
+<p>Колекціонер буде зупинений негайно. Дія:</p>
+<code>info.zamojski.soft.towercollector.COLLECTOR_STOP</code>
+<h3>Почніть вивантажувати</h3>
+<p>Вивантаження буде розпочато за допомогою ключа API, визначеного в Налаштуваннях. Дія:</p>
+<code>info.zamojski.soft.towercollector.UPLOADER_START</code>
