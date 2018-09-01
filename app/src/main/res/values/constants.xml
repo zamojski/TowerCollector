@@ -19,6 +19,12 @@
     <string name="preferences_latest_developer_message_key" translatable="false">latest_developer_message</string>
     <integer name="preferences_latest_developer_message_default_value" translatable="false">1</integer>
 
+    <string name="preferences_upload_show_configurator_key" translatable="false">upload_show_configurator</string>
+    <bool name="preferences_upload_show_configurator_default_value" translatable="false">true</bool>
+
+    <string name="preferences_reupload_if_upload_fails_key" translatable="false">reupload_if_upload_fails</string>
+    <bool name="preferences_reupload_if_upload_fails_default_value" translatable="false">true</bool>
+
     <string name="preferences_opencellid_enabled_key" translatable="false">opencellid_enabled</string>
     <bool name="preferences_opencellid_enabled_default_value" translatable="false">true</bool>
 

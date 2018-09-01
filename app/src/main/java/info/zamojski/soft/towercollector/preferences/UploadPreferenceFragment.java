@@ -16,14 +16,14 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-public class OcidPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
+public class UploadPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
 
     private TrimmedEditTextPreference apiKeyPreference;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.preferences_ocid);
+        addPreferencesFromResource(R.xml.preferences_upload);
 
         apiKeyPreference = (TrimmedEditTextPreference) findPreference(getString(R.string.preferences_api_key_key));
 
@@ -31,6 +31,7 @@ public class OcidPreferenceFragment extends DialogEnabledPreferenceFragment impl
 
         setupApiKeyFormatDialog();
         setupAboutOpenCellIdDialog();
+        setupAboutMlsDialog();
     }
 
     @Override
@@ -73,5 +74,9 @@ public class OcidPreferenceFragment extends DialogEnabledPreferenceFragment impl
 
     private void setupAboutOpenCellIdDialog() {
         setupDialog(R.string.preferences_about_opencellid_project_key, R.string.info_about_opencellid_project_title, R.raw.info_about_opencellid_project_content);
+    }
+
+    private void setupAboutMlsDialog() {
+        setupDialog(R.string.preferences_about_mls_project_key, R.string.info_about_mls_project_title, R.raw.info_about_mls_project_content);
     }
 }

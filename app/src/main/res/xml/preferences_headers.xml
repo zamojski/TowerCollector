@@ -1,40 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- This Source Code Form is subject to the terms of the Mozilla Public
+<?xml version="1.0" encoding="utf-8"?><!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
 
     <header
-        android:fragment="info.zamojski.soft.towercollector.preferences.OcidPreferenceFragment"
-        android:summary="@string/preferences_header_api_summary"
-        android:title="@string/preferences_header_api_title"/>
-    <header
-        android:fragment="info.zamojski.soft.towercollector.preferences.MlsPreferenceFragment"
-        android:summary="@string/preferences_header_mls_summary"
-        android:title="@string/preferences_header_mls_title"/>
+        android:fragment="info.zamojski.soft.towercollector.preferences.UploadPreferenceFragment"
+        android:summary="@string/preferences_header_upload_summary"
+        android:title="@string/preferences_header_upload_title" />
     <header
         android:fragment="info.zamojski.soft.towercollector.preferences.DisplayPreferenceFragment"
         android:summary="@string/preferences_header_display_summary"
-        android:title="@string/preferences_header_display_title"/>
+        android:title="@string/preferences_header_display_title" />
     <header
         android:fragment="info.zamojski.soft.towercollector.preferences.GeneralPreferenceFragment"
         android:summary="@string/preferences_header_general_summary"
-        android:title="@string/preferences_header_general_title"/>
+        android:title="@string/preferences_header_general_title" />
     <header
         android:fragment="info.zamojski.soft.towercollector.preferences.CollectorPreferenceFragment"
         android:summary="@string/preferences_header_collector_summary"
-        android:title="@string/preferences_header_collector_title"/>
+        android:title="@string/preferences_header_collector_title" />
     <header
         android:fragment="info.zamojski.soft.towercollector.preferences.AdvancedPreferenceFragment"
         android:summary="@string/preferences_header_advanced_summary"
-        android:title="@string/preferences_header_advanced_title"/>
+        android:title="@string/preferences_header_advanced_title" />
     <header
         android:fragment="info.zamojski.soft.towercollector.preferences.InformationPreferenceFragment"
         android:summary="@string/preferences_header_information_summary"
-        android:title="@string/preferences_header_information_title"/>
+        android:title="@string/preferences_header_information_title" />
     <header
         android:fragment="info.zamojski.soft.towercollector.preferences.HelpPreferenceFragment"
         android:summary="@string/preferences_header_help_summary"
-        android:title="@string/preferences_header_help_title"/>
+        android:title="@string/preferences_header_help_title" />
 
 </preference-headers>

@@ -144,13 +144,39 @@ public class PreferencesProvider {
         integerPreferenceProvider.setPreference(R.string.preferences_main_window_recent_tab_key, tabIndex);
     }
 
+    public boolean getShowConfiguratorBeforeUpload() {
+        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_upload_show_configurator_key, R.bool.preferences_upload_show_configurator_default_value);
+        return value;
+    }
+
+    public void setShowConfiguratorBeforeUpload(boolean value) {
+        booleanPreferenceProvider.setPreference(R.string.preferences_upload_show_configurator_key, value);
+    }
+
     public boolean isOpenCellIdUploadEnabled() {
         boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_opencellid_enabled_key, R.bool.preferences_opencellid_enabled_default_value);
         return value;
     }
 
+    public void setOpenCellIdUploadEnabled(boolean value) {
+        booleanPreferenceProvider.setPreference(R.string.preferences_opencellid_enabled_key, value);
+    }
+
     public boolean isMlsUploadEnabled() {
         boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_mls_enabled_key, R.bool.preferences_mls_enabled_default_value);
         return value;
+    }
+
+    public void setMlsUploadEnabled(boolean value) {
+        booleanPreferenceProvider.setPreference(R.string.preferences_mls_enabled_key, value);
+    }
+
+    public boolean isReuploadIfUploadFailsEnabled() {
+        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_reupload_if_upload_fails_key, R.bool.preferences_reupload_if_upload_fails_default_value);
+        return value;
+    }
+
+    public void setReuploadIfUploadFailsEnabled(boolean value) {
+        booleanPreferenceProvider.setPreference(R.string.preferences_reupload_if_upload_fails_key, value);
     }
 }
