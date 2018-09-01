@@ -15,6 +15,7 @@ import android.content.ServiceConnection;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources.NotFoundException;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.provider.Settings;
 import android.support.annotation.StringRes;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.TabLayout.Tab;
 import android.support.v4.view.ViewPager;
@@ -68,6 +70,7 @@ import info.zamojski.soft.towercollector.model.UpdateInfo;
 import info.zamojski.soft.towercollector.model.UpdateInfo.DownloadLink;
 import info.zamojski.soft.towercollector.providers.ChangelogProvider;
 import info.zamojski.soft.towercollector.providers.HtmlChangelogFormatter;
+import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvider;
 import info.zamojski.soft.towercollector.tasks.ExportFileAsyncTask;
 import info.zamojski.soft.towercollector.tasks.UpdateCheckAsyncTask;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
@@ -120,6 +123,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private MainActivityPagerAdapter pageAdapter;
     private ViewPager viewPager;
 
+    private View activityView;
+
     // ========== ACTIVITY ========== //
 
     @Override
@@ -130,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         // set fixed screen orientation
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.main);
+        activityView = findViewById(R.id.main_root);
         //setup toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
@@ -694,48 +700,45 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             backgroundTaskHelper.showTaskRunningMessage(runningTaskClassName);
             return;
         }
-        boolean ocidUploadEnabled = MyApplication.getPreferencesProvider().isOpenCellIdUploadEnabled();
-        boolean mlsUploadEnabled = MyApplication.getPreferencesProvider().isMlsUploadEnabled();
-        Timber.i("startUploaderServiceWithCheck(): Upload for OCID = " + ocidUploadEnabled + ", MLS = " + mlsUploadEnabled);
-        if(!ocidUploadEnabled && !mlsUploadEnabled) {
-            Toast.makeText(getApplication(), R.string.uploader_all_sites_disabled, Toast.LENGTH_LONG).show();
-            return;
-        }
 
-
-
-        // check API key
-        String apiKey = MyApplication.getPreferencesProvider().getApiKey();
-        if (!Validator.isOpenCellIdApiKeyValid(apiKey)) {
-            final String apiKeyLocal = apiKey;
-            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        final PreferencesProvider preferencesProvider = MyApplication.getPreferencesProvider();
+        final boolean isOcidUploadEnabled = preferencesProvider.isOpenCellIdUploadEnabled();
+        final boolean isMlsUploadEnabled = preferencesProvider.isMlsUploadEnabled();
+        final boolean isReuploadIfUploadFailsEnabled = preferencesProvider.isReuploadIfUploadFailsEnabled();
+        Timber.i("startUploaderServiceWithCheck(): Upload for OCID = " + isOcidUploadEnabled + ", MLS = " + isMlsUploadEnabled);
+        boolean showConfigurator = preferencesProvider.getShowConfiguratorBeforeUpload();
+        if (showConfigurator) {
+            Timber.d("startUploaderServiceWithCheck(): Showing upload configurator");
+            // check API key
+            String apiKey = preferencesProvider.getApiKey();
+            boolean isApiKeyValid = Validator.isOpenCellIdApiKeyValid(apiKey);
+            LayoutInflater inflater = LayoutInflater.from(this);
+            View dialogLayout = inflater.inflate(R.layout.configure_uploader_dialog, null);
+            final CheckBox ocidUploadCheckbox = dialogLayout.findViewById(R.id.ocid_upload_dialog_checkbox);
+            ocidUploadCheckbox.setChecked(isOcidUploadEnabled);
+            dialogLayout.findViewById(R.id.ocid_invalid_api_key_upload_dialog_textview).setVisibility(isApiKeyValid ? View.GONE : View.VISIBLE);
+            final CheckBox mlsUploadCheckbox = dialogLayout.findViewById(R.id.mls_upload_dialog_checkbox);
+            mlsUploadCheckbox.setChecked(isMlsUploadEnabled);
+            final CheckBox reuploadCheckbox = dialogLayout.findViewById(R.id.reupload_if_upload_fails_upload_dialog_checkbox);
+            reuploadCheckbox.setChecked(isReuploadIfUploadFailsEnabled);
+            final CheckBox dontShowAgainCheckbox = dialogLayout.findViewById(R.id.dont_show_again_dialog_checkbox);
+            AlertDialog alertDialog = new AlertDialog.Builder(this).setView(dialogLayout).create();
             alertDialog.setCanceledOnTouchOutside(true);
             alertDialog.setCancelable(true);
-            if (StringUtils.isNullEmptyOrWhitespace(apiKey)) {
-                alertDialog.setTitle(R.string.main_dialog_api_key_empty_title);
-                alertDialog.setMessage(getString(R.string.main_dialog_api_key_empty_message));
-                alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_register), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        try {
-                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.preferences_opencellid_org_sign_up_link)));
-                            startActivity(browserIntent);
-                        } catch (ActivityNotFoundException ex) {
-                            Toast.makeText(getApplication(), R.string.web_browser_missing, Toast.LENGTH_LONG).show();
-                        }
+            alertDialog.setTitle(R.string.upload_configurator_dialog_title);
+            alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_upload), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if (dontShowAgainCheckbox.isChecked()) {
+                        preferencesProvider.setOpenCellIdUploadEnabled(ocidUploadCheckbox.isChecked());
+                        preferencesProvider.setMlsUploadEnabled(mlsUploadCheckbox.isChecked());
+                        preferencesProvider.setReuploadIfUploadFailsEnabled(reuploadCheckbox.isChecked());
+                        preferencesProvider.setShowConfiguratorBeforeUpload(false);
                     }
-                });
-            } else {
-                alertDialog.setTitle(R.string.main_dialog_api_key_invalid_title);
-                alertDialog.setMessage(getString(R.string.main_dialog_api_key_invalid_message));
-                alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_upload), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        startUploaderService(apiKeyLocal);
-                    }
-                });
-            }
-            alertDialog.setButton(DialogInterface.BUTTON_NEUTRAL, getString(R.string.dialog_enter_api_key), new DialogInterface.OnClickListener() {
+                    startUploaderService(isOcidUploadEnabled, isMlsUploadEnabled, isReuploadIfUploadFailsEnabled);
+                }
+            });
+            alertDialog.setButton(DialogInterface.BUTTON_NEUTRAL, getString(R.string.main_menu_preferences_button), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     startPreferencesActivity();
@@ -747,17 +750,34 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 }
             });
             alertDialog.show();
-            return;
         } else {
-            startUploaderService(apiKey);
+            Timber.d("startUploaderServiceWithCheck(): Using upload configuration from preferences");
+            if (!isOcidUploadEnabled && !isMlsUploadEnabled) {
+                Snackbar snackbar = Snackbar.make(activityView, R.string.uploader_all_projects_disabled, Snackbar.LENGTH_LONG)
+                        .setAction(R.string.main_menu_preferences_button, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startPreferencesActivity();
+                            }
+                        });
+                // hack for black text on dark grey background
+                View view = snackbar.getView();
+                TextView tv = view.findViewById(android.support.design.R.id.snackbar_text);
+                tv.setTextColor(Color.WHITE);
+                snackbar.show();
+            } else {
+                startUploaderService(isOcidUploadEnabled, isMlsUploadEnabled, isReuploadIfUploadFailsEnabled);
+            }
         }
     }
 
-    private void startUploaderService(String apiKey) {
+    private void startUploaderService(boolean isOcidUploadEnabled, boolean isMlsUploadEnabled, boolean isReuploadIfUploadFailsEnabled) {
         // start task
         if (!ApkUtils.isServiceRunning(UploaderService.SERVICE_FULL_NAME)) {
             Intent intent = new Intent(MainActivity.this, UploaderService.class);
-            intent.putExtra(UploaderService.INTENT_KEY_APIKEY, apiKey);
+            intent.putExtra(UploaderService.INTENT_KEY_UPLOAD_TO_OCID, isOcidUploadEnabled);
+            intent.putExtra(UploaderService.INTENT_KEY_UPLOAD_TO_MLS, isMlsUploadEnabled);
+            intent.putExtra(UploaderService.INTENT_KEY_UPLOAD_TRY_REUPLOAD, isReuploadIfUploadFailsEnabled);
             ApkUtils.startServiceSafely(this, intent);
             MyApplication.getAnalytics().sendUploadStarted(IntentSource.User);
         } else
@@ -864,7 +884,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         try {
             startActivity(createDataRoamingSettingsIntent());
         } catch (ActivityNotFoundException ex) {
-            Timber.w("askAndSetGpsEnabled(): Could not open Settings to change network type", ex);
+            Timber.w(ex, "askAndSetGpsEnabled(): Could not open Settings to change network type");
             MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
             AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).setMessage(R.string.dialog_could_not_open_network_type_settings).setPositiveButton(R.string.dialog_ok, null).create();

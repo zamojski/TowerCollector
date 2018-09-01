@@ -47,8 +47,10 @@ public class UploaderService extends Service {
 
     public static final String SERVICE_FULL_NAME = UploaderService.class.getCanonicalName();
     public static final String BROADCAST_INTENT_STOP_SERVICE = SERVICE_FULL_NAME + ".UploaderCancel";
-    public static final String INTENT_KEY_APIKEY = "INTENT_KEY_APIKEY";
-    public static final String INTENT_KEY_RESULT_DESCRIPTION = "INTENT_KEY_RESULT_DESCRIPTION";
+    public static final String INTENT_KEY_UPLOAD_TO_OCID = "upload_to_ocid";
+    public static final String INTENT_KEY_UPLOAD_TO_MLS = "upload_to_mls";
+    public static final String INTENT_KEY_UPLOAD_TRY_REUPLOAD = "try_reupload";
+    public static final String INTENT_KEY_RESULT_DESCRIPTION = "result_description";
     public static final int NOTIFICATION_ID = 'U';
     private static final int MEASUREMENTS_PER_PART = 400;
 

@@ -17,13 +17,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            tools:text="Sample content"></TextView>
+            tools:text="Sample content"/>
 
         <CheckBox
             android:id="@+id/dont_show_again_dialog_checkbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/dialog_dont_show_again"></CheckBox>
+            android:text="@string/dialog_dont_show_again"/>
     </LinearLayout>
 
 </ScrollView>
