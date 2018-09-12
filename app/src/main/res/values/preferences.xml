@@ -28,7 +28,7 @@
     <string name="preferences_upload_show_configurator_on_summary">Configuration window will be shown before each upload.</string>
     <string name="preferences_upload_show_configurator_off_summary">Upload will use below settings.</string>
     <string name="preferences_reupload_if_upload_fails_title">Try upload again if fails</string>
-    <string name="preferences_reupload_if_upload_fails_on_summary">The app will try to upload measurements again if upload fails for one of the projects.</string>
+    <string name="preferences_reupload_if_upload_fails_on_summary">If upload fails for one of the projects the app will keep measurements for max 30 days and try to upload them again.</string>
     <string name="preferences_reupload_if_upload_fails_off_summary">The app will delete uploaded measurements if upload succeed to at least one of the projects.</string>
     <string name="preferences_opencellid_enabled_title">Enable OCID upload</string>
     <string name="preferences_opencellid_enabled_on_summary">Measurements will be uploaded to OpenCellID.org.</string>
