@@ -29,6 +29,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
+import android.text.TextUtils;
 
 
 public class MeasurementsDatabase {
@@ -462,6 +463,7 @@ public class MeasurementsDatabase {
             deletedMeasurements = db.delete(MeasurementsTable.TABLE_NAME, "1", null);
             int deletedLocations = db.delete(LocationsTable.TABLE_NAME, "1", null);
             int deletedCells = db.delete(CellsTable.TABLE_NAME, "1", null);
+            cleanOlderTemporary();
             db.setTransactionSuccessful();
             Timber.d("deleteAllMeasurements(): Deleted %s measurements, %s cells, %s locations", deletedMeasurements, deletedCells, deletedLocations);
         } finally {
@@ -511,12 +513,78 @@ public class MeasurementsDatabase {
                 // if all removed successfully then delete orphaned cells and locations
                 long deletedLocations = db.delete(LocationsTable.TABLE_NAME, LocationsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_LOCATION_ID + " FROM " + MeasurementsTable.TABLE_NAME + ")", null);
                 long deletedCells = db.delete(CellsTable.TABLE_NAME, CellsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_CELL_ID + " FROM " + MeasurementsTable.TABLE_NAME + ")", null);
-                Timber.d("deleteMeasurements(): Deleted orphaned %s cells, %s locations", deletedCells, deletedLocations);
+                cleanOlderTemporary();
                 db.setTransactionSuccessful();
+                Timber.d("deleteMeasurements(): Deleted orphaned %s cells, %s locations", deletedCells, deletedLocations);
             } else
                 deleted = 0;
         } finally {
             invalidateCache();
+            db.endTransaction();
+        }
+        return deleted;
+    }
+
+    public int moveToTemporary(int[] rowIds, Long uploadedToOcidAt, Long uploadedToMlsAt) {
+        if (rowIds == null || rowIds.length == 0) {
+            Timber.d("moveToTemporary(): Nothing to move");
+            return 0;
+        }
+        Timber.d("moveToTemporary(): Moving %s measurements to temporary with uploaded to OCID = %s, MLS = %s", rowIds.length, uploadedToOcidAt, uploadedToMlsAt);
+        // in transaction
+        int moved = 0;
+        SQLiteDatabase db = helper.getWritableDatabase();
+        db.beginTransaction();
+        try {
+            // move to temporary uploaded
+            int numOfMoves = (int) Math.ceil(1.0 * rowIds.length / NUM_OF_DELETIONS_PER_ONE_QUERY);
+            for (int i = 0; i < numOfMoves; i++) {
+                // calculate range
+                int lower = i * NUM_OF_DELETIONS_PER_ONE_QUERY;
+                int upper = (i + 1) * NUM_OF_DELETIONS_PER_ONE_QUERY;
+                // last
+                if (i + 1 == numOfMoves && upper != rowIds.length)
+                    upper = rowIds.length;
+                // construct query
+                String[] whereArgs = new String[upper - lower];
+                for (int j = 0; j < (upper - lower); j++) {
+                    whereArgs[j] = String.valueOf(rowIds[lower + j]);
+                }
+                String whereArgsString = TextUtils.join(", ", whereArgs);
+                String uploadedToOcidAtString = uploadedToOcidAt == null ? "NULL" : String.valueOf(uploadedToOcidAt);
+                String uploadedToMlsAtString = uploadedToMlsAt == null ? "NULL" : String.valueOf(uploadedToMlsAt);
+                // move measurements and related
+                db.execSQL(String.format(MoveToTemporaryHelper.MOVE_CELLS_QUERY, whereArgsString));
+                db.execSQL(String.format(MoveToTemporaryHelper.MOVE_LOCATIONS_QUERY, whereArgsString));
+                db.execSQL(String.format(MoveToTemporaryHelper.MOVE_MEASUREMENTS_QUERY, uploadedToOcidAtString, uploadedToMlsAtString, whereArgsString));
+            }
+            // if all moved successfully (without exception) then delete original measurements
+            deleteMeasurements(rowIds);
+            db.setTransactionSuccessful();
+            Timber.d("moveToTemporary(): Moved successfully");
+        } finally {
+            invalidateCache();
+            db.endTransaction();
+        }
+        return moved;
+    }
+
+    private int cleanOlderTemporary() {
+        final long days = 30;
+        final long dayInMillis = 24 * 60 * 60 * 1000;
+        long minTimeToKeep = System.currentTimeMillis() - days * dayInMillis;
+
+        Timber.d("cleanOlderTemporary(): Deleting temporary measurements older than %s", minTimeToKeep);
+        // in transaction
+        int deleted = 0;
+        SQLiteDatabase db = helper.getWritableDatabase();
+        db.beginTransaction();
+        try {
+            deleted = db.delete(TemporaryMeasurementsTable.TABLE_NAME, TemporaryMeasurementsTable.COLUMN_MEASURED_AT + " < ?", new String[]{String.valueOf(minTimeToKeep)});
+            long deletedLocations = db.delete(TemporaryLocationsTable.TABLE_NAME, TemporaryLocationsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + TemporaryMeasurementsTable.COLUMN_LOCATION_ID + " FROM " + TemporaryMeasurementsTable.TABLE_NAME + ")", null);
+            long deletedCells = db.delete(TemporaryCellsTable.TABLE_NAME, TemporaryCellsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + TemporaryMeasurementsTable.COLUMN_CELL_ID + " FROM " + TemporaryMeasurementsTable.TABLE_NAME + ")", null);
+            Timber.d("cleanOlderTemporary(): Deleted %s measurements, %s orphaned cells, %s orphaned locations from temporary", deleted, deletedCells, deletedLocations);
+        } finally {
             db.endTransaction();
         }
         return deleted;
@@ -600,6 +668,9 @@ public class MeasurementsDatabase {
             tables.add(new LocationsTable());
             tables.add(new CellsTable());
             tables.add(new MeasurementsTable());
+            tables.add(new TemporaryLocationsTable());
+            tables.add(new TemporaryCellsTable());
+            tables.add(new TemporaryMeasurementsTable());
 
             for (ITable table : tables) {
                 String[] queries = table.getCreateQueries();
