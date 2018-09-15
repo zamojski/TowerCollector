@@ -39,11 +39,9 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
 
-
 import android.widget.Toast;
 
 public class UploaderService extends Service {
-
 
     public static final String SERVICE_FULL_NAME = UploaderService.class.getCanonicalName();
     public static final String BROADCAST_INTENT_STOP_SERVICE = SERVICE_FULL_NAME + ".UploaderCancel";
@@ -175,8 +173,8 @@ public class UploaderService extends Service {
         notificationManager.notify(NOTIFICATION_ID, notification);
     }
 
-    private synchronized void updateNotification(int partNumber, int partsCount) {
-        Notification notification = notificationHelper.updateNotificationProgress(partNumber, partsCount);
+    private synchronized void updateNotification(int progress) {
+        Notification notification = notificationHelper.updateNotificationProgress(progress);
         notificationManager.notify(NOTIFICATION_ID, notification);
     }
 
@@ -186,7 +184,7 @@ public class UploaderService extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
             Timber.d("stopRequestBroadcastReceiver.onReceive(): Received broadcast intent: %s", intent);
-            if (intent.getAction().equals(BROADCAST_INTENT_STOP_SERVICE)) {
+            if (BROADCAST_INTENT_STOP_SERVICE.equals(intent.getAction())) {
                 // stop worker
                 isCancelled.set(true);
                 // change notification to canceling
@@ -250,14 +248,15 @@ public class UploaderService extends Service {
             int succeededParts = 0;
 
             // for each part start new upload
-            for (int i = 1; i <= partsCount; i++) {
+            for (int i = 0; i < partsCount; i++) {
                 // check if cancelled
                 if (isCancelled.get()) {
                     uploadResult = UploadResult.Cancelled;
                     break;
                 }
                 // notify
-                updateNotification(i, partsCount);
+                int progress = (int) (1.0 * i / partsCount);
+                updateNotification(progress);
                 // prepare data starting from oldest
                 List<Measurement> measurements = MeasurementsDatabase.getInstance(getApplication()).getOlderMeasurements(lastMeasurement.getTimestamp(), 0, MEASUREMENTS_PER_PART);
 

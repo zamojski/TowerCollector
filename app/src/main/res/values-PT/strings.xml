@@ -89,7 +89,7 @@
     <string name="collector_gps_unavailable">Não pôde iniciar a coleta porque o GPS está indisponível.</string>
     <string name="uploader_notification_channel_name">Uploader</string>
     <string name="uploader_notification_title">Fazendo upload</string>
-    <string name="uploader_notification_progress_info">Parte <xliff:g id="part_number">%1$d</xliff:g> de <xliff:g id="total_parts">%2$d</xliff:g>. Selecione para abortar.</string>
+    <string name="uploader_notification_progress_info">Carregado <xliff:g id="progress_in_percent">%1$d</xliff:g>%%. Selecione para abortar.</string>
     <string name="uploader_result_dialog_title">Enviar resultado</string>
     <string name="uploader_starting">Começando o upload&#8230;</string>
     <string name="uploader_aborting">Abortando o upload&#8230;</string>

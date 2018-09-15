@@ -92,7 +92,7 @@
     <string name="collector_gps_unavailable">Cannot start collecting because GPS is unavailable.</string>
     <string name="uploader_notification_channel_name">Uploader</string>
     <string name="uploader_notification_title">Uploading</string>
-    <string name="uploader_notification_progress_info">Part <xliff:g id="part_number">%1$d</xliff:g> of <xliff:g id="total_parts">%2$d</xliff:g>. Select to abort.</string>
+    <string name="uploader_notification_progress_info">Uploaded <xliff:g id="progress_in_percent">%d</xliff:g>%%. Select to abort.</string>
     <string name="uploader_result_dialog_title">Upload result</string>
     <string name="uploader_starting">Starting upload&#8230;</string>
     <string name="uploader_aborting">Aborting upload&#8230;</string>

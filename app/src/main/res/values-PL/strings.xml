@@ -89,7 +89,7 @@
     <string name="collector_gps_unavailable">Zbieranie nie może zostać uruchomione, ponieważ GPS jest niedostępny.</string>
     <string name="uploader_notification_channel_name">Przesyłanie</string>
     <string name="uploader_notification_title">Przesyłanie</string>
-    <string name="uploader_notification_progress_info">Część <xliff:g id="part_number">%1$d</xliff:g> z <xliff:g id="total_parts">%2$d</xliff:g>. Stuknij, aby przerwać.</string>
+    <string name="uploader_notification_progress_info">Przesłano <xliff:g id="progress_in_percent">%d</xliff:g>%%. Stuknij, aby przerwać.</string>
     <string name="uploader_result_dialog_title">Rezultat przesyłania</string>
     <string name="uploader_starting">Rozpoczynanie przesyłania&#8230;</string>
     <string name="uploader_aborting">Przerywanie przesyłania&#8230;</string>

@@ -89,7 +89,7 @@
     <string name="collector_gps_unavailable">Kann Erfassung nicht starten weil GPS nicht verfügbar ist.</string>
     <string name="uploader_notification_channel_name">Hochladen</string>
     <string name="uploader_notification_title">hochladen</string>
-    <string name="uploader_notification_progress_info">Teil  <xliff:g id="part_number">%1$d</xliff:g> von <xliff:g id="total_parts">%2$d</xliff:g>. Tippen um abzubrechen.</string>
+    <string name="uploader_notification_progress_info">Hochgeladen <xliff:g id="progress_in_percent">%d</xliff:g>%%. Tippen um abzubrechen.</string>
     <string name="uploader_result_dialog_title">Upload Ergebnis</string>
     <string name="uploader_starting">Starte Upload&#8230;</string>
     <string name="uploader_aborting">Upload abbrechen&#8230;</string>

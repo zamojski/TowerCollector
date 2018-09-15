@@ -89,7 +89,7 @@
     <string name="collector_gps_unavailable">Невозможно начать сбор, т.к. GPS выключен</string>
     <string name="uploader_notification_channel_name">Загрузчик</string>
     <string name="uploader_notification_title">Отправка</string>
-    <string name="uploader_notification_progress_info">Часть <xliff:g id="part_number">%1$d</xliff:g> из <xliff:g id="total_parts">%2$d</xliff:g>. Нажмите, чтобы прервать.</string>
+    <string name="uploader_notification_progress_info">Отправлено <xliff:g id="progress_in_percent">%d</xliff:g>%%. Нажмите, чтобы прервать.</string>
     <string name="uploader_result_dialog_title">Отправить результаты</string>
     <string name="uploader_starting">Начинается отправка&#8230;</string>
     <string name="uploader_aborting">Прерывание отправки&#8230;</string>

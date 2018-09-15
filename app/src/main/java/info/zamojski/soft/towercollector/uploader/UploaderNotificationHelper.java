@@ -22,7 +22,7 @@ import android.support.v4.app.NotificationCompat;
 public class UploaderNotificationHelper extends NotificationHelperBase {
 
     private Context context;
-    NotificationCompat.Builder builder;
+    private NotificationCompat.Builder builder;
 
     public UploaderNotificationHelper(Context context) {
         this.context = context;
@@ -37,8 +37,8 @@ public class UploaderNotificationHelper extends NotificationHelperBase {
         return prepareNotification(notificationText);
     }
 
-    public Notification updateNotificationProgress(int partNumber, int partsCount) {
-        String notificationText = context.getString(R.string.uploader_notification_progress_info, partNumber, partsCount);
+    public Notification updateNotificationProgress(int progress) {
+        String notificationText = context.getString(R.string.uploader_notification_progress_info, progress);
         builder.setContentText(notificationText);
         builder.setStyle(new NotificationCompat.BigTextStyle().bigText(notificationText));
         return builder.build();
