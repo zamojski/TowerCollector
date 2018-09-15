@@ -77,7 +77,12 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
             return;
         Timber.d("startCollectorService(): Starting service from broadcast");
         ApkUtils.startServiceSafely(context, getUploaderIntent(context));
-        MyApplication.getAnalytics().sendUploadStarted(IntentSource.Application);
+        boolean isOcidUploadEnabled = MyApplication.getPreferencesProvider().isOpenCellIdUploadEnabled();
+        boolean isMlsUploadEnabled = MyApplication.getPreferencesProvider().isMlsUploadEnabled();
+        if (isOcidUploadEnabled)
+            MyApplication.getAnalytics().sendUploadStarted(IntentSource.Application, true);
+        if (isMlsUploadEnabled)
+            MyApplication.getAnalytics().sendUploadStarted(IntentSource.Application, false);
     }
 
     private Intent getUploaderIntent(Context context) {

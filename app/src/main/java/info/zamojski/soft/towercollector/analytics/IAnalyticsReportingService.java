@@ -34,9 +34,9 @@ public interface IAnalyticsReportingService {
 
     void sendCollectorApiVersionUsed(String apiVersion);
 
-    void sendUploadStarted(IntentSource source);
+    void sendUploadStarted(IntentSource source, boolean ocid);
 
-    void sendUploadFinished(long duration, String networkType, AnalyticsStatistics stats);
+    void sendUploadFinished(long duration, String networkType, AnalyticsStatistics stats, boolean ocid);
 
     void sendExportStarted();
 

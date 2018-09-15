@@ -139,16 +139,16 @@ public class GoogleAnalyticsReportingService implements IAnalyticsReportingServi
     }
 
     @Override
-    public void sendUploadStarted(IntentSource source) {
-        this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, Action.Upload)
+    public void sendUploadStarted(IntentSource source, boolean ocid) {
+        this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, ocid ? Action.UploadOcid : Action.UploadMls)
                 .setLabel(convertToStartLabel(source))
                 .setValue(1L)
                 .build());
     }
 
     @Override
-    public void sendUploadFinished(long duration, String networkType, AnalyticsStatistics stats) {
-        this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, Action.Upload)
+    public void sendUploadFinished(long duration, String networkType, AnalyticsStatistics stats, boolean ocid) {
+        this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, ocid ? Action.UploadOcid : Action.UploadMls)
                 .setLabel(Label.Finish)
                 .setValue(1L)
                 .setCustomDimension(Dimension.UploadNetworkType, networkType)
@@ -157,7 +157,7 @@ public class GoogleAnalyticsReportingService implements IAnalyticsReportingServi
                 .setCustomMetric(Metric.StatisticsDays, stats.getDays())
                 .setCustomMetric(Metric.Duration, duration)
                 .build());
-        this.tracker.send(new HitBuilders.TimingBuilder(Category.Tasks, Action.Upload, duration)
+        this.tracker.send(new HitBuilders.TimingBuilder(Category.Tasks, ocid ? Action.UploadOcid : Action.UploadMls, duration)
                 .setLabel(Label.Finish)
                 .setCustomDimension(Dimension.UploadNetworkType, networkType)
                 .build());
@@ -232,9 +232,9 @@ public class GoogleAnalyticsReportingService implements IAnalyticsReportingServi
     @Override
     public void sendHelpDialogOpened(String dialogName) {
         this.tracker.send(new HitBuilders.EventBuilder(Category.Help, Action.Open)
-        .setLabel(dialogName)
-        .setValue(1L)
-        .build());
+                .setLabel(dialogName)
+                .setValue(1L)
+                .build());
     }
 
     private void sendExportAction(String action) {

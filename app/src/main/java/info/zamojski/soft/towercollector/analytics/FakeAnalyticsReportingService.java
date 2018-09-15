@@ -68,12 +68,12 @@ public class FakeAnalyticsReportingService implements IAnalyticsReportingService
     }
 
     @Override
-    public void sendUploadStarted(IntentSource source) {
+    public void sendUploadStarted(IntentSource source, boolean ocid) {
 
     }
 
     @Override
-    public void sendUploadFinished(long duration, String networkType, AnalyticsStatistics stats) {
+    public void sendUploadFinished(long duration, String networkType, AnalyticsStatistics stats, boolean ocid) {
 
     }
 

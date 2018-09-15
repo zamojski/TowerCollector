@@ -96,7 +96,6 @@ import timber.log.Timber;
 @RuntimePermissions
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
-
     private AtomicBoolean isCollectorServiceRunning = new AtomicBoolean(false);
     private boolean isGpsEnabled = false;
     private boolean showAskForLocationSettingsDialog = false;
@@ -779,7 +778,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             intent.putExtra(UploaderService.INTENT_KEY_UPLOAD_TO_MLS, isMlsUploadEnabled);
             intent.putExtra(UploaderService.INTENT_KEY_UPLOAD_TRY_REUPLOAD, isReuploadIfUploadFailsEnabled);
             ApkUtils.startServiceSafely(this, intent);
-            MyApplication.getAnalytics().sendUploadStarted(IntentSource.User);
+            if (isOcidUploadEnabled)
+                MyApplication.getAnalytics().sendUploadStarted(IntentSource.User, true);
+            if (isMlsUploadEnabled)
+                MyApplication.getAnalytics().sendUploadStarted(IntentSource.User, false);
         } else
             Toast.makeText(getApplication(), R.string.uploader_already_running, Toast.LENGTH_LONG).show();
     }
