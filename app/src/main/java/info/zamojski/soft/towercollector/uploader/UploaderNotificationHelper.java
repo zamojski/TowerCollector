@@ -53,14 +53,13 @@ public class UploaderNotificationHelper extends NotificationHelperBase {
         return builder.build();
     }
 
-    public Notification updateNotificationFinished(int messageId, int descriptionId) {
+    public Notification updateNotificationFinished(String message, String description) {
         builder.setAutoCancel(true);
         builder.setWhen(System.currentTimeMillis());
-        String notificationText = context.getString(messageId);
-        builder.setContentText(notificationText);
-        builder.setTicker(notificationText);
-        builder.setStyle(new NotificationCompat.BigTextStyle().bigText(notificationText));
-        PendingIntent mainActivityIntent = createMainActivityResultIntent(descriptionId);
+        builder.setContentText(message);
+        builder.setTicker(message);
+        builder.setStyle(new NotificationCompat.BigTextStyle().bigText(message));
+        PendingIntent mainActivityIntent = createMainActivityResultIntent(description);
         builder.setContentIntent(mainActivityIntent);
         return builder.build();
     }
@@ -81,11 +80,11 @@ public class UploaderNotificationHelper extends NotificationHelperBase {
         return builder.build();
     }
 
-    private PendingIntent createMainActivityResultIntent(int descriptionId) {
+    private PendingIntent createMainActivityResultIntent(String description) {
         Intent intent = new Intent(context, MainActivity.class);
         intent.setAction(UploaderService.SERVICE_FULL_NAME + "_NID_" + UploaderService.NOTIFICATION_ID);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        intent.putExtra(UploaderService.INTENT_KEY_RESULT_DESCRIPTION, descriptionId);
+        intent.putExtra(UploaderService.INTENT_KEY_RESULT_DESCRIPTION, description);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         return pendingIntent;
     }

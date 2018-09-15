@@ -8,13 +8,17 @@ import info.zamojski.soft.towercollector.enums.UploadResult;
 import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
 import info.zamojski.soft.towercollector.files.devices.MemoryTextDevice;
 import info.zamojski.soft.towercollector.files.formatters.csv.CsvUploadFormatter;
+import info.zamojski.soft.towercollector.files.formatters.json.JsonMozillaFormatter;
 import info.zamojski.soft.towercollector.files.generators.CsvTextGenerator;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
+import info.zamojski.soft.towercollector.files.generators.JsonTextGenerator;
 import info.zamojski.soft.towercollector.io.network.IUploadClient;
+import info.zamojski.soft.towercollector.io.network.MozillaUploadClient;
 import info.zamojski.soft.towercollector.io.network.OcidUploadClient;
 import info.zamojski.soft.towercollector.io.network.RequestResult;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
 import info.zamojski.soft.towercollector.model.Measurement;
+import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvider;
 import info.zamojski.soft.towercollector.uploader.UploaderNotificationHelper;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
 import info.zamojski.soft.towercollector.utils.NetworkUtils;
@@ -50,9 +54,7 @@ public class UploaderService extends Service {
     public static final String INTENT_KEY_UPLOAD_TRY_REUPLOAD = "try_reupload";
     public static final String INTENT_KEY_RESULT_DESCRIPTION = "result_description";
     public static final int NOTIFICATION_ID = 'U';
-    private static final int MEASUREMENTS_PER_PART = 400;
-
-    private String uploadUrl;
+    private static final int MEASUREMENTS_PER_PART = 500;
 
     private HandlerThread handlerThread;
     private Handler handler;
@@ -61,10 +63,17 @@ public class UploaderService extends Service {
     private UploaderNotificationHelper notificationHelper;
 
     private String appId;
-    private String apiKey;
+    private String ocidUploadUrl;
+    private String mlsUploadUrl;
+    private String ocidApiKey;
+    private String mlsApiKey;
+    private boolean isOpenCellIdUploadEnabled;
+    private boolean isMlsUploadEnabled;
+    private boolean isReuploadIfUploadFailsEnabled;
     private AtomicBoolean isCancelled = new AtomicBoolean(false);
 
-    private UploadResult uploadResult = UploadResult.NotStarted;
+    private UploadResult ocidUploadResult = UploadResult.NotStarted;
+    private UploadResult mlsUploadResult = UploadResult.NotStarted;
 
     @Override
     public void onCreate() {
@@ -75,7 +84,8 @@ public class UploaderService extends Service {
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationHelper = new UploaderNotificationHelper(this);
         // set upload url
-        uploadUrl = getString(R.string.upload_url_opencellid_org);
+        ocidUploadUrl = getString(R.string.upload_url_opencellid_org);
+        mlsUploadUrl = getString(R.string.upload_url_mls);
         // set app code
         appId = ApkUtils.getAppId(getApplication());
     }
@@ -84,14 +94,20 @@ public class UploaderService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
         Timber.d("onStartCommand(): Starting service");
-        // get API key (intent or extras may be null if the service is being restarted)
-        if (intent == null || intent.getExtras() == null) {
-            // we hope API key will be valid
-            apiKey = MyApplication.getPreferencesProvider().getApiKey();
-        } else {
-            apiKey = intent.getExtras().getString(INTENT_KEY_APIKEY);
+        // get passed configuration (intent or extras may be null if the service is being restarted)
+        PreferencesProvider preferencesProvider = MyApplication.getPreferencesProvider();
+        isOpenCellIdUploadEnabled = preferencesProvider.isOpenCellIdUploadEnabled();
+        isMlsUploadEnabled = preferencesProvider.isMlsUploadEnabled();
+        isReuploadIfUploadFailsEnabled = preferencesProvider.isReuploadIfUploadFailsEnabled();
+        if (intent != null) {
+            isOpenCellIdUploadEnabled = intent.getBooleanExtra(INTENT_KEY_UPLOAD_TO_OCID, isOpenCellIdUploadEnabled);
+            isMlsUploadEnabled = intent.getBooleanExtra(INTENT_KEY_UPLOAD_TO_MLS, isMlsUploadEnabled);
+            isReuploadIfUploadFailsEnabled = intent.getBooleanExtra(INTENT_KEY_UPLOAD_TRY_REUPLOAD, isReuploadIfUploadFailsEnabled);
         }
-        // start work on separate thread to eliminate menu lags
+        // we hope API key will be valid
+        ocidApiKey = preferencesProvider.getApiKey();
+        mlsApiKey = BuildConfig.MLS_API_KEY;
+        // start work on separate thread to eliminate lags
         getHandler().post(new UploaderThread());
         return START_NOT_STICKY;
     }
@@ -109,61 +125,80 @@ public class UploaderService extends Service {
         if (stopRequestBroadcastReceiver != null)
             unregisterReceiver(stopRequestBroadcastReceiver);
         // display stop reason
-        Timber.d("onDestroy(): Upload result: %s", uploadResult);
-        int messageId = R.string.unknown_error;
-        int descriptionId = R.string.unknown_error;
-        switch (uploadResult) {
-            case NoData:
-                messageId = R.string.uploader_no_data;
-                descriptionId = R.string.uploader_no_data_description;
-                break;
-            case InvalidApiKey:
-                messageId = R.string.uploader_invalid_api_key;
-                descriptionId = R.string.uploader_invalid_api_key_description;
-                break;
-            case InvalidData:
-                messageId = R.string.uploader_invalid_input_data;
-                descriptionId = R.string.uploader_invalid_input_data_description;
-                break;
-            case Cancelled:
-                messageId = R.string.uploader_aborted;
-                descriptionId = R.string.uploader_aborted_description;
-                break;
-            case NotStarted:
-            case Success:
-                messageId = R.string.uploader_success;
-                descriptionId = R.string.uploader_success_description;
-                break;
-            case PartiallySucceeded:
-                messageId = R.string.uploader_partially_succeeded;
-                descriptionId = R.string.uploader_partially_succeeded_description;
-                break;
-            case DeleteFailed:
-                messageId = R.string.uploader_delete_failed;
-                descriptionId = R.string.uploader_delete_failed_description;
-                break;
-            case ConnectionError:
-                messageId = R.string.uploader_connection_error;
-                descriptionId = R.string.uploader_connection_error_description;
-                break;
-            case ServerError:
-                messageId = R.string.uploader_server_error;
-                descriptionId = R.string.uploader_server_error_description;
-                break;
-            case Failure:
-                messageId = R.string.uploader_failure;
-                descriptionId = R.string.uploader_failure_description;
-                break;
-            case PermissionDenied:
-                messageId = R.string.permission_denied;
-                descriptionId = R.string.permission_uploader_denied_message;
-                break;
-        }
-        Toast.makeText(this, messageId, Toast.LENGTH_LONG).show();
+        Timber.d("onDestroy(): Upload result OCID: %s, MLS: %s", ocidUploadResult, mlsUploadResult);
+        String ocidMessage = getString(getMessage(ocidUploadResult));
+        String ocidDescription = getString(getDescription(ocidUploadResult));
+        String mlsMessage = getString(getMessage(mlsUploadResult));
+        String mlsDescription = getString(getDescription(mlsUploadResult));
+        String message = getString(R.string.uploader_result_message, ocidMessage, mlsMessage);
+        String description = getString(R.string.uploader_result_message, ocidDescription, mlsDescription);
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         // update notification according to result
-        Notification notification = notificationHelper.updateNotificationFinished(messageId, descriptionId);
+        Notification notification = notificationHelper.updateNotificationFinished(message, description);
         notificationManager.notify(NOTIFICATION_ID, notification);
         super.onDestroy();
+    }
+
+    private int getMessage(UploadResult uploadResult) {
+        switch (uploadResult) {
+            case NotStarted:
+                return R.string.uploader_disabled;
+            case NoData:
+                return R.string.uploader_no_data;
+            case InvalidApiKey:
+                return R.string.uploader_invalid_api_key;
+            case InvalidData:
+                return R.string.uploader_invalid_input_data;
+            case Cancelled:
+                return R.string.uploader_aborted;
+            case Success:
+                return R.string.uploader_success;
+            case PartiallySucceeded:
+                return R.string.uploader_partially_succeeded;
+            case DeleteFailed:
+                return R.string.uploader_delete_failed;
+            case ConnectionError:
+                return R.string.uploader_connection_error;
+            case ServerError:
+                return R.string.uploader_server_error;
+            case Failure:
+                return R.string.uploader_failure;
+            case PermissionDenied:
+                return R.string.permission_denied;
+            default:
+                return R.string.unknown_error;
+        }
+    }
+
+    private int getDescription(UploadResult uploadResult) {
+        switch (uploadResult) {
+            case NotStarted:
+                return R.string.uploader_disabled_description;
+            case NoData:
+                return R.string.uploader_no_data_description;
+            case InvalidApiKey:
+                return R.string.uploader_invalid_api_key_description;
+            case InvalidData:
+                return R.string.uploader_invalid_input_data_description;
+            case Cancelled:
+                return R.string.uploader_aborted_description;
+            case Success:
+                return R.string.uploader_success_description;
+            case PartiallySucceeded:
+                return R.string.uploader_partially_succeeded_description;
+            case DeleteFailed:
+                return R.string.uploader_delete_failed_description;
+            case ConnectionError:
+                return R.string.uploader_connection_error_description;
+            case ServerError:
+                return R.string.uploader_server_error_description;
+            case Failure:
+                return R.string.uploader_failure_description;
+            case PermissionDenied:
+                return R.string.permission_uploader_denied_message;
+            default:
+                return R.string.unknown_error;
+        }
     }
 
     // ========== NOTIFICATIONS ========== //
@@ -230,7 +265,8 @@ public class UploaderService extends Service {
             // check if there is anything to upload
             if (measurementsCount == 0 || lastMeasurement == null) {
                 Timber.tag(INNER_TAG).d("run(): Cancelling upload due to no data to upload");
-                uploadResult = UploadResult.NoData;
+                ocidUploadResult = UploadResult.NoData;
+                mlsUploadResult = UploadResult.NoData;
                 stopSelf();
                 return;
             }
@@ -244,113 +280,32 @@ public class UploaderService extends Service {
                 partsCount = (int) Math.ceil(1.0 * measurementsCount / MEASUREMENTS_PER_PART);
             }
 
-            // create container for responses
-            int succeededParts = 0;
+            int succeededParts = upload(lastMeasurement, partsCount);
 
-            // for each part start new upload
-            for (int i = 0; i < partsCount; i++) {
-                // check if cancelled
-                if (isCancelled.get()) {
-                    uploadResult = UploadResult.Cancelled;
-                    break;
-                }
-                // notify
-                int progress = (int) (1.0 * i / partsCount);
-                updateNotification(progress);
-                // prepare data starting from oldest
-                List<Measurement> measurements = MeasurementsDatabase.getInstance(getApplication()).getOlderMeasurements(lastMeasurement.getTimestamp(), 0, MEASUREMENTS_PER_PART);
-
-                // create generator instance
-                MemoryTextDevice device = new MemoryTextDevice();
-                CsvTextGenerator<CsvUploadFormatter, MemoryTextDevice> generator = new CsvTextGenerator<>(new CsvUploadFormatter(), device);
-                // write measurements
-                try {
-                    device.open();
-                    generator.writeHeader();
-                    generator.writeEntryChunk(measurements);
-                } catch (IOException ex) {
-                    // this should never happen for MemoryTextDevice
-                    Timber.tag(INNER_TAG).e(ex, "run(): Error while generating file");
-                    MyApplication.getAnalytics().sendException(ex, Boolean.TRUE);
-                    ACRA.getErrorReporter().handleSilentException(ex);
-                    uploadResult = UploadResult.Failure;
-                }
-                // get content
-                String csvContent = device.read();
-                device.close();
-                //// only for upload testing
-                //try {
-                //    java.io.File destFile = new java.io.File(info.zamojski.soft.towercollector.utils.FileUtils.getExternalStorageAppDir(), "upload_" + info.zamojski.soft.towercollector.utils.FileUtils.getCurrentDateFilename("csv"));
-                //    info.zamojski.soft.towercollector.files.devices.FileTextDevice fileDevice = new info.zamojski.soft.towercollector.files.devices.FileTextDevice(destFile.getPath());
-                //    fileDevice.open();
-                //    fileDevice.write(csvContent);
-                //    fileDevice.close();
-                //    Timber.tag(INNER_TAG).d("run(): Uploaded file saved as: %s", fileDevice.getPath());
-                //} catch (info.zamojski.soft.towercollector.files.DeviceOperationException ex) {
-                //    Timber.tag(INNER_TAG).d(ex, "run(): Uploaded file generation problem");
-                //} catch (IOException ex) {
-                //    Timber.tag(INNER_TAG).d(ex, "run(): Uploaded file generation problem");
-                //}
-                // send request
-                try {
-                    IUploadClient client = new OcidUploadClient(uploadUrl, appId, apiKey);
-                    RequestResult response = client.uploadMeasurements(csvContent);
-                    Timber.tag(INNER_TAG).d("run(): Server response: %s", response);
-                    // check whether it makes sense to continue
-                    if (response == RequestResult.ConfigurationError) {
-                        uploadResult = UploadResult.InvalidData;
-                        break;
-                    } else if (response == RequestResult.ServerError) {
-                        uploadResult = UploadResult.ServerError;
-                        break;
-                    } else if (response == RequestResult.ConnectionError) {
-                        uploadResult = UploadResult.ConnectionError;
-                        break;
-                    } else if (response == RequestResult.Failure) {
-                        uploadResult = UploadResult.Failure;
-                        break;
-                    } else if (response == RequestResult.InvalidApiKey) {
-                        uploadResult = UploadResult.InvalidApiKey;
-                        break;
-                    } else if (response == RequestResult.Success) {
-                        Timber.tag(INNER_TAG).d("run(): Uploaded %s measurements", measurements.size());
-                        uploadResult = UploadResult.PartiallySucceeded;
-                        succeededParts++;
-                    } else {
-                        throw new UnsupportedOperationException(String.format("Unsupported upload result %s", response));
-                    }
-                    // delete sent measurements
-                    int j = 0;
-                    int[] rowIds = new int[measurements.size()];
-                    for (Measurement m : measurements) {
-                        rowIds[j++] = m.getRowId();
-                    }
-                    int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).deleteMeasurements(rowIds);
-                    if (numberOfDeleted == 0) {
-                        uploadResult = UploadResult.DeleteFailed;
-                        break;
-                    }
-                    // broadcast part uploaded (if error not encountered earlier)
-                    EventBus.getDefault().post(new PrintMainWindowEvent());
-                } catch (SecurityException ex) {
-                    Timber.tag(INNER_TAG).e(ex, "run(): internet permission is denied");
-                    uploadResult = UploadResult.PermissionDenied;
-                    break;
-                }
-            }
-            // sum up results and update notification
-            if (uploadResult == UploadResult.PartiallySucceeded) {
+            // sum up results and update notification for ocid
+            if (ocidUploadResult == UploadResult.PartiallySucceeded) {
                 // we can be sure that everything was ok (because we stop on error)
-                uploadResult = UploadResult.Success;
-            } else if (uploadResult != UploadResult.DeleteFailed) {
+                ocidUploadResult = UploadResult.Success;
+            } else if (ocidUploadResult != UploadResult.DeleteFailed) {
                 // can be cancelled or failed after uploading few parts (but not all)
                 if (succeededParts > 0) {
-                    uploadResult = UploadResult.PartiallySucceeded;
+                    ocidUploadResult = UploadResult.PartiallySucceeded;
+                }
+            }
+            // sum up results and update notification for mls
+            if (mlsUploadResult == UploadResult.PartiallySucceeded) {
+                // we can be sure that everything was ok (because we stop on error)
+                mlsUploadResult = UploadResult.Success;
+            } else if (mlsUploadResult != UploadResult.DeleteFailed) {
+                // can be cancelled or failed after uploading few parts (but not all)
+                if (succeededParts > 0) {
+                    mlsUploadResult = UploadResult.PartiallySucceeded;
                 }
             }
 
             // send stats only when succeeded
-            if (uploadResult == UploadResult.Success || uploadResult == UploadResult.PartiallySucceeded) {
+            if (ocidUploadResult == UploadResult.Success || ocidUploadResult == UploadResult.PartiallySucceeded
+                    || mlsUploadResult == UploadResult.Success || mlsUploadResult == UploadResult.PartiallySucceeded) {
                 long endTime = System.currentTimeMillis();
                 long duration = (endTime - startTime);
                 String networkType = NetworkUtils.getNetworkType(getApplication());
@@ -359,11 +314,213 @@ public class UploaderService extends Service {
                 stats.setLocations(startStats.getLocations() - endStats.getLocations());
                 stats.setCells(startStats.getCells() - endStats.getCells());
                 stats.setDays(startStats.getDays() - endStats.getDays());
-                MyApplication.getAnalytics().sendUploadFinished(duration, networkType, stats);
+                if (isOpenCellIdUploadEnabled)
+                    MyApplication.getAnalytics().sendUploadFinished(duration, networkType, stats, true);
+                if (isMlsUploadEnabled)
+                    MyApplication.getAnalytics().sendUploadFinished(duration, networkType, stats, false);
             }
             // broadcast upload finished and stop service
             EventBus.getDefault().post(new PrintMainWindowEvent());
             stopSelf();
+        }
+
+        private int upload(Measurement lastMeasurement, int partsCount) {
+            int succeededParts = 0;
+            boolean continueOcidUpload = isOpenCellIdUploadEnabled;
+            boolean continueMlsUpload = isMlsUploadEnabled;
+            // for each part start new upload
+            for (int i = 0; i < partsCount; i++) {
+                // check if cancelled
+                if (isCancelled.get()) {
+                    ocidUploadResult = UploadResult.Cancelled;
+                    mlsUploadResult = UploadResult.Cancelled;
+                    break;
+                }
+                // notify
+                int progress = (int) (1.0 * i / partsCount);
+                updateNotification(progress);
+                // prepare data starting from oldest
+                List<Measurement> measurements = MeasurementsDatabase.getInstance(getApplication()).getOlderMeasurements(lastMeasurement.getTimestamp(), 0, MEASUREMENTS_PER_PART);
+
+                Timber.d("upload(): Continue upload to OCID = %s, MLS = %s", continueOcidUpload, continueMlsUpload);
+
+                if (continueOcidUpload) {
+                    ocidUploadResult = uploadToOcid(measurements);
+                }
+                if (continueMlsUpload) {
+                    mlsUploadResult = uploadToMls(measurements);
+                }
+
+                if (ocidUploadResult == UploadResult.PartiallySucceeded || mlsUploadResult == UploadResult.PartiallySucceeded)
+                    succeededParts++;
+
+                continueOcidUpload &= (ocidUploadResult == UploadResult.PartiallySucceeded
+                        || ocidUploadResult == UploadResult.ConnectionError
+                        || ocidUploadResult == UploadResult.Failure
+                        || ocidUploadResult == UploadResult.InvalidData
+                        || ocidUploadResult == UploadResult.ServerError);
+                continueMlsUpload &= (mlsUploadResult == UploadResult.PartiallySucceeded
+                        || mlsUploadResult == UploadResult.ConnectionError
+                        || mlsUploadResult == UploadResult.Failure
+                        || mlsUploadResult == UploadResult.InvalidData
+                        || mlsUploadResult == UploadResult.ServerError);
+
+                boolean ocidSuccessful = (ocidUploadResult == UploadResult.PartiallySucceeded);
+                boolean mlsSuccessful = (mlsUploadResult == UploadResult.PartiallySucceeded);
+
+                if (isReuploadIfUploadFailsEnabled) {
+                    // all enabled succeeded
+                    if ((ocidSuccessful || !isOpenCellIdUploadEnabled) && (mlsSuccessful || !isMlsUploadEnabled)) {
+                        Timber.d("upload(): Deleting measurements because OCID enabled = %s and successful = %s, MLS enabled = %s and successful = %s", isOpenCellIdUploadEnabled, ocidSuccessful, isMlsUploadEnabled, mlsSuccessful);
+                        // delete sent measurements
+                        int[] rowIds = getRowIds(measurements);
+                        int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).deleteMeasurements(rowIds);
+                        if (numberOfDeleted == 0) {
+                            ocidUploadResult = UploadResult.DeleteFailed;
+                            mlsUploadResult = UploadResult.DeleteFailed;
+                            break;
+                        }
+                    } else if (ocidSuccessful && isMlsUploadEnabled) {
+                        Timber.d("upload(): Moving measurements to MLS temporary");
+                        // keep for mls
+                        int[] rowIds = getRowIds(measurements);
+                        int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).moveToTemporary(rowIds, System.currentTimeMillis(), null);
+                        if (numberOfDeleted == 0) {
+                            ocidUploadResult = UploadResult.DeleteFailed;
+                            break;
+                        }
+                    } else if (mlsSuccessful && isOpenCellIdUploadEnabled) {
+                        Timber.d("upload(): Moving measurements to OCID temporary");
+                        // keep for ocid
+                        int[] rowIds = getRowIds(measurements);
+                        int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).moveToTemporary(rowIds, null, System.currentTimeMillis());
+                        if (numberOfDeleted == 0) {
+                            mlsUploadResult = UploadResult.DeleteFailed;
+                            break;
+                        }
+                    } else {
+                        Timber.d("upload(): Skipping delete because all uploads failed");
+                        // all uploads failed
+                        // this means measurements were not uploaded
+                    }
+                } else if ((isOpenCellIdUploadEnabled && ocidSuccessful) || (isMlsUploadEnabled && mlsSuccessful)) {
+                    Timber.d("upload(): Deleting measurements because OCID enabled = %s and successful = %s, MLS enabled = %s and successful = %s", isOpenCellIdUploadEnabled, ocidSuccessful, isMlsUploadEnabled, mlsSuccessful);
+                    // delete sent measurements
+                    int[] rowIds = getRowIds(measurements);
+                    int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).deleteMeasurements(rowIds);
+                    if (numberOfDeleted == 0) {
+                        ocidUploadResult = UploadResult.DeleteFailed;
+                        mlsUploadResult = UploadResult.DeleteFailed;
+                        break;
+                    }
+                }
+                // broadcast part uploaded (if error not encountered earlier)
+                EventBus.getDefault().post(new PrintMainWindowEvent());
+
+                if (!continueOcidUpload && !continueMlsUpload)
+                    break;
+            }
+            return succeededParts;
+        }
+
+        private int[] getRowIds(List<Measurement> measurements) {
+            int j = 0;
+            int[] rowIds = new int[measurements.size()];
+            for (Measurement m : measurements) {
+                rowIds[j++] = m.getRowId();
+            }
+            return rowIds;
+        }
+
+        private UploadResult uploadToOcid(List<Measurement> measurements) {
+            // create generator instance
+            MemoryTextDevice device = new MemoryTextDevice();
+            CsvTextGenerator<CsvUploadFormatter, MemoryTextDevice> generator = new CsvTextGenerator<>(new CsvUploadFormatter(), device);
+            // write measurements
+            try {
+                device.open();
+                generator.writeHeader();
+                generator.writeEntryChunk(measurements);
+            } catch (IOException ex) {
+                // this should never happen for MemoryTextDevice
+                Timber.tag(INNER_TAG).e(ex, "uploadToOcid(): Error while generating file");
+                MyApplication.getAnalytics().sendException(ex, Boolean.TRUE);
+                ACRA.getErrorReporter().handleSilentException(ex);
+                return UploadResult.Failure;
+            }
+            // get content
+            String csvContent = device.read();
+            device.close();
+            // send request
+            try {
+                IUploadClient client = new OcidUploadClient(ocidUploadUrl, appId, ocidApiKey);
+                RequestResult response = client.uploadMeasurements(csvContent);
+                Timber.tag(INNER_TAG).d("uploadToOcid(): Server response: %s", response);
+                // check whether it makes sense to continue
+                if (response == RequestResult.ConfigurationError) {
+                    return UploadResult.InvalidData;
+                } else if (response == RequestResult.ServerError) {
+                    return UploadResult.ServerError;
+                } else if (response == RequestResult.ConnectionError) {
+                    return UploadResult.ConnectionError;
+                } else if (response == RequestResult.Failure) {
+                    return UploadResult.Failure;
+                } else if (response == RequestResult.InvalidApiKey) {
+                    return UploadResult.InvalidApiKey;
+                } else if (response == RequestResult.Success) {
+                    Timber.tag(INNER_TAG).d("uploadToOcid(): Uploaded %s measurements", measurements.size());
+                    return UploadResult.PartiallySucceeded;
+                } else {
+                    throw new UnsupportedOperationException(String.format("Unsupported upload result %s", response));
+                }
+            } catch (SecurityException ex) {
+                Timber.tag(INNER_TAG).e(ex, "uploadToOcid(): Internet permission is denied");
+                return UploadResult.PermissionDenied;
+            }
+        }
+
+        private UploadResult uploadToMls(List<Measurement> measurements) {//TODO
+            // create generator instance
+            MemoryTextDevice device = new MemoryTextDevice();
+            JsonTextGenerator<JsonMozillaFormatter, MemoryTextDevice> generator = new JsonTextGenerator<>(new JsonMozillaFormatter(), device);
+            // write measurements
+            try {
+                device.open();
+                generator.writeEntries(measurements);
+            } catch (IOException ex) {
+                // this should never happen for MemoryTextDevice
+                Timber.tag(INNER_TAG).e(ex, "uploadToMls(): Error while generating file");
+                MyApplication.getAnalytics().sendException(ex, Boolean.TRUE);
+                ACRA.getErrorReporter().handleSilentException(ex);
+                return UploadResult.Failure;
+            }
+            // get content
+            String jsonContent = device.read();
+            device.close();
+            // send request
+            try {
+                IUploadClient client = new MozillaUploadClient(mlsUploadUrl, mlsApiKey);
+                RequestResult response = client.uploadMeasurements(jsonContent);
+                Timber.tag(INNER_TAG).d("uploadToMls(): Server response: %s", response);
+                // check whether it makes sense to continue
+                if (response == RequestResult.ConfigurationError) {
+                    return UploadResult.InvalidData;
+                } else if (response == RequestResult.ServerError) {
+                    return UploadResult.ServerError;
+                } else if (response == RequestResult.ConnectionError) {
+                    return UploadResult.ConnectionError;
+                } else if (response == RequestResult.Failure) {
+                    return UploadResult.Failure;
+                } else if (response == RequestResult.Success) {
+                    Timber.tag(INNER_TAG).d("uploadToMls(): Uploaded %s measurements", measurements.size());
+                    return UploadResult.PartiallySucceeded;
+                } else {
+                    throw new UnsupportedOperationException(String.format("Unsupported upload result %s", response));
+                }
+            } catch (SecurityException ex) {
+                Timber.tag(INNER_TAG).e(ex, "uploadToMls(): Internet permission is denied");
+                return UploadResult.PermissionDenied;
+            }
         }
     }
 }

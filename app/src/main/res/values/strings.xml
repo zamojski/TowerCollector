@@ -97,6 +97,8 @@
     <string name="uploader_starting">Starting upload&#8230;</string>
     <string name="uploader_aborting">Aborting upload&#8230;</string>
     <string name="uploader_already_running">Upload is already running.</string>
+    <string name="uploader_disabled">Upload disabled</string>
+    <string name="uploader_disabled_description">Upload disabled for this project.</string>
     <string name="uploader_aborted">Upload aborted</string>
     <string name="uploader_aborted_description">Nothing has been uploaded.</string>
     <string name="uploader_success">Upload successful</string>
@@ -117,6 +119,7 @@
     <string name="uploader_connection_error_description">The server could not be reached because due to network related error which may be caused by missing, too slow or unstable Internet connection. Please check if you have latest application version and try again. If you encounter this problem for a long time, please let me know.</string>
     <string name="uploader_server_error">Server error</string>
     <string name="uploader_server_error_description">The server returned internal error which may mean that it is overloaded, temporarily unavailable or down for maintenance. Please try again later. If you encounter this problem for a long time, please let me know.</string>
+    <string name="uploader_result_message" translatable="false">OCID: <xliff:g id="message_for_ocid">%1$s</xliff:g>\nMLS: <xliff:g id="message_for_mls">%2$s</xliff:g></string>
     <string name="other_notification_channel_name">Other</string>
     <string name="error_reporting_notification_channel_name">Error reporting</string>
     <string name="error_reporting_notification_title">Unexpected error occurred</string>
@@ -136,7 +139,7 @@
     <string name="export_toast_failed_cause_file_not_writable">file is read-only</string>
     <string name="export_toast_no_data">No data to export.</string>
     <string name="export_toast_cancelled">Export cancelled.</string>
-    <string name="updater_notification_ticker">New version of Tower Colector is available</string>
+    <string name="updater_notification_ticker">New version of Tower Collector is available</string>
     <string name="updater_notification_title">New version is available</string>
     <string name="updater_notification_download_options">Select to view download options</string>
     <string name="updater_dialog_new_version_available">Select download source</string>

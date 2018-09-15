@@ -46,6 +46,8 @@ android {
         buildConfigField "String", "ACRA_FORM_URI_BASIC_AUTH_PASSWORD", rotHex(props['acra_formUriBasicAuthPassword'])
         // Analytics
         buildConfigField "Boolean", "ANALYTICS_AVAILABLE", props['analytics_available']
+        // MLS
+        buildConfigField "String", "MLS_API_KEY", rotHex(props['mls_apiKey'])
         // Other
         buildConfigField "String", "UPDATE_CHECK_FEED_URI", props['other_updateCheckFeedUri']
         buildConfigField "String", "CONTACT_EMAIL", rot135(props['other_contactEmail'])
