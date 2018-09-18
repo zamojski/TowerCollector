@@ -424,8 +424,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
     }
 
-    private void displayUploadResultDialog(Bundle extras) {
-        int descriptionId = extras.getInt(UploaderService.INTENT_KEY_RESULT_DESCRIPTION);
+    private void displayUploadResultDialog(int descriptionId) {
         try {
             String descriptionContent = getString(descriptionId);
             Timber.d("displayUploadResultDialog(): Received extras: %s", descriptionId);
@@ -447,8 +446,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
     }
 
-    private void displayNewVersionDownloadOptions(Bundle extras) {
-        UpdateInfo updateInfo = (UpdateInfo) extras.getSerializable(UpdateCheckAsyncTask.INTENT_KEY_UPDATE_INFO);
+    private void displayNewVersionDownloadOptions(UpdateInfo updateInfo) {
         // display dialog
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -1037,14 +1035,13 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     }
 
     private void processOnStartIntent(Intent intent) {
-        Bundle extras = intent.getExtras();
-        if (extras != null) {
-            if (extras.containsKey(UploaderService.INTENT_KEY_RESULT_DESCRIPTION)) {
+        if (intent != null) {
+            if (intent.hasExtra(UploaderService.INTENT_KEY_RESULT_DESCRIPTION)) {
                 // display upload result
-                displayUploadResultDialog(extras);
-            } else if (extras.containsKey(UpdateCheckAsyncTask.INTENT_KEY_UPDATE_INFO)) {
+                displayUploadResultDialog(intent.getIntExtra(UploaderService.INTENT_KEY_RESULT_DESCRIPTION, 0));
+            } else if (intent.hasExtra(UpdateCheckAsyncTask.INTENT_KEY_UPDATE_INFO)) {
                 // display dialog with download options
-                displayNewVersionDownloadOptions(extras);
+                displayNewVersionDownloadOptions((UpdateInfo) intent.getSerializableExtra(UpdateCheckAsyncTask.INTENT_KEY_UPDATE_INFO));
             }
         }
     }
