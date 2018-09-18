@@ -4,23 +4,19 @@
 
 package info.zamojski.soft.towercollector.collector.parsers;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import org.acra.ACRA;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
 import android.annotation.TargetApi;
 import android.location.Location;
 import android.os.Build;
 import android.telephony.CellInfo;
 
-import info.zamojski.soft.towercollector.model.CellsCount;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.collector.ParseResult;
@@ -34,6 +30,7 @@ import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.events.Api17PlusMeasurementProcessingEvent;
 import info.zamojski.soft.towercollector.events.MeasurementSavedEvent;
 import info.zamojski.soft.towercollector.events.MeasurementsCollectedEvent;
+import info.zamojski.soft.towercollector.model.CellsCount;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.model.Statistics;
 import timber.log.Timber;
@@ -148,10 +145,6 @@ public class Api17PlusMeasurementParser extends MeasurementParser {
             Timber.d("parse(): Notification updated and measurement broadcasted");
             return ParseResult.Saved;
         } else {
-            Timber.e("parse(): Error while saving measurement");
-            Exception ex = new Exception("Measurement save failed");
-            MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
-            ACRA.getErrorReporter().handleSilentException(ex);
             return ParseResult.SaveFailed;
         }
     }

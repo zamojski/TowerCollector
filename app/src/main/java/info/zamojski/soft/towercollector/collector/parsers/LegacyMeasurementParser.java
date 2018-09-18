@@ -4,24 +4,20 @@
 
 package info.zamojski.soft.towercollector.collector.parsers;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import org.acra.ACRA;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
 import android.location.Location;
 import android.telephony.CellLocation;
 import android.telephony.NeighboringCellInfo;
 import android.telephony.SignalStrength;
 import android.telephony.gsm.GsmCellLocation;
 
-import info.zamojski.soft.towercollector.model.CellsCount;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.collector.ParseResult;
@@ -36,6 +32,7 @@ import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.events.LegacyMeasurementProcessingEvent;
 import info.zamojski.soft.towercollector.events.MeasurementSavedEvent;
 import info.zamojski.soft.towercollector.events.MeasurementsCollectedEvent;
+import info.zamojski.soft.towercollector.model.CellsCount;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.model.Statistics;
 import info.zamojski.soft.towercollector.utils.MobileUtils;
@@ -161,10 +158,6 @@ public class LegacyMeasurementParser extends MeasurementParser {
             Timber.d("parse(): Notification updated and measurement broadcasted");
             return ParseResult.Saved;
         } else {
-            Timber.e("parse(): Error while saving measurement");
-            Exception ex = new Exception("Measurement save failed");
-            MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
-            ACRA.getErrorReporter().handleSilentException(ex);
             return ParseResult.SaveFailed;
         }
     }
