@@ -44,13 +44,13 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
         try {
             // get number of measurements to process
             int measurementsCount = MeasurementsDatabase.getInstance(context).getAllMeasurementsCount();
-            // get last measurement row id
-            Measurement lastMeasurement = MeasurementsDatabase.getInstance(context).getLastMeasurement();
             // check if there is anything to process
-            if (measurementsCount == 0 || lastMeasurement == null) {
+            if (measurementsCount == 0) {
                 Timber.d("generate(): Cancelling save due to no data");
                 return new FileGeneratorResult(GeneratorResult.NoData, Reason.Unknown);
             }
+            // get last measurement row id
+            Measurement lastMeasurement = MeasurementsDatabase.getInstance(context).getLastMeasurement();
             // calculate number of parts
             final int MEASUREMENTS_PER_PART = 400;
             int partsCount = 1;
@@ -73,7 +73,7 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
             // get measurements in loop
             for (int i = 0; i < partsCount; i++) {
                 // get from database
-                List<Measurement> measurements = MeasurementsDatabase.getInstance(context).getOlderMeasurements(lastMeasurement.getTimestamp(), i * MEASUREMENTS_PER_PART, MEASUREMENTS_PER_PART);
+                List<Measurement> measurements = MeasurementsDatabase.getInstance(context).getOlderMeasurements(i * MEASUREMENTS_PER_PART, MEASUREMENTS_PER_PART);
                 // write to file
                 for (Measurement m : measurements) {
                     // if time difference is more than 30 minutes then create new segment

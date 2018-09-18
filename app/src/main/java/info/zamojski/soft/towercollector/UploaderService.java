@@ -258,12 +258,10 @@ public class UploaderService extends Service {
 
             // get number of measurements to upload
             int measurementsCount = MeasurementsDatabase.getInstance(getApplication()).getAllMeasurementsCount();
-
-            // get last measurement row id
-            Measurement lastMeasurement = MeasurementsDatabase.getInstance(getApplication()).getLastMeasurement();
+            int temporaryMeasurementsCount = MeasurementsDatabase.getInstance(getApplication()).getAllMeasurementsCountFor(isOpenCellIdUploadEnabled, isMlsUploadEnabled);
 
             // check if there is anything to upload
-            if (measurementsCount == 0 || lastMeasurement == null) {
+            if (measurementsCount == 0 && temporaryMeasurementsCount == 0) {
                 Timber.tag(INNER_TAG).d("run(): Cancelling upload due to no data to upload");
                 ocidUploadResult = UploadResult.NoData;
                 mlsUploadResult = UploadResult.NoData;
@@ -279,8 +277,9 @@ public class UploaderService extends Service {
             if (measurementsCount > MEASUREMENTS_PER_PART) {
                 partsCount = (int) Math.ceil(1.0 * measurementsCount / MEASUREMENTS_PER_PART);
             }
+            int temporaryPartsCount = (int) Math.ceil(1.0 * temporaryMeasurementsCount / MEASUREMENTS_PER_PART);
 
-            int succeededParts = upload(lastMeasurement, partsCount);
+            int succeededParts = upload(partsCount, temporaryPartsCount);
 
             // sum up results and update notification for ocid
             if (ocidUploadResult == UploadResult.PartiallySucceeded) {
@@ -324,12 +323,13 @@ public class UploaderService extends Service {
             stopSelf();
         }
 
-        private int upload(Measurement lastMeasurement, int partsCount) {
+        private int upload(int partsCount, int temporaryPartsCount) {//TODO use param
             int succeededParts = 0;
+            int totalPartsCount = partsCount + temporaryPartsCount;
             boolean continueOcidUpload = isOpenCellIdUploadEnabled;
             boolean continueMlsUpload = isMlsUploadEnabled;
             // for each part start new upload
-            for (int i = 0; i < partsCount; i++) {
+            for (int i = 0; i < totalPartsCount; i++) {
                 // check if cancelled
                 if (isCancelled.get()) {
                     ocidUploadResult = UploadResult.Cancelled;
@@ -337,10 +337,14 @@ public class UploaderService extends Service {
                     break;
                 }
                 // notify
-                int progress = (int) (1.0 * i / partsCount);
+                int progress = (int) (1.0 * i / totalPartsCount);
                 updateNotification(progress);
                 // prepare data starting from oldest
-                List<Measurement> measurements = MeasurementsDatabase.getInstance(getApplication()).getOlderMeasurements(lastMeasurement.getTimestamp(), 0, MEASUREMENTS_PER_PART);
+                List<Measurement> measurements;
+                if (i < partsCount)
+                    measurements = MeasurementsDatabase.getInstance(getApplication()).getOlderMeasurements(0, MEASUREMENTS_PER_PART);
+                else
+                    measurements = MeasurementsDatabase.getInstance(getApplication()).getTemporaryMeasurements(0, MEASUREMENTS_PER_PART);
 
                 Timber.d("upload(): Continue upload to OCID = %s, MLS = %s", continueOcidUpload, continueMlsUpload);
 
@@ -383,7 +387,7 @@ public class UploaderService extends Service {
                     } else if (ocidSuccessful && isMlsUploadEnabled) {
                         Timber.d("upload(): Moving measurements to MLS temporary");
                         // keep for mls
-                        int[] rowIds = getRowIds(measurements);
+                        int[] rowIds = getRowIds(measurements);//TODO what if already temporary???
                         int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).moveToTemporary(rowIds, System.currentTimeMillis(), null);
                         if (numberOfDeleted == 0) {
                             ocidUploadResult = UploadResult.DeleteFailed;

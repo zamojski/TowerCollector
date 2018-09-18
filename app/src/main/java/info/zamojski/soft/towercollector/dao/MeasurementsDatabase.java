@@ -242,15 +242,26 @@ public class MeasurementsDatabase {
     }
 
     public int getAllMeasurementsCount() {
+        return getAllMeasurementsCount(MeasurementsTable.TABLE_NAME, null);
+    }
+
+    public int getAllMeasurementsCountFor(boolean ocidEnabled, boolean mlsEnabled) {
+        String ocidSelection = ocidEnabled ? TemporaryMeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT + " IS NULL" : null;
+        String mlsSelection = mlsEnabled ? TemporaryMeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT + " IS NULL" : null;
+        String selection = ocidSelection != null ? mlsSelection != null ? ocidSelection + " OR " + mlsSelection : ocidSelection : mlsSelection;
+        return getAllMeasurementsCount(TemporaryMeasurementsTable.TABLE_NAME, selection);
+    }
+
+    private int getAllMeasurementsCount(String tableName, String selection) {
         int count = 0;
         Timber.d("getAllMeasurementsCount(): Getting number of measurements");
         SQLiteDatabase db = helper.getReadableDatabase();
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
-        queryBuilder.setTables(MeasurementsTable.TABLE_NAME);
-        String[] columns = new String[]{"COUNT(*) AS LOCATIONS_COUNT"};
-        Cursor cursorTotal = queryBuilder.query(db, columns, null, null, null, null, null);
+        queryBuilder.setTables(tableName);
+        String[] columns = new String[]{"COUNT(*) AS MEASUREMENTS_COUNT"};
+        Cursor cursorTotal = queryBuilder.query(db, columns, selection, null, null, null, null);
         if (cursorTotal.moveToNext()) {
-            count = cursorTotal.getInt(cursorTotal.getColumnIndex("LOCATIONS_COUNT"));
+            count = cursorTotal.getInt(cursorTotal.getColumnIndex("MEASUREMENTS_COUNT"));
         }
         cursorTotal.close();
         return count;
@@ -376,9 +387,9 @@ public class MeasurementsDatabase {
         return boundaries;
     }
 
-    public List<Measurement> getOlderMeasurements(long maxTimestamp, int offset, int limit) {
-        Timber.d("getOlderMeasurements(): Getting %s measurements with timestamp <= %s skipping first %s", limit, maxTimestamp, offset);
-        return getMeasurements(MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " <= ?", new String[]{String.valueOf(maxTimestamp)}, null, null, MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " ASC, " + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_ROW_ID + " ASC", String.valueOf(offset) + ", " + String.valueOf(limit));
+    public List<Measurement> getOlderMeasurements(int offset, int limit) {
+        Timber.d("getOlderMeasurements(): Getting %s measurements from oldest skipping first %s", limit, offset);
+        return getMeasurements(null, null, null, null, MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " ASC, " + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_ROW_ID + " ASC", String.valueOf(offset) + ", " + String.valueOf(limit));
     }
 
     private List<Measurement> getMeasurements(String selection, String[] selectionArgs, String groupBy, String having, String sortOrder, String limit) {
@@ -474,6 +485,58 @@ public class MeasurementsDatabase {
     }
 
     public int deleteMeasurements(int[] rowIds) {
+        if (rowIds == null || rowIds.length == 0) {
+            Timber.d("deleteMeasurements(): Nothing to delete");
+            return 0;
+        }
+        Timber.d("deleteMeasurements(): Deleting %s measurements", rowIds.length);
+        // in transaction
+        int deleted = 0;
+        SQLiteDatabase db = helper.getWritableDatabase();
+        db.beginTransaction();
+        try {
+            // delete partially
+            int numOfDeletions = (int) Math.ceil(1.0 * rowIds.length / NUM_OF_DELETIONS_PER_ONE_QUERY);
+            for (int i = 0; i < numOfDeletions; i++) {
+                // calculate range
+                int lower = i * NUM_OF_DELETIONS_PER_ONE_QUERY;
+                int upper = (i + 1) * NUM_OF_DELETIONS_PER_ONE_QUERY;
+                // last
+                if (i + 1 == numOfDeletions && upper != rowIds.length)
+                    upper = rowIds.length;
+                // construct query
+                String[] whereArgs = new String[upper - lower];
+                StringBuilder whereClauseBuilder = new StringBuilder(MeasurementsTable.COLUMN_ROW_ID + " IN (");
+                for (int j = 0; j < (upper - lower); j++) {
+                    if (j == 0) {
+                        whereClauseBuilder.append("?");
+                    } else {
+                        whereClauseBuilder.append(", ?");
+                    }
+                    whereArgs[j] = String.valueOf(rowIds[lower + j]);
+                }
+                whereClauseBuilder.append(")");
+                // delete
+                deleted += db.delete(MeasurementsTable.TABLE_NAME, whereClauseBuilder.toString(), whereArgs);
+            }
+            // validate total result
+            if (deleted == rowIds.length) {
+                // if all removed successfully then delete orphaned cells and locations
+                long deletedLocations = db.delete(LocationsTable.TABLE_NAME, LocationsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_LOCATION_ID + " FROM " + MeasurementsTable.TABLE_NAME + ")", null);
+                long deletedCells = db.delete(CellsTable.TABLE_NAME, CellsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_CELL_ID + " FROM " + MeasurementsTable.TABLE_NAME + ")", null);
+                cleanOlderTemporary();
+                db.setTransactionSuccessful();
+                Timber.d("deleteMeasurements(): Deleted orphaned %s cells, %s locations", deletedCells, deletedLocations);
+            } else
+                deleted = 0;
+        } finally {
+            invalidateCache();
+            db.endTransaction();
+        }
+        return deleted;
+    }
+
+    public int deleteTemporaryMeasurements(int[] rowIds) {
         if (rowIds == null || rowIds.length == 0) {
             Timber.d("deleteMeasurements(): Nothing to delete");
             return 0;
