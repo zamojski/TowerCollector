@@ -778,10 +778,14 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                     if (fileTypes.containsKey(selectedItem)) {
                         selectedType = fileTypes.get(selectedItem);
                     }
+                    String nameSuffix = "";
                     String extension;
                     switch (selectedType) {
                         case Csv:
+                            extension = "csv";
+                            break;
                         case CsvOcid:
+                            nameSuffix = "-ocid";
                             extension = "csv";
                             break;
                         case Gpx:
@@ -796,7 +800,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                             break;
                     }
                     if (selectedType != FileType.Unknown) {
-                        String path = FileUtils.combinePath(FileUtils.getExternalStorageAppDir(), FileUtils.getCurrentDateFilename(extension));
+                        String path = FileUtils.combinePath(FileUtils.getExternalStorageAppDir(), FileUtils.getCurrentDateFileName(nameSuffix, extension));
                         ExportFileAsyncTask task = new ExportFileAsyncTask(MainActivity.this, new InternalMessageHandler(MainActivity.this), path, selectedType);
                         task.execute(new Void[0]);
                         MyApplication.getAnalytics().sendExportStarted();

@@ -84,7 +84,7 @@ public class FileLoggingTree extends Timber.DebugTree {
             if (!logDir.exists()) {
                 logDir.mkdirs();
             }
-            File logFile = new File(logDir, FileUtils.getCurrentDateFilename("log"));
+            File logFile = new File(logDir, FileUtils.getCurrentDateFileName("log"));
             FileOutputStream fis = new FileOutputStream(logFile);
             osw = new OutputStreamWriter(fis);
         } catch (Exception ex) {
