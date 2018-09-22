@@ -89,6 +89,14 @@ public class Measurement implements Serializable {
      * Unix Timestamp with milliseconds.
      */
     private long timestamp;
+    /**
+     * Unix Timestamp with milliseconds.
+     */
+    private Long uploadedToOcidAt;
+    /**
+     * Unix Timestamp with milliseconds.
+     */
+    private Long uploadedToMlsAt;
 
     /**
      * Default constructor.
@@ -106,7 +114,7 @@ public class Measurement implements Serializable {
     }
 
     /**
-     * Copy constructor (doesn't clone rowId!).
+     * Copy constructor (doesn't clone rowId and uploadedToXXXAt!).
      */
     public Measurement(Measurement m) {
         this.mcc = m.mcc;
@@ -292,6 +300,22 @@ public class Measurement implements Serializable {
 
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public Long getUploadedToOcidAt() {
+        return uploadedToOcidAt;
+    }
+
+    public void setUploadedToOcidAt(Long uploadedToOcidAt) {
+        this.uploadedToOcidAt = uploadedToOcidAt;
+    }
+
+    public Long getUploadedToMlsAt() {
+        return uploadedToMlsAt;
+    }
+
+    public void setUploadedToMlsAt(Long uploadedToMlsAt) {
+        this.uploadedToMlsAt = uploadedToMlsAt;
     }
 
     public void setGsmCellInfo(int mcc, int mnc, int lac, int cid) {

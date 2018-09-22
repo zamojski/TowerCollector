@@ -31,12 +31,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.text.TextUtils;
 
-
 public class MeasurementsDatabase {
 
-
     public static final String DATABASE_FILE_NAME = "measurements.db";
-    public static final int DATABASE_FILE_VERSION = 11;
+    public static final int DATABASE_FILE_VERSION = 12;
 
     private static final int NUM_OF_DELETIONS_PER_ONE_QUERY = 50;
 
@@ -180,13 +178,12 @@ public class MeasurementsDatabase {
         return overallResult;
     }
 
-    public boolean insertMeasurement(Measurement measurement) {
-        return insertMeasurements(new Measurement[]{measurement});
-    }
-
     public Measurement getFirstMeasurement() {
         Measurement firstMeasurement = null;
-        List<Measurement> measurements = getMeasurements(null, null, null, null, MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " ASC, " + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_ROW_ID + " ASC", "1");
+        List<Measurement> measurements = getMeasurements(null, null, null, null,
+                NotUploadedMeasurementsView.VIEW_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " ASC, "
+                        + NotUploadedMeasurementsView.VIEW_NAME + "." + MeasurementsTable.COLUMN_ROW_ID + " ASC",
+                "1", false);
         if (!measurements.isEmpty())
             firstMeasurement = measurements.get(0);
         Timber.d("getFirstMeasurement(): %s", firstMeasurement);
@@ -202,10 +199,10 @@ public class MeasurementsDatabase {
         }
         Measurement lastMeasurement = null;
         List<Measurement> measurements = getMeasurements(null, null, null, null,
-                MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " DESC, "
-                        + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_NEIGHBORING + " DESC, "
-                        + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_ROW_ID + " DESC",
-                "1");
+                NotUploadedMeasurementsView.VIEW_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " DESC, "
+                        + NotUploadedMeasurementsView.VIEW_NAME + "." + MeasurementsTable.COLUMN_NEIGHBORING + " DESC, "
+                        + NotUploadedMeasurementsView.VIEW_NAME + "." + MeasurementsTable.COLUMN_ROW_ID + " DESC",
+                "1", false);
         if (!measurements.isEmpty()) {
             lastMeasurement = measurements.get(0);
         }
@@ -225,9 +222,10 @@ public class MeasurementsDatabase {
         SQLiteDatabase db = helper.getReadableDatabase();
         final String totalCount = "TOTAL_COUNT";
         final String mainCount = "MAIN_COUNT";
-        String query = "SELECT (SELECT COUNT(" + MeasurementsTable.COLUMN_MEASURED_AT + ") FROM " + MeasurementsTable.TABLE_NAME + " WHERE " + MeasurementsTable.COLUMN_MEASURED_AT + " = m." + MeasurementsTable.COLUMN_MEASURED_AT + ") AS " + totalCount + ","
-                + " (SELECT COUNT(" + MeasurementsTable.COLUMN_MEASURED_AT + ") FROM " + MeasurementsTable.TABLE_NAME + " WHERE " + MeasurementsTable.COLUMN_MEASURED_AT + " = m." + MeasurementsTable.COLUMN_MEASURED_AT + " AND " + MeasurementsTable.COLUMN_NEIGHBORING + " = 0) AS " + mainCount + ""
-                + " FROM " + MeasurementsTable.TABLE_NAME + " m ORDER BY m." + MeasurementsTable.COLUMN_MEASURED_AT + " DESC LIMIT 0, 1";
+        String query = "SELECT (SELECT COUNT(" + MeasurementsTable.COLUMN_MEASURED_AT + ") FROM " + NotUploadedMeasurementsView.VIEW_NAME + " WHERE " + MeasurementsTable.COLUMN_MEASURED_AT + " = m." + MeasurementsTable.COLUMN_MEASURED_AT + ") AS " + totalCount + ","
+                + " (SELECT COUNT(" + MeasurementsTable.COLUMN_MEASURED_AT + ") FROM " + NotUploadedMeasurementsView.VIEW_NAME + " WHERE " + MeasurementsTable.COLUMN_MEASURED_AT + " = m." + MeasurementsTable.COLUMN_MEASURED_AT + " AND " + MeasurementsTable.COLUMN_NEIGHBORING + " = 0) AS " + mainCount + ""
+                + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + " m"
+                + " ORDER BY m." + MeasurementsTable.COLUMN_MEASURED_AT + " DESC LIMIT 0, 1";
         // Log.d(query);
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToNext()) {
@@ -241,16 +239,16 @@ public class MeasurementsDatabase {
         return lastCellsCount;
     }
 
-    public int getAllMeasurementsCount() {
+    public int getAllMeasurementsCount(boolean forUpload) {
         int count = 0;
-        Timber.d("getAllMeasurementsCount(): Getting number of measurements");
+        Timber.d("getAllMeasurementsCount(): Getting number of measurements, for upload = %s", forUpload);
         SQLiteDatabase db = helper.getReadableDatabase();
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
-        queryBuilder.setTables(MeasurementsTable.TABLE_NAME);
-        String[] columns = new String[]{"COUNT(*) AS LOCATIONS_COUNT"};
+        queryBuilder.setTables(forUpload ? MeasurementsTable.TABLE_NAME : NotUploadedMeasurementsView.VIEW_NAME);
+        String[] columns = new String[]{"COUNT(*) AS MEASUREMENTS_COUNT"};
         Cursor cursorTotal = queryBuilder.query(db, columns, null, null, null, null, null);
         if (cursorTotal.moveToNext()) {
-            count = cursorTotal.getInt(cursorTotal.getColumnIndex("LOCATIONS_COUNT"));
+            count = cursorTotal.getInt(cursorTotal.getColumnIndex("MEASUREMENTS_COUNT"));
         }
         cursorTotal.close();
         return count;
@@ -291,23 +289,30 @@ public class MeasurementsDatabase {
                 + ", " + CellsArchiveTable.COLUMN_MNC + ", " + CellsArchiveTable.COLUMN_MCC + ", " + CellsArchiveTable.COLUMN_NET_TYPE;
         // full queries
         String todayCellsLocationsQuery = "SELECT COUNT(DISTINCT " + MeasurementsTable.COLUMN_CELL_ID + ") AS " + todayCellsCount + ", "
-                + "COUNT(*) AS " + todayLocationsCount + " FROM " + MeasurementsTable.TABLE_NAME + " WHERE " + MeasurementsTable.COLUMN_MEASURED_AT + " >= ?";
+                + "COUNT(*) AS " + todayLocationsCount + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + " WHERE " + MeasurementsTable.COLUMN_MEASURED_AT + " >= ?";
         String todayDiscoveredCellsQuery = "SELECT COUNT(*) AS " + todayDiscoveredCellsCount + " FROM (SELECT " + cellsTablePrimaryKeyColumns
                 + " FROM " + CellsTable.TABLE_NAME + " WHERE " + CellsTable.COLUMN_DISCOVERED_AT
-                + " >= ? EXCEPT SELECT " + cellsArchiveTablePrimaryKeyColumns + " FROM " + CellsArchiveTable.TABLE_NAME + ")";
+                + " >= ? AND " + CellsTable.TABLE_NAME + "." + CellsTable.COLUMN_ROW_ID + " IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_CELL_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + ")"
+                + " EXCEPT SELECT " + cellsArchiveTablePrimaryKeyColumns + " FROM " + CellsArchiveTable.TABLE_NAME + ")";
         String localCellsQuery = "SELECT COUNT(" + CellsTable.COLUMN_ROW_ID + ") AS " + localCellsCount + ", MIN(" + CellsTable.COLUMN_DISCOVERED_AT + ") AS "
-                + localDiscoveredCellsSince + " FROM " + CellsTable.TABLE_NAME;
-        String localLocationsQuery = "SELECT COUNT(" + MeasurementsTable.COLUMN_ROW_ID + ") AS " + localLocationsCount + " FROM " + MeasurementsTable.TABLE_NAME;
+                + localDiscoveredCellsSince + " FROM " + CellsTable.TABLE_NAME
+                + " WHERE " + CellsTable.TABLE_NAME + "." + CellsTable.COLUMN_ROW_ID + " IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_CELL_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + ")";
+        String localLocationsQuery = "SELECT COUNT(" + MeasurementsTable.COLUMN_ROW_ID + ") AS " + localLocationsCount + " FROM " + NotUploadedMeasurementsView.VIEW_NAME;
         String localDiscoveredCellsQuery = "SELECT COUNT(*) AS " + localDiscoveredCellsCount + " FROM (SELECT " + cellsTablePrimaryKeyColumns
-                + " FROM " + CellsTable.TABLE_NAME + " EXCEPT SELECT " + cellsArchiveTablePrimaryKeyColumns + " FROM " + CellsArchiveTable.TABLE_NAME + ")";
+                + " FROM " + CellsTable.TABLE_NAME
+                + " WHERE " + CellsTable.TABLE_NAME + "." + CellsTable.COLUMN_ROW_ID + " IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_CELL_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + ")"
+                + " EXCEPT SELECT " + cellsArchiveTablePrimaryKeyColumns + " FROM " + CellsArchiveTable.TABLE_NAME + ")";
         String globalLocationsQuery = "SELECT " + StatsTable.COLUMN_TOTAL_LOCATIONS + " AS " + globalLocationsCount + " FROM "
                 + StatsTable.TABLE_NAME + " LIMIT 0, 1";
         String globalDiscoveredCellsQuery = "SELECT COUNT(*) AS " + globalDiscoveredCellsCount + " FROM (SELECT "
-                + cellsTablePrimaryKeyColumns + " FROM " + CellsTable.TABLE_NAME + " UNION SELECT "
-                + cellsArchiveTablePrimaryKeyColumns + " FROM " + CellsArchiveTable.TABLE_NAME + ")";
+                + cellsTablePrimaryKeyColumns + " FROM " + CellsTable.TABLE_NAME
+                + " WHERE " + CellsTable.TABLE_NAME + "." + CellsTable.COLUMN_ROW_ID + " IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_CELL_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + ")"
+                + " UNION SELECT " + cellsArchiveTablePrimaryKeyColumns + " FROM " + CellsArchiveTable.TABLE_NAME + ")";
         String globalDiscoveredSinceQuery = "SELECT " + CellsTable.COLUMN_DISCOVERED_AT + " AS " + globalDiscoveredCellsSince
-                + " FROM " + CellsTable.TABLE_NAME + " UNION SELECT " + CellsArchiveTable.COLUMN_DISCOVERED_AT
-                + " FROM " + CellsArchiveTable.TABLE_NAME + " ORDER BY " + CellsTable.COLUMN_DISCOVERED_AT + " ASC LIMIT 0, 1";
+                + " FROM " + CellsTable.TABLE_NAME
+                + " WHERE " + CellsTable.TABLE_NAME + "." + CellsTable.COLUMN_ROW_ID + " IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_CELL_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + ")"
+                + " UNION SELECT " + CellsArchiveTable.COLUMN_DISCOVERED_AT + " FROM " + CellsArchiveTable.TABLE_NAME
+                + " ORDER BY " + CellsTable.COLUMN_DISCOVERED_AT + " ASC LIMIT 0, 1";
         //Log.d(todayDiscoveredCellsQuery);
         //Log.d(localDiscoveredCellsQuery);
         //Log.d(globalDiscoveredCellsQuery);
@@ -344,7 +349,7 @@ public class MeasurementsDatabase {
         AnalyticsStatistics stats = new AnalyticsStatistics();
         SQLiteDatabase db = helper.getReadableDatabase();
         // get all in one query (raw is the only possible solution)
-        String query = "SELECT * FROM (SELECT COUNT(*) AS TOTAL_CELLS_COUNT FROM " + CellsTable.TABLE_NAME + ") JOIN (SELECT COUNT(*) AS TOTAL_LOCATIONS_COUNT, COUNT(DISTINCT DATE(" + MeasurementsTable.COLUMN_MEASURED_AT + " / 1000, 'unixepoch')) AS TOTAL_DAYS_COUNT FROM " + MeasurementsTable.TABLE_NAME + ")";
+        String query = "SELECT * FROM (SELECT COUNT(*) AS TOTAL_CELLS_COUNT FROM " + CellsTable.TABLE_NAME + ") JOIN (SELECT COUNT(*) AS TOTAL_LOCATIONS_COUNT, COUNT(DISTINCT DATE(" + MeasurementsTable.COLUMN_MEASURED_AT + " / 1000, 'unixepoch')) AS TOTAL_DAYS_COUNT FROM " + NotUploadedMeasurementsView.VIEW_NAME + ")";
         // Log.d(query);
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToNext()) {
@@ -362,7 +367,9 @@ public class MeasurementsDatabase {
         Boundaries boundaries = null;
         SQLiteDatabase db = helper.getReadableDatabase();
         // get all in one query (raw is the only possible solution)
-        String query = "SELECT MIN(" + LocationsTable.COLUMN_LATITUDE + ") AS MIN_LAT, MIN(" + LocationsTable.COLUMN_LONGITUDE + ") AS MIN_LON, MAX(" + LocationsTable.COLUMN_LATITUDE + ") AS MAX_LAT, MAX(" + LocationsTable.COLUMN_LONGITUDE + ") AS MAX_LON FROM " + LocationsTable.TABLE_NAME;
+        String query = "SELECT MIN(" + LocationsTable.COLUMN_LATITUDE + ") AS MIN_LAT, MIN(" + LocationsTable.COLUMN_LONGITUDE + ") AS MIN_LON, MAX(" + LocationsTable.COLUMN_LATITUDE + ") AS MAX_LAT, MAX(" + LocationsTable.COLUMN_LONGITUDE + ") AS MAX_LON"
+                + " FROM " + LocationsTable.TABLE_NAME
+                + " WHERE " + LocationsTable.COLUMN_ROW_ID + " IN (SELECT DISTINCT " + NotUploadedMeasurementsView.VIEW_NAME + "." + MeasurementsTable.COLUMN_LOCATION_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME;
         // Log.d(query);
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToNext()) {
@@ -376,41 +383,46 @@ public class MeasurementsDatabase {
         return boundaries;
     }
 
-    public List<Measurement> getOlderMeasurements(long maxTimestamp, int offset, int limit) {
-        Timber.d("getOlderMeasurements(): Getting %s measurements with timestamp <= %s skipping first %s", limit, maxTimestamp, offset);
-        return getMeasurements(MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " <= ?", new String[]{String.valueOf(maxTimestamp)}, null, null, MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " ASC, " + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_ROW_ID + " ASC", String.valueOf(offset) + ", " + String.valueOf(limit));
+    public List<Measurement> getMeasurementsPart(int offset, int limit, boolean forUpload) {
+        Timber.d("getMeasurementsPart(): Getting %s measurements skipping first %s, for upload = %s", limit, offset, forUpload);
+        final String MEASUREMENTS_TABLE = forUpload ? MeasurementsTable.TABLE_NAME : NotUploadedMeasurementsView.VIEW_NAME;
+        return getMeasurements(null, null, null, null, MeasurementsTable.COLUMN_MEASURED_AT + " ASC, " + MEASUREMENTS_TABLE + "." + MeasurementsTable.COLUMN_ROW_ID + " ASC", String.valueOf(offset) + ", " + String.valueOf(limit), forUpload);
     }
 
-    private List<Measurement> getMeasurements(String selection, String[] selectionArgs, String groupBy, String having, String sortOrder, String limit) {
+    private List<Measurement> getMeasurements(String selection, String[] selectionArgs, String groupBy, String having, String sortOrder, String limit, boolean forUpload) {
         Timber.d("getMeasurements(): Getting selected measurements");
-        List<Measurement> measurementList = new ArrayList<Measurement>(128);
+        final String MEASUREMENT_ROW_ID = "measurement_" + MeasurementsTable.COLUMN_ROW_ID;
+        final String MEASUREMENTS_TABLE = forUpload ? MeasurementsTable.TABLE_NAME : NotUploadedMeasurementsView.VIEW_NAME;
+        List<Measurement> measurementList = new ArrayList<>();
         SQLiteDatabase db = helper.getReadableDatabase();
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
-        queryBuilder.setTables(MeasurementsTable.TABLE_NAME
-                + " INNER JOIN " + LocationsTable.TABLE_NAME + " ON (" + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_LOCATION_ID + " = " + LocationsTable.TABLE_NAME + "." + LocationsTable.COLUMN_ROW_ID + ")"
-                + " INNER JOIN " + CellsTable.TABLE_NAME + " ON (" + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_CELL_ID + " = " + CellsTable.TABLE_NAME + "." + CellsTable.COLUMN_ROW_ID + ")");
+        queryBuilder.setTables(MEASUREMENTS_TABLE
+                + " INNER JOIN " + LocationsTable.TABLE_NAME + " ON (" + MEASUREMENTS_TABLE + "." + MeasurementsTable.COLUMN_LOCATION_ID + " = " + LocationsTable.TABLE_NAME + "." + LocationsTable.COLUMN_ROW_ID + ")"
+                + " INNER JOIN " + CellsTable.TABLE_NAME + " ON (" + MEASUREMENTS_TABLE + "." + MeasurementsTable.COLUMN_CELL_ID + " = " + CellsTable.TABLE_NAME + "." + CellsTable.COLUMN_ROW_ID + ")");
         //queryBuilder.appendWhere(MeasurementsQueries.TABLE_NAME + "." + COLUMN_CELL_ID + "=" + CellsQueries.TABLE_NAME + "." + COLUMN_ROW_ID);
-        String[] returnedColumns = {MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_ROW_ID,
-                MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_PSC,
-                MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_NEIGHBORING,
-                MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_TA,
-                MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_ASU,
-                MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_DBM,
-                MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT,
-                LocationsTable.TABLE_NAME + "." + LocationsTable.COLUMN_LATITUDE,
-                LocationsTable.TABLE_NAME + "." + LocationsTable.COLUMN_LONGITUDE,
-                LocationsTable.TABLE_NAME + "." + LocationsTable.COLUMN_GPS_ACCURACY,
-                LocationsTable.TABLE_NAME + "." + LocationsTable.COLUMN_GPS_SPEED,
-                LocationsTable.TABLE_NAME + "." + LocationsTable.COLUMN_GPS_BEARING,
-                LocationsTable.TABLE_NAME + "." + LocationsTable.COLUMN_GPS_ALTITUDE,
-                CellsTable.TABLE_NAME + "." + CellsTable.COLUMN_CID,
-                CellsTable.TABLE_NAME + "." + CellsTable.COLUMN_LAC,
-                CellsTable.TABLE_NAME + "." + CellsTable.COLUMN_MNC,
-                CellsTable.TABLE_NAME + "." + CellsTable.COLUMN_MCC,
-                CellsTable.TABLE_NAME + "." + CellsTable.COLUMN_NET_TYPE};
+        String[] returnedColumns = {MEASUREMENTS_TABLE + "." + MeasurementsTable.COLUMN_ROW_ID + " AS " + MEASUREMENT_ROW_ID,
+                MeasurementsTable.COLUMN_PSC,
+                MeasurementsTable.COLUMN_NEIGHBORING,
+                MeasurementsTable.COLUMN_TA,
+                MeasurementsTable.COLUMN_ASU,
+                MeasurementsTable.COLUMN_DBM,
+                MeasurementsTable.COLUMN_MEASURED_AT,
+                MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT,
+                MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT,
+                LocationsTable.COLUMN_LATITUDE,
+                LocationsTable.COLUMN_LONGITUDE,
+                LocationsTable.COLUMN_GPS_ACCURACY,
+                LocationsTable.COLUMN_GPS_SPEED,
+                LocationsTable.COLUMN_GPS_BEARING,
+                LocationsTable.COLUMN_GPS_ALTITUDE,
+                CellsTable.COLUMN_CID,
+                CellsTable.COLUMN_LAC,
+                CellsTable.COLUMN_MNC,
+                CellsTable.COLUMN_MCC,
+                CellsTable.COLUMN_NET_TYPE};
         // Log.d(queryBuilder.buildQuery(returnedColumns, selection, selectionArgs, groupBy, having, sortOrder, limit));
         Cursor cursor = queryBuilder.query(db, returnedColumns, selection, selectionArgs, groupBy, having, sortOrder, limit);
-        int rowIdColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_ROW_ID);
+        int rowIdColumnIndex = cursor.getColumnIndex(MEASUREMENT_ROW_ID);
         int mccColumnIndex = cursor.getColumnIndex(CellsTable.COLUMN_MCC);
         int mncColumnIndex = cursor.getColumnIndex(CellsTable.COLUMN_MNC);
         int lacColumnIndex = cursor.getColumnIndex(CellsTable.COLUMN_LAC);
@@ -428,6 +440,8 @@ public class MeasurementsDatabase {
         int gpsBearingColumnIndex = cursor.getColumnIndex(LocationsTable.COLUMN_GPS_BEARING);
         int gpsAltitudeColumnIndex = cursor.getColumnIndex(LocationsTable.COLUMN_GPS_ALTITUDE);
         int timestampColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_MEASURED_AT);
+        int uploadedToOcidAtColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT);
+        int uploadedToMlsAtColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT);
         while (cursor.moveToNext()) {
             Measurement measurement = new Measurement();
             measurement.setRowId(cursor.getInt(rowIdColumnIndex));
@@ -448,6 +462,10 @@ public class MeasurementsDatabase {
             measurement.setGpsBearing(cursor.getFloat(gpsBearingColumnIndex));
             measurement.setGpsAltitude(cursor.getDouble(gpsAltitudeColumnIndex));
             measurement.setTimestamp(cursor.getLong(timestampColumnIndex));
+            if (!cursor.isNull(uploadedToOcidAtColumnIndex))
+                measurement.setUploadedToOcidAt(cursor.getLong(uploadedToOcidAtColumnIndex));
+            if (!cursor.isNull(uploadedToMlsAtColumnIndex))
+                measurement.setUploadedToMlsAt(cursor.getLong(uploadedToMlsAtColumnIndex));
             measurementList.add(measurement);
         }
         cursor.close();
@@ -463,7 +481,7 @@ public class MeasurementsDatabase {
             deletedMeasurements = db.delete(MeasurementsTable.TABLE_NAME, "1", null);
             int deletedLocations = db.delete(LocationsTable.TABLE_NAME, "1", null);
             int deletedCells = db.delete(CellsTable.TABLE_NAME, "1", null);
-            cleanOlderTemporary();
+            cleanOlderUploadedPartiallyAndUploadedFully();
             db.setTransactionSuccessful();
             Timber.d("deleteAllMeasurements(): Deleted %s measurements, %s cells, %s locations", deletedMeasurements, deletedCells, deletedLocations);
         } finally {
@@ -513,7 +531,7 @@ public class MeasurementsDatabase {
                 // if all removed successfully then delete orphaned cells and locations
                 long deletedLocations = db.delete(LocationsTable.TABLE_NAME, LocationsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_LOCATION_ID + " FROM " + MeasurementsTable.TABLE_NAME + ")", null);
                 long deletedCells = db.delete(CellsTable.TABLE_NAME, CellsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_CELL_ID + " FROM " + MeasurementsTable.TABLE_NAME + ")", null);
-                cleanOlderTemporary();
+                cleanOlderUploadedPartiallyAndUploadedFully();
                 db.setTransactionSuccessful();
                 Timber.d("deleteMeasurements(): Deleted orphaned %s cells, %s locations", deletedCells, deletedLocations);
             } else
@@ -525,14 +543,14 @@ public class MeasurementsDatabase {
         return deleted;
     }
 
-    public int moveToTemporary(int[] rowIds, Long uploadedToOcidAt, Long uploadedToMlsAt) {
+    public int markAsUploaded(int[] rowIds, Long uploadedToOcidAt, Long uploadedToMlsAt) {
         if (rowIds == null || rowIds.length == 0) {
-            Timber.d("moveToTemporary(): Nothing to move");
+            Timber.d("markAsUploaded(): Nothing to mark");
             return 0;
         }
-        Timber.d("moveToTemporary(): Moving %s measurements to temporary with uploaded to OCID = %s, MLS = %s", rowIds.length, uploadedToOcidAt, uploadedToMlsAt);
+        Timber.d("markAsUploaded(): Marking %s measurements as uploaded to OCID = %s, MLS = %s", rowIds.length, uploadedToOcidAt, uploadedToMlsAt);
         // in transaction
-        int moved = 0;
+        int updated = 0;
         SQLiteDatabase db = helper.getWritableDatabase();
         db.beginTransaction();
         try {
@@ -547,43 +565,54 @@ public class MeasurementsDatabase {
                     upper = rowIds.length;
                 // construct query
                 String[] whereArgs = new String[upper - lower];
+                StringBuilder whereClauseBuilder = new StringBuilder(MeasurementsTable.COLUMN_ROW_ID + " IN (");
                 for (int j = 0; j < (upper - lower); j++) {
+                    if (j == 0) {
+                        whereClauseBuilder.append("?");
+                    } else {
+                        whereClauseBuilder.append(", ?");
+                    }
                     whereArgs[j] = String.valueOf(rowIds[lower + j]);
                 }
-                String whereArgsString = TextUtils.join(", ", whereArgs);
-                String uploadedToOcidAtString = uploadedToOcidAt == null ? "NULL" : String.valueOf(uploadedToOcidAt);
-                String uploadedToMlsAtString = uploadedToMlsAt == null ? "NULL" : String.valueOf(uploadedToMlsAt);
-                // move measurements and related
-                db.execSQL(String.format(MoveToTemporaryHelper.MOVE_CELLS_QUERY, whereArgsString));
-                db.execSQL(String.format(MoveToTemporaryHelper.MOVE_LOCATIONS_QUERY, whereArgsString));
-                db.execSQL(String.format(MoveToTemporaryHelper.MOVE_MEASUREMENTS_QUERY, uploadedToOcidAtString, uploadedToMlsAtString, whereArgsString));
+                whereClauseBuilder.append(")");
+
+                ContentValues cv = new ContentValues();
+                if (uploadedToOcidAt != null)
+                    cv.put(MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT, uploadedToOcidAt);
+                if (uploadedToMlsAt != null)
+                    cv.put(MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT, uploadedToMlsAt);
+                // mark measurements
+                updated += db.update(MeasurementsTable.TABLE_NAME, cv, whereClauseBuilder.toString(), whereArgs);
             }
             // if all moved successfully (without exception) then delete original measurements
             deleteMeasurements(rowIds);
             db.setTransactionSuccessful();
-            Timber.d("moveToTemporary(): Moved successfully");
+            Timber.d("markAsUploaded(): Marked successfully");
         } finally {
             invalidateCache();
             db.endTransaction();
         }
-        return moved;
+        return updated;
     }
 
-    private int cleanOlderTemporary() {
+    public int cleanOlderUploadedPartiallyAndUploadedFully() {
         final long days = 30;
         final long dayInMillis = 24 * 60 * 60 * 1000;
         long minTimeToKeep = System.currentTimeMillis() - days * dayInMillis;
 
-        Timber.d("cleanOlderTemporary(): Deleting temporary measurements older than %s", minTimeToKeep);
+        Timber.d("cleanOlderUploaded(): Deleting uploaded measurements older than %s", minTimeToKeep);
         // in transaction
         int deleted = 0;
         SQLiteDatabase db = helper.getWritableDatabase();
         db.beginTransaction();
         try {
-            deleted = db.delete(TemporaryMeasurementsTable.TABLE_NAME, TemporaryMeasurementsTable.COLUMN_MEASURED_AT + " < ?", new String[]{String.valueOf(minTimeToKeep)});
-            long deletedLocations = db.delete(TemporaryLocationsTable.TABLE_NAME, TemporaryLocationsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + TemporaryMeasurementsTable.COLUMN_LOCATION_ID + " FROM " + TemporaryMeasurementsTable.TABLE_NAME + ")", null);
-            long deletedCells = db.delete(TemporaryCellsTable.TABLE_NAME, TemporaryCellsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + TemporaryMeasurementsTable.COLUMN_CELL_ID + " FROM " + TemporaryMeasurementsTable.TABLE_NAME + ")", null);
-            Timber.d("cleanOlderTemporary(): Deleted %s measurements, %s orphaned cells, %s orphaned locations from temporary", deleted, deletedCells, deletedLocations);
+            deleted = db.delete(MeasurementsTable.TABLE_NAME,
+                    MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT + " < ? OR " + MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT + " < ?"
+                            + " OR (" + MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT + " IS NOT NULL AND " + MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT + " IS NOT NULL)",
+                    new String[]{String.valueOf(minTimeToKeep), String.valueOf(minTimeToKeep)});
+            long deletedLocations = db.delete(LocationsTable.TABLE_NAME, LocationsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_LOCATION_ID + " FROM " + MeasurementsTable.TABLE_NAME + ")", null);
+            long deletedCells = db.delete(CellsTable.TABLE_NAME, CellsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_CELL_ID + " FROM " + MeasurementsTable.TABLE_NAME + ")", null);
+            Timber.d("cleanOlderUploaded(): Deleted %s measurements, %s orphaned cells, %s orphaned locations from temporary", deleted, deletedCells, deletedLocations);
         } finally {
             db.endTransaction();
         }
@@ -668,9 +697,7 @@ public class MeasurementsDatabase {
             tables.add(new LocationsTable());
             tables.add(new CellsTable());
             tables.add(new MeasurementsTable());
-            tables.add(new TemporaryLocationsTable());
-            tables.add(new TemporaryCellsTable());
-            tables.add(new TemporaryMeasurementsTable());
+            tables.add(new NotUploadedMeasurementsView());
 
             for (ITable table : tables) {
                 String[] queries = table.getCreateQueries();

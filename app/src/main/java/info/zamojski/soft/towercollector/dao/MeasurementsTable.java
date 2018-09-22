@@ -16,6 +16,8 @@ final class MeasurementsTable implements ITable {
     static final String COLUMN_ASU = "asu";
     static final String COLUMN_DBM = "dbm";
     static final String COLUMN_MEASURED_AT = "measured_at";
+    static final String COLUMN_UPLOADED_TO_OCID_AT = "uploaded_to_ocid_at";
+    static final String COLUMN_UPLOADED_TO_MLS_AT = "uploaded_to_mls_at";
 
     static final String QUERY_CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ("
             + COLUMN_ROW_ID + " INTEGER PRIMARY KEY NOT NULL, "
@@ -27,6 +29,8 @@ final class MeasurementsTable implements ITable {
             + COLUMN_ASU + " INTEGER NOT NULL, "
             + COLUMN_DBM + " INTEGER NOT NULL, "
             + COLUMN_MEASURED_AT + " INTEGER NOT NULL, "
+            + COLUMN_UPLOADED_TO_OCID_AT + " INTEGER DEFAULT NULL, "
+            + COLUMN_UPLOADED_TO_MLS_AT + " INTEGER DEFAULT NULL, "
             + "FOREIGN KEY(" + COLUMN_LOCATION_ID + ") REFERENCES " + LocationsTable.TABLE_NAME + "(" + LocationsTable.COLUMN_ROW_ID + "),"
             + "FOREIGN KEY(" + COLUMN_CELL_ID + ") REFERENCES " + CellsTable.TABLE_NAME + "(" + CellsTable.COLUMN_ROW_ID + "))";
 
@@ -39,6 +43,12 @@ final class MeasurementsTable implements ITable {
     private static final String QUERY_CREATE_INDEX_CELL_ID = "CREATE INDEX 'IX_" + TABLE_NAME + "_" + COLUMN_CELL_ID
             + "' ON " + TABLE_NAME + " (" + COLUMN_CELL_ID + " DESC)";
 
+    private static final String QUERY_CREATE_INDEX_UPLOADED_TO_OCID_AT = "CREATE INDEX 'IX_" + TABLE_NAME + "_" + COLUMN_UPLOADED_TO_OCID_AT
+            + "' ON " + TABLE_NAME + " (" + COLUMN_UPLOADED_TO_OCID_AT + " ASC)";
+
+    private static final String QUERY_CREATE_INDEX_UPLOADED_TO_MLS_AT = "CREATE INDEX 'IX_" + TABLE_NAME + "_" + COLUMN_UPLOADED_TO_MLS_AT
+            + "' ON " + TABLE_NAME + " (" + COLUMN_UPLOADED_TO_MLS_AT + " ASC)";
+
     private static final String QUERY_CREATE_TRIGGER_ON_INSERT = "CREATE TRIGGER 'update_measurements_stats' AFTER INSERT ON " + TABLE_NAME + " BEGIN UPDATE "
             + StatsTable.TABLE_NAME + " SET " + StatsTable.COLUMN_TOTAL_LOCATIONS + " = " + StatsTable.COLUMN_TOTAL_LOCATIONS + " + 1; END";
 
@@ -49,7 +59,9 @@ final class MeasurementsTable implements ITable {
                 QUERY_CREATE_INDEX_MEASURED_AT,
                 QUERY_CREATE_INDEX_LOCATION_ID,
                 QUERY_CREATE_INDEX_CELL_ID,
-                QUERY_CREATE_TRIGGER_ON_INSERT
+                QUERY_CREATE_TRIGGER_ON_INSERT,
+                QUERY_CREATE_INDEX_UPLOADED_TO_OCID_AT,
+                QUERY_CREATE_INDEX_UPLOADED_TO_MLS_AT
         };
     }
 }

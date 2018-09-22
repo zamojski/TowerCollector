@@ -43,11 +43,9 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
     public FileGeneratorResult generate() {
         try {
             // get number of measurements to process
-            int measurementsCount = MeasurementsDatabase.getInstance(context).getAllMeasurementsCount();
-            // get last measurement row id
-            Measurement lastMeasurement = MeasurementsDatabase.getInstance(context).getLastMeasurement();
+            int measurementsCount = MeasurementsDatabase.getInstance(context).getAllMeasurementsCount(false);
             // check if there is anything to process
-            if (measurementsCount == 0 || lastMeasurement == null) {
+            if (measurementsCount == 0) {
                 Timber.d("generate(): Cancelling save due to no data");
                 return new FileGeneratorResult(GeneratorResult.NoData, Reason.Unknown);
             }
@@ -61,6 +59,7 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
             notifyProgressListeners(0, measurementsCount);
             // write header
             Measurement firstMeasurement = MeasurementsDatabase.getInstance(context).getFirstMeasurement();
+            Measurement lastMeasurement = MeasurementsDatabase.getInstance(context).getLastMeasurement();
             Boundaries bounds = MeasurementsDatabase.getInstance(context).getLocationBounds();
             HeaderData haderData = new HeaderData();
             haderData.ApkVersion = ApkUtils.getApkVersionName(context);
@@ -73,7 +72,7 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
             // get measurements in loop
             for (int i = 0; i < partsCount; i++) {
                 // get from database
-                List<Measurement> measurements = MeasurementsDatabase.getInstance(context).getOlderMeasurements(lastMeasurement.getTimestamp(), i * MEASUREMENTS_PER_PART, MEASUREMENTS_PER_PART);
+                List<Measurement> measurements = MeasurementsDatabase.getInstance(context).getMeasurementsPart(i * MEASUREMENTS_PER_PART, MEASUREMENTS_PER_PART, false);
                 // write to file
                 for (Measurement m : measurements) {
                     // if time difference is more than 30 minutes then create new segment

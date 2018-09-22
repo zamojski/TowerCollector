@@ -25,7 +25,10 @@ import info.zamojski.soft.towercollector.utils.NetworkUtils;
 import timber.log.Timber;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.acra.ACRA;
@@ -257,13 +260,10 @@ public class UploaderService extends Service {
             startForeground(UploaderService.NOTIFICATION_ID, notification);
 
             // get number of measurements to upload
-            int measurementsCount = MeasurementsDatabase.getInstance(getApplication()).getAllMeasurementsCount();
-
-            // get last measurement row id
-            Measurement lastMeasurement = MeasurementsDatabase.getInstance(getApplication()).getLastMeasurement();
+            int measurementsCount = MeasurementsDatabase.getInstance(getApplication()).getAllMeasurementsCount(true);
 
             // check if there is anything to upload
-            if (measurementsCount == 0 || lastMeasurement == null) {
+            if (measurementsCount == 0) {
                 Timber.tag(INNER_TAG).d("run(): Cancelling upload due to no data to upload");
                 ocidUploadResult = UploadResult.NoData;
                 mlsUploadResult = UploadResult.NoData;
@@ -280,7 +280,7 @@ public class UploaderService extends Service {
                 partsCount = (int) Math.ceil(1.0 * measurementsCount / MEASUREMENTS_PER_PART);
             }
 
-            int succeededParts = upload(lastMeasurement, partsCount);
+            int succeededParts = upload(partsCount);
 
             // sum up results and update notification for ocid
             if (ocidUploadResult == UploadResult.PartiallySucceeded) {
@@ -324,7 +324,7 @@ public class UploaderService extends Service {
             stopSelf();
         }
 
-        private int upload(Measurement lastMeasurement, int partsCount) {
+        private int upload(int partsCount) {
             int succeededParts = 0;
             boolean continueOcidUpload = isOpenCellIdUploadEnabled;
             boolean continueMlsUpload = isMlsUploadEnabled;
@@ -340,15 +340,16 @@ public class UploaderService extends Service {
                 int progress = (int) (1.0 * i / partsCount);
                 updateNotification(progress);
                 // prepare data starting from oldest
-                List<Measurement> measurements = MeasurementsDatabase.getInstance(getApplication()).getOlderMeasurements(lastMeasurement.getTimestamp(), 0, MEASUREMENTS_PER_PART);
+                List<Measurement> measurements = MeasurementsDatabase.getInstance(getApplication()).getMeasurementsPart(0, MEASUREMENTS_PER_PART, true);
 
                 Timber.d("upload(): Continue upload to OCID = %s, MLS = %s", continueOcidUpload, continueMlsUpload);
 
+                Map<UploadTarget, List<Measurement>> groupedMeasurements = groupByUploaded(measurements);
                 if (continueOcidUpload) {
-                    ocidUploadResult = uploadToOcid(measurements);
+                    ocidUploadResult = uploadToOcid(groupedMeasurements.get(UploadTarget.Ocid));
                 }
                 if (continueMlsUpload) {
-                    mlsUploadResult = uploadToMls(measurements);
+                    mlsUploadResult = uploadToMls(groupedMeasurements.get(UploadTarget.Mls));
                 }
 
                 if (ocidUploadResult == UploadResult.PartiallySucceeded || mlsUploadResult == UploadResult.PartiallySucceeded)
@@ -381,27 +382,28 @@ public class UploaderService extends Service {
                             break;
                         }
                     } else if (ocidSuccessful && isMlsUploadEnabled) {
-                        Timber.d("upload(): Moving measurements to MLS temporary");
+                        Timber.d("upload(): Marking measurements as uploaded to OCID");
                         // keep for mls
-                        int[] rowIds = getRowIds(measurements);
-                        int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).moveToTemporary(rowIds, System.currentTimeMillis(), null);
+                        int[] rowIds = getRowIds(groupedMeasurements.get(UploadTarget.Ocid));
+                        int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).markAsUploaded(rowIds, System.currentTimeMillis(), null);
+                        MeasurementsDatabase.getInstance(getApplication()).cleanOlderUploadedPartiallyAndUploadedFully();
                         if (numberOfDeleted == 0) {
                             ocidUploadResult = UploadResult.DeleteFailed;
                             break;
                         }
                     } else if (mlsSuccessful && isOpenCellIdUploadEnabled) {
-                        Timber.d("upload(): Moving measurements to OCID temporary");
+                        Timber.d("upload(): Marking measurements as uploaded to MLS");
                         // keep for ocid
-                        int[] rowIds = getRowIds(measurements);
-                        int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).moveToTemporary(rowIds, null, System.currentTimeMillis());
+                        int[] rowIds = getRowIds(groupedMeasurements.get(UploadTarget.Mls));
+                        int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).markAsUploaded(rowIds, null, System.currentTimeMillis());
+                        MeasurementsDatabase.getInstance(getApplication()).cleanOlderUploadedPartiallyAndUploadedFully();
                         if (numberOfDeleted == 0) {
                             mlsUploadResult = UploadResult.DeleteFailed;
                             break;
                         }
                     } else {
                         Timber.d("upload(): Skipping delete because all uploads failed");
-                        // all uploads failed
-                        // this means measurements were not uploaded
+                        // all uploads failed - measurements were not uploaded
                     }
                 } else if ((isOpenCellIdUploadEnabled && ocidSuccessful) || (isMlsUploadEnabled && mlsSuccessful)) {
                     Timber.d("upload(): Deleting measurements because OCID enabled = %s and successful = %s, MLS enabled = %s and successful = %s", isOpenCellIdUploadEnabled, ocidSuccessful, isMlsUploadEnabled, mlsSuccessful);
@@ -421,6 +423,26 @@ public class UploaderService extends Service {
                     break;
             }
             return succeededParts;
+        }
+
+        private Map<UploadTarget, List<Measurement>> groupByUploaded(List<Measurement> measurements) {
+            Map<UploadTarget, List<Measurement>> filtered = new HashMap();
+            for (Measurement m : measurements) {
+                if (m.getUploadedToOcidAt() == null) {
+                    addToGroup(filtered, UploadTarget.Ocid, m);
+                }
+                if (m.getUploadedToMlsAt() == null) {
+                    addToGroup(filtered, UploadTarget.Mls, m);
+                }
+            }
+            return filtered;
+        }
+
+        private void addToGroup(Map<UploadTarget, List<Measurement>> map, UploadTarget target, Measurement m) {
+            if (!map.containsKey(target)) {
+                map.put(target, new ArrayList<Measurement>());
+            }
+            map.get(target).add(m);
         }
 
         private int[] getRowIds(List<Measurement> measurements) {
@@ -479,7 +501,7 @@ public class UploaderService extends Service {
             }
         }
 
-        private UploadResult uploadToMls(List<Measurement> measurements) {//TODO
+        private UploadResult uploadToMls(List<Measurement> measurements) {
             // create generator instance
             MemoryTextDevice device = new MemoryTextDevice();
             JsonTextGenerator<JsonMozillaFormatter, MemoryTextDevice> generator = new JsonTextGenerator<>(new JsonMozillaFormatter(), device);
@@ -522,5 +544,10 @@ public class UploaderService extends Service {
                 return UploadResult.PermissionDenied;
             }
         }
+    }
+
+    private enum UploadTarget {
+        Ocid,
+        Mls
     }
 }

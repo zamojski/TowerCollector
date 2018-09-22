@@ -38,11 +38,9 @@ public class CsvTextGeneratorWrapper extends TextGeneratorWrapperBase {
     public FileGeneratorResult generate() {
         try {
             // get number of measurements to process
-            int measurementsCount = MeasurementsDatabase.getInstance(context).getAllMeasurementsCount();
-            // get last measurement row id
-            Measurement lastMeasurement = MeasurementsDatabase.getInstance(context).getLastMeasurement();
+            int measurementsCount = MeasurementsDatabase.getInstance(context).getAllMeasurementsCount(false);
             // check if there is anything to process
-            if (measurementsCount == 0 || lastMeasurement == null) {
+            if (measurementsCount == 0) {
                 Timber.d("generate(): Cancelling save due to no data");
                 return new FileGeneratorResult(GeneratorResult.NoData, Reason.Unknown);
             }
@@ -59,7 +57,7 @@ public class CsvTextGeneratorWrapper extends TextGeneratorWrapperBase {
             // get measurements in loop
             for (int i = 0; i < partsCount; i++) {
                 // get from database
-                List<Measurement> measurements = MeasurementsDatabase.getInstance(context).getOlderMeasurements(lastMeasurement.getTimestamp(), i * MEASUREMENTS_PER_PART, MEASUREMENTS_PER_PART);
+                List<Measurement> measurements = MeasurementsDatabase.getInstance(context).getMeasurementsPart(i * MEASUREMENTS_PER_PART, MEASUREMENTS_PER_PART, false);
                 // write to file
                 generator.writeEntryChunk(measurements);
                 notifyProgressListeners(i * MEASUREMENTS_PER_PART + measurements.size(), measurementsCount);
