@@ -429,23 +429,23 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     }
 
     private void displayUploadResultDialog(Bundle extras) {
-        int descriptionId = extras.getInt(UploaderService.INTENT_KEY_RESULT_DESCRIPTION);
+        String description = null;
         try {
-            String descriptionContent = getString(descriptionId);
-            Timber.d("displayUploadResultDialog(): Received extras: %s", descriptionId);
+            description = extras.getString(UploaderService.INTENT_KEY_RESULT_DESCRIPTION);
+            Timber.d("displayUploadResultDialog(): Received extras: %s", description);
             // display dialog
             AlertDialog alertDialog = new AlertDialog.Builder(this).create();
             alertDialog.setCanceledOnTouchOutside(true);
             alertDialog.setCancelable(true);
             alertDialog.setTitle(R.string.uploader_result_dialog_title);
-            alertDialog.setMessage(descriptionContent);
+            alertDialog.setMessage(description);
             alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_ok), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                 }
             });
             alertDialog.show();
         } catch (NotFoundException ex) {
-            Timber.w("displayUploadResultDialog(): Invalid string id received with intent extras: %s", descriptionId);
+            Timber.w("displayUploadResultDialog(): Invalid string id received with intent extras: %s", description);
             MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
         }
