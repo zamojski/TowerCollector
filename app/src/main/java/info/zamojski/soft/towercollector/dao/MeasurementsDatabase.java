@@ -279,6 +279,8 @@ public class MeasurementsDatabase {
         final String globalLocationsCount = "GLOBAL_LOCATIONS_COUNT";
         final String globalDiscoveredCellsCount = "GLOBAL_DISCOVERED_CELLS_COUNT";
         final String globalDiscoveredCellsSince = "GLOBAL_DISCOVERED_CELLS_SINCE";
+        final String uploadToOcid = "UPLOAD_TO_OCID";
+        final String uploadToMls = "UPLOAD_TO_MLS";
         String todayTime = String.valueOf(todayCalendar.getTimeInMillis());
         String[] selectionArgs = new String[]{todayTime, todayTime};
         // get all in one query (raw is the only possible solution)
@@ -313,6 +315,10 @@ public class MeasurementsDatabase {
                 + " WHERE " + CellsTable.TABLE_NAME + "." + CellsTable.COLUMN_ROW_ID + " IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_CELL_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + ")"
                 + " UNION SELECT " + CellsArchiveTable.COLUMN_DISCOVERED_AT + " FROM " + CellsArchiveTable.TABLE_NAME
                 + " ORDER BY " + CellsTable.COLUMN_DISCOVERED_AT + " ASC LIMIT 0, 1";
+        String uploadToOcidQuery = "SELECT COUNT(" + MeasurementsTable.COLUMN_ROW_ID + ") AS " + uploadToOcid + " FROM "
+                + MeasurementsTable.TABLE_NAME + " WHERE " + MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT + " IS NULL";
+        String uploadToMlsQuery = "SELECT COUNT(" + MeasurementsTable.COLUMN_ROW_ID + ") AS " + uploadToMls + " FROM "
+                + MeasurementsTable.TABLE_NAME + " WHERE " + MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT + " IS NULL";
         //Log.d(todayDiscoveredCellsQuery);
         //Log.d(localDiscoveredCellsQuery);
         //Log.d(globalDiscoveredCellsQuery);
@@ -323,7 +329,9 @@ public class MeasurementsDatabase {
                 + "JOIN (" + localDiscoveredCellsQuery + ") "
                 + "JOIN (" + globalLocationsQuery + ") "
                 + "JOIN (" + globalDiscoveredCellsQuery + ") "
-                + "JOIN (" + globalDiscoveredSinceQuery + "))";
+                + "JOIN (" + globalDiscoveredSinceQuery + ") "
+                + "JOIN (" + uploadToOcidQuery + ") "
+                + "JOIN (" + uploadToMlsQuery + "))";
         // Log.d(query);
         Cursor cursor = db.rawQuery(query, selectionArgs);
         if (cursor.moveToNext()) {
@@ -337,6 +345,8 @@ public class MeasurementsDatabase {
             stats.setLocationsGlobal(cursor.getInt(cursor.getColumnIndex(globalLocationsCount)));
             stats.setDiscoveredCellsGlobal(cursor.getInt(cursor.getColumnIndex(globalDiscoveredCellsCount)));
             stats.setSinceGlobal(cursor.getLong(cursor.getColumnIndex(globalDiscoveredCellsSince)));
+            stats.setToUploadOcid(cursor.getInt(cursor.getColumnIndex(uploadToOcid)));
+            stats.setToUploadMls(cursor.getInt(cursor.getColumnIndex(uploadToMls)));
         }
         cursor.close();
         Timber.d("getMeasurementsStatistics(): Value from DB: %s", stats);

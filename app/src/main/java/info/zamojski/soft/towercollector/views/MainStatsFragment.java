@@ -38,6 +38,9 @@ public class MainStatsFragment extends MainFragmentBase {
     private TextView mainStatsGlobalLocationsValueTextView;
     private TextView mainStatsGlobalCellsValueTextView;
 
+    private TextView mainStatsToUploadOcidValueTextView;
+    private TextView mainStatsToUploadMlsValueTextView;
+
     private String mainStatsLocalTitlePattern;
     private String mainStatsGlobalTitlePattern;
 
@@ -59,15 +62,18 @@ public class MainStatsFragment extends MainFragmentBase {
     @Override
     protected void configureControls(View view) {
         super.configureControls(view);
-        mainStatsLocalTitleTextView = (TextView) view.findViewById(R.id.main_stats_local_title_textview);
-        mainStatsGlobalTitleTextView = (TextView) view.findViewById(R.id.main_stats_global_title_textview);
+        mainStatsLocalTitleTextView = view.findViewById(R.id.main_stats_local_title_textview);
+        mainStatsGlobalTitleTextView = view.findViewById(R.id.main_stats_global_title_textview);
 
-        mainStatsTodayLocationsValueTextView = (TextView) view.findViewById(R.id.main_stats_today_locations_value_textview);
-        mainStatsTodayCellsValueTextView = (TextView) view.findViewById(R.id.main_stats_today_cells_value_textview);
-        mainStatsLocalLocationsValueTextView = (TextView) view.findViewById(R.id.main_stats_local_locations_value_textview);
-        mainStatsLocalCellsValueTextView = (TextView) view.findViewById(R.id.main_stats_local_cells_value_textview);
-        mainStatsGlobalLocationsValueTextView = (TextView) view.findViewById(R.id.main_stats_global_locations_value_textview);
-        mainStatsGlobalCellsValueTextView = (TextView) view.findViewById(R.id.main_stats_global_cells_value_textview);
+        mainStatsTodayLocationsValueTextView = view.findViewById(R.id.main_stats_today_locations_value_textview);
+        mainStatsTodayCellsValueTextView = view.findViewById(R.id.main_stats_today_cells_value_textview);
+        mainStatsLocalLocationsValueTextView = view.findViewById(R.id.main_stats_local_locations_value_textview);
+        mainStatsLocalCellsValueTextView = view.findViewById(R.id.main_stats_local_cells_value_textview);
+        mainStatsGlobalLocationsValueTextView = view.findViewById(R.id.main_stats_global_locations_value_textview);
+        mainStatsGlobalCellsValueTextView = view.findViewById(R.id.main_stats_global_cells_value_textview);
+
+        mainStatsToUploadOcidValueTextView = view.findViewById(R.id.main_stats_to_upload_ocid_locations_value_textview);
+        mainStatsToUploadMlsValueTextView = view.findViewById(R.id.main_stats_to_upload_mls_locations_value_textview);
 
         mainStatsLocalTitlePattern = getString(R.string.main_stats_local_title);
         mainStatsGlobalTitlePattern = getString(R.string.main_stats_global_title);
@@ -102,5 +108,7 @@ public class MainStatsFragment extends MainFragmentBase {
         mainStatsLocalCellsValueTextView.setText(String.format("%d (%d)", stats.getCellsLocal(), stats.getDiscoveredCellsLocal()));
         mainStatsGlobalLocationsValueTextView.setText(String.valueOf(stats.getLocationsGlobal()));
         mainStatsGlobalCellsValueTextView.setText(String.valueOf(stats.getDiscoveredCellsGlobal()));
+        mainStatsToUploadOcidValueTextView.setText(String.valueOf(stats.getToUploadOcid()));
+        mainStatsToUploadMlsValueTextView.setText(String.valueOf(stats.getToUploadMls()));
     }
 }

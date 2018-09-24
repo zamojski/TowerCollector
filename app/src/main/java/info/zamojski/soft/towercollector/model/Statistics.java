@@ -23,6 +23,9 @@ public class Statistics implements Serializable {
     private int discoveredCellsGlobal;
     private long sinceGlobal;
 
+    private int toUploadOcid;
+    private int toUploadMls;
+
     public int getLocationsToday() {
         return locationsToday;
     }
@@ -103,9 +106,37 @@ public class Statistics implements Serializable {
         this.sinceGlobal = sinceGlobal;
     }
 
-    @Override
-    public String toString() {
-        return "Statistics [locationsToday=" + locationsToday + ", cellsToday=" + cellsToday + ", discoveredCellsToday=" + discoveredCellsToday + ", locationsLocal=" + locationsLocal + ", cellsLocal=" + cellsLocal + ", discoveredCellsLocal=" + discoveredCellsLocal + ", sinceLocal=" + sinceLocal + ", locationsGlobal=" + locationsGlobal + ", discoveredCellsGlobal=" + discoveredCellsGlobal + ", sinceGlobal=" + sinceGlobal + "]";
+    public int getToUploadOcid() {
+        return toUploadOcid;
     }
 
+    public void setToUploadOcid(int toUploadOcid) {
+        this.toUploadOcid = toUploadOcid;
+    }
+
+    public int getToUploadMls() {
+        return toUploadMls;
+    }
+
+    public void setToUploadMls(int toUploadMls) {
+        this.toUploadMls = toUploadMls;
+    }
+
+    @Override
+    public String toString() {
+        return "Statistics{" +
+                "locationsToday=" + locationsToday +
+                ", cellsToday=" + cellsToday +
+                ", discoveredCellsToday=" + discoveredCellsToday +
+                ", locationsLocal=" + locationsLocal +
+                ", cellsLocal=" + cellsLocal +
+                ", discoveredCellsLocal=" + discoveredCellsLocal +
+                ", sinceLocal=" + sinceLocal +
+                ", locationsGlobal=" + locationsGlobal +
+                ", discoveredCellsGlobal=" + discoveredCellsGlobal +
+                ", sinceGlobal=" + sinceGlobal +
+                ", toUploadOcid=" + toUploadOcid +
+                ", toUploadMls=" + toUploadMls +
+                '}';
+    }
 }

@@ -57,6 +57,9 @@
     <string name="main_stats_global_title">Total since <xliff:g id="date_time">%s</xliff:g></string>
     <string name="main_stats_global_locations_label">Measurements:</string>
     <string name="main_stats_global_cells_label">Discovered cells:</string>
+    <string name="main_stats_to_upload_title">To upload</string>
+    <string name="main_stats_to_upload_ocid_locations_label">OpenCellID.org:</string>
+    <string name="main_stats_to_upload_mls_locations_label">Mozilla Location Services:</string>
     <string name="main_last_cell_title">Last saved measurement</string>
     <string name="main_last_number_of_cells_label">Main / neighboring:</string>
     <string name="main_last_number_of_cells_value" translatable="false"><xliff:g id="number_of_main">%1$d</xliff:g> / <xliff:g id="number_of_neighboring">%2$d</xliff:g></string>
