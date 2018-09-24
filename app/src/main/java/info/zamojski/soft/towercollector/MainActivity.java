@@ -728,13 +728,16 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_upload), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    boolean isOcidUploadEnabledTemp = ocidUploadCheckbox.isChecked();
+                    boolean isMlsUploadEnabledTemp = mlsUploadCheckbox.isChecked();
+                    boolean isReuploadIfUploadFailsEnabledTemp = reuploadCheckbox.isChecked();
                     if (dontShowAgainCheckbox.isChecked()) {
-                        preferencesProvider.setOpenCellIdUploadEnabled(ocidUploadCheckbox.isChecked());
-                        preferencesProvider.setMlsUploadEnabled(mlsUploadCheckbox.isChecked());
-                        preferencesProvider.setReuploadIfUploadFailsEnabled(reuploadCheckbox.isChecked());
+                        preferencesProvider.setOpenCellIdUploadEnabled(isOcidUploadEnabled);
+                        preferencesProvider.setMlsUploadEnabled(isMlsUploadEnabled);
+                        preferencesProvider.setReuploadIfUploadFailsEnabled(isReuploadIfUploadFailsEnabledTemp);
                         preferencesProvider.setShowConfiguratorBeforeUpload(false);
                     }
-                    startUploaderService(isOcidUploadEnabled, isMlsUploadEnabled, isReuploadIfUploadFailsEnabled);
+                    startUploaderService(isOcidUploadEnabledTemp, isMlsUploadEnabledTemp, isReuploadIfUploadFailsEnabledTemp);
                 }
             });
             alertDialog.setButton(DialogInterface.BUTTON_NEUTRAL, getString(R.string.main_menu_preferences_button), new DialogInterface.OnClickListener() {
