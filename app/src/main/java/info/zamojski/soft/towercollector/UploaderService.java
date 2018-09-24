@@ -337,7 +337,7 @@ public class UploaderService extends Service {
                     break;
                 }
                 // notify
-                int progress = (int) (1.0 * i / partsCount);
+                int progress = (int) (100.0 * i / partsCount);
                 updateNotification(progress);
                 // prepare data starting from oldest
                 List<Measurement> measurements = MeasurementsDatabase.getInstance(getApplication()).getMeasurementsPart(i * MEASUREMENTS_PER_PART, MEASUREMENTS_PER_PART, true);
