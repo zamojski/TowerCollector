@@ -396,8 +396,7 @@ public class MeasurementsDatabase {
     public List<Measurement> getMeasurementsPart(int offset, int limit, boolean forUpload) {
         Timber.d("getMeasurementsPart(): Getting %s measurements skipping first %s, for upload = %s", limit, offset, forUpload);
         final String MEASUREMENTS_TABLE = forUpload ? MeasurementsTable.TABLE_NAME : NotUploadedMeasurementsView.VIEW_NAME;
-        String selection = forUpload ? MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT + " IS NULL OR " + MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT + " IS NULL" : null;
-        return getMeasurements(selection, null, null, null, MeasurementsTable.COLUMN_MEASURED_AT + " ASC, " + MEASUREMENTS_TABLE + "." + MeasurementsTable.COLUMN_ROW_ID + " ASC", String.valueOf(offset) + ", " + String.valueOf(limit), forUpload);
+        return getMeasurements(null, null, null, null, MeasurementsTable.COLUMN_MEASURED_AT + " ASC, " + MEASUREMENTS_TABLE + "." + MeasurementsTable.COLUMN_ROW_ID + " ASC", String.valueOf(offset) + ", " + String.valueOf(limit), forUpload);
     }
 
     private List<Measurement> getMeasurements(String selection, String[] selectionArgs, String groupBy, String having, String sortOrder, String limit, boolean forUpload) {
@@ -595,8 +594,6 @@ public class MeasurementsDatabase {
                 // mark measurements
                 updated += db.update(MeasurementsTable.TABLE_NAME, cv, whereClauseBuilder.toString(), whereArgs);
             }
-            // if all moved successfully (without exception) then delete original measurements
-            deleteMeasurements(rowIds);
             db.setTransactionSuccessful();
             Timber.d("markAsUploaded(): Marked successfully");
         } finally {

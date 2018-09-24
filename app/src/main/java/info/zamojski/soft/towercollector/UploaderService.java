@@ -286,7 +286,7 @@ public class UploaderService extends Service {
             if (ocidUploadResult == UploadResult.PartiallySucceeded) {
                 // we can be sure that everything was ok (because we stop on error)
                 ocidUploadResult = UploadResult.Success;
-            } else if (ocidUploadResult != UploadResult.DeleteFailed) {
+            } else if (ocidUploadResult != UploadResult.DeleteFailed && ocidUploadResult != UploadResult.NotStarted) {
                 // can be cancelled or failed after uploading few parts (but not all)
                 if (succeededParts > 0) {
                     ocidUploadResult = UploadResult.PartiallySucceeded;
@@ -296,7 +296,7 @@ public class UploaderService extends Service {
             if (mlsUploadResult == UploadResult.PartiallySucceeded) {
                 // we can be sure that everything was ok (because we stop on error)
                 mlsUploadResult = UploadResult.Success;
-            } else if (mlsUploadResult != UploadResult.DeleteFailed) {
+            } else if (mlsUploadResult != UploadResult.DeleteFailed && mlsUploadResult != UploadResult.NotStarted) {
                 // can be cancelled or failed after uploading few parts (but not all)
                 if (succeededParts > 0) {
                     mlsUploadResult = UploadResult.PartiallySucceeded;
@@ -399,7 +399,7 @@ public class UploaderService extends Service {
                     Timber.d("upload(): Deleting measurements because OCID enabled = %s and successful = %s, MLS enabled = %s and successful = %s", isOpenCellIdUploadEnabled, ocidSuccessful, isMlsUploadEnabled, mlsSuccessful);
                     // delete sent measurements
                     int[] rowIds = getRowIds(measurements);
-                    int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).deleteMeasurements(rowIds);
+                    int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).markAsUploaded(rowIds, System.currentTimeMillis(), System.currentTimeMillis());
                     if (numberOfDeleted == 0) {
                         ocidUploadResult = UploadResult.DeleteFailed;
                         mlsUploadResult = UploadResult.DeleteFailed;
@@ -420,23 +420,20 @@ public class UploaderService extends Service {
         }
 
         private Map<UploadTarget, List<Measurement>> groupByUploaded(List<Measurement> measurements) {
-            Map<UploadTarget, List<Measurement>> filtered = new HashMap();
-            for (Measurement m : measurements) {
-                if (m.getUploadedToOcidAt() == null) {
-                    addToGroup(filtered, UploadTarget.Ocid, m);
-                }
-                if (m.getUploadedToMlsAt() == null) {
-                    addToGroup(filtered, UploadTarget.Mls, m);
+            Map<UploadTarget, List<Measurement>> filtered = new HashMap<>();
+            filtered.put(UploadTarget.Ocid, new ArrayList<Measurement>());
+            filtered.put(UploadTarget.Mls, new ArrayList<Measurement>());
+            if (measurements != null) {
+                for (Measurement m : measurements) {
+                    if (m.getUploadedToOcidAt() == null) {
+                        filtered.get(UploadTarget.Ocid).add(m);
+                    }
+                    if (m.getUploadedToMlsAt() == null) {
+                        filtered.get(UploadTarget.Mls).add(m);
+                    }
                 }
             }
             return filtered;
-        }
-
-        private void addToGroup(Map<UploadTarget, List<Measurement>> map, UploadTarget target, Measurement m) {
-            if (!map.containsKey(target)) {
-                map.put(target, new ArrayList<Measurement>());
-            }
-            map.get(target).add(m);
         }
 
         private int[] getRowIds(List<Measurement> measurements) {
