@@ -379,7 +379,7 @@ public class MeasurementsDatabase {
         // get all in one query (raw is the only possible solution)
         String query = "SELECT MIN(" + LocationsTable.COLUMN_LATITUDE + ") AS MIN_LAT, MIN(" + LocationsTable.COLUMN_LONGITUDE + ") AS MIN_LON, MAX(" + LocationsTable.COLUMN_LATITUDE + ") AS MAX_LAT, MAX(" + LocationsTable.COLUMN_LONGITUDE + ") AS MAX_LON"
                 + " FROM " + LocationsTable.TABLE_NAME
-                + " WHERE " + LocationsTable.COLUMN_ROW_ID + " IN (SELECT DISTINCT " + NotUploadedMeasurementsView.VIEW_NAME + "." + MeasurementsTable.COLUMN_LOCATION_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME;
+                + " WHERE " + LocationsTable.COLUMN_ROW_ID + " IN (SELECT DISTINCT " + NotUploadedMeasurementsView.VIEW_NAME + "." + MeasurementsTable.COLUMN_LOCATION_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + ")";
         // Log.d(query);
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToNext()) {
@@ -492,7 +492,7 @@ public class MeasurementsDatabase {
             deletedMeasurements = db.delete(MeasurementsTable.TABLE_NAME, "1", null);
             int deletedLocations = db.delete(LocationsTable.TABLE_NAME, "1", null);
             int deletedCells = db.delete(CellsTable.TABLE_NAME, "1", null);
-            cleanOlderUploadedPartiallyAndUploadedFully();
+            cleanOlderUploadedPartiallyAndUploadedFullyWithoutTransaction(db);
             db.setTransactionSuccessful();
             Timber.d("deleteAllMeasurements(): Deleted %s measurements, %s cells, %s locations", deletedMeasurements, deletedCells, deletedLocations);
         } finally {
@@ -542,7 +542,7 @@ public class MeasurementsDatabase {
                 // if all removed successfully then delete orphaned cells and locations
                 long deletedLocations = db.delete(LocationsTable.TABLE_NAME, LocationsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_LOCATION_ID + " FROM " + MeasurementsTable.TABLE_NAME + ")", null);
                 long deletedCells = db.delete(CellsTable.TABLE_NAME, CellsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_CELL_ID + " FROM " + MeasurementsTable.TABLE_NAME + ")", null);
-                cleanOlderUploadedPartiallyAndUploadedFully();
+                cleanOlderUploadedPartiallyAndUploadedFullyWithoutTransaction(db);
                 db.setTransactionSuccessful();
                 Timber.d("deleteMeasurements(): Deleted orphaned %s cells, %s locations", deletedCells, deletedLocations);
             } else
@@ -607,26 +607,31 @@ public class MeasurementsDatabase {
     }
 
     public int cleanOlderUploadedPartiallyAndUploadedFully() {
+        Timber.d("cleanOlderUploadedPartiallyAndUploadedFully(): Executing in transaction");
+        // in transaction
+        SQLiteDatabase db = helper.getWritableDatabase();
+        db.beginTransaction();
+        try {
+            return cleanOlderUploadedPartiallyAndUploadedFullyWithoutTransaction(db);
+        } finally {
+            db.endTransaction();
+        }
+    }
+
+    private int cleanOlderUploadedPartiallyAndUploadedFullyWithoutTransaction(SQLiteDatabase db) {
+        // without transaction because SQLite doesn't support transaction nesting
         final long days = 30;
         final long dayInMillis = 24 * 60 * 60 * 1000;
         long minTimeToKeep = System.currentTimeMillis() - days * dayInMillis;
 
-        Timber.d("cleanOlderUploaded(): Deleting uploaded measurements older than %s", minTimeToKeep);
-        // in transaction
-        int deleted = 0;
-        SQLiteDatabase db = helper.getWritableDatabase();
-        db.beginTransaction();
-        try {
-            deleted = db.delete(MeasurementsTable.TABLE_NAME,
-                    MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT + " < ? OR " + MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT + " < ?"
-                            + " OR (" + MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT + " IS NOT NULL AND " + MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT + " IS NOT NULL)",
-                    new String[]{String.valueOf(minTimeToKeep), String.valueOf(minTimeToKeep)});
-            long deletedLocations = db.delete(LocationsTable.TABLE_NAME, LocationsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_LOCATION_ID + " FROM " + MeasurementsTable.TABLE_NAME + ")", null);
-            long deletedCells = db.delete(CellsTable.TABLE_NAME, CellsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_CELL_ID + " FROM " + MeasurementsTable.TABLE_NAME + ")", null);
-            Timber.d("cleanOlderUploaded(): Deleted %s measurements, %s orphaned cells, %s orphaned locations from temporary", deleted, deletedCells, deletedLocations);
-        } finally {
-            db.endTransaction();
-        }
+        Timber.d("cleanOlderUploadedPartiallyAndUploadedFullyInternal(): Deleting uploaded measurements older than %s", minTimeToKeep);
+        int deleted = db.delete(MeasurementsTable.TABLE_NAME,
+                MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT + " < ? OR " + MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT + " < ?"
+                        + " OR (" + MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT + " IS NOT NULL AND " + MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT + " IS NOT NULL)",
+                new String[]{String.valueOf(minTimeToKeep), String.valueOf(minTimeToKeep)});
+        long deletedLocations = db.delete(LocationsTable.TABLE_NAME, LocationsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_LOCATION_ID + " FROM " + MeasurementsTable.TABLE_NAME + ")", null);
+        long deletedCells = db.delete(CellsTable.TABLE_NAME, CellsTable.COLUMN_ROW_ID + " NOT IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_CELL_ID + " FROM " + MeasurementsTable.TABLE_NAME + ")", null);
+        Timber.d("cleanOlderUploadedPartiallyAndUploadedFullyInternal(): Deleted %s measurements, %s orphaned cells, %s orphaned locations of uploaded measurements", deleted, deletedCells, deletedLocations);
         return deleted;
     }
 
