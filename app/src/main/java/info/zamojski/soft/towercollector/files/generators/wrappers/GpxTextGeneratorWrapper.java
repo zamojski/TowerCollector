@@ -50,7 +50,7 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
                 return new FileGeneratorResult(GeneratorResult.NoData, Reason.Unknown);
             }
             // calculate number of parts
-            final int MEASUREMENTS_PER_PART = 400;
+            final int MEASUREMENTS_PER_PART = 500;
             int partsCount = 1;
             if (measurementsCount > MEASUREMENTS_PER_PART) {
                 partsCount = (int) Math.ceil(1.0 * measurementsCount / MEASUREMENTS_PER_PART);
