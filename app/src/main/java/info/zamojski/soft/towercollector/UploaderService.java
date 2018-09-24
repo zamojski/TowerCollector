@@ -340,7 +340,7 @@ public class UploaderService extends Service {
                 int progress = (int) (1.0 * i / partsCount);
                 updateNotification(progress);
                 // prepare data starting from oldest
-                List<Measurement> measurements = MeasurementsDatabase.getInstance(getApplication()).getMeasurementsPart(0, MEASUREMENTS_PER_PART, true);
+                List<Measurement> measurements = MeasurementsDatabase.getInstance(getApplication()).getMeasurementsPart(i * MEASUREMENTS_PER_PART, MEASUREMENTS_PER_PART, true);
 
                 Timber.d("upload(): Continue upload to OCID = %s, MLS = %s", continueOcidUpload, continueMlsUpload);
 
@@ -355,16 +355,8 @@ public class UploaderService extends Service {
                 if (ocidUploadResult == UploadResult.PartiallySucceeded || mlsUploadResult == UploadResult.PartiallySucceeded)
                     succeededParts++;
 
-                continueOcidUpload &= (ocidUploadResult == UploadResult.PartiallySucceeded
-                        || ocidUploadResult == UploadResult.ConnectionError
-                        || ocidUploadResult == UploadResult.Failure
-                        || ocidUploadResult == UploadResult.InvalidData
-                        || ocidUploadResult == UploadResult.ServerError);
-                continueMlsUpload &= (mlsUploadResult == UploadResult.PartiallySucceeded
-                        || mlsUploadResult == UploadResult.ConnectionError
-                        || mlsUploadResult == UploadResult.Failure
-                        || mlsUploadResult == UploadResult.InvalidData
-                        || mlsUploadResult == UploadResult.ServerError);
+                continueOcidUpload &= ocidUploadResult == UploadResult.PartiallySucceeded;
+                continueMlsUpload &= mlsUploadResult == UploadResult.PartiallySucceeded;
 
                 boolean ocidSuccessful = (ocidUploadResult == UploadResult.PartiallySucceeded);
                 boolean mlsSuccessful = (mlsUploadResult == UploadResult.PartiallySucceeded);
@@ -375,7 +367,7 @@ public class UploaderService extends Service {
                         Timber.d("upload(): Deleting measurements because OCID enabled = %s and successful = %s, MLS enabled = %s and successful = %s", isOpenCellIdUploadEnabled, ocidSuccessful, isMlsUploadEnabled, mlsSuccessful);
                         // delete sent measurements
                         int[] rowIds = getRowIds(measurements);
-                        int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).deleteMeasurements(rowIds);
+                        int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).markAsUploaded(rowIds, System.currentTimeMillis(), System.currentTimeMillis());
                         if (numberOfDeleted == 0) {
                             ocidUploadResult = UploadResult.DeleteFailed;
                             mlsUploadResult = UploadResult.DeleteFailed;
@@ -386,7 +378,6 @@ public class UploaderService extends Service {
                         // keep for mls
                         int[] rowIds = getRowIds(groupedMeasurements.get(UploadTarget.Ocid));
                         int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).markAsUploaded(rowIds, System.currentTimeMillis(), null);
-                        MeasurementsDatabase.getInstance(getApplication()).cleanOlderUploadedPartiallyAndUploadedFully();
                         if (numberOfDeleted == 0) {
                             ocidUploadResult = UploadResult.DeleteFailed;
                             break;
@@ -396,7 +387,6 @@ public class UploaderService extends Service {
                         // keep for ocid
                         int[] rowIds = getRowIds(groupedMeasurements.get(UploadTarget.Mls));
                         int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).markAsUploaded(rowIds, null, System.currentTimeMillis());
-                        MeasurementsDatabase.getInstance(getApplication()).cleanOlderUploadedPartiallyAndUploadedFully();
                         if (numberOfDeleted == 0) {
                             mlsUploadResult = UploadResult.DeleteFailed;
                             break;
@@ -422,6 +412,10 @@ public class UploaderService extends Service {
                 if (!continueOcidUpload && !continueMlsUpload)
                     break;
             }
+
+            // clean anyway because it doesn't hurt
+            MeasurementsDatabase.getInstance(getApplication()).cleanOlderUploadedPartiallyAndUploadedFully();
+
             return succeededParts;
         }
 
