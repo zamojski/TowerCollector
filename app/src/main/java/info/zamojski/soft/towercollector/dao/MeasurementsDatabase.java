@@ -606,13 +606,16 @@ public class MeasurementsDatabase {
     public int cleanOlderUploadedPartiallyAndUploadedFully() {
         Timber.d("cleanOlderUploadedPartiallyAndUploadedFully(): Executing in transaction");
         // in transaction
+        int deleted = 0;
         SQLiteDatabase db = helper.getWritableDatabase();
         db.beginTransaction();
         try {
-            return cleanOlderUploadedPartiallyAndUploadedFullyWithoutTransaction(db);
+            deleted = cleanOlderUploadedPartiallyAndUploadedFullyWithoutTransaction(db);
+            db.setTransactionSuccessful();
         } finally {
             db.endTransaction();
         }
+        return deleted;
     }
 
     private int cleanOlderUploadedPartiallyAndUploadedFullyWithoutTransaction(SQLiteDatabase db) {
