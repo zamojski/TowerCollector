@@ -737,7 +737,11 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                         preferencesProvider.setReuploadIfUploadFailsEnabled(isReuploadIfUploadFailsEnabledTemp);
                         preferencesProvider.setShowConfiguratorBeforeUpload(false);
                     }
-                    startUploaderService(isOcidUploadEnabledTemp, isMlsUploadEnabledTemp, isReuploadIfUploadFailsEnabledTemp);
+                    if (!isOcidUploadEnabledTemp && !isMlsUploadEnabledTemp) {
+                        showAllProjectsDisabledMessage();
+                    } else {
+                        startUploaderService(isOcidUploadEnabledTemp, isMlsUploadEnabledTemp, isReuploadIfUploadFailsEnabledTemp);
+                    }
                 }
             });
             alertDialog.setButton(DialogInterface.BUTTON_NEUTRAL, getString(R.string.main_menu_preferences_button), new DialogInterface.OnClickListener() {
@@ -755,22 +759,26 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         } else {
             Timber.d("startUploaderServiceWithCheck(): Using upload configuration from preferences");
             if (!isOcidUploadEnabled && !isMlsUploadEnabled) {
-                Snackbar snackbar = Snackbar.make(activityView, R.string.uploader_all_projects_disabled, Snackbar.LENGTH_LONG)
-                        .setAction(R.string.main_menu_preferences_button, new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                startPreferencesActivity();
-                            }
-                        });
-                // hack for black text on dark grey background
-                View view = snackbar.getView();
-                TextView tv = view.findViewById(android.support.design.R.id.snackbar_text);
-                tv.setTextColor(Color.WHITE);
-                snackbar.show();
+                showAllProjectsDisabledMessage();
             } else {
                 startUploaderService(isOcidUploadEnabled, isMlsUploadEnabled, isReuploadIfUploadFailsEnabled);
             }
         }
+    }
+
+    private void showAllProjectsDisabledMessage() {
+        Snackbar snackbar = Snackbar.make(activityView, R.string.uploader_all_projects_disabled, Snackbar.LENGTH_LONG)
+                .setAction(R.string.main_menu_preferences_button, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startPreferencesActivity();
+                    }
+                });
+        // hack for black text on dark grey background
+        View view = snackbar.getView();
+        TextView tv = view.findViewById(android.support.design.R.id.snackbar_text);
+        tv.setTextColor(Color.WHITE);
+        snackbar.show();
     }
 
     private void startUploaderService(boolean isOcidUploadEnabled, boolean isMlsUploadEnabled, boolean isReuploadIfUploadFailsEnabled) {

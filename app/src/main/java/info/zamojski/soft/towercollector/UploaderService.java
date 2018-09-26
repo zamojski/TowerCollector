@@ -134,7 +134,7 @@ public class UploaderService extends Service {
         String mlsMessage = getString(getMessage(mlsUploadResult));
         String mlsDescription = getString(getDescription(mlsUploadResult));
         String message = getString(R.string.uploader_result_message, ocidMessage, mlsMessage);
-        String description = getString(R.string.uploader_result_message, ocidDescription, mlsDescription);
+        String description = getString(R.string.uploader_result_description, ocidDescription, mlsDescription);
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         // update notification according to result
         Notification notification = notificationHelper.updateNotificationFinished(message, description);
@@ -280,7 +280,7 @@ public class UploaderService extends Service {
                 partsCount = (int) Math.ceil(1.0 * measurementsCount / MEASUREMENTS_PER_PART);
             }
 
-            int succeededParts = upload(partsCount);
+            int[] succeededParts = upload(partsCount);
 
             // sum up results and update notification for ocid
             if (ocidUploadResult == UploadResult.PartiallySucceeded) {
@@ -288,7 +288,7 @@ public class UploaderService extends Service {
                 ocidUploadResult = UploadResult.Success;
             } else if (ocidUploadResult != UploadResult.DeleteFailed && ocidUploadResult != UploadResult.NotStarted) {
                 // can be cancelled or failed after uploading few parts (but not all)
-                if (succeededParts > 0) {
+                if (succeededParts[0] > 0) {
                     ocidUploadResult = UploadResult.PartiallySucceeded;
                 }
             }
@@ -298,7 +298,7 @@ public class UploaderService extends Service {
                 mlsUploadResult = UploadResult.Success;
             } else if (mlsUploadResult != UploadResult.DeleteFailed && mlsUploadResult != UploadResult.NotStarted) {
                 // can be cancelled or failed after uploading few parts (but not all)
-                if (succeededParts > 0) {
+                if (succeededParts[1] > 0) {
                     mlsUploadResult = UploadResult.PartiallySucceeded;
                 }
             }
@@ -324,8 +324,8 @@ public class UploaderService extends Service {
             stopSelf();
         }
 
-        private int upload(int partsCount) {
-            int succeededParts = 0;
+        private int[] upload(int partsCount) {
+            int ocidSucceededParts = 0, mlsSucceededParts = 0;
             boolean continueOcidUpload = isOpenCellIdUploadEnabled;
             boolean continueMlsUpload = isMlsUploadEnabled;
             // for each part start new upload
@@ -352,8 +352,10 @@ public class UploaderService extends Service {
                     mlsUploadResult = uploadToMls(groupedMeasurements.get(UploadTarget.Mls));
                 }
 
-                if (ocidUploadResult == UploadResult.PartiallySucceeded || mlsUploadResult == UploadResult.PartiallySucceeded)
-                    succeededParts++;
+                if (ocidUploadResult == UploadResult.PartiallySucceeded)
+                    ocidSucceededParts++;
+                if (mlsUploadResult == UploadResult.PartiallySucceeded)
+                    mlsSucceededParts++;
 
                 continueOcidUpload &= ocidUploadResult == UploadResult.PartiallySucceeded;
                 continueMlsUpload &= mlsUploadResult == UploadResult.PartiallySucceeded;
@@ -416,7 +418,7 @@ public class UploaderService extends Service {
             // clean anyway because it doesn't hurt
             MeasurementsDatabase.getInstance(getApplication()).cleanOlderUploadedPartiallyAndUploadedFully();
 
-            return succeededParts;
+            return new int[]{ocidSucceededParts, mlsSucceededParts};
         }
 
         private Map<UploadTarget, List<Measurement>> groupByUploaded(List<Measurement> measurements) {
@@ -446,6 +448,8 @@ public class UploaderService extends Service {
         }
 
         private UploadResult uploadToOcid(List<Measurement> measurements) {
+            if (measurements.isEmpty())
+                return UploadResult.NoData;
             // create generator instance
             MemoryTextDevice device = new MemoryTextDevice();
             CsvTextGenerator<CsvUploadFormatter, MemoryTextDevice> generator = new CsvTextGenerator<>(new CsvUploadFormatter(), device);
@@ -493,6 +497,8 @@ public class UploaderService extends Service {
         }
 
         private UploadResult uploadToMls(List<Measurement> measurements) {
+            if (measurements.isEmpty())
+                return UploadResult.NoData;
             // create generator instance
             MemoryTextDevice device = new MemoryTextDevice();
             JsonTextGenerator<JsonMozillaFormatter, MemoryTextDevice> generator = new JsonTextGenerator<>(new JsonMozillaFormatter(), device);
