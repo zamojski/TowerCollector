@@ -85,11 +85,6 @@
                 <action android:name="info.zamojski.soft.towercollector.UPLOADER_START" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".broadcast.BatteryStatusBroadcastReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BATTERY_LOW" />
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>

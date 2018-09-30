@@ -4,6 +4,7 @@
 
 package info.zamojski.soft.towercollector;
 
+import info.zamojski.soft.towercollector.broadcast.BatteryStatusBroadcastReceiver;
 import info.zamojski.soft.towercollector.broadcast.ExternalBroadcastSender;
 import info.zamojski.soft.towercollector.enums.GpsStatus;
 import info.zamojski.soft.towercollector.enums.KeepScreenOnMode;
@@ -151,6 +152,7 @@ public class CollectorService extends Service {
         EventBus.getDefault().register(this);
         // register receiver
         registerReceiver(stopRequestBroadcastReceiver, new IntentFilter(BROADCAST_INTENT_STOP_SERVICE));
+        registerReceiver(batteryStatusBroadcastReceiver, new IntentFilter(Intent.ACTION_BATTERY_LOW));
         Notification notification = notificationHelper.createNotification(notificationManager, getGpsStatusNotificationText(getGpsStatus()));
         // start as foreground service to prevent from killing
         startForeground(NOTIFICATION_ID, notification);
@@ -257,6 +259,8 @@ public class CollectorService extends Service {
         EventBus.getDefault().unregister(this);
         if (stopRequestBroadcastReceiver != null)
             unregisterReceiver(stopRequestBroadcastReceiver);
+        if (batteryStatusBroadcastReceiver != null)
+            unregisterReceiver(batteryStatusBroadcastReceiver);
         long endTime = System.currentTimeMillis();
         notificationManager.cancel(NOTIFICATION_ID);
         if (locationManager != null) {
@@ -611,6 +615,8 @@ public class CollectorService extends Service {
             }
         }
     };
+
+    private BroadcastReceiver batteryStatusBroadcastReceiver = new BatteryStatusBroadcastReceiver();
 
     // ========== MISCELLANEOUS ========== //
 
