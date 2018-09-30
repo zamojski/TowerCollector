@@ -1,6 +1,16 @@
 {
   "Entries": [
     {
+      "VersionCode": 1220229,
+      "Title": "Changes in version 1.22.2",
+      "Description": "Do you want to see the app in your language? Help me with <a href=\"http://i18n.zamojski.info/\">translations</a>! some languages are partially done but require volunteers - apply on the website or send me an email to start.",
+      "Messages": [
+        "Fix measurements not ordered by date in exported JSON file.",
+        "Fix collecting not stopped on low battery on Oreo and newer.",
+        "Add 'ocid' suffix to exported CSV file name when using OpenCellID.org formatting."
+      ]
+    },
+    {
       "VersionCode": 1220128,
       "Title": "Changes in version 1.22.1",
       "Messages": [
@@ -40,15 +50,6 @@
         "Fix invalid API key recognized as connection error during upload.",
         "Improve code compatibility with F-Droid repository rules.",
         "Add option to import/export internal preferences and database (use on your own risk!)."
-      ]
-    },
-    {
-      "VersionCode": 1190023,
-      "Title": "Changes in version 1.19.0",
-      "Description": "Do you want to see the app in your language? Help me with <a href=\"http://i18n.zamojski.info/\">translations</a>! Catalan, Dutch, French, Hungarian, Spanish are partially done but require volunteers - apply on the website or send me an email to start.",
-      "Messages": [
-        "Added Portuguese translation. Thank you for all the effort :)",
-        "Created special version of Tower Collector for F-Droid open source repository. I still need some help to make the build running, please <a href=\"https://github.com/zamojski/TowerCollector/issues/25\">help me</a>."
       ]
     }
   ]
