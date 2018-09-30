@@ -11,13 +11,13 @@ import groovy.io.FileType
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "27.0.3"
+    compileSdkVersion 27
+    buildToolsVersion "28.0.3"
 
     defaultConfig {
         applicationId "info.zamojski.soft.towercollector"
         minSdkVersion 14
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1220128
         versionName "1.22.1"
 
@@ -60,8 +60,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     flavorDimensions "environment", "market"
     productFlavors {
@@ -88,17 +88,17 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
-    implementation 'com.android.support:support-v4:26.1.0'
-    implementation 'com.android.support:support-v13:26.1.0'
-    implementation 'com.android.support:design:26.1.0'
-    officialImplementation 'com.google.android.gms:play-services-analytics:16.0.1'
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:support-v13:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
+    officialImplementation 'com.google.android.gms:play-services-analytics:16.0.3'
     implementation 'org.greenrobot:eventbus:3.1.1'
-    implementation 'ch.acra:acra-http:5.0.0'
-    implementation 'ch.acra:acra-notification:5.0.0'
+    implementation 'ch.acra:acra-http:5.2.0'
+    implementation 'ch.acra:acra-notification:5.2.0'
     implementation 'org.sufficientlysecure:html-textview:3.6'
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'
-    implementation 'com.github.hotchemi:permissionsdispatcher:3.1.0'
-    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
+    implementation 'com.github.hotchemi:permissionsdispatcher:3.3.1'
+    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:3.3.1'
     implementation 'com.jakewharton.timber:timber:4.7.1'
 }
 
