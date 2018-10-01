@@ -11,6 +11,7 @@ import info.zamojski.soft.towercollector.preferences.DisplayPreferenceFragment;
 import info.zamojski.soft.towercollector.preferences.GeneralPreferenceFragment;
 import info.zamojski.soft.towercollector.preferences.HelpPreferenceFragment;
 import info.zamojski.soft.towercollector.preferences.InformationPreferenceFragment;
+import info.zamojski.soft.towercollector.utils.ApkUtils;
 
 import java.util.List;
 
@@ -32,7 +33,8 @@ public class PreferencesActivity extends AppCompatPreferenceActivity {
         setTheme(MyApplication.getCurrentAppTheme());
         super.onCreate(savedInstanceState);
         // set fixed screen orientation
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        if (!ApkUtils.isRunningOnBuggyOreoSetRequestedOrientation(this))
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setupActionBar();
     }
 

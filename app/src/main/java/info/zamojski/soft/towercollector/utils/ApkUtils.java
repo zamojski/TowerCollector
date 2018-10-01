@@ -81,4 +81,8 @@ public class ApkUtils {
         }
         return false;
     }
+
+    public static boolean isRunningOnBuggyOreoSetRequestedOrientation(Context context) {
+        return context.getApplicationInfo().targetSdkVersion > Build.VERSION_CODES.O && Build.VERSION.SDK_INT == Build.VERSION_CODES.O;
+    }
 }

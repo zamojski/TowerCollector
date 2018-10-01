@@ -129,7 +129,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         super.onCreate(savedInstanceState);
         Timber.d("onCreate(): Creating activity");
         // set fixed screen orientation
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        if (!ApkUtils.isRunningOnBuggyOreoSetRequestedOrientation(this))
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.main);
         //setup toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
