@@ -193,6 +193,9 @@
     <string name="main_help_last_gps_accuracy_description">Accuracy of the position obtained from GPS.</string>
     <string name="main_help_last_date_time_title">Save time</string>
     <string name="main_help_last_date_time_description">Date and time when last measurement was saved.</string>
+    <string name="main_help_to_upload_common_locations_title">Measurements to upload</string>
+    <string name="main_help_to_upload_ocid_locations_description">Number of measurements waiting for upload to OpenCellID.org.</string>
+    <string name="main_help_to_upload_mls_locations_description">Number of measurements waiting for upload to Mozilla Location Services.</string>
     <string name="status_initializing">initializing</string>
     <string name="status_ok">OK</string>
     <string name="status_low_gps_accuracy">low accuracy <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>

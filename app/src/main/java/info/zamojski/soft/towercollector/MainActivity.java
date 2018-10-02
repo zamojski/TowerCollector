@@ -420,6 +420,14 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 titleId = R.string.main_help_last_date_time_title;
                 messageId = R.string.main_help_last_date_time_description;
                 break;
+            case R.id.main_stats_to_upload_ocid_locations_tablerow:
+                titleId = R.string.main_help_to_upload_common_locations_title;
+                messageId = R.string.main_help_to_upload_ocid_locations_description;
+                break;
+            case R.id.main_stats_to_upload_mls_locations_tablerow:
+                titleId = R.string.main_help_to_upload_common_locations_title;
+                messageId = R.string.main_help_to_upload_mls_locations_description;
+                break;
         }
         Timber.d("displayHelpOnClick(): Displaying help for title: %s", titleId);
         if (titleId != View.NO_ID && messageId != View.NO_ID) {
