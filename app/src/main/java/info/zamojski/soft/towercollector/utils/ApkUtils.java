@@ -83,6 +83,11 @@ public class ApkUtils {
     }
 
     public static boolean isRunningOnBuggyOreoSetRequestedOrientation(Context context) {
+        // bug was fixed in 8.1 but still present only on 8.0
+        // https://issuetracker.google.com/issues/68454482
+        // https://issuetracker.google.com/issues/110172258
+        // https://issuetracker.google.com/issues/68427483
+        // https://stackoverflow.com/questions/46992843/interstitial-admob-ads-illegalstateexception-only-fullscreen-activities-can-r/48665610#48665610
         return context.getApplicationInfo().targetSdkVersion > Build.VERSION_CODES.O && Build.VERSION.SDK_INT == Build.VERSION_CODES.O;
     }
 }
