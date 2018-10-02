@@ -38,8 +38,8 @@
     <string name="preferences_imperial_units_off_summary">Значения будут представлены в метрической системе мер.</string>
     <string name="preferences_app_theme_title">Тема</string>
     <string name="preferences_app_theme_summary">Определяет цветовую тему для приложения.</string>
-    <string name="preferences_collector_keep_screen_on_title">Оставлять включённым во время сбора</string>
-    <string name="preferences_collector_keep_screen_on_summary">Определяет, будет ли экран постоянно находиться во время сбора измерений. Включение значительно ускорит разряд батареи.</string>
+    <string name="preferences_collector_keep_screen_on_title">Оставлять экран включённым во время сбора</string>
+    <string name="preferences_collector_keep_screen_on_summary">Определяет, будет ли экран включён  постоянно во время сбора измерений. Включение значительно ускорит разряд батареи.</string>
     <string name="preferences_gps_optimizations_enabled_title">Оптимизация сбора GPS</string>
     <string name="preferences_gps_optimizations_enabled_on_summary">Во время сбора измерений будет использована оптимизация параметров GPS.</string>
     <string name="preferences_gps_optimizations_enabled_off_summary">Оптимизация GPS параметров выключена.</string>
@@ -48,6 +48,9 @@
     <string name="preferences_tracking_enabled_off_summary">Анонимная статистика выключена. Смотри ниже, что может отправляться, если она будет включена.</string>
     <string name="preferences_about_tracking_title">О статистике использования</string>
     <string name="preferences_about_tracking_summary">Информация о публикуемых данных.</string>
+    <string name="preferences_error_reporting_silent_title">Автоотправка отчётов об ошибках</string>
+    <string name="preferences_error_reporting_silent_on_summary">Приложение будет автоматически отправлять отчёты об ошибках, которые помогут решать проблемы.</string>
+    <string name="preferences_error_reporting_silent_off_summary">Приложение будет спрашивать подтверждение перед отправкой отчётов об ошибках.</string>
     <string name="preferences_update_check_enabled_title">Автообновление</string>
     <string name="preferences_update_check_enabled_on_summary">Приложение оповестит о выходе новой версии.</string>
     <string name="preferences_update_check_enabled_off_summary">Периодическая проверка доступности новой версии выключена.</string>
@@ -77,7 +80,7 @@
     <string name="preferences_collector_api_version_summary">Определяет версию API, используемую для получения информации от соты.</string>
     <string name="preferences_about_collector_api_version_title">О версии API Сборщика</string>
     <string name="preferences_about_collector_api_version_summary">Информация об отличиях между версиями API.</string>
-    <string name="preferences_file_logging_level_title">Уровень логирования</string>
+    <string name="preferences_file_logging_level_title">Уровень протокола</string>
     <string name="preferences_file_logging_level_summary">Определяет уровень подробности журнала сообщений. Помните, что очень подробное ведение журнала может замедлить работу приложения и создать большие файлы журналов. Должна присутствовать внешняя память.</string>
     <string name="preferences_collect_neighboring_cells_title">Сбор соседних сот</string>
     <string name="preferences_collect_neighboring_cells_on_summary">Собирать соседние соты, если доступны.</string>
@@ -98,8 +101,18 @@
     <string name="preferences_about_collector_keep_screen_on_summary">Информация как эта опция работает и когда используется.</string>
     <string name="preferences_hide_collector_notification_title">Спрятать информацию</string>
     <string name="preferences_hide_collector_notification_on_summary">Оповещения не будут показаны на экране блокировки и в шторке уведомлений. Поведение может различаться на разных устройствах.</string>
-    <string name="preferences_hide_collector_notification_off_summary">Уведомления будут видимы всё время. Android 4.1 и выше запросит подтверждение.</string>
+    <string name="preferences_hide_collector_notification_off_summary">Уведомления будут видимы всё время.</string>
     <string name="preferences_start_collector_at_boot_title">Запускать сборщик во время включения устройства.</string>
     <string name="preferences_start_collector_at_boot_on_summary">Сбор сот начнётся автоматически сразу после запуска устройства. Для работы этого режима программа должна быть установлена на внутреннем устройстве памяти.</string>
     <string name="preferences_start_collector_at_boot_off_summary">Приложение не будет автоматически запускать Сборщик во время включения устройства.</string>
+    <string name="preferences_collector_low_battery_action_title">Действие при низком заряде</string>
+    <string name="preferences_collector_low_battery_action_summary">Определяет что случится, когда будет низкий заряд батареи во время работы Сборщика.</string>
+    <string name="preferences_import_database_title">Загрузка базы данных</string>
+    <string name="preferences_import_database_summary">Загрузка внутренней базы данных из файла measurements.db, расположенного в папке TowerCollector.</string>
+    <string name="preferences_export_database_title">Выгрузка базы данных</string>
+    <string name="preferences_export_database_summary">Сохранение внутренней базы данных в файл measurements.db, расположенный в папке TowerCollector.</string>
+    <string name="preferences_import_preferences_title">Загрузка настроек</string>
+    <string name="preferences_import_preferences_summary">Загрузка настроек из файла preferences.xml, расположенного в папке TowerCollector.</string>
+    <string name="preferences_export_preferences_title">Выгрузка настроек</string>
+    <string name="preferences_export_preferences_summary">Сохранение настроек в файл preferences.xml, расположенный в папке TowerCollector.</string>
 </resources>

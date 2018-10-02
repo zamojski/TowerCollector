@@ -48,6 +48,9 @@
     <string name="preferences_tracking_enabled_off_summary">Wysyłanie anonimowych statystyk jest wyłączone. Zobacz poniżej co może być udostępniane po włączeniu opcji.</string>
     <string name="preferences_about_tracking_title">O statystykach użycia</string>
     <string name="preferences_about_tracking_summary">Informacje o tym co i w jakim celu jest udostępniane.</string>
+    <string name="preferences_error_reporting_silent_title">Automatycznie raportuj błędy</string>
+    <string name="preferences_error_reporting_silent_on_summary">Aplikacja będzie automatycznie wysyłać raporty, które mogą pomóc w naprawie błędów.</string>
+    <string name="preferences_error_reporting_silent_off_summary">Aplikacja zapyta o potwierdzenie przed wysłaniem raportu, który może pomóc w naprawie błędu.</string>
     <string name="preferences_update_check_enabled_title">Sprawdzanie aktualizacji</string>
     <string name="preferences_update_check_enabled_on_summary">Aplikacja powiadomi Cię, gdy dostępna będzie nowa wersja.</string>
     <string name="preferences_update_check_enabled_off_summary">Okresowe sprawdzanie dostępności nowej wersji jest wyłączone.</string>
@@ -98,8 +101,18 @@
     <string name="preferences_about_collector_keep_screen_on_summary">Informacje na temat działania tej opcji i kiedy z niej skorzystać.</string>
     <string name="preferences_hide_collector_notification_title">Ukryj powiadomienie</string>
     <string name="preferences_hide_collector_notification_on_summary">Powiadomienie będzie ukryte na ekranie blokady i pasku statusu, gdy jest zwinięty. Zachowanie może się różnić w zależności od urządzenia.</string>
-    <string name="preferences_hide_collector_notification_off_summary">Powiadomienie będzie widoczne cały czas. Opcja wymaga Androida 4.1 lub nowszego.</string>
+    <string name="preferences_hide_collector_notification_off_summary">Powiadomienie będzie widoczne cały czas.</string>
     <string name="preferences_start_collector_at_boot_title">Zbieranie po uruchomieniu urządzenia</string>
     <string name="preferences_start_collector_at_boot_on_summary">Zbieranie zostanie automatycznie rozpoczęte po uruchomieniu urządzenia. Aplikacja musi być zainstalowana w pamięci wewnętrznej, aby opcja zadziałała.</string>
     <string name="preferences_start_collector_at_boot_off_summary">Aplikacja nie rozpocznie zbierania po uruchomieniu urządzenia. Aplikacja może być zainstalowana w dowolnym miejscu.</string>
+    <string name="preferences_collector_low_battery_action_title">Akcja niskiego poziomu baterii</string>
+    <string name="preferences_collector_low_battery_action_summary">Określa co się stanie, gdy poziom baterii będzie niski a zbieranie będzie uruchomione.</string>
+    <string name="preferences_import_database_title">Import bazy danych</string>
+    <string name="preferences_import_database_summary">Importuje wewnętrzną bazę danych aplikacji z pliku measurements.db w folderze TowerCollector.</string>
+    <string name="preferences_export_database_title">Eksport bazy danych</string>
+    <string name="preferences_export_database_summary">Eksportuje wewnętrzną bazę danych aplikacji do pliku measurements.db w folderze TowerCollector.</string>
+    <string name="preferences_import_preferences_title">Import ustawień</string>
+    <string name="preferences_import_preferences_summary">Importuje wewnętrzne ustawienia aplikacji z pliku preferences.xml w folderze TowerCollector.</string>
+    <string name="preferences_export_preferences_title">Eksport ustawień</string>
+    <string name="preferences_export_preferences_summary">Eksportuje wewnętrzne ustawienia aplikacji do pliku preferences.xml w folderze TowerCollector.</string>
 </resources>

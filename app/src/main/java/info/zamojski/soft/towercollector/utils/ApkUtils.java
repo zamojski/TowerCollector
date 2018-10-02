@@ -4,22 +4,19 @@
 
 package info.zamojski.soft.towercollector.utils;
 
-import org.acra.ACRA;
-
-import info.zamojski.soft.towercollector.MyApplication;
-import info.zamojski.soft.towercollector.R;
-import timber.log.Timber;
-
-import android.annotation.TargetApi;
 import android.app.ActivityManager;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 
+import org.acra.ACRA;
+
 import java.util.List;
 
+import info.zamojski.soft.towercollector.MyApplication;
+import info.zamojski.soft.towercollector.R;
+import timber.log.Timber;
 
 public class ApkUtils {
 
@@ -85,12 +82,12 @@ public class ApkUtils {
         return false;
     }
 
-    @TargetApi(Build.VERSION_CODES.O)
-    public static void startServiceSafely(Context context, Intent intent) {
-        if (MobileUtils.isApi26VersionCompatible()) {
-            context.startForegroundService(intent);
-        } else {
-            context.startService(intent);
-        }
+    public static boolean isRunningOnBuggyOreoSetRequestedOrientation(Context context) {
+        // bug was fixed in 8.1 but still present only on 8.0
+        // https://issuetracker.google.com/issues/68454482
+        // https://issuetracker.google.com/issues/110172258
+        // https://issuetracker.google.com/issues/68427483
+        // https://stackoverflow.com/questions/46992843/interstitial-admob-ads-illegalstateexception-only-fullscreen-activities-can-r/48665610#48665610
+        return context.getApplicationInfo().targetSdkVersion > Build.VERSION_CODES.O && Build.VERSION.SDK_INT == Build.VERSION_CODES.O;
     }
 }

@@ -93,6 +93,11 @@ public class PreferencesProvider {
         return value;
     }
 
+    public String getCollectorLowBatteryAction() {
+        String value = stringPreferenceProvider.getPreference(R.string.preferences_collector_low_battery_action_key, R.string.preferences_collector_low_battery_action_default_value);
+        return value;
+    }
+
     public boolean getStartCollectorAtBoot() {
         boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_start_collector_at_boot_key, R.bool.preferences_start_collector_at_boot_default_value);
         return value;

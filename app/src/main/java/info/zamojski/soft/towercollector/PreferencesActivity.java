@@ -11,11 +11,13 @@ import info.zamojski.soft.towercollector.preferences.DisplayPreferenceFragment;
 import info.zamojski.soft.towercollector.preferences.GeneralPreferenceFragment;
 import info.zamojski.soft.towercollector.preferences.HelpPreferenceFragment;
 import info.zamojski.soft.towercollector.preferences.InformationPreferenceFragment;
+import info.zamojski.soft.towercollector.utils.ApkUtils;
 
 import java.util.List;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -31,7 +33,8 @@ public class PreferencesActivity extends AppCompatPreferenceActivity {
         setTheme(MyApplication.getCurrentAppTheme());
         super.onCreate(savedInstanceState);
         // set fixed screen orientation
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        if (!ApkUtils.isRunningOnBuggyOreoSetRequestedOrientation(this))
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setupActionBar();
     }
 
@@ -64,7 +67,9 @@ public class PreferencesActivity extends AppCompatPreferenceActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                finish();
+                if (!super.onOptionsItemSelected(item)) {
+                    NavUtils.navigateUpFromSameTask(this);
+                }
                 return true;
         }
         return super.onOptionsItemSelected(item);

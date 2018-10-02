@@ -27,6 +27,7 @@ import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.TabLayout.Tab;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -132,7 +133,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         super.onCreate(savedInstanceState);
         Timber.d("onCreate(): Creating activity");
         // set fixed screen orientation
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        if (!ApkUtils.isRunningOnBuggyOreoSetRequestedOrientation(this))
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.main);
         activityView = findViewById(R.id.main_root);
         //setup toolbar
@@ -428,31 +430,29 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
     }
 
-    private void displayUploadResultDialog(Bundle extras) {
-        String description = null;
+    private void displayUploadResultDialog(int descriptionId) {
         try {
-            description = extras.getString(UploaderService.INTENT_KEY_RESULT_DESCRIPTION);
-            Timber.d("displayUploadResultDialog(): Received extras: %s", description);
+            String descriptionContent = getString(descriptionId);
+            Timber.d("displayUploadResultDialog(): Received extras: %s", descriptionId);
             // display dialog
             AlertDialog alertDialog = new AlertDialog.Builder(this).create();
             alertDialog.setCanceledOnTouchOutside(true);
             alertDialog.setCancelable(true);
             alertDialog.setTitle(R.string.uploader_result_dialog_title);
-            alertDialog.setMessage(description);
+            alertDialog.setMessage(descriptionContent);
             alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_ok), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                 }
             });
             alertDialog.show();
         } catch (NotFoundException ex) {
-            Timber.w("displayUploadResultDialog(): Invalid string id received with intent extras: %s", description);
+            Timber.w("displayUploadResultDialog(): Invalid string id received with intent extras: %s", descriptionId);
             MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
         }
     }
 
-    private void displayNewVersionDownloadOptions(Bundle extras) {
-        UpdateInfo updateInfo = (UpdateInfo) extras.getSerializable(UpdateCheckAsyncTask.INTENT_KEY_UPDATE_INFO);
+    private void displayNewVersionDownloadOptions(UpdateInfo updateInfo) {
         // display dialog
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -668,7 +668,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         final String keepScreenOnMode = MyApplication.getPreferencesProvider().getCollectorKeepScreenOnMode();
         intent.putExtra(CollectorService.INTENT_KEY_KEEP_SCREEN_ON_MODE, keepScreenOnMode);
         // start service
-        ApkUtils.startServiceSafely(this, intent);
+        ContextCompat.startForegroundService(this, intent);
         EventBus.getDefault().post(new CollectorStartedEvent(intent));
         MyApplication.getAnalytics().sendCollectorStarted(IntentSource.User);
     }
@@ -788,7 +788,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             intent.putExtra(UploaderService.INTENT_KEY_UPLOAD_TO_OCID, isOcidUploadEnabled);
             intent.putExtra(UploaderService.INTENT_KEY_UPLOAD_TO_MLS, isMlsUploadEnabled);
             intent.putExtra(UploaderService.INTENT_KEY_UPLOAD_TRY_REUPLOAD, isReuploadIfUploadFailsEnabled);
-            ApkUtils.startServiceSafely(this, intent);
+            ContextCompat.startForegroundService(this, intent);
             if (isOcidUploadEnabled)
                 MyApplication.getAnalytics().sendUploadStarted(IntentSource.User, true);
             if (isMlsUploadEnabled)
@@ -822,10 +822,14 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                     if (fileTypes.containsKey(selectedItem)) {
                         selectedType = fileTypes.get(selectedItem);
                     }
+                    String nameSuffix = "";
                     String extension;
                     switch (selectedType) {
                         case Csv:
+                            extension = "csv";
+                            break;
                         case CsvOcid:
+                            nameSuffix = "-ocid";
                             extension = "csv";
                             break;
                         case Gpx:
@@ -840,7 +844,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                             break;
                     }
                     if (selectedType != FileType.Unknown) {
-                        String path = FileUtils.combinePath(FileUtils.getExternalStorageAppDir(), FileUtils.getCurrentDateFilename(extension));
+                        String path = FileUtils.combinePath(FileUtils.getExternalStorageAppDir(), FileUtils.getCurrentDateFileName(nameSuffix, extension));
                         ExportFileAsyncTask task = new ExportFileAsyncTask(MainActivity.this, new InternalMessageHandler(MainActivity.this), path, selectedType);
                         task.execute(new Void[0]);
                         MyApplication.getAnalytics().sendExportStarted();
@@ -1079,14 +1083,13 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     }
 
     private void processOnStartIntent(Intent intent) {
-        Bundle extras = intent.getExtras();
-        if (extras != null) {
-            if (extras.containsKey(UploaderService.INTENT_KEY_RESULT_DESCRIPTION)) {
+        if (intent != null) {
+            if (intent.hasExtra(UploaderService.INTENT_KEY_RESULT_DESCRIPTION)) {
                 // display upload result
-                displayUploadResultDialog(extras);
-            } else if (extras.containsKey(UpdateCheckAsyncTask.INTENT_KEY_UPDATE_INFO)) {
+                displayUploadResultDialog(intent.getIntExtra(UploaderService.INTENT_KEY_RESULT_DESCRIPTION, 0));
+            } else if (intent.hasExtra(UpdateCheckAsyncTask.INTENT_KEY_UPDATE_INFO)) {
                 // display dialog with download options
-                displayNewVersionDownloadOptions(extras);
+                displayNewVersionDownloadOptions((UpdateInfo) intent.getSerializableExtra(UpdateCheckAsyncTask.INTENT_KEY_UPDATE_INFO));
             }
         }
     }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+    <string name="preferences_keep_screen_on_mode_disabled">Вимкнено</string>
+    <string name="preferences_keep_screen_on_mode_dim">Затемнений</string>
+    <string name="preferences_keep_screen_on_mode_full">Повна яскравість</string>
+    <string-array name="export_formats_labels">
+        <item>CSV</item>
+        <item>GPX</item>
+        <item>CSV для OpenCellID.org</item>
+        <item>JSON для служб визначення місцезнаходження Mozilla</item>
+    </string-array>
+    <string-array name="preferences_collector_low_battery_action_entries_labels">
+        <item>Нічого не робити</item>
+        <item>Зупиняємо збір інформації</item>
+    </string-array>
+    <string-array name="preferences_app_theme_mode_entries_labels">
+        <item>темний</item>
+        <item>яскравий</item>
+    </string-array>
+    <string name="preferences_collector_api_version_auto">Автовизначення</string>
+    <string name="preferences_collector_api_version_api_17">Android 4.2 API</string>
+    <string name="preferences_collector_api_version_api_1">Android 1.0 API</string>
+    <string name="preferences_file_logging_level_disabled">Вимкнено</string>
+    <string name="preferences_file_logging_level_debug">Відлагоджувати</string>
+    <string name="preferences_file_logging_level_info">Інформація</string>
+    <string name="preferences_file_logging_level_warning">УВАГА</string>
+    <string name="preferences_file_logging_level_error">Помилка</string>
+</resources>

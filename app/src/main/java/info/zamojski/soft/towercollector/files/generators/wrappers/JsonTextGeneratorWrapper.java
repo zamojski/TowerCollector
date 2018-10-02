@@ -18,7 +18,7 @@ import info.zamojski.soft.towercollector.files.DeviceOperationException;
 import info.zamojski.soft.towercollector.files.FileGeneratorResult;
 import info.zamojski.soft.towercollector.files.devices.IWritableTextDevice;
 import info.zamojski.soft.towercollector.files.formatters.json.IJsonFormatter;
-import info.zamojski.soft.towercollector.files.formatters.json.JsonMozillaFormatter;
+import info.zamojski.soft.towercollector.files.formatters.json.JsonMozillaExportFormatter;
 import info.zamojski.soft.towercollector.files.generators.JsonTextGenerator;
 import info.zamojski.soft.towercollector.model.Measurement;
 import timber.log.Timber;
@@ -31,7 +31,7 @@ public class JsonTextGeneratorWrapper extends TextGeneratorWrapperBase {
     public JsonTextGeneratorWrapper(Context context, IWritableTextDevice device) {
         this.context = context;
         this.device = device;
-        this.generator = new JsonTextGenerator(new JsonMozillaFormatter(), device);
+        this.generator = new JsonTextGenerator(new JsonMozillaExportFormatter(), device);
     }
 
     @Override
@@ -52,8 +52,12 @@ public class JsonTextGeneratorWrapper extends TextGeneratorWrapperBase {
             }
             device.open();
             notifyProgressListeners(0, measurementsCount);
+            generator.writeHeader();
             // get measurements in loop
             for (int i = 0; i < partsCount; i++) {
+                if (i > 0) {
+                    generator.writeNewSegment();
+                }
                 // get from database
                 List<Measurement> measurements = MeasurementsDatabase.getInstance(context).getMeasurementsPart(i * MEASUREMENTS_PER_PART, MEASUREMENTS_PER_PART, false);
                 // write to file
@@ -63,6 +67,7 @@ public class JsonTextGeneratorWrapper extends TextGeneratorWrapperBase {
                     break;
                 }
             }
+            generator.writeFooter();
             device.close();
             // fix for dialog not closed when operation is running in background and data deleted
             notifyProgressListeners(measurementsCount, measurementsCount);

@@ -4,24 +4,20 @@
 
 package info.zamojski.soft.towercollector.collector.parsers;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import org.acra.ACRA;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
 import android.location.Location;
 import android.telephony.CellLocation;
 import android.telephony.NeighboringCellInfo;
 import android.telephony.SignalStrength;
 import android.telephony.gsm.GsmCellLocation;
 
-import info.zamojski.soft.towercollector.model.CellsCount;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.collector.ParseResult;
@@ -36,6 +32,7 @@ import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.events.LegacyMeasurementProcessingEvent;
 import info.zamojski.soft.towercollector.events.MeasurementSavedEvent;
 import info.zamojski.soft.towercollector.events.MeasurementsCollectedEvent;
+import info.zamojski.soft.towercollector.model.CellsCount;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.model.Statistics;
 import info.zamojski.soft.towercollector.utils.MobileUtils;
@@ -96,8 +93,18 @@ public class LegacyMeasurementParser extends MeasurementParser {
         fixMeasurementTimestamp(measurement, location);
         // if the same cell check distance condition, otherwise accept
         if (lastSavedLocation != null && !conditionsValidator.isMinDistanceSatisfied(lastSavedLocation, location, minDistance)) {
-            Timber.d("parse(): Distance condition not achieved");
-            return ParseResult.DistanceNotAchieved;
+            List<Measurement> lastMeasurements = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getLastMeasurements();
+            List<String> lastMeasurementsCellKeys = new ArrayList<>();
+            for (Measurement lastMeasurement : lastMeasurements) {
+                lastMeasurementsCellKeys.add(createCellKey(lastMeasurement));
+            }
+            boolean mainCellChanged = !lastMeasurementsCellKeys.contains(createCellKey(measurement));
+            if (mainCellChanged) {
+                Timber.d("parse(): Distance condition not achieved but cell changed");
+            } else {
+                Timber.d("parse(): Distance condition not achieved");
+                return ParseResult.DistanceNotAchieved;
+            }
         }
         // check if location has been obtained recently
         if (!locationValidator.isUpToDate(timestamp, System.currentTimeMillis())) {
@@ -151,10 +158,6 @@ public class LegacyMeasurementParser extends MeasurementParser {
             Timber.d("parse(): Notification updated and measurement broadcasted");
             return ParseResult.Saved;
         } else {
-            Timber.e("parse(): Error while saving measurement");
-            Exception ex = new Exception("Measurement save failed");
-            MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
-            ACRA.getErrorReporter().handleSilentException(ex);
             return ParseResult.SaveFailed;
         }
     }
@@ -178,18 +181,11 @@ public class LegacyMeasurementParser extends MeasurementParser {
     }
 
     private String createCellKey(NeighboringCellInfo cell, Measurement measurement) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(cell.getLac())
-                .append("_").append(cell.getCid());
-        return sb.toString();
+        return measurement.getMcc() + "_" + measurement.getMnc() + "_" + cell.getLac() + "_" + cell.getCid();
     }
 
     private String createCellKey(Measurement measurement) {
-        StringBuilder sb = new StringBuilder();
-        int lac = measurement.getLac();
-        int cid = measurement.getCid();
-        sb.append(lac).append("_").append(cid);
-        return sb.toString();
+        return measurement.getMcc() + "_" + measurement.getMnc() + "_" + measurement.getLac() + "_" + measurement.getCid();
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)

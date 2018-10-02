@@ -115,8 +115,18 @@
     <string name="preferences_about_collector_keep_screen_on_summary">Information how this option works and when to use it.</string>
     <string name="preferences_hide_collector_notification_title">Hide notification</string>
     <string name="preferences_hide_collector_notification_on_summary">Notification will be hidden from lock screen and status bar unless expanded. Behavior may vary between devices.</string>
-    <string name="preferences_hide_collector_notification_off_summary">Notification will be visible all the time. Android 4.1 or newer is required to change.</string>
+    <string name="preferences_hide_collector_notification_off_summary">Notification will be visible all the time.</string>
     <string name="preferences_start_collector_at_boot_title">Start collecting at device boot</string>
     <string name="preferences_start_collector_at_boot_on_summary">Collecting will be automatically started at device boot. The app must be installed on internal memory to make it working.</string>
     <string name="preferences_start_collector_at_boot_off_summary">The app will not start collecting at device boot. The app can be installed anywhere.</string>
+    <string name="preferences_collector_low_battery_action_title">Low battery action</string>
+    <string name="preferences_collector_low_battery_action_summary">Defines what will happen when battery level goes low and collector is running.</string>
+    <string name="preferences_import_database_title">Import database</string>
+    <string name="preferences_import_database_summary">Imports app\'s internal database from measurements.db file located in TowerCollector folder.</string>
+    <string name="preferences_export_database_title">Export database</string>
+    <string name="preferences_export_database_summary">Exports app\'s internal database to measurements.db file located in TowerCollector folder.</string>
+    <string name="preferences_import_preferences_title">Import preferences</string>
+    <string name="preferences_import_preferences_summary">Imports app\'s internal preferences from preferences.xml file located in TowerCollector folder.</string>
+    <string name="preferences_export_preferences_title">Export preferences</string>
+    <string name="preferences_export_preferences_summary">Exports app\'s internal preferences to preferences.xml file located in TowerCollector folder.</string>
 </resources>

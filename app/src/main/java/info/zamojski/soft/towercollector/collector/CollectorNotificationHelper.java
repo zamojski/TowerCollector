@@ -56,8 +56,8 @@ public class CollectorNotificationHelper extends NotificationHelperBase {
         builder.setOngoing(true);
         builder.setWhen(System.currentTimeMillis());
         builder.setOnlyAlertOnce(true);
-        if (hideNotification && isUsingNotificationPriority()) {
-            builder.setPriority(NotificationCompat.PRIORITY_MIN);
+        if (isUsingNotificationPriority()) {
+            builder.setPriority(hideNotification ? NotificationCompat.PRIORITY_MIN : NotificationCompat.PRIORITY_DEFAULT);
         }
         // set intent
         PendingIntent mainActivityIntent = createOpenMainActivityIntent();
@@ -95,7 +95,7 @@ public class CollectorNotificationHelper extends NotificationHelperBase {
         NotificationChannel channel = new NotificationChannel(
                 COLLECTOR_NOTIFICATION_CHANNEL_ID,
                 context.getString(R.string.collector_notification_channel_name),
-                hideNotification ? NotificationManager.IMPORTANCE_MIN : NotificationManager.IMPORTANCE_DEFAULT);
+                NotificationManager.IMPORTANCE_LOW); // Android will automatically promote to DEFAULT but in case they change their mind I leave it here
         notificationManager.createNotificationChannel(channel);
     }
 }

@@ -12,6 +12,7 @@ import org.acra.ACRA;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.annotation.StringRes;
 
 abstract class PreferenceProviderBase<T> {
 
@@ -21,7 +22,7 @@ abstract class PreferenceProviderBase<T> {
         this.context = context;
     }
 
-    public T getPreference(int valueKey, int defaultValueKey) {
+    public T getPreference(@StringRes int valueKey, int defaultValueKey) {
         T value;
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         T defaultValue = getPreferenceDefaultValue(defaultValueKey);
@@ -40,7 +41,7 @@ abstract class PreferenceProviderBase<T> {
         return value;
     }
 
-    public void setPreference(int valueKey, T value) {
+    public void setPreference(@StringRes int valueKey, T value) {
         Timber.d("setPreference(): Preference `%s` value set to `%s`", context.getString(valueKey), value);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
@@ -50,7 +51,7 @@ abstract class PreferenceProviderBase<T> {
 
     abstract T getPreferenceDefaultValue(int defaultValueKey);
 
-    abstract T getPreferenceValue(SharedPreferences prefs, int valueKey, T defaultValue);
+    abstract T getPreferenceValue(SharedPreferences prefs, @StringRes int valueKey, T defaultValue);
 
-    abstract void setPreferenceValue(SharedPreferences.Editor editor, int valueKey, T value);
+    abstract void setPreferenceValue(SharedPreferences.Editor editor, @StringRes int valueKey, T value);
 }

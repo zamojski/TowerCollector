@@ -61,12 +61,12 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
             Measurement firstMeasurement = MeasurementsDatabase.getInstance(context).getFirstMeasurement();
             Measurement lastMeasurement = MeasurementsDatabase.getInstance(context).getLastMeasurement();
             Boundaries bounds = MeasurementsDatabase.getInstance(context).getLocationBounds();
-            HeaderData haderData = new HeaderData();
-            haderData.ApkVersion = ApkUtils.getApkVersionName(context);
-            haderData.FirstMeasurementTimestamp = firstMeasurement.getTimestamp();
-            haderData.LastMeasurementTimestamp = lastMeasurement.getTimestamp();
-            haderData.Boundaries = bounds;
-            generator.writeHeader(haderData);
+            HeaderData headerData = new HeaderData();
+            headerData.ApkVersion = ApkUtils.getApkVersionName(context);
+            headerData.FirstMeasurementTimestamp = firstMeasurement.getTimestamp();
+            headerData.LastMeasurementTimestamp = lastMeasurement.getTimestamp();
+            headerData.Boundaries = bounds;
+            generator.writeHeader(headerData);
             // remember previous measurement
             Measurement prevMeasurement = firstMeasurement;
             // get measurements in loop

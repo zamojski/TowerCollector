@@ -22,7 +22,6 @@ import timber.log.Timber;
 
 public class ExternalBroadcastSender implements Runnable {
 
-
     private final String measurementsCollectedAction = "info.zamojski.soft.towercollector.MEASUREMENTS_COLLECTED";
     private final String measurementsExtraKey = "measurements";
 
@@ -40,7 +39,7 @@ public class ExternalBroadcastSender implements Runnable {
             intent.setAction(measurementsCollectedAction);
             intent.putExtra(measurementsExtraKey, extra);
             MyApplication.getApplication().sendBroadcast(intent);
-            Timber.d("sendMeasurementsCollectedBroadcast(): Broadcasted " + extra);
+            Timber.d("sendMeasurementsCollectedBroadcast(): Broadcast %s", extra);
         } catch (JSONException ex) {
             Timber.e(ex, "sendMeasurementsCollectedBroadcast(): Failed to serialize list of measurements to JSON");
         }

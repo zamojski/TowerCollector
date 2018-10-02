@@ -4,7 +4,9 @@
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="@string/preferences_category_settings_title">
+    <PreferenceCategory
+        android:key="@string/preferences_general_category_settings_key"
+        android:title="@string/preferences_category_settings_title">
         <SwitchPreference
             android:defaultValue="@bool/preferences_gps_optimizations_enabled_default_value"
             android:key="@string/preferences_gps_optimizations_enabled_key"
@@ -45,6 +47,14 @@
             android:summaryOff="@string/preferences_start_collector_at_boot_off_summary"
             android:summaryOn="@string/preferences_start_collector_at_boot_on_summary"
             android:title="@string/preferences_start_collector_at_boot_title" />
+
+        <info.zamojski.soft.towercollector.controls.HtmlSummaryListPreference
+            android:defaultValue="@string/preferences_collector_low_battery_action_default_value"
+            android:entries="@array/preferences_collector_low_battery_action_entries_labels"
+            android:entryValues="@array/preferences_collector_low_battery_action_entries_values"
+            android:key="@string/preferences_collector_low_battery_action_key"
+            android:summary="@string/preferences_collector_low_battery_action_summary"
+            android:title="@string/preferences_collector_low_battery_action_title" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/preferences_category_help_title">
         <PreferenceScreen

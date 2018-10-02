@@ -3,14 +3,18 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources>
-    <string name="preferences_keep_screen_on_mode_disabled">Отключена</string>
+    <string name="preferences_keep_screen_on_mode_disabled">Отключено</string>
     <string name="preferences_keep_screen_on_mode_dim">Минимальная яркость</string>
     <string name="preferences_keep_screen_on_mode_full">Максимальная яркость</string>
     <string-array name="export_formats_labels">
-        <item>CSV для OpenCellID.org</item>
-        <item>JSON для сервисов Mozilla Location</item>
         <item>CSV</item>
         <item>GPX</item>
+        <item>CSV для OpenCellID.org</item>
+        <item>JSON для сервисов Mozilla Location</item>
+    </string-array>
+    <string-array name="preferences_collector_low_battery_action_entries_labels">
+        <item>Игнорировать</item>
+        <item>Прекратить сбор</item>
     </string-array>
     <string-array name="preferences_app_theme_mode_entries_labels">
         <item>Тёмная</item>
@@ -19,7 +23,7 @@
     <string name="preferences_collector_api_version_auto">Автоопределение</string>
     <string name="preferences_collector_api_version_api_17">Android 4.2 API</string>
     <string name="preferences_collector_api_version_api_1">Android 1.0 API</string>
-    <string name="preferences_file_logging_level_disabled">Отключен</string>
+    <string name="preferences_file_logging_level_disabled">Отключено</string>
     <string name="preferences_file_logging_level_debug">Отладка</string>
     <string name="preferences_file_logging_level_info">Информация</string>
     <string name="preferences_file_logging_level_warning">Предупреждения</string>

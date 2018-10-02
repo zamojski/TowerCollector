@@ -138,7 +138,7 @@ public class MyApplication extends Application {
         configBuilder.setBuildConfigClass(BuildConfig.class);
         configBuilder.setSendReportsInDevMode(BuildConfig.ACRA_SEND_REPORTS_IN_DEV_MODE);
         configBuilder.setReportFormat(StringFormat.valueOf(BuildConfig.ACRA_REPORT_TYPE));
-        configBuilder.setExcludeMatchingSharedPreferencesKeys(new String[]{"api_key"});
+        configBuilder.setExcludeMatchingSharedPreferencesKeys(getString(R.string.preferences_api_key_key));
         configBuilder.setReportContent(getCustomAcraReportFields());
         // Configure reported content
         HttpSenderConfigurationBuilder httpPluginConfigBuilder = configBuilder.getPluginConfigurationBuilder(HttpSenderConfigurationBuilder.class);

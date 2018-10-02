@@ -29,7 +29,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
-import android.text.TextUtils;
 
 public class MeasurementsDatabase {
 
@@ -97,8 +96,7 @@ public class MeasurementsDatabase {
                     resultSb.append("\tcell found=").append(localResult);
                 }
                 // calculate hashcode
-                String locationHashCode = HashUtils.toSha1(measurement.getLatitude(), measurement.getLongitude(), measurement.getGpsAccuracy(),
-                        measurement.getGpsSpeed(), measurement.getGpsBearing(), measurement.getGpsAltitude());
+                String locationHashCode = HashUtils.toSha1(measurement);
                 // insert location
                 {
                     ContentValues values = new ContentValues();
@@ -171,6 +169,12 @@ public class MeasurementsDatabase {
                     insertionFailureReported = true;
                 }
             }
+        } catch (Exception ex) {
+            overallResult = false;
+            Timber.e(ex, "insertMeasurements(): Error while saving measurement");
+            Exception outerEx = new Exception("Measurement save failed", ex);
+            MyApplication.getAnalytics().sendException(outerEx, Boolean.FALSE);
+            ACRA.getErrorReporter().handleSilentException(ex);
         } finally {
             invalidateCache();
             db.endTransaction();
@@ -209,6 +213,25 @@ public class MeasurementsDatabase {
         Timber.d("getLastMeasurement(): Value from DB: %s", lastMeasurement);
         this.lastMeasurementCache = lastMeasurement;
         return lastMeasurement;
+    }
+
+    public List<Measurement> getLastMeasurements() {
+        Measurement lastMeasurement = getLastMeasurement();
+        if (lastMeasurement == null) {
+            Timber.d("getLastMeasurements(): No measurements in DB");
+            return new ArrayList<>(0);
+        }
+        String locationHashCode = HashUtils.toSha1(lastMeasurement);
+        String selection = LocationsTable.TABLE_NAME + "." + LocationsTable.COLUMN_HASHCODE + " = ?"
+                + " AND " + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_NEIGHBORING + " = ?";
+        String[] selectionArgs = new String[]{locationHashCode, String.valueOf(0)};
+        List<Measurement> lastMeasurements = getMeasurements(selection, selectionArgs, null, null,
+                MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " DESC, "
+                        + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_NEIGHBORING + " DESC, "
+                        + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_ROW_ID + " DESC",
+                null, false);
+        Timber.d("getLastMeasurements(): Last %s main measurements from DB for measurement %s", lastMeasurements.size(), lastMeasurement.getRowId());
+        return lastMeasurements;
     }
 
     public CellsCount getLastCellsCount() {
@@ -460,7 +483,7 @@ public class MeasurementsDatabase {
             measurement.setLac(cursor.getInt(lacColumnIndex));
             measurement.setCid(cursor.getInt(cidColumnIndex));
             measurement.setNetworkType(NetworkGroup.fromValue(cursor.getInt(netTypeColumnIndex)));
-            measurement.setNeighboring(cursor.getInt(neighboringColumnIndex) == 1 ? true : false);
+            measurement.setNeighboring(cursor.getInt(neighboringColumnIndex) == 1);
             measurement.setPsc(cursor.getInt(pscColumnIndex));
             measurement.setTa(cursor.getInt(taColumnIndex));
             measurement.setAsu(cursor.getInt(asuColumnIndex));

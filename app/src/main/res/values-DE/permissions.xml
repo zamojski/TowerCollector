@@ -8,9 +8,9 @@
     <string name="permission_export_rationale_message">Speichern-Berechtigung muss erteilt sein um die Messungen in eine Datei zu exportieren</string>
     <string name="permission_export_denied_message">Export der Messungen abgebrochen wegen fehlender Berechtigung</string>
     <string name="permission_export_never_ask_again_message">Export der Messungen ist nicht verfügbar weil die Speichern-Berechtigung verweigert wurde</string>
-    <string name="permission_logging_rationale_message">Speichern-Berechtigung muss erteilt werden um Datei-Logging zu verwenden</string>
-    <string name="permission_logging_denied_message">Datei-Logging deaktiviert wegen fehlender Berechtigung</string>
-    <string name="permission_logging_never_ask_again_message">Datei-Logging ist nicht verfügbar weil die Speichern-Berechtigung verweigert wurde</string>
+    <string name="permission_storage_rationale_message">Speichern-Berechtigung muss erteilt werden um diese Funktion zu verwenden</string>
+    <string name="permission_storage_denied_message">Abbruch wegen verweigerter Berechtigung</string>
+    <string name="permission_storage_never_ask_again_message">Die Funktion ist nicht verfügbar weil die Speichern-Berechtigung verweigert wurde</string>
     <string name="permission_logging_denied_temporarily_message">Datei-Logging vorrübergehend deaktiviert wegen fehlender Speichern-Berechtigung</string>
     <string name="permission_collector_rationale_message">Zugriff auf Standort und Telefon muss gestattet sein um Messungen zu sammeln</string>
     <string name="permission_collector_denied_message">Erfassung abbrechen wegen fehlenden Berechtigungen</string>

@@ -11,7 +11,7 @@ import timber.log.Timber;
 public class AnalyticsServiceFactory {
     public IAnalyticsReportingService createInstance() {
         Timber.d("createInstance(): Creating Google Analytics");
-        boolean trackingEnabled = MyApplication.getApplication().getPreferencesProvider().getTrackingEnabled();
+        boolean trackingEnabled = MyApplication.getPreferencesProvider().getTrackingEnabled();
         boolean dryRun = BuildConfig.DEBUG;
         return new GoogleAnalyticsReportingService(MyApplication.getApplication(), trackingEnabled, dryRun);
     }

@@ -6,6 +6,7 @@ package info.zamojski.soft.towercollector;
 
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.tasks.DatabaseUpgradeTask;
+import info.zamojski.soft.towercollector.utils.ApkUtils;
 import timber.log.Timber;
 
 import android.app.Activity;
@@ -37,7 +38,8 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         Timber.d("onCreate(): Creating activity");
         // set fixed screen orientation
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        if (!ApkUtils.isRunningOnBuggyOreoSetRequestedOrientation(this))
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.splash);
         this.setFinishOnTouchOutside(false);
         // get UI controls

@@ -33,8 +33,12 @@ public class FileUtils {
         return new File(Environment.getExternalStorageDirectory(), "TowerCollector");
     }
 
-    public static String getCurrentDateFilename(String extension) {
-        return new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.ENGLISH).format(new Date()) + "." + extension;
+    public static String getCurrentDateFileName(String extension) {
+        return getCurrentDateFileName("", extension);
+    }
+
+    public static String getCurrentDateFileName(String nameSuffix, String extension) {
+        return new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.ENGLISH).format(new Date()) + nameSuffix + "." + extension;
     }
 
     public static String getFileExtension(File file) {

@@ -27,6 +27,8 @@
     <string name="dialog_upload">Hochladen</string>
     <string name="dialog_keep">Behalten</string>
     <string name="dialog_delete">Löschen</string>
+    <string name="dialog_send">Senden</string>
+    <string name="dialog_send_comment">Kommentar</string>
     <string name="dialog_dont_show_again">Nicht mehr anzeigen</string>
     <string name="dialog_proceed">Fortfahren</string>
     <string name="dialog_permission_settings">Einstellungen</string>
@@ -115,6 +117,10 @@
     <string name="uploader_server_error">Serverfehler</string>
     <string name="uploader_server_error_description">Der Server hat einen internen Fehler gemeldet, das kann bedeuten dass er überlastet, kurzzeitig außer Betrieb ist oder gewartet wird. Bitte versuchen Sie es später erneut. Wenn dieses Problem über längere Zeit auftritt, informieren Sie mich bitte.</string>
     <string name="other_notification_channel_name">Sonstiges</string>
+    <string name="error_reporting_notification_channel_name">Fehlerbericht</string>
+    <string name="error_reporting_notification_title">Unerwarteter Fehler aufgetreten</string>
+    <string name="error_reporting_notification_text">Die App ist abgestürzt. Bitte senden Sie einen Fehlerbericht um bei der Behebung zu helfen.</string>
+    <string name="error_reporting_notification_comment_prompt">Kommentar hinzufügen</string>
     <string name="export_toast_storage_read_only">Externer Speicher ist schreibgeschützt.</string>
     <string name="export_toast_no_storage">Externen Speicher nicht gefunden.</string>
     <string name="export_dialog_format_selection_title">Gewünschtes Format:</string>
@@ -185,4 +191,12 @@
     <string name="status_no_gps_location">keine GPS-Position</string>
     <string name="invalid_system_time">Systemzeit ist ungültig</string>
     <string name="web_browser_missing">Bitte installieren Sie einen Web Browser um die Seite zu öffnen</string>
+    <string name="unsafe_operation_warning_title">Unsicherer Vorgang</string>
+    <string name="unsafe_operation_warning_message">Diese Option kann die App-Konfiguration zerstören und einen Absturz verursachen. In diesem Fall müssen Sie die App-Daten in den Android-Einstellungen löschen. Sie müssen die App vollständig schließen und wieder öffnen um Änderungen zu sehen!\n\nVerwendung auf eigenes Risiko!</string>
+    <string name="database_import_message">Datenbank importiert</string>
+    <string name="database_export_message">Datenbank exportiert</string>
+    <string name="database_import_export_failed_message">Import/Export fehlgeschlagen</string>
+    <string name="preferences_import_message">Einstellungen importiert</string>
+    <string name="preferences_export_message">Einstellungen exportiert</string>
+    <string name="preferences_import_export_failed_message">Import/Export fehlgeschlagen</string>
 </resources>

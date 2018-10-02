@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+    <string name="info_about_api_key_title">Ключ API</string>
+    <string name="info_about_opencellid_project_title">Проект OpenCellID</string>
+    <string name="info_usage_statistics_title">Статистика використання</string>
+    <string name="info_about_application_title">Про</string>
+    <string name="info_introduction_title">Вступ</string>
+    <string name="info_best_practices_title">Кращі практики</string>
+    <string name="info_external_integration_title">Зовнішня інтеграція</string>
+    <string name="info_privacy_statement_title">Заява про конфіденційність</string>
+    <string name="info_open_source_licenses_title">Ліцензії з відкритим кодом</string>
+    <string name="info_about_neighboring_cells_title">Сусідні стільниці</string>
+    <string name="info_about_collector_api_version_title">Версія API колектора</string>
+    <string name="info_about_main_keep_screen_on_title">Зберігайте екран, коли він є видимим</string>
+    <string name="info_about_collector_keep_screen_on_title">Збереження екрану під час збору</string>
+    <string name="info_about_notify_measurements_collected_title">Повідомити про зібрані вимірювання</string>
+</resources>

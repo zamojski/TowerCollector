@@ -9,18 +9,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.model.Measurement;
-import info.zamojski.soft.towercollector.providers.MozillaCellUtils;
 import info.zamojski.soft.towercollector.providers.ICellUtils;
+import info.zamojski.soft.towercollector.providers.MozillaCellUtils;
 import info.zamojski.soft.towercollector.utils.HashUtils;
 import info.zamojski.soft.towercollector.utils.StringUtils;
 
-public class JsonMozillaFormatter extends JsonFormatterBase implements IJsonFormatter {
+public abstract class JsonMozillaFormatterBase extends JsonFormatterBase {
 
     private static final ICellUtils cellUtils;
 
@@ -28,13 +28,8 @@ public class JsonMozillaFormatter extends JsonFormatterBase implements IJsonForm
         cellUtils = new MozillaCellUtils();
     }
 
-    @Override
-    public String formatList(List<Measurement> ms) throws JSONException {
-        if (ms.size() == 0) {
-            return new JSONObject().toString();
-        }
-        JSONArray items = new JSONArray();
-
+    protected List<JSONObject> formatItems(List<Measurement> ms) throws JSONException {
+        List<JSONObject> items = new ArrayList<>();
         Map<String, List<Measurement>> groups = groupByLocationAndSkipUnsupported(ms);
         for (List<Measurement> group : groups.values()) {
             Measurement firstM = group.get(0);
@@ -58,37 +53,35 @@ public class JsonMozillaFormatter extends JsonFormatterBase implements IJsonForm
                 cellTower.put("mobileNetworkCode", m.getMnc());
                 cellTower.put("locationAreaCode", m.getLac());
                 cellTower.put("cellId", m.getCid());
-                cellTower.put("primaryScramblingCode", formatNullable(m.getPsc(), Measurement.UNKNOWN_CID));
-                cellTower.put("asu", formatNullable(m.getAsu(), Measurement.UNKNOWN_SIGNAL));
-                cellTower.put("signalStrength", formatNullable(m.getDbm(), Measurement.UNKNOWN_SIGNAL));
-                cellTower.put("timingAdvance", formatNullable(m.getTa(), Measurement.UNKNOWN_SIGNAL));
+                int psc = m.getPsc();
+                if (psc != Measurement.UNKNOWN_CID)
+                    cellTower.put("primaryScramblingCode", psc);
+                int asu = m.getAsu();
+                if (asu != Measurement.UNKNOWN_SIGNAL)
+                    cellTower.put("asu", asu);
+                int dbm = m.getDbm();
+                if (dbm != Measurement.UNKNOWN_SIGNAL)
+                    cellTower.put("signalStrength", dbm);
+                int ta = m.getTa();
+                if (ta != Measurement.UNKNOWN_SIGNAL)
+                    cellTower.put("timingAdvance", ta);
                 cellTower.put("serving", m.isNeighboring() ? 0 : 1);
                 cellTowers.put(cellTower);
             }
             item.put("cellTowers", cellTowers);
-            items.put(item);
+            items.add(item);
         }
-        JSONObject root = new JSONObject();
-        root.put("items", items);
-        return root.toString();
-    }
-
-    private Object formatRadioType(NetworkGroup networkGroup) {
-        String systemType = cellUtils.getSystemType(networkGroup);
-        if (StringUtils.isNullEmptyOrWhitespace(systemType))
-            return JSONObject.NULL;
-        return systemType;
+        return items;
     }
 
     private Map<String, List<Measurement>> groupByLocationAndSkipUnsupported(List<Measurement> ms) {
-        Map<String, List<Measurement>> groups = new HashMap<>();
+        Map<String, List<Measurement>> groups = new LinkedHashMap<>();
 
         for (Measurement m : ms) {
             if (m.getNetworkType() == NetworkGroup.Cdma || m.getMcc() == Measurement.UNKNOWN_CID)
                 continue; // Not supported
 
-            String locationHashCode = HashUtils.toSha1(m.getLatitude(), m.getLongitude(), m.getGpsAccuracy(),
-                    m.getGpsSpeed(), m.getGpsBearing(), m.getGpsAltitude());
+            String locationHashCode = HashUtils.toSha1(m);
             if (!groups.containsKey(locationHashCode)) {
                 groups.put(locationHashCode, new ArrayList<Measurement>());
             }
@@ -96,5 +89,12 @@ public class JsonMozillaFormatter extends JsonFormatterBase implements IJsonForm
         }
 
         return groups;
+    }
+
+    private Object formatRadioType(NetworkGroup networkGroup) {
+        String systemType = cellUtils.getSystemType(networkGroup);
+        if (StringUtils.isNullEmptyOrWhitespace(systemType))
+            return JSONObject.NULL;
+        return systemType;
     }
 }

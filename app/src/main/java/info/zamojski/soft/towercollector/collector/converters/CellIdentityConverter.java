@@ -58,6 +58,15 @@ public class CellIdentityConverter {
         }
     }
 
+    public String createCellKey(Measurement measurement) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(measurement.getMcc())
+                .append("_").append(measurement.getMnc())
+                .append("_").append(measurement.getLac())
+                .append("_").append(measurement.getCid());
+        return sb.toString();
+    }
+
     public String createCellKey(CellInfo cellInfo) {
         StringBuilder sb = new StringBuilder();
         if (cellInfo instanceof CellInfoGsm) {

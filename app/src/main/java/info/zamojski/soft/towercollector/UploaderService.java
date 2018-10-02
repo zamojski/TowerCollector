@@ -8,7 +8,7 @@ import info.zamojski.soft.towercollector.enums.UploadResult;
 import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
 import info.zamojski.soft.towercollector.files.devices.MemoryTextDevice;
 import info.zamojski.soft.towercollector.files.formatters.csv.CsvUploadFormatter;
-import info.zamojski.soft.towercollector.files.formatters.json.JsonMozillaFormatter;
+import info.zamojski.soft.towercollector.files.formatters.json.JsonMozillaUploadFormatter;
 import info.zamojski.soft.towercollector.files.generators.CsvTextGenerator;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.files.generators.JsonTextGenerator;
@@ -501,7 +501,7 @@ public class UploaderService extends Service {
                 return UploadResult.NoData;
             // create generator instance
             MemoryTextDevice device = new MemoryTextDevice();
-            JsonTextGenerator<JsonMozillaFormatter, MemoryTextDevice> generator = new JsonTextGenerator<>(new JsonMozillaFormatter(), device);
+            JsonTextGenerator<JsonMozillaUploadFormatter, MemoryTextDevice> generator = new JsonTextGenerator<>(new JsonMozillaUploadFormatter(), device);
             // write measurements
             try {
                 device.open();

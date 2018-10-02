@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+    <string name="permission_required">Необхідний дозвіл</string>
+    <string name="permission_denied">Дозвіл відхилено</string>
+    <string name="permission_export_rationale_message">Дозвіл зберігання повинен надаватися для експорту у файл</string>
+    <string name="permission_export_denied_message">Скасування експорту вимірювань через відмову у дозволі</string>
+    <string name="permission_export_never_ask_again_message">Експорт вимірювань недоступний через відмову в дозволі зберігання</string>
+    <string name="permission_storage_rationale_message">Дозвіл на зберігання повинен надаватися для використання функції</string>
+    <string name="permission_storage_denied_message">Скасування операції через відмову у дозволі</string>
+    <string name="permission_storage_never_ask_again_message">Функція недоступна через відмову в дозволі зберігання</string>
+    <string name="permission_logging_denied_temporarily_message">Тимчасове відключення реєстрації файлів через відсутність дозволу на зберігання.</string>
+    <string name="permission_collector_rationale_message">Для збирання вимірів необхідно надати дозволи на отримання місцезнаходження та стан телефону (мережі)</string>
+    <string name="permission_collector_denied_message">Скасування збирання вимірювань через відмову у дозволах</string>
+    <string name="permission_collector_never_ask_again_message">Збір вимірювань недоступний через відмову у дозволах визначення місцезнаходження та / або стану телефону</string>
+    <string name="permission_collector_denied_intent_message">Скасувавши збирання вимірювань через відмовлені дозволи. Перед запуском додатку надайте необхідні дозволи</string>
+    <string name="permission_uploader_denied_message">Вивантаження скасовано через відмову у дозволі на Інтернет.</string>
+</resources>
