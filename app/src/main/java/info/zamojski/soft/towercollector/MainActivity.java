@@ -438,10 +438,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
     }
 
-    private void displayUploadResultDialog(int descriptionId) {
+    private void displayUploadResultDialog(String descriptionContent) {
         try {
-            String descriptionContent = getString(descriptionId);
-            Timber.d("displayUploadResultDialog(): Received extras: %s", descriptionId);
+            Timber.d("displayUploadResultDialog(): Received extras: %s", descriptionContent);
             // display dialog
             AlertDialog alertDialog = new AlertDialog.Builder(this).create();
             alertDialog.setCanceledOnTouchOutside(true);
@@ -454,7 +453,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             });
             alertDialog.show();
         } catch (NotFoundException ex) {
-            Timber.w("displayUploadResultDialog(): Invalid string id received with intent extras: %s", descriptionId);
+            Timber.w("displayUploadResultDialog(): Invalid string id received with intent extras: %s", descriptionContent);
             MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
         }
@@ -1094,7 +1093,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         if (intent != null) {
             if (intent.hasExtra(UploaderService.INTENT_KEY_RESULT_DESCRIPTION)) {
                 // display upload result
-                displayUploadResultDialog(intent.getIntExtra(UploaderService.INTENT_KEY_RESULT_DESCRIPTION, 0));
+                displayUploadResultDialog(intent.getStringExtra(UploaderService.INTENT_KEY_RESULT_DESCRIPTION));
             } else if (intent.hasExtra(UpdateCheckAsyncTask.INTENT_KEY_UPDATE_INFO)) {
                 // display dialog with download options
                 displayNewVersionDownloadOptions((UpdateInfo) intent.getSerializableExtra(UpdateCheckAsyncTask.INTENT_KEY_UPDATE_INFO));
