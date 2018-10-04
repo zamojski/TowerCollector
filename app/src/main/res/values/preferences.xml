@@ -32,7 +32,7 @@
     <string name="preferences_reupload_if_upload_fails_off_summary">The app will delete uploaded measurements if upload succeed to at least one of the projects.</string>
     <string name="preferences_opencellid_enabled_title">Enable OCID upload</string>
     <string name="preferences_opencellid_enabled_on_summary">Measurements will be uploaded to OpenCellID.org.</string>
-    <string name="preferences_opencellid_enabled_off_summary">Measurement will not be uploaded to OpenCellID.org.</string>
+    <string name="preferences_opencellid_enabled_off_summary">Measurements will not be uploaded to OpenCellID.org.</string>
     <string name="preferences_api_key_title">API key</string>
     <string name="preferences_api_key_summary">The key required to upload your measurements.</string>
     <string name="preferences_api_key_invalid">Entered API key is invalid. The correct format is described in Help.</string>
@@ -44,7 +44,7 @@
     <string name="preferences_about_opencellid_project_summary">Information about OpenCellID.org project.</string>
     <string name="preferences_mls_enabled_title">Enable MLS upload</string>
     <string name="preferences_mls_enabled_on_summary">Measurements will be uploaded to Mozilla Location Services.</string>
-    <string name="preferences_mls_enabled_off_summary">Measurement will not be uploaded to Mozilla Location Services.</string>
+    <string name="preferences_mls_enabled_off_summary">Measurements will not be uploaded to Mozilla Location Services.</string>
     <string name="preferences_about_mls_project_title">About MLS</string>
     <string name="preferences_about_mls_project_summary">Information about Mozilla Location Services.</string>
     <string name="preferences_imperial_units_title">Use imperial units</string>
