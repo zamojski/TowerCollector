@@ -223,12 +223,12 @@ public class MeasurementsDatabase {
         }
         String locationHashCode = HashUtils.toSha1(lastMeasurement);
         String selection = LocationsTable.TABLE_NAME + "." + LocationsTable.COLUMN_HASHCODE + " = ?"
-                + " AND " + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_NEIGHBORING + " = ?";
+                + " AND " + MeasurementsTable.COLUMN_NEIGHBORING + " = ?";
         String[] selectionArgs = new String[]{locationHashCode, String.valueOf(0)};
         List<Measurement> lastMeasurements = getMeasurements(selection, selectionArgs, null, null,
-                MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " DESC, "
-                        + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_NEIGHBORING + " DESC, "
-                        + MeasurementsTable.TABLE_NAME + "." + MeasurementsTable.COLUMN_ROW_ID + " DESC",
+                MeasurementsTable.COLUMN_MEASURED_AT + " DESC, "
+                        + MeasurementsTable.COLUMN_NEIGHBORING + " DESC, "
+                        + NotUploadedMeasurementsView.VIEW_NAME + "." + MeasurementsTable.COLUMN_ROW_ID + " DESC",
                 null, false);
         Timber.d("getLastMeasurements(): Last %s main measurements from DB for measurement %s", lastMeasurements.size(), lastMeasurement.getRowId());
         return lastMeasurements;
