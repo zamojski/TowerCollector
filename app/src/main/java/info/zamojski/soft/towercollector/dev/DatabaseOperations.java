@@ -10,6 +10,7 @@ import android.content.Context;
 import android.os.Environment;
 import android.widget.Toast;
 
+import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.utils.FileUtils;
@@ -47,6 +48,7 @@ public class DatabaseOperations {
                     FileUtils.copyFile(srcFile, dstFile);
                     Timber.d("copyDatabase(): Database " + operation + "ed");
                     int operationMessage = operation.equals(OPERATION_IMPORT) ? R.string.database_import_message : R.string.database_export_message;
+                    MeasurementsDatabase.invalidateInstance(MyApplication.getApplication());
                     Toast.makeText(context, operationMessage, Toast.LENGTH_LONG).show();
                 } else {
                     Timber.d("copyDatabase(): External storage is read only");
