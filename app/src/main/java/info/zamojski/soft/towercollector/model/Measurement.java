@@ -181,13 +181,19 @@ public class Measurement implements Serializable {
     public int getShortCid() {
         if (cid <= 65536)
             return UNKNOWN_CID;
-        return cid % 65536;
+        if (networkType == NetworkGroup.Wcdma)
+            return cid % 65536;
+        else // LTE (reversed)
+            return cid / 256;
     }
 
     public int getRnc() {
         if (cid <= 65536)
             return UNKNOWN_CID;
-        return cid / 65536;
+        if (networkType == NetworkGroup.Wcdma)
+            return cid / 65536;
+        else // LTE (reversed)
+            return cid % 256;
     }
 
     public int getCid() {

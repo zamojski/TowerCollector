@@ -33,7 +33,6 @@ import org.greenrobot.eventbus.ThreadMode;
 
 public class MainLastFragment extends MainFragmentBase {
 
-
     private TableRow lastLongCellIdValueTableRow;
     private TableRow lastCellIdRncValueTableRow;
     private TableRow lastCellIdValueTableRow;
@@ -71,23 +70,23 @@ public class MainLastFragment extends MainFragmentBase {
     @Override
     protected void configureControls(View view) {
         super.configureControls(view);
-        lastLongCellIdValueTableRow = (TableRow) view.findViewById(R.id.main_last_long_cell_id_tablerow);
-        lastCellIdRncValueTableRow = (TableRow) view.findViewById(R.id.main_last_cell_id_rnc_tablerow);
-        lastCellIdValueTableRow = (TableRow) view.findViewById(R.id.main_last_cell_id_tablerow);
+        lastLongCellIdValueTableRow = view.findViewById(R.id.main_last_long_cell_id_tablerow);
+        lastCellIdRncValueTableRow = view.findViewById(R.id.main_last_cell_id_rnc_tablerow);
+        lastCellIdValueTableRow = view.findViewById(R.id.main_last_cell_id_tablerow);
 
-        lastNumberOfCellsValueTextView = (TextView) view.findViewById(R.id.main_last_number_of_cells_value_textview);
-        lastNetworkTypeValueTextView = (TextView) view.findViewById(R.id.main_last_network_type_value_textview);
-        lastLongCellIdValueTextView = (TextView) view.findViewById(R.id.main_last_long_cell_id_value_textview);
-        lastCellIdRncValueTextView = (TextView) view.findViewById(R.id.main_last_cell_id_rnc_value_textview);
-        lastCellIdValueTextView = (TextView) view.findViewById(R.id.main_last_cell_id_value_textview);
-        lastMccValueTextView = (TextView) view.findViewById(R.id.main_last_mcc_value_textview);
-        lastMncValueTextView = (TextView) view.findViewById(R.id.main_last_mnc_value_textview);
-        lastLacValueTextView = (TextView) view.findViewById(R.id.main_last_lac_value_textview);
-        lastSignalStrengthValueTextView = (TextView) view.findViewById(R.id.main_last_signal_strength_value_textview);
-        lastLatitudeValueTextView = (TextView) view.findViewById(R.id.main_last_latitude_value_textview);
-        lastLongitudeValueTextView = (TextView) view.findViewById(R.id.main_last_longitude_value_textview);
-        lastGpsAccuracyValueTextView = (TextView) view.findViewById(R.id.main_last_gps_accuracy_value_textview);
-        lastDateTimeValueTextView = (TextView) view.findViewById(R.id.main_last_date_time_value_textview);
+        lastNumberOfCellsValueTextView = view.findViewById(R.id.main_last_number_of_cells_value_textview);
+        lastNetworkTypeValueTextView = view.findViewById(R.id.main_last_network_type_value_textview);
+        lastLongCellIdValueTextView = view.findViewById(R.id.main_last_long_cell_id_value_textview);
+        lastCellIdRncValueTextView = view.findViewById(R.id.main_last_cell_id_rnc_value_textview);
+        lastCellIdValueTextView = view.findViewById(R.id.main_last_cell_id_value_textview);
+        lastMccValueTextView = view.findViewById(R.id.main_last_mcc_value_textview);
+        lastMncValueTextView = view.findViewById(R.id.main_last_mnc_value_textview);
+        lastLacValueTextView = view.findViewById(R.id.main_last_lac_value_textview);
+        lastSignalStrengthValueTextView = view.findViewById(R.id.main_last_signal_strength_value_textview);
+        lastLatitudeValueTextView = view.findViewById(R.id.main_last_latitude_value_textview);
+        lastLongitudeValueTextView = view.findViewById(R.id.main_last_longitude_value_textview);
+        lastGpsAccuracyValueTextView = view.findViewById(R.id.main_last_gps_accuracy_value_textview);
+        lastDateTimeValueTextView = view.findViewById(R.id.main_last_date_time_value_textview);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -121,8 +120,8 @@ public class MainLastFragment extends MainFragmentBase {
         lastNumberOfCellsValueTextView.setText(getString(R.string.main_last_number_of_cells_value, cellsCount.getMain(), cellsCount.getNeighboring()));
         int networkNameId = NetworkTypeUtils.getNetworkGroupNameResId(measurement.getNetworkType());
         lastNetworkTypeValueTextView.setText(getString(networkNameId));
-        // only for UMTS with valid CID
-        if (measurement.getNetworkType() == NetworkGroup.Wcdma && measurement.getLongCid() != Measurement.UNKNOWN_CID) {
+        // only for UMTS/LTE with valid CID
+        if ((measurement.getNetworkType() == NetworkGroup.Wcdma || measurement.getNetworkType() == NetworkGroup.Lte) && measurement.getLongCid() != Measurement.UNKNOWN_CID) {
             lastLongCellIdValueTableRow.setVisibility(View.VISIBLE);
             lastCellIdRncValueTableRow.setVisibility(View.VISIBLE);
             lastCellIdValueTableRow.setVisibility(View.GONE);
@@ -156,6 +155,8 @@ public class MainLastFragment extends MainFragmentBase {
         Timber.d("clearMeasurement(): Clearing last measurement");
         lastNumberOfCellsValueTextView.setText("");
         lastNetworkTypeValueTextView.setText("");
+        lastLongCellIdValueTextView.setText("");
+        lastCellIdRncValueTextView.setText("");
         lastCellIdValueTextView.setText("");
         lastMccValueTextView.setText("");
         lastMncValueTextView.setText("");
