@@ -658,6 +658,26 @@ public class MeasurementsDatabase {
         return deleted;
     }
 
+    public int cleanAllData() {
+        Timber.d("cleanAllData(): Cleaning all data");
+        SQLiteDatabase db = helper.getWritableDatabase();
+        db.beginTransaction();
+        int deletedMeasurements = 0;
+        try {
+            deletedMeasurements = db.delete(MeasurementsTable.TABLE_NAME, "1", null);
+            int deletedLocations = db.delete(LocationsTable.TABLE_NAME, "1", null);
+            int deletedCells = db.delete(CellsTable.TABLE_NAME, "1", null);
+            int deletedCellsArchive = db.delete(CellsArchiveTable.TABLE_NAME, "1", null);
+            int deletedStats = db.delete(StatsTable.TABLE_NAME, "1", null);
+            db.setTransactionSuccessful();
+            Timber.d("cleanAllData(): Deleted %s measurements, %s cells, %s locations, %s archived cells, %s stats", deletedMeasurements, deletedCells, deletedLocations, deletedCellsArchive, deletedStats);
+        } finally {
+            invalidateCache();
+            db.endTransaction();
+        }
+        return deletedMeasurements;
+    }
+
     private void invalidateCache() {
         lastMeasurementCache = null;
         lastCellsCountCache = null;

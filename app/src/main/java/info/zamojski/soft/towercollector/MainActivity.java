@@ -274,6 +274,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 // NOTE: delegate the permission handling to generated method
                 MainActivityPermissionsDispatcher.startExportAsyncTaskWithPermissionCheck(this);
                 return true;
+            case R.id.main_menu_clean:
+                startCleanup();
+                return true;
             case R.id.main_menu_preferences:
                 startPreferencesActivity();
                 return true;
@@ -853,7 +856,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                     if (selectedType != FileType.Unknown) {
                         String path = FileUtils.combinePath(FileUtils.getExternalStorageAppDir(), FileUtils.getCurrentDateFileName(nameSuffix, extension));
                         ExportFileAsyncTask task = new ExportFileAsyncTask(MainActivity.this, new InternalMessageHandler(MainActivity.this), path, selectedType);
-                        task.execute(new Void[0]);
+                        task.execute();
                         MyApplication.getAnalytics().sendExportStarted();
                     }
                 }
@@ -891,6 +894,31 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     @OnNeverAskAgain(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     void onStartExportNeverAskAgain() {
         onNeverAskAgain(R.string.permission_export_never_ask_again_message);
+    }
+
+    private void startCleanup() {
+        // show dialog that runs async task
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.clear_dialog_title);
+        builder.setMessage(R.string.clear_dialog_message);
+        builder.setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                MeasurementsDatabase.getInstance(MainActivity.this).cleanAllData();
+                Toast.makeText(MainActivity.this, R.string.clear_toast_finished, Toast.LENGTH_SHORT).show();
+                EventBus.getDefault().post(new PrintMainWindowEvent());
+            }
+        });
+        builder.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                // cancel
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setCancelable(true);
+        dialog.show();
     }
 
     private void startPreferencesActivity() {

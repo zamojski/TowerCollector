@@ -10,6 +10,7 @@
         <item name="icon_menu_upload">@drawable/menu_upload_light</item>
         <item name="icon_menu_more">@drawable/menu_more_light</item>
         <item name="icon_menu_export">@drawable/menu_export_light</item>
+        <item name="icon_menu_clean">@drawable/menu_clean_light</item>
         <item name="icon_menu_preferences">@drawable/menu_preferences_light</item>
         <item name="icon_menu_network_type">@drawable/menu_network_type_light</item>
         <item name="android:textColor">@color/text_light</item>
@@ -23,6 +24,7 @@
         <item name="icon_menu_upload">@drawable/menu_upload_dark</item>
         <item name="icon_menu_more">@drawable/menu_more_dark</item>
         <item name="icon_menu_export">@drawable/menu_export_dark</item>
+        <item name="icon_menu_clean">@drawable/menu_clean_dark</item>
         <item name="icon_menu_preferences">@drawable/menu_preferences_dark</item>
         <item name="icon_menu_network_type">@drawable/menu_network_type_dark</item>
         <item name="android:textColor">@color/text_dark</item>

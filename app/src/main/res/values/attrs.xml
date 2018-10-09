@@ -9,6 +9,7 @@
     <attr name="icon_menu_upload" format="reference"/>
     <attr name="icon_menu_more" format="reference"/>
     <attr name="icon_menu_export" format="reference"/>
+    <attr name="icon_menu_clean" format="reference"/>
     <attr name="icon_menu_help" format="reference"/>
     <attr name="icon_menu_preferences" format="reference"/>
     <attr name="icon_menu_network_type" format="reference"/>

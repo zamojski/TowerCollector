@@ -32,6 +32,11 @@
                 android:title="@string/main_menu_export_button"
                 app:showAsAction="always"/>
             <item
+                android:id="@+id/main_menu_clean"
+                android:icon="?attr/icon_menu_clean"
+                android:title="@string/main_menu_clean_button"
+                app:showAsAction="always"/>
+            <item
                 android:id="@+id/main_menu_preferences"
                 android:icon="?attr/icon_menu_preferences"
                 android:title="@string/main_menu_preferences_button"

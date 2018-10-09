@@ -85,6 +85,7 @@
     <string name="main_menu_upload_button">Upload</string>
     <string name="main_menu_more_button">More</string>
     <string name="main_menu_export_button">Export</string>
+    <string name="main_menu_clean_button">Clean</string>
     <string name="main_menu_help_button">Help</string>
     <string name="main_menu_preferences_button">Preferences</string>
     <string name="main_menu_network_type_button">Network type</string>
@@ -136,6 +137,9 @@
     <string name="export_dialog_progress_message">Saving to \"TowerCollector\" folder on external memory with current date and time as file name.</string>
     <string name="export_dialog_finished_title">Export successful</string>
     <string name="export_dialog_finished_message">File saved as <xliff:g id="file_name">%s</xliff:g>.\n\n<i>Please consider contribution to one of the projects by uploading your measurements!</i></string>
+    <string name="clear_dialog_title">Clear all data</string>
+    <string name="clear_dialog_message">Are you sure you want to permanently remove all locally stored data?</string>
+    <string name="clear_toast_finished">Database cleared</string>
     <string name="export_toast_failed">Export failed: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">unknown error</string>
     <string name="export_toast_failed_cause_directory_not_exists">cannot create directory</string>
