@@ -7,10 +7,10 @@ package info.zamojski.soft.towercollector.preferences;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
-import android.preference.PreferenceCategory;
-import android.preference.PreferenceManager;
-import android.preference.PreferenceScreen;
-import android.preference.SwitchPreference;
+import android.support.v14.preference.SwitchPreference;
+import android.support.v7.preference.PreferenceCategory;
+import android.support.v7.preference.PreferenceManager;
+import android.support.v7.preference.PreferenceScreen;
 
 import info.zamojski.soft.towercollector.BuildConfig;
 import info.zamojski.soft.towercollector.MyApplication;
@@ -19,10 +19,8 @@ import timber.log.Timber;
 
 public class GeneralPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
 
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferences_general);
 
         setupUsageStatisticsAvailability();

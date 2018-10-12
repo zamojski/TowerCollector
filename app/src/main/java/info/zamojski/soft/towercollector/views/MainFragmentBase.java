@@ -21,14 +21,11 @@ import info.zamojski.soft.towercollector.utils.UnitConverter;
 import timber.log.Timber;
 
 import android.support.v4.app.Fragment;
-
-
 import android.view.View;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 public abstract class MainFragmentBase extends Fragment {
-
 
     private TableRow gpsStatusTableRow;
     private TextView gpsStatusLabelTextView;
@@ -65,11 +62,11 @@ public abstract class MainFragmentBase extends Fragment {
     }
 
     protected void configureControls(View view) {
-        gpsStatusTableRow = (TableRow) view.findViewById(R.id.main_gps_status_tablerow);
-        gpsStatusLabelTextView = (TextView) view.findViewById(R.id.main_gps_status_label_textview);
-        gpsStatusValueTextView = (TextView) view.findViewById(R.id.main_gps_status_value_textview);
-        invalidSystemTimeTableRow = (TableRow) view.findViewById(R.id.main_invalid_system_time_tablerow);
-        invalidSystemTimeValueTextView = (TextView) view.findViewById(R.id.main_invalid_system_time_value_textview);
+        gpsStatusTableRow = view.findViewById(R.id.main_gps_status_tablerow);
+        gpsStatusLabelTextView = view.findViewById(R.id.main_gps_status_label_textview);
+        gpsStatusValueTextView = view.findViewById(R.id.main_gps_status_value_textview);
+        invalidSystemTimeTableRow = view.findViewById(R.id.main_invalid_system_time_tablerow);
+        invalidSystemTimeValueTextView = view.findViewById(R.id.main_invalid_system_time_value_textview);
         // reload preferences
         useImperialUnits = MyApplication.getPreferencesProvider().getUseImperialUnits();
         // cache units
@@ -148,5 +145,4 @@ public abstract class MainFragmentBase extends Fragment {
         Timber.d("hideGpsStatus(): Hiding status");
         gpsStatusTableRow.setVisibility(View.GONE);
     }
-
 }

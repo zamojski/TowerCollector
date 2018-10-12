@@ -11,20 +11,16 @@ import timber.log.Timber;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.PreferenceManager;
-
-
+import android.support.v7.preference.ListPreference;
+import android.support.v7.preference.PreferenceManager;
 import android.widget.Toast;
 
 public class DisplayPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
 
-
     private ListPreference appThemePreference;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferences_display);
 
         appThemePreference = (ListPreference) findPreference(getString(R.string.preferences_app_theme_mode_key));

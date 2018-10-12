@@ -5,7 +5,7 @@
 package info.zamojski.soft.towercollector.controls;
 
 import android.content.Context;
-import android.preference.EditTextPreference;
+import android.support.v7.preference.EditTextPreference;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.AttributeSet;

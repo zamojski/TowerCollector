@@ -11,8 +11,7 @@ import android.os.Bundle;
 public class HelpPreferenceFragment extends DialogEnabledPreferenceFragment {
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferences_help);
 
         setupIntroductionDialog();

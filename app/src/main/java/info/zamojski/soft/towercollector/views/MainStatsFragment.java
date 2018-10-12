@@ -27,7 +27,6 @@ import org.greenrobot.eventbus.ThreadMode;
 
 public class MainStatsFragment extends MainFragmentBase {
 
-
     private TextView mainStatsLocalTitleTextView;
     private TextView mainStatsGlobalTitleTextView;
 

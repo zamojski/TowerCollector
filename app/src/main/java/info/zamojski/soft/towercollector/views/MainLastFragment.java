@@ -73,7 +73,6 @@ public class MainLastFragment extends MainFragmentBase {
         lastLongCellIdValueTableRow = view.findViewById(R.id.main_last_long_cell_id_tablerow);
         lastCellIdRncValueTableRow = view.findViewById(R.id.main_last_cell_id_rnc_tablerow);
         lastCellIdValueTableRow = view.findViewById(R.id.main_last_cell_id_tablerow);
-
         lastNumberOfCellsValueTextView = view.findViewById(R.id.main_last_number_of_cells_value_textview);
         lastNetworkTypeValueTextView = view.findViewById(R.id.main_last_network_type_value_textview);
         lastLongCellIdValueTextView = view.findViewById(R.id.main_last_long_cell_id_value_textview);

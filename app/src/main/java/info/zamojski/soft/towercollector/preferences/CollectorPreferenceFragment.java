@@ -13,12 +13,10 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.PreferenceCategory;
-import android.preference.PreferenceManager;
-
-
-import android.preference.SwitchPreference;
+import android.support.v14.preference.SwitchPreference;
+import android.support.v7.preference.ListPreference;
+import android.support.v7.preference.PreferenceCategory;
+import android.support.v7.preference.PreferenceManager;
 import android.widget.Toast;
 
 public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
@@ -27,8 +25,7 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
     private ListPreference collectorLowBatteryActionPreference;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferences_collector);
 
         collectorKeepScreenOnPreference = (ListPreference) findPreference(getString(R.string.preferences_collector_keep_screen_on_mode_key));
