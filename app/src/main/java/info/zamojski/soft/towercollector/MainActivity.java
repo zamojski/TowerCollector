@@ -274,7 +274,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 // NOTE: delegate the permission handling to generated method
                 MainActivityPermissionsDispatcher.startExportAsyncTaskWithPermissionCheck(this);
                 return true;
-            case R.id.main_menu_clean:
+            case R.id.main_menu_clear:
                 startCleanup();
                 return true;
             case R.id.main_menu_preferences:
@@ -904,7 +904,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         builder.setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                MeasurementsDatabase.getInstance(MainActivity.this).cleanAllData();
+                MeasurementsDatabase.getInstance(MainActivity.this).clearAllData();
                 Toast.makeText(MainActivity.this, R.string.clear_toast_finished, Toast.LENGTH_SHORT).show();
                 EventBus.getDefault().post(new PrintMainWindowEvent());
             }

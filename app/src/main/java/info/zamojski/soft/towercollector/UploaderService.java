@@ -416,7 +416,7 @@ public class UploaderService extends Service {
             }
 
             // clean anyway because it doesn't hurt
-            MeasurementsDatabase.getInstance(getApplication()).cleanOlderUploadedPartiallyAndUploadedFully();
+            MeasurementsDatabase.getInstance(getApplication()).clearOlderUploadedPartiallyAndUploadedFully();
 
             return new int[]{ocidSucceededParts, mlsSucceededParts};
         }
