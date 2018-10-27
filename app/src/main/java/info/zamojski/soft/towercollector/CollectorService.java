@@ -68,9 +68,7 @@ import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
 import android.widget.Toast;
 
-
 public class CollectorService extends Service {
-
 
     public static final String SERVICE_FULL_NAME = CollectorService.class.getCanonicalName();
     public static final String BROADCAST_INTENT_STOP_SERVICE = SERVICE_FULL_NAME + ".CollectorStop";
