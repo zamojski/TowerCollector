@@ -32,10 +32,6 @@
     <string name="dialog_dont_show_again">Больше не показывать</string>
     <string name="dialog_proceed">Продолжить</string>
     <string name="dialog_permission_settings">Настройки</string>
-    <string name="main_dialog_api_key_invalid_title">Некорректный API-ключ</string>
-    <string name="main_dialog_api_key_invalid_message">Указанный Вами API-ключ, возможно, неправильный</string>
-    <string name="main_dialog_api_key_empty_title">Не указан API ключ</string>
-    <string name="main_dialog_api_key_empty_message">Вы должны указать свой API-ключ в Настройках</string>
     <string name="main_dialog_not_compatible_title">Проблемы совместимости</string>
     <string name="main_dialog_not_compatible_begin">Приложение может не работать потому, что:</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Не найдено оборудование для работы с мобильными сетями.\n</string>
@@ -62,6 +58,7 @@
     <string name="main_stats_global_title">Всего собрано с <xliff:g id="date_time">%s</xliff:g></string>
     <string name="main_stats_global_locations_label">Измерений:</string>
     <string name="main_stats_global_cells_label">GSM-сот всего:</string>
+    <string name="main_stats_to_upload_title">Для выгрузки</string>
     <string name="main_last_cell_title">Последнее сохранённое измерение</string>
     <string name="main_last_number_of_cells_label">Главная / соседняя:</string>
     <string name="main_last_network_type_label">Тип сети:</string>
@@ -91,13 +88,15 @@
     <string name="collector_gps_unavailable">Невозможно начать сбор, т.к. GPS выключен</string>
     <string name="uploader_notification_channel_name">Загрузчик</string>
     <string name="uploader_notification_title">Выгрузка</string>
-    <string name="uploader_notification_progress_info">Часть <xliff:g id="part_number">%1$d</xliff:g> из <xliff:g id="total_parts">%2$d</xliff:g>. Нажмите, чтобы прервать.</string>
+    <string name="uploader_notification_progress_info">Загружено <xliff:g id="progress_in_percent">%d</xliff:g>%%. Нажмите, чтобы прервать.</string>
     <string name="uploader_result_dialog_title">Выгрузить результаты</string>
     <string name="uploader_starting">Начинается выгрузка&#8230;</string>
     <string name="uploader_aborting">Прерывание выгрузки&#8230;</string>
     <string name="uploader_already_running">Выгрузка в процессе.</string>
+    <string name="uploader_disabled">Выгрузка отключена</string>
+    <string name="uploader_disabled_description">Выгрузка отключена для этого проекта</string>
     <string name="uploader_aborted">Выгрузка прервана</string>
-    <string name="uploader_aborted_description">Ничего не выгрузилось.</string>
+    <string name="uploader_aborted_description">Ничего не выгружено.</string>
     <string name="uploader_success">Выгрузка успешна</string>
     <string name="uploader_success_description">Выгрузка завершена успешно. Спасибо за ваш вклад!</string>
     <string name="uploader_partially_succeeded">Частично выгружено</string>
@@ -115,7 +114,7 @@
     <string name="uploader_connection_error">Ошибка подключения</string>
     <string name="uploader_connection_error_description">Не удалось связаться с сервером из-за ошибки, связанной с сетью, которая может быть вызвана отсутствием, слишком медленным или нестабильным подключением к Интернету. Проверьте, что вы используете последнюю версию приложения и повторите попытку. Если эта проблема наблюдается в течение длительного времени, пожалуйста, дайте мне знать.</string>
     <string name="uploader_server_error">Ошибка сервера</string>
-    <string name="uploader_server_error_description">Сервер возвратил внутреннюю ошибку, которая может означать, что он перегружен, временно недоступен или отключён для обслуживания. Пожалуйста, повторите попытку позже. Если эта проблема будет повторяться долгое время, пожалуйста, дайте мне знать.</string>
+    <string name="uploader_server_error_description">Сервер сообщил о внутренней ошибке, что может значить, что он перегружен, временно недоступен или отключён для обслуживания. Пожалуйста, повторите попытку позже. Если эта проблема будет повторяться долгое время, пожалуйста, дайте мне знать.</string>
     <string name="other_notification_channel_name">Другое</string>
     <string name="error_reporting_notification_channel_name">Отчёт об ошибке</string>
     <string name="error_reporting_notification_title">Произошла неизвестная ошибка</string>
@@ -127,7 +126,7 @@
     <string name="export_dialog_progress_title">Экспорт</string>
     <string name="export_dialog_progress_message">Сохранение в папку \"TowerCollector\" на внешнюю SD-карту с текущей датой и временем в имени файла.</string>
     <string name="export_dialog_finished_title">Экспорт успешен</string>
-    <string name="export_dialog_finished_message">Файл сохранён как <xliff:g id="file_name">%s</xliff:g>.\n\n<i>Пожалуйста, внесите вклад в проект OpenCellID.org и выгрузите ваши измерения!</i></string>
+    <string name="export_dialog_finished_message">Файл сохранён как <xliff:g id="file_name">%s</xliff:g>.\n\n<i>Пожалуйста, внесите вклад в один из проектов, выгрузив ваши измерения!</i></string>
     <string name="export_toast_failed">Ошибка экспорта: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">неизвестная ошибка</string>
     <string name="export_toast_failed_cause_directory_not_exists">невозможно создать папку</string>
@@ -135,7 +134,7 @@
     <string name="export_toast_failed_cause_file_not_writable">файл только для чтения</string>
     <string name="export_toast_no_data">Нет данных для экспорта.</string>
     <string name="export_toast_cancelled">Экспорт отменён.</string>
-    <string name="updater_notification_ticker">Доступна новая версия Tower Colector!</string>
+    <string name="updater_notification_ticker">Доступна новая версия Tower Colector</string>
     <string name="updater_notification_title">Доступна новая версия</string>
     <string name="updater_notification_download_options">Выберите, чтобы увидеть настройки для закачки</string>
     <string name="updater_dialog_new_version_available">Выберите источник скачивания</string>
@@ -164,9 +163,11 @@
     <string name="main_help_last_network_type_title">Тип сети</string>
     <string name="main_help_last_network_type_description">Тип мобильной сети, к которой присоединён телефон.</string>
     <string name="main_help_last_long_cell_id_title">Полный идентификатор вышки</string>
-    <string name="main_help_last_long_cell_id_description">Полный уникальный идентификатор вышки к которой подсоединён телефон. LCID, также называемый UTRAN CID, это склееные RNC (идентификатор Radio Network Controller) и Cell ID (уникальный идентификатор вышки). Этот идентификатор определён только для UMTS сетей.</string>
+    <string name="main_help_last_long_cell_id_description">Длинный уникальный идентификатор вышки к которой подсоединён телефон.
+Для UMTS сетей LCID, также называемый UTRAN CID, это склееные RNC (идентификатор Radio Network Controller) и Cell ID (уникальный идентификатор вышки).
+Для LTE сетей LCID, также называемый E-UTRAN CID, это склееные eNodeB (идентификатор Radio Network Controller) и Cell ID (уникальный идентификатор вышки).</string>
     <string name="main_help_last_cell_id_rnc_title">Идентификатор вышки / RNC</string>
-    <string name="main_help_last_cell_id_rnc_description">Уникальный идентификатор ячейки и RNC (Radio Network Controller), к которому был подключен телефон. Этот идентификатор определяется только для сетей UMTS.</string>
+    <string name="main_help_last_cell_id_rnc_description">Уникальный идентификатор ячейки и RNC (идентификатор Radio Network Controller), к которому был подключен телефон. Этот идентификатор определяется только для сетей UMTS и LTE.</string>
     <string name="main_help_last_cell_id_title">Идентификатор GSM-соты</string>
     <string name="main_help_last_cell_id_description">Уникальный идентификатор GSM-соты, к которой присоединён телефон.</string>
     <string name="main_help_last_lac_title">Код места (LAC)</string>
@@ -185,12 +186,19 @@
     <string name="main_help_last_gps_accuracy_description">Точность местоположения, полученное из GPS данных.</string>
     <string name="main_help_last_date_time_title">Время сохранения</string>
     <string name="main_help_last_date_time_description">Дата и время последнего сохранённого измерения.</string>
+    <string name="main_help_to_upload_common_locations_title">Измерения для выгрузки</string>
+    <string name="main_help_to_upload_ocid_locations_description">Количество измерений готовых к выгрузке на OpenCellID.org.</string>
+    <string name="main_help_to_upload_mls_locations_description">Количество измерений готовых к выгрузке на Mozilla Location Services.</string>
     <string name="status_initializing">инициализация</string>
     <string name="status_ok">подключён</string>
     <string name="status_low_gps_accuracy">низкая точность <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">местоположение не найдено</string>
     <string name="invalid_system_time">Неверная системная дата/время</string>
     <string name="web_browser_missing">Пожалуйста, установите браузер, чтобы открыть страницу</string>
+    <string name="uploader_all_projects_disabled">Выгрузка отключена для всех проектов</string>
+    <string name="upload_configurator_dialog_title">Настройте место выгрузки</string>
+    <string name="enter_valid_api_key">Нужно ввести правильный API ключ в настройках</string>
+    <string name="reupload_measurements_if_upload_fails_for_one_of_projects">Попробуйте повторно выгрузить в случае сбоя выгрузки по одному из проектов</string>
     <string name="unsafe_operation_warning_title">Небезопасная операция</string>
     <string name="unsafe_operation_warning_message">Эта опция может сбросить настройки приложения в результате вылета. В этом случае вам необходимо очистить данные приложения в настройках Android. Вы должны полностью закрыть и открыть приложение, чтобы увидеть изменения!\n\nИспользуйте её на свой собственных риск!</string>
     <string name="database_import_message">База данных загружена</string>

@@ -3,8 +3,8 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources>
-    <string name="preferences_header_api_title">OpenCellID.org</string>
-    <string name="preferences_header_api_summary">Параметры интеграции с OpenCellID.org</string>
+    <string name="preferences_header_upload_title">Выгрузка</string>
+    <string name="preferences_header_upload_summary">Настройки участия в разных проектах.</string>
     <string name="preferences_header_collector_title">Сборщик</string>
     <string name="preferences_header_collector_summary">Настройки сбора измерений, параметры GPS и др.</string>
     <string name="preferences_header_general_title">Основные</string>
@@ -24,15 +24,29 @@
     <string name="preferences_value_undefined">не установлен</string>
     <string name="preferences_restart_app">Перезапустите приложение, чтобы применить изменения.</string>
     <string name="preferences_restart_collector">Перезапустите Сборщик, чтобы применить изменения.</string>
+    <string name="preferences_upload_show_configurator_title">Предлагать настройки выгрузки</string>
+    <string name="preferences_upload_show_configurator_on_summary">Перед каждой выгрузкой предлагать настройки.</string>
+    <string name="preferences_upload_show_configurator_off_summary">Выгрузка в соответствии с запомненными настройками.</string>
+    <string name="preferences_reupload_if_upload_fails_title">Выгрузить повторно, если сразу не удастся.</string>
+    <string name="preferences_reupload_if_upload_fails_on_summary">При неудачной выгрузке по одному из проектов измерения будут храниться до 30 дней и продолжать выгружаться.</string>
+    <string name="preferences_reupload_if_upload_fails_off_summary">Удаление измерений выгруженных хотя бы в один из проектов.</string>
+    <string name="preferences_opencellid_enabled_title">Включить выгрузку в OCID</string>
+    <string name="preferences_opencellid_enabled_on_summary">Измерения будут выгружаться в OpenCellID.org.</string>
+    <string name="preferences_opencellid_enabled_off_summary">Измерения не будут выгружаться в OpenCellID.org.</string>
     <string name="preferences_api_key_title">API-ключ</string>
     <string name="preferences_api_key_summary">Для выгрузки измерений необходим ключ.</string>
     <string name="preferences_api_key_invalid">Введённый API-ключ имеет неверный формат. Смотрите справочное руководство.</string>
     <string name="preferences_api_key_link_title">Получить API-ключ</string>
     <string name="preferences_api_key_link_summary">Бесплатная регистрация на сайте OpenCellID.org</string>
-    <string name="preferences_about_api_key_title">Об API-ключе</string>
+    <string name="preferences_about_api_key_title">Об API-ключе для OpenCellID</string>
     <string name="preferences_about_api_key_summary">Информация об API-ключе и его правильном написании.</string>
     <string name="preferences_about_opencellid_project_title">О проекте OpenCellID</string>
     <string name="preferences_about_opencellid_project_summary">Информация о проекте OpenCellID.org</string>
+    <string name="preferences_mls_enabled_title">Включить выгрузку в MLS</string>
+    <string name="preferences_mls_enabled_on_summary">Измерения будут выгружаться в Mozilla Location Services.</string>
+    <string name="preferences_mls_enabled_off_summary">Измерения не будут выгружаться в Mozilla Location Services.</string>
+    <string name="preferences_about_mls_project_title">О проекте MLS</string>
+    <string name="preferences_about_mls_project_summary">Информация о Mozilla Location Services.</string>
     <string name="preferences_imperial_units_title">Английская система мер</string>
     <string name="preferences_imperial_units_on_summary">Значения будут представлены в английской системе мер.</string>
     <string name="preferences_imperial_units_off_summary">Значения будут представлены в метрической системе мер.</string>
@@ -41,17 +55,17 @@
     <string name="preferences_collector_keep_screen_on_title">Оставлять экран включённым во время сбора</string>
     <string name="preferences_collector_keep_screen_on_summary">Определяет, будет ли экран включён  постоянно во время сбора измерений. Включение значительно ускорит разряд батареи.</string>
     <string name="preferences_gps_optimizations_enabled_title">Оптимизация сбора GPS</string>
-    <string name="preferences_gps_optimizations_enabled_on_summary">Во время сбора измерений будет использована оптимизация параметров GPS.</string>
+    <string name="preferences_gps_optimizations_enabled_on_summary">Во время сбора измерений будут использованы улучшенные параметры GPS.</string>
     <string name="preferences_gps_optimizations_enabled_off_summary">Оптимизация GPS параметров выключена.</string>
     <string name="preferences_tracking_enabled_title">Отправлять статистику</string>
-    <string name="preferences_tracking_enabled_on_summary">Для улучшения приложения будет отправляться анонимная статистика. Больше информации ниже.</string>
+    <string name="preferences_tracking_enabled_on_summary">Для улучшения приложения автору будет отправляться анонимная статистика. Больше информации ниже.</string>
     <string name="preferences_tracking_enabled_off_summary">Анонимная статистика выключена. Смотри ниже, что может отправляться, если она будет включена.</string>
     <string name="preferences_about_tracking_title">О статистике использования</string>
     <string name="preferences_about_tracking_summary">Информация о публикуемых данных.</string>
     <string name="preferences_error_reporting_silent_title">Автоотправка отчётов об ошибках</string>
-    <string name="preferences_error_reporting_silent_on_summary">Приложение будет автоматически отправлять отчёты об ошибках, которые помогут решать проблемы.</string>
-    <string name="preferences_error_reporting_silent_off_summary">Приложение будет спрашивать подтверждение перед отправкой отчётов об ошибках.</string>
-    <string name="preferences_update_check_enabled_title">Автообновление</string>
+    <string name="preferences_error_reporting_silent_on_summary">Приложение будет автоматически отправлять отчёты о сбоях, которые помогут улучшению.</string>
+    <string name="preferences_error_reporting_silent_off_summary">Приложение будет спрашивать подтверждение перед отправкой отчётов о сбоях.</string>
+    <string name="preferences_update_check_enabled_title">Проверять обновления автоматически</string>
     <string name="preferences_update_check_enabled_on_summary">Приложение оповестит о выходе новой версии.</string>
     <string name="preferences_update_check_enabled_off_summary">Периодическая проверка доступности новой версии выключена.</string>
     <string name="preferences_about_link_title">О приложении</string>
