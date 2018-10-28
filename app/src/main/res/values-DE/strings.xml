@@ -32,10 +32,6 @@
     <string name="dialog_dont_show_again">Nicht mehr anzeigen</string>
     <string name="dialog_proceed">Fortfahren</string>
     <string name="dialog_permission_settings">Einstellungen</string>
-    <string name="main_dialog_api_key_invalid_title">Ungültiger API-Key</string>
-    <string name="main_dialog_api_key_invalid_message">Der eingestellte API-Key ist ungültig</string>
-    <string name="main_dialog_api_key_empty_title">Fehlender API-Key</string>
-    <string name="main_dialog_api_key_empty_message">Sie müssen Ihren API-Key in den Einstellungen eingeben</string>
     <string name="main_dialog_not_compatible_title">Kompatibilitätsprobleme</string>
     <string name="main_dialog_not_compatible_begin">Diese App funktioniert eventuell nicht weil:</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Keine Mobilfunkhardware gefunden wurde.</string>
@@ -62,6 +58,7 @@
     <string name="main_stats_global_title">Insgesamt seit <xliff:g id="date_time">%s</xliff:g></string>
     <string name="main_stats_global_locations_label">Messungen:</string>
     <string name="main_stats_global_cells_label">Erfasste Zellen:</string>
+    <string name="main_stats_to_upload_title">Noch hochzuladen</string>
     <string name="main_last_cell_title">Letzte abgespeicherte Messung</string>
     <string name="main_last_number_of_cells_label">Haupt / Benachbarte</string>
     <string name="main_last_network_type_label">Netzwerk-Typ:</string>
@@ -91,11 +88,13 @@
     <string name="collector_gps_unavailable">Kann Erfassung nicht starten weil GPS nicht verfügbar ist.</string>
     <string name="uploader_notification_channel_name">Hochladen</string>
     <string name="uploader_notification_title">hochladen</string>
-    <string name="uploader_notification_progress_info">Hochgeladen <xliff:g id="progress_in_percent">%d</xliff:g>%%. Tippen um abzubrechen.</string>
+    <string name="uploader_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% hochgeladen. Tippen um abzubrechen.</string>
     <string name="uploader_result_dialog_title">Upload Ergebnis</string>
     <string name="uploader_starting">Starte Upload&#8230;</string>
     <string name="uploader_aborting">Upload abbrechen&#8230;</string>
     <string name="uploader_already_running">Upload läuft bereits.</string>
+    <string name="uploader_disabled">Upload deaktiviert</string>
+    <string name="uploader_disabled_description">Upload deaktiviert für dieses Projekt</string>
     <string name="uploader_aborted">Upload abgebrochen.</string>
     <string name="uploader_aborted_description">Keine Messungen wurden hochgeladen.</string>
     <string name="uploader_success">Hochladen erfolgreich</string>
@@ -105,7 +104,7 @@
     <string name="uploader_failure">Hochladen fehlgeschlagen</string>
     <string name="uploader_failure_description">Hochladen wegen eines unbekannten Grunds fehlgeschlagen. Bitte prüfen Sie ob die neueste Version der App installiert ist. Wenn dieses Problem öfters auftritt, informieren Sie mich bitte.</string>
     <string name="uploader_invalid_api_key">Ungültiger API-Key</string>
-    <string name="uploader_invalid_api_key_description">Es konnte kein Benutzer zum konfigurierten API-Key gefunden werden. Bitte prüfen Sie in den Einstellungen, ob der API-Key korrekt gesetzt ist.</string>
+    <string name="uploader_invalid_api_key_description">Benutzer zum eingestellten API-Key nicht gefunden. Bitte prüfen Sie, ob der eingegebene API-Key korrekt ist.</string>
     <string name="uploader_invalid_input_data">Ungültige Daten</string>
     <string name="uploader_invalid_input_data_description">Der Server hat die Daten der App zurückgewiesen. Bitte prüfen Sie ob Sie die neueste Version der App haben. Wenn dieses Problem über längere Zeit besteht, informieren Sie mich bitte.</string>
     <string name="uploader_no_data">Nichts hochzuladen</string>
@@ -127,7 +126,7 @@
     <string name="export_dialog_progress_title">exportiere</string>
     <string name="export_dialog_progress_message">Speichere Datei in das Verzeichnis \"TowerCollector\" am externen Speicher, der Dateiname entspricht der aktuellen Uhrzeit.</string>
     <string name="export_dialog_finished_title">Export erfolgreich</string>
-    <string name="export_dialog_finished_message">Datei abgespeichert: <xliff:g id="file_name">%s</xliff:g>.\n\n<i>Bitte überlegen Sie zum OpenCellID.org Projekt beizutragen indem Sie ihre Messungen hochladen!</i></string>
+    <string name="export_dialog_finished_message">Datei abgespeichert: <xliff:g id="file_name">%s</xliff:g>.\n\n<i>Bitte überlegen Sie, zu einem der Projekte beizutragen indem Sie ihre Messungen hochladen!</i></string>
     <string name="export_toast_failed">Export fehlgeschlagen: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">unbekannter Fehler</string>
     <string name="export_toast_failed_cause_directory_not_exists">Verzeichnis kann nicht erstellt werden</string>
@@ -164,9 +163,9 @@
     <string name="main_help_last_network_type_title">Netzwerk-Typ</string>
     <string name="main_help_last_network_type_description">Der Typ von Mobilfunknetzwerk zu dem das Telefon verbunden war.</string>
     <string name="main_help_last_long_cell_id_title">Long Cell Tower ID</string>
-    <string name="main_help_last_long_cell_id_description">Die lange, eindeutige Basisstations-ID mit der das Telefon verbunden war. Diese LCID wird auch UTRAN CID genannt und ist eine Kombination der RNC (ID des Radio Network Controller) und der Cell ID (eindeutige ID der Basisstation). Diese ID ist nur für UMTS-Netze definiert.</string>
+    <string name="main_help_last_long_cell_id_description">Die lange, eindeutige ID der Basisstation mit der das Telefon verbunden war.\nBei UMTS wird diese LCID auch UTRAN CID genannt und ist eine Kombination der RNC (ID des Radio Network Controller) und der Cell ID (eindeutige ID der Basisstation).\nBei LTE-Netzwerken wird heißt sie statt dessen E-UTRAN CID und ist eine Kombination der eNoteB (ID des Radio Network Controller) und der Cell ID (eindeutige ID der Basisstation).</string>
     <string name="main_help_last_cell_id_rnc_title">Cell Tower ID / RNC</string>
-    <string name="main_help_last_cell_id_rnc_description">Die eindeutige Basisstations-ID und RNC (ID des Radio Network Controllers) mit der das Telefon verbunden war. Diese ID ist nur für UMTS-Netze definiert.</string>
+    <string name="main_help_last_cell_id_rnc_description">Die eindeutige Basisstations-ID und RNC (ID des Radio Network Controllers) mit denen Telefon verbunden war. Diese ID ist nur für UMTS- und LTE-Netze definiert.</string>
     <string name="main_help_last_cell_id_title">Cell-ID</string>
     <string name="main_help_last_cell_id_description">Die eindeutige ID der Zelle (GSM-Basisstation) in der das Telefon zum Messzeitpunkt eingebucht war.</string>
     <string name="main_help_last_lac_title">Location Area Code</string>
@@ -185,12 +184,19 @@
     <string name="main_help_last_gps_accuracy_description">Genauigkeit der GPS-Positionsmessung zum Messzeitpunkt.</string>
     <string name="main_help_last_date_time_title">Erfassungszeitpunkt</string>
     <string name="main_help_last_date_time_description">Zeitpunkt der letzten abgespeicherten Messung.</string>
+    <string name="main_help_to_upload_common_locations_title">Messungen noch hochzuladen</string>
+    <string name="main_help_to_upload_ocid_locations_description">Anzahl Messungen die noch zu OpenCellID.org hochgeladen werden müssen.</string>
+    <string name="main_help_to_upload_mls_locations_description">Anzahl Messungen die noch zu Mozilla Location Services hochgeladen werden müssen.</string>
     <string name="status_initializing">Initialisieren</string>
     <string name="status_ok">OK</string>
     <string name="status_low_gps_accuracy">geringe Genauigkeit: <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">keine GPS-Position</string>
     <string name="invalid_system_time">Systemzeit ist ungültig</string>
     <string name="web_browser_missing">Bitte installieren Sie einen Web Browser um die Seite zu öffnen</string>
+    <string name="uploader_all_projects_disabled">Upload zu allen Projekten deaktiviert</string>
+    <string name="upload_configurator_dialog_title">Upload-Ziel konfigurieren</string>
+    <string name="enter_valid_api_key">Sie müssen einen gültigen API-Key in den Einstellungen setzen</string>
+    <string name="reupload_measurements_if_upload_fails_for_one_of_projects">Upload zu einem Projekt erneut versuchen wenn ein Fehler passiert ist</string>
     <string name="unsafe_operation_warning_title">Unsicherer Vorgang</string>
     <string name="unsafe_operation_warning_message">Diese Option kann die App-Konfiguration zerstören und einen Absturz verursachen. In diesem Fall müssen Sie die App-Daten in den Android-Einstellungen löschen. Sie müssen die App vollständig schließen und wieder öffnen um Änderungen zu sehen!\n\nVerwendung auf eigenes Risiko!</string>
     <string name="database_import_message">Datenbank importiert</string>

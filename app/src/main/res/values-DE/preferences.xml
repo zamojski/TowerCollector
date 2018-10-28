@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- This Source Code Form is subject to the terms of the Mozilla Public
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources>
-    <string name="preferences_header_api_title">OpenCellID.org</string>
-    <string name="preferences_header_api_summary">Konfiguration der OpenCellID.org Integration.</string>
+    <string name="preferences_header_upload_title">Upload</string>
+    <string name="preferences_header_upload_summary">Einstellungen zu den Projekten</string>
     <string name="preferences_header_collector_title">Erfassung</string>
     <string name="preferences_header_collector_summary">Einstellungen zur Erfassung, GPS-Parameter, etc.</string>
     <string name="preferences_header_general_title">Allgemein</string>
@@ -24,15 +24,29 @@
     <string name="preferences_value_undefined">undefiniert</string>
     <string name="preferences_restart_app">Starten Sie die App neu um Änderungen anzuwenden.</string>
     <string name="preferences_restart_collector">Starten Sie die Erfassung neu um Änderungen anzuwenden.</string>
+    <string name="preferences_upload_show_configurator_title">Konfiguration anzeigen</string>
+    <string name="preferences_upload_show_configurator_on_summary">Ein Konfigurations-Fenster wird vor jedem Upload gezeigt werden.</string>
+    <string name="preferences_upload_show_configurator_off_summary">Der Upload wird untenstehende Einstellungen verwenden.</string>
+    <string name="preferences_reupload_if_upload_fails_title">Upload erneut versuchen</string>
+    <string name="preferences_reupload_if_upload_fails_on_summary">Wenn der Upload zu einem Projekt fehlschlägt, wird die App die Messungen für max. 30 Tage speichern und erneut hochladen versuchen.</string>
+    <string name="preferences_reupload_if_upload_fails_off_summary">Die App wird hochgeladene Messungen löschen wenn der Upload zu mindestens einem Projekt erfolgreich war.</string>
+    <string name="preferences_opencellid_enabled_title">OCID-Upload aktivieren</string>
+    <string name="preferences_opencellid_enabled_on_summary">Messungen werden zu OpenCellID.org hochgeladen.</string>
+    <string name="preferences_opencellid_enabled_off_summary">Messungen werden nicht zu OpenCellID.org hochgeladen.</string>
     <string name="preferences_api_key_title">API-Key</string>
     <string name="preferences_api_key_summary">Notwendig für Upload der Messungen.</string>
     <string name="preferences_api_key_invalid">Eingegebener API-Key ist ungültig. Wie der API-Key genau aussehen muss, ist in der Hilfe beschrieben.</string>
     <string name="preferences_api_key_link_title">Eigenen API-Key beantragen</string>
     <string name="preferences_api_key_link_summary">Kostenlos auf der OpenCellID.org-Webseite registrieren.</string>
-    <string name="preferences_about_api_key_title">Über den API-Key</string>
+    <string name="preferences_about_api_key_title">Über den OpenCellID API-Key</string>
     <string name="preferences_about_api_key_summary">Informationen über den API-Key und das korrekte Format.</string>
     <string name="preferences_about_opencellid_project_title">Über das OpenCellID-Projekt</string>
     <string name="preferences_about_opencellid_project_summary">Informationen über das OpenCellID.org Projekt.</string>
+    <string name="preferences_mls_enabled_title">MLS-Upload aktivieren</string>
+    <string name="preferences_mls_enabled_on_summary">Messungen werden zu den Mozilla Location Services hochgeladen.</string>
+    <string name="preferences_mls_enabled_off_summary">Messungen werden nicht zu den Mozilla Location Services hochgeladen.</string>
+    <string name="preferences_about_mls_project_title">Über MLS</string>
+    <string name="preferences_about_mls_project_summary">Informationen über die Mozilla Location Services.</string>
     <string name="preferences_imperial_units_title">Englische Einheiten verwenden</string>
     <string name="preferences_imperial_units_on_summary">Werte werden in imperialen Einheiten dargestellt.</string>
     <string name="preferences_imperial_units_off_summary">Werte werden mit metrischen Einheiten dargestellt.</string>
