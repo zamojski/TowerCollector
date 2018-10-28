@@ -32,10 +32,6 @@
     <string name="dialog_dont_show_again">Nie pokazuj tego ponownie</string>
     <string name="dialog_proceed">Kontynuuj</string>
     <string name="dialog_permission_settings">Ustawienia</string>
-    <string name="main_dialog_api_key_invalid_title">Nieprawidłowy klucz API</string>
-    <string name="main_dialog_api_key_invalid_message">Wpisany w Ustawieniach klucz API jest nieprawidłowy</string>
-    <string name="main_dialog_api_key_empty_title">Brak klucza API</string>
-    <string name="main_dialog_api_key_empty_message">Musisz wprowadzić klucz API w Ustawieniach</string>
     <string name="main_dialog_not_compatible_title">Problemy z kompatybilnością</string>
     <string name="main_dialog_not_compatible_begin">Aplikacja może nie działać, ponieważ:\n</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Nie wykryto modułu sieci komórkowej.</string>
@@ -62,6 +58,7 @@
     <string name="main_stats_global_title">Łącznie od <xliff:g id="date_time">%s</xliff:g></string>
     <string name="main_stats_global_locations_label">Próbki:</string>
     <string name="main_stats_global_cells_label">Odkryte przekaźniki:</string>
+    <string name="main_stats_to_upload_title">Do przesłania</string>
     <string name="main_last_cell_title">Ostatnio zapisana próbka</string>
     <string name="main_last_number_of_cells_label">Główny / sąsiednie:</string>
     <string name="main_last_network_type_label">Typ sieci:</string>
@@ -96,6 +93,8 @@
     <string name="uploader_starting">Rozpoczynanie przesyłania&#8230;</string>
     <string name="uploader_aborting">Przerywanie przesyłania&#8230;</string>
     <string name="uploader_already_running">Przesyłanie jest już uruchomione.</string>
+    <string name="uploader_disabled">Przesyłanie wyłączone</string>
+    <string name="uploader_disabled_description">Przesyłanie wyłączone dla tego projektu.</string>
     <string name="uploader_aborted">Przesyłanie przerwane</string>
     <string name="uploader_aborted_description">Żadne dane nie zostały przesłane.</string>
     <string name="uploader_success">Przesyłanie zakończone</string>
@@ -127,7 +126,7 @@
     <string name="export_dialog_progress_title">Eksportowanie</string>
     <string name="export_dialog_progress_message">Zapisywanie do folderu \"TowerCollector\" w pamięci zewnętrznej z aktualną datą i czasem jako nazwą pliku.</string>
     <string name="export_dialog_finished_title">Eksport zakończony</string>
-    <string name="export_dialog_finished_message">Plik zapisany jako <xliff:g id="file_name">%s</xliff:g>.\n\n<i>Rozważ wsparcie projektu OpenCellID.org poprzez przesłanie swoich próbek!</i></string>
+    <string name="export_dialog_finished_message">Plik zapisany jako <xliff:g id="file_name">%s</xliff:g>.\n\n<i>Rozważ wsparcie jednego z projektów poprzez przesłanie swoich próbek!</i></string>
     <string name="export_toast_failed">Eksport nie powiódł się: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">nieznany błąd</string>
     <string name="export_toast_failed_cause_directory_not_exists">nie można utworzyć folderu</string>
@@ -164,9 +163,11 @@
     <string name="main_help_last_network_type_title">Typ sieci</string>
     <string name="main_help_last_network_type_description">Typ sieci komórkowej, do której telefon był podłączony.</string>
     <string name="main_help_last_long_cell_id_title">Długi Cell Tower ID</string>
-    <string name="main_help_last_long_cell_id_description">Długi unikatowy identyfikator przekaźnika, do którego telefon był podłączony. LCID zwany także UTRAN CID jest złączeniem RNC (identyfikatora kontrolera sieci) oraz unikatowego identyfikatora przekaźnika. Ten identyfikator jest dostępny wyłącznie w sieciach UMTS.</string>
+    <string name="main_help_last_long_cell_id_description">Długi unikatowy identyfikator przekaźnika, do którego telefon był podłączony.
+W sieciach UMTS LCID, zwany także UTRAN CID, jest złączeniem RNC (identyfikatora kontrolera sieci) oraz unikatowego identyfikatora przekaźnika.
+W sieciach LTE LCID, zwany także E-UTRAN CID, jest złączeniem eNodeB (identyfikatora kontrolera sieci) oraz unikatowego identyfikatora przekaźnika.</string>
     <string name="main_help_last_cell_id_rnc_title">Cell Tower ID / RNC</string>
-    <string name="main_help_last_cell_id_rnc_description">Unikatowy identyfikator przekaźnika oraz RNC (identyfikator kontrolera sieci), do którego telefon był podłączony. Ten identyfikator jest dostępny wyłącznie w sieciach UMTS.</string>
+    <string name="main_help_last_cell_id_rnc_description">Unikatowy identyfikator przekaźnika oraz RNC (identyfikator kontrolera sieci), do którego telefon był podłączony. Ten identyfikator jest dostępny wyłącznie w sieciach UMTS i LTE.</string>
     <string name="main_help_last_cell_id_title">Cell Tower ID</string>
     <string name="main_help_last_cell_id_description">Unikatowy identyfikator przekaźnika, do którego telefon był podłączony.</string>
     <string name="main_help_last_lac_title">Location Area Code</string>
@@ -185,12 +186,19 @@
     <string name="main_help_last_gps_accuracy_description">Dokładność z jaką odbiornik GPS wyznaczył pozycję.</string>
     <string name="main_help_last_date_time_title">Data zapisania</string>
     <string name="main_help_last_date_time_description">Data i czas zapisania ostatniej próbki.</string>
+    <string name="main_help_to_upload_common_locations_title">Próbki do przesłania</string>
+    <string name="main_help_to_upload_ocid_locations_description">Liczba próbek oczekujących na przesłanie do OpenCellID.org.</string>
+    <string name="main_help_to_upload_mls_locations_description">Liczba próbek oczekujących na przesłanie do Mozilla Location Services.</string>
     <string name="status_initializing">inicjowanie</string>
     <string name="status_ok">OK</string>
     <string name="status_low_gps_accuracy">niska dokładność <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">brak lokacji</string>
     <string name="invalid_system_time">Data/czas w systemie jest nieprawidłowy</string>
     <string name="web_browser_missing">Zainstaluj przeglądarkę internetową, aby otworzyć stronę</string>
+    <string name="uploader_all_projects_disabled">Przesyłanie jest wyłączone dla wszystkich projektów</string>
+    <string name="upload_configurator_dialog_title">Wybierz cel przesyłania</string>
+    <string name="enter_valid_api_key">Wprowadź poprawny klucz API w ustawieniach</string>
+    <string name="reupload_measurements_if_upload_fails_for_one_of_projects">Ponów próbę jeżeli przesyłanie do jednego z projektów zawiedzie</string>
     <string name="unsafe_operation_warning_title">Niebezpieczna operacja</string>
     <string name="unsafe_operation_warning_message">Ta opcja może uszkodzić konfigurację aplikacji i spowodować jej awarię. W takim przypadku musisz wyczyścić dane aplikacji w ustawieniach Androida. Musisz całkowicie zamknąć aplikację, a następnie otworzyć ją ponownie, aby zobaczyć zmiany!\n\nUżywasz na własne ryzyko!</string>
     <string name="database_import_message">Baza danych zaimportowana</string>

@@ -3,8 +3,8 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources>
-    <string name="preferences_header_api_title">OpenCellID.org</string>
-    <string name="preferences_header_api_summary">Konfiguracja integracji z OpenCellID.org</string>
+    <string name="preferences_header_upload_title">Przesyłanie</string>
+    <string name="preferences_header_upload_summary">Konfiguracja wsparcia projektów.</string>
     <string name="preferences_header_collector_title">Zbieranie</string>
     <string name="preferences_header_collector_summary">Ustawienia zbierania próbek, parametry GPS, itp.</string>
     <string name="preferences_header_general_title">Ogólne</string>
@@ -24,15 +24,29 @@
     <string name="preferences_value_undefined">niezdefiniowana</string>
     <string name="preferences_restart_app">Uruchom ponownie aplikację, aby zastosować zmiany.</string>
     <string name="preferences_restart_collector">Uruchom ponownie zbieranie, aby zastosować zmiany.</string>
+    <string name="preferences_upload_show_configurator_title">Pokaż konfigurator</string>
+    <string name="preferences_upload_show_configurator_on_summary">Konfigurator zostanie wyświetlony przed każdym przesłaniem.</string>
+    <string name="preferences_upload_show_configurator_off_summary">Przesyłanie skorzysta z poniższych ustawień.</string>
+    <string name="preferences_reupload_if_upload_fails_title">Spróbuj przesłać ponownie gdy błąd</string>
+    <string name="preferences_reupload_if_upload_fails_on_summary">Aplikacja przechowa próbki przez 30 dni by móc je przesłać ponownie jeżeli przesyłanie nie powiedzie się dla jednego z projektów.</string>
+    <string name="preferences_reupload_if_upload_fails_off_summary">Aplikacja usunie przesłane próbki jeżeli zostaną pomyślnie przesłane do minimum jednego z projektów.</string>
+    <string name="preferences_opencellid_enabled_title">Włącz przesyłanie do OCID</string>
+    <string name="preferences_opencellid_enabled_on_summary">Próbki zostaną przesłane do OpenCellID.org.</string>
+    <string name="preferences_opencellid_enabled_off_summary">Próbki nie zostaną przesłane do OpenCellID.org.</string>
     <string name="preferences_api_key_title">Klucz API</string>
     <string name="preferences_api_key_summary">Klucz wymagany do przesłania zebranych próbek.</string>
     <string name="preferences_api_key_invalid">Wprowadzony klucz API jest nieprawidłowy. Poprawny format opisany jest w Pomocy.</string>
     <string name="preferences_api_key_link_title">Wygeneruj własny klucz API</string>
     <string name="preferences_api_key_link_summary">Zarejestruj się za darmo na stronie projektu OpenCellID.org</string>
-    <string name="preferences_about_api_key_title">O kluczu API</string>
+    <string name="preferences_about_api_key_title">O kluczu API dla OpenCellID</string>
     <string name="preferences_about_api_key_summary">Informacje o kluczu API i jego prawidłowym formatowaniu.</string>
     <string name="preferences_about_opencellid_project_title">O projekcie OpenCellID</string>
     <string name="preferences_about_opencellid_project_summary">Informacje o projekcie OpenCellID.org</string>
+    <string name="preferences_mls_enabled_title">Włącz przesyłanie do MLS</string>
+    <string name="preferences_mls_enabled_on_summary">Próbki zostaną przesłane do Mozilla Location Services.</string>
+    <string name="preferences_mls_enabled_off_summary">Próbki zostaną nie przesłane do Mozilla Location Services.</string>
+    <string name="preferences_about_mls_project_title">O MLS</string>
+    <string name="preferences_about_mls_project_summary">Informacje o Mozilla Location Services.</string>
     <string name="preferences_imperial_units_title">Użyj jednostek imperialnych</string>
     <string name="preferences_imperial_units_on_summary">Wartości będą wyświetlane z użyciem jednostek imperialnych.</string>
     <string name="preferences_imperial_units_off_summary">Wartości będą wyświetlane z użyciem jednostek systemu metrycznego.</string>
