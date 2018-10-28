@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+    <string name="preferences_keep_screen_on_mode_disabled">Deshabilitado</string>
+    <string name="preferences_keep_screen_on_mode_dim">Atenuado</string>
+    <string name="preferences_keep_screen_on_mode_full">Brillo completo</string>
+    <string-array name="export_formats_labels">
+        <item>CSV</item>
+        <item>GPX</item>
+        <item>CSV para OpenCellID.org</item>
+        <item>JSON para Mozilla Location Services</item>
+    </string-array>
+    <string-array name="preferences_collector_low_battery_action_entries_labels">
+        <item>Hacer nada</item>
+        <item>Detener localización</item>
+    </string-array>
+    <string-array name="preferences_app_theme_mode_entries_labels">
+        <item>Oscuro</item>
+        <item>Claro</item>
+    </string-array>
+    <string name="preferences_collector_api_version_auto">Autodetección</string>
+    <string name="preferences_collector_api_version_api_17">Android 4.2 API</string>
+    <string name="preferences_collector_api_version_api_1">Android 1.0 API</string>
+    <string name="preferences_file_logging_level_disabled">Discapacitado</string>
+    <string name="preferences_file_logging_level_debug">Diagnósticos</string>
+    <string name="preferences_file_logging_level_info">Información</string>
+    <string name="preferences_file_logging_level_warning">Advertencia</string>
+    <string name="preferences_file_logging_level_error">Error</string>
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+    <string name="permission_required">Permiso requerido</string>
+    <string name="permission_denied">Permiso denegado</string>
+    <string name="permission_export_rationale_message">Se debe conceder permiso de almacenamiento para exportar mediciones a un archivo</string>
+    <string name="permission_export_denied_message">Cancelación de la exportación de mediciones debido al permiso denegado</string>
+    <string name="permission_export_never_ask_again_message">Las mediciones de exportación no están disponibles debido al permiso de almacenamiento negado</string>
+    <string name="permission_storage_rationale_message">Se debe conceder permiso de almacenamiento para utilizar la función</string>
+    <string name="permission_storage_denied_message">Cancelación de la operación debido al permiso denegado</string>
+    <string name="permission_storage_never_ask_again_message">La función no está disponible debido al permiso de almacenamiento denegado</string>
+    <string name="permission_logging_denied_temporarily_message">Deshabilitar temporalmente el registro de archivos debido al permiso de almacenamiento denegado</string>
+    <string name="permission_collector_rationale_message">Se deben conceder permisos de ubicación y de teléfono para recopilar mediciones</string>
+    <string name="permission_collector_denied_message">Cancelación de la recolección de mediciones debido a permisos denegados</string>
+    <string name="permission_collector_never_ask_again_message">La recolección de medidas no está disponible debido a la ubicación denegada y/o los permisos del teléfono</string>
+    <string name="permission_collector_denied_intent_message">Cancelación de la recolección de mediciones debido a permisos denegados, abra la aplicación para conceder los permisos necesarios primero</string>
+    <string name="permission_uploader_denied_message">Carga cancelada debido al permiso de Internet negado.</string>
+</resources>
