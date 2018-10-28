@@ -32,10 +32,6 @@
     <string name="dialog_dont_show_again">Не показувати це знову</string>
     <string name="dialog_proceed">Продовжуй</string>
     <string name="dialog_permission_settings">Налаштування</string>
-    <string name="main_dialog_api_key_invalid_title">Неправильний ключ API</string>
-    <string name="main_dialog_api_key_invalid_message">Ваш ключ API, встановлений в Налаштуваннях, напевно, недійсний</string>
-    <string name="main_dialog_api_key_empty_title">Відсутній ключ API</string>
-    <string name="main_dialog_api_key_empty_message">Вам потрібно ввести свій ключ API в налаштуваннях</string>
     <string name="main_dialog_not_compatible_title">Проблеми сумісності</string>
     <string name="main_dialog_not_compatible_begin">Додаток може не працювати, оскільки:</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Мобільна мережеве обладнання не виявлено.</string>
@@ -62,6 +58,7 @@
     <string name="main_stats_global_title">Всого {<xliff:g id="date_time">%s</xliff:g>}</string>
     <string name="main_stats_global_locations_label">Вимірювання:</string>
     <string name="main_stats_global_cells_label">Виявлені соти:</string>
+    <string name="main_stats_to_upload_title">Чекаю на завантаження</string>
     <string name="main_last_cell_title">Останнє збережене</string>
     <string name="main_last_number_of_cells_label">Головна / сусідня:</string>
     <string name="main_last_network_type_label">Тип мережі:</string>
@@ -91,11 +88,13 @@
     <string name="collector_gps_unavailable">Неможливо розпочати збирати, тому що GPS недоступний.</string>
     <string name="uploader_notification_channel_name">Вивантажувач</string>
     <string name="uploader_notification_title">"Вивантаження "</string>
-    <string name="uploader_notification_progress_info">Частина <xliff:g id="part_number">%1$d</xliff:g> з <xliff:g id="total_parts">%2$d</xliff:g>. Виберіть для скасування.</string>
+    <string name="uploader_notification_progress_info">Завантажено <xliff:g id="progress_in_percent">%d</xliff:g>%%. Виберіть для скасування.</string>
     <string name="uploader_result_dialog_title">"Результат вивантаження "</string>
     <string name="uploader_starting">Початок вивантаження&#8230;</string>
     <string name="uploader_aborting">Зупиняємо вивантаження&#8230;</string>
     <string name="uploader_already_running">Вивантаження вже працює.</string>
+    <string name="uploader_disabled">Завантаження вимкнено</string>
+    <string name="uploader_disabled_description">Завантаження вимкнено для цього проекту.</string>
     <string name="uploader_aborted">"Вивантаження зупинено "</string>
     <string name="uploader_aborted_description">"Нічого не вивантажено "</string>
     <string name="uploader_success">Вивантаження успішне</string>
@@ -127,7 +126,7 @@
     <string name="export_dialog_progress_title">Експорт</string>
     <string name="export_dialog_progress_message">Збереження в папку «TowerCollector» на зовнішній пам\'яті з поточною датою і часом в якості імені файлу.</string>
     <string name="export_dialog_finished_title">Експортовано успішно</string>
-    <string name="export_dialog_finished_message">Файл збережено як<xliff:g id="file_name">%s</xliff:g>...<i>Будь ласка, зверніть увагу на внесок до OpenCellID.org завантажуючи свої вимірювання</i></string>
+    <string name="export_dialog_finished_message">Файл збережено як<xliff:g id="file_name">%s</xliff:g>.\n<i>Будь ласка, зверніть увагу на внесок у один з проектів завантажуючи свої вимірювання</i></string>
     <string name="export_toast_failed">Екпорт не виконано: <xliff:g id="failure_reason">%s</xliff:g></string>
     <string name="export_toast_failed_cause_unknown">невідома помилка</string>
     <string name="export_toast_failed_cause_directory_not_exists">не можу створити теку</string>
@@ -164,9 +163,11 @@
     <string name="main_help_last_network_type_title">Тип мережі</string>
     <string name="main_help_last_network_type_description">"Тип мобільної мережі, до якої підключився телефон "</string>
     <string name="main_help_last_long_cell_id_title">Довгий ІД соти</string>
-    <string name="main_help_last_long_cell_id_description">Довгий унікальний ідентифікатор вежі соти, до якого телефон був підключений. LCID також називається UTRAN CID - об\'єднання RNC (ідентифікатор контролера радіостанції) та Cell ID (унікальний ідентифікатор Cell Tower). Цей ідентифікатор визначається тільки для мереж UMTS.</string>
+    <string name="main_help_last_long_cell_id_description">Довгий унікальний ідентифікатор вежі соти, до якого телефон був підключений.
+Для мереж UMTS LCID, також званий UDRAN CID, являє собою об\'єднання RNC (ідентифікатор контролера радіостанції) та Cell ID (унікальний ідентифікатор Cell Tower).
+Для мереж LTE LCID, також називається E-UTRAN CID, являє собою об\'єднання eNodeB (ідентифікатор контролера радіостанції) та Cell ID (унікальний ідентифікатор Cell Tower).</string>
     <string name="main_help_last_cell_id_rnc_title">Мобільна вежа ID / RNC</string>
-    <string name="main_help_last_cell_id_rnc_description">Унікальний ідентифікатор башти клітинки та RNC (ідентифікатор контролера радіостанції), до якого телефон був підключений. Цей ідентифікатор визначається тільки для мереж UMTS.</string>
+    <string name="main_help_last_cell_id_rnc_description">Унікальний ідентифікатор башти клітинки та RNC (ідентифікатор контролера радіостанції), до якого телефон був підключений. Цей ідентифікатор визначається тільки для мереж UMTS та LTE.</string>
     <string name="main_help_last_cell_id_title">"ІД мобільної мережі "</string>
     <string name="main_help_last_cell_id_description">Унікальний ідентифікатор башти соти, до якого підключено телефон.</string>
     <string name="main_help_last_lac_title">Місцевий код міста</string>
@@ -185,18 +186,25 @@
     <string name="main_help_last_gps_accuracy_description">Точність позиції, отриманої з GPS.</string>
     <string name="main_help_last_date_time_title">Збережений час</string>
     <string name="main_help_last_date_time_description">Дата та час, коли було збережено останнє вимірювання.</string>
+    <string name="main_help_to_upload_common_locations_title">Вимірювання для завантаження</string>
+    <string name="main_help_to_upload_ocid_locations_description">Кількість вимірювань, що очікують завантаження на OpenCellID.org.</string>
+    <string name="main_help_to_upload_mls_locations_description">Кількість вимірювань, що очікують завантаження на Mozilla Location Services.</string>
     <string name="status_initializing">ініціалізація</string>
     <string name="status_ok">добре</string>
     <string name="status_low_gps_accuracy">низька точність <xliff:g id="accuracy_value">%1$.0f</xliff:g><xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">"Позиція невизначена "</string>
     <string name="invalid_system_time">Дата / час системи недійсний</string>
     <string name="web_browser_missing">Будь ласка, встановіть веб-браузер, щоб відкрити сторінку</string>
+    <string name="uploader_all_projects_disabled">Завантаження до всіх проектів відключено</string>
+    <string name="upload_configurator_dialog_title">Налаштувати завантаження цілі</string>
+    <string name="enter_valid_api_key">Ви повинні ввести правильні ключі API в налаштуваннях</string>
+    <string name="reupload_measurements_if_upload_fails_for_one_of_projects">Спробуйте знову завантажити вимірювання, якщо помилка під час завантаження одного з проектів</string>
     <string name="unsafe_operation_warning_title">Небезпечна операція</string>
     <string name="unsafe_operation_warning_message">Цей параметр може порушити конфігурацію додатка та призвести до збою. У цьому випадку вам потрібно очистити дані додатка в налаштуваннях Android. Вам потрібно повністю закрити та відновити додаток, щоб переглянути зміни!\n\nВи використовуєте це на свій страх і ризик!</string>
     <string name="database_import_message">База даних імпортована</string>
-    <string name="database_export_message">База даних експортується</string>
-    <string name="database_import_export_failed_message">Операція з бази даних не виконана</string>
+    <string name="database_export_message">Базу даних експортовано</string>
+    <string name="database_import_export_failed_message">Операція з базою даних не виконана</string>
     <string name="preferences_import_message">Налаштування імпортовано</string>
-    <string name="preferences_export_message">Налаштування експортуються</string>
-    <string name="preferences_import_export_failed_message">Операція з налаштуваннями не вдалося</string>
+    <string name="preferences_export_message">Налаштування експортовано</string>
+    <string name="preferences_import_export_failed_message">Операція з налаштуваннями не вдалася</string>
 </resources>

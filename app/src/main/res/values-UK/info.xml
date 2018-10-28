@@ -5,6 +5,7 @@
 <resources>
     <string name="info_about_api_key_title">Ключ API</string>
     <string name="info_about_opencellid_project_title">Проект OpenCellID</string>
+    <string name="info_about_mls_project_title">Проект Location Services Mozilla</string>
     <string name="info_usage_statistics_title">Статистика використання</string>
     <string name="info_about_application_title">Про</string>
     <string name="info_introduction_title">Вступ</string>

@@ -3,8 +3,8 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources>
-    <string name="preferences_header_api_title">OpenCellID.org</string>
-    <string name="preferences_header_api_summary">Конфігурація інтеграції OpenCellID.org.</string>
+    <string name="preferences_header_upload_title">Завантажити</string>
+    <string name="preferences_header_upload_summary">Варіанти вкладів проектів.</string>
     <string name="preferences_header_collector_title">Збирач</string>
     <string name="preferences_header_collector_summary">Параметри збору вимірів, параметри GPS тощо.</string>
     <string name="preferences_header_general_title">"Загальні "</string>
@@ -24,15 +24,29 @@
     <string name="preferences_value_undefined">невизначено</string>
     <string name="preferences_restart_app">Перезапустити додаток, щоб застосувати зміни.</string>
     <string name="preferences_restart_collector">Перезавантажте завдання колектора, щоб застосувати зміни.</string>
+    <string name="preferences_upload_show_configurator_title">Показати конфігуратор</string>
+    <string name="preferences_upload_show_configurator_on_summary">Вікно налаштування буде показано перед кожним завантаженням.</string>
+    <string name="preferences_upload_show_configurator_off_summary">Завантаження використовуватиметься нижче налаштувань.</string>
+    <string name="preferences_reupload_if_upload_fails_title">Спробуйте повторно завантажити</string>
+    <string name="preferences_reupload_if_upload_fails_on_summary">Якщо завантаження не вдається для одного з проектів App буде тримати вимірювань на Max 30 днів і спробувати завантажити їх знову.</string>
+    <string name="preferences_reupload_if_upload_fails_off_summary">Програма видалить завантажені виміри, якщо завантаження вдасться, принаймні одного з проектів.</string>
+    <string name="preferences_opencellid_enabled_title">Увімкнути завантаження OCID</string>
+    <string name="preferences_opencellid_enabled_on_summary">Вимірювання будуть завантажені на OpenCellID.org.</string>
+    <string name="preferences_opencellid_enabled_off_summary">Вимірювання не будуть завантажені в OpenCellID.org.</string>
     <string name="preferences_api_key_title">Ключ API</string>
     <string name="preferences_api_key_summary">Ключ, необхідний для завантаження ваших даних.</string>
     <string name="preferences_api_key_invalid">Введений ключ API недійсний. Правильний формат описано в довідці.</string>
     <string name="preferences_api_key_link_title">Отримайте власний ключ API</string>
     <string name="preferences_api_key_link_summary">Зареєструйтесь безкоштовно на сайті OpenCellID.org.</string>
-    <string name="preferences_about_api_key_title">Про ключ API</string>
+    <string name="preferences_about_api_key_title">Про ключ API OpenCellID</string>
     <string name="preferences_about_api_key_summary">Інформація про ключ API та правильне форматування.</string>
     <string name="preferences_about_opencellid_project_title">Про проект OpenCellID</string>
     <string name="preferences_about_opencellid_project_summary">Інформація про проект OpenCellID.org.</string>
+    <string name="preferences_mls_enabled_title">Увімкнути завантаження MLS</string>
+    <string name="preferences_mls_enabled_on_summary">Вимірювання будуть завантажені на Mozilla Location Services.</string>
+    <string name="preferences_mls_enabled_off_summary">Вимірювання не будуть завантажені в Mozilla Location Services.</string>
+    <string name="preferences_about_mls_project_title">Про MLS</string>
+    <string name="preferences_about_mls_project_summary">Інформація про послуги Mozilla Location Services.</string>
     <string name="preferences_imperial_units_title">Використовувати імперські одиниці</string>
     <string name="preferences_imperial_units_on_summary">Значення будуть представлені за допомогою імперських одиниць.</string>
     <string name="preferences_imperial_units_off_summary">Значення будуть представлені за допомогою метричної системи.</string>
