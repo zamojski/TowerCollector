@@ -3,8 +3,8 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources>
-    <string name="preferences_header_api_title">OpenCellID.org</string>
-    <string name="preferences_header_api_summary">Configuração de integração com o OpenCellID.</string>
+    <string name="preferences_header_upload_title">Upload</string>
+    <string name="preferences_header_upload_summary">Opções de contribuição em projetos.</string>
     <string name="preferences_header_collector_title">Coletor</string>
     <string name="preferences_header_collector_summary">Configurações de coleta de medições, parâmetros do GPS, etc.</string>
     <string name="preferences_header_general_title">Geral</string>
@@ -24,15 +24,29 @@
     <string name="preferences_value_undefined">indefinido</string>
     <string name="preferences_restart_app">Reinicie a aplicação para aplicar as mudanças.</string>
     <string name="preferences_restart_collector">Reinicie a tarefa do coletor para aplicar as mudanças.</string>
+    <string name="preferences_upload_show_configurator_title">Exibir configurador</string>
+    <string name="preferences_upload_show_configurator_on_summary">A janela de configuração será exibida antes de cada upload.</string>
+    <string name="preferences_upload_show_configurator_off_summary">O upload usará as seguintes configurações.</string>
+    <string name="preferences_reupload_if_upload_fails_title">Tentar enviar novamente se falhar</string>
+    <string name="preferences_reupload_if_upload_fails_on_summary">Se o envio falhar para um dos projetos o aplicativo armazenará as medições por no máximo 30 dias e tentará enviá-las novamente.</string>
+    <string name="preferences_reupload_if_upload_fails_off_summary">O aplicativo apagará as medições enviadas se o envio der certo para pelo menos um dos projetos.</string>
+    <string name="preferences_opencellid_enabled_title">Habilitar envio OCID</string>
+    <string name="preferences_opencellid_enabled_on_summary">As medições serão enviadas para o OpenCellID.org.</string>
+    <string name="preferences_opencellid_enabled_off_summary">As medições não serão enviadas para o OpenCellID.org.</string>
     <string name="preferences_api_key_title">Chave de API</string>
     <string name="preferences_api_key_summary">A chave necessária para fazer o upload de suas medições.</string>
     <string name="preferences_api_key_invalid">Chave inserida inválida. O formato correto está descrito na Ajuda.</string>
     <string name="preferences_api_key_link_title">Adquira sua própria chave de API</string>
     <string name="preferences_api_key_link_summary">Registre de graça no website OpenCellId.org.</string>
-    <string name="preferences_about_api_key_title">Sobre a chave de API</string>
+    <string name="preferences_about_api_key_title">Sobre a chave de API do OpenCellID</string>
     <string name="preferences_about_api_key_summary">Informações sobre a chave de API e o formato correto.</string>
     <string name="preferences_about_opencellid_project_title">Sobre o projeto OpenCellID</string>
     <string name="preferences_about_opencellid_project_summary">Informações sobre o projeto OpenCellID.org.</string>
+    <string name="preferences_mls_enabled_title">Habilitar envio MLS</string>
+    <string name="preferences_mls_enabled_on_summary">As medições serão enviadas para o Mozilla Location Services.</string>
+    <string name="preferences_mls_enabled_off_summary">As medições não serão enviadas para o Mozilla Location Services.</string>
+    <string name="preferences_about_mls_project_title">Sobre MLS</string>
+    <string name="preferences_about_mls_project_summary">Informações sobre o Mozilla Location Services.</string>
     <string name="preferences_imperial_units_title">Usar unidades imperiais</string>
     <string name="preferences_imperial_units_on_summary">Valores serão apresentados usando unidades imperiais.</string>
     <string name="preferences_imperial_units_off_summary">Valores serão apresentados usando sistema métrico.</string>
