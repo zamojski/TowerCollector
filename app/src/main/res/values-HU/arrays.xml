@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+    <string name="preferences_keep_screen_on_mode_disabled">Kikapcsolva</string>
+    <string name="preferences_keep_screen_on_mode_dim">Halványítás</string>
+    <string name="preferences_keep_screen_on_mode_full">Teljes fényerő</string>
+    <string-array name="export_formats_labels">
+        <item>CSV</item>
+        <item>GPX</item>
+        <item>CSV az OpenCellID.org-hoz</item>
+        <item>JSON az Mozilla Location Services-hez</item>
+    </string-array>
+    <string-array name="preferences_collector_low_battery_action_entries_labels">
+        <item>Ne csinálj semmit</item>
+        <item>Állítsa le a gyűjtést</item>
+    </string-array>
+    <string-array name="preferences_app_theme_mode_entries_labels">
+        <item>Sötét</item>
+        <item>Világos</item>
+    </string-array>
+    <string name="preferences_collector_api_version_auto">Automatikus érzékelés</string>
+    <string name="preferences_collector_api_version_api_17">Android 4.2 API</string>
+    <string name="preferences_collector_api_version_api_1">Android 1.0 API</string>
+    <string name="preferences_file_logging_level_disabled">Letiltva</string>
+    <string name="preferences_file_logging_level_debug">Hibakeresés</string>
+    <string name="preferences_file_logging_level_info">Információ</string>
+    <string name="preferences_file_logging_level_warning">Figyelmeztetés</string>
+    <string name="preferences_file_logging_level_error">Hiba</string>
+</resources>

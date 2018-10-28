@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+    <string name="permission_required">Engedély szükséges</string>
+    <string name="permission_denied">Engedély megtagadva</string>
+    <string name="permission_export_rationale_message">Tárolási engedélyt kell adni, hogy egy fájlba exportálja a méréseket</string>
+    <string name="permission_export_denied_message">Megtagadott engedély miatti mérések érvénytelenítése</string>
+    <string name="permission_export_never_ask_again_message">A mérések exportálása nem érhető el a megtagadott tárolási engedély miatt</string>
+    <string name="permission_storage_rationale_message">Tárolási engedélyt kell adni a funkció használatához</string>
+    <string name="permission_storage_denied_message">A művelet visszaVonása megtagadási engedély miatt</string>
+    <string name="permission_storage_never_ask_again_message">A funkció nem érhető el a megtagadott tárolási engedély miatt</string>
+    <string name="permission_logging_denied_temporarily_message">A fájlok naplózásának ideiglenes letiltása a megtagadott tárolási engedély miatt</string>
+    <string name="permission_collector_rationale_message">A hely és a telefon engedélyeit a mérések összegyűjtéséhez kell megadni</string>
+    <string name="permission_collector_denied_message">Megtagadott engedélyek miatti mérések érvénytelenítése</string>
+    <string name="permission_collector_never_ask_again_message">A mérések gyűjtése nem érhető el a megtagadott hely és/vagy a telefon engedélyei miatt</string>
+    <string name="permission_collector_denied_intent_message">Megtagadott engedélyek miatt a mérések visszaVonása először nyissa meg az alkalmazást a szükséges engedélyek megadásához.</string>
+    <string name="permission_uploader_denied_message">Feltöltés törölt miatt megtagadva Internet engedély.</string>
+</resources>

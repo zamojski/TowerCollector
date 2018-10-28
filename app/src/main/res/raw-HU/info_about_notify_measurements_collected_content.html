@@ -1,0 +1,56 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+
+<p>A Tower Collector a <i>szándékok</i> közvetítésével értesítheti a rendszeren telepített egyéb alkalmazásokat. Ha többet szeretne tudni az ilyen értesítések hallgatásáról és fogyasztásáról, ellenőrizze az alkalmazás súgóját.</p>
+<h3>Mérés begyűjtési esemény</h3>
+<p>Gyűjtő tud küld egy szándék minden alkalommal új készlet-ból mérés van összegyűjtött, ha engedélyezve van a Beállítások menüben. A tartalom az értesítés lesz JSON struktúra közös dolgok, mint az idő és a GPS kivont. A mezőnevek és-értékek ugyanúgy vannak megfeleltetve, mint az exportált CSV-fájlban.<br />
+A cellák által használt mezők listája a típustól függ (net_type). Nem támogatott vagy hiányzó értékek lesznek beállítva <code>null</code>.</p>
+<ul>
+    <li>GSM – mcc, mnc, lac, cell_id, asu, dbm</li>
+    <li>UMTS – mcc, mnc, lac, cell_id, psc, asu, dbm</li>
+    <li>CDMA – sid mint mnc, nid mint lac, bid mint cell_id, asu, dbm</li>
+    <li>LTE – mcc, mnc, tac mint lac, ci mint cell_id, pci mint psc, ta, asu, dbm</li>
+</ul>
+<p>Művelet:</p>
+<code>info.zamojski.soft.towercollector.MEASUREMENTS_COLLECTED</code>
+<p>Az extrák kulcsa:</p>
+<code>measurements</code>
+<p>Az extra értékek példája:</p>
+<code>{<br />
+    "measured_at" : 1234567890123,<br />
+    "gps" : {<br />
+        "lat" : 12.3213123,<br />
+        "lon" : -54.4535435543,<br />
+        "accuracy" : 12.0,<br />
+        "speed" : 13.21,<br />
+        "bearing" : 212.2,<br />
+        "altitude" : 121.0<br />
+    }<br />
+    "cells" : [<br />
+        {<br />
+            "mcc" : 260,<br />
+            "mnc" : 06,<br />
+            "lac" : 5115,<br />
+            "cell_id" : 214325525,<br />
+            "psc" : 1234,<br />
+            "asu" : 12,<br />
+            "dbm" : -112,<br />
+            "ta" : 21,<br />
+            "neighboring" : "false",<br />
+            "net_type" : "UMTS"<br />
+        },<br />
+        {<br />
+            "mcc" : null,<br />
+            "mnc" : 16,<br />
+            "lac" : 5115,<br />
+            "cell_id" : 2143255,<br />
+            "psc" : null,<br />
+            "asu" : 13,<br />
+            "dbm" : -112,<br />
+            "ta" : null,<br />
+            "neighboring" : "false",<br />
+            "net_type" : "CDMA"<br />
+        }<br />
+    ]<br />
+}</code>
