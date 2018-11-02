@@ -14,6 +14,7 @@ import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.utils.FileUtils;
+import info.zamojski.soft.towercollector.utils.StorageUtils;
 import timber.log.Timber;
 
 public class DatabaseOperations {
@@ -41,10 +42,10 @@ public class DatabaseOperations {
 
     private static void copyDatabase(Context context, File srcFile, File dstFile, String operation) {
         try {
-            String externalStorageState = Environment.getExternalStorageState();
-            if (externalStorageState.equals(Environment.MEDIA_MOUNTED)) {
+            if(StorageUtils.isExternalMemoryWritable()) {
                 File externalStorage = Environment.getExternalStorageDirectory();
                 if (externalStorage.canWrite()) {
+                    FileUtils.checkAccess(dstFile);
                     FileUtils.copyFile(srcFile, dstFile);
                     Timber.d("copyDatabase(): Database " + operation + "ed");
                     int operationMessage = operation.equals(OPERATION_IMPORT) ? R.string.database_import_message : R.string.database_export_message;

@@ -6,6 +6,7 @@ package info.zamojski.soft.towercollector.dev;
 
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.utils.FileUtils;
+import info.zamojski.soft.towercollector.utils.StorageUtils;
 import timber.log.Timber;
 
 import java.io.File;
@@ -67,10 +68,10 @@ public class PreferencesOperations {
         boolean res = false;
         ObjectOutputStream output = null;
         try {
-            String externalStorageState = Environment.getExternalStorageState();
-            if (externalStorageState.equals(Environment.MEDIA_MOUNTED)) {
+            if (StorageUtils.isExternalMemoryWritable()) {
                 File externalStorage = Environment.getExternalStorageDirectory();
                 if (externalStorage.canWrite()) {
+                    FileUtils.checkAccess(dst);
                     output = new ObjectOutputStream(new FileOutputStream(dst));
                     XmlUtils.writeMapXml(prefs.getAll(), output);
                     res = true;
@@ -100,9 +101,7 @@ public class PreferencesOperations {
         boolean res = false;
         ObjectInputStream input = null;
         try {
-            String externalStorageState = Environment.getExternalStorageState();
-            if (externalStorageState.equals(Environment.MEDIA_MOUNTED)
-                    || externalStorageState.equals(Environment.MEDIA_MOUNTED_READ_ONLY)) {
+            if (StorageUtils.isExternalMemoryWritable() || StorageUtils.isExternalMemoryPresent()) {
                 File externalStorage = Environment.getExternalStorageDirectory();
                 if (externalStorage.canRead()) {
                     input = new ObjectInputStream(new FileInputStream(src));
