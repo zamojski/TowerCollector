@@ -11,13 +11,14 @@ import info.zamojski.soft.towercollector.utils.ResourceUtils;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.preference.Preference;
-import android.support.v7.preference.PreferenceScreen;
+import android.preference.Preference;
+import android.preference.PreferenceScreen;
 
 public class InformationPreferenceFragment extends DialogEnabledPreferenceFragment {
 
     @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences_information);
 
         setupWebsiteLink();

@@ -12,8 +12,8 @@ import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.preference.Preference;
-import android.support.v7.preference.PreferenceScreen;
+import android.preference.Preference;
+import android.preference.PreferenceScreen;
 import android.widget.Toast;
 
 public abstract class DialogEnabledPreferenceFragment extends PreferenceFragmentBase {

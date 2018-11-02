@@ -10,11 +10,11 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
-import android.support.v14.preference.SwitchPreference;
-import android.support.v7.preference.ListPreference;
-import android.support.v7.preference.Preference;
-import android.support.v7.preference.PreferenceCategory;
-import android.support.v7.preference.PreferenceManager;
+import android.preference.ListPreference;
+import android.preference.Preference;
+import android.preference.PreferenceCategory;
+import android.preference.PreferenceManager;
+import android.preference.SwitchPreference;
 import android.widget.Toast;
 
 import info.zamojski.soft.towercollector.BuildConfig;
@@ -40,7 +40,8 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
     private ListPreference fileLoggingLevelPreference;
 
     @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences_advanced);
 
         collectorApiVersionPreference = (ListPreference) findPreference(getString(R.string.preferences_collector_api_version_key));
