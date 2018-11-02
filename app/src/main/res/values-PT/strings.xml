@@ -78,6 +78,7 @@
     <string name="main_menu_upload_button">Upload</string>
     <string name="main_menu_more_button">Mais</string>
     <string name="main_menu_export_button">Exportar</string>
+    <string name="main_menu_clear_button">Limpar tudo</string>
     <string name="main_menu_help_button">Ajuda</string>
     <string name="main_menu_preferences_button">Preferências</string>
     <string name="main_menu_network_type_button">Tipo de rede</string>
@@ -127,6 +128,9 @@
     <string name="export_dialog_progress_message">Salvando na pasta \"TowerCollector\" na memória externa com data e hora atual como nome de arquivo.</string>
     <string name="export_dialog_finished_title">Exportação realizada com sucesso</string>
     <string name="export_dialog_finished_message">Arquivo salvo como <xliff:g id="file_name">%s</xliff:g>.\n\n<i>Peço que você considere contribuir com um dos projetos enviando suas medições!</i></string>
+    <string name="clear_dialog_title">Limpar todos os dados</string>
+    <string name="clear_dialog_message">Tem certeza de que deseja remover permanentemente todos os dados armazenados localmente?</string>
+    <string name="clear_toast_finished">Banco de dados desmarcada</string>
     <string name="export_toast_failed">Exportação falhou: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">erro desconhecido</string>
     <string name="export_toast_failed_cause_directory_not_exists">não pode criar diretório/pasta</string>
@@ -163,9 +167,7 @@
     <string name="main_help_last_network_type_title">Tipo de rede</string>
     <string name="main_help_last_network_type_description">O tipo de rede móvel celular ao qual o telefone está conectado.</string>
     <string name="main_help_last_long_cell_id_title">ID longo de torre celular</string>
-    <string name="main_help_last_long_cell_id_description">O identificador longo único de torre celular ao qual o telefone estava conectado.
-Para redes UMTS, o LCID, também chamado de UTRAN CID, é uma concatenação do RNC (ID do Radio Network Controller) e do Cell ID (ID único da Torre Celular).
-Para redes LTE, o LCID, também chamado de E-UTRAN CID, é uma concatenação do eNodeB (ID do Radio Network Controller) e do Cell ID (ID único da Torre Celular).</string>
+    <string name="main_help_last_long_cell_id_description">O identificador longo único de torre celular ao qual o telefone estava conectado.\nPara redes UMTS, o LCID, também chamado de UTRAN CID, é uma concatenação do RNC (ID do Radio Network Controller) e do Cell ID (ID único da Torre Celular).\nPara redes LTE, o LCID, também chamado de E-UTRAN CID, é uma concatenação do eNodeB (ID do Radio Network Controller) e do Cell ID (ID único da Torre Celular).</string>
     <string name="main_help_last_cell_id_rnc_title">ID de Torre Celular / RNC</string>
     <string name="main_help_last_cell_id_rnc_description">O identificador único de torre celular e RNC (ID do Radio Network Controller) ao qual o telefone estava conectado. Este ID é definido somente para redes UMTS e LTE.</string>
     <string name="main_help_last_cell_id_title">ID da Torre Celular</string>

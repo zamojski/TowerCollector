@@ -78,6 +78,7 @@
     <string name="main_menu_upload_button">"Вивантаження "</string>
     <string name="main_menu_more_button">Більше</string>
     <string name="main_menu_export_button">"Експорт "</string>
+    <string name="main_menu_clear_button">Очистити все</string>
     <string name="main_menu_help_button">"Допомога "</string>
     <string name="main_menu_preferences_button">"Вподобання "</string>
     <string name="main_menu_network_type_button">Тип мережі</string>
@@ -127,6 +128,9 @@
     <string name="export_dialog_progress_message">Збереження в папку «TowerCollector» на зовнішній пам\'яті з поточною датою і часом в якості імені файлу.</string>
     <string name="export_dialog_finished_title">Експортовано успішно</string>
     <string name="export_dialog_finished_message">Файл збережено як<xliff:g id="file_name">%s</xliff:g>.\n<i>Будь ласка, зверніть увагу на внесок у один з проектів завантажуючи свої вимірювання</i></string>
+    <string name="clear_dialog_title">Очистити всі дані</string>
+    <string name="clear_dialog_message">Ви дійсно бажаєте остаточно видалити всі локально збережені дані?</string>
+    <string name="clear_toast_finished">База даних очищена</string>
     <string name="export_toast_failed">Екпорт не виконано: <xliff:g id="failure_reason">%s</xliff:g></string>
     <string name="export_toast_failed_cause_unknown">невідома помилка</string>
     <string name="export_toast_failed_cause_directory_not_exists">не можу створити теку</string>
@@ -163,9 +167,7 @@
     <string name="main_help_last_network_type_title">Тип мережі</string>
     <string name="main_help_last_network_type_description">"Тип мобільної мережі, до якої підключився телефон "</string>
     <string name="main_help_last_long_cell_id_title">Довгий ІД соти</string>
-    <string name="main_help_last_long_cell_id_description">Довгий унікальний ідентифікатор вежі соти, до якого телефон був підключений.
-Для мереж UMTS LCID, також званий UDRAN CID, являє собою об\'єднання RNC (ідентифікатор контролера радіостанції) та Cell ID (унікальний ідентифікатор Cell Tower).
-Для мереж LTE LCID, також називається E-UTRAN CID, являє собою об\'єднання eNodeB (ідентифікатор контролера радіостанції) та Cell ID (унікальний ідентифікатор Cell Tower).</string>
+    <string name="main_help_last_long_cell_id_description">Довгий унікальний ідентифікатор вежі соти, до якого телефон був підключений.\nДля мереж UMTS LCID, також званий UDRAN CID, являє собою об\'єднання RNC (ідентифікатор контролера радіостанції) та Cell ID (унікальний ідентифікатор Cell Tower).\nДля мереж LTE LCID, також називається E-UTRAN CID, являє собою об\'єднання eNodeB (ідентифікатор контролера радіостанції) та Cell ID (унікальний ідентифікатор Cell Tower).</string>
     <string name="main_help_last_cell_id_rnc_title">Мобільна вежа ID / RNC</string>
     <string name="main_help_last_cell_id_rnc_description">Унікальний ідентифікатор башти клітинки та RNC (ідентифікатор контролера радіостанції), до якого телефон був підключений. Цей ідентифікатор визначається тільки для мереж UMTS та LTE.</string>
     <string name="main_help_last_cell_id_title">"ІД мобільної мережі "</string>

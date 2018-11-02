@@ -78,6 +78,7 @@
     <string name="main_menu_upload_button">Выгрузить</string>
     <string name="main_menu_more_button">Ещё</string>
     <string name="main_menu_export_button">Экспорт</string>
+    <string name="main_menu_clear_button">Очистить всё</string>
     <string name="main_menu_help_button">Помощь</string>
     <string name="main_menu_preferences_button">Настройки</string>
     <string name="main_menu_network_type_button">Тип сети</string>
@@ -127,6 +128,9 @@
     <string name="export_dialog_progress_message">Сохранение в папку \"TowerCollector\" на внешнюю SD-карту с текущей датой и временем в имени файла.</string>
     <string name="export_dialog_finished_title">Экспорт успешен</string>
     <string name="export_dialog_finished_message">Файл сохранён как <xliff:g id="file_name">%s</xliff:g>.\n\n<i>Пожалуйста, внесите вклад в один из проектов, выгрузив ваши измерения!</i></string>
+    <string name="clear_dialog_title">Очистить все данные</string>
+    <string name="clear_dialog_message">Вы уверены, что хотите удалить все сохраненные на устройстве данные безвозвратно?</string>
+    <string name="clear_toast_finished">База данных очищена</string>
     <string name="export_toast_failed">Ошибка экспорта: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">неизвестная ошибка</string>
     <string name="export_toast_failed_cause_directory_not_exists">невозможно создать папку</string>
@@ -163,9 +167,7 @@
     <string name="main_help_last_network_type_title">Тип сети</string>
     <string name="main_help_last_network_type_description">Тип мобильной сети, к которой присоединён телефон.</string>
     <string name="main_help_last_long_cell_id_title">Полный идентификатор вышки</string>
-    <string name="main_help_last_long_cell_id_description">Длинный уникальный идентификатор вышки к которой подсоединён телефон.
-Для UMTS сетей LCID, также называемый UTRAN CID, это склееные RNC (идентификатор Radio Network Controller) и Cell ID (уникальный идентификатор вышки).
-Для LTE сетей LCID, также называемый E-UTRAN CID, это склееные eNodeB (идентификатор Radio Network Controller) и Cell ID (уникальный идентификатор вышки).</string>
+    <string name="main_help_last_long_cell_id_description">Длинный уникальный идентификатор вышки к которой подсоединён телефон.\nДля UMTS сетей LCID, также называемый UTRAN CID, это склееные RNC (идентификатор Radio Network Controller) и Cell ID (уникальный идентификатор вышки).\nДля LTE сетей LCID, также называемый E-UTRAN CID, это склееные eNodeB (идентификатор Radio Network Controller) и Cell ID (уникальный идентификатор вышки).</string>
     <string name="main_help_last_cell_id_rnc_title">Идентификатор вышки / RNC</string>
     <string name="main_help_last_cell_id_rnc_description">Уникальный идентификатор ячейки и RNC (идентификатор Radio Network Controller), к которому был подключен телефон. Этот идентификатор определяется только для сетей UMTS и LTE.</string>
     <string name="main_help_last_cell_id_title">Идентификатор GSM-соты</string>

@@ -78,6 +78,7 @@
     <string name="main_menu_upload_button">Feltöltés</string>
     <string name="main_menu_more_button">Több</string>
     <string name="main_menu_export_button">Exportálás</string>
+    <string name="main_menu_clear_button">Mindent töröl</string>
     <string name="main_menu_help_button">Súgó</string>
     <string name="main_menu_preferences_button">Beállítások</string>
     <string name="main_menu_network_type_button">Hálózattípus</string>
@@ -127,6 +128,9 @@
     <string name="export_dialog_progress_message">Mentés a külső tárhely \"TowerCollector\" mappájába a jelenlegi dátumot és időt használva névként.</string>
     <string name="export_dialog_finished_title">Exportálás sikeres</string>
     <string name="export_dialog_finished_message">Fájl elmentve <xliff:g id="file_name">%s</xliff:g> néven.\n\n<i>Kérjük, fontolja meg hozzájárulását az egyik projekthez a mérések feltöltésével!</i></string>
+    <string name="clear_dialog_title">Minden adat törlése</string>
+    <string name="clear_dialog_message">Biztos benne, hogy véglegesen el szeretné távolítani a helyileg tárolt adatokat?</string>
+    <string name="clear_toast_finished">Adatbázis törölve</string>
     <string name="export_toast_failed">Exportálás sikertelen: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">ismeretlen hiba</string>
     <string name="export_toast_failed_cause_directory_not_exists">nem lehet könyvtárat létrehozni</string>
@@ -163,9 +167,7 @@
     <string name="main_help_last_network_type_title">Hálózat típus</string>
     <string name="main_help_last_network_type_description">A hálózat típusa, amelyhez a telefon jelenleg kapcsolódik.</string>
     <string name="main_help_last_long_cell_id_title">Hosszú cellatorony-azonosító</string>
-    <string name="main_help_last_long_cell_id_description">A hosszú egyedi cellás torony azonosító, amelyhez a telefon csatlakoztatva volt.
-UMTS hálózatok esetében az LCID, más néven UTRAN CID, az RNC (a rádiós hálózati vezérlő azonosítója) és a cellaazonosító (egyedi cellás toronyazonosító) összekapcsolása.
-Az LTE netowrks esetében az LCID, más néven E-UTRAN CID, az eNodeB (a rádiós hálózatvezérlő azonosítója) és a Cell ID (a Cell Tower egyedi azonosítója) összekapcsolása.</string>
+    <string name="main_help_last_long_cell_id_description">A hosszú egyedi cellás torony azonosító, amelyhez a telefon csatlakoztatva volt.\nUMTS hálózatok esetében az LCID, más néven UTRAN CID, az RNC (a rádiós hálózati vezérlő azonosítója) és a cellaazonosító (egyedi cellás toronyazonosító) összekapcsolása.\nAz LTE netowrks esetében az LCID, más néven E-UTRAN CID, az eNodeB (a rádiós hálózatvezérlő azonosítója) és a Cell ID (a Cell Tower egyedi azonosítója) összekapcsolása.</string>
     <string name="main_help_last_cell_id_rnc_title">Cellatorony azonosító / RNC</string>
     <string name="main_help_last_cell_id_rnc_description">Az egyedi cellás toronyazonosító és az RNC (a rádiós hálózati vezérlő azonosítója), amelyhez a telefon csatlakoztatva volt. Ez az azonosító csak az UMTS és LTE hálózatok esetében van meghatározva.</string>
     <string name="main_help_last_cell_id_title">Bázisállomás azonosító</string>
