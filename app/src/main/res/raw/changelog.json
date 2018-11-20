@@ -1,20 +1,35 @@
 {
   "Entries": [
     {
+      "VersionCode": 2000031,
+      "Title": "Changes in version 2.0.0",
+      "Description": "Tower Collector now supports Mozilla Location Services project! Share your feedback via <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> and  <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> communities, email or  <a href=\"https://github.com/zamojski/TowerCollector/issues\">GitHub</a> issues.",
+      "Messages": [
+        "Added option to contribute to Mozilla Location Services (MLS).",
+        "Changed upload progress to report in percentage instead of parts.",
+        "Added new languages: Hungarian, Italian and Spanish :)",
+        "Added option to clear all data stored locally excluding configuration.",
+        "Added display short and long cid for LTE networks.",
+        "Added database refresh after import from file - restart no longer needed.",
+        "Fixed folder not created when exporting database or preferences to file.",
+        "Improved error handling."
+      ]
+    },
+    {
       "VersionCode": 1220229,
       "Title": "Changes in version 1.22.2",
       "Description": "Do you want to see the app in your language? Help me with <a href=\"http://i18n.zamojski.info/\">translations</a>! some languages are partially done but require volunteers - apply on the website or send me an email to start.",
       "Messages": [
-        "Fix measurements not ordered by date in exported JSON file.",
-        "Fix collecting not stopped on low battery on Oreo and newer.",
-        "Add 'ocid' suffix to exported CSV file name when using OpenCellID.org formatting."
+        "Fixed measurements not ordered by date in exported JSON file.",
+        "Fixed collecting not stopped on low battery on Oreo and newer.",
+        "Added 'ocid' suffix to exported CSV file name when using OpenCellID.org formatting."
       ]
     },
     {
       "VersionCode": 1220128,
       "Title": "Changes in version 1.22.1",
       "Messages": [
-        "Improve error handling."
+        "Improved error handling."
       ]
     },
     {
@@ -22,11 +37,11 @@
       "Title": "Changes in version 1.22.0",
       "Description": "Do you want to see the app in your language? Help me with <a href=\"http://i18n.zamojski.info/\">translations</a>! some languages are partially done but require volunteers - apply on the website or send me an email to start.",
       "Messages": [
-        "Add option to stop collector when battery is getting low.",
-        "Add collecting measurements when at least one of main cell changes even without move.",
-        "Remove option to hide Collector notification on Oreo and newer because Android automatically increases channel importance to DEFAULT level for foreground services. <a href=\"https://zamojski.info/FAQ,Tower-Collector.html#OreoNotificationSound\">See more</a>.",
-        "Fix exception when logging to file.",
-        "Improve compatibility with Android P.",
+        "Added option to stop collector when battery is getting low.",
+        "Added collecting measurements when at least one of main cell changes even without move.",
+        "Removed option to hide Collector notification on Oreo and newer because Android automatically increases channel importance to DEFAULT level for foreground services. <a href=\"https://zamojski.info/FAQ,Tower-Collector.html#OreoNotificationSound\">See more</a>.",
+        "Fixed exception when logging to file.",
+        "Improved compatibility with Android P.",
         "Updated translations and new language - Ukrainian."
       ]
     },
@@ -35,21 +50,10 @@
       "Title": "Changes in version 1.21.0",
       "Description": "Do you want to see the app in your language? Help me with <a href=\"http://i18n.zamojski.info/\">translations</a>! Catalan, Dutch, French, Hungarian, Spanish, Swedish are partially done but require volunteers - apply on the website or send me an email to start.",
       "Messages": [
-        "Fix export to MLS JSON creating invalid files.",
-        "Fix runtime permissions not checked before import and export of database or preferences.",
-        "Add PSC value to exported GPX file.",
-        "Improve network exception handling."
-      ]
-    },
-    {
-      "VersionCode": 1200024,
-      "Title": "Changes in version 1.20.0",
-      "Description": "Tower Collector is now available in <a href=\"https://f-droid.org/packages/info.zamojski.soft.towercollector/\">official F-Droid repository</a>! Special thanks to takiainen, est31 and IzzySoft for help :)",
-      "Messages": [
-        "Fix wrong order of labels for Export dialog for Portuguese and Russian languages.",
-        "Fix invalid API key recognized as connection error during upload.",
-        "Improve code compatibility with F-Droid repository rules.",
-        "Add option to import/export internal preferences and database (use on your own risk!)."
+        "Fixed export to MLS JSON creating invalid files.",
+        "Fixed runtime permissions not checked before import and export of database or preferences.",
+        "Added PSC value to exported GPX file.",
+        "Improved network exception handling."
       ]
     }
   ]
