@@ -69,8 +69,6 @@ public class OcidUploadClient extends ClientBase implements IUploadClient {
             return RequestResult.ServerError;
         }
         if (code == 401 || code == 403 || "Err: Invalid token".equalsIgnoreCase(body)) {
-            RuntimeException ex = new RequestException(body);
-            reportException(ex);
             return RequestResult.InvalidApiKey;
         }
         if (code == 400) {
