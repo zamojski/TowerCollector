@@ -14,5 +14,7 @@
     <color name="text_secondary_dark">#ffa5a5a5</color>
     <color name="toolbar_light">#ffe0e0e0</color>
     <color name="toolbar_dark">#ff0f0f0f</color>
+    <color name="icon_light">@android:color/black</color>
+    <color name="icon_dark">@android:color/white</color>
 
 </resources>

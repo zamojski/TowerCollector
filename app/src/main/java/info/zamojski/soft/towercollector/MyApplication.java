@@ -28,6 +28,7 @@ import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvid
 import android.Manifest;
 import android.app.Application;
 import android.app.NotificationManager;
+import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -120,6 +121,7 @@ public class MyApplication extends Application {
 
     public void initTheme() {
         Timber.d("initTheme(): Initializing theme");
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         String appThemeName = getPreferencesProvider().getAppTheme();
         AppThemeProvider themeProvider = new AppThemeProvider(this);
         appTheme = themeProvider.getTheme(appThemeName);

@@ -68,7 +68,7 @@ public class CollectorNotificationHelper extends NotificationHelperBase {
         builder.setStyle(new NotificationCompat.BigTextStyle().bigText(notificationText));
         // set action
         PendingIntent stopCollectorIntent = createStopCollectorIntent();
-        builder.addAction(R.drawable.menu_stop_dark, context.getString(R.string.main_menu_stop_button), stopCollectorIntent);
+        builder.addAction(R.drawable.menu_stop, context.getString(R.string.main_menu_stop_button), stopCollectorIntent);
         return builder.build();
     }
 

@@ -5,28 +5,14 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="LightAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="icon_menu_start">@drawable/menu_start_light</item>
-        <item name="icon_menu_stop">@drawable/menu_stop_light</item>
-        <item name="icon_menu_upload">@drawable/menu_upload_light</item>
-        <item name="icon_menu_more">@drawable/menu_more_light</item>
-        <item name="icon_menu_export">@drawable/menu_export_light</item>
-        <item name="icon_menu_clear">@drawable/menu_clear_light</item>
-        <item name="icon_menu_preferences">@drawable/menu_preferences_light</item>
-        <item name="icon_menu_network_type">@drawable/menu_network_type_light</item>
+        <item name="icon_color">@color/icon_light</item>
         <item name="android:textColor">@color/text_light</item>
         <item name="android:textColorSecondary">@color/text_secondary_light</item>
         <item name="toolbar_background_color">@color/toolbar_light</item>
     </style>
 
     <style name="DarkAppTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="icon_menu_start">@drawable/menu_start_dark</item>
-        <item name="icon_menu_stop">@drawable/menu_stop_dark</item>
-        <item name="icon_menu_upload">@drawable/menu_upload_dark</item>
-        <item name="icon_menu_more">@drawable/menu_more_dark</item>
-        <item name="icon_menu_export">@drawable/menu_export_dark</item>
-        <item name="icon_menu_clear">@drawable/menu_clear_dark</item>
-        <item name="icon_menu_preferences">@drawable/menu_preferences_dark</item>
-        <item name="icon_menu_network_type">@drawable/menu_network_type_dark</item>
+        <item name="icon_color">@color/icon_dark</item>
         <item name="android:textColor">@color/text_dark</item>
         <item name="android:textColorSecondary">@color/text_secondary_dark</item>
         <item name="toolbar_background_color">@color/toolbar_dark</item>
