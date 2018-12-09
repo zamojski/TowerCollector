@@ -52,7 +52,8 @@ public class CollectorNotificationHelper extends NotificationHelperBase {
 
     private Notification prepareNotification(String notificationText) {
         // set style
-        builder.setSmallIcon(R.drawable.app_notification_icon);
+        builder.setSmallIcon(R.drawable.ic_notification);
+        builder.setColor(context.getResources().getColor(R.color.ic_notification_background_color));
         builder.setOngoing(true);
         builder.setWhen(System.currentTimeMillis());
         builder.setOnlyAlertOnce(true);

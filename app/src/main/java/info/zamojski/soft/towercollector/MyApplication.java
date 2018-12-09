@@ -153,7 +153,7 @@ public class MyApplication extends Application {
         NotificationConfigurationBuilder notificationConfigBuilder = configBuilder.getPluginConfigurationBuilder(NotificationConfigurationBuilder.class);
         notificationConfigBuilder.setResChannelName(R.string.error_reporting_notification_channel_name);
         notificationConfigBuilder.setResChannelImportance(NotificationManager.IMPORTANCE_DEFAULT);
-        notificationConfigBuilder.setResIcon(R.drawable.app_notification_icon);
+        notificationConfigBuilder.setResIcon(R.drawable.ic_notification);
         notificationConfigBuilder.setResTitle(R.string.error_reporting_notification_title);
         notificationConfigBuilder.setResText(R.string.error_reporting_notification_text);
         notificationConfigBuilder.setResTickerText(R.string.error_reporting_notification_title);

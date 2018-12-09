@@ -36,7 +36,8 @@ public class UpdaterNotificationHelper extends NotificationHelperBase {
             createNotificationChannel(notificationManager);
         }
         // set style
-        builder.setSmallIcon(R.drawable.app_notification_icon);
+        builder.setSmallIcon(R.drawable.ic_notification);
+        builder.setColor(context.getResources().getColor(R.color.ic_notification_background_color));
         builder.setAutoCancel(true);
         builder.setWhen(System.currentTimeMillis());
         // set intent

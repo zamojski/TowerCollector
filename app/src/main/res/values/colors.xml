@@ -16,5 +16,6 @@
     <color name="toolbar_dark">#ff0f0f0f</color>
     <color name="icon_light">@android:color/black</color>
     <color name="icon_dark">@android:color/white</color>
+    <color name="ic_notification_background_color">@android:color/white</color>
 
 </resources>
