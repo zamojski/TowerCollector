@@ -1,0 +1,8 @@
+- Added option to contribute to Mozilla Location Services (MLS).
+- Changed upload progress to report in percentage instead of parts.
+- Added new languages: Hungarian, Italian and Spanish :)
+- Added option to clear all data stored locally excluding configuration.
+- Added display short and long cid for LTE networks.
+- Added database refresh after import from file - restart no longer needed.
+- Fixed folder not created when exporting database or preferences to file.
+- Improved error handling.
