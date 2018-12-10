@@ -80,7 +80,6 @@ android {
             dimension "market"
         }
         fdroid {
-            versionNameSuffix "-fdroid"
             dimension "market"
         }
     }
