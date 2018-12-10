@@ -95,7 +95,7 @@ dependencies {
     implementation 'com.android.support:support-v13:27.1.1'
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:design:27.1.1'
-    officialImplementation 'com.google.android.gms:play-services-analytics:16.0.4'
+    officialImplementation 'com.google.android.gms:play-services-analytics:16.0.6'
     implementation 'org.greenrobot:eventbus:3.1.1'
     implementation 'ch.acra:acra-http:5.2.1'
     implementation 'ch.acra:acra-notification:5.2.1'
