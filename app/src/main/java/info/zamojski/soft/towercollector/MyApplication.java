@@ -66,6 +66,11 @@ public class MyApplication extends Application {
         initAnalytics();
     }
 
+    static {
+        // Enable VectorDrawable support for API < 21
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }
+
     private void initUnhandledExceptionHandler() {
         defaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
@@ -121,7 +126,6 @@ public class MyApplication extends Application {
 
     public void initTheme() {
         Timber.d("initTheme(): Initializing theme");
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         String appThemeName = getPreferencesProvider().getAppTheme();
         AppThemeProvider themeProvider = new AppThemeProvider(this);
         appTheme = themeProvider.getTheme(appThemeName);
@@ -152,7 +156,9 @@ public class MyApplication extends Application {
         // Configure interaction method
         NotificationConfigurationBuilder notificationConfigBuilder = configBuilder.getPluginConfigurationBuilder(NotificationConfigurationBuilder.class);
         notificationConfigBuilder.setResChannelName(R.string.error_reporting_notification_channel_name);
-        notificationConfigBuilder.setResChannelImportance(NotificationManager.IMPORTANCE_DEFAULT);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            notificationConfigBuilder.setResChannelImportance(NotificationManager.IMPORTANCE_DEFAULT);
+        }
         notificationConfigBuilder.setResIcon(R.drawable.ic_notification);
         notificationConfigBuilder.setResTitle(R.string.error_reporting_notification_title);
         notificationConfigBuilder.setResText(R.string.error_reporting_notification_text);
