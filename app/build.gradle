@@ -102,7 +102,7 @@ dependencies {
     implementation 'ch.acra:acra-http:5.2.1'
     implementation 'ch.acra:acra-notification:5.2.1'
     implementation 'org.sufficientlysecure:html-textview:3.6'
-    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
     implementation 'com.github.hotchemi:permissionsdispatcher:3.3.1'
     annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:3.3.1'
     implementation 'com.jakewharton.timber:timber:4.7.1'
