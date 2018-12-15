@@ -9,6 +9,7 @@ import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.util.concurrent.TimeUnit;
 
+import info.zamojski.soft.towercollector.io.network.compatibility.ExtendedOkHttpClientBuilder;
 import info.zamojski.soft.towercollector.utils.StringUtils;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -26,7 +27,7 @@ public class UpdateClient extends ClientBase {
     public String fetchUpdates() {
         Timber.d("fetchUpdates(): Sending get request");
         try {
-            OkHttpClient client = new OkHttpClient()
+            OkHttpClient client = new ExtendedOkHttpClientBuilder()
                     .newBuilder()
                     .connectTimeout(CONN_TIMEOUT, TimeUnit.MILLISECONDS)
                     .readTimeout(READ_TIMEOUT, TimeUnit.MILLISECONDS)

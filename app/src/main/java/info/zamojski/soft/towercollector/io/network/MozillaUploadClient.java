@@ -9,6 +9,7 @@ import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.util.concurrent.TimeUnit;
 
+import info.zamojski.soft.towercollector.io.network.compatibility.ExtendedOkHttpClientBuilder;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -30,7 +31,7 @@ public class MozillaUploadClient extends ClientBase implements IUploadClient {
     public RequestResult uploadMeasurements(String content) {
         Timber.d("uploadMeasurements(): Sending post request");
         try {
-            OkHttpClient client = new OkHttpClient()
+            OkHttpClient client = new ExtendedOkHttpClientBuilder()
                     .newBuilder()
                     .connectTimeout(CONN_TIMEOUT, TimeUnit.MILLISECONDS)
                     .readTimeout(READ_TIMEOUT, TimeUnit.MILLISECONDS)
