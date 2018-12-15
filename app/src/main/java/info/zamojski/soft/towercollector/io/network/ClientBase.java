@@ -13,6 +13,8 @@ import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
 import javax.net.ssl.SSLException;
+import javax.net.ssl.SSLHandshakeException;
+import javax.net.ssl.SSLProtocolException;
 
 import info.zamojski.soft.towercollector.MyApplication;
 
@@ -39,7 +41,7 @@ public abstract class ClientBase {
         return (throwable instanceof UnknownHostException
                 || throwable instanceof SocketTimeoutException
                 || throwable instanceof SocketException
-                || throwable instanceof SSLException
+                || (throwable instanceof SSLException && !(throwable instanceof SSLProtocolException) && !(throwable instanceof SSLHandshakeException))
                 || throwable instanceof EOFException);
     }
 }

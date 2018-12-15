@@ -5,6 +5,8 @@
 package info.zamojski.soft.towercollector.io.network;
 
 import java.io.IOException;
+import java.net.ConnectException;
+import java.net.SocketTimeoutException;
 import java.util.concurrent.TimeUnit;
 
 import info.zamojski.soft.towercollector.utils.StringUtils;
@@ -37,6 +39,12 @@ public class UpdateClient extends ClientBase {
 
             Response response = client.newCall(request).execute();
             return handleResponse(response.code(), response.body().string());
+        } catch (SocketTimeoutException ex) {
+            Timber.d(ex, "uploadMeasurements(): Timeout encountered");
+            return null;
+        } catch (ConnectException ex) {
+            Timber.d(ex, "uploadMeasurements(): Timeout encountered");
+            return null;
         } catch (IOException ex) {
             Timber.d(ex, "fetchUpdates(): Errors encountered");
             reportExceptionWithSuppress(ex);

@@ -5,6 +5,8 @@
 package info.zamojski.soft.towercollector.io.network;
 
 import java.io.IOException;
+import java.net.ConnectException;
+import java.net.SocketTimeoutException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
@@ -43,6 +45,12 @@ public class MozillaUploadClient extends ClientBase implements IUploadClient {
 
             Response response = client.newCall(request).execute();
             return handleResponse(response.code(), response.body().string());
+        } catch (SocketTimeoutException ex) {
+            Timber.d(ex, "uploadMeasurements(): Timeout encountered");
+            return RequestResult.ConnectionError;
+        } catch (ConnectException ex) {
+            Timber.d(ex, "uploadMeasurements(): Timeout encountered");
+            return RequestResult.ConnectionError;
         } catch (IOException ex) {
             Timber.e(ex, "uploadMeasurements(): Errors encountered");
             reportExceptionWithSuppress(ex);

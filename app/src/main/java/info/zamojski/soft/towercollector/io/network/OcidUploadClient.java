@@ -5,6 +5,8 @@
 package info.zamojski.soft.towercollector.io.network;
 
 import java.io.IOException;
+import java.net.ConnectException;
+import java.net.SocketTimeoutException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
@@ -44,7 +46,7 @@ public class OcidUploadClient extends ClientBase implements IUploadClient {
                     .addFormDataPart("key", apiKey)
                     .addFormDataPart("appId", appId)
                     .addFormDataPart("datafile", "TowerCollector_measurements_" + System.currentTimeMillis() + ".csv", RequestBody.create(CSV, content))
-                    .build(); // RequestBody.create(JSON, content);
+                    .build();
             Request request = new Request.Builder()
                     .url(url)
                     .post(requestBody)
@@ -52,6 +54,12 @@ public class OcidUploadClient extends ClientBase implements IUploadClient {
 
             Response response = client.newCall(request).execute();
             return handleResponse(response.code(), response.body().string());
+        } catch (SocketTimeoutException ex) {
+            Timber.d(ex, "uploadMeasurements(): Timeout encountered");
+            return RequestResult.ConnectionError;
+        } catch (ConnectException ex) {
+            Timber.d(ex, "uploadMeasurements(): Timeout encountered");
+            return RequestResult.ConnectionError;
         } catch (IOException ex) {
             Timber.d(ex, "uploadMeasurements(): Errors encountered");
             reportExceptionWithSuppress(ex);
