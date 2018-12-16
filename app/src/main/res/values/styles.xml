@@ -9,6 +9,7 @@
         <item name="android:textColor">@color/text_light</item>
         <item name="android:textColorSecondary">@color/text_secondary_light</item>
         <item name="toolbar_background_color">@color/toolbar_light</item>
+        <item name="menu_stop_compat">@drawable/menu_stop_light</item>
     </style>
 
     <style name="DarkAppTheme" parent="Theme.AppCompat.NoActionBar">
@@ -16,6 +17,7 @@
         <item name="android:textColor">@color/text_dark</item>
         <item name="android:textColorSecondary">@color/text_secondary_dark</item>
         <item name="toolbar_background_color">@color/toolbar_dark</item>
+        <item name="menu_stop_compat">@drawable/menu_stop_dark</item>
     </style>
 
     <style name="DefaultSplashScreenAppTheme" parent="Theme.AppCompat.Dialog">

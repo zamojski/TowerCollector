@@ -11,7 +11,7 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/main_menu_stop"
-        android:icon="?attr/menu_stop_compat"
+        android:icon="@drawable/menu_stop"
         android:title="@string/main_menu_stop_button"
         app:showAsAction="always" />
     <item
