@@ -14,6 +14,7 @@ import org.acra.ACRA;
 
 import java.util.List;
 
+import info.zamojski.soft.towercollector.BuildConfig;
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 import timber.log.Timber;
@@ -53,6 +54,10 @@ public class ApkUtils {
         return currentAppVersion;
     }
 
+    public static String getApkVersionNameWithSuffix(Context context) {
+        return String.format("%s %s", getApkVersionName(context), BuildConfig.MARKET_NAME);
+    }
+
     public static String getAppId(Context context) {
         String appVersion = getApkVersionName(context).replace(".", "");
         String fullAppId = context.getString(R.string.app_id, appVersion);
@@ -60,7 +65,7 @@ public class ApkUtils {
     }
 
     public static String getInstallationInfo(Context context) {
-        String appVersion = getApkVersionName(context);
+        String appVersion = getApkVersionNameWithSuffix(context);
         String androidVersionName = Build.VERSION.RELEASE;
         int androidVersionCode = Build.VERSION.SDK_INT;
         String deviceName = getDeviceName();

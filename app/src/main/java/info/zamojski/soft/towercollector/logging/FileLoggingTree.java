@@ -56,7 +56,7 @@ public class FileLoggingTree extends Timber.DebugTree {
                     firstRun = false;
                     // write identification data once initialization finished
                     log(Log.DEBUG, ApkUtils.getDeviceName());
-                    log(Log.DEBUG, ApkUtils.getApkVersionName(MyApplication.getApplication()));
+                    log(Log.DEBUG, ApkUtils.getApkVersionNameWithSuffix(MyApplication.getApplication()));
                 }
             }
         }

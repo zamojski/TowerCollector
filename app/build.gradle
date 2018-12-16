@@ -78,9 +78,11 @@ android {
         }
         official {
             dimension "market"
+            buildConfigField "String", "MARKET_NAME", '"Official"'
         }
         fdroid {
             dimension "market"
+            buildConfigField "String", "MARKET_NAME", '"F-Droid"'
         }
     }
     lintOptions{

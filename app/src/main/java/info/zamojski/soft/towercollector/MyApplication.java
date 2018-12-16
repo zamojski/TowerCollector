@@ -24,19 +24,19 @@ import info.zamojski.soft.towercollector.logging.ConsoleLoggingTree;
 import info.zamojski.soft.towercollector.logging.FileLoggingTree;
 import info.zamojski.soft.towercollector.providers.AppThemeProvider;
 import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvider;
+import info.zamojski.soft.towercollector.utils.PermissionUtils;
 
 import android.Manifest;
 import android.app.Application;
 import android.app.NotificationManager;
+import android.os.Build;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.widget.Toast;
 
-import info.zamojski.soft.towercollector.utils.PermissionUtils;
 import timber.log.Timber;
 
 public class MyApplication extends Application {
-
 
     private static IAnalyticsReportingService analyticsService;
     private static MyApplication application;
@@ -165,6 +165,7 @@ public class MyApplication extends Application {
         notificationConfigBuilder.setEnabled(!getPreferencesProvider().getReportErrorsSilently());
 
         ACRA.init(this, configBuilder);
+        ACRA.getErrorReporter().putCustomData("APP_MARKET_NAME", BuildConfig.MARKET_NAME);
     }
 
     private ReportField[] getCustomAcraReportFields() {
