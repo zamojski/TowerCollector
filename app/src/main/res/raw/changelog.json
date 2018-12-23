@@ -1,6 +1,16 @@
 {
   "Entries": [
     {
+      "VersionCode": 2000134,
+      "Title": "Changes in version 2.0.1",
+      "Description": "Tower Collector now supports Mozilla Location Services project! Share your feedback via <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> and  <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> communities, email or  <a href=\"https://github.com/zamojski/TowerCollector/issues\">GitHub</a> issues.",
+      "Messages": [
+        "Fix secured upload error on Android Lollipop 5.0 and older.",
+        "Improve network timeout error handling.",
+        "New adaptive application icon."
+      ]
+    },
+    {
       "VersionCode": 2000031,
       "Title": "Changes in version 2.0.0",
       "Description": "Tower Collector now supports Mozilla Location Services project! Share your feedback via <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> and  <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> communities, email or  <a href=\"https://github.com/zamojski/TowerCollector/issues\">GitHub</a> issues.",
@@ -43,17 +53,6 @@
         "Fixed exception when logging to file.",
         "Improved compatibility with Android P.",
         "Updated translations and new language - Ukrainian."
-      ]
-    },
-    {
-      "VersionCode": 1210026,
-      "Title": "Changes in version 1.21.0",
-      "Description": "Do you want to see the app in your language? Help me with <a href=\"http://i18n.zamojski.info/\">translations</a>! Catalan, Dutch, French, Hungarian, Spanish, Swedish are partially done but require volunteers - apply on the website or send me an email to start.",
-      "Messages": [
-        "Fixed export to MLS JSON creating invalid files.",
-        "Fixed runtime permissions not checked before import and export of database or preferences.",
-        "Added PSC value to exported GPX file.",
-        "Improved network exception handling."
       ]
     }
   ]

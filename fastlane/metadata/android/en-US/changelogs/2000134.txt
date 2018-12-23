@@ -1,0 +1,3 @@
+- Fix secured upload error on Android Lollipop 5.0 and older.
+- Improve network timeout error handling.
+- New adaptive application icon.
