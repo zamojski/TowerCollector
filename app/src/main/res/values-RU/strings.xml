@@ -14,8 +14,6 @@
     <string name="app_title_help">Помощь</string>
     <string name="app_title_about">О программе</string>
     <string name="dialog_want_enable_gps">Вы хотите открыть настройки местоположения, чтобы включить GPS?</string>
-    <string name="dialog_could_not_open_network_type_settings">Не могу открыть настройки Android. Откройте их вручную, чтобы изменить тип сети.</string>
-    <string name="dialog_could_not_open_gps_settings">Не удалось открыть настройки системы. Откройте их вручную и разрешите определение местоположения по GPS.</string>
     <string name="dialog_select_email_app">Выберите приложение для электронной почты</string>
     <string name="dialog_what_is_new">Сообщение от разработчика!</string>
     <string name="dialog_yes">Да</string>
@@ -31,7 +29,7 @@
     <string name="dialog_send_comment">Отправить комментарий</string>
     <string name="dialog_dont_show_again">Больше не показывать</string>
     <string name="dialog_proceed">Продолжить</string>
-    <string name="dialog_permission_settings">Настройки</string>
+    <string name="dialog_settings">Настройки</string>
     <string name="main_dialog_not_compatible_title">Проблемы совместимости</string>
     <string name="main_dialog_not_compatible_begin">Приложение может не работать потому, что:</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Не найдено оборудование для работы с мобильными сетями.\n</string>

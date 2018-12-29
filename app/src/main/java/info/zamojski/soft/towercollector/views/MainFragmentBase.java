@@ -15,8 +15,10 @@ import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.enums.GpsStatus;
 import info.zamojski.soft.towercollector.enums.Validity;
+import info.zamojski.soft.towercollector.events.BatteryOptimizationsChangedEvent;
 import info.zamojski.soft.towercollector.events.GpsStatusChangedEvent;
 import info.zamojski.soft.towercollector.events.SystemTimeChangedEvent;
+import info.zamojski.soft.towercollector.utils.BatteryUtils;
 import info.zamojski.soft.towercollector.utils.UnitConverter;
 import timber.log.Timber;
 
@@ -33,6 +35,8 @@ public abstract class MainFragmentBase extends Fragment {
 
     private TableRow invalidSystemTimeTableRow;
     private TextView invalidSystemTimeValueTextView;
+    private TableRow batteryOptimizationsTableRow;
+    private TextView batteryOptimizationsValueTextView;
 
     protected boolean useImperialUnits;
     protected String preferredLengthUnit;
@@ -67,6 +71,10 @@ public abstract class MainFragmentBase extends Fragment {
         gpsStatusValueTextView = view.findViewById(R.id.main_gps_status_value_textview);
         invalidSystemTimeTableRow = view.findViewById(R.id.main_invalid_system_time_tablerow);
         invalidSystemTimeValueTextView = view.findViewById(R.id.main_invalid_system_time_value_textview);
+        batteryOptimizationsTableRow = view.findViewById(R.id.main_battery_optimizations_tablerow);
+        batteryOptimizationsValueTextView = view.findViewById(R.id.main_battery_optimizations_value_textview);
+        boolean batteryOptimizationsEnabled = BatteryUtils.areBatteryOptimizationsEnabled(MyApplication.getApplication());
+        showWarning(batteryOptimizationsTableRow, batteryOptimizationsValueTextView, batteryOptimizationsEnabled);
         // reload preferences
         useImperialUnits = MyApplication.getPreferencesProvider().getUseImperialUnits();
         // cache units
@@ -83,14 +91,19 @@ public abstract class MainFragmentBase extends Fragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onEvent(SystemTimeChangedEvent event) {
-        showInvalidSystemTime(event.isValid() == Validity.Invalid);
+        showWarning(invalidSystemTimeTableRow, invalidSystemTimeValueTextView, event.isValid() == Validity.Invalid);
     }
 
-    private void showInvalidSystemTime(boolean show) {
-        Timber.d("showInvalidSystemTime(): Setting invalid system time visible = %s", show);
-        invalidSystemTimeValueTextView.setTextColor(getResources().getColor(R.color.text_light));
-        invalidSystemTimeTableRow.setBackgroundColor(getResources().getColor(R.color.background_needs_attention));
-        invalidSystemTimeTableRow.setVisibility(show ? View.VISIBLE : View.GONE);
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onEvent(BatteryOptimizationsChangedEvent event) {
+        showWarning(batteryOptimizationsTableRow, batteryOptimizationsValueTextView, event.isEnabled());
+    }
+
+    private void showWarning(TableRow tableRow, TextView label, boolean show) {
+        Timber.d("showWarning(): Setting warning visible = %s", show);
+        label.setTextColor(getResources().getColor(R.color.text_light));
+        tableRow.setBackgroundColor(getResources().getColor(R.color.background_needs_attention));
+        tableRow.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)

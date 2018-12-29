@@ -14,8 +14,6 @@
     <string name="app_title_help">Pomoc</string>
     <string name="app_title_about">O aplikacji</string>
     <string name="dialog_want_enable_gps">Czy chcesz otworzyć ustawienia lokalizacji, aby włączyć GPS?</string>
-    <string name="dialog_could_not_open_network_type_settings">Nie można otworzyć ustawień Androida. Otwórz je ręcznie, aby zmienić typ sieci.</string>
-    <string name="dialog_could_not_open_gps_settings">Nie udało się otworzyć ustawień Androida. Otwórz ustawienia i włącz lokalizację z użyciem satelitów GPS.</string>
     <string name="dialog_select_email_app">Wybierz aplikację</string>
     <string name="dialog_what_is_new">Informacja od autora!</string>
     <string name="dialog_yes">Tak</string>
@@ -31,7 +29,7 @@
     <string name="dialog_send_comment">Wyślij komentarz</string>
     <string name="dialog_dont_show_again">Nie pokazuj tego ponownie</string>
     <string name="dialog_proceed">Kontynuuj</string>
-    <string name="dialog_permission_settings">Ustawienia</string>
+    <string name="dialog_settings">Ustawienia</string>
     <string name="main_dialog_not_compatible_title">Problemy z kompatybilnością</string>
     <string name="main_dialog_not_compatible_begin">Aplikacja może nie działać, ponieważ:\n</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Nie wykryto modułu sieci komórkowej.</string>

@@ -11,6 +11,8 @@
 
     <include layout="@layout/main_invalid_system_time_fragment" />
 
+    <include layout="@layout/main_battery_optimization_fragment"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

@@ -13,8 +13,7 @@
     <string name="app_title_help">Help</string>
     <string name="app_title_about">About</string>
     <string name="dialog_want_enable_gps">Do you want open location settings to enable GPS?</string>
-    <string name="dialog_could_not_open_network_type_settings">Could not open Android settings. Open them manually to change network type.</string>
-    <string name="dialog_could_not_open_gps_settings">Could not open Android settings. Open them and enable GPS positioning.</string>
+    <string name="dialog_could_not_open_android_settings">Could not open Android settings. Open them manually to change.</string>
     <string name="dialog_select_email_app">Select email application</string>
     <string name="dialog_what_is_new">Developer\'s message!</string>
     <string name="dialog_yes">Yes</string>
@@ -30,7 +29,7 @@
     <string name="dialog_send_comment">Send comment</string>
     <string name="dialog_dont_show_again">Don\'t show this again</string>
     <string name="dialog_proceed">Proceed</string>
-    <string name="dialog_permission_settings">Settings</string>
+    <string name="dialog_settings">Settings</string>
     <string name="main_dialog_not_compatible_title">Compatibility problems</string>
     <string name="main_dialog_not_compatible_begin">The app may not work because:\n</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Mobile network hardware not detected.\n</string>
@@ -159,6 +158,8 @@
     <string name="main_help_gps_status_description">Shows current GPS status. If you experience problems with getting measurements, please find a location with better signal reception and accuracy.</string>
     <string name="main_help_invalid_system_time_title">Invalid system time</string>
     <string name="main_help_invalid_system_time_description">Your current system date and/or time is invalid comparing to GPS time. Measurements will be saved with correct time but presented statistics may be inaccurate. Please set the date and time in your device.</string>
+    <string name="main_help_battery_optimizations_title">Battery optimizations enabled</string>
+    <string name="main_help_battery_optimizations_description">Battery optimizations are enabled for this app which may result in inaccurate and unreliable measurements being collected. Please disable battery optimizations in Android settings by selecting \'All Apps\', then Tower Collector: \'Don\'t optimize\'.</string>
     <string name="main_help_today_locations_title">Measurements today</string>
     <string name="main_help_today_locations_description">Number of measurements collected by the application today.</string>
     <string name="main_help_today_cells_title">Cells today</string>
@@ -205,6 +206,7 @@
     <string name="status_low_gps_accuracy">low accuracy <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">no location</string>
     <string name="invalid_system_time">System date/time is invalid</string>
+    <string name="battery_optimizations">Battery optimizations enabled</string>
     <string name="web_browser_missing">Please install web browser to open the page</string>
     <string name="uploader_all_projects_disabled">Upload to all projects is disabled</string>
     <string name="ocid_name" translatable="false">OpenCellID.org</string>

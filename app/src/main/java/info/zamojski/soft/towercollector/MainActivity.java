@@ -5,6 +5,7 @@
 package info.zamojski.soft.towercollector;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
@@ -62,6 +63,7 @@ import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.FileType;
 import info.zamojski.soft.towercollector.enums.MeansOfTransport;
 import info.zamojski.soft.towercollector.enums.Validity;
+import info.zamojski.soft.towercollector.events.BatteryOptimizationsChangedEvent;
 import info.zamojski.soft.towercollector.events.CollectorStartedEvent;
 import info.zamojski.soft.towercollector.events.GpsStatusChangedEvent;
 import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
@@ -76,6 +78,7 @@ import info.zamojski.soft.towercollector.tasks.ExportFileAsyncTask;
 import info.zamojski.soft.towercollector.tasks.UpdateCheckAsyncTask;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
 import info.zamojski.soft.towercollector.utils.BackgroundTaskHelper;
+import info.zamojski.soft.towercollector.utils.BatteryUtils;
 import info.zamojski.soft.towercollector.utils.DateUtils;
 import info.zamojski.soft.towercollector.utils.FileUtils;
 import info.zamojski.soft.towercollector.utils.GpsUtils;
@@ -96,6 +99,8 @@ import timber.log.Timber;
 
 @RuntimePermissions
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
+
+    private static final int BATTERY_OPTIMIZATIONS_ACTIVITY_RESULT = 'B';
 
     private AtomicBoolean isCollectorServiceRunning = new AtomicBoolean(false);
     private boolean isGpsEnabled = false;
@@ -120,7 +125,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private BackgroundTaskHelper backgroundTaskHelper;
 
-    private MainActivityPagerAdapter pageAdapter;
     private ViewPager viewPager;
 
     private View activityView;
@@ -141,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
         // setup tabbed layout
-        pageAdapter = new MainActivityPagerAdapter(getSupportFragmentManager(), getApplication());
+        MainActivityPagerAdapter pageAdapter = new MainActivityPagerAdapter(getSupportFragmentManager(), getApplication());
         viewPager = (ViewPager) findViewById(R.id.main_pager);
         viewPager.setAdapter(pageAdapter);
         tabLayout = (TabLayout) findViewById(R.id.main_tab_layout);
@@ -285,6 +289,17 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == BATTERY_OPTIMIZATIONS_ACTIVITY_RESULT) {
+            // don't check resultCode because it's always 0 (user needs to manually navigate back)
+            boolean batteryOptimizationsEnabled = BatteryUtils.areBatteryOptimizationsEnabled(MyApplication.getApplication());
+            EventBus.getDefault().postSticky(new BatteryOptimizationsChangedEvent(batteryOptimizationsEnabled));
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
@@ -439,6 +454,24 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             dialog.setCancelable(true);
             dialog.show();
         }
+    }
+
+    // have to be public to prevent Force Close
+    public void displayBatteryOptimizationsHelpOnClick(View view) {
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.main_help_battery_optimizations_title)
+                .setMessage(R.string.main_help_battery_optimizations_description)
+                .setPositiveButton(R.string.dialog_settings, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startBatteryOptimizationsSystemActivity();
+                    }
+                })
+                .setNegativeButton(R.string.dialog_cancel, null)
+                .create();
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setCancelable(true);
+        dialog.show();
     }
 
     private void displayUploadResultDialog(String descriptionContent) {
@@ -936,19 +969,36 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         try {
             startActivity(createDataRoamingSettingsIntent());
         } catch (ActivityNotFoundException ex) {
-            Timber.w(ex, "askAndSetGpsEnabled(): Could not open Settings to change network type");
+            Timber.w(ex, "startNetworkTypeSystemActivity(): Could not open Settings to change network type");
             MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
-            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).setMessage(R.string.dialog_could_not_open_network_type_settings).setPositiveButton(R.string.dialog_ok, null).create();
-            alertDialog.setCanceledOnTouchOutside(true);
-            alertDialog.setCancelable(true);
-            alertDialog.show();
+            showCannotOpenAndroidSettingsDialog();
         }
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    private void startBatteryOptimizationsSystemActivity() {
+        try {
+            Intent intent = new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
+            startActivityForResult(intent, BATTERY_OPTIMIZATIONS_ACTIVITY_RESULT);
+        } catch (ActivityNotFoundException ex) {
+            Timber.w(ex, "startBatteryOptimizationsSystemActivity(): Could not open Settings to change battery optimizations");
+            MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
+            ACRA.getErrorReporter().handleSilentException(ex);
+            showCannotOpenAndroidSettingsDialog();
+        }
+    }
+
+    private void showCannotOpenAndroidSettingsDialog() {
+        AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).setMessage(R.string.dialog_could_not_open_android_settings).setPositiveButton(R.string.dialog_ok, null).create();
+        alertDialog.setCanceledOnTouchOutside(true);
+        alertDialog.setCancelable(true);
+        alertDialog.show();
     }
 
     private Intent createDataRoamingSettingsIntent() {
         Intent intent = new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS);
-        // Theoretically this is not needed starting from 4.0.1 but it sometimes fail
+        // Theoretically this is not needed starting from 4.0.1 but it sometimes fails
         // bug https://code.google.com/p/android/issues/detail?id=13368
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
             ComponentName componentName = new ComponentName("com.android.phone", "com.android.phone.Settings");
@@ -1025,7 +1075,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 .setTitle(R.string.permission_denied)
                 .setMessage(messageResId)
                 .setCancelable(true)
-                .setPositiveButton(R.string.dialog_permission_settings, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.dialog_settings, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         PermissionUtils.openAppSettings(MainActivity.this);
@@ -1062,7 +1112,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                             Timber.w("askAndSetGpsEnabled(): Could not open Settings to enable GPS");
                             MyApplication.getAnalytics().sendException(ex2, Boolean.FALSE);
                             ACRA.getErrorReporter().handleSilentException(ex2);
-                            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).setMessage(R.string.dialog_could_not_open_gps_settings).setPositiveButton(R.string.dialog_ok, null).create();
+                            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).setMessage(R.string.dialog_could_not_open_android_settings).setPositiveButton(R.string.dialog_ok, null).create();
                             alertDialog.setCanceledOnTouchOutside(true);
                             alertDialog.setCancelable(true);
                             alertDialog.show();

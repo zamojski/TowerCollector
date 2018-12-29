@@ -232,7 +232,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
                 .setTitle(R.string.permission_denied)
                 .setMessage(R.string.permission_storage_never_ask_again_message)
                 .setCancelable(true)
-                .setPositiveButton(R.string.dialog_permission_settings, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.dialog_settings, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         PermissionUtils.openAppSettings(getActivity());

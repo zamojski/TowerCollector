@@ -14,8 +14,6 @@
     <string name="app_title_help">Guida</string>
     <string name="app_title_about">Info su</string>
     <string name="dialog_want_enable_gps">Vuoi aprire le impostazioni di localizzazione per abilitare il GPS?</string>
-    <string name="dialog_could_not_open_network_type_settings">Impossibile aprire le impostazioni di Android. Aprile manualmente per cambiare tipo di rete.</string>
-    <string name="dialog_could_not_open_gps_settings">Impossibile aprire le impostazioni Android. Aprile ed abilita il posizionamento GPS.</string>
     <string name="dialog_select_email_app">Scegli l\'applicazione per l\'email</string>
     <string name="dialog_what_is_new">Messaggio dello sviluppatore!</string>
     <string name="dialog_yes">Si</string>
@@ -31,7 +29,7 @@
     <string name="dialog_send_comment">Invia commento</string>
     <string name="dialog_dont_show_again">Non mostrare di nuovo</string>
     <string name="dialog_proceed">Procedi</string>
-    <string name="dialog_permission_settings">Impostazioni</string>
+    <string name="dialog_settings">Impostazioni</string>
     <string name="main_dialog_not_compatible_title">Problemi di compatibilità</string>
     <string name="main_dialog_not_compatible_begin">L\'app potrebbe non funzionare perchè:\n</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Hardware di rete mobile non rilevato.\n</string>

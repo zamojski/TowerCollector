@@ -14,8 +14,6 @@
     <string name="app_title_help">Súgó</string>
     <string name="app_title_about">Névjegy</string>
     <string name="dialog_want_enable_gps">Be szeretnéd kapcsolni a GPS-t a beállításokban?</string>
-    <string name="dialog_could_not_open_network_type_settings">Az Android beállításai nem nyithatóak meg. Nyisd meg kézzel a hálózattípus módosításához.</string>
-    <string name="dialog_could_not_open_gps_settings">Nem sikerült megnyitni az Android beállításokat, így kézzel kell engedélyezned a GPS alapú helymeghatározást.</string>
     <string name="dialog_select_email_app">E-mail app kiválasztása</string>
     <string name="dialog_what_is_new">A fejlesztő üzenete!</string>
     <string name="dialog_yes">Igen</string>
@@ -31,7 +29,7 @@
     <string name="dialog_send_comment">Megjegyzés küldése</string>
     <string name="dialog_dont_show_again">Ne mutassa újra</string>
     <string name="dialog_proceed">Tovább</string>
-    <string name="dialog_permission_settings">Beállítások</string>
+    <string name="dialog_settings">Beállítások</string>
     <string name="main_dialog_not_compatible_title">Kompatibilitási problémák</string>
     <string name="main_dialog_not_compatible_begin">Lehet, hogy az app nem fog működni az alábbiak miatt:\n</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Mobil hálózati eszközt nem találtam.\n</string>
