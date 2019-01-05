@@ -18,11 +18,11 @@ abstract class PreferenceProviderBase<T> {
 
     protected Context context;
 
-    public PreferenceProviderBase(Context context) {
+    PreferenceProviderBase(Context context) {
         this.context = context;
     }
 
-    public T getPreference(@StringRes int valueKey, int defaultValueKey) {
+    T getPreference(@StringRes int valueKey, int defaultValueKey) {
         T value;
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         T defaultValue = getPreferenceDefaultValue(defaultValueKey);
@@ -36,17 +36,17 @@ abstract class PreferenceProviderBase<T> {
             value = defaultValue;
             SharedPreferences.Editor editor = prefs.edit();
             setPreferenceValue(editor, valueKey, defaultValue);
-            editor.commit();
+            editor.apply();
         }
         return value;
     }
 
-    public void setPreference(@StringRes int valueKey, T value) {
+    void setPreference(@StringRes int valueKey, T value) {
         Timber.d("setPreference(): Preference `%s` value set to `%s`", context.getString(valueKey), value);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
         setPreferenceValue(editor, valueKey, value);
-        editor.commit();
+        editor.apply();
     }
 
     abstract T getPreferenceDefaultValue(int defaultValueKey);
