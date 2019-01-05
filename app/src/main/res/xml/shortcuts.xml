@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?><!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/menu_start"
+        android:shortcutId="collector_toggle"
+        android:shortcutLongLabel="@string/shortcut_collecting_toggle_long"
+        android:shortcutShortLabel="@string/shortcut_collecting_toggle_short">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="info.zamojski.soft.towercollector.SplashActivity"
+            android:targetPackage="info.zamojski.soft.towercollector">
+            <extra
+                android:name="shortcut_action"
+                android:value="COLLECTOR_TOGGLE" />
+        </intent>
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/menu_upload"
+        android:shortcutId="uploader_toggle"
+        android:shortcutLongLabel="@string/shortcut_upload_toggle_long"
+        android:shortcutShortLabel="@string/shortcut_upload_toggle_short">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="info.zamojski.soft.towercollector.SplashActivity"
+            android:targetPackage="info.zamojski.soft.towercollector">
+            <extra
+                android:name="shortcut_action"
+                android:value="UPLOADER_TOGGLE" />
+        </intent>
+    </shortcut>
+</shortcuts>

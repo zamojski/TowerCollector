@@ -7,5 +7,6 @@ package info.zamojski.soft.towercollector.analytics;
 public enum IntentSource {
     User,
     Application,
-    System
+    System,
+    Shortcut
 }

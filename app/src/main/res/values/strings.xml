@@ -3,6 +3,10 @@
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
     <string name="locale">en</string>
+    <string name="shortcut_collecting_toggle_short">Collect</string>
+    <string name="shortcut_collecting_toggle_long">Toggle collecting</string>
+    <string name="shortcut_upload_toggle_short">Upload</string>d
+    <string name="shortcut_upload_toggle_long">Toggle upload</string>
     <string name="unit_length_metric">m</string>
     <string name="unit_length_imperial">ft</string>
     <string name="unit_speed_metric">km/h</string>

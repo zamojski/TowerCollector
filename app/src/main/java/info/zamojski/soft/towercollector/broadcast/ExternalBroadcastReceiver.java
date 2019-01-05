@@ -32,6 +32,7 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
     private static final String collectorStopAction = "info.zamojski.soft.towercollector.COLLECTOR_STOP";
 
     private static final String uploaderStartAction = "info.zamojski.soft.towercollector.UPLOADER_START";
+    private static final String uploaderStopAction = "info.zamojski.soft.towercollector.UPLOADER_STOP";
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -42,6 +43,8 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
             stopCollectorService(context);
         } else if (uploaderStartAction.equals(action)) {
             startUploaderService(context);
+        } else if (uploaderStopAction.equals(action)) {
+            stopUploaderService(context);
         } else if (Intent.ACTION_BOOT_COMPLETED.equals(action) || quickBootPowerOnAction.equals(action)) {
             boolean startAtBootEnabled = MyApplication.getPreferencesProvider().getStartCollectorAtBoot();
             if (startAtBootEnabled) {
@@ -50,7 +53,7 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         }
     }
 
-    private void startCollectorService(Context context, IntentSource source) {
+    public void startCollectorService(Context context, IntentSource source) {
         if (!canStartBackgroundService(context)) {
             return;
         }
@@ -66,7 +69,7 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         MyApplication.getAnalytics().sendCollectorStarted(source);
     }
 
-    private void stopCollectorService(Context context) {
+    public void stopCollectorService(Context context) {
         Timber.d("stopCollectorService(): Stopping service from broadcast");
         context.stopService(getCollectorIntent(context));
     }
@@ -75,7 +78,7 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         return new Intent(context, CollectorService.class);
     }
 
-    private void startUploaderService(Context context) {
+    public void startUploaderService(Context context) {
         if (!canStartBackgroundService(context))
             return;
         Timber.d("startCollectorService(): Starting service from broadcast");
@@ -86,6 +89,13 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
             MyApplication.getAnalytics().sendUploadStarted(IntentSource.Application, true);
         if (isMlsUploadEnabled)
             MyApplication.getAnalytics().sendUploadStarted(IntentSource.Application, false);
+    }
+
+    public void stopUploaderService(Context context) {
+        Timber.d("stopUploaderService(): Stopping service from broadcast");
+        // don't use stopService because the worker needs to be stopped first
+        Intent stopIntent = new Intent(UploaderService.BROADCAST_INTENT_STOP_SERVICE);
+        context.sendBroadcast(stopIntent);
     }
 
     private Intent getUploaderIntent(Context context) {

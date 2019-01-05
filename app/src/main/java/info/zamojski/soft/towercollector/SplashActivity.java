@@ -4,6 +4,8 @@
 
 package info.zamojski.soft.towercollector;
 
+import info.zamojski.soft.towercollector.analytics.IntentSource;
+import info.zamojski.soft.towercollector.broadcast.ExternalBroadcastReceiver;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.tasks.DatabaseUpgradeTask;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
@@ -22,8 +24,9 @@ import android.widget.Toast;
 
 public class SplashActivity extends Activity {
 
-
-    private DatabaseUpgradeTask databaseMigrationTask;
+    static final String SHORTCUT_ACTION = "shortcut_action";
+    static final String COLLECTOR_TOGGLE_ACTION = "COLLECTOR_TOGGLE";
+    static final String UPLOADER_TOGGLE_ACTION = "UPLOADER_TOGGLE";
 
     private boolean databaseUpgradeRunning = false;
 
@@ -43,14 +46,29 @@ public class SplashActivity extends Activity {
         setContentView(R.layout.splash);
         this.setFinishOnTouchOutside(false);
         // get UI controls
-        detailsTextView = (TextView) findViewById(R.id.splash_details_textview);
+        detailsTextView = findViewById(R.id.splash_details_textview);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         Timber.d("onStart(): Starting splash screen");
-        startAsync();
+        Intent startupIntent = getIntent();
+        if (startupIntent != null) {
+            String action = startupIntent.getStringExtra(SHORTCUT_ACTION);
+            if (action != null) {
+                switch (action) {
+                    case COLLECTOR_TOGGLE_ACTION:
+                        toggleCollectorAsync();
+                        return;
+                    case UPLOADER_TOGGLE_ACTION:
+                        toggleUploaderAsync();
+                        return;
+                }
+            }
+        }
+        // default
+        startMainActivityAsync();
     }
 
     @Override
@@ -69,14 +87,48 @@ public class SplashActivity extends Activity {
         }
     }
 
-    private void startAsync() {
-        Timber.d("startAsync(): Creating handler");
+    private void startMainActivityAsync() {
+        Timber.d("startMainActivityAsync(): Starting main screen");
         getAsyncHandler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 ensureDatabaseUpToDate();
                 startMainActivity();
-                Timber.d("startAsync(): Closing splash screen window");
+                Timber.d("startMainActivityAsync(): Closing splash screen window");
+                finish();
+            }
+        }, 0);
+    }
+
+    private void toggleCollectorAsync() {
+        Timber.d("toggleCollectorAsync(): Toggle collector");
+        getAsyncHandler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ensureDatabaseUpToDate();
+                if (MyApplication.isBackgroundTaskRunning(CollectorService.class)) {
+                    new ExternalBroadcastReceiver().stopCollectorService(MyApplication.getApplication());
+                } else {
+                    new ExternalBroadcastReceiver().startCollectorService(MyApplication.getApplication(), IntentSource.Shortcut);
+                }
+                Timber.d("startCollectorAsync(): Closing splash screen window");
+                finish();
+            }
+        }, 0);
+    }
+
+    private void toggleUploaderAsync() {
+        Timber.d("toggleUploaderAsync(): Toggle uploader");
+        getAsyncHandler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ensureDatabaseUpToDate();
+                if (MyApplication.isBackgroundTaskRunning(UploaderService.class)) {
+                    new ExternalBroadcastReceiver().stopUploaderService(MyApplication.getApplication());
+                } else {
+                    new ExternalBroadcastReceiver().startUploaderService(MyApplication.getApplication());
+                }
+                Timber.d("toggleUploaderAsync(): Closing splash screen window");
                 finish();
             }
         }, 0);
@@ -89,7 +141,7 @@ public class SplashActivity extends Activity {
             databaseUpgradeRunning = true;
             showDetailsMessage();
             // show progress dialog only when migrating database
-            databaseMigrationTask = new DatabaseUpgradeTask(currentDbVersion);
+            DatabaseUpgradeTask databaseMigrationTask = new DatabaseUpgradeTask(currentDbVersion);
             databaseMigrationTask.upgrade();
             MyApplication.getAnalytics().sendMigrationStarted();
             hideDetailsMessage();
@@ -102,8 +154,8 @@ public class SplashActivity extends Activity {
 
     private void startMainActivity() {
         Timber.d("startMainActivity(): Starting main window");
-        Intent mainActivityIntent = new Intent(SplashActivity.this, MainActivity.class);
-        startActivity(mainActivityIntent);
+        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 
     private void showDetailsMessage() {
