@@ -18,6 +18,7 @@ import info.zamojski.soft.towercollector.io.network.OcidUploadClient;
 import info.zamojski.soft.towercollector.io.network.RequestResult;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
 import info.zamojski.soft.towercollector.model.Measurement;
+import info.zamojski.soft.towercollector.model.Statistics;
 import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvider;
 import info.zamojski.soft.towercollector.uploader.UploaderNotificationHelper;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
@@ -328,6 +329,9 @@ public class UploaderService extends Service {
             int ocidSucceededParts = 0, mlsSucceededParts = 0;
             boolean continueOcidUpload = isOpenCellIdUploadEnabled;
             boolean continueMlsUpload = isMlsUploadEnabled;
+            Statistics stats = MeasurementsDatabase.getInstance(getApplication()).getMeasurementsStatistics();
+            int numberToUploadOcid = stats.getToUploadOcid();
+            int numberToUploadMls = stats.getToUploadMls();
             // for each part start new upload
             for (int i = 0; i < partsCount; i++) {
                 // check if cancelled
@@ -346,10 +350,14 @@ public class UploaderService extends Service {
 
                 Map<UploadTarget, List<Measurement>> groupedMeasurements = groupByUploaded(measurements);
                 if (continueOcidUpload) {
-                    ocidUploadResult = uploadToOcid(groupedMeasurements.get(UploadTarget.Ocid));
+                    List<Measurement> ocidMeasurements = groupedMeasurements.get(UploadTarget.Ocid);
+                    ocidUploadResult = uploadToOcid(ocidMeasurements);
+                    numberToUploadOcid -= ocidMeasurements.size();
                 }
                 if (continueMlsUpload) {
-                    mlsUploadResult = uploadToMls(groupedMeasurements.get(UploadTarget.Mls));
+                    List<Measurement> mlsMeasurements = groupedMeasurements.get(UploadTarget.Mls);
+                    mlsUploadResult = uploadToMls(mlsMeasurements);
+                    numberToUploadMls -= mlsMeasurements.size();
                 }
 
                 if (ocidUploadResult == UploadResult.PartiallySucceeded)
@@ -357,8 +365,8 @@ public class UploaderService extends Service {
                 if (mlsUploadResult == UploadResult.PartiallySucceeded)
                     mlsSucceededParts++;
 
-                continueOcidUpload &= ocidUploadResult == UploadResult.PartiallySucceeded;
-                continueMlsUpload &= mlsUploadResult == UploadResult.PartiallySucceeded;
+                continueOcidUpload &= ocidUploadResult == UploadResult.PartiallySucceeded || numberToUploadOcid > 0;
+                continueMlsUpload &= mlsUploadResult == UploadResult.PartiallySucceeded || numberToUploadMls > 0;
 
                 boolean ocidSuccessful = (ocidUploadResult == UploadResult.PartiallySucceeded);
                 boolean mlsSuccessful = (mlsUploadResult == UploadResult.PartiallySucceeded);
