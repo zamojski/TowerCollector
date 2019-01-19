@@ -37,11 +37,15 @@ public abstract class ClientBase {
         ACRA.getErrorReporter().handleSilentException(ex);
     }
 
+    protected boolean isCipherUnsupported(Throwable throwable) {
+        return (throwable instanceof SSLProtocolException || throwable instanceof SSLHandshakeException);
+    }
+
     private boolean isSuppressed(Throwable throwable) {
         return (throwable instanceof UnknownHostException
                 || throwable instanceof SocketTimeoutException
                 || throwable instanceof SocketException
-                || (throwable instanceof SSLException && !(throwable instanceof SSLProtocolException) && !(throwable instanceof SSLHandshakeException))
+                || throwable instanceof SSLException
                 || throwable instanceof EOFException);
     }
 }

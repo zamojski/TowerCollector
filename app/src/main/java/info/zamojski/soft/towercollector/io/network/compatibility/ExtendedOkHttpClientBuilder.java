@@ -32,6 +32,10 @@ public class ExtendedOkHttpClientBuilder {
         return enableLegacyCiphers(newBuilder());
     }
 
+    public OkHttpClient.Builder newClearTextBuilder() {
+        return enableClearTextOnly(new OkHttpClient().newBuilder());
+    }
+
     /**
      * If on [Build.VERSION_CODES.LOLLIPOP] or lower, sets [OkHttpClient.Builder.sslSocketFactory] to an instance of
      * [Tls12SocketFactory] that wraps the default [SSLContext.getSocketFactory] for [TlsVersion.TLS_1_2].
@@ -75,6 +79,10 @@ public class ExtendedOkHttpClientBuilder {
             clientBuilder.connectionSpecs(Collections.singletonList(getLegacyCiphersSpec()));
         }
         return clientBuilder;
+    }
+
+    private OkHttpClient.Builder enableClearTextOnly(OkHttpClient.Builder clientBuilder) {
+        return clientBuilder.connectionSpecs(Collections.singletonList(ConnectionSpec.CLEARTEXT));
     }
 
     private ConnectionSpec getModernTls12Spec() {
