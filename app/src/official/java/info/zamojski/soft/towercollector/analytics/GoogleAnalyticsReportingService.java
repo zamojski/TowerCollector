@@ -4,6 +4,7 @@
 
 package info.zamojski.soft.towercollector.analytics;
 
+import info.zamojski.soft.towercollector.BuildConfig;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.analytics.internal.Action;
 import info.zamojski.soft.towercollector.analytics.internal.Category;
@@ -34,7 +35,7 @@ public class GoogleAnalyticsReportingService implements IAnalyticsReportingServi
         this.analytics.setAppOptOut(!trackingEnabled);
         this.analytics.setDryRun(dryRun);
 
-        this.tracker = analytics.newTracker(R.xml.global_tracker);
+        this.tracker = analytics.newTracker(BuildConfig.ANALYTICS_TRACKING_ID);
     }
 
     @Override
