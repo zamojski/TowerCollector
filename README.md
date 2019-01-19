@@ -1,7 +1,7 @@
 # Tower Collector
 Join the OpenCellID community and collect cell towers' locations from your area!
 
-The app is designed to help map the extent of mobile phone network coverage of GSM/UMTS/LTE/CDMA cell towers using GPS locations. This is accomplished by reading GPS coordinates and identifiers of mobile network transmitters in regular intervals. Collected information is saved on your phone's storage and can be uploaded directly to the [OpenCellID](http://opencellid.org) database. It is also possible to collect measurements for private purposes and export them to CSV or GPX files.
+Tower Collector gives you opportunity to contribute to [OpenCellID.org](https://opencellid.org/) and [Mozilla Location Services](https://location.services.mozilla.com/) projects by uploading GPS locations of GSM/UMTS/LTE/CDMA cell towers from your area. The measurements help map the extent of mobile phone network coverage. You can use the app to collect data for personal purposes and export them to CSV or GPX files.
 
 # How to Get
 
