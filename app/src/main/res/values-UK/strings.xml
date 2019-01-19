@@ -3,8 +3,12 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
-    <string name="locale">😞</string>
-    <string name="unit_length_metric">😉</string>
+    <string name="locale">uk</string>
+    <string name="shortcut_collecting_toggle_short">Збирати</string>
+    <string name="shortcut_collecting_toggle_long">Переключити збір</string>
+    <string name="shortcut_upload_toggle_short">закачати</string>
+    <string name="shortcut_upload_toggle_long">Переключити завантаження</string>
+    <string name="unit_length_metric">м</string>
     <string name="unit_length_imperial">фут</string>
     <string name="unit_speed_metric">км/год</string>
     <string name="unit_speed_imperial">миль/год</string>
@@ -14,16 +18,17 @@
     <string name="app_title_help">Допомога</string>
     <string name="app_title_about">Про</string>
     <string name="dialog_want_enable_gps">Ви хочете відкрити налаштування місцезнаходження, щоб увімкнути GPS?</string>
+    <string name="dialog_could_not_open_android_settings">Не вдалося відкрити налаштування Android. Відкрийте їх вручну для зміни.</string>
     <string name="dialog_select_email_app">Виберіть програму електронної пошти</string>
     <string name="dialog_what_is_new">Повідомлення розробника!</string>
     <string name="dialog_yes">Так</string>
     <string name="dialog_no">Ні</string>
     <string name="dialog_ok">Добре</string>
     <string name="dialog_cancel">Скасувати</string>
-    <string name="dialog_register">"Реєстрація "</string>
+    <string name="dialog_register">Реєстрація</string>
     <string name="dialog_enter_api_key">Ввести</string>
     <string name="dialog_upload">Завантажити</string>
-    <string name="dialog_keep">Тримайся?😞</string>
+    <string name="dialog_keep">Тримайся</string>
     <string name="dialog_delete">Видалити</string>
     <string name="dialog_send">Відправити</string>
     <string name="dialog_send_comment">Надіслати коментар</string>
@@ -39,7 +44,7 @@
     <string name="main_toast_background_task_already_running_uploader">Служба завантажувача запущена.</string>
     <string name="main_toast_background_task_already_running_export">Виконується експорт.</string>
     <string name="main_toast_background_task_already_running_unknown">Фоновий процес запущено.</string>
-    <string name="main_toast_background_task_already_running_common">{<xliff:g id="task_name">%s</xliff:g>}    Будь ласка, зупиніть це, перш ніж розпочати нове завдання.</string>
+    <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> Будь ласка, зупиніть це, перш ніж розпочати нове завдання.</string>
     <string name="enabled">включений</string>
     <string name="disabled">вимкнено</string>
     <string name="unknown_error">Сталася невідома помилка!</string>
@@ -53,7 +58,7 @@
     <string name="main_stats_local_title">Починаючи з <xliff:g id="date_time">%s</xliff:g></string>
     <string name="main_stats_locations_label">Вимірювання</string>
     <string name="main_stats_cells_label">Соти (виявлені):</string>
-    <string name="main_stats_global_title">Всого {<xliff:g id="date_time">%s</xliff:g>}</string>
+    <string name="main_stats_global_title">Всого <xliff:g id="date_time">%s</xliff:g></string>
     <string name="main_stats_global_locations_label">Вимірювання:</string>
     <string name="main_stats_global_cells_label">Виявлені соти:</string>
     <string name="main_stats_to_upload_title">Чекаю на завантаження</string>
@@ -71,14 +76,14 @@
     <string name="main_last_longitude_label">Довгота:</string>
     <string name="main_last_gps_accuracy_label">Точність:</string>
     <string name="main_last_date_time_label">Зекономлений час:</string>
-    <string name="main_menu_start_button">"Починаймо збирати інформацію "</string>
-    <string name="main_menu_stop_button">"Зупиняємо збір інформації "</string>
-    <string name="main_menu_upload_button">"Вивантаження "</string>
+    <string name="main_menu_start_button">Починаймо збирати інформацію</string>
+    <string name="main_menu_stop_button">Зупиняємо збір інформації</string>
+    <string name="main_menu_upload_button">Вивантаження</string>
     <string name="main_menu_more_button">Більше</string>
-    <string name="main_menu_export_button">"Експорт "</string>
+    <string name="main_menu_export_button">Експорт</string>
     <string name="main_menu_clear_button">Очистити все</string>
-    <string name="main_menu_help_button">"Допомога "</string>
-    <string name="main_menu_preferences_button">"Вподобання "</string>
+    <string name="main_menu_help_button">Допомога</string>
+    <string name="main_menu_preferences_button">Вподобання</string>
     <string name="main_menu_network_type_button">Тип мережі</string>
     <string name="collector_notification_channel_name">Збирач</string>
     <string name="collector_notification_title">Збір</string>
@@ -94,8 +99,8 @@
     <string name="uploader_already_running">Вивантаження вже працює.</string>
     <string name="uploader_disabled">Завантаження вимкнено</string>
     <string name="uploader_disabled_description">Завантаження вимкнено для цього проекту.</string>
-    <string name="uploader_aborted">"Вивантаження зупинено "</string>
-    <string name="uploader_aborted_description">"Нічого не вивантажено "</string>
+    <string name="uploader_aborted">Вивантаження зупинено</string>
+    <string name="uploader_aborted_description">Нічого не вивантажено</string>
     <string name="uploader_success">Вивантаження успішне</string>
     <string name="uploader_success_description">Вивантажено успішно. Дякуємо за ваш внесок!</string>
     <string name="uploader_partially_succeeded">"Частково вивантажено "</string>
@@ -106,7 +111,7 @@
     <string name="uploader_invalid_api_key_description">Не знайдено користувача за допомогою ключа API введеного в налаштуваннях. Будь ласка, перевірте, чи він введений правильно.</string>
     <string name="uploader_invalid_input_data">Невірні дані</string>
     <string name="uploader_invalid_input_data_description">Сервер відмовився від даних, переданих додатком. Перевірте наявність останньої версії додатка. Якщо ви постійно стикаєтесь з цією проблемою, дайте мені знати.</string>
-    <string name="uploader_no_data">"Нічого вивантажувати "</string>
+    <string name="uploader_no_data">Нічого вивантажувати</string>
     <string name="uploader_no_data_description">Там немає ніяких даних, щоб вивантажити. Будь ласка, зберіть кілька вимірів перед вивантаженням.</string>
     <string name="uploader_delete_failed">Помилка при видаленні вимірювань</string>
     <string name="uploader_delete_failed_description">Під час видалення вимірювань з вашого пристрою сталася помилка. Будь ласка, перезапустіть пристрій і знову перевірте. Якщо ви знову стикаєтеся з цією проблемою, дайте мені знати.</string>
@@ -148,6 +153,8 @@
     <string name="main_help_gps_status_description">Показує поточний стан GPS. Якщо у вас виникли проблеми з отриманням вимірювань, знайдіть місце з найкращим рівнем сигналу та точністю.</string>
     <string name="main_help_invalid_system_time_title">Системний годинник барахлить</string>
     <string name="main_help_invalid_system_time_description">Ваша поточна системна дата та/або час недійсні у порівнянні з часом GPS. Вимірювання буде збережено з правильним часом, але представлена статистика може бути неточною. Встановіть дату та час на своєму пристрої.</string>
+    <string name="main_help_battery_optimizations_title">Увімкнено оптимізацію акумуляторів</string>
+    <string name="main_help_battery_optimizations_description">Для цього застосунку увімкнено оптимізацію акумуляторів, які можуть спричинити неточні та ненадійні вимірювання. Будь ласка, відключіть оптимізацію акумуляторів у настройках Android, вибравши \"всі програми\", то Tower Collector: \"не оптимізувати\".</string>
     <string name="main_help_today_locations_title">Вимірювання сьогодні</string>
     <string name="main_help_today_locations_description">Кількість вимірювань, зібраних додатком сьогодні.</string>
     <string name="main_help_today_cells_title">Соти сьогодні</string>
@@ -168,7 +175,7 @@
     <string name="main_help_last_long_cell_id_description">Довгий унікальний ідентифікатор вежі соти, до якого телефон був підключений.\nДля мереж UMTS LCID, також званий UDRAN CID, являє собою об\'єднання RNC (ідентифікатор контролера радіостанції) та Cell ID (унікальний ідентифікатор Cell Tower).\nДля мереж LTE LCID, також називається E-UTRAN CID, являє собою об\'єднання eNodeB (ідентифікатор контролера радіостанції) та Cell ID (унікальний ідентифікатор Cell Tower).</string>
     <string name="main_help_last_cell_id_rnc_title">Мобільна вежа ID / RNC</string>
     <string name="main_help_last_cell_id_rnc_description">Унікальний ідентифікатор башти клітинки та RNC (ідентифікатор контролера радіостанції), до якого телефон був підключений. Цей ідентифікатор визначається тільки для мереж UMTS та LTE.</string>
-    <string name="main_help_last_cell_id_title">"ІД мобільної мережі "</string>
+    <string name="main_help_last_cell_id_title">ІД мобільної мережі</string>
     <string name="main_help_last_cell_id_description">Унікальний ідентифікатор башти соти, до якого підключено телефон.</string>
     <string name="main_help_last_lac_title">Місцевий код міста</string>
     <string name="main_help_last_lac_description">Унікальний ідентифікатор призначений для групи стільникових стільникових телефонів, до яких був підключений телефон.</string>
@@ -194,6 +201,7 @@
     <string name="status_low_gps_accuracy">низька точність <xliff:g id="accuracy_value">%1$.0f</xliff:g><xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">"Позиція невизначена "</string>
     <string name="invalid_system_time">Дата / час системи недійсний</string>
+    <string name="battery_optimizations">Увімкнено оптимізацію акумуляторів</string>
     <string name="web_browser_missing">Будь ласка, встановіть веб-браузер, щоб відкрити сторінку</string>
     <string name="uploader_all_projects_disabled">Завантаження до всіх проектів відключено</string>
     <string name="upload_configurator_dialog_title">Налаштувати завантаження цілі</string>

@@ -12,7 +12,7 @@
     <string name="info_best_practices_title">Полезные советы</string>
     <string name="info_external_integration_title">Интеграция</string>
     <string name="info_privacy_statement_title">Конфиденциальность</string>
-    <string name="info_open_source_licenses_title">Лицензии opensource</string>
+    <string name="info_open_source_licenses_title">Лицензии Open Source</string>
     <string name="info_about_neighboring_cells_title">Соседние соты</string>
     <string name="info_about_collector_api_version_title">Версия API сборщика</string>
     <string name="info_about_main_keep_screen_on_title">Не выключать экран во время работы</string>

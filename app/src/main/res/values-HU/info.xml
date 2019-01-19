@@ -5,17 +5,17 @@
 <resources>
     <string name="info_about_api_key_title">API kulcs</string>
     <string name="info_about_opencellid_project_title">OpenCellID projekt</string>
-    <string name="info_about_mls_project_title">A Mozilla Location Services projekt</string>
+    <string name="info_about_mls_project_title">Mozilla Location Services projekt</string>
     <string name="info_usage_statistics_title">Használati statisztika</string>
-    <string name="info_about_application_title">Az alkalmazásról</string>
+    <string name="info_about_application_title">Névjegy</string>
     <string name="info_introduction_title">Bevezető</string>
-    <string name="info_best_practices_title">Legjobban bevált gyakorlatok</string>
+    <string name="info_best_practices_title">Legjobb gyakorlatok</string>
     <string name="info_external_integration_title">Külső integráció</string>
     <string name="info_privacy_statement_title">Adatvédelmi nyilatkozat</string>
-    <string name="info_open_source_licenses_title">Nyílt forráskódú licencek.</string>
+    <string name="info_open_source_licenses_title">Nyílt forráskódú licencek</string>
     <string name="info_about_neighboring_cells_title">Szomszédos cellák</string>
     <string name="info_about_collector_api_version_title">Adatgyűjtő API verziója</string>
     <string name="info_about_main_keep_screen_on_title">Képernyő ébren tartása, amikor látható</string>
-    <string name="info_about_collector_keep_screen_on_title">Képernyő ébren tartása gyűjtés közben</string>
+    <string name="info_about_collector_keep_screen_on_title">Képernyő ébren tartása begyűjtés közben</string>
     <string name="info_about_notify_measurements_collected_title">Értesítés a begyűjtött mérésekről</string>
 </resources>

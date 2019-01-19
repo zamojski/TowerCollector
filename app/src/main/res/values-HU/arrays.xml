@@ -10,11 +10,11 @@
         <item>CSV</item>
         <item>GPX</item>
         <item>CSV az OpenCellID.org-hoz</item>
-        <item>JSON az Mozilla Location Services-hez</item>
+        <item>JSON az Mozilla Location Serviceshez</item>
     </string-array>
     <string-array name="preferences_collector_low_battery_action_entries_labels">
-        <item>Ne csinálj semmit</item>
-        <item>Állítsa le a gyűjtést</item>
+        <item>Ne tegyen semmit</item>
+        <item>Állítsa le az adatgyűjtést</item>
     </string-array>
     <string-array name="preferences_app_theme_mode_entries_labels">
         <item>Sötét</item>

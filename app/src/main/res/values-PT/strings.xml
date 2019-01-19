@@ -4,6 +4,10 @@
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
     <string name="locale">pt</string>
+    <string name="shortcut_collecting_toggle_short">Coletar</string>
+    <string name="shortcut_collecting_toggle_long">Alternância de coleta</string>
+    <string name="shortcut_upload_toggle_short">Carregar</string>
+    <string name="shortcut_upload_toggle_long">Alternar carregar</string>
     <string name="unit_length_metric">m</string>
     <string name="unit_length_imperial">pés</string>
     <string name="unit_speed_metric">km/h</string>
@@ -14,6 +18,7 @@
     <string name="app_title_help">Ajuda</string>
     <string name="app_title_about">Sobre</string>
     <string name="dialog_want_enable_gps">Você deseja abrir as configurações de localização para habilitar o GPS ?</string>
+    <string name="dialog_could_not_open_android_settings">Não foi possível abrir as configurações do Android. Abra-os manualmente para mudar.</string>
     <string name="dialog_select_email_app">Selecione a aplicação de email</string>
     <string name="dialog_what_is_new">Mensagem do desenvolvedor!</string>
     <string name="dialog_yes">Sim</string>
@@ -148,6 +153,8 @@
     <string name="main_help_gps_status_description">Exibe o status atual do GPS. Se você estiver com problemas para conseguir fazer as medições, favor encontrar uma posição com melhor recepção e precisão de sinal.</string>
     <string name="main_help_invalid_system_time_title">Horário do sistema inválido</string>
     <string name="main_help_invalid_system_time_description">Sua data e/ou hora do sistema está inválido comparando com o horário do GPS. As medições serão salvas com o horário correto mas as estatísticas exibidas podem estar incorretas. Favor configurar a data e hora no seu dispositivo.</string>
+    <string name="main_help_battery_optimizations_title">Otimizações de bateria habilitadas</string>
+    <string name="main_help_battery_optimizations_description">As otimizações de bateria estão habilitadas para este aplicativo que pode resultar em medições incorretas e não confiáveis que estão sendo coletadas. Desative as otimizações de bateria nas configurações do Android selecionando \'Todos os apps\' e, em seguida, Tower Collector: \'Não otimizar\'.</string>
     <string name="main_help_today_locations_title">Medições hoje</string>
     <string name="main_help_today_locations_description">Número de medições coletadas pela aplicação hoje.</string>
     <string name="main_help_today_cells_title">Células hoje</string>
@@ -194,6 +201,7 @@
     <string name="status_low_gps_accuracy">baixa precisão <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">sem posicionamento</string>
     <string name="invalid_system_time">Data/hora do sistema está inválido</string>
+    <string name="battery_optimizations">Otimizações de bateria habilitadas</string>
     <string name="web_browser_missing">Favor instalar navegador web para abrir a página</string>
     <string name="uploader_all_projects_disabled">Upload para todos os projetos está desabilitado</string>
     <string name="upload_configurator_dialog_title">Configurar destinos de upload</string>

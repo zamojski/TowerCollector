@@ -2,10 +2,10 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 
-<p>A Tower Collector a <i>szándékok</i> közvetítésével értesítheti a rendszeren telepített egyéb alkalmazásokat. Ha többet szeretne tudni az ilyen értesítések hallgatásáról és fogyasztásáról, ellenőrizze az alkalmazás súgóját.</p>
+<p>A Tower Collector <i>szándékok</i> segítségével értesítheti a rendszeren telepített egyéb alkalmazásokat. Ha többet szeretnél tudni az ilyen értesítések figyeléséről és felhasználásáról, nézd meg az alkalmazás súgóját.</p>
 <h3>Mérés begyűjtési esemény</h3>
-<p>Gyűjtő tud küld egy szándék minden alkalommal új készlet-ból mérés van összegyűjtött, ha engedélyezve van a Beállítások menüben. A tartalom az értesítés lesz JSON struktúra közös dolgok, mint az idő és a GPS kivont. A mezőnevek és-értékek ugyanúgy vannak megfeleltetve, mint az exportált CSV-fájlban.<br />
-A cellák által használt mezők listája a típustól függ (net_type). Nem támogatott vagy hiányzó értékek lesznek beállítva <code>null</code>.</p>
+<p>Az adatgyűjtő képes egy szándékot küldeni minden alkalommal, ha egy új mérés került begyűjtésre, ha ez engedélyezve van a Beállításokban. Az értesítés tartalma egy JSON struktúra lesz a szokásos dolgokkal, mint az idő és a kinyert GPS pozíció. A mezőnevek és értékek ugyanúgy vannak megfeleltetve, mint az exportált CSV fájlban.<br />
+A cellák által használt mezők listája a típustól függ (net_type). A nem támogatott vagy hiányzó értékek <code>null</code> értéket kapnak.</p>
 <ul>
     <li>GSM – mcc, mnc, lac, cell_id, asu, dbm</li>
     <li>UMTS – mcc, mnc, lac, cell_id, psc, asu, dbm</li>

@@ -46,7 +46,7 @@
     <string name="preferences_mls_enabled_on_summary">Измерения будут выгружаться в Mozilla Location Services.</string>
     <string name="preferences_mls_enabled_off_summary">Измерения не будут выгружаться в Mozilla Location Services.</string>
     <string name="preferences_about_mls_project_title">О проекте MLS</string>
-    <string name="preferences_about_mls_project_summary">Информация о Mozilla Location Services.</string>
+    <string name="preferences_about_mls_project_summary">Информация о проекте Mozilla Location Services.</string>
     <string name="preferences_imperial_units_title">Английская система мер</string>
     <string name="preferences_imperial_units_on_summary">Значения будут представлены в английской системе мер.</string>
     <string name="preferences_imperial_units_off_summary">Значения будут представлены в метрической системе мер.</string>
@@ -86,8 +86,8 @@
     <string name="preferences_translate_link_summary">Открыть сайт, с помощью которого вы сможете помочь перевести интерфейс программы.</string>
     <string name="preferences_privacy_statement_link_title">Конфиденциальность</string>
     <string name="preferences_privacy_statement_link_summary">Показывает условия конфиденциальности.</string>
-    <string name="preferences_open_source_licenses_link_title">Лицензии opensource</string>
-    <string name="preferences_open_source_licenses_link_summary">Информация об используемых лицензия opensource-компонентов.</string>
+    <string name="preferences_open_source_licenses_link_title">Лицензии Open Source</string>
+    <string name="preferences_open_source_licenses_link_summary">Информация об используемых лицензия Open Source компонентов.</string>
     <string name="preferences_external_integration_link_title">Интеграция</string>
     <string name="preferences_external_integration_link_summary">Отображает информацию об интеграции с внешними приложениями такими как Tasker, Automate или LIama.</string>
     <string name="preferences_collector_api_version_title">Версия API сборщика</string>

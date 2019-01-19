@@ -2,17 +2,20 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 
-<p>A Tower Collector olyan feladatokat futtat, amelyeket olyan alkalmazások futtatnak, amelyek <i>szándékokat</i> küldenek, mint a Tasker, Automate vagy a Llama. Az alábbiakban meghatározott összes tevékenységhez <i>Broadcast</i> típus szükséges. Ellenőrizze az alkalmazás súgóját az integráció részleteivel kapcsolatban.<br />
-<i>Mint az alkalmazáson belül, akkor csak egy feladatot futtathatsz!</i></p>
-<h3>Gyűjtés elindítása</h3>
-<p>A gyűjtés elindítása a beállításokban megadott opciókkal. Művelet:</p>
+<p>A Tower Collector olyan feladatokat ajánl ki, amelyeket más alkalmazások <i>szándékok</i> küldésével futtathatnak, ilyen például a Tasker, az Automate vagy a Llama. Az alábbiakban meghatározott összes tevékenységhez a <i>Broadcast</i> típus használata szükséges. Ellenőrizd az alkalmazás súgóját az integráció részleteivel kapcsolatban.<br />
+<i>Mint az alkalmazáson belül is, egyszerre csak egy feladatot futtathatsz!</i></p>
+<h3>Adatgyűjtés elindítása</h3>
+<p>Az adatgyűjtő a beállítások szerint lesz elindítva. Művelet:</p>
 <code>info.zamojski.soft.towercollector.COLLECTOR_START</code>
-<h3>Gyűjtés megállítása</h3>
-<p>A gyűjtés azonnali leállítása. Művelet:</p>
+<h3>Adatgyűjtés leállítása</h3>
+<p>Az adatgyűjtés azonnali le lesz állítva. Művelet:</p>
 <code>info.zamojski.soft.towercollector.COLLECTOR_STOP</code>
 <h3>Feltöltés elindítása</h3>
-<p>A feltöltés az alkalmazás beállításai tól kezdődik. Akció:</p>
+<p>A feltöltés a konfigurációs beállítások használatával lesz elindítva. Művelet:</p>
 <code>info.zamojski.soft.towercollector.UPLOADER_START</code>
+<h3>Feltöltés leállítása</h3>
+<p>A feltöltés megszakításra kerül. Művelet:</p>
+<code>info.zamojski.soft.towercollector.UPLOADER_STOP</code>
 <h3>Android 8+</h3>
-<p>Az Android Oreo és újabb verziók esetében meg kell adnia az összetevők csomagjának nevét is:</p>
+<p>Az Android Oreo és újabb verziók esetén meg kell adnod az összetevő csomagnevét is:</p>
 <code>info.zamojski.soft.towercollector</code>

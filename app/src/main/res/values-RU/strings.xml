@@ -4,6 +4,10 @@
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
     <string name="locale">ru</string>
+    <string name="shortcut_collecting_toggle_short">Сборщик</string>
+    <string name="shortcut_collecting_toggle_long">Запустить сбор</string>
+    <string name="shortcut_upload_toggle_short">Выгрузка</string>
+    <string name="shortcut_upload_toggle_long">Запустить выгрузку</string>
     <string name="unit_length_metric">м</string>
     <string name="unit_length_imperial">фут</string>
     <string name="unit_speed_metric">км/ч</string>
@@ -14,6 +18,7 @@
     <string name="app_title_help">Помощь</string>
     <string name="app_title_about">О программе</string>
     <string name="dialog_want_enable_gps">Вы хотите открыть настройки местоположения, чтобы включить GPS?</string>
+    <string name="dialog_could_not_open_android_settings">Не могу открыть настройки Android. Откройте их вручную, чтобы изменить.</string>
     <string name="dialog_select_email_app">Выберите приложение для электронной почты</string>
     <string name="dialog_what_is_new">Сообщение от разработчика!</string>
     <string name="dialog_yes">Да</string>
@@ -43,7 +48,7 @@
     <string name="enabled">включено</string>
     <string name="disabled">отключено</string>
     <string name="unknown_error">Произошла неизвестная ошибка!</string>
-    <string name="main_tab_last_title">Последнее измерение</string>
+    <string name="main_tab_last_title">Измерение</string>
     <string name="main_tab_stats_title">Статистика</string>
     <string name="main_gps_accuracy_not_available">Недоступно</string>
     <string name="main_signal_strength_not_available">Недоступно</string>
@@ -148,6 +153,8 @@
     <string name="main_help_gps_status_description">Показывает текущий статус GPS. Если у вас какие-то проблемы с получением измерений, попробуйте найти местоположение с более сильным сигналом для получения более точных данных.</string>
     <string name="main_help_invalid_system_time_title">Неверное время в системе</string>
     <string name="main_help_invalid_system_time_description">Ваши текущие дата и/или время отличается от времени GPS. Измерения будут сохранены с правильным временем, но в статистике могут быть ошибки. Пожалуйста, установите правильное время на вашем устройстве.</string>
+    <string name="main_help_battery_optimizations_title">Включена оптимизация батареи</string>
+    <string name="main_help_battery_optimizations_description">Оптимизация батареи включены для этого приложения, поэтому это может сказаться на точности и достоверности собираемых измерений. Пожалуйста, отключите оптимизацию батареи в настройках Android выбрав \"Все приложения\", затем Tower Collector: \"Не оптимизировать\".</string>
     <string name="main_help_today_locations_title">Измерений сегодня</string>
     <string name="main_help_today_locations_description">Число измерений, собранных приложением сегодня.</string>
     <string name="main_help_today_cells_title">GSM-соты сегодня</string>
@@ -194,6 +201,7 @@
     <string name="status_low_gps_accuracy">низкая точность <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">местоположение не найдено</string>
     <string name="invalid_system_time">Неверная системная дата/время</string>
+    <string name="battery_optimizations">Включена оптимизация батареи</string>
     <string name="web_browser_missing">Пожалуйста, установите браузер, чтобы открыть страницу</string>
     <string name="uploader_all_projects_disabled">Выгрузка отключена для всех проектов</string>
     <string name="upload_configurator_dialog_title">Настройте место выгрузки</string>

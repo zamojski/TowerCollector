@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- This Source Code Form is subject to the terms of the Mozilla Public
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
     <string name="locale">de</string>
+    <string name="shortcut_collecting_toggle_short">Sammeln</string>
+    <string name="shortcut_collecting_toggle_long">Sammeln ein-/ausschalten</string>
+    <string name="shortcut_upload_toggle_short">Hochladen</string>
+    <string name="shortcut_upload_toggle_long">Hochladen ein/aus</string>
     <string name="unit_length_metric">m</string>
     <string name="unit_length_imperial">ft</string>
     <string name="unit_speed_metric">km/h</string>
@@ -14,6 +18,7 @@
     <string name="app_title_help">Hilfe</string>
     <string name="app_title_about">Über</string>
     <string name="dialog_want_enable_gps">Möchten Sie die Standort-Einstellungen öffnen um GPS zu aktivieren?</string>
+    <string name="dialog_could_not_open_android_settings">Konnte Android-Einstellungen nicht öffnen. Bitte öffnen Sie diese manuell um sie zu ändern.</string>
     <string name="dialog_select_email_app">E-Mail Anwendung auswählen</string>
     <string name="dialog_what_is_new">Nachricht vom Entwickler!</string>
     <string name="dialog_yes">Ja</string>
@@ -148,6 +153,8 @@
     <string name="main_help_gps_status_description">Zeigt den Status des GPS-Empfangs. Wenn Sie Probleme haben Messungen zu bekommen, suchen Sie bitte einen Ort mit besserem Signalempfang und höherer Genauigkeit.</string>
     <string name="main_help_invalid_system_time_title">Ungültige Systemzeit</string>
     <string name="main_help_invalid_system_time_description">Ihre Systemzeit weicht stark von der GPS-Zeit ab. Messungen werden mit der korrekten Zeit gespeichert, allerdings können die angezeigten Statistiken ungenau sein. Bitte korrigieren Sie Uhrzeit und Datum in Ihrem Gerät.</string>
+    <string name="main_help_battery_optimizations_title">Stromsparmodus aktiviert</string>
+    <string name="main_help_battery_optimizations_description">Akku-Leistungsoptimierung ist für diese App aktiviert, was zu ungenauen und unzuverlässigen Messungen führen kann. Bitte deaktivieren Sie Optimierung in den Android-Einstellungen unter \"Akku\" / \"Akku-Leistungsoptimierung\" / \"Tower Collector\".</string>
     <string name="main_help_today_locations_title">Messungen heute</string>
     <string name="main_help_today_locations_description">Anzahl Messungen die heute gesammelt wurden.</string>
     <string name="main_help_today_cells_title">Zellen heute</string>
@@ -194,6 +201,7 @@
     <string name="status_low_gps_accuracy">geringe Genauigkeit: <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">keine GPS-Position</string>
     <string name="invalid_system_time">Systemzeit ist ungültig</string>
+    <string name="battery_optimizations">Akku-Leistungsoptimierung aktiviert</string>
     <string name="web_browser_missing">Bitte installieren Sie einen Web Browser um die Seite zu öffnen</string>
     <string name="uploader_all_projects_disabled">Upload zu allen Projekten deaktiviert</string>
     <string name="upload_configurator_dialog_title">Upload-Ziel konfigurieren</string>
