@@ -1,11 +1,22 @@
 {
   "Entries": [
     {
+      "VersionCode": 2000235,
+      "Title": "Changes in version 2.0.2",
+      "Description": "Tower Collector now supports Mozilla Location Services project! Share your feedback via <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> and  <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> communities, email or  <a href=\"https://github.com/zamojski/TowerCollector/issues\">GitHub</a> issues.",
+      "Messages": [
+        "Fixed 'no data to upload' reported when one of the projects was failing and re-upload enabled.",
+        "Improved upload to OpenCellID on faulty devices.",
+        "Added shortcuts to start/stop collector and upload directly from launcher on Android 7.1 and newer.",
+        "Added warning if battery optimizations are enabled which may influence reliability of collected measurements."
+      ]
+    },
+    {
       "VersionCode": 2000134,
       "Title": "Changes in version 2.0.1",
       "Description": "Tower Collector now supports Mozilla Location Services project! Share your feedback via <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> and  <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> communities, email or  <a href=\"https://github.com/zamojski/TowerCollector/issues\">GitHub</a> issues.",
       "Messages": [
-        "Fix secured upload error on Android Lollipop 5.0 and older.",
+        "Fix secure upload error on Android Lollipop 5.0 and older.",
         "Improve network timeout error handling.",
         "New adaptive application icon."
       ]
@@ -40,19 +51,6 @@
       "Title": "Changes in version 1.22.1",
       "Messages": [
         "Improved error handling."
-      ]
-    },
-    {
-      "VersionCode": 1220027,
-      "Title": "Changes in version 1.22.0",
-      "Description": "Do you want to see the app in your language? Help me with <a href=\"http://i18n.zamojski.info/\">translations</a>! some languages are partially done but require volunteers - apply on the website or send me an email to start.",
-      "Messages": [
-        "Added option to stop collector when battery is getting low.",
-        "Added collecting measurements when at least one of main cell changes even without move.",
-        "Removed option to hide Collector notification on Oreo and newer because Android automatically increases channel importance to DEFAULT level for foreground services. <a href=\"https://zamojski.info/FAQ,Tower-Collector.html#OreoNotificationSound\">See more</a>.",
-        "Fixed exception when logging to file.",
-        "Improved compatibility with Android P.",
-        "Updated translations and new language - Ukrainian."
       ]
     }
   ]
