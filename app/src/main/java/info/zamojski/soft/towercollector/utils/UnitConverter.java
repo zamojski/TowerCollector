@@ -6,7 +6,7 @@ package info.zamojski.soft.towercollector.utils;
 
 import android.telephony.NeighboringCellInfo;
 
-import info.zamojski.soft.towercollector.model.Measurement;
+import info.zamojski.soft.towercollector.model.Cell;
 
 public class UnitConverter {
     private static final float METERS_TO_FEET_MULTIPLIER = 3.280839895013123f;
@@ -26,15 +26,15 @@ public class UnitConverter {
     }
 
     public static int convertGsmAsuToDbm(int asu) {
-        if (asu == Measurement.UNKNOWN_SIGNAL || asu == NeighboringCellInfo.UNKNOWN_RSSI)
-            return Measurement.UNKNOWN_SIGNAL;
+        if (asu == Cell.UNKNOWN_SIGNAL || asu == NeighboringCellInfo.UNKNOWN_RSSI)
+            return Cell.UNKNOWN_SIGNAL;
         return 2 * asu - 113;
     }
 
     // ranges taken from 5.0.0 android/telephony/CellSignalStrength.java#CellSignalStrength.getAsuLevel()
     public static int convertGsmDbmToAsu(int dbm) {
-        if (dbm == Measurement.UNKNOWN_SIGNAL || dbm == NeighboringCellInfo.UNKNOWN_RSSI)
-            return Measurement.UNKNOWN_SIGNAL;
+        if (dbm == Cell.UNKNOWN_SIGNAL || dbm == NeighboringCellInfo.UNKNOWN_RSSI)
+            return Cell.UNKNOWN_SIGNAL;
         if (dbm <= -113)
             return 0;
         int asu = (dbm + 113) / 2;
@@ -44,8 +44,8 @@ public class UnitConverter {
     }
 
     public static int convertLteAsuToDbm(int asu) {
-        if (asu == Measurement.UNKNOWN_SIGNAL || asu == NeighboringCellInfo.UNKNOWN_RSSI)
-            return Measurement.UNKNOWN_SIGNAL;
+        if (asu == Cell.UNKNOWN_SIGNAL || asu == NeighboringCellInfo.UNKNOWN_RSSI)
+            return Cell.UNKNOWN_SIGNAL;
         if (asu <= 0)
             return -140;
         if (asu >= 97)
@@ -55,8 +55,8 @@ public class UnitConverter {
 
     // converted from 5.0.0 android/telephony/CellSignalStrengthLte.java#CellSignalStrengthLte.getAsuLevel()
     public static int convertLteDbmToAsu(int dbm) {
-        if (dbm == Measurement.UNKNOWN_SIGNAL || dbm == NeighboringCellInfo.UNKNOWN_RSSI)
-            return Measurement.UNKNOWN_SIGNAL;
+        if (dbm == Cell.UNKNOWN_SIGNAL || dbm == NeighboringCellInfo.UNKNOWN_RSSI)
+            return Cell.UNKNOWN_SIGNAL;
         if (dbm <= -140)
             return 0;
         if (dbm >= -43)
@@ -65,8 +65,8 @@ public class UnitConverter {
     }
 
     public static int convertCdmaAsuToDbm(int asu) {
-        if (asu == Measurement.UNKNOWN_SIGNAL || asu == NeighboringCellInfo.UNKNOWN_RSSI)
-            return Measurement.UNKNOWN_SIGNAL;
+        if (asu == Cell.UNKNOWN_SIGNAL || asu == NeighboringCellInfo.UNKNOWN_RSSI)
+            return Cell.UNKNOWN_SIGNAL;
         if (asu == 16)
             return -75;
         else if (asu == 8)
@@ -77,7 +77,7 @@ public class UnitConverter {
             return -95;
         else if (asu == 1)
             return -100;
-        return Measurement.UNKNOWN_SIGNAL;
+        return Cell.UNKNOWN_SIGNAL;
     }
 
     public static int convertCdmaDbmToAsu(int dbm) {
@@ -91,6 +91,6 @@ public class UnitConverter {
             return 2;
         else if (dbm >= -100)
             return 1;
-        return Measurement.UNKNOWN_SIGNAL;
+        return Cell.UNKNOWN_SIGNAL;
     }
 }

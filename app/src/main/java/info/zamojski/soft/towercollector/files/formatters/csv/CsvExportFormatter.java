@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+import info.zamojski.soft.towercollector.model.Cell;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.providers.GeneralCellUtils;
 import info.zamojski.soft.towercollector.providers.ICellUtils;
@@ -39,59 +40,61 @@ public class CsvExportFormatter extends CsvFormatter {
     public String formatRow(Measurement m) {
         StringBuilder sb = new StringBuilder(150);
 
-        // mcc value only when defined
-        int mcc = m.getMcc();
-        if (mcc != Measurement.UNKNOWN_CID)
-            sb.append(formatInt(mcc));
-        sb.append(',');
-        sb.append(formatInt(m.getMnc()));
-        sb.append(',');
-        sb.append(formatInt(m.getLac()));
-        sb.append(',');
-        sb.append(formatInt(m.getCid()));
-        sb.append(',');
-        int psc = m.getPsc();
-        if (psc != Measurement.UNKNOWN_CID)
-            sb.append(formatInt(psc));
-        sb.append(',');
+        for (Cell c : m.getCells()) {
+            // mcc value only when defined
+            int mcc = c.getMcc();
+            if (mcc != Cell.UNKNOWN_CID)
+                sb.append(formatInt(mcc));
+            sb.append(',');
+            sb.append(formatInt(c.getMnc()));
+            sb.append(',');
+            sb.append(formatInt(c.getLac()));
+            sb.append(',');
+            sb.append(formatInt(c.getCid()));
+            sb.append(',');
+            int psc = c.getPsc();
+            if (psc != Cell.UNKNOWN_CID)
+                sb.append(formatInt(psc));
+            sb.append(',');
 
-        sb.append(formatAsuSignal(m.getAsu()));
-        sb.append(',');
-        sb.append(formatDbmSignal(m.getDbm()));
-        sb.append(',');
-        int ta = m.getTa();
-        if (ta != Measurement.UNKNOWN_SIGNAL)
-            sb.append(formatInt(ta));
-        sb.append(',');
+            sb.append(formatAsuSignal(c.getAsu()));
+            sb.append(',');
+            sb.append(formatDbmSignal(c.getDbm()));
+            sb.append(',');
+            int ta = c.getTa();
+            if (ta != Cell.UNKNOWN_SIGNAL)
+                sb.append(formatInt(ta));
+            sb.append(',');
 
-        sb.append(formatCoordinate(m.getLatitude()));
-        sb.append(',');
-        sb.append(formatCoordinate(m.getLongitude()));
-        sb.append(',');
+            sb.append(formatCoordinate(m.getLatitude()));
+            sb.append(',');
+            sb.append(formatCoordinate(m.getLongitude()));
+            sb.append(',');
 
-        sb.append(formatGpsValue(m.getGpsAccuracy()));
-        sb.append(',');
-        sb.append(formatGpsValue(m.getGpsSpeed()));
-        sb.append(',');
-        sb.append(formatGpsValue(m.getGpsBearing()));
-        sb.append(',');
-        sb.append(formatGpsValue(m.getGpsAltitude()));
-        sb.append(',');
+            sb.append(formatGpsValue(m.getGpsAccuracy()));
+            sb.append(',');
+            sb.append(formatGpsValue(m.getGpsSpeed()));
+            sb.append(',');
+            sb.append(formatGpsValue(m.getGpsBearing()));
+            sb.append(',');
+            sb.append(formatGpsValue(m.getGpsAltitude()));
+            sb.append(',');
 
-        sb.append(formatDate(m.getTimestamp()));
-        sb.append(',');
+            sb.append(formatDate(m.getMeasuredAt()));
+            sb.append(',');
 
-        sb.append(cellUtils.getSystemType(m.getNetworkType()));
-        sb.append(',');
+            sb.append(cellUtils.getSystemType(c.getNetworkType()));
+            sb.append(',');
 
-        sb.append(m.isNeighboring());
-        sb.append(',');
+            sb.append(c.isNeighboring());
+            sb.append(',');
 
-        sb.append("\"");
-        sb.append(deviceName);
-        sb.append("\"");
+            sb.append("\"");
+            sb.append(deviceName);
+            sb.append("\"");
 
-        sb.append("\r\n");
+            sb.append("\r\n");
+        }
 
         return sb.toString();
     }
@@ -102,7 +105,7 @@ public class CsvExportFormatter extends CsvFormatter {
 
     private String formatAsuSignal(int asu) {
         String asuString;
-        if (asu != Measurement.UNKNOWN_SIGNAL)
+        if (asu != Cell.UNKNOWN_SIGNAL)
             asuString = String.valueOf(asu);
         else
             asuString = "";
@@ -110,7 +113,7 @@ public class CsvExportFormatter extends CsvFormatter {
     }
 
     private String formatDbmSignal(int dbm) {
-        if (dbm != Measurement.UNKNOWN_SIGNAL)
+        if (dbm != Cell.UNKNOWN_SIGNAL)
             return String.valueOf(dbm);
         else
             return "";

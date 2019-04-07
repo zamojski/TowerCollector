@@ -20,7 +20,6 @@ import android.location.LocationManager;
 
 public abstract class MeasurementParser implements Runnable {
 
-
     protected float MAX_REASONABLE_SPEED = 500.0f; // in m/s
 
     protected LocationValidator locationValidator;
@@ -53,7 +52,7 @@ public abstract class MeasurementParser implements Runnable {
             lastSavedLocation.setSpeed(lastSavedMeasurement.getGpsSpeed());
             lastSavedLocation.setBearing(lastSavedMeasurement.getGpsBearing());
             lastSavedLocation.setAltitude(lastSavedMeasurement.getGpsAltitude());
-            lastSavedLocation.setTime(lastSavedMeasurement.getTimestamp());
+            lastSavedLocation.setTime(lastSavedMeasurement.getMeasuredAt());
         }
     }
 
@@ -72,11 +71,11 @@ public abstract class MeasurementParser implements Runnable {
     protected void fixMeasurementTimestamp(Measurement measurement, Location location) {
         // update timestamp if user has incorrect system time in phone
         // that means if earlier than fix or later by one day
-        long systemTimestamp = measurement.getTimestamp();
+        long systemTimestamp = measurement.getMeasuredAt();
         long gpsTimestamp = location.getTime();
         if (!systemTimeValidator.isValid(systemTimestamp, gpsTimestamp)) {
             Timber.d("fixMeasurementTimestamp(): Fixing measurement time = %s, gps time = %s", systemTimestamp, gpsTimestamp);
-            measurement.setTimestamp(gpsTimestamp);
+            measurement.setMeasuredAt(gpsTimestamp);
         }
     }
 

@@ -6,7 +6,7 @@ package info.zamojski.soft.towercollector.utils;
 
 import info.zamojski.soft.towercollector.collector.validators.CellIdentityValidator;
 import info.zamojski.soft.towercollector.collector.validators.CellLocationValidator;
-import info.zamojski.soft.towercollector.model.Measurement;
+import info.zamojski.soft.towercollector.model.Cell;
 import timber.log.Timber;
 
 import java.util.List;
@@ -20,9 +20,7 @@ import android.telephony.TelephonyManager;
 import android.telephony.gsm.GsmCellLocation;
 import android.text.TextUtils;
 
-
 public class MobileUtils {
-
 
     public static int[] getMccMncPair(String operatorCode) {
         // mcc and mnc is concatenated in the networkOperatorString (the first 3 chars is the mcc and the last 2 is the mnc)
@@ -98,8 +96,8 @@ public class MobileUtils {
             Timber.d("isApi1CellInfoAvailable(): Result = no cell location");
             return false;
         }
-        int mcc = Measurement.UNKNOWN_CID;
-        int mnc = Measurement.UNKNOWN_CID;
+        int mcc = Cell.UNKNOWN_CID;
+        int mnc = Cell.UNKNOWN_CID;
         if (cell instanceof GsmCellLocation) {
             String operatorCode = telephonyManager.getNetworkOperator();
             int[] mccMncPair = getMccMncPair(operatorCode);

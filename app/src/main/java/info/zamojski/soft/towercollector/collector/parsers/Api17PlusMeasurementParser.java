@@ -30,7 +30,7 @@ import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.events.Api17PlusMeasurementProcessingEvent;
 import info.zamojski.soft.towercollector.events.MeasurementSavedEvent;
 import info.zamojski.soft.towercollector.events.MeasurementsCollectedEvent;
-import info.zamojski.soft.towercollector.model.CellsCount;
+import info.zamojski.soft.towercollector.model.Cell;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.model.Statistics;
 import timber.log.Timber;
@@ -66,16 +66,16 @@ public class Api17PlusMeasurementParser extends MeasurementParser {
         getAndSetLastLocation();
         // create measurement
         Measurement measurement = new Measurement();
+        measurement.setMeasuredAt(System.currentTimeMillis());
         // fix time if incorrect
         fixMeasurementTimestamp(measurement, location);
         // remove duplicated cells
         removeDuplicatedCells(cells);
         // if the same cell check distance condition, otherwise accept
-        if (lastSavedLocation != null && !conditionsValidator.isMinDistanceSatisfied(lastSavedLocation, location, minDistance)) {
-            List<Measurement> lastMeasurements = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getLastMeasurements();
+        if (lastSavedMeasurement != null && lastSavedLocation != null && !conditionsValidator.isMinDistanceSatisfied(lastSavedLocation, location, minDistance)) {
             List<String> lastMeasurementsCellKeys = new ArrayList<>();
-            for (Measurement lastMeasurement : lastMeasurements) {
-                lastMeasurementsCellKeys.add(cellIdentityConverter.createCellKey(lastMeasurement));
+            for (Cell lastCell : lastSavedMeasurement.getCells()) {
+                lastMeasurementsCellKeys.add(cellIdentityConverter.createCellKey(lastCell));
             }
             int mainCellsChanged = 0;
             for (CellInfo cell : cells) {
@@ -98,50 +98,42 @@ public class Api17PlusMeasurementParser extends MeasurementParser {
         Timber.d("parse(): Destination and time conditions achieved");
         // update measurement with location
         updateMeasurementWithLocation(measurement, location);
-        // create a list of measurements to save
-        List<Measurement> measurementsToSave = new ArrayList<Measurement>();
         // loop through all cells
-        for (CellInfo cell : cells) {
-            if (!cellValidator.isValid(cell)) {
+        for (CellInfo cellInfo : cells) {
+            if (!cellValidator.isValid(cellInfo)) {
                 // don't try to create neighboring cells because this may be even more unreliable than on older API
-                Timber.d("parse(): Cell invalid: %s", cell);
+                Timber.d("parse(): Cell invalid: %s", cellInfo);
                 continue;
             }
-            if (!collectNeighboringCells && !cell.isRegistered()) {
+            if (!collectNeighboringCells && !cellInfo.isRegistered()) {
                 // skip neighboring cells
-                Timber.d("parse(): Neighboring cell skipped: %s", cell);
+                Timber.d("parse(): Neighboring cell skipped: %s", cellInfo);
                 continue;
             }
-            // copy measurement
-            Measurement measurementCopy = new Measurement(measurement);
             // update with cell data
-            cellIdentityConverter.update(measurementCopy, cell);
+            Cell tempCell = cellIdentityConverter.convert(cellInfo);
             // update measurement with signal strength
-            cellSignalConverter.update(measurementCopy, cell);
+            cellSignalConverter.update(tempCell, cellInfo);
             // write to database
-            Timber.d("parse(): Measurement: %s", measurementCopy);
-            measurementsToSave.add(measurementCopy);
+            Timber.d("parse(): Cell valid: %s", cellInfo);
+            measurement.addCell(tempCell);
         }
         // none of cells are valid
-        if (measurementsToSave.isEmpty()) {
+        if (measurement.getCells().isEmpty()) {
             Timber.d("parse(): All cells invalid or skipped");
             return ParseResult.NoNetworkSignal;
         }
-        // temporary solution to keep compatibility with old API and current views
-        Measurement mainMeasurement = findFirstMainMeasurement(measurementsToSave);
         // write to database
-        Timber.d("parse(): Selected as main: %s", mainMeasurement);
-        boolean inserted = MeasurementsDatabase.getInstance(MyApplication.getApplication()).insertMeasurements(measurementsToSave.toArray(new Measurement[measurementsToSave.size()]));
+        Timber.d("parse(): Measurement: %s", measurement);
+        boolean inserted = MeasurementsDatabase.getInstance(MyApplication.getApplication()).insertMeasurement(measurement);
         if (inserted) {
             lastSavedLocation = location;
-            lastSavedMeasurement = mainMeasurement;
+            lastSavedMeasurement = measurement;
             Timber.d("parse(): Measurement saved");
             // broadcast information to main activity
-            int mainCount = countMainMeasurements(measurementsToSave);
-            CellsCount cellsCount = new CellsCount(mainCount, measurementsToSave.size() - mainCount);
             Statistics stats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
-            EventBus.getDefault().post(new MeasurementSavedEvent(mainMeasurement, cellsCount, stats));
-            EventBus.getDefault().post(new MeasurementsCollectedEvent(measurementsToSave));
+            EventBus.getDefault().post(new MeasurementSavedEvent(measurement, stats));
+            EventBus.getDefault().post(new MeasurementsCollectedEvent(measurement));
             Timber.d("parse(): Notification updated and measurement broadcasted");
             return ParseResult.Saved;
         } else {
@@ -164,27 +156,6 @@ public class Api17PlusMeasurementParser extends MeasurementParser {
         }
 
         cells.removeAll(cellsToRemove);
-    }
-
-    private Measurement findFirstMainMeasurement(List<Measurement> measurements) {
-        Measurement mainMeasurement = measurements.get(0);
-        for (Measurement m : measurements) {
-            if (!m.isNeighboring()) {
-                mainMeasurement = m;
-                break;
-            }
-        }
-        return mainMeasurement;
-    }
-
-    private int countMainMeasurements(List<Measurement> measurements) {
-        int count = 0;
-        for (Measurement m : measurements) {
-            if (!m.isNeighboring()) {
-                count++;
-            }
-        }
-        return count;
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)

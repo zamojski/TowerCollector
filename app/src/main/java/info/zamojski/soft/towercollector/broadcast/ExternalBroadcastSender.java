@@ -11,6 +11,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 
+import java.util.Collections;
 import java.util.List;
 
 import info.zamojski.soft.towercollector.MyApplication;
@@ -22,22 +23,22 @@ import timber.log.Timber;
 
 public class ExternalBroadcastSender implements Runnable {
 
-    private final String measurementsCollectedAction = "info.zamojski.soft.towercollector.MEASUREMENTS_COLLECTED";
-    private final String measurementsExtraKey = "measurements";
+    private static final String MEASUREMENTS_COLLECTED_ACTION = "info.zamojski.soft.towercollector.MEASUREMENTS_COLLECTED";
+    private static final String MEASUREMENTS_EXTRA_KEY = "measurements";
 
     private IJsonFormatter formatter;
 
-    private void sendMeasurementsCollectedBroadcast(List<Measurement> measurements) {
+    private void sendMeasurementsCollectedBroadcast(Measurement measurement) {
         Timber.i("sendMeasurementsCollectedBroadcast(): Sending broadcast to external apps");
         if (formatter == null) {
             formatter = new JsonBroadcastFormatter();
         }
         try {
-            String extra = formatter.formatList(measurements);
+            String extra = formatter.formatList(Collections.singletonList(measurement));
             // Send broadcast
             Intent intent = new Intent();
-            intent.setAction(measurementsCollectedAction);
-            intent.putExtra(measurementsExtraKey, extra);
+            intent.setAction(MEASUREMENTS_COLLECTED_ACTION);
+            intent.putExtra(MEASUREMENTS_EXTRA_KEY, extra);
             MyApplication.getApplication().sendBroadcast(intent);
             Timber.d("sendMeasurementsCollectedBroadcast(): Broadcast %s", extra);
         } catch (JSONException ex) {
@@ -47,7 +48,7 @@ public class ExternalBroadcastSender implements Runnable {
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void onEvent(MeasurementsCollectedEvent event) {
-        sendMeasurementsCollectedBroadcast(event.getMeasurements());
+        sendMeasurementsCollectedBroadcast(event.getMeasurement());
     }
 
     @Override

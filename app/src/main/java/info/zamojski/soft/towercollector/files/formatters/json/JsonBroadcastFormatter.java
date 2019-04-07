@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
+import info.zamojski.soft.towercollector.model.Cell;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.providers.GeneralCellUtils;
 import info.zamojski.soft.towercollector.providers.ICellUtils;
@@ -40,33 +41,34 @@ public class JsonBroadcastFormatter extends JsonFormatterBase implements IJsonFo
         if (ms.size() == 0) {
             return new JSONObject().toString();
         }
-        Measurement firstM = ms.get(0);
         JSONObject root = new JSONObject();
-        root.put("measured_at", formatDate(firstM.getTimestamp()));
-        JSONObject gps = new JSONObject();
-        gps.put("lat", formatCoordinate(firstM.getLatitude()));
-        gps.put("lon", formatCoordinate(firstM.getLongitude()));
-        gps.put("accuracy", formatGpsValue(firstM.getGpsAccuracy()));
-        gps.put("speed", formatGpsValue(firstM.getGpsSpeed()));
-        gps.put("bearing", formatGpsValue(firstM.getGpsBearing()));
-        gps.put("altitude", formatGpsValue(firstM.getGpsAltitude()));
-        root.put("gps", gps);
-        JSONArray cells = new JSONArray();
         for (Measurement m : ms) {
-            JSONObject cell = new JSONObject();
-            cell.put("mcc", formatNullable(m.getMcc(), Measurement.UNKNOWN_CID));
-            cell.put("mnc", m.getMnc());
-            cell.put("lac", m.getLac());
-            cell.put("cell_id", m.getCid());
-            cell.put("psc", formatNullable(m.getPsc(), Measurement.UNKNOWN_CID));
-            cell.put("asu", formatNullable(m.getAsu(), Measurement.UNKNOWN_SIGNAL));
-            cell.put("dbm", formatNullable(m.getDbm(), Measurement.UNKNOWN_SIGNAL));
-            cell.put("ta", formatNullable(m.getTa(), Measurement.UNKNOWN_SIGNAL));
-            cell.put("neighboring", m.isNeighboring());
-            cell.put("net_type", cellUtils.getSystemType(m.getNetworkType()));
-            cells.put(cell);
+            root.put("measured_at", formatDate(m.getMeasuredAt()));
+            JSONObject gps = new JSONObject();
+            gps.put("lat", formatCoordinate(m.getLatitude()));
+            gps.put("lon", formatCoordinate(m.getLongitude()));
+            gps.put("accuracy", formatGpsValue(m.getGpsAccuracy()));
+            gps.put("speed", formatGpsValue(m.getGpsSpeed()));
+            gps.put("bearing", formatGpsValue(m.getGpsBearing()));
+            gps.put("altitude", formatGpsValue(m.getGpsAltitude()));
+            root.put("gps", gps);
+            JSONArray cells = new JSONArray();
+            for (Cell c : m.getCells()) {
+                JSONObject cell = new JSONObject();
+                cell.put("mcc", formatNullable(c.getMcc(), Cell.UNKNOWN_CID));
+                cell.put("mnc", c.getMnc());
+                cell.put("lac", c.getLac());
+                cell.put("cell_id", c.getCid());
+                cell.put("psc", formatNullable(c.getPsc(), Cell.UNKNOWN_CID));
+                cell.put("asu", formatNullable(c.getAsu(), Cell.UNKNOWN_SIGNAL));
+                cell.put("dbm", formatNullable(c.getDbm(), Cell.UNKNOWN_SIGNAL));
+                cell.put("ta", formatNullable(c.getTa(), Cell.UNKNOWN_SIGNAL));
+                cell.put("neighboring", c.isNeighboring());
+                cell.put("net_type", cellUtils.getSystemType(c.getNetworkType()));
+                cells.put(cell);
+            }
+            root.put("cells", cells);
         }
-        root.put("cells", cells);
         return root.toString();
     }
 

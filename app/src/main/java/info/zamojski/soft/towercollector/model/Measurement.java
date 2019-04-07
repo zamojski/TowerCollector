@@ -4,59 +4,22 @@
 
 package info.zamojski.soft.towercollector.model;
 
-import info.zamojski.soft.towercollector.enums.NetworkGroup;
+import android.text.TextUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Measurement implements Serializable {
-    private static final long serialVersionUID = -1561707154666574202L;
+
+    private static final long serialVersionUID = -1561708154666574202L;
+
     public static final float GPS_VALUE_NOT_AVAILABLE = 0.0f;
-    public static final int UNKNOWN_CID = Integer.MAX_VALUE; // safe for all network types
-    public static final int UNKNOWN_SIGNAL = Integer.MAX_VALUE; // safe for all network types
+
     /**
-     * Measurement Row ID.
+     * Measurement ID.
      */
-    private int rowId;
-    /**
-     * Mobile Country Code.
-     */
-    private int mcc;
-    /**
-     * Mobile Network Code.
-     */
-    private int mnc;
-    /**
-     * Location Area Code.
-     */
-    private int lac;
-    /**
-     * Cell Tower ID.
-     */
-    private int cid;
-    /**
-     * Primary Scrambling Code.
-     */
-    private int psc;
-    /**
-     * Is cell neighboring.
-     */
-    private boolean neighboring;
-    /**
-     * Timing Advance.
-     */
-    private int ta;
-    /**
-     * Network Type as defined in TelephonyManager.
-     */
-    private NetworkGroup networkType;
-    /**
-     * Arbitrary Strength Unit Level.
-     */
-    private int asu;
-    /**
-     * Signal Strength in dBm.
-     */
-    private int dbm;
+    private int measurementId;
     /**
      * Geographic Latitude.
      */
@@ -69,191 +32,49 @@ public class Measurement implements Serializable {
      * GPS Accuracy in m.
      * 0 - not available.
      */
-    private float gpsAccuracy;
+    private float gpsAccuracy = GPS_VALUE_NOT_AVAILABLE;
     /**
      * GPS Speed in m/s.
      * 0 - not available.
      */
-    private float gpsSpeed;
+    private float gpsSpeed = GPS_VALUE_NOT_AVAILABLE;
     /**
      * GPS Bearing in degrees within range of (0-360].
      * 0 - not available.
      */
-    private float gpsBearing;
+    private float gpsBearing = GPS_VALUE_NOT_AVAILABLE;
     /**
      * GPS Altitude in m.
      * 0 - not available.
      */
-    private double gpsAltitude;
+    private double gpsAltitude = GPS_VALUE_NOT_AVAILABLE;
     /**
-     * Unix Timestamp with milliseconds.
+     * Measured at Unix Timestamp with milliseconds.
      */
-    private long timestamp;
+    private long measuredAt;
     /**
-     * Unix Timestamp with milliseconds.
+     * Uploaded to OCID Unix Timestamp with milliseconds.
      */
     private Long uploadedToOcidAt;
     /**
-     * Unix Timestamp with milliseconds.
+     * Uploaded to MLS Unix Timestamp with milliseconds.
      */
     private Long uploadedToMlsAt;
-
     /**
-     * Default constructor.
+     * Associated cells.
      */
-    public Measurement() {
-        mcc = mnc = cid = lac = psc = UNKNOWN_CID;
-        neighboring = false;
-        ta = asu = dbm = UNKNOWN_SIGNAL;
-        gpsAccuracy = GPS_VALUE_NOT_AVAILABLE;
-        gpsSpeed = GPS_VALUE_NOT_AVAILABLE;
-        gpsBearing = GPS_VALUE_NOT_AVAILABLE;
-        gpsAltitude = GPS_VALUE_NOT_AVAILABLE;
-        networkType = NetworkGroup.Unknown;
-        timestamp = System.currentTimeMillis();// with milliseconds
+    private List<Cell> cells = new ArrayList<>();
+
+    public int getMeasurementId() {
+        return measurementId;
     }
 
-    /**
-     * Copy constructor (doesn't clone rowId and uploadedToXXXAt!).
-     */
-    public Measurement(Measurement m) {
-        this.mcc = m.mcc;
-        this.mnc = m.mnc;
-        this.lac = m.lac;
-        this.cid = m.cid;
-        this.psc = m.psc;
-        this.networkType = m.networkType;
-        this.neighboring = m.neighboring;
-
-        this.asu = m.asu;
-        this.dbm = m.dbm;
-        this.ta = m.ta;
-
-        this.latitude = m.latitude;
-        this.longitude = m.longitude;
-
-        this.gpsAccuracy = m.gpsAccuracy;
-        this.gpsAltitude = m.gpsAltitude;
-        this.gpsBearing = m.gpsBearing;
-        this.gpsSpeed = m.gpsSpeed;
-
-        this.timestamp = m.timestamp;
-    }
-
-    public int getRowId() {
-        return rowId;
-    }
-
-    public void setRowId(int rowId) {
-        this.rowId = rowId;
-    }
-
-    public int getMcc() {
-        return mcc;
-    }
-
-    public void setMcc(int mcc) {
-        this.mcc = mcc;
-    }
-
-    public int getMnc() {
-        return mnc;
-    }
-
-    public void setMnc(int mnc) {
-        this.mnc = mnc;
-    }
-
-    public int getLac() {
-        return lac;
-    }
-
-    public void setLac(int lac) {
-        this.lac = lac;
-    }
-
-    public int getLongCid() {
-        if (cid <= 65536)
-            return UNKNOWN_CID;
-        return cid;
-    }
-
-    public int getShortCid() {
-        if (cid <= 65536)
-            return UNKNOWN_CID;
-        if (networkType == NetworkGroup.Wcdma)
-            return cid % 65536;
-        else // LTE (reversed)
-            return cid / 256;
-    }
-
-    public int getRnc() {
-        if (cid <= 65536)
-            return UNKNOWN_CID;
-        if (networkType == NetworkGroup.Wcdma)
-            return cid / 65536;
-        else // LTE (reversed)
-            return cid % 256;
-    }
-
-    public int getCid() {
-        return cid;
-    }
-
-    public void setCid(int cid) {
-        this.cid = cid;
+    public void setMeasurementId(int measurementId) {
+        this.measurementId = measurementId;
     }
 
     public double getLatitude() {
         return latitude;
-    }
-
-    public int getPsc() {
-        return psc;
-    }
-
-    public void setPsc(int psc) {
-        this.psc = psc;
-    }
-
-    public boolean isNeighboring() {
-        return neighboring;
-    }
-
-    public void setNeighboring(boolean neighboring) {
-        this.neighboring = neighboring;
-    }
-
-    public int getTa() {
-        return ta;
-    }
-
-    public void setTa(int ta) {
-        this.ta = ta;
-    }
-
-    public NetworkGroup getNetworkType() {
-        return networkType;
-    }
-
-    public void setNetworkType(NetworkGroup networkType) {
-        this.networkType = networkType;
-    }
-
-    public int getAsu() {
-        return asu;
-    }
-
-    public void setAsu(int asu) {
-        this.asu = asu;
-    }
-
-    public int getDbm() {
-        return dbm;
-    }
-
-    public void setDbm(int dBm) {
-        this.dbm = dBm;
     }
 
     public void setLatitude(double latitude) {
@@ -300,12 +121,12 @@ public class Measurement implements Serializable {
         this.gpsAltitude = gpsAltitude;
     }
 
-    public long getTimestamp() {
-        return timestamp;
+    public long getMeasuredAt() {
+        return measuredAt;
     }
 
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
+    public void setMeasuredAt(long measuredAt) {
+        this.measuredAt = measuredAt;
     }
 
     public Long getUploadedToOcidAt() {
@@ -324,107 +145,48 @@ public class Measurement implements Serializable {
         this.uploadedToMlsAt = uploadedToMlsAt;
     }
 
-    public void setGsmCellInfo(int mcc, int mnc, int lac, int cid) {
-        this.mcc = mcc;
-        this.mnc = mnc;
-        this.lac = lac;
-        this.cid = cid;
-        this.psc = UNKNOWN_CID;
-        this.networkType = NetworkGroup.Gsm;
+    public List<Cell> getCells() {
+        return cells;
     }
 
-    public void setGsmSignalInfo(int asu, int signalStrength) {
-        this.asu = asu;
-        this.dbm = signalStrength;
-        this.ta = UNKNOWN_SIGNAL;
+    public void addCell(Cell cell) {
+        this.cells.add(cell);
     }
 
-    public void setWcdmaCellInfo(int mcc, int mnc, int lac, int cid, int psc) {
-        this.mcc = mcc;
-        this.mnc = mnc;
-        this.lac = lac;
-        this.cid = cid;
-        this.psc = psc;
-        this.networkType = NetworkGroup.Wcdma;
+    public List<Cell> getMainCells() {
+        List<Cell> mainCells = new ArrayList<>();
+        for (Cell cell : cells) {
+            if (!cell.isNeighboring())
+                mainCells.add(cell);
+        }
+        if (mainCells.isEmpty())
+            mainCells.add(cells.get(0)); // should never happen
+        return mainCells;
     }
 
-    public void setWcdmaSignalInfo(int asu, int signalStrength) {
-        this.asu = asu;
-        this.dbm = signalStrength;
-        this.ta = UNKNOWN_SIGNAL;
-    }
-
-    public void setCdmaCellInfo(int systemId, int networkId, int baseStationId) {
-        this.mcc = UNKNOWN_CID;
-        this.mnc = systemId;
-        this.lac = networkId;
-        this.cid = baseStationId;
-        this.psc = UNKNOWN_CID;
-        this.networkType = NetworkGroup.Cdma;
-    }
-
-    public void setCdmaSignalInfo(int asu, int signalStrength) {
-        this.asu = asu;
-        this.dbm = signalStrength;
-        this.ta = UNKNOWN_SIGNAL;
-    }
-
-    public void setLteCellInfo(int mcc, int mnc, int tac, int ci, int pci) {
-        this.mcc = mcc;
-        this.mnc = mnc;
-        this.lac = tac;
-        this.cid = ci;
-        this.psc = pci;
-        this.networkType = NetworkGroup.Lte;
-    }
-
-    public void setLteSignalInfo(int asu, int signalStrength, int timingAdvance) {
-        this.asu = asu;
-        this.dbm = signalStrength;
-        this.ta = timingAdvance;
-    }
-
-    public void setGsmCellLocation(int mcc, int mnc, int lac, int cid, NetworkGroup networkType) {
-        this.mcc = mcc;
-        this.mnc = mnc;
-        this.lac = lac;
-        this.cid = cid;
-        this.psc = UNKNOWN_CID;
-        this.networkType = networkType;
-    }
-
-    public void setGsmCellLocation(int mcc, int mnc, int lac, int cid, int psc, NetworkGroup networkType) {
-        this.mcc = mcc;
-        this.mnc = mnc;
-        this.lac = lac;
-        this.cid = cid;
-        this.psc = psc;
-        this.networkType = networkType;
-    }
-
-    public void setGsmLocationSignal(int asu, int signalStrength) {
-        this.asu = asu;
-        this.dbm = signalStrength;
-        this.ta = UNKNOWN_SIGNAL;
-    }
-
-    public void setCdmaCellLocation(int systemId, int networkId, int baseStationId) {
-        this.mcc = UNKNOWN_CID;
-        this.mnc = systemId;
-        this.lac = networkId;
-        this.cid = baseStationId;
-        this.psc = UNKNOWN_CID;
-        this.networkType = NetworkGroup.Cdma;
-    }
-
-    public void setCdmaLocationSignal(int asu, int signalStrength) {
-        this.asu = asu;
-        this.dbm = signalStrength;
-        this.ta = UNKNOWN_SIGNAL;
+    public int getNeighboringCellsCount() {
+        int count = 0;
+        for (Cell cell : cells) {
+            if (cell.isNeighboring())
+                count++;
+        }
+        return count;
     }
 
     @Override
     public String toString() {
-        return "Measurement [rowId=" + rowId + ", mcc=" + mcc + ", mnc=" + mnc + ", lac=" + lac + ", cid=" + cid + ", psc=" + psc + ", neighboring=" + neighboring + ", ta=" + ta + ", networkType=" + networkType + ", asu=" + asu + ", dbm=" + dbm + ", latitude=" + latitude + ", longitude=" + longitude + ", gpsAccuracy=" + gpsAccuracy + ", gpsSpeed=" + gpsSpeed + ", gpsBearing=" + gpsBearing + ", gpsAltitude=" + gpsAltitude + ", timestamp=" + timestamp + "]";
+        return "Measurement{" +
+                "measurementId=" + measurementId +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", gpsAccuracy=" + gpsAccuracy +
+                ", gpsSpeed=" + gpsSpeed +
+                ", gpsBearing=" + gpsBearing +
+                ", gpsAltitude=" + gpsAltitude +
+                ", measuredAt=" + measuredAt +
+                ", uploadedToOcidAt=" + uploadedToOcidAt +
+                ", uploadedToMlsAt=" + uploadedToMlsAt +
+                ", cells=[" + TextUtils.join(", ", cells) + "]" +
+                '}';
     }
 }

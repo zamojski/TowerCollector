@@ -4,14 +4,13 @@
 
 package info.zamojski.soft.towercollector.collector.validators.specific;
 
-import info.zamojski.soft.towercollector.model.Measurement;
+import info.zamojski.soft.towercollector.model.Cell;
 import timber.log.Timber;
 
 import android.telephony.NeighboringCellInfo;
 import android.telephony.gsm.GsmCellLocation;
 
 public class GsmCellLocationValidator {
-
 
     public boolean isValid(GsmCellLocation cell, int mcc, int mnc) {
         boolean valid = isValid(cell.getCid(), cell.getLac(), mnc, mcc, cell.getPsc());
@@ -25,7 +24,7 @@ public class GsmCellLocationValidator {
     public boolean isValid(int cid, int lac, int mnc, int mcc, int psc) {
         boolean valid = (isCidOrCiInRange(cid) && isLacOrTacInRange(lac)
                 && isMncInRange(mnc) && isMccInRange(mcc)
-                && (psc == NeighboringCellInfo.UNKNOWN_CID || psc == Measurement.UNKNOWN_CID || isPscOrPciInRange(psc)));
+                && (psc == NeighboringCellInfo.UNKNOWN_CID || psc == Cell.UNKNOWN_CID || isPscOrPciInRange(psc)));
         return valid;
     }
 

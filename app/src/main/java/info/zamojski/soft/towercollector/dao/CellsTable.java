@@ -15,27 +15,26 @@ final class CellsTable implements ITable {
     static final String COLUMN_NET_TYPE = "net_type";
     static final String COLUMN_DISCOVERED_AT = "discovered_at";
 
-    private static final String QUERY_CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ("
-            + COLUMN_ROW_ID + " INTEGER PRIMARY KEY NOT NULL, "
-            + COLUMN_MCC + " INTEGER NOT NULL, "
-            + COLUMN_MNC + " INTEGER NOT NULL, "
-            + COLUMN_LAC + " INTEGER NOT NULL, "
-            + COLUMN_CID + " INTEGER NOT NULL, "
-            + COLUMN_NET_TYPE + " INTEGER NOT NULL, "
-            + COLUMN_DISCOVERED_AT + " INTEGER NOT NULL, "
-            + "UNIQUE (" + COLUMN_CID + ", " + COLUMN_LAC + ", " + COLUMN_MNC + ", " + COLUMN_MCC + ", " + COLUMN_NET_TYPE + ") ON CONFLICT IGNORE)";
+    private static final String QUERY_CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" +
+            COLUMN_ROW_ID + " INTEGER PRIMARY KEY NOT NULL, " +
+            COLUMN_MCC + " INTEGER NOT NULL, " +
+            COLUMN_MNC + " INTEGER NOT NULL, " +
+            COLUMN_LAC + " INTEGER NOT NULL, " +
+            COLUMN_CID + " INTEGER NOT NULL, " +
+            COLUMN_NET_TYPE + " INTEGER NOT NULL, " +
+            COLUMN_DISCOVERED_AT + " INTEGER NOT NULL, " +
+            "UNIQUE (" + COLUMN_CID + ", " + COLUMN_LAC + ", " + COLUMN_MNC + ", " + COLUMN_MCC + ", " + COLUMN_NET_TYPE + ") ON CONFLICT IGNORE)";
 
-    private static final String QUERY_CREATE_TRIGGER_ON_DELETE = "CREATE TRIGGER 'archive_cell' BEFORE DELETE ON " + TABLE_NAME + " BEGIN INSERT INTO "
-            + CellsArchiveTable.TABLE_NAME + " (" + CellsArchiveTable.COLUMN_MCC + ", " + CellsArchiveTable.COLUMN_MNC + ", "
-            + CellsArchiveTable.COLUMN_LAC + ", " + CellsArchiveTable.COLUMN_CID + ", " + CellsArchiveTable.COLUMN_NET_TYPE + ", "
-            + CellsArchiveTable.COLUMN_DISCOVERED_AT + ") VALUES (old." + COLUMN_MCC + ", old." + COLUMN_MNC
-            + ", old." + COLUMN_LAC + ", old." + COLUMN_CID + ", old." + COLUMN_NET_TYPE + ", old." + COLUMN_DISCOVERED_AT + "); END";
+    private static final String QUERY_CREATE_TRIGGER_ON_INSERT = "CREATE TRIGGER 'update_cells_stats' AFTER INSERT ON " + TABLE_NAME + " " +
+            "BEGIN " +
+            "   UPDATE " + StatsTable.TABLE_NAME + " SET " + StatsTable.COLUMN_TOTAL_DISCOVERED_CELLS + "  = " + StatsTable.COLUMN_TOTAL_DISCOVERED_CELLS + " + 1; " +
+            "END";
 
     @Override
     public String[] getCreateQueries() {
         return new String[]{
                 QUERY_CREATE_TABLE,
-                QUERY_CREATE_TRIGGER_ON_DELETE
+                QUERY_CREATE_TRIGGER_ON_INSERT
         };
     }
 

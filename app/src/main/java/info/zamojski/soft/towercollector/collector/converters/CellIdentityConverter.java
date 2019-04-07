@@ -6,7 +6,7 @@ package info.zamojski.soft.towercollector.collector.converters;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.collector.validators.specific.WcdmaCellIdentityValidator;
-import info.zamojski.soft.towercollector.model.Measurement;
+import info.zamojski.soft.towercollector.model.Cell;
 import timber.log.Timber;
 
 import android.annotation.TargetApi;
@@ -26,47 +26,48 @@ import org.acra.ACRA;
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class CellIdentityConverter {
 
-
     private final WcdmaCellIdentityValidator wcdmaValidator;
 
     public CellIdentityConverter(WcdmaCellIdentityValidator wcdmaValidator) {
         this.wcdmaValidator = wcdmaValidator;
     }
 
-    public void update(Measurement m, CellInfo cellInfo) {
-        m.setNeighboring(!cellInfo.isRegistered());
+    public Cell convert(CellInfo cellInfo) {
+        Cell cell = new Cell();
+        cell.setNeighboring(!cellInfo.isRegistered());
         if (cellInfo instanceof CellInfoGsm) {
             CellInfoGsm gsmCellInfo = (CellInfoGsm) cellInfo;
             CellIdentityGsm identity = gsmCellInfo.getCellIdentity();
             if (wcdmaValidator.isValid(identity)) {
                 Timber.d("update(): Updating WCDMA reported by API 17 as GSM");
-                m.setWcdmaCellInfo(identity.getMcc(), identity.getMnc(), identity.getLac(), identity.getCid(), identity.getPsc());
+                cell.setWcdmaCellInfo(identity.getMcc(), identity.getMnc(), identity.getLac(), identity.getCid(), identity.getPsc());
             } else {
-                m.setGsmCellInfo(identity.getMcc(), identity.getMnc(), identity.getLac(), identity.getCid());
+                cell.setGsmCellInfo(identity.getMcc(), identity.getMnc(), identity.getLac(), identity.getCid());
             }
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2 && cellInfo instanceof CellInfoWcdma) {
             CellInfoWcdma wcdmaCellInfo = (CellInfoWcdma) cellInfo;
             CellIdentityWcdma identity = wcdmaCellInfo.getCellIdentity();
-            m.setWcdmaCellInfo(identity.getMcc(), identity.getMnc(), identity.getLac(), identity.getCid(), identity.getPsc());
+            cell.setWcdmaCellInfo(identity.getMcc(), identity.getMnc(), identity.getLac(), identity.getCid(), identity.getPsc());
         } else if (cellInfo instanceof CellInfoLte) {
             CellInfoLte lteCellInfo = (CellInfoLte) cellInfo;
             CellIdentityLte identity = lteCellInfo.getCellIdentity();
-            m.setLteCellInfo(identity.getMcc(), identity.getMnc(), identity.getTac(), identity.getCi(), identity.getPci());
+            cell.setLteCellInfo(identity.getMcc(), identity.getMnc(), identity.getTac(), identity.getCi(), identity.getPci());
         } else if (cellInfo instanceof CellInfoCdma) {
             CellInfoCdma cdmaCellInfo = (CellInfoCdma) cellInfo;
             CellIdentityCdma identity = cdmaCellInfo.getCellIdentity();
-            m.setCdmaCellInfo(identity.getSystemId(), identity.getNetworkId(), identity.getBasestationId());
+            cell.setCdmaCellInfo(identity.getSystemId(), identity.getNetworkId(), identity.getBasestationId());
         } else {
             throw new UnsupportedOperationException("Cell identity type not supported `" + cellInfo.getClass().getName() + "`");
         }
+        return cell;
     }
 
-    public String createCellKey(Measurement measurement) {
+    public String createCellKey(Cell cell) {
         StringBuilder sb = new StringBuilder();
-        sb.append(measurement.getMcc())
-                .append("_").append(measurement.getMnc())
-                .append("_").append(measurement.getLac())
-                .append("_").append(measurement.getCid());
+        sb.append(cell.getMcc())
+                .append("_").append(cell.getMnc())
+                .append("_").append(cell.getLac())
+                .append("_").append(cell.getCid());
         return sb.toString();
     }
 
@@ -96,7 +97,7 @@ public class CellIdentityConverter {
         } else if (cellInfo instanceof CellInfoCdma) {
             CellInfoCdma cdmaCellInfo = (CellInfoCdma) cellInfo;
             CellIdentityCdma identity = cdmaCellInfo.getCellIdentity();
-            sb.append(Measurement.UNKNOWN_CID)
+            sb.append(Cell.UNKNOWN_CID)
                     .append("_").append(identity.getSystemId())
                     .append("_").append(identity.getNetworkId())
                     .append("_").append(identity.getBasestationId());

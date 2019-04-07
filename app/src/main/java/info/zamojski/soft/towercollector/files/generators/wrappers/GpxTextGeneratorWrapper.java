@@ -50,7 +50,7 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
                 return new FileGeneratorResult(GeneratorResult.NoData, Reason.Unknown);
             }
             // calculate number of parts
-            final int MEASUREMENTS_PER_PART = 500;
+            final int MEASUREMENTS_PER_PART = 300;
             int partsCount = 1;
             if (measurementsCount > MEASUREMENTS_PER_PART) {
                 partsCount = (int) Math.ceil(1.0 * measurementsCount / MEASUREMENTS_PER_PART);
@@ -63,8 +63,8 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
             Boundaries bounds = MeasurementsDatabase.getInstance(context).getLocationBounds();
             HeaderData headerData = new HeaderData();
             headerData.ApkVersion = ApkUtils.getApkVersionName(context);
-            headerData.FirstMeasurementTimestamp = firstMeasurement.getTimestamp();
-            headerData.LastMeasurementTimestamp = lastMeasurement.getTimestamp();
+            headerData.FirstMeasurementTimestamp = firstMeasurement.getMeasuredAt();
+            headerData.LastMeasurementTimestamp = lastMeasurement.getMeasuredAt();
             headerData.Boundaries = bounds;
             generator.writeHeader(headerData);
             // remember previous measurement
@@ -76,7 +76,7 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
                 // write to file
                 for (Measurement m : measurements) {
                     // if time difference is more than 30 minutes then create new segment
-                    if ((m.getTimestamp() - prevMeasurement.getTimestamp()) > 1800000) {
+                    if ((m.getMeasuredAt() - prevMeasurement.getMeasuredAt()) > 1800000) {
                         generator.writeNewSegment();
                     }
                     generator.writeEntry(m);

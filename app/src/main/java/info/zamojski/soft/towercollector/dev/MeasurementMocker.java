@@ -7,7 +7,7 @@ package info.zamojski.soft.towercollector.dev;
 import org.greenrobot.eventbus.EventBus;
 
 import info.zamojski.soft.towercollector.events.MeasurementSavedEvent;
-import info.zamojski.soft.towercollector.model.CellsCount;
+import info.zamojski.soft.towercollector.model.Cell;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.model.Statistics;
 import info.zamojski.soft.towercollector.utils.DateUtils;
@@ -18,16 +18,15 @@ public class MeasurementMocker {
     public static void mockMainActivityData() {
         Timber.d("mockMainActivityData(): mocking data");
         Measurement m = mockLastMeasurement();
-        CellsCount cellsCount = mockCellsCount();
         Statistics stats = mockStatistics();
-        MeasurementSavedEvent event = new MeasurementSavedEvent(m, cellsCount, stats);
+        MeasurementSavedEvent event = new MeasurementSavedEvent(m, stats);
         EventBus.getDefault().postSticky(event);
     }
 
     private static Measurement mockLastMeasurement() {
         Measurement m = new Measurement();
 
-        m.setTimestamp(System.currentTimeMillis());
+        m.setMeasuredAt(System.currentTimeMillis());
 
         m.setLatitude(52.0693267);
         m.setLongitude(19.4781224);
@@ -37,14 +36,12 @@ public class MeasurementMocker {
         m.setGpsBearing(36.2f);
         m.setGpsAltitude(101.0);
 
-        m.setLteCellInfo(260, 6, 5114, 1055842, 28);
-        m.setLteSignalInfo(46, -94, 76);
+        Cell c = new Cell();
+        c.setLteCellInfo(260, 6, 5114, 1055842, 28);
+        c.setLteSignalInfo(46, -94, 76);
+        m.addCell(c);
 
         return m;
-    }
-
-    private static CellsCount mockCellsCount() {
-        return new CellsCount(1, 3);
     }
 
     private static Statistics mockStatistics() {

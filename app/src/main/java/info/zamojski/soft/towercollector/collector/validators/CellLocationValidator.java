@@ -7,7 +7,6 @@ package info.zamojski.soft.towercollector.collector.validators;
 import info.zamojski.soft.towercollector.collector.validators.specific.CdmaCellLocationValidator;
 import info.zamojski.soft.towercollector.collector.validators.specific.GsmCellLocationValidator;
 import info.zamojski.soft.towercollector.enums.NetworkGroup;
-import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.utils.NetworkTypeUtils;
 
 import android.telephony.CellLocation;
@@ -32,13 +31,13 @@ public class CellLocationValidator {
         throw new UnsupportedOperationException("Cell location type not supported `" + cellLocation.getClass().getName() + "`");
     }
 
-    public boolean isValid(NeighboringCellInfo neighboringCell, Measurement measurement) {
+    public boolean isValid(NeighboringCellInfo neighboringCell, int mcc, int mnc) {
         NetworkGroup netType = NetworkTypeUtils.getNetworkGroup(neighboringCell.getNetworkType());
         if (netType == NetworkGroup.Gsm) {
-            return getGsmValidator().isValid(neighboringCell.getCid(), neighboringCell.getLac(), measurement.getMnc(), measurement.getMcc(), NeighboringCellInfo.UNKNOWN_CID);
+            return getGsmValidator().isValid(neighboringCell.getCid(), neighboringCell.getLac(), mnc, mcc, NeighboringCellInfo.UNKNOWN_CID);
         } else if (netType == NetworkGroup.Wcdma) {
             // NOTE: Maybe some phones return full set for WCDMA and then it should be valid
-            return getGsmValidator().isValid(neighboringCell.getCid(), neighboringCell.getLac(), measurement.getMnc(), measurement.getMcc(), neighboringCell.getPsc());
+            return getGsmValidator().isValid(neighboringCell.getCid(), neighboringCell.getLac(), mnc, mcc, neighboringCell.getPsc());
         }
         return false;
     }

@@ -9,15 +9,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import info.zamojski.soft.towercollector.enums.NetworkGroup;
+import info.zamojski.soft.towercollector.model.Cell;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.providers.ICellUtils;
 import info.zamojski.soft.towercollector.providers.MozillaCellUtils;
-import info.zamojski.soft.towercollector.utils.HashUtils;
 import info.zamojski.soft.towercollector.utils.StringUtils;
 
 public abstract class JsonMozillaFormatterBase extends JsonFormatterBase {
@@ -30,65 +28,50 @@ public abstract class JsonMozillaFormatterBase extends JsonFormatterBase {
 
     protected List<JSONObject> formatItems(List<Measurement> ms) throws JSONException {
         List<JSONObject> items = new ArrayList<>();
-        Map<String, List<Measurement>> groups = groupByLocationAndSkipUnsupported(ms);
-        for (List<Measurement> group : groups.values()) {
-            Measurement firstM = group.get(0);
+        for (Measurement m : ms) {
             JSONObject item = new JSONObject();
-            item.put("timestamp", firstM.getTimestamp());
+            item.put("timestamp", m.getMeasuredAt());
             JSONObject position = new JSONObject();
-            position.put("latitude", formatCoordinate(firstM.getLatitude()));
-            position.put("longitude", formatCoordinate(firstM.getLongitude()));
-            position.put("longitude", formatCoordinate(firstM.getLongitude()));
-            position.put("accuracy", formatGpsValue(firstM.getGpsAccuracy()));
-            position.put("altitude", formatGpsValue(firstM.getGpsAltitude()));
-            position.put("heading", formatGpsValue(firstM.getGpsBearing()));
-            position.put("speed", formatGpsValue(firstM.getGpsSpeed()));
+            position.put("latitude", formatCoordinate(m.getLatitude()));
+            position.put("longitude", formatCoordinate(m.getLongitude()));
+            position.put("longitude", formatCoordinate(m.getLongitude()));
+            position.put("accuracy", formatGpsValue(m.getGpsAccuracy()));
+            position.put("altitude", formatGpsValue(m.getGpsAltitude()));
+            position.put("heading", formatGpsValue(m.getGpsBearing()));
+            position.put("speed", formatGpsValue(m.getGpsSpeed()));
             position.put("source", "gps");
             item.put("position", position);
             JSONArray cellTowers = new JSONArray();
-            for (Measurement m : group) {
+            for (Cell c : m.getCells()) {
+                if (c.getNetworkType() == NetworkGroup.Cdma || c.getMcc() == Cell.UNKNOWN_CID)
+                    continue; // Not supported
                 JSONObject cellTower = new JSONObject();
-                cellTower.put("radioType", formatRadioType(m.getNetworkType()));
-                cellTower.put("mobileCountryCode", m.getMcc());
-                cellTower.put("mobileNetworkCode", m.getMnc());
-                cellTower.put("locationAreaCode", m.getLac());
-                cellTower.put("cellId", m.getCid());
-                int psc = m.getPsc();
-                if (psc != Measurement.UNKNOWN_CID)
+                cellTower.put("radioType", formatRadioType(c.getNetworkType()));
+                cellTower.put("mobileCountryCode", c.getMcc());
+                cellTower.put("mobileNetworkCode", c.getMnc());
+                cellTower.put("locationAreaCode", c.getLac());
+                cellTower.put("cellId", c.getCid());
+                int psc = c.getPsc();
+                if (psc != Cell.UNKNOWN_CID)
                     cellTower.put("primaryScramblingCode", psc);
-                int asu = m.getAsu();
-                if (asu != Measurement.UNKNOWN_SIGNAL)
+                int asu = c.getAsu();
+                if (asu != Cell.UNKNOWN_SIGNAL)
                     cellTower.put("asu", asu);
-                int dbm = m.getDbm();
-                if (dbm != Measurement.UNKNOWN_SIGNAL)
+                int dbm = c.getDbm();
+                if (dbm != Cell.UNKNOWN_SIGNAL)
                     cellTower.put("signalStrength", dbm);
-                int ta = m.getTa();
-                if (ta != Measurement.UNKNOWN_SIGNAL)
+                int ta = c.getTa();
+                if (ta != Cell.UNKNOWN_SIGNAL)
                     cellTower.put("timingAdvance", ta);
-                cellTower.put("serving", m.isNeighboring() ? 0 : 1);
+                cellTower.put("serving", c.isNeighboring() ? 0 : 1);
                 cellTowers.put(cellTower);
             }
             item.put("cellTowers", cellTowers);
-            items.add(item);
+            // add only if measurement contains valid cells
+            if (cellTowers.length() > 0)
+                items.add(item);
         }
         return items;
-    }
-
-    private Map<String, List<Measurement>> groupByLocationAndSkipUnsupported(List<Measurement> ms) {
-        Map<String, List<Measurement>> groups = new LinkedHashMap<>();
-
-        for (Measurement m : ms) {
-            if (m.getNetworkType() == NetworkGroup.Cdma || m.getMcc() == Measurement.UNKNOWN_CID)
-                continue; // Not supported
-
-            String locationHashCode = HashUtils.toSha1(m);
-            if (!groups.containsKey(locationHashCode)) {
-                groups.put(locationHashCode, new ArrayList<Measurement>());
-            }
-            groups.get(locationHashCode).add(m);
-        }
-
-        return groups;
     }
 
     private Object formatRadioType(NetworkGroup networkGroup) {

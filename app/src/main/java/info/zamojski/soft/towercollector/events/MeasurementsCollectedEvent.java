@@ -4,19 +4,17 @@
 
 package info.zamojski.soft.towercollector.events;
 
-import java.util.List;
-
 import info.zamojski.soft.towercollector.model.Measurement;
 
 public class MeasurementsCollectedEvent {
 
-    private List<Measurement> measurements;
+    private Measurement measurement;
 
-    public MeasurementsCollectedEvent(List<Measurement> measurements) {
-        this.measurements = measurements;
+    public MeasurementsCollectedEvent(Measurement measurement) {
+        this.measurement = measurement;
     }
 
-    public List<Measurement> getMeasurements() {
-        return measurements;
+    public Measurement getMeasurement() {
+        return measurement;
     }
 }

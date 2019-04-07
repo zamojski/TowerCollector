@@ -58,7 +58,7 @@ public class UploaderService extends Service {
     public static final String INTENT_KEY_UPLOAD_TRY_REUPLOAD = "try_reupload";
     public static final String INTENT_KEY_RESULT_DESCRIPTION = "result_description";
     public static final int NOTIFICATION_ID = 'U';
-    private static final int MEASUREMENTS_PER_PART = 500;
+    private static final int MEASUREMENTS_PER_PART = 300;
 
     private HandlerThread handlerThread;
     private Handler handler;
@@ -376,7 +376,7 @@ public class UploaderService extends Service {
                     if ((ocidSuccessful || !isOpenCellIdUploadEnabled) && (mlsSuccessful || !isMlsUploadEnabled)) {
                         Timber.d("upload(): Deleting measurements because OCID enabled = %s and successful = %s, MLS enabled = %s and successful = %s", isOpenCellIdUploadEnabled, ocidSuccessful, isMlsUploadEnabled, mlsSuccessful);
                         // delete sent measurements
-                        int[] rowIds = getRowIds(measurements);
+                        int[] rowIds = getMeasurementIds(measurements);
                         int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).markAsUploaded(rowIds, System.currentTimeMillis(), System.currentTimeMillis());
                         if (numberOfDeleted == 0) {
                             ocidUploadResult = UploadResult.DeleteFailed;
@@ -386,7 +386,7 @@ public class UploaderService extends Service {
                     } else if (ocidSuccessful && isMlsUploadEnabled) {
                         Timber.d("upload(): Marking measurements as uploaded to OCID");
                         // keep for mls
-                        int[] rowIds = getRowIds(groupedMeasurements.get(UploadTarget.Ocid));
+                        int[] rowIds = getMeasurementIds(groupedMeasurements.get(UploadTarget.Ocid));
                         int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).markAsUploaded(rowIds, System.currentTimeMillis(), null);
                         if (numberOfDeleted == 0) {
                             ocidUploadResult = UploadResult.DeleteFailed;
@@ -395,7 +395,7 @@ public class UploaderService extends Service {
                     } else if (mlsSuccessful && isOpenCellIdUploadEnabled) {
                         Timber.d("upload(): Marking measurements as uploaded to MLS");
                         // keep for ocid
-                        int[] rowIds = getRowIds(groupedMeasurements.get(UploadTarget.Mls));
+                        int[] rowIds = getMeasurementIds(groupedMeasurements.get(UploadTarget.Mls));
                         int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).markAsUploaded(rowIds, null, System.currentTimeMillis());
                         if (numberOfDeleted == 0) {
                             mlsUploadResult = UploadResult.DeleteFailed;
@@ -408,7 +408,7 @@ public class UploaderService extends Service {
                 } else if ((isOpenCellIdUploadEnabled && ocidSuccessful) || (isMlsUploadEnabled && mlsSuccessful)) {
                     Timber.d("upload(): Deleting measurements because OCID enabled = %s and successful = %s, MLS enabled = %s and successful = %s", isOpenCellIdUploadEnabled, ocidSuccessful, isMlsUploadEnabled, mlsSuccessful);
                     // delete sent measurements
-                    int[] rowIds = getRowIds(measurements);
+                    int[] rowIds = getMeasurementIds(measurements);
                     int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).markAsUploaded(rowIds, System.currentTimeMillis(), System.currentTimeMillis());
                     if (numberOfDeleted == 0) {
                         ocidUploadResult = UploadResult.DeleteFailed;
@@ -446,11 +446,11 @@ public class UploaderService extends Service {
             return filtered;
         }
 
-        private int[] getRowIds(List<Measurement> measurements) {
+        private int[] getMeasurementIds(List<Measurement> measurements) {
             int j = 0;
             int[] rowIds = new int[measurements.size()];
             for (Measurement m : measurements) {
-                rowIds[j++] = m.getRowId();
+                rowIds[j++] = m.getMeasurementId();
             }
             return rowIds;
         }

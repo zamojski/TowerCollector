@@ -13,7 +13,7 @@ import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.events.MeasurementSavedEvent;
 import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
-import info.zamojski.soft.towercollector.model.CellsCount;
+import info.zamojski.soft.towercollector.model.Cell;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.utils.NetworkTypeUtils;
 import info.zamojski.soft.towercollector.utils.UnitConverter;
@@ -22,6 +22,7 @@ import timber.log.Timber;
 import android.os.Bundle;
 
 
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,7 +55,7 @@ public class MainLastFragment extends MainFragmentBase {
     private Locale locale;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.main_last_fragment, container, false);
         configureControls(rootView);
         return rootView;
@@ -91,8 +92,7 @@ public class MainLastFragment extends MainFragmentBase {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(MeasurementSavedEvent event) {
         Measurement measurement = event.getMeasurement();
-        CellsCount cellsCount = event.getCellsCount();
-        printOrClearMeasurement(measurement, cellsCount);
+        printOrClearMeasurement(measurement);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -102,25 +102,27 @@ public class MainLastFragment extends MainFragmentBase {
 
     private void getAndPrintOrClearMeasurement() {
         Measurement measurement = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getLastMeasurement();
-        CellsCount cellsCount = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getLastCellsCount();
-        printOrClearMeasurement(measurement, cellsCount);
+        printOrClearMeasurement(measurement);
     }
 
-    private void printOrClearMeasurement(Measurement measurement, CellsCount cellsCount) {
+    private void printOrClearMeasurement(Measurement measurement) {
         if (measurement != null) {
-            printMeasurement(measurement, cellsCount);
+            printMeasurement(measurement);
         } else {
             clearMeasurement();
         }
     }
 
-    private void printMeasurement(Measurement measurement, CellsCount cellsCount) {
+    private void printMeasurement(Measurement measurement) {
         Timber.d("printMeasurement(): Printing last measurement %s", measurement);
-        lastNumberOfCellsValueTextView.setText(getString(R.string.main_last_number_of_cells_value, cellsCount.getMain(), cellsCount.getNeighboring()));
-        int networkNameId = NetworkTypeUtils.getNetworkGroupNameResId(measurement.getNetworkType());
+        int neighboringCellsCount = measurement.getNeighboringCellsCount();
+        int mainCellsCount = measurement.getMainCells().size();
+        Cell mainCell = measurement.getMainCells().get(0);
+        lastNumberOfCellsValueTextView.setText(getString(R.string.main_last_number_of_cells_value, mainCellsCount, neighboringCellsCount));
+        int networkNameId = NetworkTypeUtils.getNetworkGroupNameResId(mainCell.getNetworkType());
         lastNetworkTypeValueTextView.setText(getString(networkNameId));
         // only for UMTS/LTE with valid CID
-        if ((measurement.getNetworkType() == NetworkGroup.Wcdma || measurement.getNetworkType() == NetworkGroup.Lte) && measurement.getLongCid() != Measurement.UNKNOWN_CID) {
+        if ((mainCell.getNetworkType() == NetworkGroup.Wcdma || mainCell.getNetworkType() == NetworkGroup.Lte) && mainCell.getLongCid() != Cell.UNKNOWN_CID) {
             lastLongCellIdValueTableRow.setVisibility(View.VISIBLE);
             lastCellIdRncValueTableRow.setVisibility(View.VISIBLE);
             lastCellIdValueTableRow.setVisibility(View.GONE);
@@ -129,14 +131,14 @@ public class MainLastFragment extends MainFragmentBase {
             lastCellIdRncValueTableRow.setVisibility(View.GONE);
             lastCellIdValueTableRow.setVisibility(View.VISIBLE);
         }
-        lastLongCellIdValueTextView.setText(String.valueOf(measurement.getLongCid()));
-        lastCellIdRncValueTextView.setText(String.format(locale, getString(R.string.main_last_cell_id_rnc_value), measurement.getShortCid(), measurement.getRnc()));
-        lastCellIdValueTextView.setText(String.valueOf(measurement.getCid()));
-        lastMccValueTextView.setText((measurement.getMcc() != Measurement.UNKNOWN_CID ? String.valueOf(measurement.getMcc()) : ""));
-        lastMncValueTextView.setText(String.valueOf(measurement.getMnc()));
-        lastLacValueTextView.setText(String.valueOf(measurement.getLac()));
-        if (measurement.getDbm() != Measurement.UNKNOWN_SIGNAL) {
-            lastSignalStrengthValueTextView.setText(getString(R.string.main_last_signal_strength_value, measurement.getDbm()));
+        lastLongCellIdValueTextView.setText(String.valueOf(mainCell.getLongCid()));
+        lastCellIdRncValueTextView.setText(String.format(locale, getString(R.string.main_last_cell_id_rnc_value), mainCell.getShortCid(), mainCell.getRnc()));
+        lastCellIdValueTextView.setText(String.valueOf(mainCell.getCid()));
+        lastMccValueTextView.setText((mainCell.getMcc() != Cell.UNKNOWN_CID ? String.valueOf(mainCell.getMcc()) : ""));
+        lastMncValueTextView.setText(String.valueOf(mainCell.getMnc()));
+        lastLacValueTextView.setText(String.valueOf(mainCell.getLac()));
+        if (mainCell.getDbm() != Cell.UNKNOWN_SIGNAL) {
+            lastSignalStrengthValueTextView.setText(getString(R.string.main_last_signal_strength_value, mainCell.getDbm()));
         } else {
             lastSignalStrengthValueTextView.setText(getString(R.string.main_signal_strength_not_available));
         }
@@ -147,7 +149,7 @@ public class MainLastFragment extends MainFragmentBase {
                     (useImperialUnits ? UnitConverter.convertMetersToFeet(measurement.getGpsAccuracy()) : measurement.getGpsAccuracy()), preferredLengthUnit));
         else
             lastGpsAccuracyValueTextView.setText(getString(R.string.main_gps_accuracy_not_available));
-        lastDateTimeValueTextView.setText(dateTimeFormatStandard.format(new Date(measurement.getTimestamp())));
+        lastDateTimeValueTextView.setText(dateTimeFormatStandard.format(new Date(measurement.getMeasuredAt())));
     }
 
     private void clearMeasurement() {

@@ -6,16 +6,15 @@ package info.zamojski.soft.towercollector.collector.validators;
 
 import android.location.Location;
 
-import info.zamojski.soft.towercollector.model.Measurement;
+import info.zamojski.soft.towercollector.model.Cell;
 import timber.log.Timber;
 
 public class ConditionsValidator {
 
-
-    public boolean isSameCell(Measurement m1, Measurement m2) {
-        return (m1.getCid() == m2.getCid() && m1.getLac() == m2.getLac()
-                && m1.getMnc() == m2.getMnc() && m1.getMcc() == m2.getMcc()
-                && m1.getPsc() == m2.getPsc());
+    public boolean isSameCell(Cell c1, Cell c2) {
+        return (c1.getCid() == c2.getCid() && c1.getLac() == c2.getLac()
+                && c1.getMnc() == c2.getMnc() && c1.getMcc() == c2.getMcc()
+                && c1.getPsc() == c2.getPsc());
     }
 
     public boolean isMinDistanceSatisfied(Location previousLocation, Location currentLocation, int minDistance) {

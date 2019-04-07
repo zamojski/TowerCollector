@@ -32,14 +32,13 @@ import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.events.LegacyMeasurementProcessingEvent;
 import info.zamojski.soft.towercollector.events.MeasurementSavedEvent;
 import info.zamojski.soft.towercollector.events.MeasurementsCollectedEvent;
-import info.zamojski.soft.towercollector.model.CellsCount;
+import info.zamojski.soft.towercollector.model.Cell;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.model.Statistics;
 import info.zamojski.soft.towercollector.utils.MobileUtils;
 import timber.log.Timber;
 
 public class LegacyMeasurementParser extends MeasurementParser {
-
 
     private CellLocationValidator cellLocationValidator;
 
@@ -70,8 +69,8 @@ public class LegacyMeasurementParser extends MeasurementParser {
         // operator name may be unreliable for CDMA
         Timber.d("parse(): Operator name = '%s'", operatorName);
         // get operator codes
-        int mcc = Measurement.UNKNOWN_CID;
-        int mnc = Measurement.UNKNOWN_CID;
+        int mcc = Cell.UNKNOWN_CID;
+        int mnc = Cell.UNKNOWN_CID;
         if (cellLocation instanceof GsmCellLocation) {
             int[] mccMncPair = MobileUtils.getMccMncPair(operatorCode);
             if (mccMncPair != null) {
@@ -88,17 +87,18 @@ public class LegacyMeasurementParser extends MeasurementParser {
         }
         // create measurement with basic data
         Measurement measurement = new Measurement();
-        cellLocationConverter.update(measurement, cellLocation, mcc, mnc, networkType);
+        measurement.setMeasuredAt(System.currentTimeMillis());
+        Cell mainCell = cellLocationConverter.convert(cellLocation, mcc, mnc, networkType);
+        measurement.addCell(mainCell);
         // fix time if incorrect
         fixMeasurementTimestamp(measurement, location);
         // if the same cell check distance condition, otherwise accept
-        if (lastSavedLocation != null && !conditionsValidator.isMinDistanceSatisfied(lastSavedLocation, location, minDistance)) {
-            List<Measurement> lastMeasurements = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getLastMeasurements();
+        if (lastSavedMeasurement != null && lastSavedLocation != null && !conditionsValidator.isMinDistanceSatisfied(lastSavedLocation, location, minDistance)) {
             List<String> lastMeasurementsCellKeys = new ArrayList<>();
-            for (Measurement lastMeasurement : lastMeasurements) {
-                lastMeasurementsCellKeys.add(createCellKey(lastMeasurement));
+            for (Cell lastCell : lastSavedMeasurement.getCells()) {
+                lastMeasurementsCellKeys.add(createCellKey(lastCell));
             }
-            boolean mainCellChanged = !lastMeasurementsCellKeys.contains(createCellKey(measurement));
+            boolean mainCellChanged = !lastMeasurementsCellKeys.contains(createCellKey(mainCell));
             if (mainCellChanged) {
                 Timber.d("parse(): Distance condition not achieved but cell changed");
             } else {
@@ -116,45 +116,38 @@ public class LegacyMeasurementParser extends MeasurementParser {
         updateMeasurementWithLocation(measurement, location);
         // update measurement with signal strength
         if (signalStrength != null) {
-            cellSignalConverter.update(measurement, signalStrength);
+            cellSignalConverter.update(mainCell, signalStrength);
         }
-        // create a list of measurements to save
-        List<Measurement> measurementsToSave = new ArrayList<Measurement>();
-        measurementsToSave.add(measurement);
         if (collectNeighboringCells) {
             // remove duplicated neighboring cells
-            removeDuplicatedNeighbors(neighboringCells, measurement);
+            removeDuplicatedNeighbors(neighboringCells, mainCell);
             // process neighboring cells
             for (NeighboringCellInfo neighboringCell : neighboringCells) {
-                // copy measurement
-                Measurement neighboringMeasurement = new Measurement(measurement);
                 // validate cell
-                if (cellLocationValidator.isValid(neighboringCell, neighboringMeasurement)) {
+                if (cellLocationValidator.isValid(neighboringCell, mcc, mnc)) {
                     // set values
-                    neighboringMeasurement.setNeighboring(true);
-                    cellLocationConverter.update(neighboringMeasurement, neighboringCell, mcc, mnc);
+                    Cell tempCell = cellLocationConverter.convert(neighboringCell, mcc, mnc, mainCell.getLac(), mainCell.getCid());
                     // update measurement with signal strength
-                    cellSignalConverter.update(neighboringMeasurement, neighboringCell.getRssi());
-                    // write to database
-                    Timber.d("parse(): Neighboring: %s", neighboringMeasurement);
-                    measurementsToSave.add(neighboringMeasurement);
+                    cellSignalConverter.update(tempCell, neighboringCell.getRssi());
+                    // save
+                    measurement.addCell(tempCell);
+                    Timber.d("parse(): Neighboring cell valid: %s", neighboringCell);
                 } else {
                     Timber.d("parse(): Neighboring cell invalid: %s", neighboringCell);
                 }
             }
         }
         // write to database
-        Timber.d("parse(): Main: %s", measurement);
-        boolean inserted = MeasurementsDatabase.getInstance(MyApplication.getApplication()).insertMeasurements(measurementsToSave.toArray(new Measurement[measurementsToSave.size()]));
+        Timber.d("parse(): Measurement: %s", measurement);
+        boolean inserted = MeasurementsDatabase.getInstance(MyApplication.getApplication()).insertMeasurement(measurement);
         if (inserted) {
             lastSavedLocation = location;
             lastSavedMeasurement = measurement;
             Timber.d("parse(): Measurement saved");
             // broadcast information to main activity
-            CellsCount cellsCount = new CellsCount(1, measurementsToSave.size() - 1);
             Statistics stats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
-            EventBus.getDefault().post(new MeasurementSavedEvent(measurement, cellsCount, stats));
-            EventBus.getDefault().post(new MeasurementsCollectedEvent(measurementsToSave));
+            EventBus.getDefault().post(new MeasurementSavedEvent(measurement, stats));
+            EventBus.getDefault().post(new MeasurementsCollectedEvent(measurement));
             Timber.d("parse(): Notification updated and measurement broadcasted");
             return ParseResult.Saved;
         } else {
@@ -162,13 +155,13 @@ public class LegacyMeasurementParser extends MeasurementParser {
         }
     }
 
-    private void removeDuplicatedNeighbors(List<NeighboringCellInfo> neighboringCells, Measurement measurement) {
+    private void removeDuplicatedNeighbors(List<NeighboringCellInfo> neighboringCells, Cell mainCell) {
         List<NeighboringCellInfo> cellsToRemove = new ArrayList<NeighboringCellInfo>();
         Set<String> uniqueCellKeys = new HashSet<String>();
 
-        uniqueCellKeys.add(createCellKey(measurement));
+        uniqueCellKeys.add(createCellKey(mainCell));
         for (NeighboringCellInfo cell : neighboringCells) {
-            String key = createCellKey(cell, measurement);
+            String key = createCellKey(cell, mainCell);
             if (uniqueCellKeys.contains(key)) {
                 Timber.d("removeDuplicatedNeighbors(): Remove duplicated cell: %s", key);
                 cellsToRemove.add(cell);
@@ -180,12 +173,12 @@ public class LegacyMeasurementParser extends MeasurementParser {
         neighboringCells.removeAll(cellsToRemove);
     }
 
-    private String createCellKey(NeighboringCellInfo cell, Measurement measurement) {
-        return measurement.getMcc() + "_" + measurement.getMnc() + "_" + cell.getLac() + "_" + cell.getCid();
+    private String createCellKey(NeighboringCellInfo neighboringCell, Cell cell) {
+        return cell.getMcc() + "_" + cell.getMnc() + "_" + neighboringCell.getLac() + "_" + neighboringCell.getCid();
     }
 
-    private String createCellKey(Measurement measurement) {
-        return measurement.getMcc() + "_" + measurement.getMnc() + "_" + measurement.getLac() + "_" + measurement.getCid();
+    private String createCellKey(Cell cell) {
+        return cell.getMcc() + "_" + cell.getMnc() + "_" + cell.getLac() + "_" + cell.getCid();
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)

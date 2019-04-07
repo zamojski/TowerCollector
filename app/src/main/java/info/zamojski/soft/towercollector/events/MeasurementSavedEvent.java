@@ -5,29 +5,22 @@
 package info.zamojski.soft.towercollector.events;
 
 import info.zamojski.soft.towercollector.collector.ParseResult;
-import info.zamojski.soft.towercollector.model.CellsCount;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.model.Statistics;
 
 public class MeasurementSavedEvent extends MeasurementProcessedEvent {
 
     private Measurement measurement;
-    private CellsCount cellsCount;
     private Statistics statistics;
 
-    public MeasurementSavedEvent(Measurement measurement, CellsCount cellsCount, Statistics statistics) {
+    public MeasurementSavedEvent(Measurement measurement, Statistics statistics) {
         super(ParseResult.Saved);
         this.measurement = measurement;
-        this.cellsCount = cellsCount;
         this.statistics = statistics;
     }
 
     public Measurement getMeasurement() {
         return measurement;
-    }
-
-    public CellsCount getCellsCount() {
-        return cellsCount;
     }
 
     public Statistics getStatistics() {

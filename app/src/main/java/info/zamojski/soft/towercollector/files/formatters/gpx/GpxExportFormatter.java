@@ -5,6 +5,7 @@
 package info.zamojski.soft.towercollector.files.formatters.gpx;
 
 import info.zamojski.soft.towercollector.files.formatters.gpx.model.HeaderData;
+import info.zamojski.soft.towercollector.model.Cell;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.providers.GeneralCellUtils;
 import info.zamojski.soft.towercollector.providers.ICellUtils;
@@ -90,19 +91,22 @@ public class GpxExportFormatter implements IGpxFormatter {
         if (altitudeAvailable) {
             sb.append(String.format(LOCALE, "        <ele>%s</ele>\r\n", formatGpsValue(m.getGpsAltitude())));
         }
-        sb.append(String.format(LOCALE, "        <time>%s</time>\r\n", formatDate(m.getTimestamp())));
-        int mcc = m.getMcc();
-        int psc = m.getPsc();
-        sb.append(String.format(LOCALE, "        <name><![CDATA[%sMNC %s, LAC %s, CID %s, %sSignal strength %s dBm, Network %s, GPS accuracy %s m%s]]></name>\r\n",
-                (mcc != Measurement.UNKNOWN_CID ? String.format(LOCALE, "MCC %s, ", formatInt(mcc)) : ""),
-                formatInt(m.getMnc()),
-                formatInt(m.getLac()),
-                formatInt(m.getCid()),
-                (psc != Measurement.UNKNOWN_CID ? String.format(LOCALE, "PSC %s, ", formatInt(psc)) : ""),
-                formatDbmSignal(m.getDbm()),
-                cellUtils.getSystemType(m.getNetworkType()),
-                formatGpsValue(m.getGpsAccuracy()),
-                m.isNeighboring() ? ", neighboring" : ""));
+        sb.append(String.format(LOCALE, "        <time>%s</time>\r\n", formatDate(m.getMeasuredAt())));
+        sb.append("        <name><![CDATA[");
+        for (Cell c : m.getCells()) {
+            int mcc = c.getMcc();
+            int psc = c.getPsc();
+            sb.append(String.format(LOCALE, "(%sMNC %s, LAC %s, CID %s, %sSignal strength %s dBm, Network %s%s), ",
+                    (mcc != Cell.UNKNOWN_CID ? String.format(LOCALE, "MCC %s, ", formatInt(mcc)) : ""),
+                    formatInt(c.getMnc()),
+                    formatInt(c.getLac()),
+                    formatInt(c.getCid()),
+                    (psc != Cell.UNKNOWN_CID ? String.format(LOCALE, "PSC %s, ", formatInt(psc)) : ""),
+                    formatDbmSignal(c.getDbm()),
+                    cellUtils.getSystemType(c.getNetworkType()),
+                    c.isNeighboring() ? ", neighboring" : ""));
+        }
+        sb.append(String.format(LOCALE, "(GPS accuracy %s m)]]></name>\r\n", formatGpsValue(m.getGpsAccuracy())));
 
         // set extended properties
         boolean speedAvailable = DoubleUtils.greaterThan(m.getGpsSpeed(), Measurement.GPS_VALUE_NOT_AVAILABLE);
@@ -148,7 +152,7 @@ public class GpxExportFormatter implements IGpxFormatter {
     }
 
     private String formatDbmSignal(int dbm) {
-        if (dbm != Measurement.UNKNOWN_SIGNAL)
+        if (dbm != Cell.UNKNOWN_SIGNAL)
             return String.valueOf(dbm);
         else
             return "";

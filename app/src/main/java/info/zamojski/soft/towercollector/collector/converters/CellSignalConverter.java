@@ -4,7 +4,7 @@
 
 package info.zamojski.soft.towercollector.collector.converters;
 
-import info.zamojski.soft.towercollector.model.Measurement;
+import info.zamojski.soft.towercollector.model.Cell;
 
 import android.annotation.TargetApi;
 import android.os.Build;
@@ -22,40 +22,40 @@ import android.telephony.NeighboringCellInfo;
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class CellSignalConverter {
 
-    public void update(Measurement m, CellInfo cellInfo) {
+    public void update(Cell cell, CellInfo cellInfo) {
         if (cellInfo instanceof CellInfoGsm) {
             CellInfoGsm gsmCellInfo = (CellInfoGsm) cellInfo;
             CellSignalStrengthGsm signal = gsmCellInfo.getCellSignalStrength();
             int asu = signal.getAsuLevel();
             int dbm = signal.getDbm();
             if (asu == NeighboringCellInfo.UNKNOWN_RSSI)
-                asu = Measurement.UNKNOWN_SIGNAL;
-            m.setGsmSignalInfo(asu, dbm);
+                asu = Cell.UNKNOWN_SIGNAL;
+            cell.setGsmSignalInfo(asu, dbm);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2 && cellInfo instanceof CellInfoWcdma) {
             CellInfoWcdma wcdmaCellInfo = (CellInfoWcdma) cellInfo;
             CellSignalStrengthWcdma signal = wcdmaCellInfo.getCellSignalStrength();
             int asu = signal.getAsuLevel();
             if (asu == NeighboringCellInfo.UNKNOWN_RSSI)
-                asu = Measurement.UNKNOWN_SIGNAL;
+                asu = Cell.UNKNOWN_SIGNAL;
             int dbm = signal.getDbm();
-            m.setWcdmaSignalInfo(asu, dbm);
+            cell.setWcdmaSignalInfo(asu, dbm);
         } else if (cellInfo instanceof CellInfoLte) {
             CellInfoLte lteCellInfo = (CellInfoLte) cellInfo;
             CellSignalStrengthLte signal = lteCellInfo.getCellSignalStrength();
             int asu = signal.getAsuLevel();
             if (asu == NeighboringCellInfo.UNKNOWN_RSSI)
-                asu = Measurement.UNKNOWN_SIGNAL;
+                asu = Cell.UNKNOWN_SIGNAL;
             int dbm = signal.getDbm();
             int ta = signal.getTimingAdvance();
-            m.setLteSignalInfo(asu, dbm, ta);
+            cell.setLteSignalInfo(asu, dbm, ta);
         } else if (cellInfo instanceof CellInfoCdma) {
             CellInfoCdma cdmaCellInfo = (CellInfoCdma) cellInfo;
             CellSignalStrengthCdma signal = cdmaCellInfo.getCellSignalStrength();
             int asu = signal.getAsuLevel();
             if (asu == NeighboringCellInfo.UNKNOWN_RSSI)
-                asu = Measurement.UNKNOWN_SIGNAL;
+                asu = Cell.UNKNOWN_SIGNAL;
             int dbm = signal.getDbm();
-            m.setCdmaSignalInfo(asu, dbm);
+            cell.setCdmaSignalInfo(asu, dbm);
         } else {
             throw new UnsupportedOperationException("Cell signal type not supported `" + cellInfo.getClass().getName() + "`");
         }
