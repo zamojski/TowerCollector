@@ -186,10 +186,13 @@ public class MeasurementsDatabase {
 
     public Measurement getFirstMeasurement() {
         Measurement firstMeasurement = null;
-        List<Measurement> measurements = getMeasurements(null, null, null, null,
-                NotUploadedMeasurementsView.VIEW_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " ASC, "
-                        + NotUploadedMeasurementsView.VIEW_NAME + "." + MeasurementsTable.COLUMN_ROW_ID + " ASC",
-                "1", false);
+        List<Measurement> measurements = getMeasurements(CellSignalsTable.TABLE_NAME + "." + CellSignalsTable.COLUMN_MEASUREMENT_ID + " = " + "(SELECT tm." + MeasurementsTable.COLUMN_ROW_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + " tm ORDER BY tm." + MeasurementsTable.COLUMN_MEASURED_AT + " DESC, tm." + MeasurementsTable.COLUMN_ROW_ID + " DESC LIMIT 0,1)",
+                null,
+                null, null,
+                NotUploadedMeasurementsView.VIEW_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " ASC, " // from view because not for upload
+                        + CellSignalsTable.TABLE_NAME + "." + CellSignalsTable.COLUMN_NEIGHBORING + " ASC, "
+                        + CellSignalsTable.TABLE_NAME + "." + CellSignalsTable.COLUMN_ROW_ID + " ASC",
+                null, false);
         if (!measurements.isEmpty())
             firstMeasurement = measurements.get(0);
         Timber.d("getFirstMeasurement(): %s", firstMeasurement);
@@ -204,11 +207,13 @@ public class MeasurementsDatabase {
             return lastMeasurementCacheCopy;
         }
         Measurement lastMeasurement = null;
-        List<Measurement> measurements = getMeasurements(null, null, null, null,
+        List<Measurement> measurements = getMeasurements(CellSignalsTable.TABLE_NAME + "." + CellSignalsTable.COLUMN_MEASUREMENT_ID + " = " + "(SELECT tm." + MeasurementsTable.COLUMN_ROW_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + " tm ORDER BY tm." + MeasurementsTable.COLUMN_MEASURED_AT + " DESC, tm." + MeasurementsTable.COLUMN_ROW_ID + " DESC LIMIT 0,1)",
+                null,
+                null, null,
                 NotUploadedMeasurementsView.VIEW_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " DESC, " // from view because not for upload
-                        + CellSignalsTable.TABLE_NAME + "." + CellSignalsTable.COLUMN_NEIGHBORING + " DESC, "
+                        + CellSignalsTable.TABLE_NAME + "." + CellSignalsTable.COLUMN_NEIGHBORING + " ASC, "
                         + CellSignalsTable.TABLE_NAME + "." + CellSignalsTable.COLUMN_ROW_ID + " DESC",
-                "1", false);
+                null, false);
         if (!measurements.isEmpty()) {
             lastMeasurement = measurements.get(0);
         }
@@ -352,7 +357,6 @@ public class MeasurementsDatabase {
 
     public List<Measurement> getMeasurementsPart(int offset, int limit, boolean forUpload) {
         Timber.d("getMeasurementsPart(): Getting %s measurements skipping first %s, for upload = %s", limit, offset, forUpload);
-        final String MEASUREMENTS_TABLE = forUpload ? MeasurementsTable.TABLE_NAME : NotUploadedMeasurementsView.VIEW_NAME;
         return getMeasurements(null, null, null, null, MeasurementsTable.COLUMN_MEASURED_AT + " ASC, " + CellSignalsTable.TABLE_NAME + "." + CellSignalsTable.COLUMN_ROW_ID + " ASC", String.valueOf(offset) + ", " + String.valueOf(limit), forUpload);
     }
 
