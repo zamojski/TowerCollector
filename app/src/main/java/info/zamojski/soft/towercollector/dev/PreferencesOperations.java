@@ -76,12 +76,14 @@ public class PreferencesOperations {
                     XmlUtils.writeMapXml(prefs.getAll(), output);
                     res = true;
                     Timber.d("saveSharedPreferencesToFile(): Preferences exported");
+                } else {
+                    Timber.d("saveSharedPreferencesToFile(): External storage is read only");
+                    Toast.makeText(context, R.string.export_toast_storage_read_only, Toast.LENGTH_LONG).show();
                 }
-                Timber.d("saveSharedPreferencesToFile(): External storage is read only");
-                Toast.makeText(context, R.string.export_toast_storage_read_only, Toast.LENGTH_LONG).show();
+            } else {
+                Timber.d("saveSharedPreferencesToFile(): External storage is not available");
+                Toast.makeText(context, R.string.export_toast_no_storage, Toast.LENGTH_LONG).show();
             }
-            Timber.d("saveSharedPreferencesToFile(): External storage is not available");
-            Toast.makeText(context, R.string.export_toast_no_storage, Toast.LENGTH_LONG).show();
         } catch (Exception ex) {
             Timber.e(ex, "saveSharedPreferencesToFile(): Cannot export preferences");
         } finally {
@@ -127,12 +129,14 @@ public class PreferencesOperations {
                     prefEdit.apply();
                     Timber.d("loadSharedPreferencesFromFile(): Preferences imported");
                     res = true;
+                } else {
+                    Timber.d("saveSharedPreferencesToFile(): External storage is not readable");
+                    Toast.makeText(context, R.string.export_toast_no_storage, Toast.LENGTH_LONG).show();
                 }
-                Timber.d("saveSharedPreferencesToFile(): External storage is read only");
-                Toast.makeText(context, R.string.export_toast_storage_read_only, Toast.LENGTH_LONG).show();
+            } else {
+                Timber.d("saveSharedPreferencesToFile(): External storage is not available");
+                Toast.makeText(context, R.string.export_toast_no_storage, Toast.LENGTH_LONG).show();
             }
-            Timber.d("saveSharedPreferencesToFile(): External storage is not available");
-            Toast.makeText(context, R.string.export_toast_no_storage, Toast.LENGTH_LONG).show();
         } catch (Exception ex) {
             Timber.e(ex, "loadSharedPreferencesFromFile(): Cannot import preferences");
         } finally {
