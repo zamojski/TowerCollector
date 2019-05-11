@@ -270,11 +270,11 @@ public class MeasurementsDatabase {
         // get all in one query (raw is the only possible solution)
         // full queries
         String globalStatsQuery = "SELECT " + StatsTable.COLUMN_TOTAL_MEASUREMENTS + " AS " + globalMeasurementsCount + ", " + StatsTable.COLUMN_TOTAL_DISCOVERED_CELLS + " AS " + globalDiscoveredCellsCount + ", " + StatsTable.COLUMN_TOTAL_SINCE + " AS " + globalSince + " FROM " + StatsTable.TABLE_NAME;
-        String localMeasurementsQuery = "SELECT COUNT(" + MeasurementsTable.COLUMN_ROW_ID + ") AS " + localMeasurementsCount + " FROM " + NotUploadedMeasurementsView.VIEW_NAME;
+        String localMeasurementsQuery = "SELECT COUNT(" + MeasurementsTable.COLUMN_ROW_ID + ") AS " + localMeasurementsCount + " FROM " + CellSignalsTable.TABLE_NAME + " WHERE " + CellSignalsTable.COLUMN_MEASUREMENT_ID + " IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_ROW_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + ")";
         String localCellsQuery = "SELECT COUNT(DISTINCT " + CellSignalsTable.COLUMN_CELL_ID + ") AS " + localCellsCount + " FROM " + CellSignalsTable.TABLE_NAME + " WHERE " + CellSignalsTable.COLUMN_MEASUREMENT_ID + " IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_ROW_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + ")";
         String localDiscoveredCellsQuery = "SELECT COUNT(" + CellsTable.COLUMN_ROW_ID + ") AS " + localDiscoveredCellsCount + " FROM " + CellsTable.TABLE_NAME + " WHERE " + CellsTable.COLUMN_DISCOVERED_AT + " >= (SELECT MIN(" + MeasurementsTable.COLUMN_MEASURED_AT + ") FROM " + NotUploadedMeasurementsView.VIEW_NAME + ")";
         String localSinceQuery = "SELECT MIN(" + MeasurementsTable.COLUMN_MEASURED_AT + ") AS " + localSince + " FROM " + NotUploadedMeasurementsView.VIEW_NAME;
-        String todayMeasurementsQuery = "SELECT COUNT(" + MeasurementsTable.COLUMN_ROW_ID + ") AS " + todayMeasurementsCount + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + " WHERE " + MeasurementsTable.COLUMN_MEASURED_AT + " > ?";
+        String todayMeasurementsQuery = "SELECT COUNT(" + MeasurementsTable.COLUMN_ROW_ID + ") AS " + todayMeasurementsCount + " FROM " + CellSignalsTable.TABLE_NAME + " WHERE " + CellSignalsTable.COLUMN_MEASUREMENT_ID + " IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_ROW_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + " WHERE " + MeasurementsTable.COLUMN_MEASURED_AT + " > ?)";
         String todayCellsQuery = "SELECT COUNT(DISTINCT " + CellSignalsTable.COLUMN_CELL_ID + ") AS " + todayCellsCount + " FROM " + CellSignalsTable.TABLE_NAME + " WHERE " + CellSignalsTable.COLUMN_MEASUREMENT_ID + " IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_ROW_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + " WHERE " + MeasurementsTable.COLUMN_MEASURED_AT + " > ?)";
         String todayDiscoveredCellsQuery = "SELECT COUNT(" + CellsTable.COLUMN_ROW_ID + ") AS " + todayDiscoveredCellsCount + " FROM " + CellsTable.TABLE_NAME + " WHERE " + CellsTable.COLUMN_DISCOVERED_AT + " >= (SELECT MIN(" + MeasurementsTable.COLUMN_MEASURED_AT + ") FROM " + NotUploadedMeasurementsView.VIEW_NAME + " WHERE " + MeasurementsTable.COLUMN_MEASURED_AT + " > ?)";
         String uploadToOcidQuery = "SELECT COUNT(" + MeasurementsTable.COLUMN_ROW_ID + ") AS " + uploadToOcid + " FROM "
@@ -292,7 +292,7 @@ public class MeasurementsDatabase {
                 + "JOIN (" + todayDiscoveredCellsQuery + ") "
                 + "JOIN (" + uploadToOcidQuery + ") "
                 + "JOIN (" + uploadToMlsQuery + "))";
-        // Log.d(query);
+        // Timber.d(query);
         Cursor cursor = db.rawQuery(query, selectionArgs);
         if (cursor.moveToNext()) {
             stats.setCellsToday(cursor.getInt(cursor.getColumnIndex(todayCellsCount)));
@@ -398,7 +398,7 @@ public class MeasurementsDatabase {
                 CellsTable.COLUMN_MCC,
                 CellsTable.COLUMN_NET_TYPE
         };
-        // Log.d(queryBuilder.buildQuery(returnedColumns, selection, selectionArgs, groupBy, having, sortOrder, limit));
+        // Timber.d(queryBuilder.buildQuery(returnedColumns, selection, selectionArgs, groupBy, having, sortOrder, limit));
         Cursor cursor = queryBuilder.query(db, returnedColumns, selection, selectionArgs, groupBy, having, sortOrder, limit);
         int measurementIdColumnIndex = cursor.getColumnIndex(MEASUREMENT_ROW_ID);
         int cellIdColumnIndex = cursor.getColumnIndex(CELL_ROW_ID);
