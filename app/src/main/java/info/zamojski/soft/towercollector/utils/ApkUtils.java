@@ -35,7 +35,6 @@ public class ApkUtils {
             currentAppVersion = pi.versionCode;
         } catch (PackageManager.NameNotFoundException ex) {
             Timber.e(ex, "getApkVersionCode(): Current version number not found");
-            MyApplication.getAnalytics().sendException(ex, Boolean.TRUE);
             ACRA.getErrorReporter().handleSilentException(ex);
         }
         return currentAppVersion;
@@ -48,7 +47,6 @@ public class ApkUtils {
             currentAppVersion = pi.versionName;
         } catch (PackageManager.NameNotFoundException ex) {
             Timber.e(ex, "getApkVersionName(): Current version name not found");
-            MyApplication.getAnalytics().sendException(ex, Boolean.TRUE);
             ACRA.getErrorReporter().handleSilentException(ex);
         }
         return currentAppVersion;

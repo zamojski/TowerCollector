@@ -6,11 +6,11 @@ package info.zamojski.soft.towercollector.analytics.internal;
 
 public class Metric {
 
-    public static final int CollectedLocationsInSession = 1;
-    public static final int CollectedCellsInSession = 2;
-    public static final int StatisticsLocations = 3;
-    public static final int StatisticsCells = 4;
-    public static final int StatisticsDays = 5;
-    public static final int Duration = 6;
+    public static final String CollectedLocationsInSession = "CollectedLocationsInSession";
+    public static final String CollectedCellsInSession = "CollectedCellsInSession";
+    public static final String StatisticsLocations = "StatisticsLocations";
+    public static final String StatisticsCells = "StatisticsCells";
+    public static final String StatisticsDays = "StatisticsDays";
+    public static final String Duration = "Duration";
 
 }

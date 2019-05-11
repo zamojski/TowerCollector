@@ -36,7 +36,6 @@ android {
         buildConfigField "String", "ACRA_FORM_URI_BASIC_AUTH_PASSWORD", rotHex(props['acra_formUriBasicAuthPassword'])
         // Analytics
         buildConfigField "Boolean", "ANALYTICS_AVAILABLE", props['analytics_available']
-        buildConfigField "String", "ANALYTICS_TRACKING_ID", props['analytics_tracking_id']
         // MLS
         buildConfigField "String", "MLS_API_KEY", rotHex(props['mls_apiKey'])
         // Other
@@ -98,7 +97,7 @@ dependencies {
     implementation 'com.android.support:support-v13:27.1.1'
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:design:27.1.1'
-    officialImplementation 'com.google.android.gms:play-services-analytics:16.0.6'
+    officialImplementation 'com.google.firebase:firebase-core:16.0.9'
     implementation 'org.greenrobot:eventbus:3.1.1'
     implementation 'ch.acra:acra-http:5.2.1'
     implementation 'ch.acra:acra-notification:5.2.1'

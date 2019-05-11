@@ -4,32 +4,29 @@
 
 package info.zamojski.soft.towercollector.files.generators.wrappers;
 
-import java.io.IOException;
-import java.util.List;
+import android.content.Context;
 
 import org.acra.ACRA;
 
-import android.content.Context;
+import java.io.IOException;
+import java.util.List;
 
-import info.zamojski.soft.towercollector.files.formatters.gpx.GpxExportFormatter;
-
-import info.zamojski.soft.towercollector.MyApplication;
+import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.GeneratorResult;
 import info.zamojski.soft.towercollector.files.DeviceOperationException;
-import info.zamojski.soft.towercollector.files.FileGeneratorResult;
 import info.zamojski.soft.towercollector.files.DeviceOperationException.Reason;
+import info.zamojski.soft.towercollector.files.FileGeneratorResult;
 import info.zamojski.soft.towercollector.files.devices.IWritableTextDevice;
+import info.zamojski.soft.towercollector.files.formatters.gpx.GpxExportFormatter;
 import info.zamojski.soft.towercollector.files.formatters.gpx.IGpxFormatter;
 import info.zamojski.soft.towercollector.files.formatters.gpx.model.HeaderData;
 import info.zamojski.soft.towercollector.files.generators.GpxTextGenerator;
-import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.model.Boundaries;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
 import timber.log.Timber;
 
 public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
-
 
     private GpxTextGenerator<IGpxFormatter, IWritableTextDevice> generator;
 
@@ -101,12 +98,10 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
             }
         } catch (DeviceOperationException ex) {
             Timber.e(ex, "generate(): Failed to check external memory compatibility");
-            MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
             return new FileGeneratorResult(GeneratorResult.Failed, ex.getReason());
         } catch (IOException ex) {
             Timber.e(ex, "generate(): Failed to save data on external memory");
-            MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
             return new FileGeneratorResult(GeneratorResult.Failed, Reason.Unknown, ex.getMessage());
         } finally {

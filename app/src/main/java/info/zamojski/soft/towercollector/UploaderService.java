@@ -469,7 +469,6 @@ public class UploaderService extends Service {
             } catch (IOException ex) {
                 // this should never happen for MemoryTextDevice
                 Timber.tag(INNER_TAG).e(ex, "uploadToOcid(): Error while generating file");
-                MyApplication.getAnalytics().sendException(ex, Boolean.TRUE);
                 ACRA.getErrorReporter().handleSilentException(ex);
                 return UploadResult.Failure;
             }
@@ -517,7 +516,6 @@ public class UploaderService extends Service {
             } catch (IOException ex) {
                 // this should never happen for MemoryTextDevice
                 Timber.tag(INNER_TAG).e(ex, "uploadToMls(): Error while generating file");
-                MyApplication.getAnalytics().sendException(ex, Boolean.TRUE);
                 ACRA.getErrorReporter().handleSilentException(ex);
                 return UploadResult.Failure;
             }

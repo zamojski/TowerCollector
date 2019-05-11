@@ -12,10 +12,10 @@ public class Action {
     public static final String Update = "Update";
     public static final String UploadOcid = "Upload OCID";
     public static final String UploadMls = "Upload MLS";
-    public static final String UpdateCheckEnabled = "UpdateCheckEnabled";
-    public static final String NotifyMeasurementsCollectedEnabled = "NotifyMeasurementsCollectedEnabled";
+    public static final String UpdateCheckEnabled = "Update Check Enabled";
+    public static final String NotifyMeasurementsCollectedEnabled = "Notify Measurements Collected Enabled";
     public static final String AppTheme = "AppTheme";
-    public static final String CollectorApiVersion = "CollectorApiVersion";
+    public static final String CollectorApiVersion = "Collector Api Version";
     public static final String Open = "Open";
 
 }

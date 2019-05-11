@@ -4,28 +4,25 @@
 
 package info.zamojski.soft.towercollector.files.generators.wrappers;
 
-import java.io.IOException;
-import java.util.List;
+import android.content.Context;
 
 import org.acra.ACRA;
 
-import android.content.Context;
+import java.io.IOException;
+import java.util.List;
 
-
-import info.zamojski.soft.towercollector.MyApplication;
+import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.GeneratorResult;
 import info.zamojski.soft.towercollector.files.DeviceOperationException;
-import info.zamojski.soft.towercollector.files.FileGeneratorResult;
 import info.zamojski.soft.towercollector.files.DeviceOperationException.Reason;
+import info.zamojski.soft.towercollector.files.FileGeneratorResult;
 import info.zamojski.soft.towercollector.files.devices.IWritableTextDevice;
 import info.zamojski.soft.towercollector.files.formatters.csv.ICsvFormatter;
 import info.zamojski.soft.towercollector.files.generators.CsvTextGenerator;
-import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.model.Measurement;
 import timber.log.Timber;
 
 public class CsvTextGeneratorWrapper extends TextGeneratorWrapperBase {
-
 
     private CsvTextGenerator<ICsvFormatter, IWritableTextDevice> generator;
 
@@ -77,12 +74,10 @@ public class CsvTextGeneratorWrapper extends TextGeneratorWrapperBase {
             }
         } catch (DeviceOperationException ex) {
             Timber.e(ex, "generate(): Failed to check external memory compatibility");
-            MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
             return new FileGeneratorResult(GeneratorResult.Failed, ex.getReason());
         } catch (IOException ex) {
             Timber.e(ex, "generate(): Failed to save data on external memory");
-            MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
             return new FileGeneratorResult(GeneratorResult.Failed, Reason.Unknown, ex.getMessage());
         } finally {

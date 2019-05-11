@@ -4,189 +4,123 @@
 
 package info.zamojski.soft.towercollector.analytics;
 
-import info.zamojski.soft.towercollector.BuildConfig;
-import info.zamojski.soft.towercollector.R;
+import android.app.Application;
+import android.os.Bundle;
+
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import info.zamojski.soft.towercollector.analytics.internal.Action;
 import info.zamojski.soft.towercollector.analytics.internal.Category;
 import info.zamojski.soft.towercollector.analytics.internal.Dimension;
+import info.zamojski.soft.towercollector.analytics.internal.Event;
 import info.zamojski.soft.towercollector.analytics.internal.Label;
 import info.zamojski.soft.towercollector.analytics.internal.Metric;
-import info.zamojski.soft.towercollector.analytics.internal.Screens;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
-
-import android.app.Application;
-
-import com.google.android.gms.analytics.GoogleAnalytics;
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.StandardExceptionParser;
-import com.google.android.gms.analytics.Tracker;
 
 public class GoogleAnalyticsReportingService implements IAnalyticsReportingService {
 
-    private Application application;
+    private FirebaseAnalytics analytics;
 
-    private GoogleAnalytics analytics;
-    private Tracker tracker;
-
-    public GoogleAnalyticsReportingService(Application application, boolean trackingEnabled, boolean dryRun) {
-        this.application = application;
-
-        this.analytics = GoogleAnalytics.getInstance(application);
-        this.analytics.setAppOptOut(!trackingEnabled);
-        this.analytics.setDryRun(dryRun);
-
-        this.tracker = analytics.newTracker(BuildConfig.ANALYTICS_TRACKING_ID);
+    public GoogleAnalyticsReportingService(Application application, boolean trackingEnabled, boolean sendEvents) {
+        this.analytics = FirebaseAnalytics.getInstance(application);
+        this.analytics.setAnalyticsCollectionEnabled(trackingEnabled && sendEvents);
     }
 
     @Override
     public void setAppOptOut(boolean optOut) {
-        analytics.setAppOptOut(optOut);
-    }
-
-    @Override
-    public void sendException(Throwable throwable, boolean isFatal) {
-        this.tracker.send(new HitBuilders.ExceptionBuilder()
-                .setDescription(new StandardExceptionParser(this.application, null).getDescription(Thread.currentThread().getName(), throwable))
-                .setFatal(isFatal)
-                .build());
-    }
-
-    @Override
-    public void sendMainActivityStarted() {
-        this.tracker.setScreenName(Screens.MainActivity);
-        this.tracker.send(new HitBuilders.ScreenViewBuilder().build());
-    }
-
-    @Override
-    public void sendMainActivityStopped() {
-        this.tracker.setScreenName(null);
-    }
-
-    @Override
-    public void sendPreferencesActivityStarted() {
-        this.tracker.setScreenName(Screens.PreferencesActivity);
-        this.tracker.send(new HitBuilders.ScreenViewBuilder().build());
-    }
-
-    @Override
-    public void sendPreferencesActivityStopped() {
-        this.tracker.setScreenName(null);
+        analytics.setAnalyticsCollectionEnabled(!optOut);
     }
 
     @Override
     public void sendUpdateAction(String source) {
-        this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, Action.Update)
-                .setLabel(Label.Select)
-                .setValue(1L)
-                .setCustomDimension(Dimension.UpdateSource, source)
-                .build());
+        Bundle event = createEventBundle(Category.Tasks, Action.Update, Label.Select, 1L);
+        event.putString(Dimension.UpdateSource, source);
+        this.analytics.logEvent(Event.Event, event);
     }
 
     @Override
     public void sendMigrationStarted() {
-        this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, Action.DbMigration)
-                .setLabel(Label.Start)
-                .setValue(1L)
-                .build());
+        Bundle event = createEventBundle(Category.Tasks, Action.DbMigration, Label.Start, 1L);
+        this.analytics.logEvent(Event.Event, event);
     }
 
     @Override
     public void sendMigrationFinished(long duration, int oldDbVersion, AnalyticsStatistics stats) {
-        this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, Action.DbMigration)
-                .setLabel(Label.Finish)
-                .setValue(1L)
-                .setCustomDimension(Dimension.MigrationDbVersion, String.valueOf(oldDbVersion))
-                .setCustomMetric(Metric.StatisticsLocations, stats.getLocations())
-                .setCustomMetric(Metric.StatisticsCells, stats.getCells())
-                .setCustomMetric(Metric.StatisticsDays, stats.getDays())
-                .setCustomMetric(Metric.Duration, duration)
-                .build());
-        this.tracker.send(new HitBuilders.TimingBuilder(Category.Tasks, Action.DbMigration, duration)
-                .setLabel(Label.Finish)
-                .setCustomDimension(Dimension.MigrationDbVersion, String.valueOf(oldDbVersion))
-                .build());
+        Bundle event = createEventBundle(Category.Tasks, Action.DbMigration, Label.Finish, 1L);
+        event.putString(Dimension.MigrationDbVersion, String.valueOf(oldDbVersion));
+        event.putInt(Metric.StatisticsLocations, stats.getLocations());
+        event.putInt(Metric.StatisticsCells, stats.getCells());
+        event.putInt(Metric.StatisticsDays, stats.getDays());
+        event.putLong(Metric.Duration, duration);
+        this.analytics.logEvent(Event.Event, event);
+        Bundle timing = createTimingBundle(Category.Tasks, Action.DbMigration, Label.Finish, duration);
+        timing.putString(Dimension.MigrationDbVersion, String.valueOf(oldDbVersion));
+        this.analytics.logEvent(Event.Timing, timing);
     }
 
     @Override
     public void sendCollectorStarted(IntentSource source) {
-        this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, Action.Collect)
-                .setLabel(convertToStartLabel(source))
-                .setValue(1L)
-                .build());
+        Bundle event = createEventBundle(Category.Tasks, Action.Collect, convertToStartLabel(source), 1L);
+        this.analytics.logEvent(Event.Event, event);
     }
 
     @Override
     public void sendCollectorFinished(long duration, String meansOfTransport, AnalyticsStatistics stats) {
-        this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, Action.Collect)
-                .setLabel(Label.Finish)
-                .setValue(1L)
-                .setCustomDimension(Dimension.CollectorMeansOfTrasport, meansOfTransport)
-                .setCustomMetric(Metric.CollectedLocationsInSession, stats.getLocations())
-                .setCustomMetric(Metric.CollectedCellsInSession, stats.getCells())
-                .setCustomMetric(Metric.Duration, duration)
-                .build());
-        this.tracker.send(new HitBuilders.TimingBuilder(Category.Tasks, Action.Collect, duration)
-                .setLabel(Label.Finish)
-                .setCustomDimension(Dimension.CollectorMeansOfTrasport, meansOfTransport)
-                .build());
+        Bundle event = createEventBundle(Category.Tasks, Action.Collect, Label.Finish, 1L);
+        event.putString(Dimension.CollectMeansOfTransport, meansOfTransport);
+        event.putInt(Metric.CollectedLocationsInSession, stats.getLocations());
+        event.putInt(Metric.CollectedCellsInSession, stats.getCells());
+        event.putLong(Metric.Duration, duration);
+        this.analytics.logEvent(Event.Event, event);
+        Bundle timing = createTimingBundle(Category.Tasks, Action.Collect, Label.Finish, duration);
+        timing.putString(Dimension.CollectMeansOfTransport, meansOfTransport);
+        this.analytics.logEvent(Event.Timing, timing);
     }
 
     @Override
     public void sendCollectorApiVersionUsed(String apiVersion) {
-        this.tracker.send(new HitBuilders.EventBuilder(Category.Runtime, Action.CollectorApiVersion)
-                .setLabel(apiVersion)
-                .setValue(1L)
-                .build());
+        Bundle event = createEventBundle(Category.Runtime, Action.CollectorApiVersion, apiVersion, 1L);
+        this.analytics.logEvent(Event.Event, event);
     }
 
     @Override
     public void sendUploadStarted(IntentSource source, boolean ocid) {
-        this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, ocid ? Action.UploadOcid : Action.UploadMls)
-                .setLabel(convertToStartLabel(source))
-                .setValue(1L)
-                .build());
+        Bundle event = createEventBundle(Category.Tasks, ocid ? Action.UploadOcid : Action.UploadMls, convertToStartLabel(source), 1L);
+        this.analytics.logEvent(Event.Event, event);
     }
 
     @Override
     public void sendUploadFinished(long duration, String networkType, AnalyticsStatistics stats, boolean ocid) {
-        this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, ocid ? Action.UploadOcid : Action.UploadMls)
-                .setLabel(Label.Finish)
-                .setValue(1L)
-                .setCustomDimension(Dimension.UploadNetworkType, networkType)
-                .setCustomMetric(Metric.StatisticsLocations, stats.getLocations())
-                .setCustomMetric(Metric.StatisticsCells, stats.getCells())
-                .setCustomMetric(Metric.StatisticsDays, stats.getDays())
-                .setCustomMetric(Metric.Duration, duration)
-                .build());
-        this.tracker.send(new HitBuilders.TimingBuilder(Category.Tasks, ocid ? Action.UploadOcid : Action.UploadMls, duration)
-                .setLabel(Label.Finish)
-                .setCustomDimension(Dimension.UploadNetworkType, networkType)
-                .build());
+        Bundle event = createEventBundle(Category.Tasks, ocid ? Action.UploadOcid : Action.UploadMls, Label.Finish, 1L);
+        event.putString(Dimension.UploadNetworkType, networkType);
+        event.putInt(Metric.StatisticsLocations, stats.getLocations());
+        event.putInt(Metric.StatisticsCells, stats.getCells());
+        event.putInt(Metric.StatisticsDays, stats.getDays());
+        event.putLong(Metric.Duration, duration);
+        this.analytics.logEvent(Event.Event, event);
+        Bundle timing = createTimingBundle(Category.Tasks, ocid ? Action.UploadOcid : Action.UploadMls, Label.Finish, duration);
+        timing.putString(Dimension.UploadNetworkType, networkType);
+        this.analytics.logEvent(Event.Timing, timing);
     }
 
     @Override
     public void sendExportStarted() {
-        this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, Action.Export)
-                .setLabel(Label.Start)
-                .setValue(1L)
-                .build());
+        Bundle event = createEventBundle(Category.Tasks, Action.Export, Label.Start, 1L);
+        this.analytics.logEvent(Event.Event, event);
     }
 
     @Override
     public void sendExportFinished(long duration, String fileType, AnalyticsStatistics stats) {
-        this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, Action.Export)
-                .setLabel(Label.Finish)
-                .setValue(1L)
-                .setCustomDimension(Dimension.ExportFileType, fileType)
-                .setCustomMetric(Metric.StatisticsLocations, stats.getLocations())
-                .setCustomMetric(Metric.StatisticsCells, stats.getCells())
-                .setCustomMetric(Metric.StatisticsDays, stats.getDays())
-                .setCustomMetric(Metric.Duration, duration)
-                .build());
-        this.tracker.send(new HitBuilders.TimingBuilder(Category.Tasks, Action.Export, duration)
-                .setLabel(Label.Finish)
-                .setCustomDimension(Dimension.ExportFileType, fileType)
-                .build());
+        Bundle event = createEventBundle(Category.Tasks, Action.Export, Label.Finish, 1L);
+        event.putString(Dimension.ExportFileType, fileType);
+        event.putInt(Metric.StatisticsLocations, stats.getLocations());
+        event.putInt(Metric.StatisticsCells, stats.getCells());
+        event.putInt(Metric.StatisticsDays, stats.getDays());
+        event.putLong(Metric.Duration, duration);
+        this.analytics.logEvent(Event.Event, event);
+        Bundle timing = createTimingBundle(Category.Tasks, Action.Export, Label.Finish, duration);
+        timing.putString(Dimension.ExportFileType, fileType);
+        this.analytics.logEvent(Event.Timing, timing);
     }
 
     @Override
@@ -216,40 +150,48 @@ public class GoogleAnalyticsReportingService implements IAnalyticsReportingServi
 
     @Override
     public void sendPrefsAppTheme(String theme) {
-        this.tracker.send(new HitBuilders.EventBuilder(Category.Preferences, Action.AppTheme)
-                .setLabel(theme)
-                .setValue(1L)
-                .build());
+        Bundle event = createEventBundle(Category.Preferences, Action.AppTheme, theme, 1L);
+        this.analytics.logEvent(Event.Event, event);
     }
 
     @Override
     public void sendPrefsCollectorApiVersion(String apiVersion) {
-        this.tracker.send(new HitBuilders.EventBuilder(Category.Preferences, Action.CollectorApiVersion)
-                .setLabel(apiVersion)
-                .setValue(1L)
-                .build());
+        Bundle event = createEventBundle(Category.Preferences, Action.CollectorApiVersion, apiVersion, 1L);
+        this.analytics.logEvent(Event.Event, event);
     }
 
     @Override
     public void sendHelpDialogOpened(String dialogName) {
-        this.tracker.send(new HitBuilders.EventBuilder(Category.Help, Action.Open)
-                .setLabel(dialogName)
-                .setValue(1L)
-                .build());
+        Bundle event = createEventBundle(Category.Help, Action.Open, dialogName, 1L);
+        this.analytics.logEvent(Event.Event, event);
     }
 
     private void sendExportAction(String action) {
-        this.tracker.send(new HitBuilders.EventBuilder(Category.Tasks, Action.Export)
-                .setLabel(action)
-                .setValue(1L)
-                .build());
+        Bundle event = createEventBundle(Category.Tasks, Action.Export, action, 1L);
+        this.analytics.logEvent(Event.Event, event);
     }
 
     private void sendBooleanValue(String action, boolean value) {
-        this.tracker.send(new HitBuilders.EventBuilder(Category.Preferences, action)
-                .setLabel(Label.Usage)
-                .setValue(value ? 1L : 0L)
-                .build());
+        Bundle event = createEventBundle(Category.Preferences, action, Label.Usage, value ? 1L : 0L);
+        this.analytics.logEvent(Event.Event, event);
+    }
+
+    private Bundle createEventBundle(String category, String action, String label, long value) {
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, category);
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, action);
+        bundle.putString(FirebaseAnalytics.Param.ITEM_VARIANT, label);
+        bundle.putLong(FirebaseAnalytics.Param.QUANTITY, value);
+        return bundle;
+    }
+
+    private Bundle createTimingBundle(String category, String action, String label, long duration) {
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, category);
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, action);
+        bundle.putString(FirebaseAnalytics.Param.ITEM_VARIANT, label);
+        bundle.putLong(FirebaseAnalytics.Param.QUANTITY, duration);
+        return bundle;
     }
 
     private String convertToStartLabel(IntentSource source) {

@@ -4,11 +4,6 @@
 
 package info.zamojski.soft.towercollector.collector.converters;
 
-import info.zamojski.soft.towercollector.MyApplication;
-import info.zamojski.soft.towercollector.collector.validators.specific.WcdmaCellIdentityValidator;
-import info.zamojski.soft.towercollector.model.Measurement;
-import timber.log.Timber;
-
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.telephony.CellIdentityCdma;
@@ -23,9 +18,12 @@ import android.telephony.CellInfoWcdma;
 
 import org.acra.ACRA;
 
+import info.zamojski.soft.towercollector.collector.validators.specific.WcdmaCellIdentityValidator;
+import info.zamojski.soft.towercollector.model.Measurement;
+import timber.log.Timber;
+
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class CellIdentityConverter {
-
 
     private final WcdmaCellIdentityValidator wcdmaValidator;
 
@@ -103,7 +101,6 @@ public class CellIdentityConverter {
         } else {
             Exception ex = new UnsupportedOperationException("Cell identity type not supported `" + cellInfo.getClass().getName() + "` = `" + cellInfo.toString() + "`");
             Timber.e(ex);
-            MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
         }
         return sb.toString();
