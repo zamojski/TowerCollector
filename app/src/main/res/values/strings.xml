@@ -38,8 +38,6 @@
     <string name="main_dialog_not_compatible_title">Compatibility problems</string>
     <string name="main_dialog_not_compatible_begin">The app may not work because:\n</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Mobile network hardware not detected.\n</string>
-    <string name="main_dialog_in_airplane_mode_title">Airplane mode</string>
-    <string name="main_dialog_in_airplane_mode_message">Please turn off Airplane/Flight mode in order to collect some measurements.</string>
     <string name="main_toast_background_task_already_running_collector">Collector service is running.</string>
     <string name="main_toast_background_task_already_running_uploader">Uploader service is running.</string>
     <string name="main_toast_background_task_already_running_export">Export task is running.</string>
@@ -165,6 +163,8 @@
     <string name="main_help_invalid_system_time_description">Your current system date and/or time is invalid comparing to GPS time. Measurements will be saved with correct time but presented statistics may be inaccurate. Please set the date and time in your device.</string>
     <string name="main_help_battery_optimizations_title">Battery optimizations enabled</string>
     <string name="main_help_battery_optimizations_description">Battery optimizations are enabled for this app which may result in inaccurate and unreliable measurements being collected. Please disable battery optimizations in Android settings by selecting \'All Apps\', then Tower Collector: \'Don\'t optimize\'.</string>
+    <string name="main_help_airplane_mode_title">Airplane mode enabled</string>
+    <string name="main_help_airplane_mode_description">Airplane / flight mode is enabled on your device which blocks the app from collecting measurements. Please disable airplane mode in Android settings.</string>
     <string name="main_help_today_locations_title">Measurements today</string>
     <string name="main_help_today_locations_description">Number of measurements collected by the application today.</string>
     <string name="main_help_today_cells_title">Cells today</string>
@@ -211,6 +211,7 @@
     <string name="status_low_gps_accuracy">low accuracy <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">no location</string>
     <string name="invalid_system_time">System date/time is invalid</string>
+    <string name="airplane_mode">Airplane mode enabled</string>
     <string name="battery_optimizations">Battery optimizations enabled</string>
     <string name="web_browser_missing">Please install web browser to open the page</string>
     <string name="uploader_all_projects_disabled">Upload to all projects is disabled</string>

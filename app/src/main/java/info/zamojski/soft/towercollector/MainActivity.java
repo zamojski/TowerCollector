@@ -8,10 +8,12 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -58,11 +60,13 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import info.zamojski.soft.towercollector.analytics.IntentSource;
+import info.zamojski.soft.towercollector.broadcast.AirplaneModeBroadcastReceiver;
 import info.zamojski.soft.towercollector.controls.DialogManager;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.FileType;
 import info.zamojski.soft.towercollector.enums.MeansOfTransport;
 import info.zamojski.soft.towercollector.enums.Validity;
+import info.zamojski.soft.towercollector.events.AirplaneModeChangedEvent;
 import info.zamojski.soft.towercollector.events.BatteryOptimizationsChangedEvent;
 import info.zamojski.soft.towercollector.events.CollectorStartedEvent;
 import info.zamojski.soft.towercollector.events.GpsStatusChangedEvent;
@@ -101,11 +105,14 @@ import timber.log.Timber;
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
     private static final int BATTERY_OPTIMIZATIONS_ACTIVITY_RESULT = 'B';
+    private static final int AIRPLANE_MODE_ACTIVITY_RESULT = 'A';
 
     private AtomicBoolean isCollectorServiceRunning = new AtomicBoolean(false);
     private boolean isGpsEnabled = false;
     private boolean showAskForLocationSettingsDialog = false;
     private boolean showNotCompatibleDialog = true;
+
+    private BroadcastReceiver airplaneModeBroadcastReceiver = new AirplaneModeBroadcastReceiver();
 
     private String exportedFileAbsolutePath;
     private boolean showExportFinishedDialog = false;
@@ -167,6 +174,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         // check for availability of new version
         checkForNewVersionAvailability();
+
+        registerReceiver(airplaneModeBroadcastReceiver, new IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED));
     }
 
     @Override
@@ -176,6 +185,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         if (isCollectorServiceRunning.get())
             unbindService(collectorServiceConnection);
         tabLayout.removeOnTabSelectedListener(this);
+
+        if (airplaneModeBroadcastReceiver != null)
+            unregisterReceiver(airplaneModeBroadcastReceiver);
     }
 
     @Override
@@ -298,6 +310,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             // don't check resultCode because it's always 0 (user needs to manually navigate back)
             boolean batteryOptimizationsEnabled = BatteryUtils.areBatteryOptimizationsEnabled(MyApplication.getApplication());
             EventBus.getDefault().postSticky(new BatteryOptimizationsChangedEvent(batteryOptimizationsEnabled));
+        } else if (requestCode == AIRPLANE_MODE_ACTIVITY_RESULT) {
+            // don't check resultCode because it's always 0 (user needs to manually navigate back)
+            boolean airplaneModeEnabled = NetworkUtils.isInAirplaneMode(MyApplication.getApplication());
+            EventBus.getDefault().postSticky(new AirplaneModeChangedEvent(airplaneModeEnabled));
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
@@ -474,6 +490,24 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         dialog.show();
     }
 
+    // have to be public to prevent Force Close
+    public void displayAirplaneModeHelpOnClick(View view) {
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.main_help_airplane_mode_title)
+                .setMessage(R.string.main_help_airplane_mode_description)
+                .setPositiveButton(R.string.dialog_settings, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startAirplaneModeSystemActivity();
+                    }
+                })
+                .setNegativeButton(R.string.dialog_cancel, null)
+                .create();
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setCancelable(true);
+        dialog.show();
+    }
+
     private void displayUploadResultDialog(String descriptionContent) {
         try {
             Timber.d("displayUploadResultDialog(): Received extras: %s", descriptionContent);
@@ -597,25 +631,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
     }
 
-    private boolean displayInAirplaneModeDialog() {
-        // check if in airplane mode
-        boolean inAirplaneMode = NetworkUtils.isInAirplaneMode(getApplication());
-        if (inAirplaneMode) {
-            Timber.d("displayInAirplaneModeDialog(): Device is in airplane mode");
-            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-            alertDialog.setCanceledOnTouchOutside(true);
-            alertDialog.setCancelable(true);
-            alertDialog.setTitle(R.string.main_dialog_in_airplane_mode_title);
-            alertDialog.setMessage(getString(R.string.main_dialog_in_airplane_mode_message));
-            alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_ok), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                }
-            });
-            alertDialog.show();
-        }
-        return inAirplaneMode;
-    }
-
     private void displayIntroduction() {
         if (MyApplication.getPreferencesProvider().getShowIntroduction()) {
             Timber.d("displayIntroduction(): Showing introduction");
@@ -690,11 +705,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
         askAndSetGpsEnabled();
         if (isGpsEnabled) {
-            // checking for airplane mode
-            boolean inAirplaneMode = displayInAirplaneModeDialog();
-            if (!inAirplaneMode) {
-                MainActivityPermissionsDispatcher.startCollectorServiceWithPermissionCheck(MainActivity.this);
-            }
+            MainActivityPermissionsDispatcher.startCollectorServiceWithPermissionCheck(MainActivity.this);
         }
     }
 
@@ -983,6 +994,19 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             startActivityForResult(intent, BATTERY_OPTIMIZATIONS_ACTIVITY_RESULT);
         } catch (ActivityNotFoundException ex) {
             Timber.w(ex, "startBatteryOptimizationsSystemActivity(): Could not open Settings to change battery optimizations");
+            MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
+            ACRA.getErrorReporter().handleSilentException(ex);
+            showCannotOpenAndroidSettingsDialog();
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    private void startAirplaneModeSystemActivity() {
+        try {
+            Intent intent = new Intent(Settings.ACTION_AIRPLANE_MODE_SETTINGS);
+            startActivityForResult(intent, AIRPLANE_MODE_ACTIVITY_RESULT);
+        } catch (ActivityNotFoundException ex) {
+            Timber.w(ex, "startAirplaneModeSystemActivity(): Could not open Settings to change airplane mode");
             MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
             showCannotOpenAndroidSettingsDialog();

@@ -12,6 +12,8 @@
 
     <include layout="@layout/main_invalid_system_time_fragment"/>
 
+    <include layout="@layout/main_airplane_mode_fragment"/>
+
     <include layout="@layout/main_battery_optimization_fragment"/>
 
     <ScrollView

@@ -15,10 +15,12 @@ import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.enums.GpsStatus;
 import info.zamojski.soft.towercollector.enums.Validity;
+import info.zamojski.soft.towercollector.events.AirplaneModeChangedEvent;
 import info.zamojski.soft.towercollector.events.BatteryOptimizationsChangedEvent;
 import info.zamojski.soft.towercollector.events.GpsStatusChangedEvent;
 import info.zamojski.soft.towercollector.events.SystemTimeChangedEvent;
 import info.zamojski.soft.towercollector.utils.BatteryUtils;
+import info.zamojski.soft.towercollector.utils.NetworkUtils;
 import info.zamojski.soft.towercollector.utils.UnitConverter;
 import timber.log.Timber;
 
@@ -37,6 +39,8 @@ public abstract class MainFragmentBase extends Fragment {
     private TextView invalidSystemTimeValueTextView;
     private TableRow batteryOptimizationsTableRow;
     private TextView batteryOptimizationsValueTextView;
+    private TableRow airplaneModeTableRow;
+    private TextView airplaneModeValueTextView;
 
     protected boolean useImperialUnits;
     protected String preferredLengthUnit;
@@ -75,6 +79,10 @@ public abstract class MainFragmentBase extends Fragment {
         batteryOptimizationsValueTextView = view.findViewById(R.id.main_battery_optimizations_value_textview);
         boolean batteryOptimizationsEnabled = BatteryUtils.areBatteryOptimizationsEnabled(MyApplication.getApplication());
         showWarning(batteryOptimizationsTableRow, batteryOptimizationsValueTextView, batteryOptimizationsEnabled);
+        airplaneModeTableRow = view.findViewById(R.id.main_airplane_mode_tablerow);
+        airplaneModeValueTextView = view.findViewById(R.id.main_airplane_mode_value_textview);
+        boolean airplaneModeEnabled = NetworkUtils.isInAirplaneMode(MyApplication.getApplication());
+        showWarning(airplaneModeTableRow, airplaneModeValueTextView, airplaneModeEnabled);
         // reload preferences
         useImperialUnits = MyApplication.getPreferencesProvider().getUseImperialUnits();
         // cache units
@@ -97,6 +105,11 @@ public abstract class MainFragmentBase extends Fragment {
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onEvent(BatteryOptimizationsChangedEvent event) {
         showWarning(batteryOptimizationsTableRow, batteryOptimizationsValueTextView, event.isEnabled());
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onEvent(AirplaneModeChangedEvent event) {
+        showWarning(airplaneModeTableRow, airplaneModeValueTextView, event.isEnabled());
     }
 
     private void showWarning(TableRow tableRow, TextView label, boolean show) {
