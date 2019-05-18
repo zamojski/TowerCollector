@@ -6,10 +6,10 @@ package info.zamojski.soft.towercollector.analytics.internal;
 
 public class Dimension {
 
-    public static final int ExportFileType = 1;
-    public static final int CollectorMeansOfTrasport = 2;
-    public static final int UploadNetworkType = 3;
-    public static final int MigrationDbVersion = 4;
-    public static final int UpdateSource = 5;
+    public static final String ExportFileType = "ExportFileType";
+    public static final String CollectMeansOfTransport = "CollectMeansOfTransport";
+    public static final String UploadNetworkType = "UploadNetworkType";
+    public static final String MigrationDbVersion = "MigrationDbVersion";
+    public static final String UpdateSource = "UpdateSource";
 
 }

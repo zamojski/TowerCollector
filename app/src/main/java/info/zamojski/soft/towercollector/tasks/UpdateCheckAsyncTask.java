@@ -4,9 +4,13 @@
 
 package info.zamojski.soft.towercollector.tasks;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.os.AsyncTask;
+
 import org.acra.ACRA;
 
-import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.io.network.UpdateClient;
 import info.zamojski.soft.towercollector.model.UpdateInfo;
 import info.zamojski.soft.towercollector.parsers.update.UpdateFeedParseException;
@@ -14,14 +18,7 @@ import info.zamojski.soft.towercollector.parsers.update.UpdateFeedParser;
 import info.zamojski.soft.towercollector.updater.UpdaterNotificationHelper;
 import timber.log.Timber;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.content.Context;
-import android.os.AsyncTask;
-
-
 public class UpdateCheckAsyncTask extends AsyncTask<String, Void, UpdateInfo> {
-
 
     public static final String TASK_FULL_NAME = UpdateCheckAsyncTask.class.getCanonicalName();
     public static final String INTENT_KEY_UPDATE_INFO = UpdateInfo.class.getCanonicalName();
@@ -56,7 +53,6 @@ public class UpdateCheckAsyncTask extends AsyncTask<String, Void, UpdateInfo> {
                     return updateInfo;
                 } catch (UpdateFeedParseException ex) {
                     Timber.w("doInBackground(): Cannot parse update feed response");
-                    MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
                     ACRA.getErrorReporter().handleSilentException(ex);
                 }
             }

@@ -52,18 +52,6 @@ public class PreferencesActivity extends AppCompatPreferenceActivity {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        MyApplication.getAnalytics().sendPreferencesActivityStarted();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        MyApplication.getAnalytics().sendPreferencesActivityStopped();
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:

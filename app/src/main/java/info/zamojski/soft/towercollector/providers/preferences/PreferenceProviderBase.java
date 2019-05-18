@@ -4,15 +4,14 @@
 
 package info.zamojski.soft.towercollector.providers.preferences;
 
-import info.zamojski.soft.towercollector.MyApplication;
-import timber.log.Timber;
-
-import org.acra.ACRA;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.StringRes;
+
+import org.acra.ACRA;
+
+import timber.log.Timber;
 
 abstract class PreferenceProviderBase<T> {
 
@@ -31,7 +30,6 @@ abstract class PreferenceProviderBase<T> {
             Timber.d("getPreference(): Preference `%s` loaded with value `%s`", context.getString(valueKey), value);
         } catch (ClassCastException ex) {
             Timber.e(ex, "getPreference(): Error while loading preference `%s`, restoring default", context.getString(valueKey));
-            MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
             value = defaultValue;
             SharedPreferences.Editor editor = prefs.edit();

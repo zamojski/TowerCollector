@@ -12,7 +12,7 @@ public class AnalyticsServiceFactory {
     public IAnalyticsReportingService createInstance() {
         Timber.d("createInstance(): Creating Google Analytics");
         boolean trackingEnabled = MyApplication.getPreferencesProvider().getTrackingEnabled();
-        boolean dryRun = BuildConfig.DEBUG;
-        return new GoogleAnalyticsReportingService(MyApplication.getApplication(), trackingEnabled, dryRun);
+        boolean sendEvents = !BuildConfig.DEBUG;
+        return new GoogleAnalyticsReportingService(MyApplication.getApplication(), trackingEnabled, sendEvents);
     }
 }

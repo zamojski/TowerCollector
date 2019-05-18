@@ -11,9 +11,7 @@ import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
 import timber.log.Timber;
 
-
 public class DatabaseUpgradeTask {
-
 
     private int oldDbVersion;
 
@@ -35,7 +33,6 @@ public class DatabaseUpgradeTask {
             MyApplication.getAnalytics().sendMigrationFinished(duration, oldDbVersion, stats);
         } catch (RuntimeException ex) {
             Timber.e(ex, "doInBackground(): Database migration crashed");
-            MyApplication.getAnalytics().sendException(ex, Boolean.TRUE);
             ACRA.getErrorReporter().handleSilentException(ex);
             throw ex;
         }

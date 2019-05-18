@@ -16,8 +16,6 @@ import javax.net.ssl.SSLException;
 import javax.net.ssl.SSLHandshakeException;
 import javax.net.ssl.SSLProtocolException;
 
-import info.zamojski.soft.towercollector.MyApplication;
-
 public abstract class ClientBase {
 
     protected static final int CONN_TIMEOUT = 30000;
@@ -33,7 +31,6 @@ public abstract class ClientBase {
     }
 
     protected void reportException(Exception ex) {
-        MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
         ACRA.getErrorReporter().handleSilentException(ex);
     }
 

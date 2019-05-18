@@ -13,31 +13,6 @@ public class FakeAnalyticsReportingService implements IAnalyticsReportingService
     }
 
     @Override
-    public void sendException(Throwable throwable, boolean isFatal) {
-
-    }
-
-    @Override
-    public void sendMainActivityStarted() {
-
-    }
-
-    @Override
-    public void sendMainActivityStopped() {
-
-    }
-
-    @Override
-    public void sendPreferencesActivityStarted() {
-
-    }
-
-    @Override
-    public void sendPreferencesActivityStopped() {
-
-    }
-
-    @Override
     public void sendUpdateAction(String source) {
 
     }

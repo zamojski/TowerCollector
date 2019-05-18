@@ -203,7 +203,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
         isMinimized = false;
         EventBus.getDefault().register(this);
-        MyApplication.getAnalytics().sendMainActivityStarted();
 
         String appThemeName = MyApplication.getPreferencesProvider().getAppTheme();
         MyApplication.getAnalytics().sendPrefsAppTheme(appThemeName);
@@ -214,7 +213,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         super.onStop();
         isMinimized = true;
         EventBus.getDefault().unregister(this);
-        MyApplication.getAnalytics().sendMainActivityStopped();
     }
 
     @Override
@@ -524,7 +522,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             alertDialog.show();
         } catch (NotFoundException ex) {
             Timber.w("displayUploadResultDialog(): Invalid string id received with intent extras: %s", descriptionContent);
-            MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
         }
     }
@@ -981,7 +978,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             startActivity(createDataRoamingSettingsIntent());
         } catch (ActivityNotFoundException ex) {
             Timber.w(ex, "startNetworkTypeSystemActivity(): Could not open Settings to change network type");
-            MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
             showCannotOpenAndroidSettingsDialog();
         }
@@ -994,7 +990,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             startActivityForResult(intent, BATTERY_OPTIMIZATIONS_ACTIVITY_RESULT);
         } catch (ActivityNotFoundException ex) {
             Timber.w(ex, "startBatteryOptimizationsSystemActivity(): Could not open Settings to change battery optimizations");
-            MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
             showCannotOpenAndroidSettingsDialog();
         }
@@ -1007,7 +1002,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             startActivityForResult(intent, AIRPLANE_MODE_ACTIVITY_RESULT);
         } catch (ActivityNotFoundException ex) {
             Timber.w(ex, "startAirplaneModeSystemActivity(): Could not open Settings to change airplane mode");
-            MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
             showCannotOpenAndroidSettingsDialog();
         }
@@ -1134,7 +1128,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                             showAskForLocationSettingsDialog = true;
                         } catch (ActivityNotFoundException ex2) {
                             Timber.w("askAndSetGpsEnabled(): Could not open Settings to enable GPS");
-                            MyApplication.getAnalytics().sendException(ex2, Boolean.FALSE);
                             ACRA.getErrorReporter().handleSilentException(ex2);
                             AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).setMessage(R.string.dialog_could_not_open_android_settings).setPositiveButton(R.string.dialog_ok, null).create();
                             alertDialog.setCanceledOnTouchOutside(true);

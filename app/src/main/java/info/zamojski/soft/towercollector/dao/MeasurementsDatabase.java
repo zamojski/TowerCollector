@@ -4,7 +4,23 @@
 
 package info.zamojski.soft.towercollector.dao;
 
-import info.zamojski.soft.towercollector.MyApplication;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteQueryBuilder;
+
+import org.acra.ACRA;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import info.zamojski.soft.towercollector.dao.migration.DbMigrationHelper;
 import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
@@ -15,23 +31,6 @@ import info.zamojski.soft.towercollector.model.Statistics;
 import info.zamojski.soft.towercollector.utils.DateUtils;
 import info.zamojski.soft.towercollector.utils.HashUtils;
 import timber.log.Timber;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.acra.ACRA;
-
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteQueryBuilder;
 
 public class MeasurementsDatabase {
 
@@ -165,8 +164,7 @@ public class MeasurementsDatabase {
                 Timber.d("insertMeasurement(): Insertion report: %s", resultSb.toString());
                 // report exception because it shouldn't occur (one time per app run)
                 if (!insertionFailureReported) {
-                    Throwable ex = new MeasurementInsertionFailedException("Measurement not inserted", resultSb.toString());
-                    MyApplication.getAnalytics().sendException(ex, Boolean.FALSE);
+                    Throwable ex = new MeasurementInsertionFailedException("Measurements not inserted", resultSb.toString());
                     ACRA.getErrorReporter().handleSilentException(ex);
                     insertionFailureReported = true;
                 }
@@ -175,7 +173,6 @@ public class MeasurementsDatabase {
             result = false;
             Timber.e(ex, "insertMeasurement(): Error while saving measurement");
             Exception outerEx = new Exception("Measurement save failed", ex);
-            MyApplication.getAnalytics().sendException(outerEx, Boolean.FALSE);
             ACRA.getErrorReporter().handleSilentException(ex);
         } finally {
             invalidateCache();
