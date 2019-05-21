@@ -38,8 +38,6 @@
     <string name="main_dialog_not_compatible_title">Kompatibilitätsprobleme</string>
     <string name="main_dialog_not_compatible_begin">Diese App funktioniert eventuell nicht weil:</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Keine Mobilfunkhardware gefunden wurde.</string>
-    <string name="main_dialog_in_airplane_mode_title">Flugmodus</string>
-    <string name="main_dialog_in_airplane_mode_message">Bitte schalten Sie den Flugmodus aus um Messungen zu erfassen.</string>
     <string name="main_toast_background_task_already_running_collector">Datenerfassung läuft.</string>
     <string name="main_toast_background_task_already_running_uploader">Upload der Messungen läuft.</string>
     <string name="main_toast_background_task_already_running_export">Export der gesammelten Messungen läuft.</string>
@@ -155,6 +153,8 @@
     <string name="main_help_invalid_system_time_description">Ihre Systemzeit weicht stark von der GPS-Zeit ab. Messungen werden mit der korrekten Zeit gespeichert, allerdings können die angezeigten Statistiken ungenau sein. Bitte korrigieren Sie Uhrzeit und Datum in Ihrem Gerät.</string>
     <string name="main_help_battery_optimizations_title">Stromsparmodus aktiviert</string>
     <string name="main_help_battery_optimizations_description">Akku-Leistungsoptimierung ist für diese App aktiviert, was zu ungenauen und unzuverlässigen Messungen führen kann. Bitte deaktivieren Sie Optimierung in den Android-Einstellungen unter \"Akku\" / \"Akku-Leistungsoptimierung\" / \"Tower Collector\".</string>
+    <string name="main_help_airplane_mode_title">Flugmodus aktiviert</string>
+    <string name="main_help_airplane_mode_description">Der Flugmodus ist auf diesem Gerät aktiviert und verhindert das Sammeln von Messungen. Bitte den Flugmodus in den Android Einstellungen deaktivieren.</string>
     <string name="main_help_today_locations_title">Messungen heute</string>
     <string name="main_help_today_locations_description">Anzahl Messungen die heute gesammelt wurden.</string>
     <string name="main_help_today_cells_title">Zellen heute</string>
@@ -201,6 +201,7 @@
     <string name="status_low_gps_accuracy">geringe Genauigkeit: <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">keine GPS-Position</string>
     <string name="invalid_system_time">Systemzeit ist ungültig</string>
+    <string name="airplane_mode">Flugmodus aktiviert</string>
     <string name="battery_optimizations">Akku-Leistungsoptimierung aktiviert</string>
     <string name="web_browser_missing">Bitte installieren Sie einen Web Browser um die Seite zu öffnen</string>
     <string name="uploader_all_projects_disabled">Upload zu allen Projekten deaktiviert</string>

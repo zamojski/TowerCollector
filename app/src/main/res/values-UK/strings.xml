@@ -38,8 +38,6 @@
     <string name="main_dialog_not_compatible_title">Проблеми сумісності</string>
     <string name="main_dialog_not_compatible_begin">Додаток може не працювати, оскільки:</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Мобільна мережеве обладнання не виявлено.</string>
-    <string name="main_dialog_in_airplane_mode_title">Режим \"у літаку\"</string>
-    <string name="main_dialog_in_airplane_mode_message">Вимкніть режим \"Літак/політ\", щоб збирати інформацію.</string>
     <string name="main_toast_background_task_already_running_collector">Служба збору інформації працює.</string>
     <string name="main_toast_background_task_already_running_uploader">Служба завантажувача запущена.</string>
     <string name="main_toast_background_task_already_running_export">Виконується експорт.</string>
@@ -155,6 +153,8 @@
     <string name="main_help_invalid_system_time_description">Ваша поточна системна дата та/або час недійсні у порівнянні з часом GPS. Вимірювання буде збережено з правильним часом, але представлена статистика може бути неточною. Встановіть дату та час на своєму пристрої.</string>
     <string name="main_help_battery_optimizations_title">Увімкнено оптимізацію акумуляторів</string>
     <string name="main_help_battery_optimizations_description">Для цього застосунку увімкнено оптимізацію акумуляторів, які можуть спричинити неточні та ненадійні вимірювання. Будь ласка, відключіть оптимізацію акумуляторів у настройках Android, вибравши \"всі програми\", то Tower Collector: \"не оптимізувати\".</string>
+    <string name="main_help_airplane_mode_title">Режим літака увімкнено</string>
+    <string name="main_help_airplane_mode_description">Режим літака / повороту на вашому пристрої, який блокує додаток від збору даних. Вимкнути режим літака в налаштуваннях андроїд.</string>
     <string name="main_help_today_locations_title">Вимірювання сьогодні</string>
     <string name="main_help_today_locations_description">Кількість вимірювань, зібраних додатком сьогодні.</string>
     <string name="main_help_today_cells_title">Соти сьогодні</string>
@@ -201,6 +201,7 @@
     <string name="status_low_gps_accuracy">низька точність <xliff:g id="accuracy_value">%1$.0f</xliff:g><xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">"Позиція невизначена "</string>
     <string name="invalid_system_time">Дата / час системи недійсний</string>
+    <string name="airplane_mode">Режим літака увімкнено</string>
     <string name="battery_optimizations">Увімкнено оптимізацію акумуляторів</string>
     <string name="web_browser_missing">Будь ласка, встановіть веб-браузер, щоб відкрити сторінку</string>
     <string name="uploader_all_projects_disabled">Завантаження до всіх проектів відключено</string>

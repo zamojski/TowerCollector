@@ -38,8 +38,6 @@
     <string name="main_dialog_not_compatible_title">Problemi di compatibilità</string>
     <string name="main_dialog_not_compatible_begin">L\'app potrebbe non funzionare perchè:\n</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Hardware di rete mobile non rilevato.\n</string>
-    <string name="main_dialog_in_airplane_mode_title">Modalità aereo</string>
-    <string name="main_dialog_in_airplane_mode_message">Si prega di disattivare la modalità Aereo/Volo per raccogliere le misurazioni.</string>
     <string name="main_toast_background_task_already_running_collector">Il Servizio di Raccolta è attivo.</string>
     <string name="main_toast_background_task_already_running_uploader">Caricamento in corso.</string>
     <string name="main_toast_background_task_already_running_export">Esportazione in corso.</string>
@@ -155,6 +153,8 @@
     <string name="main_help_invalid_system_time_description">La tua data e/o ora di sistema attuali non è valida rispetto all\'ora GPS. Le misurazioni verranno salvate con il tempo corretto ma le statistiche presentate potrebbero essere imprecise. Si prega di impostare la data e l\'ora nel dispositivo.</string>
     <string name="main_help_battery_optimizations_title">Ottimizzazioni della batteria abilitate</string>
     <string name="main_help_battery_optimizations_description">Le ottimizzazioni della batteria sono abilitate per questo app; ciò può comportare che le misure raccaolte siano inesatte ed inaffidabili. Si prega di disabilitare le ottimizzazioni della batteria nelle impostazioni di Android selezionando \'Tutte le app\', poi Tower Collector: \'Non ottimizzare\'.</string>
+    <string name="main_help_airplane_mode_title">Modalità aereo abilitata</string>
+    <string name="main_help_airplane_mode_description">La modalità aereo / volo è abilitata sul tuo dispositivo che blocca l\'app dalla raccolta delle misurazioni. Disabilita la modalità aereo nelle impostazioni Android.</string>
     <string name="main_help_today_locations_title">Misurazioni odierne</string>
     <string name="main_help_today_locations_description">Numero di misurazioni raccolte dall\'applicazione oggi.</string>
     <string name="main_help_today_cells_title">Celle odierne</string>
@@ -201,6 +201,7 @@
     <string name="status_low_gps_accuracy">bassa accuratezza <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">nessuna posizione</string>
     <string name="invalid_system_time">La data/ora di sistema non è valida</string>
+    <string name="airplane_mode">Modalità aereo abilitata</string>
     <string name="battery_optimizations">Ottimizzazioni della batteria abilitate</string>
     <string name="web_browser_missing">Si prega di installare il browser Web per aprire la pagina</string>
     <string name="uploader_all_projects_disabled">Caricamento disabilitato per tutti i progetti</string>

@@ -38,8 +38,6 @@
     <string name="main_dialog_not_compatible_title">Kompatibilitási problémák</string>
     <string name="main_dialog_not_compatible_begin">Lehet, hogy az alkalmazás nem fog működni, mert:\n</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Nem található mobil hálózati eszköz.\n</string>
-    <string name="main_dialog_in_airplane_mode_title">Repülőgép üzemmód</string>
-    <string name="main_dialog_in_airplane_mode_message">Az adatgyűjtéshez ki kell kapcsolnod a repülőgép üzemmódot.</string>
     <string name="main_toast_background_task_already_running_collector">Adatgyűjtés folyamatban.</string>
     <string name="main_toast_background_task_already_running_uploader">Feltöltés folyamatban.</string>
     <string name="main_toast_background_task_already_running_export">Exportálás folyamatban.</string>
@@ -155,6 +153,8 @@
     <string name="main_help_invalid_system_time_description">A jelenlegi rendszeridő eltér a GPS idejéhez képest. A mérések a helyes idővel lesznek elmentve, de a statisztikák pontatlanok lehetnek. Állítsd be az dátumot és az időt az eszközödön.</string>
     <string name="main_help_battery_optimizations_title">Akkumulátor optimalizációk engedélyezve</string>
     <string name="main_help_battery_optimizations_description">Az akkumulátor optimalizációk be vannak kapcsolva az alkalmazásnál, amely pontatlan és nem megbízható méréseket eredményezhet. Tiltsd le az akkumulátor optimalizációkat az Android beállításokban az „Összes alkalmazás”, majd a Tower Collector kiválasztásával. Végül pedig válaszd a „Ne optimalizálja” lehetőséget.</string>
+    <string name="main_help_airplane_mode_title">Repülőgép üzemmód engedélyezve</string>
+    <string name="main_help_airplane_mode_description">A repülőgép / repülési mód engedélyezve van a készüléken, amely megakadályozza az alkalmazásnak a mérések összegyűjtését. Kérjük, tiltsa le a repülőgép üzemmódot az Android beállításokban.</string>
     <string name="main_help_today_locations_title">Mai mérések</string>
     <string name="main_help_today_locations_description">Az alkalmazás mai méréseinek száma.</string>
     <string name="main_help_today_cells_title">Mai cellák</string>
@@ -201,6 +201,7 @@
     <string name="status_low_gps_accuracy">alacsony pontosság: <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">nincs helyzet</string>
     <string name="invalid_system_time">A rendszeridő érvénytelen</string>
+    <string name="airplane_mode">Repülőgép üzemmód engedélyezve</string>
     <string name="battery_optimizations">Akkumulátor optimalizációk engedélyezve</string>
     <string name="web_browser_missing">Telepíts egy webböngészőt az oldal megnyitásához</string>
     <string name="uploader_all_projects_disabled">A feltöltés az összes projekt esetén le van tiltva</string>

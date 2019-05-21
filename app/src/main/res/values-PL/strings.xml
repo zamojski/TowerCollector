@@ -38,8 +38,6 @@
     <string name="main_dialog_not_compatible_title">Problemy z kompatybilnością</string>
     <string name="main_dialog_not_compatible_begin">Aplikacja może nie działać, ponieważ:\n</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Nie wykryto modułu sieci komórkowej.</string>
-    <string name="main_dialog_in_airplane_mode_title">Tryb samolotowy</string>
-    <string name="main_dialog_in_airplane_mode_message">Proszę wyłączyć tryb samolotowy w celu zebrania nowych próbek.</string>
     <string name="main_toast_background_task_already_running_collector">Zbieranie jest uruchomione.</string>
     <string name="main_toast_background_task_already_running_uploader">Przesyłanie jest uruchomione.</string>
     <string name="main_toast_background_task_already_running_export">Eksport jest uruchomiony.</string>
@@ -155,6 +153,8 @@
     <string name="main_help_invalid_system_time_description">Obecnie data i/lub czas w systemie jest nieprawidłowy w porównaniu z czasem z GPS. Próbki zostaną zapisane z prawidłowym czasem, ale prezentowane statystyki mogą być niedokładne. Proszę ustawić datę i czas w urządzeniu.</string>
     <string name="main_help_battery_optimizations_title">Optymalizacja baterii włączona</string>
     <string name="main_help_battery_optimizations_description">Optymalizacja baterii jest włączona dla tej aplikacji co może skutkować zbieraniem niedokładnych i niemiarodajnych próbek. Proszę wyłączyć optymalizację baterii w ustawieniach Androida wybierając \'Wszystkie aplikacje\', a następnie Tower Collector: \'Nie optymalizuj\'.</string>
+    <string name="main_help_airplane_mode_title">Tryb samolotowy aktywny</string>
+    <string name="main_help_airplane_mode_description">Tryb samolotowy jest aktywny na urządzeniu i blokuje aplikację przed zbieraniem próbek. Proszę wyłączyć tryb samolotowy w ustawieniach Androida.</string>
     <string name="main_help_today_locations_title">Liczba próbek dzisiaj</string>
     <string name="main_help_today_locations_description">Liczba próbek zebranych przez aplikację dzisiaj.</string>
     <string name="main_help_today_cells_title">Liczba przekaźników dzisiaj</string>
@@ -201,6 +201,7 @@
     <string name="status_low_gps_accuracy">niska dokładność <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">brak lokacji</string>
     <string name="invalid_system_time">Data/czas w systemie jest nieprawidłowy</string>
+    <string name="airplane_mode">Tryb samolotowy aktywny</string>
     <string name="battery_optimizations">Optymalizacja baterii jest włączona</string>
     <string name="web_browser_missing">Zainstaluj przeglądarkę internetową, aby otworzyć stronę</string>
     <string name="uploader_all_projects_disabled">Przesyłanie jest wyłączone dla wszystkich projektów</string>

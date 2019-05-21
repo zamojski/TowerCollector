@@ -38,8 +38,6 @@
     <string name="main_dialog_not_compatible_title">Проблемы совместимости</string>
     <string name="main_dialog_not_compatible_begin">Приложение может не работать потому, что:</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Не найдено оборудование для работы с мобильными сетями.\n</string>
-    <string name="main_dialog_in_airplane_mode_title">Режим полëта</string>
-    <string name="main_dialog_in_airplane_mode_message">Для сбора данных, пожалуйста, отключите режим полëта.</string>
     <string name="main_toast_background_task_already_running_collector">Сборщик запущен.</string>
     <string name="main_toast_background_task_already_running_uploader">Модуль выгрузки данных запущен.</string>
     <string name="main_toast_background_task_already_running_export">Выполняется экспорт данных.</string>
@@ -155,6 +153,8 @@
     <string name="main_help_invalid_system_time_description">Ваши текущие дата и/или время отличается от времени GPS. Измерения будут сохранены с правильным временем, но в статистике могут быть ошибки. Пожалуйста, установите правильное время на вашем устройстве.</string>
     <string name="main_help_battery_optimizations_title">Включена оптимизация батареи</string>
     <string name="main_help_battery_optimizations_description">Оптимизация батареи включены для этого приложения, поэтому это может сказаться на точности и достоверности собираемых измерений. Пожалуйста, отключите оптимизацию батареи в настройках Android выбрав \"Все приложения\", затем Tower Collector: \"Не оптимизировать\".</string>
+    <string name="main_help_airplane_mode_title">Режим самолета включен</string>
+    <string name="main_help_airplane_mode_description">Самолет/режим полета включен на вашем устройстве, которое блокирует приложение от сбора измерений. Пожалуйста, отключите режим самолета в настройках Android.</string>
     <string name="main_help_today_locations_title">Измерений сегодня</string>
     <string name="main_help_today_locations_description">Число измерений, собранных приложением сегодня.</string>
     <string name="main_help_today_cells_title">GSM-соты сегодня</string>
@@ -201,6 +201,7 @@
     <string name="status_low_gps_accuracy">низкая точность <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">местоположение не найдено</string>
     <string name="invalid_system_time">Неверная системная дата/время</string>
+    <string name="airplane_mode">Режим самолета включен</string>
     <string name="battery_optimizations">Включена оптимизация батареи</string>
     <string name="web_browser_missing">Пожалуйста, установите браузер, чтобы открыть страницу</string>
     <string name="uploader_all_projects_disabled">Выгрузка отключена для всех проектов</string>

@@ -38,8 +38,6 @@
     <string name="main_dialog_not_compatible_title">Problemas de compatibilidade</string>
     <string name="main_dialog_not_compatible_begin">Este aplicativo pode não funcionar porque:</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Hardware de rede móvel não foi detectado.</string>
-    <string name="main_dialog_in_airplane_mode_title">Modo avião</string>
-    <string name="main_dialog_in_airplane_mode_message">Favor desligar Modo Avião para poder coletar as medições.</string>
     <string name="main_toast_background_task_already_running_collector">Serviço de Coleta está executando.</string>
     <string name="main_toast_background_task_already_running_uploader">Serviço de Upload está executando.</string>
     <string name="main_toast_background_task_already_running_export">Tarefa de Exportação está executando.</string>
@@ -155,6 +153,8 @@
     <string name="main_help_invalid_system_time_description">Sua data e/ou hora do sistema está inválido comparando com o horário do GPS. As medições serão salvas com o horário correto mas as estatísticas exibidas podem estar incorretas. Favor configurar a data e hora no seu dispositivo.</string>
     <string name="main_help_battery_optimizations_title">Otimizações de bateria habilitadas</string>
     <string name="main_help_battery_optimizations_description">As otimizações de bateria estão habilitadas para este aplicativo que pode resultar em medições incorretas e não confiáveis que estão sendo coletadas. Desative as otimizações de bateria nas configurações do Android selecionando \'Todos os apps\' e, em seguida, Tower Collector: \'Não otimizar\'.</string>
+    <string name="main_help_airplane_mode_title">Modo avião ativado</string>
+    <string name="main_help_airplane_mode_description">O modo de voo / avião está ativado no seu dispositivo, o que impede que o aplicativo colete medições. Por favor, desative o modo avião nas configurações do Android.</string>
     <string name="main_help_today_locations_title">Medições hoje</string>
     <string name="main_help_today_locations_description">Número de medições coletadas pela aplicação hoje.</string>
     <string name="main_help_today_cells_title">Células hoje</string>
@@ -201,6 +201,7 @@
     <string name="status_low_gps_accuracy">baixa precisão <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">sem posicionamento</string>
     <string name="invalid_system_time">Data/hora do sistema está inválido</string>
+    <string name="airplane_mode">Modo avião ativado</string>
     <string name="battery_optimizations">Otimizações de bateria habilitadas</string>
     <string name="web_browser_missing">Favor instalar navegador web para abrir a página</string>
     <string name="uploader_all_projects_disabled">Upload para todos os projetos está desabilitado</string>
