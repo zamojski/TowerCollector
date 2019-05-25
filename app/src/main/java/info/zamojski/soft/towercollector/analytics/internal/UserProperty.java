@@ -4,9 +4,7 @@
 
 package info.zamojski.soft.towercollector.analytics.internal;
 
-public class Screens {
+public class UserProperty {
 
-    public static final String MainActivity = "Main";
-    public static final String PreferencesActivity = "Preferences";
-
+    public static final String Market = "Market";
 }

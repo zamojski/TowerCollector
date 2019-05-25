@@ -143,7 +143,6 @@ public class SplashActivity extends Activity {
             // show progress dialog only when migrating database
             DatabaseUpgradeTask databaseMigrationTask = new DatabaseUpgradeTask(currentDbVersion);
             databaseMigrationTask.upgrade();
-            MyApplication.getAnalytics().sendMigrationStarted();
             hideDetailsMessage();
             databaseUpgradeRunning = false;
         }

@@ -8,7 +8,7 @@ import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
 
 public class FakeAnalyticsReportingService implements IAnalyticsReportingService {
     @Override
-    public void setAppOptOut(boolean optOut) {
+    public void setTrackingEnabled(boolean trackingEnabled) {
 
     }
 
@@ -18,42 +18,17 @@ public class FakeAnalyticsReportingService implements IAnalyticsReportingService
     }
 
     @Override
-    public void sendMigrationStarted() {
-
-    }
-
-    @Override
     public void sendMigrationFinished(long duration, int oldDbVersion, AnalyticsStatistics stats) {
 
     }
 
     @Override
-    public void sendCollectorStarted(IntentSource source) {
+    public void sendCollectorFinished(IntentSource source, String meansOfTransport, String apiVersion, long duration, AnalyticsStatistics stats) {
 
     }
 
     @Override
-    public void sendCollectorFinished(long duration, String transportMode, AnalyticsStatistics stats) {
-
-    }
-
-    @Override
-    public void sendCollectorApiVersionUsed(String apiVersion) {
-
-    }
-
-    @Override
-    public void sendUploadStarted(IntentSource source, boolean ocid) {
-
-    }
-
-    @Override
-    public void sendUploadFinished(long duration, String networkType, AnalyticsStatistics stats, boolean ocid) {
-
-    }
-
-    @Override
-    public void sendExportStarted() {
+    public void sendUploadFinished(IntentSource source, String networkType, long duration, AnalyticsStatistics stats, boolean ocid) {
 
     }
 

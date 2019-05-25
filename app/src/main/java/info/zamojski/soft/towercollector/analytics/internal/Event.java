@@ -6,6 +6,15 @@ package info.zamojski.soft.towercollector.analytics.internal;
 
 public class Event {
 
-    public static final String Event = "Event";
-    public static final String Timing = "Timing";
+    public static final String DbMigrated = "DbMigrated";
+    public static final String UpdateSelected = "UpdateSelected";
+    public static final String MeasurementsCollected = "MeasurementsCollected";
+    public static final String MeasurementsUploaded = "MeasurementsUploaded";
+    public static final String MeasurementsExported = "MeasurementsExported";
+    public static final String ActionAfterExportSelected = "ActionAfterExportSelected";
+    public static final String PrefsAppThemeSelected = "PrefsAppThemeSelected";
+    public static final String PrefsCollectorApiVersionSelected = "PrefsCollectorApiVersionSelected";
+    public static final String PrefsHelpOpened = "PrefsHelpOpened";
+    public static final String PrefsNotifyCollectedSelected = "PrefsNotifyCollectedSelected";
+    public static final String PrefsUpdateCheckSelected = "PrefsUpdateCheckSelected";
 }

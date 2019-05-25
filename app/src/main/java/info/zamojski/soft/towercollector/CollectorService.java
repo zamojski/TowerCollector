@@ -4,6 +4,7 @@
 
 package info.zamojski.soft.towercollector;
 
+import info.zamojski.soft.towercollector.analytics.IntentSource;
 import info.zamojski.soft.towercollector.broadcast.BatteryStatusBroadcastReceiver;
 import info.zamojski.soft.towercollector.broadcast.ExternalBroadcastSender;
 import info.zamojski.soft.towercollector.enums.GpsStatus;
@@ -57,7 +58,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
-import android.os.Looper;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.telephony.CellInfo;
@@ -71,6 +71,7 @@ import android.widget.Toast;
 public class CollectorService extends Service {
 
     public static final String SERVICE_FULL_NAME = CollectorService.class.getCanonicalName();
+    public static final String INTENT_KEY_START_INTENT_SOURCE = "start_intent_source";
     public static final String BROADCAST_INTENT_STOP_SERVICE = SERVICE_FULL_NAME + ".CollectorStop";
     static final String INTENT_KEY_TRANSPORT_MODE = MeansOfTransport.class.getCanonicalName();
     static final String INTENT_KEY_KEEP_SCREEN_ON_MODE = "CollectorKeepScreenOnMode";
@@ -131,6 +132,9 @@ public class CollectorService extends Service {
     private PowerManager powerManager;
     private PowerManager.WakeLock wakeLock;
 
+    private IntentSource startIntentSource;
+    private String apiVersionUsed;
+
     // ========== SERVICE ========== //
 
     @Override
@@ -161,11 +165,11 @@ public class CollectorService extends Service {
         super.onStartCommand(intent, flags, startId);
         Timber.d("onStartCommand(): Starting service");
         // get locomotion mode
-        transportMode = (MeansOfTransport) intent.getSerializableExtra(CollectorService.INTENT_KEY_TRANSPORT_MODE);
+        transportMode = (MeansOfTransport) intent.getSerializableExtra(INTENT_KEY_TRANSPORT_MODE);
         if (transportMode == null)
             transportMode = (MyApplication.getPreferencesProvider().getGpsOptimizationsEnabled() ? MeansOfTransport.Universal : MeansOfTransport.Fixed);
         Timber.d("onStartCommand(): Selected transport mode: %s", transportMode);
-        String keepScreenOnModeString = intent.getStringExtra(CollectorService.INTENT_KEY_KEEP_SCREEN_ON_MODE);
+        String keepScreenOnModeString = intent.getStringExtra(INTENT_KEY_KEEP_SCREEN_ON_MODE);
         if (keepScreenOnModeString == null)
             keepScreenOnModeString = MyApplication.getPreferencesProvider().getCollectorKeepScreenOnMode();
         if (keepScreenOnModeString.equals(getString(R.string.preferences_keep_screen_on_mode_entries_value_full)))
@@ -175,6 +179,7 @@ public class CollectorService extends Service {
         else
             keepScreenOnMode = KeepScreenOnMode.Disabled;
         Timber.d("onStartCommand(): Keep screen on mode: %s", keepScreenOnModeString);
+        startIntentSource = (IntentSource) intent.getSerializableExtra(INTENT_KEY_START_INTENT_SOURCE);
         // save interval (max by default, because it may be reconnected in a moment)
         currentIntervalValue.set(transportMode.getMaxTime());
         measurementUpdater.setMinDistanceAndInterval(transportMode.getDistance(), transportMode.getMaxTime());
@@ -282,7 +287,7 @@ public class CollectorService extends Service {
         AnalyticsStatistics stats = new AnalyticsStatistics();
         stats.setLocations(numberOfCollectedLocations);
         stats.setCells(numberOfCollectedCells);
-        MyApplication.getAnalytics().sendCollectorFinished(duration, transportMode.name(), stats);
+        MyApplication.getAnalytics().sendCollectorFinished(startIntentSource, transportMode.name(), apiVersionUsed, duration, stats);
         super.onDestroy();
     }
 
@@ -373,7 +378,7 @@ public class CollectorService extends Service {
                 }
             }
         }, 0, CELL_UPDATE_INTERVAL);
-        MyApplication.getAnalytics().sendCollectorApiVersionUsed(getString(R.string.preferences_collector_api_version_entries_value_api_17));
+        apiVersionUsed = getString(R.string.preferences_collector_api_version_entries_value_api_17);
     }
 
     private void registerApi1PhoneStateListener() {
@@ -426,7 +431,7 @@ public class CollectorService extends Service {
                 }
             }
         }, 0, CELL_UPDATE_INTERVAL);
-        MyApplication.getAnalytics().sendCollectorApiVersionUsed(getString(R.string.preferences_collector_api_version_entries_value_api_1));
+        apiVersionUsed = getString(R.string.preferences_collector_api_version_entries_value_api_1);
     }
 
     private void processCellInfo(List<CellInfo> cellInfo) {

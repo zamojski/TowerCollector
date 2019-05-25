@@ -62,16 +62,21 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
             return;
         }
         Timber.d("startCollectorService(): Starting service from broadcast");
-        Intent intent = getCollectorIntent(context);
+        Intent intent = getCollectorIntent(context, source);
 
         ContextCompat.startForegroundService(context, intent);
         EventBus.getDefault().post(new CollectorStartedEvent(intent));
-        MyApplication.getAnalytics().sendCollectorStarted(source);
     }
 
     public void stopCollectorService(Context context) {
         Timber.d("stopCollectorService(): Stopping service from broadcast");
         context.stopService(getCollectorIntent(context));
+    }
+
+    private Intent getCollectorIntent(Context context, IntentSource source) {
+        Intent intent = getCollectorIntent(context);
+        intent.putExtra(CollectorService.INTENT_KEY_START_INTENT_SOURCE, source);
+        return intent;
     }
 
     private Intent getCollectorIntent(Context context) {
@@ -83,12 +88,6 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
             return;
         Timber.d("startCollectorService(): Starting service from broadcast");
         ContextCompat.startForegroundService(context, getUploaderIntent(context));
-        boolean isOcidUploadEnabled = MyApplication.getPreferencesProvider().isOpenCellIdUploadEnabled();
-        boolean isMlsUploadEnabled = MyApplication.getPreferencesProvider().isMlsUploadEnabled();
-        if (isOcidUploadEnabled)
-            MyApplication.getAnalytics().sendUploadStarted(IntentSource.Application, true);
-        if (isMlsUploadEnabled)
-            MyApplication.getAnalytics().sendUploadStarted(IntentSource.Application, false);
     }
 
     public void stopUploaderService(Context context) {
@@ -99,7 +98,9 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
     }
 
     private Intent getUploaderIntent(Context context) {
-        return new Intent(context, UploaderService.class);
+        Intent intent = new Intent(context, UploaderService.class);
+        intent.putExtra(UploaderService.INTENT_KEY_START_INTENT_SOURCE, IntentSource.Application);
+        return intent;
     }
 
     private boolean canStartBackgroundService(Context context) {

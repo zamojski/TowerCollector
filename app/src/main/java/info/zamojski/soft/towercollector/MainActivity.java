@@ -718,10 +718,11 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         // pass screen on mode
         final String keepScreenOnMode = MyApplication.getPreferencesProvider().getCollectorKeepScreenOnMode();
         intent.putExtra(CollectorService.INTENT_KEY_KEEP_SCREEN_ON_MODE, keepScreenOnMode);
+        // pass analytics data
+        intent.putExtra(CollectorService.INTENT_KEY_START_INTENT_SOURCE, IntentSource.User);
         // start service
         ContextCompat.startForegroundService(this, intent);
         EventBus.getDefault().post(new CollectorStartedEvent(intent));
-        MyApplication.getAnalytics().sendCollectorStarted(IntentSource.User);
     }
 
     @OnShowRationale({Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_PHONE_STATE})
@@ -839,11 +840,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             intent.putExtra(UploaderService.INTENT_KEY_UPLOAD_TO_OCID, isOcidUploadEnabled);
             intent.putExtra(UploaderService.INTENT_KEY_UPLOAD_TO_MLS, isMlsUploadEnabled);
             intent.putExtra(UploaderService.INTENT_KEY_UPLOAD_TRY_REUPLOAD, isReuploadIfUploadFailsEnabled);
+            intent.putExtra(UploaderService.INTENT_KEY_START_INTENT_SOURCE, IntentSource.User);
             ContextCompat.startForegroundService(this, intent);
-            if (isOcidUploadEnabled)
-                MyApplication.getAnalytics().sendUploadStarted(IntentSource.User, true);
-            if (isMlsUploadEnabled)
-                MyApplication.getAnalytics().sendUploadStarted(IntentSource.User, false);
         } else
             Toast.makeText(getApplication(), R.string.uploader_already_running, Toast.LENGTH_LONG).show();
     }
@@ -898,7 +896,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                         String path = FileUtils.combinePath(FileUtils.getExternalStorageAppDir(), FileUtils.getCurrentDateFileName(nameSuffix, extension));
                         ExportFileAsyncTask task = new ExportFileAsyncTask(MainActivity.this, new InternalMessageHandler(MainActivity.this), path, selectedType);
                         task.execute();
-                        MyApplication.getAnalytics().sendExportStarted();
                     }
                 }
             }).setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {

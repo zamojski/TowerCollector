@@ -45,7 +45,7 @@ public class GeneralPreferenceFragment extends DialogEnabledPreferenceFragment i
             boolean trackingEnabledDefault = getResources().getBoolean(R.bool.preferences_tracking_enabled_default_value);
             boolean isTrackingEnabled = sharedPreferences.getBoolean(key, trackingEnabledDefault);
             Timber.d("onSharedPreferenceChanged(): User set tracking enabled = %s", isTrackingEnabled);
-            MyApplication.getAnalytics().setAppOptOut(!isTrackingEnabled);
+            MyApplication.getAnalytics().setTrackingEnabled(isTrackingEnabled);
         }
     }
 

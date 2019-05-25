@@ -6,29 +6,17 @@ package info.zamojski.soft.towercollector.analytics;
 
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
 
-import android.app.Activity;
-
 public interface IAnalyticsReportingService {
 
-    void setAppOptOut(boolean optOut);
+    void setTrackingEnabled(boolean trackingEnabled);
 
     void sendUpdateAction(String source);
 
-    void sendMigrationStarted();
-
     void sendMigrationFinished(long duration, int oldDbVersion, AnalyticsStatistics stats);
 
-    void sendCollectorStarted(IntentSource source);
+    void sendCollectorFinished(IntentSource source, String meansOfTransport, String apiVersion, long duration, AnalyticsStatistics stats);
 
-    void sendCollectorFinished(long duration, String transportMode, AnalyticsStatistics stats);
-
-    void sendCollectorApiVersionUsed(String apiVersion);
-
-    void sendUploadStarted(IntentSource source, boolean ocid);
-
-    void sendUploadFinished(long duration, String networkType, AnalyticsStatistics stats, boolean ocid);
-
-    void sendExportStarted();
+    void sendUploadFinished(IntentSource source, String networkType, long duration, AnalyticsStatistics stats, boolean ocid);
 
     void sendExportFinished(long duration, String fileType, AnalyticsStatistics stats);
 

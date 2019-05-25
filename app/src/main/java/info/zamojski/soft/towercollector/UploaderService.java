@@ -4,6 +4,7 @@
 
 package info.zamojski.soft.towercollector;
 
+import info.zamojski.soft.towercollector.analytics.IntentSource;
 import info.zamojski.soft.towercollector.enums.UploadResult;
 import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
 import info.zamojski.soft.towercollector.files.devices.MemoryTextDevice;
@@ -26,6 +27,7 @@ import info.zamojski.soft.towercollector.utils.NetworkUtils;
 import timber.log.Timber;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,6 +59,7 @@ public class UploaderService extends Service {
     public static final String INTENT_KEY_UPLOAD_TO_MLS = "upload_to_mls";
     public static final String INTENT_KEY_UPLOAD_TRY_REUPLOAD = "try_reupload";
     public static final String INTENT_KEY_RESULT_DESCRIPTION = "result_description";
+    public static final String INTENT_KEY_START_INTENT_SOURCE = "start_intent_source";
     public static final int NOTIFICATION_ID = 'U';
     private static final int MEASUREMENTS_PER_PART = 300;
 
@@ -78,6 +81,8 @@ public class UploaderService extends Service {
 
     private UploadResult ocidUploadResult = UploadResult.NotStarted;
     private UploadResult mlsUploadResult = UploadResult.NotStarted;
+
+    private IntentSource startIntentSource;
 
     @Override
     public void onCreate() {
@@ -107,6 +112,7 @@ public class UploaderService extends Service {
             isOpenCellIdUploadEnabled = intent.getBooleanExtra(INTENT_KEY_UPLOAD_TO_OCID, isOpenCellIdUploadEnabled);
             isMlsUploadEnabled = intent.getBooleanExtra(INTENT_KEY_UPLOAD_TO_MLS, isMlsUploadEnabled);
             isReuploadIfUploadFailsEnabled = intent.getBooleanExtra(INTENT_KEY_UPLOAD_TRY_REUPLOAD, isReuploadIfUploadFailsEnabled);
+            startIntentSource = (IntentSource) intent.getSerializableExtra(INTENT_KEY_START_INTENT_SOURCE);
         }
         // we hope API key will be valid
         ocidApiKey = preferencesProvider.getApiKey();
@@ -316,9 +322,9 @@ public class UploaderService extends Service {
                 stats.setCells(startStats.getCells() - endStats.getCells());
                 stats.setDays(startStats.getDays() - endStats.getDays());
                 if (isOpenCellIdUploadEnabled)
-                    MyApplication.getAnalytics().sendUploadFinished(duration, networkType, stats, true);
+                    MyApplication.getAnalytics().sendUploadFinished(startIntentSource, networkType, duration, stats, true);
                 if (isMlsUploadEnabled)
-                    MyApplication.getAnalytics().sendUploadFinished(duration, networkType, stats, false);
+                    MyApplication.getAnalytics().sendUploadFinished(startIntentSource, networkType, duration, stats, false);
             }
             // broadcast upload finished and stop service
             EventBus.getDefault().post(new PrintMainWindowEvent());
