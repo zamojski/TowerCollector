@@ -1,6 +1,16 @@
 {
   "Entries": [
     {
+      "VersionCode": 2000338,
+      "Title": "Changes in version 2.0.3",
+      "Messages": [
+        "Changed DB schema to optimize performance and reduce battery usage.",
+        "Fixed crash when checking for GPS availability was denied on API lower than 21.",
+        "Fixed toast messages displayed incorrectly when importing and exporting preferences.",
+        "Added monitoring of airplane mode for changes."
+      ]
+    },
+    {
       "VersionCode": 2000235,
       "Title": "Changes in version 2.0.2",
       "Description": "Tower Collector now supports Mozilla Location Services project! Share your feedback via <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> and  <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> communities, email or  <a href=\"https://github.com/zamojski/TowerCollector/issues\">GitHub</a> issues.",
@@ -44,13 +54,6 @@
         "Fixed measurements not ordered by date in exported JSON file.",
         "Fixed collecting not stopped on low battery on Oreo and newer.",
         "Added 'ocid' suffix to exported CSV file name when using OpenCellID.org formatting."
-      ]
-    },
-    {
-      "VersionCode": 1220128,
-      "Title": "Changes in version 1.22.1",
-      "Messages": [
-        "Improved error handling."
       ]
     }
   ]
