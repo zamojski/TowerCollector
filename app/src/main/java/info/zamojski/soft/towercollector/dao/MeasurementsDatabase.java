@@ -183,7 +183,7 @@ public class MeasurementsDatabase {
 
     public Measurement getFirstMeasurement() {
         Measurement firstMeasurement = null;
-        List<Measurement> measurements = getMeasurements(CellSignalsTable.TABLE_NAME + "." + CellSignalsTable.COLUMN_MEASUREMENT_ID + " = " + "(SELECT tm." + MeasurementsTable.COLUMN_ROW_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + " tm ORDER BY tm." + MeasurementsTable.COLUMN_MEASURED_AT + " DESC, tm." + MeasurementsTable.COLUMN_ROW_ID + " DESC LIMIT 0,1)",
+        List<Measurement> measurements = getMeasurements(CellSignalsTable.TABLE_NAME + "." + CellSignalsTable.COLUMN_MEASUREMENT_ID + " = " + "(SELECT tm." + MeasurementsTable.COLUMN_ROW_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + " tm ORDER BY tm." + MeasurementsTable.COLUMN_MEASURED_AT + " ASC, tm." + MeasurementsTable.COLUMN_ROW_ID + " DESC LIMIT 0,1)",
                 null,
                 null, null,
                 NotUploadedMeasurementsView.VIEW_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " ASC, " // from view because not for upload
