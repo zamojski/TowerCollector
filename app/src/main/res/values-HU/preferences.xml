@@ -80,8 +80,8 @@
     <string name="preferences_contact_email_link_summary">E-mailt küldhetsz a fejlesztőnek amelyben kifejtheted problémáidat, kérdéseidet és ötleteidet.</string>
     <string name="preferences_facebook_community_link_title">Facebook közösség</string>
     <string name="preferences_facebook_community_link_summary">Megnyitja a Facebook közösség oldalát, ahol hasznos információkat, hivatkozásokat találhatsz, megoszthatod az ötleteidet és kérdéseket tehetsz fel.</string>
-    <string name="preferences_google_plus_community_link_title">Google+ közösség</string>
-    <string name="preferences_google_plus_community_link_summary">Megnyitja a Google+ közösségi oldalt, ahol sok hasznos információt és hivatkozást találhatsz, megoszthatod ötleteidet és felteheted kérdéseidet.</string>
+    <string name="preferences_twitter_community_link_title">Twitter közösség</string>
+    <string name="preferences_twitter_community_link_summary">Megnyitja a Twitter közösségi oldalt, ahol sok hasznos információt és hivatkozást találhatsz, megoszthatod ötleteidet és felteheted kérdéseidet.</string>
     <string name="preferences_translate_link_title">Fordítás</string>
     <string name="preferences_translate_link_summary">Megnyitja a fordítási eszközt, amelyen keresztül részt vehetsz az alkalmazás fordításában.</string>
     <string name="preferences_privacy_statement_link_title">Adatvédelmi nyilatkozat</string>

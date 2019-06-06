@@ -80,8 +80,8 @@
     <string name="preferences_contact_email_link_summary">Wysyła email z twoimi problemami, pytaniami i pomysłami to autora aplikacji.</string>
     <string name="preferences_facebook_community_link_title">Społeczność Facebook</string>
     <string name="preferences_facebook_community_link_summary">Otwiera stronę społeczności Facebook, na której możesz znaleźć przydatne informacje, linki, przesyłać pomysły i zadawać pytania.</string>
-    <string name="preferences_google_plus_community_link_title">Społeczność Google+</string>
-    <string name="preferences_google_plus_community_link_summary">Otwiera stronę społeczności Google+, na której możesz znaleźć przydatne informacje, linki, przesyłać pomysły i zadawać pytania.</string>
+    <string name="preferences_twitter_community_link_title">Społeczność Twittera</string>
+    <string name="preferences_twitter_community_link_summary">Otwiera stronę społeczności Twittera, na której możesz znaleźć przydatne informacje, linki, przesyłać pomysły i zadawać pytania.</string>
     <string name="preferences_translate_link_title">Przetłumacz</string>
     <string name="preferences_translate_link_summary">Otwiera narzędzie online, które pozwala na współpracę w tłumaczeniu aplikacji.</string>
     <string name="preferences_privacy_statement_link_title">Oświadczenie o prywatności</string>

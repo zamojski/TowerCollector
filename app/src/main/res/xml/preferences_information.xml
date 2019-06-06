@@ -22,9 +22,9 @@
             android:summary="@string/preferences_facebook_community_link_summary"
             android:title="@string/preferences_facebook_community_link_title"/>
         <PreferenceScreen
-            android:key="@string/preferences_google_plus_community_link_key"
-            android:summary="@string/preferences_google_plus_community_link_summary"
-            android:title="@string/preferences_google_plus_community_link_title"/>
+            android:key="@string/preferences_twitter_community_link_key"
+            android:summary="@string/preferences_twitter_community_link_summary"
+            android:title="@string/preferences_twitter_community_link_title"/>
         <PreferenceScreen
             android:key="@string/preferences_translate_link_key"
             android:summary="@string/preferences_translate_link_summary"

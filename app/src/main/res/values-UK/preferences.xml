@@ -78,10 +78,10 @@
     <string name="preferences_website_link_summary">Відкриває веб-сайт розробника, де містяться описи та магазини завантажень додатків.</string>
     <string name="preferences_contact_email_link_title">Зв\'язатися з розробником</string>
     <string name="preferences_contact_email_link_summary">Надсилання електронною поштою виявлені проблеми, питання та ідеї розробнику.</string>
-    <string name="preferences_facebook_community_link_title">"Спільнота фейсбук "</string>
+    <string name="preferences_facebook_community_link_title">Спільнота Facebook</string>
     <string name="preferences_facebook_community_link_summary">Відкриває сторінку спільноти Facebook, де ви можете знайти корисну інформацію, посилання, публікувати ідеї та задавати питання.</string>
-    <string name="preferences_google_plus_community_link_title">Спільнота Гугл+</string>
-    <string name="preferences_google_plus_community_link_summary">Відкриває сторінку спільноти Google+, де ви можете знайти корисну інформацію, посилання, публікувати ідеї та задавати питання.</string>
+    <string name="preferences_twitter_community_link_title">Спільнота Twitter</string>
+    <string name="preferences_twitter_community_link_summary">Відкриває сторінку спільноти Twitter, де ви можете знайти корисну інформацію, посилання, публікувати ідеї та задавати питання.</string>
     <string name="preferences_translate_link_title">Перекласти</string>
     <string name="preferences_translate_link_summary">Відкриває онлайн-інструмент, який дозволяє вам співпрацювати при перекладі додатка.</string>
     <string name="preferences_privacy_statement_link_title">Заява про конфіденційність</string>

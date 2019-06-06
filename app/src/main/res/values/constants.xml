@@ -133,8 +133,8 @@
     <string name="preferences_contact_email_link_key" translatable="false">contact_email_link</string>
     <string name="preferences_facebook_community_link_key" translatable="false">facebook_community_link</string>
     <string name="preferences_facebook_community_link" translatable="false">https://www.facebook.com/towercollector/</string>
-    <string name="preferences_google_plus_community_link_key" translatable="false">google_plus_community_link</string>
-    <string name="preferences_google_plus_community_link" translatable="false">https://plus.google.com/communities/105724371687131986494</string>
+    <string name="preferences_twitter_community_link_key" translatable="false">twitter_community_link</string>
+    <string name="preferences_twitter_community_link" translatable="false">https://twitter.com/towercollector</string>
     <string name="preferences_translate_link_key" translatable="false">help_translating_link</string>
     <string name="preferences_translation_tool_link" translatable="false">http://i18n.zamojski.info/</string>
     <string name="preferences_privacy_statement_link_key" translatable="false">privacy_statement_link</string>

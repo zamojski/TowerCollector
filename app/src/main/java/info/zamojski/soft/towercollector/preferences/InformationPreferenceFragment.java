@@ -23,7 +23,7 @@ public class InformationPreferenceFragment extends DialogEnabledPreferenceFragme
 
         setupWebsiteLink();
         setupFacebookCommunityLink();
-        setupGooglePlusCommunityLink();
+        setupTwitterCommunityLink();
         setupTranslationToolLink();
 
         setupAboutDialog();
@@ -62,8 +62,8 @@ public class InformationPreferenceFragment extends DialogEnabledPreferenceFragme
         setupOpenInDefaultWebBrowser(R.string.preferences_facebook_community_link_key, R.string.preferences_facebook_community_link);
     }
 
-    private void setupGooglePlusCommunityLink() {
-        setupOpenInDefaultWebBrowser(R.string.preferences_google_plus_community_link_key, R.string.preferences_google_plus_community_link);
+    private void setupTwitterCommunityLink() {
+        setupOpenInDefaultWebBrowser(R.string.preferences_twitter_community_link_key, R.string.preferences_twitter_community_link);
     }
 
     private void setupTranslationToolLink() {

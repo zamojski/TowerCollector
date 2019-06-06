@@ -80,8 +80,8 @@
     <string name="preferences_contact_email_link_summary">Invia un\'email con i tuoi problemi, domande e idee allo sviluppatore.</string>
     <string name="preferences_facebook_community_link_title">Facebook Community</string>
     <string name="preferences_facebook_community_link_summary">Apre la pagina della Community di Facebook dove puoi trovare informazioni utili, link, postare idee e porre domande.</string>
-    <string name="preferences_google_plus_community_link_title">Google+ Community</string>
-    <string name="preferences_google_plus_community_link_summary">Apre la pagina della Community di Google+ dove puoi trovare informazioni utili, link, postare idee e porre domande.</string>
+    <string name="preferences_twitter_community_link_title">Twitter Community</string>
+    <string name="preferences_twitter_community_link_summary">Apre la pagina della Community di Twitter dove puoi trovare informazioni utili, link, postare idee e porre domande.</string>
     <string name="preferences_translate_link_title">Traduci</string>
     <string name="preferences_translate_link_summary">Apre lo strumento online che ti consente di collaborare alla traduzione dell\'app.</string>
     <string name="preferences_privacy_statement_link_title">Informativa sulla Privacy</string>

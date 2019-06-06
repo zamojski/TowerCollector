@@ -80,8 +80,8 @@
     <string name="preferences_contact_email_link_summary">Отправить email с вашими проблемами, вопросами и идеями разработчику.</string>
     <string name="preferences_facebook_community_link_title">Сообщество Facebook</string>
     <string name="preferences_facebook_community_link_summary">Открыть страницу сообщества Facebook, где вы сможете найти полезную информацию, ссылки, запостить идеи и задать вопросы.</string>
-    <string name="preferences_google_plus_community_link_title">Сообщество Google+</string>
-    <string name="preferences_google_plus_community_link_summary">Открыть страницу сообщества Google+, где вы сможете найти полезную информацию, ссылки и ответы на вопросы.</string>
+    <string name="preferences_twitter_community_link_title">Сообщество Twitter</string>
+    <string name="preferences_twitter_community_link_summary">Открыть страницу сообщества Twitter, где вы сможете найти полезную информацию, ссылки и ответы на вопросы.</string>
     <string name="preferences_translate_link_title">Перевести</string>
     <string name="preferences_translate_link_summary">Открыть сайт, с помощью которого вы сможете помочь перевести интерфейс программы.</string>
     <string name="preferences_privacy_statement_link_title">Конфиденциальность</string>
