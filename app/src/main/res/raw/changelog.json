@@ -1,6 +1,15 @@
 {
   "Entries": [
     {
+      "VersionCode": 2000439,
+      "Title": "Changes in version 2.0.4",
+      "Description": "Do you want stay updated? Follow one of the app communities <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> or <a href=\"https://twitter.com/towercollector/\">Twitter</a>!",
+      "Messages": [
+        "Attempt to fix failing export to GPX.",
+        "Replace Google+ links with Twitter."
+      ]
+    },
+    {
       "VersionCode": 2000338,
       "Title": "Changes in version 2.0.3",
       "Messages": [
@@ -13,7 +22,7 @@
     {
       "VersionCode": 2000235,
       "Title": "Changes in version 2.0.2",
-      "Description": "Tower Collector now supports Mozilla Location Services project! Share your feedback via <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> and  <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> communities, email or  <a href=\"https://github.com/zamojski/TowerCollector/issues\">GitHub</a> issues.",
+      "Description": "Tower Collector now supports Mozilla Location Services project! Share your feedback via <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> and <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> communities, email or  <a href=\"https://github.com/zamojski/TowerCollector/issues\">GitHub</a> issues.",
       "Messages": [
         "Fixed 'no data to upload' reported when one of the projects was failing and re-upload enabled.",
         "Improved upload to OpenCellID on faulty devices.",
@@ -44,16 +53,6 @@
         "Added database refresh after import from file - restart no longer needed.",
         "Fixed folder not created when exporting database or preferences to file.",
         "Improved error handling."
-      ]
-    },
-    {
-      "VersionCode": 1220229,
-      "Title": "Changes in version 1.22.2",
-      "Description": "Do you want to see the app in your language? Help me with <a href=\"http://i18n.zamojski.info/\">translations</a>! some languages are partially done but require volunteers - apply on the website or send me an email to start.",
-      "Messages": [
-        "Fixed measurements not ordered by date in exported JSON file.",
-        "Fixed collecting not stopped on low battery on Oreo and newer.",
-        "Added 'ocid' suffix to exported CSV file name when using OpenCellID.org formatting."
       ]
     }
   ]
