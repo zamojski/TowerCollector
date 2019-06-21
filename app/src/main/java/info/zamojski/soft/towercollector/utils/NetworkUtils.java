@@ -4,6 +4,7 @@
 
 package info.zamojski.soft.towercollector.utils;
 
+import android.Manifest;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -18,22 +19,16 @@ public class NetworkUtils {
         NetworkInfo netInfo = manager.getActiveNetworkInfo();
         if (netInfo == null)
             return "NO ACTIVE NETWORK";
-        return netInfo.getTypeName().toLowerCase();
+        return netInfo.getTypeName().toUpperCase();
     }
 
     public static boolean isNetworkAvailable(Context context) {
-        ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = manager.getActiveNetworkInfo();
-        return (activeNetworkInfo != null && activeNetworkInfo.isConnected());
-    }
-
-    public static boolean isChargeFreeNetworkAvailable(Context context) {
-        ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = manager.getActiveNetworkInfo();
-        return (activeNetworkInfo != null && activeNetworkInfo.isConnected()
-                && (activeNetworkInfo.getType() == ConnectivityManager.TYPE_WIFI
-                || activeNetworkInfo.getType() == ConnectivityManager.TYPE_WIMAX
-                || activeNetworkInfo.getType() == ConnectivityManager.TYPE_ETHERNET));
+        if(PermissionUtils.hasPermissions(context, Manifest.permission.ACCESS_NETWORK_STATE)) {
+            ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetworkInfo = manager.getActiveNetworkInfo();
+            return (activeNetworkInfo != null && activeNetworkInfo.isConnected());
+        }
+        return true; // assume there's one
     }
 
     public static boolean isInAirplaneMode(Context context) {

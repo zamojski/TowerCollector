@@ -41,10 +41,10 @@ public class UpdateClient extends ClientBase {
             Response response = client.newCall(request).execute();
             return handleResponse(response.code(), response.body().string());
         } catch (SocketTimeoutException ex) {
-            Timber.d(ex, "uploadMeasurements(): Timeout encountered");
+            Timber.d(ex, "fetchUpdates(): Timeout encountered");
             return null;
         } catch (ConnectException ex) {
-            Timber.d(ex, "uploadMeasurements(): Timeout encountered");
+            Timber.d(ex, "fetchUpdates(): Timeout encountered");
             return null;
         } catch (IOException ex) {
             Timber.d(ex, "fetchUpdates(): Errors encountered");
