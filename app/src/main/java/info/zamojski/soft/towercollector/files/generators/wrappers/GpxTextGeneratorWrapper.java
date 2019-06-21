@@ -11,6 +11,7 @@ import org.acra.ACRA;
 import java.io.IOException;
 import java.util.List;
 
+import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.GeneratorResult;
 import info.zamojski.soft.towercollector.files.DeviceOperationException;
@@ -23,6 +24,7 @@ import info.zamojski.soft.towercollector.files.formatters.gpx.model.HeaderData;
 import info.zamojski.soft.towercollector.files.generators.GpxTextGenerator;
 import info.zamojski.soft.towercollector.model.Boundaries;
 import info.zamojski.soft.towercollector.model.Measurement;
+import info.zamojski.soft.towercollector.model.Statistics;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
 import timber.log.Timber;
 
@@ -36,13 +38,27 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
         this.generator = new GpxTextGenerator(new GpxExportFormatter(), device);
     }
 
+    private class InconsistentDataException extends Throwable {
+    }
+
     @Override
     public FileGeneratorResult generate() {
         try {
             // get number of measurements to process
             int measurementsCount = MeasurementsDatabase.getInstance(context).getAllMeasurementsCount(false);
+            Measurement firstMeasurement = MeasurementsDatabase.getInstance(context).getFirstMeasurement();
+            Measurement lastMeasurement = MeasurementsDatabase.getInstance(context).getLastMeasurement();
+            if (measurementsCount > 0 && (firstMeasurement == null || lastMeasurement == null)) {
+                Statistics stats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
+                ACRA.getErrorReporter().putCustomData("measurementsCount", String.valueOf(measurementsCount));
+                ACRA.getErrorReporter().putCustomData("firstMeasurement",  String.valueOf(firstMeasurement));
+                ACRA.getErrorReporter().putCustomData("lastMeasurement",  String.valueOf(lastMeasurement));
+                ACRA.getErrorReporter().putCustomData("stats",  String.valueOf(stats));
+                ACRA.getErrorReporter().handleSilentException(new InconsistentDataException());
+                ACRA.getErrorReporter().clearCustomData();
+            }
             // check if there is anything to process
-            if (measurementsCount == 0) {
+            if (measurementsCount == 0 || firstMeasurement == null || lastMeasurement == null) {
                 Timber.d("generate(): Cancelling save due to no data");
                 return new FileGeneratorResult(GeneratorResult.NoData, Reason.Unknown);
             }
@@ -55,8 +71,6 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
             device.open();
             notifyProgressListeners(0, measurementsCount);
             // write header
-            Measurement firstMeasurement = MeasurementsDatabase.getInstance(context).getFirstMeasurement();
-            Measurement lastMeasurement = MeasurementsDatabase.getInstance(context).getLastMeasurement();
             Boundaries bounds = MeasurementsDatabase.getInstance(context).getLocationBounds();
             HeaderData headerData = new HeaderData();
             headerData.ApkVersion = ApkUtils.getApkVersionName(context);
