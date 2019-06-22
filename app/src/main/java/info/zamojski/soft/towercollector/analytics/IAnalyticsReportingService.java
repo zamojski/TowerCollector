@@ -14,7 +14,7 @@ public interface IAnalyticsReportingService {
 
     void sendMigrationFinished(long duration, int oldDbVersion, AnalyticsStatistics stats);
 
-    void sendCollectorFinished(IntentSource source, String meansOfTransport, String apiVersion, long duration, AnalyticsStatistics stats);
+    void sendCollectorFinished(IntentSource source, String meansOfTransport, int apiVersion, long duration, AnalyticsStatistics stats);
 
     void sendUploadFinished(IntentSource source, String networkType, long duration, AnalyticsStatistics stats, boolean ocid);
 
@@ -32,7 +32,7 @@ public interface IAnalyticsReportingService {
 
     void sendPrefsAppTheme(String theme);
 
-    void sendPrefsCollectorApiVersion(String apiVersion);
+    void sendPrefsCollectorApiVersion(int apiVersion);
 
     void sendHelpDialogOpened(String dialogName);
 }

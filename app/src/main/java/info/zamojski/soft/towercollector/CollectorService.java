@@ -133,7 +133,7 @@ public class CollectorService extends Service {
     private PowerManager.WakeLock wakeLock;
 
     private IntentSource startIntentSource;
-    private String apiVersionUsed;
+    private int apiVersionUsed;
 
     // ========== SERVICE ========== //
 
@@ -309,11 +309,11 @@ public class CollectorService extends Service {
 
     private void registerPhoneStateListener() {
         String collectorApiVersion = MyApplication.getPreferencesProvider().getCollectorApiVersion();
-        MyApplication.getAnalytics().sendPrefsCollectorApiVersion(collectorApiVersion);
         // double check to avoid fail in production caused by invalid settings
         if (MobileUtils.isApi17VersionCompatible()) {
             if (getString(R.string.preferences_collector_api_version_entries_value_auto).equals(collectorApiVersion)) {
                 // auto detection
+                MyApplication.getAnalytics().sendPrefsCollectorApiVersion(0);
                 if (MobileUtils.isApi17FullyCompatible(getApplication())) {
                     registerApi17PhoneStateListener();
                 } else {
@@ -321,13 +321,16 @@ public class CollectorService extends Service {
                 }
             } else if (getString(R.string.preferences_collector_api_version_entries_value_api_17).equals(collectorApiVersion)) {
                 // API 17 forced
+                MyApplication.getAnalytics().sendPrefsCollectorApiVersion(17);
                 registerApi17PhoneStateListener();
             } else {
                 // API 1 forced
+                MyApplication.getAnalytics().sendPrefsCollectorApiVersion(1);
                 registerApi1PhoneStateListener();
             }
         } else {
             // API 1 forced due to incompatibility
+            MyApplication.getAnalytics().sendPrefsCollectorApiVersion(-1);
             registerApi1PhoneStateListener();
         }
     }
@@ -378,7 +381,7 @@ public class CollectorService extends Service {
                 }
             }
         }, 0, CELL_UPDATE_INTERVAL);
-        apiVersionUsed = getString(R.string.preferences_collector_api_version_entries_value_api_17);
+        apiVersionUsed = 17;
     }
 
     private void registerApi1PhoneStateListener() {
@@ -431,7 +434,7 @@ public class CollectorService extends Service {
                 }
             }
         }, 0, CELL_UPDATE_INTERVAL);
-        apiVersionUsed = getString(R.string.preferences_collector_api_version_entries_value_api_1);
+        apiVersionUsed = 1;
     }
 
     private void processCellInfo(List<CellInfo> cellInfo) {

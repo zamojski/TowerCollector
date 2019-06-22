@@ -50,11 +50,11 @@ public class GoogleAnalyticsReportingService implements IAnalyticsReportingServi
     }
 
     @Override
-    public void sendCollectorFinished(IntentSource source, String meansOfTransport, String apiVersion, long duration, AnalyticsStatistics stats) {
+    public void sendCollectorFinished(IntentSource source, String meansOfTransport, int apiVersion, long duration, AnalyticsStatistics stats) {
         Bundle bundle = new Bundle();
         bundle.putString(Parameter.Source, convertToStartLabel(source));
         bundle.putString(Parameter.MeansOfTransport, meansOfTransport);
-        bundle.putString(Parameter.CollectorApiVersion, apiVersion);
+        bundle.putInt(Parameter.CollectorApiVersion, apiVersion);
         bundle.putInt(Parameter.Locations, stats.getLocations());
         bundle.putInt(Parameter.Cells, stats.getCells());
         bundle.putLong(Parameter.Duration, duration);
@@ -103,14 +103,14 @@ public class GoogleAnalyticsReportingService implements IAnalyticsReportingServi
     @Override
     public void sendPrefsUpdateCheckEnabled(boolean enabled) {
         Bundle bundle = new Bundle();
-        bundle.putBoolean(Parameter.Enabled, enabled);
+        bundle.putInt(Parameter.Enabled, enabled ? 1 : 0);
         this.analytics.logEvent(Event.PrefsUpdateCheckSelected, bundle);
     }
 
     @Override
     public void sendPrefsNotifyMeasurementsCollected(boolean enabled) {
         Bundle bundle = new Bundle();
-        bundle.putBoolean(Parameter.Enabled, enabled);
+        bundle.putInt(Parameter.Enabled, enabled ? 1 : 0);
         this.analytics.logEvent(Event.PrefsNotifyCollectedSelected, bundle);
     }
 
@@ -122,9 +122,9 @@ public class GoogleAnalyticsReportingService implements IAnalyticsReportingServi
     }
 
     @Override
-    public void sendPrefsCollectorApiVersion(String apiVersion) {
+    public void sendPrefsCollectorApiVersion(int apiVersion) {
         Bundle bundle = new Bundle();
-        bundle.putString(Parameter.CollectorApiVersion, apiVersion);
+        bundle.putInt(Parameter.CollectorApiVersion, apiVersion);
         this.analytics.logEvent(Event.PrefsCollectorApiVersionSelected, bundle);
     }
 

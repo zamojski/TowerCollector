@@ -23,7 +23,7 @@ public class FakeAnalyticsReportingService implements IAnalyticsReportingService
     }
 
     @Override
-    public void sendCollectorFinished(IntentSource source, String meansOfTransport, String apiVersion, long duration, AnalyticsStatistics stats) {
+    public void sendCollectorFinished(IntentSource source, String meansOfTransport, int apiVersion, long duration, AnalyticsStatistics stats) {
 
     }
 
@@ -68,7 +68,7 @@ public class FakeAnalyticsReportingService implements IAnalyticsReportingService
     }
 
     @Override
-    public void sendPrefsCollectorApiVersion(String apiVersion) {
+    public void sendPrefsCollectorApiVersion(int apiVersion) {
 
     }
 
