@@ -115,7 +115,7 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
     }
 
     private boolean hasAllCollectorRequiredPermissions(Context context) {
-        return PermissionUtils.hasPermissions(context, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_PHONE_STATE);
+        return PermissionUtils.hasPermissions(context, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE);
     }
 
     private void showCollectorPermissionsDenied(Context context) {

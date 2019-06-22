@@ -92,7 +92,7 @@ public class MyApplication extends Application {
                 Timber.uproot(FileLoggingTree.INSTANCE);
             }
         } else {
-            if (PermissionUtils.hasPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            if (PermissionUtils.hasPermissions(this, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)) {
                 int fileLogLevel = Log.ERROR;
                 if (fileLoggingLevelString.equals(getString(R.string.preferences_file_logging_level_entries_value_debug))) {
                     fileLogLevel = Log.DEBUG;

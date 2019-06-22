@@ -168,37 +168,37 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         }
     }
 
-    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    @NeedsPermission({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
     void requestLoggerChange() {
         Timber.d("requestLoggerChange(): Reinitializing logger");
         MyApplication.getApplication().initLogger();
     }
 
-    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    @NeedsPermission({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
     void importDatabase() {
         Timber.d("importDatabase(): Importing database");
         DatabaseOperations.importDatabase(MyApplication.getApplication());
     }
 
-    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    @NeedsPermission({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
     void exportDatabase() {
         Timber.d("exportDatabase(): Exporting database");
         DatabaseOperations.exportDatabase(MyApplication.getApplication());
     }
 
-    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    @NeedsPermission({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
     void importPreferences() {
         Timber.d("importPreferences(): Importing preferences");
         PreferencesOperations.importPreferences(MyApplication.getApplication());
     }
 
-    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    @NeedsPermission({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
     void exportPreferences() {
         Timber.d("exportPreferences(): Exporting preferences");
         PreferencesOperations.exportPreferences(MyApplication.getApplication());
     }
 
-    @OnShowRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    @OnShowRationale({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
     void onLoggerChangeShowRationale(final PermissionRequest request) {
         new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.permission_required)
@@ -219,13 +219,13 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
                 .show();
     }
 
-    @OnPermissionDenied(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    @OnPermissionDenied({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
     void onLoggerChangePermissionDenied() {
         fileLoggingLevelPreference.setValue(getString(R.string.preferences_file_logging_level_entries_value_disabled));
         Toast.makeText(getActivity(), R.string.permission_storage_denied_message, Toast.LENGTH_LONG).show();
     }
 
-    @OnNeverAskAgain(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    @OnNeverAskAgain({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
     void onLoggerChangeNeverAskAgain() {
         fileLoggingLevelPreference.setValue(getString(R.string.preferences_file_logging_level_entries_value_disabled));
         new AlertDialog.Builder(getActivity())

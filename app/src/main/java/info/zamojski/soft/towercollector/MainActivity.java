@@ -700,42 +700,42 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             backgroundTaskHelper.showTaskRunningMessage(runningTaskClassName);
             return;
         }
+        MainActivityPermissionsDispatcher.startCollectorServiceWithPermissionCheck(MainActivity.this);
+    }
+
+    @NeedsPermission({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void startCollectorService() {
         askAndSetGpsEnabled();
         if (isGpsEnabled) {
-            MainActivityPermissionsDispatcher.startCollectorServiceWithPermissionCheck(MainActivity.this);
+            Timber.d("startCollectorService(): Air plane mode off, starting service");
+            // create intent
+            final Intent intent = new Intent(this, CollectorService.class);
+            // pass means of transport inside intent
+            boolean gpsOptimizationsEnabled = MyApplication.getPreferencesProvider().getGpsOptimizationsEnabled();
+            MeansOfTransport selectedType = (gpsOptimizationsEnabled ? MeansOfTransport.Universal : MeansOfTransport.Fixed);
+            intent.putExtra(CollectorService.INTENT_KEY_TRANSPORT_MODE, selectedType);
+            // pass screen on mode
+            final String keepScreenOnMode = MyApplication.getPreferencesProvider().getCollectorKeepScreenOnMode();
+            intent.putExtra(CollectorService.INTENT_KEY_KEEP_SCREEN_ON_MODE, keepScreenOnMode);
+            // pass analytics data
+            intent.putExtra(CollectorService.INTENT_KEY_START_INTENT_SOURCE, IntentSource.User);
+            // start service
+            ContextCompat.startForegroundService(this, intent);
+            EventBus.getDefault().post(new CollectorStartedEvent(intent));
         }
     }
 
-    @NeedsPermission({Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_PHONE_STATE})
-    void startCollectorService() {
-        Timber.d("startCollectorService(): Air plane mode off, starting service");
-        // create intent
-        final Intent intent = new Intent(this, CollectorService.class);
-        // pass means of transport inside intent
-        boolean gpsOptimizationsEnabled = MyApplication.getPreferencesProvider().getGpsOptimizationsEnabled();
-        MeansOfTransport selectedType = (gpsOptimizationsEnabled ? MeansOfTransport.Universal : MeansOfTransport.Fixed);
-        intent.putExtra(CollectorService.INTENT_KEY_TRANSPORT_MODE, selectedType);
-        // pass screen on mode
-        final String keepScreenOnMode = MyApplication.getPreferencesProvider().getCollectorKeepScreenOnMode();
-        intent.putExtra(CollectorService.INTENT_KEY_KEEP_SCREEN_ON_MODE, keepScreenOnMode);
-        // pass analytics data
-        intent.putExtra(CollectorService.INTENT_KEY_START_INTENT_SOURCE, IntentSource.User);
-        // start service
-        ContextCompat.startForegroundService(this, intent);
-        EventBus.getDefault().post(new CollectorStartedEvent(intent));
-    }
-
-    @OnShowRationale({Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    @OnShowRationale({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorShowRationale(PermissionRequest request) {
         onShowRationale(request, R.string.permission_collector_rationale_message);
     }
 
-    @OnPermissionDenied({Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    @OnPermissionDenied({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorPermissionDenied() {
         onPermissionDenied(R.string.permission_collector_denied_message);
     }
 
-    @OnNeverAskAgain({Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    @OnNeverAskAgain({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorNeverAskAgain() {
         onNeverAskAgain(R.string.permission_collector_never_ask_again_message);
     }
@@ -846,7 +846,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             Toast.makeText(getApplication(), R.string.uploader_already_running, Toast.LENGTH_LONG).show();
     }
 
-    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    @NeedsPermission({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
     void startExportAsyncTask() {
         String runningTaskClassName = MyApplication.getBackgroundTaskName();
         if (runningTaskClassName != null) {
@@ -919,17 +919,17 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
     }
 
-    @OnShowRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    @OnShowRationale({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
     void onStartExportShowRationale(PermissionRequest request) {
         onShowRationale(request, R.string.permission_export_rationale_message);
     }
 
-    @OnPermissionDenied(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    @OnPermissionDenied({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
     void onStartExportPermissionDenied() {
         onPermissionDenied(R.string.permission_export_denied_message);
     }
 
-    @OnNeverAskAgain(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    @OnNeverAskAgain({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
     void onStartExportNeverAskAgain() {
         onNeverAskAgain(R.string.permission_export_never_ask_again_message);
     }
