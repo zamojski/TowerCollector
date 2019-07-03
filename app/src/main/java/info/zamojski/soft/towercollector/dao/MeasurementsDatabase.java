@@ -264,32 +264,26 @@ public class MeasurementsDatabase {
         final String uploadToOcid = "UPLOAD_TO_OCID";
         final String uploadToMls = "UPLOAD_TO_MLS";
         String todayTime = String.valueOf(todayCalendar.getTimeInMillis());
-        String[] selectionArgs = new String[]{todayTime, todayTime, todayTime};
+        String[] selectionArgs = new String[]{todayTime, todayTime};
         // get all in one query (raw is the only possible solution)
         // full queries
         String globalStatsQuery = "SELECT " + StatsTable.COLUMN_TOTAL_MEASUREMENTS + " AS " + globalMeasurementsCount + ", " + StatsTable.COLUMN_TOTAL_DISCOVERED_CELLS + " AS " + globalDiscoveredCellsCount + ", " + StatsTable.COLUMN_TOTAL_SINCE + " AS " + globalSince + " FROM " + StatsTable.TABLE_NAME;
-        String localMeasurementsQuery = "SELECT COUNT(" + MeasurementsTable.COLUMN_ROW_ID + ") AS " + localMeasurementsCount + " FROM " + CellSignalsTable.TABLE_NAME + " WHERE " + CellSignalsTable.COLUMN_MEASUREMENT_ID + " IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_ROW_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + ")";
-        String localCellsQuery = "SELECT COUNT(DISTINCT " + CellSignalsTable.COLUMN_CELL_ID + ") AS " + localCellsCount + " FROM " + CellSignalsTable.TABLE_NAME + " WHERE " + CellSignalsTable.COLUMN_MEASUREMENT_ID + " IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_ROW_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + ")";
+        String localMeasurementsAndCellsQuery = "SELECT COUNT(" + MeasurementsTable.COLUMN_ROW_ID + ") AS " + localMeasurementsCount + ", COUNT(DISTINCT " + CellSignalsTable.COLUMN_CELL_ID + ") AS " + localCellsCount + " FROM " + CellSignalsTable.TABLE_NAME + " WHERE " + CellSignalsTable.COLUMN_MEASUREMENT_ID + " IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_ROW_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + ")";
         String localDiscoveredCellsQuery = "SELECT COUNT(" + CellsTable.COLUMN_ROW_ID + ") AS " + localDiscoveredCellsCount + " FROM " + CellsTable.TABLE_NAME + " WHERE " + CellsTable.COLUMN_DISCOVERED_AT + " >= (SELECT MIN(" + MeasurementsTable.COLUMN_MEASURED_AT + ") FROM " + NotUploadedMeasurementsView.VIEW_NAME + ")";
         String localSinceQuery = "SELECT MIN(" + MeasurementsTable.COLUMN_MEASURED_AT + ") AS " + localSince + " FROM " + NotUploadedMeasurementsView.VIEW_NAME;
-        String todayMeasurementsQuery = "SELECT COUNT(" + MeasurementsTable.COLUMN_ROW_ID + ") AS " + todayMeasurementsCount + " FROM " + CellSignalsTable.TABLE_NAME + " WHERE " + CellSignalsTable.COLUMN_MEASUREMENT_ID + " IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_ROW_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + " WHERE " + MeasurementsTable.COLUMN_MEASURED_AT + " > ?)";
-        String todayCellsQuery = "SELECT COUNT(DISTINCT " + CellSignalsTable.COLUMN_CELL_ID + ") AS " + todayCellsCount + " FROM " + CellSignalsTable.TABLE_NAME + " WHERE " + CellSignalsTable.COLUMN_MEASUREMENT_ID + " IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_ROW_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + " WHERE " + MeasurementsTable.COLUMN_MEASURED_AT + " > ?)";
+        String todayMeasurementsAndCellsQuery = "SELECT COUNT(" + MeasurementsTable.COLUMN_ROW_ID + ") AS " + todayMeasurementsCount + ", COUNT(DISTINCT " + CellSignalsTable.COLUMN_CELL_ID + ") AS " + todayCellsCount + " FROM " + CellSignalsTable.TABLE_NAME + " WHERE " + CellSignalsTable.COLUMN_MEASUREMENT_ID + " IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_ROW_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + " WHERE " + MeasurementsTable.COLUMN_MEASURED_AT + " > ?)";
         String todayDiscoveredCellsQuery = "SELECT COUNT(" + CellsTable.COLUMN_ROW_ID + ") AS " + todayDiscoveredCellsCount + " FROM " + CellsTable.TABLE_NAME + " WHERE " + CellsTable.COLUMN_DISCOVERED_AT + " >= (SELECT MIN(" + MeasurementsTable.COLUMN_MEASURED_AT + ") FROM " + NotUploadedMeasurementsView.VIEW_NAME + " WHERE " + MeasurementsTable.COLUMN_MEASURED_AT + " > ?)";
-        String uploadToOcidQuery = "SELECT COUNT(" + MeasurementsTable.COLUMN_ROW_ID + ") AS " + uploadToOcid + " FROM "
-                + MeasurementsTable.TABLE_NAME + " WHERE " + MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT + " IS NULL";
-        String uploadToMlsQuery = "SELECT COUNT(" + MeasurementsTable.COLUMN_ROW_ID + ") AS " + uploadToMls + " FROM "
-                + MeasurementsTable.TABLE_NAME + " WHERE " + MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT + " IS NULL";
+        String uploadToOcidAndMlsQuery = "SELECT SUM(CASE WHEN m." + MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT + " IS NULL THEN 1 ELSE 0 END) AS " + uploadToOcid + ", "
+                + "SUM(CASE WHEN m." + MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT + " IS NULL THEN 1 ELSE 0 END) AS " + uploadToMls
+                + " FROM " + CellSignalsTable.TABLE_NAME + " cs INNER JOIN " + MeasurementsTable.TABLE_NAME + " m ON cs." + CellSignalsTable.COLUMN_MEASUREMENT_ID + " = m." + MeasurementsTable.COLUMN_ROW_ID;
 
         String query = "SELECT * FROM ((" + globalStatsQuery + ") "
-                + "JOIN (" + localMeasurementsQuery + ") "
-                + "JOIN (" + localCellsQuery + ") "
+                + "JOIN (" + localMeasurementsAndCellsQuery + ") "
                 + "JOIN (" + localDiscoveredCellsQuery + ") "
                 + "JOIN (" + localSinceQuery + ") "
-                + "JOIN (" + todayMeasurementsQuery + ") "
-                + "JOIN (" + todayCellsQuery + ") "
+                + "JOIN (" + todayMeasurementsAndCellsQuery + ") "
                 + "JOIN (" + todayDiscoveredCellsQuery + ") "
-                + "JOIN (" + uploadToOcidQuery + ") "
-                + "JOIN (" + uploadToMlsQuery + "))";
+                + "JOIN (" + uploadToOcidAndMlsQuery + "))";
         // Timber.d(query);
         Cursor cursor = db.rawQuery(query, selectionArgs);
         if (cursor.moveToNext()) {
