@@ -35,7 +35,7 @@ import timber.log.Timber;
 public class MeasurementsDatabase {
 
     public static final String DATABASE_FILE_NAME = "measurements.db";
-    public static final int DATABASE_FILE_VERSION = 13;
+    public static final int DATABASE_FILE_VERSION = 14;
 
     private static final int NUM_OF_DELETIONS_PER_ONE_QUERY = 50;
 
@@ -83,8 +83,8 @@ public class MeasurementsDatabase {
                 SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
                 queryBuilder.setTables(MeasurementsTable.TABLE_NAME);
                 String[] columns = new String[]{MeasurementsTable.COLUMN_ROW_ID};
-                String selection = MeasurementsTable.COLUMN_LOCATION_HASHCODE + " = ?";
-                String[] selectionArgs = new String[]{locationHashCode};
+                String selection = MeasurementsTable.COLUMN_LOCATION_HASHCODE + " = ? AND " + MeasurementsTable.COLUMN_MEASURED_AT + " = ?";
+                String[] selectionArgs = new String[]{locationHashCode, String.valueOf(measurement.getMeasuredAt())};
                 Cursor cursorTotal = queryBuilder.query(db, columns, selection, selectionArgs, null, null, null);
                 boolean localResult = false;
                 if (cursorTotal.moveToNext()) {
@@ -347,7 +347,7 @@ public class MeasurementsDatabase {
         return boundaries;
     }
 
-    public List<Measurement> getMeasurementsPart(int offset, int limit, boolean forUpload) {
+    public List<Measurement> getMeasurementsPart(int offset, int limit, boolean forUpload) {//todo filter like for last and first measurements (by measurements not total) or flat for export to csv and hierarchical for json and gpx
         Timber.d("getMeasurementsPart(): Getting %s measurements skipping first %s, for upload = %s", limit, offset, forUpload);
         return getMeasurements(null, null, null, null, MeasurementsTable.COLUMN_MEASURED_AT + " ASC, " + CellSignalsTable.TABLE_NAME + "." + CellSignalsTable.COLUMN_ROW_ID + " ASC", String.valueOf(offset) + ", " + String.valueOf(limit), forUpload);
     }
@@ -358,7 +358,7 @@ public class MeasurementsDatabase {
         final String CELL_ROW_ID = "cell_" + CellsTable.COLUMN_ROW_ID;
         final String CELL_SIGNAL_ROW_ID = "cell_signal_" + CellSignalsTable.COLUMN_ROW_ID;
         final String MEASUREMENTS_TABLE = forUpload ? MeasurementsTable.TABLE_NAME : NotUploadedMeasurementsView.VIEW_NAME;
-        Map<String, Measurement> tempMeasurements = new HashMap<>();
+        Map<Integer, Measurement> tempMeasurements = new HashMap<>();
         List<Measurement> measurementList = new ArrayList<>();
         SQLiteDatabase db = helper.getReadableDatabase();
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
@@ -383,7 +383,6 @@ public class MeasurementsDatabase {
                 MeasurementsTable.COLUMN_GPS_SPEED,
                 MeasurementsTable.COLUMN_GPS_BEARING,
                 MeasurementsTable.COLUMN_GPS_ALTITUDE,
-                MeasurementsTable.COLUMN_LOCATION_HASHCODE,
                 CellsTable.COLUMN_CID,
                 CellsTable.COLUMN_LAC,
                 CellsTable.COLUMN_MNC,
@@ -411,18 +410,17 @@ public class MeasurementsDatabase {
         int gpsSpeedColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_GPS_SPEED);
         int gpsBearingColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_GPS_BEARING);
         int gpsAltitudeColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_GPS_ALTITUDE);
-        int locationHashCodeColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_LOCATION_HASHCODE);
         int timestampColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_MEASURED_AT);
         int uploadedToOcidAtColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT);
         int uploadedToMlsAtColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT);
         while (cursor.moveToNext()) {
             Measurement measurement;
-            String locationHashCode = cursor.getString(locationHashCodeColumnIndex);
-            if (tempMeasurements.containsKey(locationHashCode)) {
-                measurement = tempMeasurements.get(locationHashCode);
+            int measurementId = cursor.getInt(measurementIdColumnIndex);
+            if (tempMeasurements.containsKey(measurementId)) {
+                measurement = tempMeasurements.get(measurementId);
             } else {
                 measurement = new Measurement();
-                measurement.setMeasurementId(cursor.getInt(measurementIdColumnIndex));
+                measurement.setMeasurementId(measurementId);
                 measurement.setLatitude(cursor.getDouble(latitudeColumnIndex));
                 measurement.setLongitude(cursor.getDouble(longitudeColumnIndex));
                 measurement.setGpsAccuracy(cursor.getFloat(gpsAccuracyColumnIndex));
@@ -435,7 +433,7 @@ public class MeasurementsDatabase {
                 if (!cursor.isNull(uploadedToMlsAtColumnIndex))
                     measurement.setUploadedToMlsAt(cursor.getLong(uploadedToMlsAtColumnIndex));
 
-                tempMeasurements.put(locationHashCode, measurement);
+                tempMeasurements.put(measurementId, measurement);
                 measurementList.add(measurement);
             }
             Cell cell = new Cell();

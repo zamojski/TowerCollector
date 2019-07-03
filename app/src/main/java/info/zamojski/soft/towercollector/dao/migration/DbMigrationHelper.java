@@ -64,6 +64,9 @@ public class DbMigrationHelper {
         if (from < 13) {
             this.upgradeScripts.add(new UpgradeScript13());
         }
+        if (from < 14) {
+            this.upgradeScripts.add(new UpgradeScript14());
+        }
     }
 
 }
