@@ -1,6 +1,16 @@
 {
   "Entries": [
     {
+      "VersionCode": 2000641,
+      "Title": "Changes in version 2.0.6",
+      "Description": "This version brings important fixes for data consistency. You may notice the number of measurements decreased and the last measurement can be connected to more cells than usually. This is only a one time change to ensure the proper functioning of the application.",
+      "Messages": [
+        "Fix data inconsistency for measurements collected when GPS signal temporarily lost.",
+        "Fix upload and export to file skipping some measurements.",
+        "Fix statistics calculated incorrectly."
+      ]
+    },
+    {
       "VersionCode": 2000540,
       "Title": "Changes in version 2.0.5",
       "Description": "Do you want stay updated? Follow one of the app communities <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> or <a href=\"https://twitter.com/towercollector/\">Twitter</a>!",
@@ -39,16 +49,6 @@
         "Improved upload to OpenCellID on faulty devices.",
         "Added shortcuts to start/stop collector and upload directly from launcher on Android 7.1 and newer.",
         "Added warning if battery optimizations are enabled which may influence reliability of collected measurements."
-      ]
-    },
-    {
-      "VersionCode": 2000134,
-      "Title": "Changes in version 2.0.1",
-      "Description": "Tower Collector now supports Mozilla Location Services project! Share your feedback via <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> and  <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> communities, email or  <a href=\"https://github.com/zamojski/TowerCollector/issues\">GitHub</a> issues.",
-      "Messages": [
-        "Fix secure upload error on Android Lollipop 5.0 and older.",
-        "Improve network timeout error handling.",
-        "New adaptive application icon."
       ]
     }
   ]
