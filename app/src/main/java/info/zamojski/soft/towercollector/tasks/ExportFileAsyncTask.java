@@ -81,6 +81,8 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
     protected void onProgressUpdate(Integer... progress) {
         int current = progress[0];
         int max = progress[1];
+        int currentPercent = (int) Math.round(100.0 * current / max);
+        int maxPercent = 100;
         if (current == 0) {
             // show loading indicator
             dialog = new ProgressDialog(context);
@@ -96,15 +98,15 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
                 }
             });
             dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            dialog.setMax(max);
+            dialog.setMax(maxPercent);
             dialog.show();
-        } else if (current >= max) {
+        } else if (currentPercent >= maxPercent) {
             // hide loading indicator
             if (dialog != null)
                 dialog.dismiss();
         } else {
             if (dialog != null)
-                dialog.setProgress(current);
+                dialog.setProgress(currentPercent);
         }
     }
 

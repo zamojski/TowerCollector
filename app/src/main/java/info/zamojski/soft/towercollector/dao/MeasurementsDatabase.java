@@ -183,7 +183,7 @@ public class MeasurementsDatabase {
 
     public Measurement getFirstMeasurement() {
         Measurement firstMeasurement = null;
-        List<Measurement> measurements = getMeasurements(CellSignalsTable.TABLE_NAME + "." + CellSignalsTable.COLUMN_MEASUREMENT_ID + " = " + "(SELECT tm." + MeasurementsTable.COLUMN_ROW_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + " tm ORDER BY tm." + MeasurementsTable.COLUMN_MEASURED_AT + " ASC, tm." + MeasurementsTable.COLUMN_ROW_ID + " ASC LIMIT 0,1)",
+        List<Measurement> measurements = getMeasurements(CellSignalsTable.TABLE_NAME + "." + CellSignalsTable.COLUMN_MEASUREMENT_ID + " = (SELECT tm." + MeasurementsTable.COLUMN_ROW_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + " tm ORDER BY tm." + MeasurementsTable.COLUMN_MEASURED_AT + " ASC, tm." + MeasurementsTable.COLUMN_ROW_ID + " ASC LIMIT 0,1)",
                 null,
                 null, null,
                 NotUploadedMeasurementsView.VIEW_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " ASC, " // from view because not for upload
@@ -205,7 +205,7 @@ public class MeasurementsDatabase {
             return lastMeasurementCacheCopy;
         }
         Measurement lastMeasurement = null;
-        List<Measurement> measurements = getMeasurements(CellSignalsTable.TABLE_NAME + "." + CellSignalsTable.COLUMN_MEASUREMENT_ID + " = " + "(SELECT tm." + MeasurementsTable.COLUMN_ROW_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + " tm ORDER BY tm." + MeasurementsTable.COLUMN_MEASURED_AT + " DESC, tm." + MeasurementsTable.COLUMN_ROW_ID + " DESC LIMIT 0,1)",
+        List<Measurement> measurements = getMeasurements(CellSignalsTable.TABLE_NAME + "." + CellSignalsTable.COLUMN_MEASUREMENT_ID + " = (SELECT tm." + MeasurementsTable.COLUMN_ROW_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + " tm ORDER BY tm." + MeasurementsTable.COLUMN_MEASURED_AT + " DESC, tm." + MeasurementsTable.COLUMN_ROW_ID + " DESC LIMIT 0,1)",
                 null,
                 null, null,
                 NotUploadedMeasurementsView.VIEW_NAME + "." + MeasurementsTable.COLUMN_MEASURED_AT + " DESC, " // from view because not for upload
@@ -220,13 +220,13 @@ public class MeasurementsDatabase {
         return lastMeasurement;
     }
 
-    public int getAllMeasurementsCount(boolean forUpload) {
+    public int getAllLocationsCount() {
+        Timber.d("getAllLocationsCount(): Getting number of locations");
         int count = 0;
-        Timber.d("getAllMeasurementsCount(): Getting number of measurements, for upload = %s", forUpload);
         final String measurementsCount = "MEASUREMENTS_COUNT";
         SQLiteDatabase db = helper.getReadableDatabase();
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
-        queryBuilder.setTables(forUpload ? CellSignalsTable.TABLE_NAME : NotUploadedMeasurementsView.VIEW_NAME); // hack to avoid upload counting logic mismatch
+        queryBuilder.setTables(MeasurementsTable.TABLE_NAME);
         String[] columns = new String[]{"COUNT(*) AS " + measurementsCount};
         Cursor cursorTotal = queryBuilder.query(db, columns, null, null, null, null, null);
         if (cursorTotal.moveToNext()) {
@@ -347,17 +347,24 @@ public class MeasurementsDatabase {
         return boundaries;
     }
 
-    public List<Measurement> getMeasurementsPart(int offset, int limit, boolean forUpload) {//todo filter like for last and first measurements (by measurements not total) or flat for export to csv and hierarchical for json and gpx
-        Timber.d("getMeasurementsPart(): Getting %s measurements skipping first %s, for upload = %s", limit, offset, forUpload);
-        return getMeasurements(null, null, null, null, MeasurementsTable.COLUMN_MEASURED_AT + " ASC, " + CellSignalsTable.TABLE_NAME + "." + CellSignalsTable.COLUMN_ROW_ID + " ASC", String.valueOf(offset) + ", " + String.valueOf(limit), forUpload);
+    public List<Measurement> getMeasurementsPartIncludingPartiallyUploaded(int offset, int limit) {
+        Timber.d("getMeasurementsPartIncludingPartiallyUploaded(): Getting %s measurements skipping first %s", limit, offset);
+        return getMeasurements(CellSignalsTable.TABLE_NAME + "." + CellSignalsTable.COLUMN_MEASUREMENT_ID + " IN(SELECT tm." + MeasurementsTable.COLUMN_ROW_ID + " FROM " + MeasurementsTable.TABLE_NAME + " tm ORDER BY tm." + MeasurementsTable.COLUMN_MEASURED_AT + " ASC, tm." + MeasurementsTable.COLUMN_ROW_ID + " ASC LIMIT " + String.valueOf(offset) + ", " + String.valueOf(limit) + ")",
+                null, null, null, null, null, true);
     }
 
-    private List<Measurement> getMeasurements(String selection, String[] selectionArgs, String groupBy, String having, String sortOrder, String limit, boolean forUpload) {
+    public List<Measurement> getMeasurementsPart(int offset, int limit) {
+        Timber.d("getMeasurementsPart(): Getting %s measurements skipping first %s", limit, offset);
+        return getMeasurements(CellSignalsTable.TABLE_NAME + "." + CellSignalsTable.COLUMN_MEASUREMENT_ID + " IN(SELECT tm." + MeasurementsTable.COLUMN_ROW_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + " tm ORDER BY tm." + MeasurementsTable.COLUMN_MEASURED_AT + " ASC, tm." + MeasurementsTable.COLUMN_ROW_ID + " ASC LIMIT " + String.valueOf(offset) + ", " + String.valueOf(limit) + ")",
+                null, null, null, null, null, false);
+    }
+
+    private List<Measurement> getMeasurements(String selection, String[] selectionArgs, String groupBy, String having, String sortOrder, String limit, boolean includePartiallyUploaded) {
         Timber.d("getMeasurements(): Getting selected measurements");
         final String MEASUREMENT_ROW_ID = "measurement_" + MeasurementsTable.COLUMN_ROW_ID;
         final String CELL_ROW_ID = "cell_" + CellsTable.COLUMN_ROW_ID;
         final String CELL_SIGNAL_ROW_ID = "cell_signal_" + CellSignalsTable.COLUMN_ROW_ID;
-        final String MEASUREMENTS_TABLE = forUpload ? MeasurementsTable.TABLE_NAME : NotUploadedMeasurementsView.VIEW_NAME;
+        final String MEASUREMENTS_TABLE = includePartiallyUploaded ? MeasurementsTable.TABLE_NAME : NotUploadedMeasurementsView.VIEW_NAME;
         Map<Integer, Measurement> tempMeasurements = new HashMap<>();
         List<Measurement> measurementList = new ArrayList<>();
         SQLiteDatabase db = helper.getReadableDatabase();

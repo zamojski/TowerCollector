@@ -38,39 +38,27 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
         this.generator = new GpxTextGenerator(new GpxExportFormatter(), device);
     }
 
-    private class InconsistentDataException extends Throwable {
-    }
-
     @Override
     public FileGeneratorResult generate() {
         try {
-            // get number of measurements to process
-            int measurementsCount = MeasurementsDatabase.getInstance(context).getAllMeasurementsCount(false);
-            Measurement firstMeasurement = MeasurementsDatabase.getInstance(context).getFirstMeasurement();
-            Measurement lastMeasurement = MeasurementsDatabase.getInstance(context).getLastMeasurement();
-            if (measurementsCount > 0 && (firstMeasurement == null || lastMeasurement == null)) {
-                Statistics stats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
-                ACRA.getErrorReporter().putCustomData("measurementsCount", String.valueOf(measurementsCount));
-                ACRA.getErrorReporter().putCustomData("firstMeasurement",  String.valueOf(firstMeasurement));
-                ACRA.getErrorReporter().putCustomData("lastMeasurement",  String.valueOf(lastMeasurement));
-                ACRA.getErrorReporter().putCustomData("stats",  String.valueOf(stats));
-                ACRA.getErrorReporter().handleSilentException(new InconsistentDataException());
-                ACRA.getErrorReporter().clearCustomData();
-            }
+            // get number of locations to process
+            int locationsCount = MeasurementsDatabase.getInstance(context).getAllLocationsCount();
             // check if there is anything to process
-            if (measurementsCount == 0 || firstMeasurement == null || lastMeasurement == null) {
+            if (locationsCount == 0) {
                 Timber.d("generate(): Cancelling save due to no data");
                 return new FileGeneratorResult(GeneratorResult.NoData, Reason.Unknown);
             }
             // calculate number of parts
-            final int MEASUREMENTS_PER_PART = 300;
+            final int LOCATIONS_PER_PART = 80;
             int partsCount = 1;
-            if (measurementsCount > MEASUREMENTS_PER_PART) {
-                partsCount = (int) Math.ceil(1.0 * measurementsCount / MEASUREMENTS_PER_PART);
+            if (locationsCount > LOCATIONS_PER_PART) {
+                partsCount = (int) Math.ceil(1.0 * locationsCount / LOCATIONS_PER_PART);
             }
             device.open();
-            notifyProgressListeners(0, measurementsCount);
+            notifyProgressListeners(0, locationsCount);
             // write header
+            Measurement firstMeasurement = MeasurementsDatabase.getInstance(context).getFirstMeasurement();
+            Measurement lastMeasurement = MeasurementsDatabase.getInstance(context).getLastMeasurement();
             Boundaries bounds = MeasurementsDatabase.getInstance(context).getLocationBounds();
             HeaderData headerData = new HeaderData();
             headerData.ApkVersion = ApkUtils.getApkVersionName(context);
@@ -80,10 +68,10 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
             generator.writeHeader(headerData);
             // remember previous measurement
             Measurement prevMeasurement = firstMeasurement;
-            // get measurements in loop
+            // get locations in loop
             for (int i = 0; i < partsCount; i++) {
                 // get from database
-                List<Measurement> measurements = MeasurementsDatabase.getInstance(context).getMeasurementsPart(i * MEASUREMENTS_PER_PART, MEASUREMENTS_PER_PART, false);
+                List<Measurement> measurements = MeasurementsDatabase.getInstance(context).getMeasurementsPart(i * LOCATIONS_PER_PART, LOCATIONS_PER_PART);
                 // write to file
                 for (Measurement m : measurements) {
                     // if time difference is more than 30 minutes then create new segment
@@ -93,7 +81,7 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
                     generator.writeEntry(m);
                     prevMeasurement = m;
                 }
-                notifyProgressListeners(i * MEASUREMENTS_PER_PART + measurements.size(), measurementsCount);
+                notifyProgressListeners(i * LOCATIONS_PER_PART + measurements.size(), locationsCount);
                 if (cancel) {
                     break;
                 }
@@ -102,12 +90,12 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
             generator.writeFooter();
             device.close();
             // fix for dialog not closed when operation is running in background and data deleted
-            notifyProgressListeners(measurementsCount, measurementsCount);
+            notifyProgressListeners(locationsCount, locationsCount);
             if (cancel) {
                 Timber.d("generate(): Export cancelled");
                 return new FileGeneratorResult(GeneratorResult.Cancelled, Reason.Unknown);
             } else {
-                Timber.d("generate(): All %s measurements exported", measurementsCount);
+                Timber.d("generate(): All %s locations exported", locationsCount);
                 return new FileGeneratorResult(GeneratorResult.Succeeded, Reason.Unknown);
             }
         } catch (DeviceOperationException ex) {

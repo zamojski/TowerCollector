@@ -61,7 +61,7 @@ public class UploaderService extends Service {
     public static final String INTENT_KEY_RESULT_DESCRIPTION = "result_description";
     public static final String INTENT_KEY_START_INTENT_SOURCE = "start_intent_source";
     public static final int NOTIFICATION_ID = 'U';
-    private static final int MEASUREMENTS_PER_PART = 300;
+    private static final int LOCATIONS_PER_PART = 80;
 
     private HandlerThread handlerThread;
     private Handler handler;
@@ -266,11 +266,11 @@ public class UploaderService extends Service {
             Notification notification = notificationHelper.createNotification(notificationManager);
             startForeground(UploaderService.NOTIFICATION_ID, notification);
 
-            // get number of measurements to upload
-            int measurementsCount = MeasurementsDatabase.getInstance(getApplication()).getAllMeasurementsCount(true);
+            // get number of locations to upload
+            int locationsCount = MeasurementsDatabase.getInstance(getApplication()).getAllLocationsCount();
 
             // check if there is anything to upload
-            if (measurementsCount == 0) {
+            if (locationsCount == 0) {
                 Timber.tag(INNER_TAG).d("run(): Cancelling upload due to no data to upload");
                 ocidUploadResult = UploadResult.NoData;
                 mlsUploadResult = UploadResult.NoData;
@@ -283,8 +283,8 @@ public class UploaderService extends Service {
 
             // calculate number of upload parts
             int partsCount = 1;
-            if (measurementsCount > MEASUREMENTS_PER_PART) {
-                partsCount = (int) Math.ceil(1.0 * measurementsCount / MEASUREMENTS_PER_PART);
+            if (locationsCount > LOCATIONS_PER_PART) {
+                partsCount = (int) Math.ceil(1.0 * locationsCount / LOCATIONS_PER_PART);
             }
 
             int[] succeededParts = upload(partsCount);
@@ -350,7 +350,7 @@ public class UploaderService extends Service {
                 int progress = (int) (100.0 * i / partsCount);
                 updateNotification(progress);
                 // prepare data starting from oldest
-                List<Measurement> measurements = MeasurementsDatabase.getInstance(getApplication()).getMeasurementsPart(i * MEASUREMENTS_PER_PART, MEASUREMENTS_PER_PART, true);
+                List<Measurement> measurements = MeasurementsDatabase.getInstance(getApplication()).getMeasurementsPartIncludingPartiallyUploaded(i * LOCATIONS_PER_PART, LOCATIONS_PER_PART);
 
                 Timber.d("upload(): Continue upload to OCID = %s, MLS = %s", continueOcidUpload, continueMlsUpload);
 
