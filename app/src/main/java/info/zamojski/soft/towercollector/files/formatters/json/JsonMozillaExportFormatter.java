@@ -15,7 +15,7 @@ public class JsonMozillaExportFormatter extends JsonMozillaFormatterBase impleme
 
     @Override
     public String formatHeader() {
-        return "{\n\"items\":[\n";
+        return "{\r\n\"items\":[\r\n";
     }
 
     @Override
@@ -25,7 +25,7 @@ public class JsonMozillaExportFormatter extends JsonMozillaFormatterBase impleme
         boolean notFirst = false;
         for (JSONObject rawItem : rawItems) {
             if (notFirst) {
-                sb.append(",\n");
+                sb.append(",\r\n");
             }
             notFirst = true;
             sb.append(rawItem.toString());
@@ -35,11 +35,11 @@ public class JsonMozillaExportFormatter extends JsonMozillaFormatterBase impleme
 
     @Override
     public String formatNewSegment() {
-        return ",\n";
+        return ",\r\n";
     }
 
     @Override
     public String formatFooter() {
-        return "\n]\n}";
+        return "\r\n]\r\n}";
     }
 }

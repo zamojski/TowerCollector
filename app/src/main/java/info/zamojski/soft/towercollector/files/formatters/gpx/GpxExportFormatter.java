@@ -140,7 +140,7 @@ public class GpxExportFormatter implements IGpxFormatter {
     public String formatFooter() {
         return "    </trkseg>\r\n"
                 + "  </trk>\r\n"
-                + "</gpx>";
+                + "</gpx>\r\n";
     }
 
     private String formatCoordinate(double value) {
