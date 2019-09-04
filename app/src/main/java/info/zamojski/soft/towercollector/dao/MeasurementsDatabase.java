@@ -172,7 +172,6 @@ public class MeasurementsDatabase {
         } catch (Exception ex) {
             result = false;
             Timber.e(ex, "insertMeasurement(): Error while saving measurement");
-            Exception outerEx = new Exception("Measurement save failed", ex);
             ACRA.getErrorReporter().handleSilentException(ex);
         } finally {
             invalidateCache();
