@@ -36,7 +36,7 @@
     <string name="preferences_api_key_title">API-ключ</string>
     <string name="preferences_api_key_summary">Для выгрузки измерений необходим ключ.</string>
     <string name="preferences_api_key_invalid">Введённый API-ключ имеет неверный формат. Смотрите справочное руководство.</string>
-    <string name="preferences_api_key_link_title">Получить API-ключ</string>
+    <string name="preferences_api_key_link_title">Получить свой API-ключ</string>
     <string name="preferences_api_key_link_summary">Бесплатная регистрация на сайте OpenCellID.org</string>
     <string name="preferences_about_api_key_title">Об API-ключе для OpenCellID</string>
     <string name="preferences_about_api_key_summary">Информация об API-ключе и его правильном написании.</string>
@@ -53,7 +53,7 @@
     <string name="preferences_app_theme_title">Тема</string>
     <string name="preferences_app_theme_summary">Определяет цветовую тему для приложения.</string>
     <string name="preferences_collector_keep_screen_on_title">Оставлять экран включённым во время сбора</string>
-    <string name="preferences_collector_keep_screen_on_summary">Определяет, будет ли экран включён  постоянно во время сбора измерений. Включение значительно ускорит разряд батареи.</string>
+    <string name="preferences_collector_keep_screen_on_summary">Определяет, будет ли экран постоянно включён во время сбора измерений. Активация значительно ускорит разряд батареи.</string>
     <string name="preferences_gps_optimizations_enabled_title">Оптимизация сбора GPS</string>
     <string name="preferences_gps_optimizations_enabled_on_summary">Во время сбора измерений будут использованы улучшенные параметры GPS.</string>
     <string name="preferences_gps_optimizations_enabled_off_summary">Оптимизация GPS параметров выключена.</string>
@@ -80,7 +80,7 @@
     <string name="preferences_contact_email_link_summary">Отправить email с вашими проблемами, вопросами и идеями разработчику.</string>
     <string name="preferences_facebook_community_link_title">Сообщество Facebook</string>
     <string name="preferences_facebook_community_link_summary">Открыть страницу сообщества Facebook, где вы сможете найти полезную информацию, ссылки, запостить идеи и задать вопросы.</string>
-    <string name="preferences_twitter_community_link_title">Сообщество Twitter</string>
+    <string name="preferences_twitter_community_link_title">Сообщество в Twitter</string>
     <string name="preferences_twitter_community_link_summary">Открыть страницу сообщества Twitter, где вы сможете найти полезную информацию, ссылки и ответы на вопросы.</string>
     <string name="preferences_translate_link_title">Перевести</string>
     <string name="preferences_translate_link_summary">Открыть сайт, с помощью которого вы сможете помочь перевести интерфейс программы.</string>

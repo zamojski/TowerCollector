@@ -10,7 +10,7 @@
         <item>CSV</item>
         <item>GPX</item>
         <item>CSV для OpenCellID.org</item>
-        <item>JSON для сервисов Mozilla Location</item>
+        <item>JSON для Mozilla Location Services</item>
     </string-array>
     <string-array name="preferences_collector_low_battery_action_entries_labels">
         <item>Игнорировать</item>

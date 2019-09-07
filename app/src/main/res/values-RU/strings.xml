@@ -16,7 +16,7 @@
     <string name="network_group_unknown">Не определена</string>
     <string name="app_title_preferences">Настройки</string>
     <string name="app_title_help">Помощь</string>
-    <string name="app_title_about">О программе</string>
+    <string name="app_title_about">О приложении</string>
     <string name="dialog_want_enable_gps">Вы хотите открыть настройки местоположения, чтобы включить GPS?</string>
     <string name="dialog_could_not_open_android_settings">Не могу открыть настройки Android. Откройте их вручную, чтобы изменить.</string>
     <string name="dialog_select_email_app">Выберите приложение для электронной почты</string>
