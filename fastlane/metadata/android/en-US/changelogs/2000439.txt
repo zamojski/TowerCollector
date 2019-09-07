@@ -1,0 +1,2 @@
+- Attempt to fix failing export to GPX.
+- Replace Google+ links with Twitter.

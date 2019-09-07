@@ -1,0 +1,4 @@
+- Fixed asking to enable GPS before obtaining necessary permissions.
+- Fixed crash when checking for updates on Samsung Galaxy S9+.
+- Fixed failing export to GPX.
+- Changed upload result notification to be single line.

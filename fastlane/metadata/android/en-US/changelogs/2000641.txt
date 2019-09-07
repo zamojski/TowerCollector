@@ -1,0 +1,3 @@
+- Fix data inconsistency for measurements collected when GPS signal temporarily lost.
+- Fix upload and export to file skipping some measurements.
+- Fix statistics calculated incorrectly.

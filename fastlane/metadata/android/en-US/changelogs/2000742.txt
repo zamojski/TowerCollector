@@ -1,0 +1,4 @@
+- Added Chinese Simplified translation.
+- Updated Russian translation.
+- Use delete verb consistently. Closes issue #62.
+- Use consistent line endings in the exported files. Closes issue #63.

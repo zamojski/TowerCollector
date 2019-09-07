@@ -1,6 +1,16 @@
 {
   "Entries": [
     {
+      "VersionCode": 2000742,
+      "Title": "Changes in version 2.0.7",
+      "Messages": [
+        "Added Chinese Simplified translation.",
+        "Updated Russian translation.",
+        "Use delete verb consistently. Closes issue <a href=\"https://github.com/zamojski/TowerCollector/issues/62\">#62</a>.",
+        "Use consistent line endings in the exported files. Closes issue <a href=\"https://github.com/zamojski/TowerCollector/issues/63\">#63</a>."
+      ]
+    },
+    {
       "VersionCode": 2000641,
       "Title": "Changes in version 2.0.6",
       "Description": "This version brings important fixes for data consistency. You may notice the number of measurements decreased and the last measurement can be connected to more cells than usually. This is only a one time change to ensure the proper functioning of the application.",
@@ -38,17 +48,6 @@
         "Fixed crash when checking for GPS availability was denied on API lower than 21.",
         "Fixed toast messages displayed incorrectly when importing and exporting preferences.",
         "Added monitoring of airplane mode for changes."
-      ]
-    },
-    {
-      "VersionCode": 2000235,
-      "Title": "Changes in version 2.0.2",
-      "Description": "Tower Collector now supports Mozilla Location Services project! Share your feedback via <a href=\"https://plus.google.com/communities/105724371687131986494\">Google+</a> and <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> communities, email or  <a href=\"https://github.com/zamojski/TowerCollector/issues\">GitHub</a> issues.",
-      "Messages": [
-        "Fixed 'no data to upload' reported when one of the projects was failing and re-upload enabled.",
-        "Improved upload to OpenCellID on faulty devices.",
-        "Added shortcuts to start/stop collector and upload directly from launcher on Android 7.1 and newer.",
-        "Added warning if battery optimizations are enabled which may influence reliability of collected measurements."
       ]
     }
   ]
