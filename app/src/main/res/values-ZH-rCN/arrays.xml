@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+    <string name="preferences_keep_screen_on_mode_disabled">已禁用</string>
+    <string name="preferences_keep_screen_on_mode_dim">变暗</string>
+    <string name="preferences_keep_screen_on_mode_full">全亮度</string>
+    <string-array name="export_formats_labels">
+        <item>CSV</item>
+        <item>GPX</item>
+        <item>用于OpenCellID.org的CSV格式</item>
+        <item>适用于Mozilla位置服务的JSON格式</item>
+    </string-array>
+    <string-array name="preferences_collector_low_battery_action_entries_labels">
+        <item>无动作</item>
+        <item>停止收集</item>
+    </string-array>
+    <string-array name="preferences_app_theme_mode_entries_labels">
+        <item>暗黑</item>
+        <item>明亮</item>
+    </string-array>
+    <string name="preferences_collector_api_version_auto">自动检测</string>
+    <string name="preferences_collector_api_version_api_17">Android 4.2 API</string>
+    <string name="preferences_collector_api_version_api_1">Android 1.0 API</string>
+    <string name="preferences_file_logging_level_disabled">已禁用</string>
+    <string name="preferences_file_logging_level_debug">调试</string>
+    <string name="preferences_file_logging_level_info">信息</string>
+    <string name="preferences_file_logging_level_warning">警告</string>
+    <string name="preferences_file_logging_level_error">错误</string>
+</resources>

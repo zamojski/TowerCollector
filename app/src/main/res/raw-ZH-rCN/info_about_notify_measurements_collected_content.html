@@ -1,0 +1,57 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+
+<p>Tower Collector可以通过广播 <i>intents</i>来通知系统上安装的其他应用。 有关如何监听和使用此类通知的更多信息，请检查应用的帮助。</p>
+<h3>测量收集事件</h3>
+<p>如果在“设置”中配置，则每次收集新的测量集时，收集器都可以发送意图。 通知内容将是一个JSON结构，其中包含时间和GPS等常见内容。 字段名称和值的映射方式与导出的CSV文件中的映射方式相同。<br />
+
+单元格使用的字段列表取决于类型（net_type）。 不支持或缺少的值将设置为 <code>null</code>。</p>
+<ul>
+    <li>GSM - mcc, mnc, lac, cell_id, asu, dbm</li>
+    <li>UMTS - mcc, mnc, lac, cell_id, psc, asu, dbm</li>
+    <li>CDMA - sid 相当于 mnc, nid 相当于 lac, bid 相当于 cell_id, asu, dbm</li>
+    <li>LTE - mcc, mnc, tac 相当于 lac, ci 相当于 cell_id, pci 相当于 psc, ta, asu, dbm</li>
+</ul>
+<p>操作：</p>
+<code>info.zamojski.soft.towercollector.MEASUREMENTS_COLLECTED</code>
+<p>附加键：</p>
+<code>measurements</code>
+<p>附加值示例：</p>
+<code>{<br />
+    "measured_at" : 1234567890123,<br />
+    "gps" : {<br />
+        "lat" : 12.3213123,<br />
+        "lon" : -54.4535435543,<br />
+        "accuracy" : 12.0,<br />
+        "speed" : 13.21,<br />
+        "bearing" : 212.2,<br />
+        "altitude" : 121.0<br />
+    }<br />
+    "cells" : [<br />
+        {<br />
+            "mcc" : 260,<br />
+            "mnc" : 06,<br />
+            "lac" : 5115,<br />
+            "cell_id" : 214325525,<br />
+            "psc" : 1234,<br />
+            "asu" : 12,<br />
+            "dbm" : -112,<br />
+            "ta" : 21,<br />
+            "neighboring" : "false",<br />
+            "net_type" : "UMTS"<br />
+        },<br />
+        {<br />
+            "mcc" : null,<br />
+            "mnc" : 16,<br />
+            "lac" : 5115,<br />
+            "cell_id" : 2143255,<br />
+            "psc" : null,<br />
+            "asu" : 13,<br />
+            "dbm" : -112,<br />
+            "ta" : null,<br />
+            "neighboring" : "false",<br />
+            "net_type" : "CDMA"<br />
+        }<br />
+    ]<br />
+}</code>
