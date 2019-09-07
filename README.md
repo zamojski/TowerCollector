@@ -14,7 +14,7 @@ and on official F-Droid catalog:
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/packages/info.zamojski.soft.towercollector/)
 
 ## Building
-This project is build using Android Studio 3.3.2.
+This project is build using Android Studio 3.5.
 
 To build your own signed apk go to "[app/properties](app/properties)" and:
 
