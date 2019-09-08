@@ -319,6 +319,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     @Override
     public void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
         Timber.d("onNewIntent(): New intent received: %s", intent);
         processOnStartIntent(intent);
     }
