@@ -7,7 +7,7 @@ package info.zamojski.soft.towercollector.logging;
 import android.annotation.SuppressLint;
 import android.os.Environment;
 import android.os.Process;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import java.io.File;

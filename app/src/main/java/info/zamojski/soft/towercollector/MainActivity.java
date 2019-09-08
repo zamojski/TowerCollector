@@ -26,14 +26,14 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.provider.Settings;
-import android.support.annotation.StringRes;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
-import android.support.design.widget.TabLayout.Tab;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.StringRes;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayout.Tab;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.telephony.TelephonyManager;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -828,7 +828,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 });
         // hack for black text on dark grey background
         View view = snackbar.getView();
-        TextView tv = view.findViewById(android.support.design.R.id.snackbar_text);
+        TextView tv = view.findViewById(R.id.snackbar_text);
         tv.setTextColor(Color.WHITE);
         snackbar.show();
     }

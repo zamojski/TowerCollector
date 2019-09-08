@@ -8,8 +8,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
-import android.support.annotation.IntegerRes;
-import android.support.annotation.StringRes;
+import androidx.annotation.IntegerRes;
+import androidx.annotation.StringRes;
 
 class IntegerPreferenceProvider extends PreferenceProviderBase<Integer> {
 

@@ -7,7 +7,7 @@ package info.zamojski.soft.towercollector.utils;
 import android.Manifest;
 import android.content.Context;
 import android.location.LocationManager;
-import android.support.v4.content.PermissionChecker;
+import androidx.core.content.PermissionChecker;
 
 public class GpsUtils {
 

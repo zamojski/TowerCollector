@@ -7,7 +7,7 @@ package info.zamojski.soft.towercollector.providers.preferences;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.annotation.StringRes;
+import androidx.annotation.StringRes;
 
 import org.acra.ACRA;
 

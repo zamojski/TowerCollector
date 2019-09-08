@@ -30,7 +30,7 @@ import android.Manifest;
 import android.app.Application;
 import android.app.NotificationManager;
 import android.os.Build;
-import android.support.v7.app.AppCompatDelegate;
+import androidx.appcompat.app.AppCompatDelegate;
 import android.util.Log;
 import android.widget.Toast;
 

@@ -8,8 +8,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
-import android.support.annotation.BoolRes;
-import android.support.annotation.StringRes;
+import androidx.annotation.BoolRes;
+import androidx.annotation.StringRes;
 
 class BooleanPreferenceProvider extends PreferenceProviderBase<Boolean> {
 
