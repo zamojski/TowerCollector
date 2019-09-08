@@ -102,8 +102,8 @@ dependencies {
     implementation 'ch.acra:acra-http:5.4.0'
     implementation 'ch.acra:acra-notification:5.4.0'
     implementation 'org.sufficientlysecure:html-textview:3.6'
-    implementation 'com.squareup.okhttp3:okhttp:3.12.3'
-    implementation 'com.github.hotchemi:permissionsdispatcher:3.3.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.4' // TODO: newer requires min SDK 21
+    implementation 'com.github.hotchemi:permissionsdispatcher:3.3.1' // TODO: newer removes native Fragment support
     annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:3.3.1'
     implementation 'com.jakewharton.timber:timber:4.7.1'
 }
