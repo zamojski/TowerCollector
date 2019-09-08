@@ -18,6 +18,7 @@ import info.zamojski.soft.towercollector.enums.Validity;
 import info.zamojski.soft.towercollector.events.AirplaneModeChangedEvent;
 import info.zamojski.soft.towercollector.events.BatteryOptimizationsChangedEvent;
 import info.zamojski.soft.towercollector.events.GpsStatusChangedEvent;
+import info.zamojski.soft.towercollector.events.PowerSaveModeChangedEvent;
 import info.zamojski.soft.towercollector.events.SystemTimeChangedEvent;
 import info.zamojski.soft.towercollector.utils.BatteryUtils;
 import info.zamojski.soft.towercollector.utils.NetworkUtils;
@@ -39,6 +40,8 @@ public abstract class MainFragmentBase extends Fragment {
     private TextView invalidSystemTimeValueTextView;
     private TableRow batteryOptimizationsTableRow;
     private TextView batteryOptimizationsValueTextView;
+    private TableRow powerSaveModeTableRow;
+    private TextView powerSaveModeValueTextView;
     private TableRow airplaneModeTableRow;
     private TextView airplaneModeValueTextView;
 
@@ -79,6 +82,10 @@ public abstract class MainFragmentBase extends Fragment {
         batteryOptimizationsValueTextView = view.findViewById(R.id.main_battery_optimizations_value_textview);
         boolean batteryOptimizationsEnabled = BatteryUtils.areBatteryOptimizationsEnabled(MyApplication.getApplication());
         showWarning(batteryOptimizationsTableRow, batteryOptimizationsValueTextView, batteryOptimizationsEnabled);
+        powerSaveModeTableRow = view.findViewById(R.id.main_power_save_mode_tablerow);
+        powerSaveModeValueTextView = view.findViewById(R.id.main_power_save_mode_value_textview);
+        boolean powerSaveModeEnabled = BatteryUtils.isPowerSaveModeEnabled(MyApplication.getApplication());
+        showWarning(powerSaveModeTableRow, powerSaveModeValueTextView, powerSaveModeEnabled);
         airplaneModeTableRow = view.findViewById(R.id.main_airplane_mode_tablerow);
         airplaneModeValueTextView = view.findViewById(R.id.main_airplane_mode_value_textview);
         boolean airplaneModeEnabled = NetworkUtils.isInAirplaneMode(MyApplication.getApplication());
@@ -105,6 +112,11 @@ public abstract class MainFragmentBase extends Fragment {
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onEvent(BatteryOptimizationsChangedEvent event) {
         showWarning(batteryOptimizationsTableRow, batteryOptimizationsValueTextView, event.isEnabled());
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onEvent(PowerSaveModeChangedEvent event) {
+        showWarning(powerSaveModeTableRow, powerSaveModeValueTextView, event.isEnabled());
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)

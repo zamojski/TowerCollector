@@ -163,6 +163,8 @@
     <string name="main_help_invalid_system_time_description">Your current system date and/or time is invalid comparing to GPS time. Measurements will be saved with correct time but presented statistics may be inaccurate. Please set the date and time in your device.</string>
     <string name="main_help_battery_optimizations_title">Battery optimizations enabled</string>
     <string name="main_help_battery_optimizations_description">Battery optimizations are enabled for this app which may result in inaccurate and unreliable measurements being collected. Please disable battery optimizations in Android settings by selecting \'All Apps\', then Tower Collector: \'Don\'t optimize\'.</string>
+    <string name="main_help_power_save_mode_title">Battery saver enabled</string>
+    <string name="main_help_power_save_mode_description">Battery saver is enabled on the device which may result in inaccurate and unreliable measurements being collected. Please disable battery saver in Android battery settings.</string>
     <string name="main_help_airplane_mode_title">Airplane mode enabled</string>
     <string name="main_help_airplane_mode_description">Airplane / flight mode is enabled on your device which blocks the app from collecting measurements. Please disable airplane mode in Android settings.</string>
     <string name="main_help_today_locations_title">Measurements today</string>
@@ -213,6 +215,7 @@
     <string name="invalid_system_time">System date/time is invalid</string>
     <string name="airplane_mode">Airplane mode enabled</string>
     <string name="battery_optimizations">Battery optimizations enabled</string>
+    <string name="battery_saver">Battery saver enabled</string>
     <string name="web_browser_missing">Please install web browser to open the page</string>
     <string name="uploader_all_projects_disabled">Upload to all projects is disabled</string>
     <string name="ocid_name" translatable="false">OpenCellID.org</string>

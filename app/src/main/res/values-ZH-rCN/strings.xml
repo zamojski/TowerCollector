@@ -153,6 +153,8 @@
     <string name="main_help_invalid_system_time_description">与GPS时间相比，您当前的系统日期和/或时间无效。测量将以正确的时间保存，但显示的统计信息可能不准确。请在您的设备中设置日期和时间。</string>
     <string name="main_help_battery_optimizations_title">电池优化已启用</string>
     <string name="main_help_battery_optimizations_description">为此应用启用了电池优化，这可能导致收集不准确且不可靠的测量结果。请在Android设置中停用电池优化，方法是选择“所有应用”，然后选择Tower Collector：“不优化”。</string>
+    <string name="main_help_power_save_mode_title">省电模式处于活动状态</string>
+    <string name="main_help_power_save_mode_description">设备上启用了电池保护程序，这可能导致收集不准确和不可靠的测量结果。 请在Android电池设置中禁用省电模式。</string>
     <string name="main_help_airplane_mode_title">飞行模式已启用</string>
     <string name="main_help_airplane_mode_description">您的设备上启用了飞机/飞行模式，这会阻止应用收集测量值。 请在Android设置中禁用飞行模式。</string>
     <string name="main_help_today_locations_title">今天的测量数据</string>
@@ -203,6 +205,7 @@
     <string name="invalid_system_time">系统日期/时间无效</string>
     <string name="airplane_mode">飞行模式已启用</string>
     <string name="battery_optimizations">电池优化已启用</string>
+    <string name="battery_saver">省电模式处于活动状态</string>
     <string name="web_browser_missing">请安装网页浏览器打开网页</string>
     <string name="uploader_all_projects_disabled">已禁用上传到所有项目</string>
     <string name="upload_configurator_dialog_title">配置上传目标</string>

@@ -153,6 +153,8 @@
     <string name="main_help_invalid_system_time_description">La tua data e/o ora di sistema attuali non è valida rispetto all\'ora GPS. Le misurazioni verranno salvate con il tempo corretto ma le statistiche presentate potrebbero essere imprecise. Si prega di impostare la data e l\'ora nel dispositivo.</string>
     <string name="main_help_battery_optimizations_title">Ottimizzazioni della batteria abilitate</string>
     <string name="main_help_battery_optimizations_description">Le ottimizzazioni della batteria sono abilitate per questo app; ciò può comportare che le misure raccaolte siano inesatte ed inaffidabili. Si prega di disabilitare le ottimizzazioni della batteria nelle impostazioni di Android selezionando \'Tutte le app\', poi Tower Collector: \'Non ottimizzare\'.</string>
+    <string name="main_help_power_save_mode_title">Risparmio batteria attivato</string>
+    <string name="main_help_power_save_mode_description">Il risparmio batteria è abilitato sul dispositivo, il che può comportare la raccolta di misurazioni inaccurate ed inaffidabili. Disattiva il risparmio batteria nelle impostazioni della batteria di Android.</string>
     <string name="main_help_airplane_mode_title">Modalità aereo abilitata</string>
     <string name="main_help_airplane_mode_description">La modalità aereo / volo è abilitata sul tuo dispositivo che blocca l\'app dalla raccolta delle misurazioni. Disabilita la modalità aereo nelle impostazioni Android.</string>
     <string name="main_help_today_locations_title">Misurazioni odierne</string>
@@ -203,6 +205,7 @@
     <string name="invalid_system_time">La data/ora di sistema non è valida</string>
     <string name="airplane_mode">Modalità aereo abilitata</string>
     <string name="battery_optimizations">Ottimizzazioni della batteria abilitate</string>
+    <string name="battery_saver">Risparmio batteria attivato</string>
     <string name="web_browser_missing">Si prega di installare il browser Web per aprire la pagina</string>
     <string name="uploader_all_projects_disabled">Caricamento disabilitato per tutti i progetti</string>
     <string name="upload_configurator_dialog_title">Configura la destinazione del caricamento</string>

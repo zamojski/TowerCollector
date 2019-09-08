@@ -25,15 +25,20 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.os.PowerManager;
 import android.provider.Settings;
+
 import androidx.annotation.StringRes;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayout.Tab;
+
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import android.telephony.TelephonyManager;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -61,6 +66,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import info.zamojski.soft.towercollector.analytics.IntentSource;
 import info.zamojski.soft.towercollector.broadcast.AirplaneModeBroadcastReceiver;
+import info.zamojski.soft.towercollector.broadcast.BatterySaverBroadcastReceiver;
 import info.zamojski.soft.towercollector.controls.DialogManager;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.FileType;
@@ -70,6 +76,7 @@ import info.zamojski.soft.towercollector.events.AirplaneModeChangedEvent;
 import info.zamojski.soft.towercollector.events.BatteryOptimizationsChangedEvent;
 import info.zamojski.soft.towercollector.events.CollectorStartedEvent;
 import info.zamojski.soft.towercollector.events.GpsStatusChangedEvent;
+import info.zamojski.soft.towercollector.events.PowerSaveModeChangedEvent;
 import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
 import info.zamojski.soft.towercollector.events.SystemTimeChangedEvent;
 import info.zamojski.soft.towercollector.model.ChangelogInfo;
@@ -105,6 +112,7 @@ import timber.log.Timber;
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
     private static final int BATTERY_OPTIMIZATIONS_ACTIVITY_RESULT = 'B';
+    private static final int BATTERY_SAVER_ACTIVITY_RESULT = 'S';
     private static final int AIRPLANE_MODE_ACTIVITY_RESULT = 'A';
 
     private AtomicBoolean isCollectorServiceRunning = new AtomicBoolean(false);
@@ -113,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private boolean showNotCompatibleDialog = true;
 
     private BroadcastReceiver airplaneModeBroadcastReceiver = new AirplaneModeBroadcastReceiver();
+    private BroadcastReceiver batterySaverBroadcastReceiver = null;
 
     private String exportedFileAbsolutePath;
     private boolean showExportFinishedDialog = false;
@@ -176,6 +185,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         checkForNewVersionAvailability();
 
         registerReceiver(airplaneModeBroadcastReceiver, new IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            batterySaverBroadcastReceiver = new BatterySaverBroadcastReceiver();
+            registerReceiver(batterySaverBroadcastReceiver, new IntentFilter(PowerManager.ACTION_POWER_SAVE_MODE_CHANGED));
+        }
     }
 
     @Override
@@ -188,6 +201,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         if (airplaneModeBroadcastReceiver != null)
             unregisterReceiver(airplaneModeBroadcastReceiver);
+        if (batterySaverBroadcastReceiver != null)
+            unregisterReceiver(batterySaverBroadcastReceiver);
     }
 
     @Override
@@ -308,6 +323,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             // don't check resultCode because it's always 0 (user needs to manually navigate back)
             boolean batteryOptimizationsEnabled = BatteryUtils.areBatteryOptimizationsEnabled(MyApplication.getApplication());
             EventBus.getDefault().postSticky(new BatteryOptimizationsChangedEvent(batteryOptimizationsEnabled));
+        } else if (requestCode == BATTERY_SAVER_ACTIVITY_RESULT) {
+            // don't check resultCode because it's always 0 (user needs to manually navigate back)
+            boolean powerSaveModeEnabled = BatteryUtils.isPowerSaveModeEnabled(MyApplication.getApplication());
+            EventBus.getDefault().postSticky(new PowerSaveModeChangedEvent(powerSaveModeEnabled));
         } else if (requestCode == AIRPLANE_MODE_ACTIVITY_RESULT) {
             // don't check resultCode because it's always 0 (user needs to manually navigate back)
             boolean airplaneModeEnabled = NetworkUtils.isInAirplaneMode(MyApplication.getApplication());
@@ -480,6 +499,24 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         startBatteryOptimizationsSystemActivity();
+                    }
+                })
+                .setNegativeButton(R.string.dialog_cancel, null)
+                .create();
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setCancelable(true);
+        dialog.show();
+    }
+
+    // have to be public to prevent Force Close
+    public void displayPowerSaveModeHelpOnClick(View view) {
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.main_help_power_save_mode_title)
+                .setMessage(R.string.main_help_power_save_mode_description)
+                .setPositiveButton(R.string.dialog_settings, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startBatterySaverSystemActivity();
                     }
                 })
                 .setNegativeButton(R.string.dialog_cancel, null)
@@ -988,6 +1025,23 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             startActivityForResult(intent, BATTERY_OPTIMIZATIONS_ACTIVITY_RESULT);
         } catch (ActivityNotFoundException ex) {
             Timber.w(ex, "startBatteryOptimizationsSystemActivity(): Could not open Settings to change battery optimizations");
+            ACRA.getErrorReporter().handleSilentException(ex);
+            showCannotOpenAndroidSettingsDialog();
+        }
+    }
+
+    private void startBatterySaverSystemActivity() {
+        try {
+            Intent intent;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP_MR1) {
+                intent = new Intent(Settings.ACTION_BATTERY_SAVER_SETTINGS);
+            } else {
+                intent = new Intent();
+                intent.setComponent(new ComponentName("com.android.settings", "com.android.settings.Settings$BatterySaverSettingsActivity"));
+            }
+            startActivityForResult(intent, BATTERY_SAVER_ACTIVITY_RESULT);
+        } catch (ActivityNotFoundException ex) {
+            Timber.w(ex, "startBatterySaverSystemActivity(): Could not open Settings to disable battery saver");
             ACRA.getErrorReporter().handleSilentException(ex);
             showCannotOpenAndroidSettingsDialog();
         }

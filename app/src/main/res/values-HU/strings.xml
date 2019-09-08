@@ -153,6 +153,8 @@
     <string name="main_help_invalid_system_time_description">A jelenlegi rendszeridő eltér a GPS idejéhez képest. A mérések a helyes idővel lesznek elmentve, de a statisztikák pontatlanok lehetnek. Állítsd be az dátumot és az időt az eszközödön.</string>
     <string name="main_help_battery_optimizations_title">Akkumulátor optimalizációk engedélyezve</string>
     <string name="main_help_battery_optimizations_description">Az akkumulátor optimalizációk be vannak kapcsolva az alkalmazásnál, amely pontatlan és nem megbízható méréseket eredményezhet. Tiltsd le az akkumulátor optimalizációkat az Android beállításokban az „Összes alkalmazás”, majd a Tower Collector kiválasztásával. Végül pedig válaszd a „Ne optimalizálja” lehetőséget.</string>
+    <string name="main_help_power_save_mode_title">Az akkumulátor kímélő aktív</string>
+    <string name="main_help_power_save_mode_description">Az akkumulátor kímélő engedélyezve van az eszközön, ami pontatlan és megbízhatatlan méréseket eredményezhet. Kérjük, tiltsa le az akkumulátor-kímélőt az Android akkumulátor-beállításain.</string>
     <string name="main_help_airplane_mode_title">Repülőgép üzemmód engedélyezve</string>
     <string name="main_help_airplane_mode_description">A repülőgép / repülési mód engedélyezve van a készüléken, amely megakadályozza az alkalmazásnak a mérések összegyűjtését. Kérjük, tiltsa le a repülőgép üzemmódot az Android beállításokban.</string>
     <string name="main_help_today_locations_title">Mai mérések</string>
@@ -203,6 +205,7 @@
     <string name="invalid_system_time">A rendszeridő érvénytelen</string>
     <string name="airplane_mode">Repülőgép üzemmód engedélyezve</string>
     <string name="battery_optimizations">Akkumulátor optimalizációk engedélyezve</string>
+    <string name="battery_saver">Az akkumulátor kímélő aktív</string>
     <string name="web_browser_missing">Telepíts egy webböngészőt az oldal megnyitásához</string>
     <string name="uploader_all_projects_disabled">A feltöltés az összes projekt esetén le van tiltva</string>
     <string name="upload_configurator_dialog_title">Feltöltési cél beállítása</string>

@@ -153,6 +153,8 @@
     <string name="main_help_invalid_system_time_description">Obecnie data i/lub czas w systemie jest nieprawidłowy w porównaniu z czasem z GPS. Próbki zostaną zapisane z prawidłowym czasem, ale prezentowane statystyki mogą być niedokładne. Proszę ustawić datę i czas w urządzeniu.</string>
     <string name="main_help_battery_optimizations_title">Optymalizacja baterii włączona</string>
     <string name="main_help_battery_optimizations_description">Optymalizacja baterii jest włączona dla tej aplikacji co może skutkować zbieraniem niedokładnych i niemiarodajnych próbek. Proszę wyłączyć optymalizację baterii w ustawieniach Androida wybierając \'Wszystkie aplikacje\', a następnie Tower Collector: \'Nie optymalizuj\'.</string>
+    <string name="main_help_power_save_mode_title">Tryb energooszczędny włączony</string>
+    <string name="main_help_power_save_mode_description">Tryb oszczędzania baterii jest włączony co może skutkować zbieraniem niedokładnych i niemiarodajnych próbek. Proszę wyłączyć optymalizację baterii w ustawieniach Androida.</string>
     <string name="main_help_airplane_mode_title">Tryb samolotowy aktywny</string>
     <string name="main_help_airplane_mode_description">Tryb samolotowy jest aktywny na urządzeniu i blokuje aplikację przed zbieraniem próbek. Proszę wyłączyć tryb samolotowy w ustawieniach Androida.</string>
     <string name="main_help_today_locations_title">Liczba próbek dzisiaj</string>
@@ -203,6 +205,7 @@
     <string name="invalid_system_time">Data/czas w systemie jest nieprawidłowy</string>
     <string name="airplane_mode">Tryb samolotowy aktywny</string>
     <string name="battery_optimizations">Optymalizacja baterii jest włączona</string>
+    <string name="battery_saver">Tryb energooszczędny włączony</string>
     <string name="web_browser_missing">Zainstaluj przeglądarkę internetową, aby otworzyć stronę</string>
     <string name="uploader_all_projects_disabled">Przesyłanie jest wyłączone dla wszystkich projektów</string>
     <string name="upload_configurator_dialog_title">Wybierz cel przesyłania</string>
