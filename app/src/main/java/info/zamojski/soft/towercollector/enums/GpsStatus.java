@@ -5,5 +5,5 @@
 package info.zamojski.soft.towercollector.enums;
 
 public enum GpsStatus {
-    Initializing, Ok, LowAccuracy, NoLocation
+    Initializing, Ok, LowAccuracy, NoLocation, Disabled
 }

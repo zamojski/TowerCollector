@@ -1268,7 +1268,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onEvent(GpsStatusChangedEvent event) {
-        if (!event.isEnabled()) {
+        if (!event.isActive()) {
             isCollectorServiceRunning.set(false);
             invalidateOptionsMenu();
             hideInvalidSystemTime();

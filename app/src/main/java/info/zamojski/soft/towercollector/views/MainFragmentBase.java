@@ -26,6 +26,7 @@ import info.zamojski.soft.towercollector.utils.UnitConverter;
 import timber.log.Timber;
 
 import androidx.fragment.app.Fragment;
+
 import android.view.View;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -133,7 +134,7 @@ public abstract class MainFragmentBase extends Fragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onEvent(GpsStatusChangedEvent event) {
-        if (event.isEnabled()) {
+        if (event.isActive()) {
             GpsStatus status = event.getStatus();
             float accuracy = event.getAccuracy();
             printGpsStatus(status, accuracy);
@@ -160,6 +161,11 @@ public abstract class MainFragmentBase extends Fragment {
                 break;
             case NoLocation:
                 statusString = getString(R.string.status_no_gps_location);
+                textColorResId = R.color.text_dark;
+                backgroundColorResId = R.color.background_invalid;
+                break;
+            case Disabled:
+                statusString = getString(R.string.status_disabled);
                 textColorResId = R.color.text_dark;
                 backgroundColorResId = R.color.background_invalid;
                 break;

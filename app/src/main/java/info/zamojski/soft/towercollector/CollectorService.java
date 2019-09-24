@@ -7,6 +7,7 @@ package info.zamojski.soft.towercollector;
 import info.zamojski.soft.towercollector.analytics.IntentSource;
 import info.zamojski.soft.towercollector.broadcast.BatteryStatusBroadcastReceiver;
 import info.zamojski.soft.towercollector.broadcast.ExternalBroadcastSender;
+import info.zamojski.soft.towercollector.broadcast.LocationModeOrProvidersChangedReceiver;
 import info.zamojski.soft.towercollector.enums.GpsStatus;
 import info.zamojski.soft.towercollector.enums.KeepScreenOnMode;
 import info.zamojski.soft.towercollector.enums.MeansOfTransport;
@@ -155,6 +156,10 @@ public class CollectorService extends Service {
         // register receiver
         registerReceiver(stopRequestBroadcastReceiver, new IntentFilter(BROADCAST_INTENT_STOP_SERVICE));
         registerReceiver(batteryStatusBroadcastReceiver, new IntentFilter(Intent.ACTION_BATTERY_LOW));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            registerReceiver(locationModeOrProvidersChanged, new IntentFilter(LocationManager.MODE_CHANGED_ACTION));
+        }
+        registerReceiver(locationModeOrProvidersChanged, new IntentFilter(LocationManager.PROVIDERS_CHANGED_ACTION));
         Notification notification = notificationHelper.createNotification(notificationManager, getGpsStatusNotificationText(getGpsStatus()));
         // start as foreground service to prevent from killing
         startForeground(NOTIFICATION_ID, notification);
@@ -193,7 +198,7 @@ public class CollectorService extends Service {
             stopSelf();
         }
         // make sure GPS is available on the device otherwise the following lines will throw an exception
-        if (!GpsUtils.isGpsAvailable(this)) {
+        if (!GpsUtils.isGpsEnabled(this)) {
             Timber.w("onStartCommand(): GPS is unavailable, stopping");
             Toast.makeText(this, R.string.collector_gps_unavailable, Toast.LENGTH_LONG).show();
             stopSelf();
@@ -264,6 +269,8 @@ public class CollectorService extends Service {
             unregisterReceiver(stopRequestBroadcastReceiver);
         if (batteryStatusBroadcastReceiver != null)
             unregisterReceiver(batteryStatusBroadcastReceiver);
+        if (locationModeOrProvidersChanged != null)
+            unregisterReceiver(locationModeOrProvidersChanged);
         long endTime = System.currentTimeMillis();
         notificationManager.cancel(NOTIFICATION_ID);
         if (locationManager != null) {
@@ -624,6 +631,8 @@ public class CollectorService extends Service {
 
     private BroadcastReceiver batteryStatusBroadcastReceiver = new BatteryStatusBroadcastReceiver();
 
+    private BroadcastReceiver locationModeOrProvidersChanged = new LocationModeOrProvidersChangedReceiver(this);
+
     // ========== MISCELLANEOUS ========== //
 
     private Handler getGpsStatusHandler() {
@@ -783,14 +792,14 @@ public class CollectorService extends Service {
         return this.gpsStatus;
     }
 
-    private void setGpsStatus(GpsStatus status) {
+    public void setGpsStatus(GpsStatus status) {
         Timber.d("setGpsStatus(): Setting gps status = %s", status);
         boolean statusChanged = (this.gpsStatus != status);
         this.gpsStatus = status;
         float accuracy = getLastGpsAccuracy();
         // Update always because accuracy might change
         EventBus.getDefault().postSticky(new GpsStatusChangedEvent(status, accuracy));
-        if (gpsStatus == GpsStatus.LowAccuracy || gpsStatus == GpsStatus.NoLocation) {
+        if (gpsStatus != GpsStatus.Ok) {
             String notificationText = getGpsStatusNotificationText(gpsStatus);
             updateNotification(notificationText);
         }
@@ -802,22 +811,33 @@ public class CollectorService extends Service {
 
     private String getGpsStatusNotificationText(GpsStatus status) {
         String statusString;
-        if (status == GpsStatus.LowAccuracy) {
-            // length unit
-            boolean useImperialUnits = MyApplication.getPreferencesProvider().getUseImperialUnits();
-            String lengthUnit;
-            if (useImperialUnits) {
-                lengthUnit = getString(R.string.unit_length_imperial);
-            } else {
-                lengthUnit = getString(R.string.unit_length_metric);
-            }
-            // format string
-            float accuracy = getLastGpsAccuracy();
-            statusString = getString(R.string.status_low_gps_accuracy, accuracy, lengthUnit);
-        } else if (status == GpsStatus.NoLocation)
-            statusString = getString(R.string.status_no_gps_location);
-        else
-            statusString = getString(R.string.status_initializing);// this should never happen
+        switch (status) {
+            case LowAccuracy:
+                // length unit
+                boolean useImperialUnits = MyApplication.getPreferencesProvider().getUseImperialUnits();
+                String lengthUnit;
+                if (useImperialUnits) {
+                    lengthUnit = getString(R.string.unit_length_imperial);
+                } else {
+                    lengthUnit = getString(R.string.unit_length_metric);
+                }
+                // format string
+                float accuracy = getLastGpsAccuracy();
+                statusString = getString(R.string.status_low_gps_accuracy, accuracy, lengthUnit);
+                break;
+            case NoLocation:
+                statusString = getString(R.string.status_no_gps_location);
+                break;
+            case Disabled:
+                statusString = getString(R.string.status_disabled);
+                break;
+            case Initializing:
+                statusString = getString(R.string.status_initializing);
+                break;
+            default:
+                statusString = status.toString();
+                break;
+        }
         return getString(R.string.collector_notification_status, statusString);
     }
 

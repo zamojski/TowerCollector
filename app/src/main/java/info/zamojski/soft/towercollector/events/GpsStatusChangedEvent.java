@@ -10,16 +10,16 @@ public class GpsStatusChangedEvent {
 
     private GpsStatus status;
     private float accuracy;
-    private boolean enabled;
+    private boolean active;
 
     public GpsStatusChangedEvent() {
-        this.enabled = false;
+        this.active = false;
     }
 
     public GpsStatusChangedEvent(GpsStatus status, float accuracy) {
         this.status = status;
         this.accuracy = accuracy;
-        this.enabled = true;
+        this.active = true;
     }
 
     public GpsStatus getStatus() {
@@ -30,12 +30,7 @@ public class GpsStatusChangedEvent {
         return accuracy;
     }
 
-    public boolean isEnabled() {
-        return enabled;
+    public boolean isActive() {
+        return active;
     }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
 }
