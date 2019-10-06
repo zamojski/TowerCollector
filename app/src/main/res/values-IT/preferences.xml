@@ -95,7 +95,7 @@
     <string name="preferences_about_collector_api_version_title">Info sulla versione API del servizio di raccolta</string>
     <string name="preferences_about_collector_api_version_summary">Informazioni sulle differenze tra le versioni dell\'API.</string>
     <string name="preferences_file_logging_level_title">Livello dei file di registrazione</string>
-    <string name="preferences_file_logging_level_summary">Definisce il livello di registrazione del file dei messaggi. Fai attenzione che la registrazione altamente dettagliata potrebbe rallentare l\'app e creare file di registro di grandi dimensioni. La memoria esterna deve essere presente.</string>
+    <string name="preferences_file_logging_level_summary">Definisce il livello di registrazione dei messaggi diagnostici nel file. Fai attenzione che la registrazione altamente dettagliata potrebbe rallentare l\'app e creare file di registro di grandi dimensioni. La memoria esterna deve essere presente.</string>
     <string name="preferences_collect_neighboring_cells_title">Raccogliere celle adiacenti</string>
     <string name="preferences_collect_neighboring_cells_on_summary">Le celle adiacenti verranno raccolte se disponibili.</string>
     <string name="preferences_collect_neighboring_cells_off_summary">Le celle adiacenti verranno scartate.</string>

@@ -95,7 +95,7 @@
     <string name="preferences_about_collector_api_version_title">Про версії API збирача</string>
     <string name="preferences_about_collector_api_version_summary">Інформація про відмінності між версіями API.</string>
     <string name="preferences_file_logging_level_title">Рівень реєстрації файлу</string>
-    <string name="preferences_file_logging_level_summary">Визначає рівень повідомлень для реєстрації. Стережіться, щоб вельми детальне ведення журналу могло сповільнити додаток та створювати великі файли журналів. Зовнішня пам\'ять повинна бути присутня.</string>
+    <string name="preferences_file_logging_level_summary">Визначає рівень журналювання діагностичних повідомлень до файлу. Стережіться, щоб вельми детальне ведення журналу могло сповільнити додаток та створювати великі файли журналів. Зовнішня пам\'ять повинна бути присутня.</string>
     <string name="preferences_collect_neighboring_cells_title">Зібрати сусідні соти</string>
     <string name="preferences_collect_neighboring_cells_on_summary">Сусідні соти будуть збиратися, якщо доступно.</string>
     <string name="preferences_collect_neighboring_cells_off_summary">Сусідні соти будуть відкинуті.</string>

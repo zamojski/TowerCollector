@@ -36,7 +36,7 @@
     <string name="preferences_api_key_title">API kulcs</string>
     <string name="preferences_api_key_summary">Kulcs szükséges a méréseid feltöltéséhez.</string>
     <string name="preferences_api_key_invalid">A megadott API kulcs érvénytelen. A helyes formátum megtalálható a Segítség menüpontban.</string>
-    <string name="preferences_api_key_link_title">Kérj magadnak API kulcsot</string>
+    <string name="preferences_api_key_link_title">Szerezz saját API kulcsot</string>
     <string name="preferences_api_key_link_summary">Regisztrálj ingyen az OpenCellID.org weblapján.</string>
     <string name="preferences_about_api_key_title">Az OpenCellID API kulcsról</string>
     <string name="preferences_about_api_key_summary">Információ az API-kulcsról és a helyes formázásról.</string>
@@ -65,7 +65,7 @@
     <string name="preferences_error_reporting_silent_title">Hibajelentések automatikus küldése</string>
     <string name="preferences_error_reporting_silent_on_summary">Az alkalmazás automatikusan elküldi a hibajelentéseket, amelyek segíthetnek a probléma megoldásában.</string>
     <string name="preferences_error_reporting_silent_off_summary">Az alkalmazás megerősítést kér, mielőtt elküldené a jelentést, amely segíthet a probléma megoldásában.</string>
-    <string name="preferences_update_check_enabled_title">Automatikus frissítés</string>
+    <string name="preferences_update_check_enabled_title">Frissítések automatikus ellenőrzése</string>
     <string name="preferences_update_check_enabled_on_summary">Az alkalmazás értesíteni fog, ha új verzió érhető el.</string>
     <string name="preferences_update_check_enabled_off_summary">Az új verziók rendszeres ellenőrzése kikapcsolva.</string>
     <string name="preferences_about_link_title">Névjegy</string>
@@ -75,7 +75,7 @@
     <string name="preferences_best_practices_link_title">Legjobb gyakorlatok</string>
     <string name="preferences_best_practices_link_summary">Tippeket ad a jobb mérések begyűjtéséhez.</string>
     <string name="preferences_website_link_title">Weblap</string>
-    <string name="preferences_website_link_summary">Megnyitja a fejlesztő weboldalát, amely leírást és alkalmazásboltok linkjeit tartalmazza.</string>
+    <string name="preferences_website_link_summary">Megnyitja a fejlesztő weboldalát, ahol linket találsz a leíráshoz és az alkalmazás letöltéséhez.</string>
     <string name="preferences_contact_email_link_title">Kapcsolatfelvétel a fejlesztővel</string>
     <string name="preferences_contact_email_link_summary">E-mailt küldhetsz a fejlesztőnek amelyben kifejtheted problémáidat, kérdéseidet és ötleteidet.</string>
     <string name="preferences_facebook_community_link_title">Facebook közösség</string>
@@ -95,7 +95,7 @@
     <string name="preferences_about_collector_api_version_title">Az adatgyűjtő API verziójáról</string>
     <string name="preferences_about_collector_api_version_summary">Információk az API-k közötti különbségekről.</string>
     <string name="preferences_file_logging_level_title">Fájlba naplózás szintje</string>
-    <string name="preferences_file_logging_level_summary">Meghatározza az üzenetek fájlba naplózásának szintjét. Figyelj arra, hogy a részletes naplózás lelassíthatja az alkalmazást, és nagy naplófájlokat eredményezhet. A külső tárolónak jelen kell lennie.</string>
+    <string name="preferences_file_logging_level_summary">Meghatározza a diagnosztikai üzenetek naplózási szintjét a fájlban. Figyelj arra, hogy a részletes naplózás lelassíthatja az alkalmazást, és nagy naplófájlokat eredményezhet. A külső tárolónak jelen kell lennie.</string>
     <string name="preferences_collect_neighboring_cells_title">Szomszédos cellák gyűjtése</string>
     <string name="preferences_collect_neighboring_cells_on_summary">A szomszédos cellák mentve lesznek, ha elérhetőek.</string>
     <string name="preferences_collect_neighboring_cells_off_summary">A szomszédos cellák nem lesznek mentve.</string>

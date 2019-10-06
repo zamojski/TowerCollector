@@ -202,6 +202,7 @@
     <string name="status_ok">OK</string>
     <string name="status_low_gps_accuracy">alacsony pontosság: <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">nincs helyzet</string>
+    <string name="status_disabled">kikapcsolva</string>
     <string name="invalid_system_time">A rendszeridő érvénytelen</string>
     <string name="airplane_mode">Repülőgép üzemmód engedélyezve</string>
     <string name="battery_optimizations">Akkumulátor optimalizációk engedélyezve</string>

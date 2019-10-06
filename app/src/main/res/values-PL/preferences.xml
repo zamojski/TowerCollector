@@ -95,7 +95,7 @@
     <string name="preferences_about_collector_api_version_title">O wersji API Zbierania</string>
     <string name="preferences_about_collector_api_version_summary">Informacje o różnicach pomiędzy wersjami API.</string>
     <string name="preferences_file_logging_level_title">Poziom logowania do pliku</string>
-    <string name="preferences_file_logging_level_summary">Określa poziom informacji logowania do pliku. Uwaga, ustawienie wysokiego poziomu szczegółowości logowania może spowolnić aplikację i utworzyć duże pliki logów. Zewnętrzna pamięć musi być dostępna.</string>
+    <string name="preferences_file_logging_level_summary">Określa poziom logowania komunikatów diagnostycznych do pliku. Uwaga, ustawienie wysokiego poziomu szczegółowości logowania może spowolnić aplikację i utworzyć duże pliki logów. Zewnętrzna pamięć musi być dostępna.</string>
     <string name="preferences_collect_neighboring_cells_title">Zbieraj sąsiednie przekaźniki</string>
     <string name="preferences_collect_neighboring_cells_on_summary">Sąsiednie przekaźniki będą zbierane, jeżeli będą dostępne.</string>
     <string name="preferences_collect_neighboring_cells_off_summary">Sąsiednie przekaźniki będą pomijane.</string>

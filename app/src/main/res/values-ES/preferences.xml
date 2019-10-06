@@ -95,7 +95,7 @@
     <string name="preferences_about_collector_api_version_title">Acerca de la versión de API de Collector</string>
     <string name="preferences_about_collector_api_version_summary">Información sobre las diferencias entre las versiones API.</string>
     <string name="preferences_file_logging_level_title">Nivel de registro de archivos</string>
-    <string name="preferences_file_logging_level_summary">Define el nivel de registro de archivos de mensajes. Tenga cuidado de que el registro muy detallado puede ralentizar la aplicación y crear grandes archivos de registro. La memoria externa debe estar presente.</string>
+    <string name="preferences_file_logging_level_summary">Define el nivel de registro de mensajes de diagnóstico en el archivo. Tenga cuidado de que el registro muy detallado puede ralentizar la aplicación y crear grandes archivos de registro. La memoria externa debe estar presente.</string>
     <string name="preferences_collect_neighboring_cells_title">Recolectar celdas contiguas</string>
     <string name="preferences_collect_neighboring_cells_on_summary">Las celdas vecinas seran recolectadas, si están disponibles.</string>
     <string name="preferences_collect_neighboring_cells_off_summary">Las celdas vecinas serán desechadas.</string>

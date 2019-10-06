@@ -202,6 +202,7 @@
     <string name="status_ok">OK</string>
     <string name="status_low_gps_accuracy">niska dokładność <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">brak lokacji</string>
+    <string name="status_disabled">wyłączony</string>
     <string name="invalid_system_time">Data/czas w systemie jest nieprawidłowy</string>
     <string name="airplane_mode">Tryb samolotowy aktywny</string>
     <string name="battery_optimizations">Optymalizacja baterii jest włączona</string>

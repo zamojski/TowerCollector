@@ -95,7 +95,7 @@
     <string name="preferences_about_collector_api_version_title">О версии API Сборщика</string>
     <string name="preferences_about_collector_api_version_summary">Информация об отличиях между версиями API.</string>
     <string name="preferences_file_logging_level_title">Уровень протокола</string>
-    <string name="preferences_file_logging_level_summary">Определяет уровень подробности журнала сообщений. Помните, что очень подробное ведение журнала может замедлить работу приложения и создать большие файлы журналов. Должна присутствовать внешняя память.</string>
+    <string name="preferences_file_logging_level_summary">Определяет уровень регистрации диагностических сообщений в файле. Помните, что очень подробное ведение журнала может замедлить работу приложения и создать большие файлы журналов. Должна присутствовать внешняя память.</string>
     <string name="preferences_collect_neighboring_cells_title">Сбор соседних сот</string>
     <string name="preferences_collect_neighboring_cells_on_summary">Собирать соседние соты, если доступны.</string>
     <string name="preferences_collect_neighboring_cells_off_summary">Соседние соты игнорируются.</string>

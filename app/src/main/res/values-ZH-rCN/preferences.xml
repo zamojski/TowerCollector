@@ -95,7 +95,7 @@
     <string name="preferences_about_collector_api_version_title">关于Collector API版本</string>
     <string name="preferences_about_collector_api_version_summary">有关API版本之间差异的信息。</string>
     <string name="preferences_file_logging_level_title">文件日志记录级别</string>
-    <string name="preferences_file_logging_level_summary">定义消息文件日志记录级别。请注意，高度详细的日志记录可能会降低应用速度并创建大型日志文件。必须存在外部存储器。</string>
+    <string name="preferences_file_logging_level_summary">定义诊断消息到文件的日志记录级别。请注意，高度详细的日志记录可能会降低应用速度并创建大型日志文件。必须存在外部存储器。</string>
     <string name="preferences_collect_neighboring_cells_title">收集相邻的基站</string>
     <string name="preferences_collect_neighboring_cells_on_summary">如果可用，将收集相邻的基站</string>
     <string name="preferences_collect_neighboring_cells_off_summary">相邻的小区将被丢弃。</string>

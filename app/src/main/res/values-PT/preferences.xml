@@ -95,7 +95,7 @@
     <string name="preferences_about_collector_api_version_title">Sobre a versão da API do Coletor</string>
     <string name="preferences_about_collector_api_version_summary">informação sobre as diferenças entre as versões de API.</string>
     <string name="preferences_file_logging_level_title">Nível de logging de arquivo</string>
-    <string name="preferences_file_logging_level_summary">Define o nível de logging das mensagens do arquivo. Tome cuidado porque o logging altamente detalhado pode deixar o app lento e criar arquivos de log grandes. É necessário ter a memória externa.</string>
+    <string name="preferences_file_logging_level_summary">Define o nível de log de mensagens de diagnóstico para o arquivo. Tome cuidado porque o logging altamente detalhado pode deixar o app lento e criar arquivos de log grandes. É necessário ter a memória externa.</string>
     <string name="preferences_collect_neighboring_cells_title">Coletar células vizinhas</string>
     <string name="preferences_collect_neighboring_cells_on_summary">Células vizinhas serão coletadas se disponíveis.</string>
     <string name="preferences_collect_neighboring_cells_off_summary">Células vizinhas serão descartadas.</string>
