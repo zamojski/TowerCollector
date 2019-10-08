@@ -6,8 +6,6 @@ package info.zamojski.soft.towercollector.files.generators.wrappers;
 
 import android.content.Context;
 
-import org.acra.ACRA;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -24,7 +22,6 @@ import info.zamojski.soft.towercollector.files.formatters.gpx.model.HeaderData;
 import info.zamojski.soft.towercollector.files.generators.GpxTextGenerator;
 import info.zamojski.soft.towercollector.model.Boundaries;
 import info.zamojski.soft.towercollector.model.Measurement;
-import info.zamojski.soft.towercollector.model.Statistics;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
 import timber.log.Timber;
 
@@ -100,11 +97,11 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
             }
         } catch (DeviceOperationException ex) {
             Timber.e(ex, "generate(): Failed to check external memory compatibility");
-            ACRA.getErrorReporter().handleSilentException(ex);
+            MyApplication.handleSilentException(ex);
             return new FileGeneratorResult(GeneratorResult.Failed, ex.getReason());
         } catch (IOException ex) {
             Timber.e(ex, "generate(): Failed to save data on external memory");
-            ACRA.getErrorReporter().handleSilentException(ex);
+            MyApplication.handleSilentException(ex);
             return new FileGeneratorResult(GeneratorResult.Failed, Reason.Unknown, ex.getMessage());
         } finally {
             // just for sure

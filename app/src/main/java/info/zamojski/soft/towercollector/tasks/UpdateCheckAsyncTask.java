@@ -9,8 +9,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import org.acra.ACRA;
-
+import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.io.network.UpdateClient;
 import info.zamojski.soft.towercollector.model.UpdateInfo;
 import info.zamojski.soft.towercollector.parsers.update.UpdateFeedParseException;
@@ -53,7 +52,7 @@ public class UpdateCheckAsyncTask extends AsyncTask<String, Void, UpdateInfo> {
                     return updateInfo;
                 } catch (UpdateFeedParseException ex) {
                     Timber.w("doInBackground(): Cannot parse update feed response");
-                    ACRA.getErrorReporter().handleSilentException(ex);
+                    MyApplication.handleSilentException(ex);
                 }
             }
         } catch (SecurityException ex) {

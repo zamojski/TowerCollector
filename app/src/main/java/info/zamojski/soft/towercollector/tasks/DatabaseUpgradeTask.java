@@ -33,7 +33,7 @@ public class DatabaseUpgradeTask {
             MyApplication.getAnalytics().sendMigrationFinished(duration, oldDbVersion, stats);
         } catch (RuntimeException ex) {
             Timber.e(ex, "doInBackground(): Database migration crashed");
-            ACRA.getErrorReporter().handleSilentException(ex);
+            MyApplication.handleSilentException(ex);
             throw ex;
         }
     }

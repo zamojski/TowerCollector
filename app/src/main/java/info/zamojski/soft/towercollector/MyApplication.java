@@ -6,7 +6,9 @@ package info.zamojski.soft.towercollector;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.acra.ACRA;
 import org.acra.ACRAConstants;
@@ -24,12 +26,14 @@ import info.zamojski.soft.towercollector.logging.ConsoleLoggingTree;
 import info.zamojski.soft.towercollector.logging.FileLoggingTree;
 import info.zamojski.soft.towercollector.providers.AppThemeProvider;
 import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvider;
+import info.zamojski.soft.towercollector.utils.HashUtils;
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
 
 import android.Manifest;
 import android.app.Application;
 import android.app.NotificationManager;
 import android.os.Build;
+
 import androidx.appcompat.app.AppCompatDelegate;
 import android.util.Log;
 import android.widget.Toast;
@@ -47,6 +51,8 @@ public class MyApplication extends Application {
     private static int appTheme;
 
     private static String backgroundTaskName = null;
+
+    private static Set<String> handledSilentExceptionHashes = new HashSet<>();
 
     // don't use BuildConfig as it sometimes doesn't set DEBUG to true
     private static final boolean EVENTBUS_SUBSCRIBER_CAN_THROW = true;
@@ -213,5 +219,13 @@ public class MyApplication extends Application {
 
     public synchronized static boolean isBackgroundTaskRunning(Class clazz) {
         return (backgroundTaskName != null && backgroundTaskName.equals(clazz.getName()));
+    }
+
+    public synchronized static void handleSilentException(Throwable throwable) {
+        String throwableHash = HashUtils.toSha1(throwable.toString());
+        if(!handledSilentExceptionHashes.contains(throwableHash)) {
+            handledSilentExceptionHashes.add(throwableHash);
+            ACRA.getErrorReporter().handleSilentException(throwable);
+        }
     }
 }

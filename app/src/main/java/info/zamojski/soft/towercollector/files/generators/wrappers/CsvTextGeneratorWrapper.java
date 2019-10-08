@@ -6,11 +6,10 @@ package info.zamojski.soft.towercollector.files.generators.wrappers;
 
 import android.content.Context;
 
-import org.acra.ACRA;
-
 import java.io.IOException;
 import java.util.List;
 
+import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.GeneratorResult;
 import info.zamojski.soft.towercollector.files.DeviceOperationException;
@@ -74,11 +73,11 @@ public class CsvTextGeneratorWrapper extends TextGeneratorWrapperBase {
             }
         } catch (DeviceOperationException ex) {
             Timber.e(ex, "generate(): Failed to check external memory compatibility");
-            ACRA.getErrorReporter().handleSilentException(ex);
+            MyApplication.handleSilentException(ex);
             return new FileGeneratorResult(GeneratorResult.Failed, ex.getReason());
         } catch (IOException ex) {
             Timber.e(ex, "generate(): Failed to save data on external memory");
-            ACRA.getErrorReporter().handleSilentException(ex);
+            MyApplication.handleSilentException(ex);
             return new FileGeneratorResult(GeneratorResult.Failed, Reason.Unknown, ex.getMessage());
         } finally {
             // just for sure

@@ -10,8 +10,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 
-import org.acra.ACRA;
-
 import java.util.List;
 
 import info.zamojski.soft.towercollector.BuildConfig;
@@ -35,7 +33,7 @@ public class ApkUtils {
             currentAppVersion = pi.versionCode;
         } catch (PackageManager.NameNotFoundException ex) {
             Timber.e(ex, "getApkVersionCode(): Current version number not found");
-            ACRA.getErrorReporter().handleSilentException(ex);
+            MyApplication.handleSilentException(ex);
         }
         return currentAppVersion;
     }
@@ -47,7 +45,7 @@ public class ApkUtils {
             currentAppVersion = pi.versionName;
         } catch (PackageManager.NameNotFoundException ex) {
             Timber.e(ex, "getApkVersionName(): Current version name not found");
-            ACRA.getErrorReporter().handleSilentException(ex);
+            MyApplication.handleSilentException(ex);
         }
         return currentAppVersion;
     }

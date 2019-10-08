@@ -27,14 +27,11 @@ import info.zamojski.soft.towercollector.utils.NetworkUtils;
 import timber.log.Timber;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
-
-import org.acra.ACRA;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -475,7 +472,7 @@ public class UploaderService extends Service {
             } catch (IOException ex) {
                 // this should never happen for MemoryTextDevice
                 Timber.tag(INNER_TAG).e(ex, "uploadToOcid(): Error while generating file");
-                ACRA.getErrorReporter().handleSilentException(ex);
+                MyApplication.handleSilentException(ex);
                 return UploadResult.Failure;
             }
             // get content
@@ -522,7 +519,7 @@ public class UploaderService extends Service {
             } catch (IOException ex) {
                 // this should never happen for MemoryTextDevice
                 Timber.tag(INNER_TAG).e(ex, "uploadToMls(): Error while generating file");
-                ACRA.getErrorReporter().handleSilentException(ex);
+                MyApplication.handleSilentException(ex);
                 return UploadResult.Failure;
             }
             // get content

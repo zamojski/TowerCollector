@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.dao.migration.DbMigrationHelper;
 import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
@@ -165,14 +166,14 @@ public class MeasurementsDatabase {
                 // report exception because it shouldn't occur (one time per app run)
                 if (!insertionFailureReported) {
                     Throwable ex = new MeasurementInsertionFailedException("Measurements not inserted", resultSb.toString());
-                    ACRA.getErrorReporter().handleSilentException(ex);
+                    MyApplication.handleSilentException(ex);
                     insertionFailureReported = true;
                 }
             }
         } catch (Exception ex) {
             result = false;
             Timber.e(ex, "insertMeasurement(): Error while saving measurement");
-            ACRA.getErrorReporter().handleSilentException(ex);
+            MyApplication.handleSilentException(ex);
         } finally {
             invalidateCache();
             db.endTransaction();

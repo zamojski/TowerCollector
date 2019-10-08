@@ -16,8 +16,7 @@ import android.telephony.CellInfoGsm;
 import android.telephony.CellInfoLte;
 import android.telephony.CellInfoWcdma;
 
-import org.acra.ACRA;
-
+import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.collector.validators.specific.WcdmaCellIdentityValidator;
 import info.zamojski.soft.towercollector.model.Cell;
 import timber.log.Timber;
@@ -103,7 +102,7 @@ public class CellIdentityConverter {
         } else {
             Exception ex = new UnsupportedOperationException("Cell identity type not supported `" + cellInfo.getClass().getName() + "` = `" + cellInfo.toString() + "`");
             Timber.e(ex);
-            ACRA.getErrorReporter().handleSilentException(ex);
+            MyApplication.handleSilentException(ex);
         }
         return sb.toString();
     }
