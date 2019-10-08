@@ -644,8 +644,11 @@ public class MeasurementsDatabase {
     private static class MeasurementsOpenHelper extends SQLiteOpenHelper {
         private static final String INNER_TAG = MeasurementsDatabase.class.getSimpleName() + "." + MeasurementsOpenHelper.class.getSimpleName();
 
+        private Context context;
+
         MeasurementsOpenHelper(Context context) {
             super(context, DATABASE_FILE_NAME, null, DATABASE_FILE_VERSION);
+            this.context = context;
         }
 
         @Override
@@ -658,11 +661,12 @@ public class MeasurementsDatabase {
             tables.add(new CellSignalsTable());
             tables.add(new NotUploadedMeasurementsView());
 
-            for (ITable table : tables) {
-                String[] queries = table.getCreateQueries();
-                for (String query : queries) {
-                    sqliteDatabase.execSQL(query);
-                }
+            try {
+                createSchema(sqliteDatabase, tables);
+            } catch (SQLiteException ex) {
+                boolean dbDeleted = context.deleteDatabase(MeasurementsDatabase.DATABASE_FILE_NAME);
+                Timber.tag(INNER_TAG).e("Failed to create schema, database deleted = " + dbDeleted + ", retrying");
+                createSchema(sqliteDatabase, tables);
             }
         }
 
@@ -671,6 +675,15 @@ public class MeasurementsDatabase {
             Timber.tag(INNER_TAG).d("onUpgrade(): Upgrading db from version %s to %s", oldVersion, newVersion);
             DbMigrationHelper migrationHelper = new DbMigrationHelper(sqliteDatabase);
             migrationHelper.upgrade(oldVersion, newVersion);
+        }
+
+        private void createSchema(SQLiteDatabase sqliteDatabase, List<ITable> tables) {
+            for (ITable table : tables) {
+                String[] queries = table.getCreateQueries();
+                for (String query : queries) {
+                    sqliteDatabase.execSQL(query);
+                }
+            }
         }
     }
 }
