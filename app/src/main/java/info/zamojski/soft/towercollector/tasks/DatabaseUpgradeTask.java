@@ -4,7 +4,8 @@
 
 package info.zamojski.soft.towercollector.tasks;
 
-import org.acra.ACRA;
+import android.app.Activity;
+import android.widget.Toast;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
@@ -13,9 +14,11 @@ import timber.log.Timber;
 
 public class DatabaseUpgradeTask {
 
+    private Activity activity;
     private int oldDbVersion;
 
-    public DatabaseUpgradeTask(int oldDbVersion) {
+    public DatabaseUpgradeTask(Activity activity, int oldDbVersion) {
+        this.activity = activity;
         this.oldDbVersion = oldDbVersion;
     }
 
@@ -33,6 +36,7 @@ public class DatabaseUpgradeTask {
             MyApplication.getAnalytics().sendMigrationFinished(duration, oldDbVersion, stats);
         } catch (RuntimeException ex) {
             Timber.e(ex, "doInBackground(): Database migration crashed");
+            Toast.makeText(activity, "Database upgrade failed. Please clear app data or reinstall.", Toast.LENGTH_LONG).show();
             MyApplication.handleSilentException(ex);
             throw ex;
         }
