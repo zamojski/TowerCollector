@@ -16,12 +16,11 @@ public class GpsUtils {
     public static boolean isGpsEnabled(Context context) {
         if (PermissionChecker.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PermissionChecker.PERMISSION_GRANTED) {
             LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+            boolean isEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                return locationManager.isLocationEnabled();
-            } else {
-                return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+                return isEnabled && locationManager.isLocationEnabled();
             }
-
+            return isEnabled;
         }
         // to cover the case when permission denied on API lower than 21
         return false;
