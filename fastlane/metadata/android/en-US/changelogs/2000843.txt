@@ -1,0 +1,7 @@
+Currently less than 4% percent of your devices use Android 4.0-4.4. Unfortunately, this blocks the possibility of implementing security and stability enhancements on all other devices. Therefore, I decided that this version is the last to support the Android 4.x line and from now on it will only receive critical patches and updates to keep it usable. Android 5.0 will be the new minimum supported version.
+- Improved compatibility with Android 9.
+- Update GPS status when disabled while collecting.
+- Show warning when device enters battery saver mode.
+- Improved database creation and upgrade error handling.
+- Updated external components to improve stability.
+- Updated translations.
