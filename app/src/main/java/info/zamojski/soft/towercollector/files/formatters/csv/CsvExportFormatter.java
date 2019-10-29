@@ -50,7 +50,7 @@ public class CsvExportFormatter extends CsvFormatter {
             sb.append(',');
             sb.append(formatInt(c.getLac()));
             sb.append(',');
-            sb.append(formatInt(c.getCid()));
+            sb.append(formatLong(c.getCid()));
             sb.append(',');
             int psc = c.getPsc();
             if (psc != Cell.UNKNOWN_CID)

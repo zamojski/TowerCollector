@@ -12,8 +12,6 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 
-import org.acra.ACRA;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -36,7 +34,7 @@ import timber.log.Timber;
 public class MeasurementsDatabase {
 
     public static final String DATABASE_FILE_NAME = "measurements.db";
-    public static final int DATABASE_FILE_VERSION = 14;
+    public static final int DATABASE_FILE_VERSION = 15;
 
     private static final int NUM_OF_DELETIONS_PER_ONE_QUERY = 50;
 
@@ -449,7 +447,7 @@ public class MeasurementsDatabase {
             cell.setMcc(cursor.getInt(mccColumnIndex));
             cell.setMnc(cursor.getInt(mncColumnIndex));
             cell.setLac(cursor.getInt(lacColumnIndex));
-            cell.setCid(cursor.getInt(cidColumnIndex));
+            cell.setCid(cursor.getLong(cidColumnIndex));
             cell.setNetworkType(NetworkGroup.fromValue(cursor.getInt(netTypeColumnIndex)));
             cell.setNeighboring(cursor.getInt(neighboringColumnIndex) == 1);
             cell.setPsc(cursor.getInt(pscColumnIndex));

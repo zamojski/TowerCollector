@@ -4,36 +4,17 @@
 
 package info.zamojski.soft.towercollector.utils;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
 import android.text.TextUtils;
-
-import timber.log.Timber;
-
 
 public class StringUtils {
 
-
-    public static String encodeHtml(String content) {
-        final String textEncoding = "UTF-8";
-        String encodedContent = content;
-        try {
-            encodedContent = URLEncoder.encode(encodedContent, textEncoding);
-        } catch (UnsupportedEncodingException ex) {
-            Timber.e(ex, "encodeHtml(): Unsupported encoding %s", textEncoding);
-        }
-        return encodedContent.replaceAll("\\+", " ");
-    }
-
-    public static float toFloat(String value) {
+    public static int toInteger(String value, int defaultValue) {
         if (TextUtils.isEmpty(value))
-            return 0.0f;
+            return defaultValue;
         try {
-            float val = Float.parseFloat(value);
-            return val;
+            return Integer.parseInt(value);
         } catch (NumberFormatException ex) {
-            return 0.0f;
+            return defaultValue;
         }
     }
 

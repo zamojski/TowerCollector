@@ -37,6 +37,10 @@ public class CsvUploadFormatter extends CsvFormatter {
         StringBuilder sb = new StringBuilder(140);
 
         for (Cell c : m.getCells()) {
+            if (c.getNetworkType() == NetworkGroup.Tdscdma || c.getNetworkType() == NetworkGroup.Nr) {
+                // skip as not supported
+                continue;
+            }
             sb.append(formatCoordinate(m.getLatitude()));
             sb.append(',');
             sb.append(formatCoordinate(m.getLongitude()));
@@ -61,7 +65,7 @@ public class CsvUploadFormatter extends CsvFormatter {
                 // cellid
                 sb.append(',');
                 // bid
-                sb.append(formatInt(c.getCid()));
+                sb.append(formatLong(c.getCid()));
                 sb.append(',');
             } else {
                 // mcc
@@ -83,7 +87,7 @@ public class CsvUploadFormatter extends CsvFormatter {
                 // nid
                 sb.append(',');
                 // cellid
-                sb.append(formatInt(c.getCid()));
+                sb.append(formatLong(c.getCid()));
                 sb.append(',');
                 // bid
                 sb.append(',');

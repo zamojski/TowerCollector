@@ -39,4 +39,8 @@ public abstract class CsvFormatter implements ICsvFormatter {
     protected String formatInt(int value) {
         return intFormatter.format(value);
     }
+
+    protected String formatLong(long value) {
+        return intFormatter.format(value);
+    }
 }

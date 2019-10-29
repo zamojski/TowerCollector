@@ -4,8 +4,6 @@
 
 package info.zamojski.soft.towercollector.collector.validators.specific;
 
-import android.annotation.TargetApi;
-import android.os.Build;
 import android.telephony.CellIdentityGsm;
 import android.telephony.CellIdentityWcdma;
 
@@ -13,8 +11,6 @@ import timber.log.Timber;
 
 public class WcdmaCellIdentityValidator {
 
-
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     public boolean isValid(CellIdentityWcdma cell) {
         boolean valid = (isCidInRange(cell.getCid()) && isLacInRange(cell.getLac())
                 && isMncInRange(cell.getMnc()) && isMccInRange(cell.getMcc())
@@ -26,7 +22,6 @@ public class WcdmaCellIdentityValidator {
         return valid;
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public boolean isValid(CellIdentityGsm cell) {
         boolean valid = (isCidInRange(cell.getCid()) && isLacInRange(cell.getLac())
                 && isMncInRange(cell.getMnc()) && isMccInRange(cell.getMcc())

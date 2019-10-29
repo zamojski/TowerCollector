@@ -100,7 +100,7 @@ public class GpxExportFormatter implements IGpxFormatter {
                     (mcc != Cell.UNKNOWN_CID ? String.format(LOCALE, "MCC %s, ", formatInt(mcc)) : ""),
                     formatInt(c.getMnc()),
                     formatInt(c.getLac()),
-                    formatInt(c.getCid()),
+                    formatLong(c.getCid()),
                     (psc != Cell.UNKNOWN_CID ? String.format(LOCALE, "PSC %s, ", formatInt(psc)) : ""),
                     formatDbmSignal(c.getDbm()),
                     cellUtils.getSystemType(c.getNetworkType()),
@@ -163,6 +163,10 @@ public class GpxExportFormatter implements IGpxFormatter {
     }
 
     private String formatInt(int value) {
+        return intFormatter.format(value);
+    }
+
+    private String formatLong(long value) {
         return intFormatter.format(value);
     }
 }

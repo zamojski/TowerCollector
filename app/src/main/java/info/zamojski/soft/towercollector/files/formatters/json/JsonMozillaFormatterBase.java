@@ -43,7 +43,7 @@ public abstract class JsonMozillaFormatterBase extends JsonFormatterBase {
             item.put("position", position);
             JSONArray cellTowers = new JSONArray();
             for (Cell c : m.getCells()) {
-                if (c.getNetworkType() == NetworkGroup.Cdma || c.getMcc() == Cell.UNKNOWN_CID)
+                if (c.getNetworkType() == NetworkGroup.Cdma || c.getMcc() == Cell.UNKNOWN_CID || c.getNetworkType() == NetworkGroup.Tdscdma || c.getNetworkType() == NetworkGroup.Nr)
                     continue; // Not supported
                 JSONObject cellTower = new JSONObject();
                 cellTower.put("radioType", formatRadioType(c.getNetworkType()));

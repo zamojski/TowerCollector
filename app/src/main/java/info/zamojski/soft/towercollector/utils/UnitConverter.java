@@ -10,19 +10,9 @@ import info.zamojski.soft.towercollector.model.Cell;
 
 public class UnitConverter {
     private static final float METERS_TO_FEET_MULTIPLIER = 3.280839895013123f;
-    private static final float METERS_PER_SECOND_TO_MILES_PER_HOUR_MULTIPLIER = 2.236980772f;
-    private static final float METERS_PER_SECOND_TO_KILOMETERS_PER_HOUR_MULTIPLIER = 3.5999712002f;
 
     public static float convertMetersToFeet(float meters) {
         return (meters * METERS_TO_FEET_MULTIPLIER);
-    }
-
-    public static float convertMetersPerSecondToKilometersPerHour(float metersPerSecond) {
-        return (metersPerSecond * METERS_PER_SECOND_TO_KILOMETERS_PER_HOUR_MULTIPLIER);
-    }
-
-    public static float convertMetersPerSecondToMilesPerHour(float metersPerSecond) {
-        return (metersPerSecond * METERS_PER_SECOND_TO_MILES_PER_HOUR_MULTIPLIER);
     }
 
     public static int convertGsmAsuToDbm(int asu) {
@@ -31,7 +21,7 @@ public class UnitConverter {
         return 2 * asu - 113;
     }
 
-    // ranges taken from 5.0.0 android/telephony/CellSignalStrength.java#CellSignalStrength.getAsuLevel()
+    // ranges taken from 5.0.0 android/telephony/CellSignalStrength.java#CellSignalStrength.getAsuFromRssiDbm()
     public static int convertGsmDbmToAsu(int dbm) {
         if (dbm == Cell.UNKNOWN_SIGNAL || dbm == NeighboringCellInfo.UNKNOWN_RSSI)
             return Cell.UNKNOWN_SIGNAL;
@@ -62,22 +52,6 @@ public class UnitConverter {
         if (dbm >= -43)
             return 97;
         return dbm + 140;
-    }
-
-    public static int convertCdmaAsuToDbm(int asu) {
-        if (asu == Cell.UNKNOWN_SIGNAL || asu == NeighboringCellInfo.UNKNOWN_RSSI)
-            return Cell.UNKNOWN_SIGNAL;
-        if (asu == 16)
-            return -75;
-        else if (asu == 8)
-            return -82;
-        else if (asu == 4)
-            return -90;
-        else if (asu == 2)
-            return -95;
-        else if (asu == 1)
-            return -100;
-        return Cell.UNKNOWN_SIGNAL;
     }
 
     public static int convertCdmaDbmToAsu(int dbm) {

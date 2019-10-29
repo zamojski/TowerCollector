@@ -4,16 +4,19 @@
 
 package info.zamojski.soft.towercollector.collector.converters;
 
-import android.annotation.TargetApi;
 import android.os.Build;
 import android.telephony.CellIdentityCdma;
 import android.telephony.CellIdentityGsm;
 import android.telephony.CellIdentityLte;
+import android.telephony.CellIdentityNr;
+import android.telephony.CellIdentityTdscdma;
 import android.telephony.CellIdentityWcdma;
 import android.telephony.CellInfo;
 import android.telephony.CellInfoCdma;
 import android.telephony.CellInfoGsm;
 import android.telephony.CellInfoLte;
+import android.telephony.CellInfoNr;
+import android.telephony.CellInfoTdscdma;
 import android.telephony.CellInfoWcdma;
 
 import info.zamojski.soft.towercollector.MyApplication;
@@ -21,7 +24,6 @@ import info.zamojski.soft.towercollector.collector.validators.specific.WcdmaCell
 import info.zamojski.soft.towercollector.model.Cell;
 import timber.log.Timber;
 
-@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class CellIdentityConverter {
 
     private final WcdmaCellIdentityValidator wcdmaValidator;
@@ -42,7 +44,7 @@ public class CellIdentityConverter {
             } else {
                 cell.setGsmCellInfo(identity.getMcc(), identity.getMnc(), identity.getLac(), identity.getCid());
             }
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2 && cellInfo instanceof CellInfoWcdma) {
+        } else if (cellInfo instanceof CellInfoWcdma) {
             CellInfoWcdma wcdmaCellInfo = (CellInfoWcdma) cellInfo;
             CellIdentityWcdma identity = wcdmaCellInfo.getCellIdentity();
             cell.setWcdmaCellInfo(identity.getMcc(), identity.getMnc(), identity.getLac(), identity.getCid(), identity.getPsc());
@@ -50,6 +52,14 @@ public class CellIdentityConverter {
             CellInfoLte lteCellInfo = (CellInfoLte) cellInfo;
             CellIdentityLte identity = lteCellInfo.getCellIdentity();
             cell.setLteCellInfo(identity.getMcc(), identity.getMnc(), identity.getTac(), identity.getCi(), identity.getPci());
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && cellInfo instanceof CellInfoNr) {
+            CellInfoNr lteCellInfo = (CellInfoNr) cellInfo;
+            CellIdentityNr identity = (CellIdentityNr) lteCellInfo.getCellIdentity();
+            cell.setNrCellInfo(identity.getMccString(), identity.getMncString(), identity.getTac(), identity.getNci(), identity.getPci());
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && cellInfo instanceof CellInfoTdscdma) {
+            CellInfoTdscdma lteCellInfo = (CellInfoTdscdma) cellInfo;
+            CellIdentityTdscdma identity = lteCellInfo.getCellIdentity();
+            cell.setTdscdmaCellInfo(identity.getMccString(), identity.getMncString(), identity.getLac(), identity.getCid(), identity.getCpid());
         } else if (cellInfo instanceof CellInfoCdma) {
             CellInfoCdma cdmaCellInfo = (CellInfoCdma) cellInfo;
             CellIdentityCdma identity = cdmaCellInfo.getCellIdentity();
@@ -78,7 +88,7 @@ public class CellIdentityConverter {
                     .append("_").append(identity.getMnc())
                     .append("_").append(identity.getLac())
                     .append("_").append(identity.getCid());
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2 && cellInfo instanceof CellInfoWcdma) {
+        } else if (cellInfo instanceof CellInfoWcdma) {
             CellInfoWcdma wcdmaCellInfo = (CellInfoWcdma) cellInfo;
             CellIdentityWcdma identity = wcdmaCellInfo.getCellIdentity();
             sb.append(identity.getMcc())
@@ -92,6 +102,20 @@ public class CellIdentityConverter {
                     .append("_").append(identity.getMnc())
                     .append("_").append(identity.getTac())
                     .append("_").append(identity.getCi());
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && cellInfo instanceof CellInfoNr) {
+            CellInfoNr nrCellInfo = (CellInfoNr) cellInfo;
+            CellIdentityNr identity = (CellIdentityNr) nrCellInfo.getCellIdentity();
+            sb.append(identity.getMccString())
+                    .append("_").append(identity.getMncString())
+                    .append("_").append(identity.getTac())
+                    .append("_").append(identity.getNci());
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && cellInfo instanceof CellInfoTdscdma) {
+            CellInfoTdscdma tdscdmaCellInfo = (CellInfoTdscdma) cellInfo;
+            CellIdentityTdscdma identity = tdscdmaCellInfo.getCellIdentity();
+            sb.append(identity.getMccString())
+                    .append("_").append(identity.getMncString())
+                    .append("_").append(identity.getLac())
+                    .append("_").append(identity.getCid());
         } else if (cellInfo instanceof CellInfoCdma) {
             CellInfoCdma cdmaCellInfo = (CellInfoCdma) cellInfo;
             CellIdentityCdma identity = cdmaCellInfo.getCellIdentity();

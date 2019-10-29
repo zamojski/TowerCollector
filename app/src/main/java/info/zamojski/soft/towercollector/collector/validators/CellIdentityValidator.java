@@ -7,23 +7,29 @@ package info.zamojski.soft.towercollector.collector.validators;
 import info.zamojski.soft.towercollector.collector.validators.specific.CdmaCellIdentityValidator;
 import info.zamojski.soft.towercollector.collector.validators.specific.GsmCellIdentityValidator;
 import info.zamojski.soft.towercollector.collector.validators.specific.LteCellIdentityValidator;
+import info.zamojski.soft.towercollector.collector.validators.specific.NrCellIdentityValidator;
+import info.zamojski.soft.towercollector.collector.validators.specific.TdscdmaCellIdentityValidator;
 import info.zamojski.soft.towercollector.collector.validators.specific.WcdmaCellIdentityValidator;
 
 import android.annotation.TargetApi;
 import android.os.Build;
+import android.telephony.CellIdentityNr;
 import android.telephony.CellInfo;
 import android.telephony.CellInfoCdma;
 import android.telephony.CellInfoGsm;
 import android.telephony.CellInfoLte;
+import android.telephony.CellInfoNr;
+import android.telephony.CellInfoTdscdma;
 import android.telephony.CellInfoWcdma;
 
-@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class CellIdentityValidator {
 
     private GsmCellIdentityValidator gsmValidator;
     private WcdmaCellIdentityValidator wcdmaValidator;
     private LteCellIdentityValidator lteValidator;
     private CdmaCellIdentityValidator cdmaValidator;
+    private NrCellIdentityValidator nrValidator;
+    private TdscdmaCellIdentityValidator tdscdmaValidator;
 
     public boolean isValid(CellInfo cellInfo) {
         if (cellInfo instanceof CellInfoGsm) {
@@ -34,7 +40,7 @@ public class CellIdentityValidator {
                 return true;
             return getGsmValidator().isValid(gsmCellInfo.getCellIdentity());
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2 && cellInfo instanceof CellInfoWcdma) {
+        if (cellInfo instanceof CellInfoWcdma) {
             CellInfoWcdma wcdmaCellInfo = (CellInfoWcdma) cellInfo;
             return getWcdmaValidator().isValid(wcdmaCellInfo.getCellIdentity());
         }
@@ -45,6 +51,14 @@ public class CellIdentityValidator {
         if (cellInfo instanceof CellInfoCdma) {
             CellInfoCdma cdmaCellInfo = (CellInfoCdma) cellInfo;
             return getCdmaValidator().isValid(cdmaCellInfo.getCellIdentity());
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && cellInfo instanceof CellInfoNr) {
+            CellInfoNr nrCellInfo = (CellInfoNr) cellInfo;
+            return getNrValidator().isValid((CellIdentityNr) nrCellInfo.getCellIdentity());
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && cellInfo instanceof CellInfoTdscdma) {
+            CellInfoTdscdma tdscdmaCellInfo = (CellInfoTdscdma) cellInfo;
+            return getTdscdmaValidator().isValid(tdscdmaCellInfo.getCellIdentity());
         }
         throw new UnsupportedOperationException("Cell identity type not supported `" + cellInfo.getClass().getName() + "`");
     }
@@ -77,4 +91,17 @@ public class CellIdentityValidator {
         return cdmaValidator;
     }
 
+    private NrCellIdentityValidator getNrValidator() {
+        if (nrValidator == null) {
+            nrValidator = new NrCellIdentityValidator();
+        }
+        return nrValidator;
+    }
+
+    private TdscdmaCellIdentityValidator getTdscdmaValidator() {
+        if (tdscdmaValidator == null) {
+            tdscdmaValidator = new TdscdmaCellIdentityValidator();
+        }
+        return tdscdmaValidator;
+    }
 }

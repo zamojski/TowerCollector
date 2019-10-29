@@ -27,11 +27,13 @@ import info.zamojski.soft.towercollector.collector.validators.SystemTimeValidato
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
 import info.zamojski.soft.towercollector.model.Statistics;
+import info.zamojski.soft.towercollector.model.Tuple;
 import info.zamojski.soft.towercollector.utils.GpsUtils;
 import info.zamojski.soft.towercollector.utils.NetworkTypeUtils;
 import info.zamojski.soft.towercollector.utils.MobileUtils;
 import timber.log.Timber;
 
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -90,6 +92,7 @@ public class CollectorService extends Service {
 
     private IBinder binder = new LocalBinder();
     private TelephonyManager telephonyManager;
+    private Tuple<Method, Boolean> getNeighboringCellInfoMethod;
     private LocationManager locationManager;
 
     private NotificationManager notificationManager;
@@ -156,9 +159,7 @@ public class CollectorService extends Service {
         // register receiver
         registerReceiver(stopRequestBroadcastReceiver, new IntentFilter(BROADCAST_INTENT_STOP_SERVICE));
         registerReceiver(batteryStatusBroadcastReceiver, new IntentFilter(Intent.ACTION_BATTERY_LOW));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            registerReceiver(locationModeOrProvidersChanged, new IntentFilter(LocationManager.MODE_CHANGED_ACTION));
-        }
+        registerReceiver(locationModeOrProvidersChanged, new IntentFilter(LocationManager.MODE_CHANGED_ACTION));
         registerReceiver(locationModeOrProvidersChanged, new IntentFilter(LocationManager.PROVIDERS_CHANGED_ACTION));
         Notification notification = notificationHelper.createNotification(notificationManager, getGpsStatusNotificationText(getGpsStatus()));
         // start as foreground service to prevent from killing
@@ -410,7 +411,10 @@ public class CollectorService extends Service {
             public void onCellLocationChanged(CellLocation cellLocation) {
                 try {
                     Timber.tag(INNER_TAG).d("onCellLocationChanged(): %s", cellLocation);
-                    List<NeighboringCellInfo> neighboringCells = telephonyManager.getNeighboringCellInfo();
+                    List<NeighboringCellInfo> neighboringCells = null;
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+                        neighboringCells = getNeighboringCellInfo(telephonyManager);
+                    }
                     processCellLocation(cellLocation, neighboringCells);
                 } catch (SecurityException ex) {
                     Timber.tag(INNER_TAG).e(ex, "onCellLocationChanged(): coarse location or phone permission is denied");
@@ -433,7 +437,10 @@ public class CollectorService extends Service {
                 try {
                     CellLocation cellLocation = telephonyManager.getCellLocation();
                     Timber.tag(INNER_TAG).d("run(): %s", cellLocation);
-                    List<NeighboringCellInfo> neighboringCells = telephonyManager.getNeighboringCellInfo();
+                    List<NeighboringCellInfo> neighboringCells = null;
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+                        neighboringCells = getNeighboringCellInfo(telephonyManager);
+                    }
                     processCellLocation(cellLocation, neighboringCells);
                 } catch (SecurityException ex) {
                     Timber.tag(INNER_TAG).e(ex, "run(): coarse location or phone permission is denied");
@@ -759,7 +766,6 @@ public class CollectorService extends Service {
         }, 0, WAKE_LOCK_ACQUIRE_INTERVAL);
     }
 
-    @SuppressWarnings("deprecation")
     private WakeLock createWakeLock(KeepScreenOnMode keepScreenOnMode) {
         WakeLock newWakeLock = null;
         if (keepScreenOnMode == KeepScreenOnMode.FullBrightness) {
@@ -786,6 +792,23 @@ public class CollectorService extends Service {
             result = interval;
         }
         return result;
+    }
+
+    private List<NeighboringCellInfo> getNeighboringCellInfo(TelephonyManager telephonyManager) {
+        try {
+            if (getNeighboringCellInfoMethod == null) {
+                getNeighboringCellInfoMethod = new Tuple<>(TelephonyManager.class.getMethod("getNeighboringCellInfo"), Boolean.TRUE);
+            }
+            if (getNeighboringCellInfoMethod.getItem2() == Boolean.TRUE) {
+                return (List<NeighboringCellInfo>) getNeighboringCellInfoMethod.getItem1().invoke(telephonyManager);
+            }
+        } catch (NoSuchMethodException ex) {
+            getNeighboringCellInfoMethod = new Tuple<>(null, Boolean.FALSE);
+            Timber.w(ex, "getNeighboringCellInfo(): Method not found");
+        } catch (Exception ex) {
+            Timber.w(ex, "getNeighboringCellInfo(): Cannot get neighboring cell info");
+        }
+        return null;
     }
 
     private GpsStatus getGpsStatus() {

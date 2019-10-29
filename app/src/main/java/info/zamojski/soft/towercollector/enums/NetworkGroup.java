@@ -9,7 +9,9 @@ public enum NetworkGroup {
     Cdma(1),
     Gsm(2),
     Wcdma(3),
-    Lte(4);
+    Lte(4),
+    Nr(5),
+    Tdscdma(6);
 
     private int value;
 
@@ -31,6 +33,10 @@ public enum NetworkGroup {
                 return Wcdma;
             case 4:
                 return Lte;
+            case 5:
+                return Nr;
+            case 6:
+                return Tdscdma;
             case 0:
             default:
                 return Unknown;

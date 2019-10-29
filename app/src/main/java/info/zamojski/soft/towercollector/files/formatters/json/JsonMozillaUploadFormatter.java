@@ -11,16 +11,8 @@ import org.json.JSONObject;
 import java.util.List;
 
 import info.zamojski.soft.towercollector.model.Measurement;
-import info.zamojski.soft.towercollector.providers.ICellUtils;
-import info.zamojski.soft.towercollector.providers.MozillaCellUtils;
 
 public class JsonMozillaUploadFormatter extends JsonMozillaFormatterBase implements IJsonFormatter {
-
-    private static final ICellUtils cellUtils;
-
-    static {
-        cellUtils = new MozillaCellUtils();
-    }
 
     @Override
     public String formatHeader() {

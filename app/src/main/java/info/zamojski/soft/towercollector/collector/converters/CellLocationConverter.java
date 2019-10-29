@@ -43,7 +43,7 @@ public class CellLocationConverter {
         return cell;
     }
 
-    public Cell convert(NeighboringCellInfo neighboringCell, int mcc, int mnc, int mainCellLac, int mainCellCid) {
+    public Cell convert(NeighboringCellInfo neighboringCell, int mcc, int mnc, int mainCellLac, long mainCellCid) {
         Cell cell = new Cell();
         cell.setNeighboring(true);
         // no type checking because only GSM and UMTS cells can have neighboring cells
