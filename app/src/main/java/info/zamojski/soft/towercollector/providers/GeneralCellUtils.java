@@ -18,6 +18,10 @@ public class GeneralCellUtils implements ICellUtils {
                 return "UMTS";
             case Lte:
                 return "LTE";
+            case Nr:
+                return "NR"; // TODO: unify when supported
+            case Tdscdma:
+                return "TD-SCDMA"; // TODO: unify when supported
             case Unknown:
             default:
                 return "UNKNOWN";

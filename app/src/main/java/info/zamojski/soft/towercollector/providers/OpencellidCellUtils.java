@@ -18,6 +18,10 @@ public class OpencellidCellUtils implements ICellUtils {
                 return "UMTS";
             case Lte:
                 return "LTE";
+            case Nr:
+                return "NR"; // TODO: verify when supported
+            case Tdscdma:
+                return "TDSCDMA"; // TODO: verify when supported
             case Unknown:
             default:
                 return "";

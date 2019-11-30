@@ -9,8 +9,10 @@ Bei Mobilfunkzellen hängt die Liste der Felder vom Typ des Netzes (net_type) ab
 <ul>
     <li>GSM - mcc, mnc, lac, cell_id, asu, dbm</li>
     <li>UMTS - mcc, mnc, lac, cell_id, psc, asu, dbm</li>
-    <li>CDMA - sid as mnc, nid as lac, bid as cell_id, asu, dbm</li>
-    <li>LTE - mcc, mnc, tac as lac, ci as cell_id, pci as psc, ta, asu, dbm</li>
+    <li>CDMA - sid zu mnc, nid zu lac, bid zu cell_id, asu, dbm</li>
+    <li>LTE - mcc, mnc, tac zu lac, ci zu cell_id, pci zu psc, ta, asu, dbm</li>
+    <li>5G NR - mcc, mnc, tac zu lac, nci zu cell_id, pci zu psc, asu, dbm</li>
+    <li>TD-SCDMA - mcc, mnc, lac, cid zu cell_id, cpid zu psc, asu, dbm</li>
 </ul>
 <p>Action:</p>
 <code>info.zamojski.soft.towercollector.MEASUREMENTS_COLLECTED</code>

@@ -167,7 +167,7 @@ public class Cell implements Serializable {
             return UNKNOWN_CID;
         if (networkType == NetworkGroup.Wcdma)
             return cid % 65536;
-        else if (networkType == NetworkGroup.Nr) // 5G rule unknown
+        else if (networkType == NetworkGroup.Nr) // TODO: 5G rule unknown
             return 0;
         else // LTE (reversed order)
             return cid / 256;
@@ -178,7 +178,7 @@ public class Cell implements Serializable {
             return UNKNOWN_CID;
         if (networkType == NetworkGroup.Wcdma)
             return cid / 65536;
-        else if (networkType == NetworkGroup.Nr) // 5G rule unknown
+        else if (networkType == NetworkGroup.Nr) // TODO: 5G rule unknown
             return 0;
         else // LTE (reversed order)
             return cid % 256;
