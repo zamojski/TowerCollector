@@ -1,6 +1,15 @@
 {
   "Entries": [
     {
+      "VersionCode": 2010044,
+      "Title": "Changes in version 2.1.0",
+      "Description": "Newly added support for 5G (NR) and TD-SCDMA currently allows you to collect an export data to CSV and GPX formats. It's not possible to upload such measurements because OpenCellId and Mozilla Location Services don't accept them yet. Because 5G is not available in my country and TD-SCDMA is used only in China I'm not able to test them with real data, so if you find any issues related to collecting, export or upload please contact me!",
+      "Messages": [
+        "Dropped support for Android 4.0-4.4.",
+        "Add support for 5G (NR) and TD-SCDMA on Android 10+."
+      ]
+    },
+    {
       "VersionCode": 2000843,
       "Title": "Changes in version 2.0.8",
       "Description": "Currently less than 4% percent of your devices use Android 4.0-4.4. Unfortunately, this blocks the possibility of implementing security and stability enhancements on all other devices. Therefore, I decided that <b>this version is the last to support the Android 4.x line</b> and from now on it will only receive critical patches and updates to keep it usable. Android 5.0 will be the new minimum supported version.",
@@ -42,15 +51,6 @@
         "Fixed crash when checking for updates on Samsung Galaxy S9+.",
         "Fixed failing export to GPX.",
         "Changed upload result notification to be single line."
-      ]
-    },
-    {
-      "VersionCode": 2000439,
-      "Title": "Changes in version 2.0.4",
-      "Description": "Do you want stay updated? Follow one of the app communities <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> or <a href=\"https://twitter.com/towercollector/\">Twitter</a>!",
-      "Messages": [
-        "Attempt to fix failing export to GPX.",
-        "Replace Google+ links with Twitter."
       ]
     }
   ]
