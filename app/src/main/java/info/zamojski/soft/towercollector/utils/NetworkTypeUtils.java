@@ -21,6 +21,10 @@ public class NetworkTypeUtils {
                 return R.string.network_group_umts;
             case Lte:
                 return R.string.network_group_lte;
+            case Nr:
+                return R.string.network_group_nr;
+            case Tdscdma:
+                return R.string.network_group_tdscdma;
             default:
                 return R.string.network_group_unknown;
         }
@@ -28,6 +32,7 @@ public class NetworkTypeUtils {
 
     public static NetworkGroup getNetworkGroup(int networkType) {
         switch (networkType) {
+            case TelephonyManager.NETWORK_TYPE_GSM:
             case TelephonyManager.NETWORK_TYPE_GPRS:
             case TelephonyManager.NETWORK_TYPE_EDGE:
                 return NetworkGroup.Gsm;
@@ -46,8 +51,13 @@ public class NetworkTypeUtils {
                 return NetworkGroup.Cdma;
             case TelephonyManager.NETWORK_TYPE_LTE:
                 return NetworkGroup.Lte;
+            case TelephonyManager.NETWORK_TYPE_TD_SCDMA:
+                return NetworkGroup.Tdscdma;
+            case TelephonyManager.NETWORK_TYPE_NR:
+                return NetworkGroup.Nr;
             case TelephonyManager.NETWORK_TYPE_IDEN:
             case TelephonyManager.NETWORK_TYPE_UNKNOWN:
+            case TelephonyManager.NETWORK_TYPE_IWLAN:
             default:
                 return NetworkGroup.Unknown;
         }

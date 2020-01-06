@@ -4,7 +4,6 @@
 
 package info.zamojski.soft.towercollector.dev;
 
-import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.model.Cell;
 import info.zamojski.soft.towercollector.model.Measurement;
 
@@ -25,26 +24,32 @@ public class MeasurementBuilder {
     }
 
     public MeasurementBuilder setGsmCell(int mcc, int mnc, int lac, int cid) {
-        c.setNetworkType(NetworkGroup.Gsm);
         c.setGsmCellInfo(mcc, mnc, lac, cid);
         return this;
     }
 
     public MeasurementBuilder setWcdmaCell(int mcc, int mnc, int lac, int cid, int psc) {
-        c.setNetworkType(NetworkGroup.Wcdma);
         c.setWcdmaCellInfo(mcc, mnc, lac, cid, psc);
         return this;
     }
 
     public MeasurementBuilder setLteCell(int mcc, int mnc, int tac, int ci, int pci) {
-        c.setNetworkType(NetworkGroup.Lte);
         c.setLteCellInfo(mcc, mnc, tac, ci, pci);
         return this;
     }
 
     public MeasurementBuilder setCdmaCell(int sid, int nid, int bid) {
-        c.setNetworkType(NetworkGroup.Cdma);
         c.setCdmaCellInfo(sid, nid, bid);
+        return this;
+    }
+
+    public MeasurementBuilder setNrCell(int mcc, int mnc, int tac, long nci, int pci) {
+        c.setNrCellInfo(String.valueOf(mcc), String.valueOf(mnc), tac, nci, pci);
+        return this;
+    }
+
+    public MeasurementBuilder setTdscdmaCell(int mcc, int mnc, int lac, int cid, int cpid) {
+        c.setTdscdmaCellInfo(String.valueOf(mcc), String.valueOf(mnc), lac, cid, cpid);
         return this;
     }
 
@@ -65,6 +70,16 @@ public class MeasurementBuilder {
 
     public MeasurementBuilder setCdmaSignal(int asu, int dbm) {
         c.setCdmaSignalInfo(asu, dbm);
+        return this;
+    }
+
+    public MeasurementBuilder setNrSignal(int asu, int dbm) {
+        c.setNrSignalInfo(asu, dbm);
+        return this;
+    }
+
+    public MeasurementBuilder setTdscdmaSignal(int asu, int dbm) {
+        c.setTdscdmaSignalInfo(asu, dbm);
         return this;
     }
 

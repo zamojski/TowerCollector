@@ -144,5 +144,7 @@
     <string name="network_group_gsm" translatable="false">GSM</string>
     <string name="network_group_umts" translatable="false">UMTS</string>
     <string name="network_group_lte" translatable="false">LTE</string>
+    <string name="network_group_tdscdma" translatable="false">TD-SCDMA</string>
+    <string name="network_group_nr" translatable="false">NR</string>
 
 </resources>
