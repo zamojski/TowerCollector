@@ -5,6 +5,7 @@
 package info.zamojski.soft.towercollector.utils;
 
 import android.content.Context;
+import android.os.Build;
 import android.telephony.CellInfo;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -56,5 +57,9 @@ public class MobileUtils {
         }
         Timber.d("isApi17CellInfoAvailable(): Result = false");
         return false;
+    }
+
+    public static boolean isApi29Limited() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q;
     }
 }

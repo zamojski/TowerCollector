@@ -4,46 +4,6 @@
 
 package info.zamojski.soft.towercollector;
 
-import info.zamojski.soft.towercollector.analytics.IntentSource;
-import info.zamojski.soft.towercollector.broadcast.BatteryStatusBroadcastReceiver;
-import info.zamojski.soft.towercollector.broadcast.ExternalBroadcastSender;
-import info.zamojski.soft.towercollector.broadcast.LocationModeOrProvidersChangedReceiver;
-import info.zamojski.soft.towercollector.enums.GpsStatus;
-import info.zamojski.soft.towercollector.enums.KeepScreenOnMode;
-import info.zamojski.soft.towercollector.enums.MeansOfTransport;
-import info.zamojski.soft.towercollector.enums.NetworkGroup;
-import info.zamojski.soft.towercollector.enums.Validity;
-import info.zamojski.soft.towercollector.events.GpsStatusChangedEvent;
-import info.zamojski.soft.towercollector.events.MeasurementProcessedEvent;
-import info.zamojski.soft.towercollector.events.MeasurementSavedEvent;
-import info.zamojski.soft.towercollector.events.SystemTimeChangedEvent;
-import info.zamojski.soft.towercollector.collector.CollectorNotificationHelper;
-import info.zamojski.soft.towercollector.collector.MeasurementUpdater;
-import info.zamojski.soft.towercollector.collector.ParseResult;
-import info.zamojski.soft.towercollector.collector.parsers.MeasurementParser;
-import info.zamojski.soft.towercollector.collector.parsers.MeasurementParserFactory;
-import info.zamojski.soft.towercollector.collector.validators.LocationValidator;
-import info.zamojski.soft.towercollector.collector.validators.SystemTimeValidator;
-import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
-import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
-import info.zamojski.soft.towercollector.model.Statistics;
-import info.zamojski.soft.towercollector.model.Tuple;
-import info.zamojski.soft.towercollector.utils.GpsUtils;
-import info.zamojski.soft.towercollector.utils.NetworkTypeUtils;
-import info.zamojski.soft.towercollector.utils.MobileUtils;
-import timber.log.Timber;
-
-import java.lang.reflect.Method;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
-import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.Service;
@@ -55,6 +15,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationProvider;
+import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
@@ -70,6 +31,47 @@ import android.telephony.PhoneStateListener;
 import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.lang.reflect.Method;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import info.zamojski.soft.towercollector.analytics.IntentSource;
+import info.zamojski.soft.towercollector.broadcast.BatteryStatusBroadcastReceiver;
+import info.zamojski.soft.towercollector.broadcast.ExternalBroadcastSender;
+import info.zamojski.soft.towercollector.broadcast.LocationModeOrProvidersChangedReceiver;
+import info.zamojski.soft.towercollector.collector.CollectorNotificationHelper;
+import info.zamojski.soft.towercollector.collector.MeasurementUpdater;
+import info.zamojski.soft.towercollector.collector.ParseResult;
+import info.zamojski.soft.towercollector.collector.parsers.MeasurementParser;
+import info.zamojski.soft.towercollector.collector.parsers.MeasurementParserFactory;
+import info.zamojski.soft.towercollector.collector.validators.LocationValidator;
+import info.zamojski.soft.towercollector.collector.validators.SystemTimeValidator;
+import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
+import info.zamojski.soft.towercollector.enums.GpsStatus;
+import info.zamojski.soft.towercollector.enums.KeepScreenOnMode;
+import info.zamojski.soft.towercollector.enums.MeansOfTransport;
+import info.zamojski.soft.towercollector.enums.NetworkGroup;
+import info.zamojski.soft.towercollector.enums.Validity;
+import info.zamojski.soft.towercollector.events.GpsStatusChangedEvent;
+import info.zamojski.soft.towercollector.events.MeasurementProcessedEvent;
+import info.zamojski.soft.towercollector.events.MeasurementSavedEvent;
+import info.zamojski.soft.towercollector.events.SystemTimeChangedEvent;
+import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
+import info.zamojski.soft.towercollector.model.Statistics;
+import info.zamojski.soft.towercollector.model.Tuple;
+import info.zamojski.soft.towercollector.utils.GpsUtils;
+import info.zamojski.soft.towercollector.utils.MobileUtils;
+import info.zamojski.soft.towercollector.utils.NetworkTypeUtils;
+import timber.log.Timber;
 
 public class CollectorService extends Service {
 
@@ -115,6 +117,7 @@ public class CollectorService extends Service {
     private MeasurementParser measurementParser;
     private PhoneStateListener phoneStateListener;
     private Timer periodicalPhoneStateListener;
+    private TelephonyManager.CellInfoCallback cellInfoUpdateRequestCallback;
 
     KeepScreenOnMode keepScreenOnMode;
     private Timer periodicalWakeLockAcquirer;
@@ -360,6 +363,24 @@ public class CollectorService extends Service {
             Timber.e(ex, "registerApi17PhoneStateListener(): coarse location permission is denied");
             stopSelf();
         }
+
+        if (MobileUtils.isApi29Limited()) {
+            cellInfoUpdateRequestCallback = new TelephonyManager.CellInfoCallback() {
+                private final String INNER_TAG = CollectorService.class.getSimpleName() + "." + TelephonyManager.CellInfoCallback.class.getSimpleName();
+
+                @Override
+                public void onCellInfo(@NonNull List<CellInfo> cellInfo) {
+                    Timber.tag(INNER_TAG).d("onCellInfo(): Successfully updated cell info, number of cells: %s", cellInfo.size());
+                    processCellInfo(cellInfo);
+                }
+
+                @Override
+                public void onError(int errorCode, Throwable detail) {
+                    Timber.tag(INNER_TAG).e(detail, "onError(): Error %s occurred when requesting cell info update", errorCode);
+                }
+            };
+        }
+
         // run scheduled cell listener
         periodicalPhoneStateListener.schedule(new TimerTask() {
             private final String INNER_TAG = CollectorService.class.getSimpleName() + ".Periodical" + PhoneStateListener.class.getSimpleName();
@@ -367,13 +388,20 @@ public class CollectorService extends Service {
             @Override
             public void run() {
                 try {
-                    List<CellInfo> cellInfo = telephonyManager.getAllCellInfo();
-                    if (cellInfo == null) {
-                        Timber.tag(INNER_TAG).d("run(): Null reported");
-                        return;
+                    List<CellInfo> cellInfo;
+                    if (MobileUtils.isApi29Limited()) {
+                        // value is cached and update needs to be requested
+                        telephonyManager.requestCellInfoUpdate(getMainExecutor(), cellInfoUpdateRequestCallback);
+                    } else {
+                        // value should be refreshed on the call
+                        cellInfo = telephonyManager.getAllCellInfo();
+                        if (cellInfo == null) {
+                            Timber.tag(INNER_TAG).d("run(): Null reported");
+                            return;
+                        }
+                        Timber.tag(INNER_TAG).d("run(): Number of cells: %s", cellInfo.size());
+                        processCellInfo(cellInfo);
                     }
-                    Timber.tag(INNER_TAG).d("run(): Number of cells: %s", cellInfo.size());
-                    processCellInfo(cellInfo);
                 } catch (SecurityException ex) {
                     Timber.tag(INNER_TAG).e(ex, "run(): coarse location or phone  permission is denied");
                     stopSelf();
