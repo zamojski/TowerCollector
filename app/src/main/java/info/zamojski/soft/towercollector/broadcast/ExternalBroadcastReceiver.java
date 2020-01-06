@@ -4,6 +4,14 @@
 
 package info.zamojski.soft.towercollector.broadcast;
 
+import android.Manifest;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
+
 import org.greenrobot.eventbus.EventBus;
 
 import info.zamojski.soft.towercollector.CollectorService;
@@ -13,14 +21,7 @@ import info.zamojski.soft.towercollector.UploaderService;
 import info.zamojski.soft.towercollector.analytics.IntentSource;
 import info.zamojski.soft.towercollector.events.CollectorStartedEvent;
 import info.zamojski.soft.towercollector.utils.BackgroundTaskHelper;
-
-import android.Manifest;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import androidx.core.content.ContextCompat;
-import android.widget.Toast;
-
+import info.zamojski.soft.towercollector.utils.GpsUtils;
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
 import timber.log.Timber;
 
@@ -115,7 +116,11 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
     }
 
     private boolean hasAllCollectorRequiredPermissions(Context context) {
-        return PermissionUtils.hasPermissions(context, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE);
+        if (GpsUtils.isBackgroundLocationAware()) {
+            return PermissionUtils.hasPermissions(context, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE);
+        } else {
+            return PermissionUtils.hasPermissions(context, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE);
+        }
     }
 
     private void showCollectorPermissionsDenied(Context context) {

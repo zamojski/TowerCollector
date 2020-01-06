@@ -9,12 +9,14 @@ import android.content.Context;
 import android.location.LocationManager;
 import android.os.Build;
 
-import androidx.core.content.PermissionChecker;
-
 public class GpsUtils {
 
+    public static boolean isBackgroundLocationAware() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q;
+    }
+
     public static boolean isGpsEnabled(Context context) {
-        if (PermissionChecker.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PermissionChecker.PERMISSION_GRANTED) {
+        if (hasGpsPermissions(context)) {
             LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
             boolean isEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
@@ -24,5 +26,13 @@ public class GpsUtils {
         }
         // to cover the case when permission denied on API lower than 21
         return false;
+    }
+
+    private static boolean hasGpsPermissions(Context context) {
+        boolean hasGpsPermission = PermissionUtils.hasPermission(context, Manifest.permission.ACCESS_FINE_LOCATION);
+        if (hasGpsPermission && isBackgroundLocationAware()) {
+            return PermissionUtils.hasPermission(context, Manifest.permission.ACCESS_BACKGROUND_LOCATION);
+        }
+        return hasGpsPermission;
     }
 }

@@ -472,6 +472,7 @@ public class CollectorService extends Service {
 
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {
+            // on Android 10 this callback will never be invoked
             String statusString;
             switch (status) {
                 case LocationProvider.AVAILABLE:
@@ -517,6 +518,7 @@ public class CollectorService extends Service {
 
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {
+            // on Android 10 this callback will never be invoked
             // don't duplicate logic from static listener
         }
 

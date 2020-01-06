@@ -737,11 +737,24 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             backgroundTaskHelper.showTaskRunningMessage(runningTaskClassName);
             return;
         }
-        MainActivityPermissionsDispatcher.startCollectorServiceWithPermissionCheck(MainActivity.this);
+        if (GpsUtils.isBackgroundLocationAware()) {
+            MainActivityPermissionsDispatcher.startCollectorServiceApi29WithPermissionCheck(MainActivity.this);
+        } else {
+            MainActivityPermissionsDispatcher.startCollectorServiceWithPermissionCheck(MainActivity.this);
+        }
+    }
+
+    @NeedsPermission({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void startCollectorServiceApi29() {
+        startCollectorServiceInternal();
     }
 
     @NeedsPermission({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void startCollectorService() {
+        startCollectorServiceInternal();
+    }
+
+    private void startCollectorServiceInternal() {
         askAndSetGpsEnabled();
         if (isGpsEnabled) {
             Timber.d("startCollectorService(): Air plane mode off, starting service");
@@ -762,18 +775,51 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
     }
 
+    @OnShowRationale({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void onStartCollectorShowRationaleApi29(PermissionRequest request) {
+        onStartCollectorShowRationaleInternal(request);
+    }
+
     @OnShowRationale({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorShowRationale(PermissionRequest request) {
-        onShowRationale(request, R.string.permission_collector_rationale_message);
+        onStartCollectorShowRationaleInternal(request);
+    }
+
+    private void onStartCollectorShowRationaleInternal(PermissionRequest request) {
+        if (GpsUtils.isBackgroundLocationAware()) {
+            String message = getString(R.string.permission_collector_rationale_message)
+                    + getString(R.string.permission_collector_rationale_api29_message);
+            onShowRationale(request, message);
+        } else {
+            onShowRationale(request, R.string.permission_collector_rationale_message);
+        }
+    }
+
+    @OnPermissionDenied({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void onStartCollectorPermissionDeniedApi29() {
+        onStartCollectorPermissionDeniedInternal();
     }
 
     @OnPermissionDenied({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorPermissionDenied() {
+        onStartCollectorPermissionDeniedInternal();
+    }
+
+    void onStartCollectorPermissionDeniedInternal() {
         onPermissionDenied(R.string.permission_collector_denied_message);
+    }
+
+    @OnNeverAskAgain({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void onStartCollectorNeverAskAgainApi29() {
+        onStartCollectorNeverAskAgainInternal();
     }
 
     @OnNeverAskAgain({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorNeverAskAgain() {
+        onStartCollectorNeverAskAgainInternal();
+    }
+
+    void onStartCollectorNeverAskAgainInternal() {
         onNeverAskAgain(R.string.permission_collector_never_ask_again_message);
     }
 
@@ -1116,9 +1162,13 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     }
 
     private void onShowRationale(final PermissionRequest request, @StringRes int messageResId) {
+        onShowRationale(request, getString(messageResId));
+    }
+
+    private void onShowRationale(final PermissionRequest request, String message) {
         new AlertDialog.Builder(this)
                 .setTitle(R.string.permission_required)
-                .setMessage(messageResId)
+                .setMessage(message)
                 .setCancelable(true)
                 .setPositiveButton(R.string.dialog_proceed, new DialogInterface.OnClickListener() {
                     @Override
