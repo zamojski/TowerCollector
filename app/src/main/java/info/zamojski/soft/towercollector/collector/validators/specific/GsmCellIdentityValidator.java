@@ -4,16 +4,12 @@
 
 package info.zamojski.soft.towercollector.collector.validators.specific;
 
-import android.annotation.TargetApi;
-import android.os.Build;
 import android.telephony.CellIdentityGsm;
 
 import timber.log.Timber;
 
 public class GsmCellIdentityValidator {
 
-
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public boolean isValid(CellIdentityGsm cell) {
         boolean valid = (isCidInRange(cell.getCid()) && isLacInRange(cell.getLac())
                 && isMncInRange(cell.getMnc()) && isMccInRange(cell.getMcc()));

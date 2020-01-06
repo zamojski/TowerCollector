@@ -15,9 +15,9 @@ public class Cell implements Serializable {
 
     private static final long serialVersionUID = -1561237876324180202L;
 
-    public static final int UNKNOWN_CID = Integer.MAX_VALUE; // safe for all network types except 5G (NR)
-    public static final long UNKNOWN_CID_LONG = Long.MAX_VALUE; // safe for 5G (NR)
-    public static final int UNKNOWN_SIGNAL = Integer.MAX_VALUE; // safe for all network types
+    public static final int UNKNOWN_CID = Integer.MAX_VALUE; // safe for all network types except 5G (NR), equals CellInfo.UNAVAILABLE which requires newer SDK
+    public static final long UNKNOWN_CID_LONG = Long.MAX_VALUE; // safe for 5G (NR), equals CellInfo.UNAVAILABLE_LONG which requires newer SDK
+    public static final int UNKNOWN_SIGNAL = Integer.MAX_VALUE; // safe for all network types, equals CellInfo.UNAVAILABLE which requires newer SDK
 
     /**
      * Cell ID.

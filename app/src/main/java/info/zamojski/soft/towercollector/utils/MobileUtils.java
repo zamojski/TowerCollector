@@ -4,21 +4,15 @@
 
 package info.zamojski.soft.towercollector.utils;
 
-import info.zamojski.soft.towercollector.collector.validators.CellIdentityValidator;
-import info.zamojski.soft.towercollector.collector.validators.CellLocationValidator;
-import info.zamojski.soft.towercollector.model.Cell;
-import timber.log.Timber;
+import android.content.Context;
+import android.telephony.CellInfo;
+import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 
 import java.util.List;
 
-import android.annotation.TargetApi;
-import android.content.Context;
-import android.os.Build;
-import android.telephony.CellInfo;
-import android.telephony.CellLocation;
-import android.telephony.TelephonyManager;
-import android.telephony.gsm.GsmCellLocation;
-import android.text.TextUtils;
+import info.zamojski.soft.towercollector.collector.validators.CellIdentityValidator;
+import timber.log.Timber;
 
 public class MobileUtils {
 
@@ -36,29 +30,10 @@ public class MobileUtils {
         return null;
     }
 
-    public static boolean isApi17VersionCompatible() {
-        boolean result = Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1;
-        Timber.d("isApi17VersionCompatible(): Result = %s", result);
-        return result;
-    }
-
-    public static boolean isApi26VersionCompatible() {
-        boolean result = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
-        Timber.d("isApi26VersionCompatible(): Result = %s", result);
-        return result;
-    }
-
     public static boolean isApi17FullyCompatible(Context context) {
-        return (isApi17VersionCompatible() && isApi17CellInfoAvailable(context));
+        return isApi17CellInfoAvailable(context);
     }
 
-    public static boolean isCellInfoAvailable(Context context) {
-        if (isApi17VersionCompatible() && isApi17CellInfoAvailable(context))
-            return true;
-        return isApi1CellInfoAvailable(context);
-    }
-
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private static boolean isApi17CellInfoAvailable(Context context) {
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         List<CellInfo> cells;
@@ -81,36 +56,5 @@ public class MobileUtils {
         }
         Timber.d("isApi17CellInfoAvailable(): Result = false");
         return false;
-    }
-
-    private static boolean isApi1CellInfoAvailable(Context context) {
-        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        CellLocation cell;
-        try {
-            cell = telephonyManager.getCellLocation();
-        } catch (SecurityException ex) {
-            Timber.d(ex, "isApi1CellInfoAvailable(): Result = coarse location permission is denied");
-            return false;
-        }
-        if (cell == null) {
-            Timber.d("isApi1CellInfoAvailable(): Result = no cell location");
-            return false;
-        }
-        int mcc = Cell.UNKNOWN_CID;
-        int mnc = Cell.UNKNOWN_CID;
-        if (cell instanceof GsmCellLocation) {
-            String operatorCode = telephonyManager.getNetworkOperator();
-            int[] mccMncPair = getMccMncPair(operatorCode);
-            if (mccMncPair == null) {
-                Timber.d("isApi1CellInfoAvailable(): Result = no operator code");
-                return false;
-            }
-            mcc = mccMncPair[0];
-            mnc = mccMncPair[1];
-        }
-        CellLocationValidator validator = new CellLocationValidator();
-        boolean result = validator.isValid(cell, mcc, mnc);
-        Timber.d("isApi1CellInfoAvailable(): Result = %s", result);
-        return result;
     }
 }

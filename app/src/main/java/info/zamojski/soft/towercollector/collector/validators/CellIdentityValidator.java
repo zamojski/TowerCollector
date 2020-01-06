@@ -4,14 +4,6 @@
 
 package info.zamojski.soft.towercollector.collector.validators;
 
-import info.zamojski.soft.towercollector.collector.validators.specific.CdmaCellIdentityValidator;
-import info.zamojski.soft.towercollector.collector.validators.specific.GsmCellIdentityValidator;
-import info.zamojski.soft.towercollector.collector.validators.specific.LteCellIdentityValidator;
-import info.zamojski.soft.towercollector.collector.validators.specific.NrCellIdentityValidator;
-import info.zamojski.soft.towercollector.collector.validators.specific.TdscdmaCellIdentityValidator;
-import info.zamojski.soft.towercollector.collector.validators.specific.WcdmaCellIdentityValidator;
-
-import android.annotation.TargetApi;
 import android.os.Build;
 import android.telephony.CellIdentityNr;
 import android.telephony.CellInfo;
@@ -21,6 +13,13 @@ import android.telephony.CellInfoLte;
 import android.telephony.CellInfoNr;
 import android.telephony.CellInfoTdscdma;
 import android.telephony.CellInfoWcdma;
+
+import info.zamojski.soft.towercollector.collector.validators.specific.CdmaCellIdentityValidator;
+import info.zamojski.soft.towercollector.collector.validators.specific.GsmCellIdentityValidator;
+import info.zamojski.soft.towercollector.collector.validators.specific.LteCellIdentityValidator;
+import info.zamojski.soft.towercollector.collector.validators.specific.NrCellIdentityValidator;
+import info.zamojski.soft.towercollector.collector.validators.specific.TdscdmaCellIdentityValidator;
+import info.zamojski.soft.towercollector.collector.validators.specific.WcdmaCellIdentityValidator;
 
 public class CellIdentityValidator {
 

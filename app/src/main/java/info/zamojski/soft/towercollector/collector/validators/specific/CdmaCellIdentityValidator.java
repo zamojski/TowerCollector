@@ -4,16 +4,12 @@
 
 package info.zamojski.soft.towercollector.collector.validators.specific;
 
-import android.annotation.TargetApi;
-import android.os.Build;
 import android.telephony.CellIdentityCdma;
 
 import timber.log.Timber;
 
 public class CdmaCellIdentityValidator {
 
-
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public boolean isValid(CellIdentityCdma cell) {
         boolean valid = (isBidInRange(cell.getBasestationId()) && isNidInRange(cell.getNetworkId())
                 && isSidInRange(cell.getSystemId()));

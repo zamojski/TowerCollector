@@ -92,7 +92,6 @@
 
     <string name="preferences_collector_api_version_key" translatable="false">collector_api_version</string>
     <string name="preferences_collector_api_version_default_value" translatable="false">@string/preferences_collector_api_version_entries_value_auto</string>
-    <bool name="preferences_collector_api_version_enabled_default_value" translatable="false">false</bool>
     <string name="preferences_collector_api_version_entries_value_auto" translatable="false">auto</string>
     <string name="preferences_collector_api_version_entries_value_api_17" translatable="false">api_17</string>
     <string name="preferences_collector_api_version_entries_value_api_1" translatable="false">api_1</string>

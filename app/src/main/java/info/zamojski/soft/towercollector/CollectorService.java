@@ -317,33 +317,25 @@ public class CollectorService extends Service {
 
     private void registerPhoneStateListener() {
         String collectorApiVersion = MyApplication.getPreferencesProvider().getCollectorApiVersion();
-        // double check to avoid fail in production caused by invalid settings
-        if (MobileUtils.isApi17VersionCompatible()) {
-            if (getString(R.string.preferences_collector_api_version_entries_value_auto).equals(collectorApiVersion)) {
-                // auto detection
-                MyApplication.getAnalytics().sendPrefsCollectorApiVersion(0);
-                if (MobileUtils.isApi17FullyCompatible(getApplication())) {
-                    registerApi17PhoneStateListener();
-                } else {
-                    registerApi1PhoneStateListener();
-                }
-            } else if (getString(R.string.preferences_collector_api_version_entries_value_api_17).equals(collectorApiVersion)) {
-                // API 17 forced
-                MyApplication.getAnalytics().sendPrefsCollectorApiVersion(17);
+        if (getString(R.string.preferences_collector_api_version_entries_value_auto).equals(collectorApiVersion)) {
+            // auto detection
+            MyApplication.getAnalytics().sendPrefsCollectorApiVersion(0);
+            if (MobileUtils.isApi17FullyCompatible(getApplication())) {
                 registerApi17PhoneStateListener();
             } else {
-                // API 1 forced
-                MyApplication.getAnalytics().sendPrefsCollectorApiVersion(1);
                 registerApi1PhoneStateListener();
             }
+        } else if (getString(R.string.preferences_collector_api_version_entries_value_api_17).equals(collectorApiVersion)) {
+            // API 17 forced
+            MyApplication.getAnalytics().sendPrefsCollectorApiVersion(17);
+            registerApi17PhoneStateListener();
         } else {
-            // API 1 forced due to incompatibility
-            MyApplication.getAnalytics().sendPrefsCollectorApiVersion(-1);
+            // API 1 forced
+            MyApplication.getAnalytics().sendPrefsCollectorApiVersion(1);
             registerApi1PhoneStateListener();
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void registerApi17PhoneStateListener() {
         Timber.d("Registering API 17 phone state listener");
         boolean collectNeighboringCells = MyApplication.getPreferencesProvider().getCollectNeighboringCells();
@@ -372,7 +364,6 @@ public class CollectorService extends Service {
         periodicalPhoneStateListener.schedule(new TimerTask() {
             private final String INNER_TAG = CollectorService.class.getSimpleName() + ".Periodical" + PhoneStateListener.class.getSimpleName();
 
-            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
             @Override
             public void run() {
                 try {

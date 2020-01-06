@@ -4,9 +4,7 @@
 
 package info.zamojski.soft.towercollector.collector.parsers;
 
-import android.annotation.TargetApi;
 import android.location.Location;
-import android.os.Build;
 import android.telephony.CellInfo;
 
 import org.greenrobot.eventbus.EventBus;
@@ -35,9 +33,7 @@ import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.model.Statistics;
 import timber.log.Timber;
 
-@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
 public class Api17PlusMeasurementParser extends MeasurementParser {
-
 
     private CellIdentityValidator cellValidator;
 

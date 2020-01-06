@@ -9,7 +9,6 @@
         android:title="@string/preferences_category_settings_title">
         <info.zamojski.soft.towercollector.controls.HtmlSummaryListPreference
             android:defaultValue="@string/preferences_collector_api_version_default_value"
-            android:enabled="@bool/preferences_collector_api_version_enabled_default_value"
             android:entries="@array/preferences_collector_api_version_entries_labels"
             android:entryValues="@array/preferences_collector_api_version_entries_values"
             android:key="@string/preferences_collector_api_version_key"

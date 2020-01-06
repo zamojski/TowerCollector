@@ -23,7 +23,6 @@ import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.dev.DatabaseOperations;
 import info.zamojski.soft.towercollector.dev.PreferencesOperations;
-import info.zamojski.soft.towercollector.utils.MobileUtils;
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
@@ -62,7 +61,6 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         });
 
         setupApiVersionDialog();
-        setupApiVersionSelection();
         setupErrorReportingAvailability();
         setupDatabaseImport();
         setupDatabaseExport();
@@ -132,7 +130,6 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
             CharSequence collectorApiVersionLabel = collectorApiVersionPreference.getEntry();
             Timber.d("onSharedPreferenceChanged(): User set api version = \"%s\"", collectorApiVersionValue);
             collectorApiVersionPreference.setSummary(formatValueString(R.string.preferences_collector_api_version_summary, collectorApiVersionLabel));
-            setupApiVersionSelection();
             if (MyApplication.isBackgroundTaskRunning(CollectorService.class)) {
                 Toast.makeText(getActivity(), R.string.preferences_restart_collector, Toast.LENGTH_SHORT).show();
             }
@@ -147,16 +144,6 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
 
     private void setupApiVersionDialog() {
         setupDialog(R.string.preferences_about_collector_api_version_key, R.string.info_about_collector_api_version_title, R.raw.info_about_collector_api_version_content);
-    }
-
-    private void setupApiVersionSelection() {
-        boolean api17Compatible = MobileUtils.isApi17VersionCompatible();
-        if (api17Compatible) {
-            collectorApiVersionPreference.setEnabled(true);
-        } else {
-            collectorApiVersionPreference.setValue(getString(R.string.preferences_collector_api_version_entries_value_api_1));
-            collectorApiVersionPreference.setEnabled(false);
-        }
     }
 
     private void setupErrorReportingAvailability() {

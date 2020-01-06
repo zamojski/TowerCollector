@@ -4,16 +4,12 @@
 
 package info.zamojski.soft.towercollector.collector.validators.specific;
 
-import android.annotation.TargetApi;
-import android.os.Build;
 import android.telephony.CellIdentityLte;
 
 import timber.log.Timber;
 
 public class LteCellIdentityValidator {
 
-
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public boolean isValid(CellIdentityLte cell) {
         boolean valid = (isCiInRange(cell.getCi()) && isTacInRange(cell.getTac())
                 && isMncInRange(cell.getMnc()) && isMccInRange(cell.getMcc())
