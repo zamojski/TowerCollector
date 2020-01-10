@@ -1,0 +1,5 @@
+- Fix export and logging not working on Android 10 due to scoped storage feature.
+- Fix cell info not refreshed on Android 10.
+- Fix 5G (NR) and TD-SCDMA network type field not handled properly in upload and export.
+- Add support for background location permission on Android 10.
+- Remove code for older Android versions.
