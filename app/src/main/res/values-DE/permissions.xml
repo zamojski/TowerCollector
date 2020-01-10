@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- This Source Code Form is subject to the terms of the Mozilla Public
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources>
@@ -12,7 +12,8 @@
     <string name="permission_storage_denied_message">Abbruch wegen verweigerter Berechtigung</string>
     <string name="permission_storage_never_ask_again_message">Die Funktion ist nicht verfügbar weil die Speichern-Berechtigung verweigert wurde</string>
     <string name="permission_logging_denied_temporarily_message">Datei-Logging vorrübergehend deaktiviert wegen fehlender Speichern-Berechtigung</string>
-    <string name="permission_collector_rationale_message">Zugriff auf Standort und Telefon muss gestattet sein um Messungen zu sammeln</string>
+    <string name="permission_collector_rationale_message">Zugriff auf Standort und Telefon muss gestattet sein um Messungen zu sammeln.</string>
+    <string name="permission_collector_rationale_api29_message">\n\nBitte wählen Sie für den Standortzugriff die Option \'Immer zulassen\' damit die App korrekt aufzeichnen kann!</string>
     <string name="permission_collector_denied_message">Erfassung abbrechen wegen fehlenden Berechtigungen</string>
     <string name="permission_collector_never_ask_again_message">Erfassung ist nicht verfügbar wegen fehlender Berechtigung für Standort- oder Telefon-Zugriff</string>
     <string name="permission_collector_denied_intent_message">Erfassung abgebrochen wegen fehlenden Berechtigungen, öffnen Sie die App und gestatten die benötigten Berechtigungen</string>

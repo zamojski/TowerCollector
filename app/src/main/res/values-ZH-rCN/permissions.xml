@@ -12,7 +12,8 @@
     <string name="permission_storage_denied_message">由于没有授权而取消操作</string>
     <string name="permission_storage_never_ask_again_message">由于没有存储权限，该功能不可用</string>
     <string name="permission_logging_denied_temporarily_message">由于拒绝存储权限，暂时禁用文件日志记录</string>
-    <string name="permission_collector_rationale_message">必须授予位置和电话权限才能收集测量数据</string>
+    <string name="permission_collector_rationale_message">必须授予位置和电话权限才能收集测量数据。</string>
+    <string name="permission_collector_rationale_api29_message">\n\n如果要使用该应用程序，请确保选择“始终允许”选项以访问设备的位置许可！</string>
     <string name="permission_collector_denied_message">由于拒绝权限而取消收集测量数据</string>
     <string name="permission_collector_never_ask_again_message">由于拒绝位置和/或电话权限，收集测量数据不可用</string>
     <string name="permission_collector_denied_intent_message">由于拒绝权限而取消收集测量数据，请先打开应用以授予必要的权限</string>

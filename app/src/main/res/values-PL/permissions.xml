@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- This Source Code Form is subject to the terms of the Mozilla Public
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources>
@@ -12,7 +12,8 @@
     <string name="permission_storage_denied_message">Anulowano operację z powodu braku uprawnień</string>
     <string name="permission_storage_never_ask_again_message">Funkcja jest niedostępna z powodu braku uprawnień dostępu do pamięci</string>
     <string name="permission_logging_denied_temporarily_message">Logowanie do pliku tymczasowo wyłączone z powodu braku uprawnień do pamięci</string>
-    <string name="permission_collector_rationale_message">Zbieranie próbek wymaga przyznania uprawnień dostępu do lokalizacji i telefonu</string>
+    <string name="permission_collector_rationale_message">Zbieranie próbek wymaga przyznania uprawnień dostępu do lokalizacji i telefonu.</string>
+    <string name="permission_collector_rationale_api29_message">\n\nJeżeli chcesz używać aplikacji koniecznie wybierz opcję \'zawsze zezwalaj\' dla uprawnień dostępu do lokalizacji urządzenia!</string>
     <string name="permission_collector_denied_message">Anulowano zbieranie próbek z powodu braku uprawnień</string>
     <string name="permission_collector_never_ask_again_message">Zbieranie próbek jest niemożliwe z powodu braku uprawnień dostępu do lokalizacji i telefonu.</string>
     <string name="permission_collector_denied_intent_message">Anulowano zbieranie próbek z powodu braku uprawnień, otwórz aplikację i nadaj wymagane uprawnienia</string>

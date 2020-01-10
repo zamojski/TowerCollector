@@ -12,7 +12,8 @@
     <string name="permission_storage_denied_message">A művelet visszavonása a megtagadott jogosultság miatt</string>
     <string name="permission_storage_never_ask_again_message">A funkció nem érhető el a megtagadott tárolási jogosultság miatt</string>
     <string name="permission_logging_denied_temporarily_message">A fájlok naplózásának ideiglenes letiltása a megtagadott tárolási jogosultság miatt</string>
-    <string name="permission_collector_rationale_message">Meg kell adni a hely és a telefon jogosultságot a mérések begyűjtéséhez</string>
+    <string name="permission_collector_rationale_message">Meg kell adni a hely és a telefon jogosultságot a mérések begyűjtéséhez.</string>
+    <string name="permission_collector_rationale_api29_message">\n\nHa használni akarod az alkalmazást, akkor válaszd a „mindig engedélyezze” lehetőséget a helyadatok engedély megadásakor!</string>
     <string name="permission_collector_denied_message">Mérés megszakítása a megtagadott jogosultságok miatt</string>
     <string name="permission_collector_never_ask_again_message">A mérések begyűjtése nem érhető el a megtagadott hely és/vagy a telefon jogosultság miatt</string>
     <string name="permission_collector_denied_intent_message">Mérés begyűjtés megszakítása a megtagadott jogosultságok miatt, először nyissa meg az alkalmazást és adja meg a szükséges jogosultságokat.</string>

@@ -12,7 +12,8 @@
     <string name="permission_storage_denied_message">Отмена операции из-за ограничений настроек доступа</string>
     <string name="permission_storage_never_ask_again_message">Эта функция недоступна из-за ограничений настроек доступа к месту сохранения</string>
     <string name="permission_logging_denied_temporarily_message">Временное отключение журналирования пока нет прав доступа к хранилищу</string>
-    <string name="permission_collector_rationale_message">Чтобы собирать измерения необходимо дать доступ к местоположению устройства</string>
+    <string name="permission_collector_rationale_message">Чтобы собирать измерения необходимо дать доступ к местоположению устройства.</string>
+    <string name="permission_collector_rationale_api29_message">\n\nЕсли вы хотите использовать приложение, не забудьте выбрать опцию \"всегда разрешайте\" разрешение на местоположение устройства доступа!</string>
     <string name="permission_collector_denied_message">Отмена сбора измерений до тех пор пока не будут даны необходимые права доступа</string>
     <string name="permission_collector_never_ask_again_message">Сбор измерений недоступен пока нет прав доступа к местоположению и/или телефону</string>
     <string name="permission_collector_denied_intent_message">Отмена сбора измерений до тех пор пока не будут даны права доступа, сначала откройте приложение чтобы дать необходимые права доступа</string>

@@ -12,7 +12,8 @@
     <string name="permission_storage_denied_message">Cancelación de la operación debido al permiso denegado</string>
     <string name="permission_storage_never_ask_again_message">La función no está disponible debido al permiso de almacenamiento denegado</string>
     <string name="permission_logging_denied_temporarily_message">Deshabilitar temporalmente el registro de archivos debido al permiso de almacenamiento denegado</string>
-    <string name="permission_collector_rationale_message">Se deben conceder permisos de ubicación y de teléfono para recopilar mediciones</string>
+    <string name="permission_collector_rationale_message">Se deben conceder permisos de ubicación y de teléfono para recopilar mediciones.</string>
+    <string name="permission_collector_rationale_api29_message">\n\nSi desea utilizar la aplicación, asegúrese de seleccionar la opción \'permitir siempre\' para acceder al permiso de ubicación del dispositivo.</string>
     <string name="permission_collector_denied_message">Cancelación de la recolección de mediciones debido a permisos denegados</string>
     <string name="permission_collector_never_ask_again_message">La recolección de medidas no está disponible debido a la ubicación denegada y/o los permisos del teléfono</string>
     <string name="permission_collector_denied_intent_message">Cancelación de la recolección de mediciones debido a permisos denegados, abra la aplicación para conceder los permisos necesarios primero</string>

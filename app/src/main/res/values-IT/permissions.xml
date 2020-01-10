@@ -12,7 +12,8 @@
     <string name="permission_storage_denied_message">Annullamento dell\'operazione a causa del permesso negato</string>
     <string name="permission_storage_never_ask_again_message">La funzione non è disponibile a causa del permesso di archiviazione negato</string>
     <string name="permission_logging_denied_temporarily_message">Disattivazione temporanea della registrazione dei file a causa del permesso di archiviazione negato</string>
-    <string name="permission_collector_rationale_message">Le autorizzazioni di posizione e telefoniche devono essere concesse per raccogliere le misurazioni</string>
+    <string name="permission_collector_rationale_message">Le autorizzazioni di posizione e telefoniche devono essere concesse per raccogliere le misurazioni.</string>
+    <string name="permission_collector_rationale_api29_message">\n\nSe vuoi usare l\'app, assicurati di selezionare l\'opzione \'consenti sempre\' per accedere all\'autorizzazione alla posizione del dispositivo!</string>
     <string name="permission_collector_denied_message">Annullamento della raccolta delle misure a causa di autorizzazioni negate</string>
     <string name="permission_collector_never_ask_again_message">La raccolta delle misure non è disponibile a causa di autorizzazioni di posizione e/o telefoniche negate</string>
     <string name="permission_collector_denied_intent_message">Annullamento della raccolta delle misure a causa di autorizzazioni negate, aprire l\'app per concedere prima le autorizzazioni necessarie</string>
