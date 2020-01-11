@@ -1,8 +1,8 @@
 {
   "Entries": [
     {
-      "VersionCode": 2010146,
-      "Title": "Changes in version 2.1.1",
+      "VersionCode": 2010147,
+      "Title": "Changes in version 2.1.1.1",
       "Description": "This version brings many fixes and improvements mainly for Android 10.",
       "Messages": [
         "Fix export and logging not working on Android 10 due to scoped storage feature.",
