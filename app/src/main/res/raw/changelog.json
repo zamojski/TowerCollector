@@ -1,8 +1,15 @@
 {
   "Entries": [
     {
-      "VersionCode": 2010147,
-      "Title": "Changes in version 2.1.1.1",
+      "VersionCode": 2010250,
+      "Title": "Changes in version 2.1.2",
+      "Messages": [
+        "Fix duplicated logs when file logging enabled."
+      ]
+    },
+    {
+      "VersionCode": 2010149,
+      "Title": "Changes in version 2.1.1",
       "Description": "This version brings many fixes and improvements mainly for Android 10.",
       "Messages": [
         "Fix export and logging not working on Android 10 due to scoped storage feature.",
@@ -42,16 +49,6 @@
         "Updated Russian translation.",
         "Use delete verb consistently. Closes issue <a href=\"https://github.com/zamojski/TowerCollector/issues/62\">#62</a>.",
         "Use consistent line endings in the exported files. Closes issue <a href=\"https://github.com/zamojski/TowerCollector/issues/63\">#63</a>."
-      ]
-    },
-    {
-      "VersionCode": 2000641,
-      "Title": "Changes in version 2.0.6",
-      "Description": "This version brings important fixes for data consistency. You may notice the number of measurements decreased and the last measurement can be connected to more cells than usually. This is only a one time change to ensure the proper functioning of the application.",
-      "Messages": [
-        "Fix data inconsistency for measurements collected when GPS signal temporarily lost.",
-        "Fix upload and export to file skipping some measurements.",
-        "Fix statistics calculated incorrectly."
       ]
     }
   ]
