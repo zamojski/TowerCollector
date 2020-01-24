@@ -110,6 +110,9 @@ public class MyApplication extends Application {
                     fileLogLevel = Log.ERROR;
                 }
                 consoleLogLevel = Math.min(consoleLogLevel, fileLogLevel);
+                if (Timber.forest().contains(FileLoggingTree.INSTANCE)) {
+                    Timber.uproot(FileLoggingTree.INSTANCE);
+                }
                 Timber.plant(FileLoggingTree.INSTANCE.setPriority(fileLogLevel));
             } else {
                 Toast.makeText(this, R.string.permission_logging_denied_temporarily_message, Toast.LENGTH_LONG).show();
