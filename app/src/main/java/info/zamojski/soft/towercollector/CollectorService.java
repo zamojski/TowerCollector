@@ -285,7 +285,7 @@ public class CollectorService extends Service {
             if (staticLocationListener != null)
                 locationManager.removeUpdates(staticLocationListener);
         }
-        if (telephonyManager != null)
+        if (telephonyManager != null && phoneStateListener != null)
             telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
         if (measurementParserThread != null)
             measurementParserThread.quit();
