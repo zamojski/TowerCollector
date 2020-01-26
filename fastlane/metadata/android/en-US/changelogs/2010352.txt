@@ -1,0 +1,3 @@
+- Fix only measurements from first SIM card collected on Android 10.
+- Fix crash on Samsung Galaxy A6.
+- Updated Chinese, Hungarian, Italian and Spanish translations.
