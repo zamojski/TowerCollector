@@ -156,7 +156,7 @@
     <string name="main_help_power_save_mode_title">Risparmio batteria attivato</string>
     <string name="main_help_power_save_mode_description">Il risparmio batteria è abilitato sul dispositivo, il che può comportare la raccolta di misurazioni inaccurate ed inaffidabili. Disattiva il risparmio batteria nelle impostazioni della batteria di Android.</string>
     <string name="main_help_airplane_mode_title">Modalità aereo abilitata</string>
-    <string name="main_help_airplane_mode_description">La modalità aereo / volo è abilitata sul tuo dispositivo che blocca l\'app dalla raccolta delle misurazioni. Disabilita la modalità aereo nelle impostazioni Android.</string>
+    <string name="main_help_airplane_mode_description">La modalità aereo / volo è abilitata sul dispositivo; ciò impedisce all\'app di raccogliere le misurazioni. Disabilitare la modalità aereo nelle impostazioni Android.</string>
     <string name="main_help_today_locations_title">Misurazioni odierne</string>
     <string name="main_help_today_locations_description">Numero di misurazioni raccolte dall\'applicazione oggi.</string>
     <string name="main_help_today_cells_title">Celle odierne</string>
@@ -174,7 +174,7 @@
     <string name="main_help_last_network_type_title">Tipo di rete</string>
     <string name="main_help_last_network_type_description">Il tipo di rete mobile a cui è stato collegato il telefono.</string>
     <string name="main_help_last_long_cell_id_title">Cell Tover ID Lungo</string>
-    <string name="main_help_last_long_cell_id_description">L\'identificativo lungo di torre cellulare unico al quale era collegato il telefono.\nPer le reti UMTS, l\'LCID, chiamato anche UTRAN CID, è una concatenazione di RNC (ID del Controller di Rete Radio) e Cell ID (ID univoco della Torre Cellulare). Questo ID è definito solo per le reti UMTS.\nPer le reti LTE, l\'LCID, chiamato anche EID UTRAN, è una concatenazione di eNodeB (ID del controller di Rete Radio) e ID cella (ID univoco della Torre Cellulare).</string>
+    <string name="main_help_last_long_cell_id_description">L\'identificativo lungo univoco della torre cellulare alla quale era collegato il telefono.\nPer le reti UMTS, l\'LCID, chiamato anche UTRAN CID, è una concatenazione di RNC (ID del Controller di Rete Radio) e Cell ID (ID univoco della Torre Cellulare). Questo ID è definito solo per le reti UMTS.\nPer le reti LTE, l\'LCID, chiamato anche EID UTRAN, è una concatenazione di eNodeB (ID del controller di Rete Radio) e ID cella (ID univoco della Torre Cellulare).</string>
     <string name="main_help_last_cell_id_rnc_title">Cell Tower ID / RNC</string>
     <string name="main_help_last_cell_id_rnc_description">L\'identificatore univoco di torre cellulare e il RNC (ID del Controller di Rete Radio) a cui è stato collegato il telefono. Questo ID è definito solo per le reti UMTS e LTE.</string>
     <string name="main_help_last_cell_id_title">Cell Tower ID</string>

@@ -18,7 +18,7 @@
     <string name="app_title_help">Súgó</string>
     <string name="app_title_about">Névjegy</string>
     <string name="dialog_want_enable_gps">Be szeretnéd kapcsolni a GPS-t a beállításokban?</string>
-    <string name="dialog_could_not_open_android_settings">Az Android beállítások nem nyithatóak meg. Nyissa meg kézzel a módosításhoz.</string>
+    <string name="dialog_could_not_open_android_settings">Az Android beállítások nem nyithatóak meg. Nyisd meg kézzel a módosításhoz.</string>
     <string name="dialog_select_email_app">E-mail alkalmazás kiválasztása</string>
     <string name="dialog_what_is_new">A fejlesztő üzenete!</string>
     <string name="dialog_yes">Igen</string>
@@ -90,7 +90,7 @@
     <string name="collector_gps_unavailable">Az adatgyűjtés nem kezdhető el, mert a GPS nem érhető el.</string>
     <string name="uploader_notification_channel_name">Feltöltő</string>
     <string name="uploader_notification_title">Feltöltés</string>
-    <string name="uploader_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% feltöltve. Válassza ki a megszakításhoz.</string>
+    <string name="uploader_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% feltöltve. Válaszd ki a megszakításhoz.</string>
     <string name="uploader_result_dialog_title">Feltöltés eredménye</string>
     <string name="uploader_starting">Feltöltés elkezdése&#8230;</string>
     <string name="uploader_aborting">Feltöltés megszakítása&#8230;</string>
