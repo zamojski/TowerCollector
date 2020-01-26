@@ -62,4 +62,8 @@ public class MobileUtils {
     public static boolean isApi29Limited() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q;
     }
+
+    public static boolean isApi24MultiSimCompatible() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N;
+    }
 }

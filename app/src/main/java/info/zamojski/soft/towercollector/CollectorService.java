@@ -15,7 +15,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationProvider;
-import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,6 +28,8 @@ import android.telephony.CellLocation;
 import android.telephony.NeighboringCellInfo;
 import android.telephony.PhoneStateListener;
 import android.telephony.SignalStrength;
+import android.telephony.SubscriptionInfo;
+import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.widget.Toast;
 
@@ -39,6 +40,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -93,7 +95,7 @@ public class CollectorService extends Service {
     private static final Object reacquireWakeLockLock = new Object();
 
     private IBinder binder = new LocalBinder();
-    private TelephonyManager telephonyManager;
+    private List<TelephonyManager> telephonyManagers = new ArrayList<>(2);
     private Tuple<Method, Boolean> getNeighboringCellInfoMethod;
     private LocationManager locationManager;
 
@@ -115,9 +117,9 @@ public class CollectorService extends Service {
 
     // prevent from being garbage collected
     private MeasurementParser measurementParser;
-    private PhoneStateListener phoneStateListener;
+    private List<PhoneStateListener> phoneStateListeners = new ArrayList<>(2);
     private Timer periodicalPhoneStateListener;
-    private TelephonyManager.CellInfoCallback cellInfoUpdateRequestCallback;
+    private List<TelephonyManager.CellInfoCallback> cellInfoUpdateRequestCallbacks = new ArrayList<>(2);
 
     KeepScreenOnMode keepScreenOnMode;
     private Timer periodicalWakeLockAcquirer;
@@ -150,9 +152,24 @@ public class CollectorService extends Service {
         Timber.d("onCreate(): Creating service");
         MyApplication.startBackgroundTask(this);
         // get managers
-        telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        TelephonyManager defaultTelephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        if (MobileUtils.isApi24MultiSimCompatible()) { // multi-sim, multiple listeners
+            try {
+                SubscriptionManager subscriptionManager = (SubscriptionManager) getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
+                List<SubscriptionInfo> activeSubscriptions = subscriptionManager.getActiveSubscriptionInfoList();
+                for (SubscriptionInfo subscription : activeSubscriptions) {
+                    TelephonyManager telephonyManager = defaultTelephonyManager.createForSubscriptionId(subscription.getSubscriptionId());
+                    telephonyManagers.add(telephonyManager);
+                }
+            } catch (SecurityException ex) {
+                Timber.e(ex, "onCreate(): phone permission is denied");
+                stopSelf();
+            }
+        } else { // single-sim, single listener
+            telephonyManagers.add(defaultTelephonyManager);
+        }
         boolean hideNotification = MyApplication.getPreferencesProvider().getHideCollectorNotification();
         notificationHelper = new CollectorNotificationHelper(this, hideNotification);
         // create notification
@@ -285,8 +302,12 @@ public class CollectorService extends Service {
             if (staticLocationListener != null)
                 locationManager.removeUpdates(staticLocationListener);
         }
-        if (telephonyManager != null && phoneStateListener != null)
-            telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
+        for (int i = 0; i < telephonyManagers.size(); i++) {
+            TelephonyManager telephonyManager = telephonyManagers.get(i);
+            PhoneStateListener phoneStateListener = phoneStateListeners.get(i);
+            if (telephonyManager != null && phoneStateListener != null)
+                telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
+        }
         if (measurementParserThread != null)
             measurementParserThread.quit();
         if (externalBroadcastSenderThread != null)
@@ -344,41 +365,61 @@ public class CollectorService extends Service {
         boolean collectNeighboringCells = MyApplication.getPreferencesProvider().getCollectNeighboringCells();
         measurementParser = new MeasurementParserFactory().CreateApi17Parser(transportMode.getAccuracy(), collectNeighboringCells);
         getMeasurementParserHandler().post(measurementParser);
-        phoneStateListener = new PhoneStateListener() {
-            private final String INNER_TAG = CollectorService.class.getSimpleName() + ".Api17Plus" + PhoneStateListener.class.getSimpleName();
-
-            @Override
-            public void onCellInfoChanged(List<CellInfo> cellInfo) {
-                if (cellInfo == null) {
-                    Timber.tag(INNER_TAG).d("onCellInfoChanged(): Null reported");
-                    return;
-                }
-                Timber.tag(INNER_TAG).d("onCellInfoChanged(): Number of cells: %s", cellInfo.size());
-                processCellInfo(cellInfo);
-            }
-        };
-        try {
-            telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS | PhoneStateListener.LISTEN_CELL_INFO);
-        } catch (SecurityException ex) {
-            Timber.e(ex, "registerApi17PhoneStateListener(): coarse location permission is denied");
-            stopSelf();
-        }
-
-        if (MobileUtils.isApi29Limited()) {
-            cellInfoUpdateRequestCallback = new TelephonyManager.CellInfoCallback() {
-                private final String INNER_TAG = CollectorService.class.getSimpleName() + "." + TelephonyManager.CellInfoCallback.class.getSimpleName();
+        for (int i = 0; i < telephonyManagers.size(); i++) {
+            TelephonyManager telephonyManager = telephonyManagers.get(i);
+            int telephoneManagerIndex = i;
+            // callback is registered for all sim cards but it's hard to union 2 data sets reported at different time to process them as one, so calling getAllCellInfo to get at least partially refreshed data in a single call
+            PhoneStateListener phoneStateListener = new PhoneStateListener() {
+                private final String INNER_TAG = CollectorService.class.getSimpleName() + ".Api17Plus" + PhoneStateListener.class.getSimpleName() + "ForIndex" + telephoneManagerIndex;
 
                 @Override
-                public void onCellInfo(@NonNull List<CellInfo> cellInfo) {
-                    Timber.tag(INNER_TAG).d("onCellInfo(): Successfully updated cell info, number of cells: %s", cellInfo.size());
-                    processCellInfo(cellInfo);
-                }
-
-                @Override
-                public void onError(int errorCode, Throwable detail) {
-                    Timber.tag(INNER_TAG).e(detail, "onError(): Error %s occurred when requesting cell info update", errorCode);
+                public void onCellInfoChanged(List<CellInfo> cellInfo) {
+                    if (cellInfo == null) {
+                        Timber.tag(INNER_TAG).d("onCellInfoChanged(): Null reported");
+                        return;
+                    }
+                    try {
+                        List<CellInfo> allCellInfo = telephonyManager.getAllCellInfo();
+                        Timber.tag(INNER_TAG).d("onCellInfoChanged(): Number of cells changed: %s, ignoring result from this subscription only, passing %s cells instead", cellInfo.size(), allCellInfo.size());
+                        processCellInfo(allCellInfo);
+                    } catch (SecurityException ex) {
+                        Timber.tag(INNER_TAG).e(ex, "onCellInfoChanged(): coarse location or phone permission is denied");
+                        stopSelf();
+                    }
                 }
             };
+            try {
+                phoneStateListeners.add(telephoneManagerIndex, phoneStateListener);
+                telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS | PhoneStateListener.LISTEN_CELL_INFO);
+            } catch (SecurityException ex) {
+                Timber.e(ex, "registerApi17PhoneStateListener(): coarse location permission is denied");
+                stopSelf();
+            }
+
+            if (MobileUtils.isApi29Limited()) {
+                // callback is registered for all sim cards but it's hard to union 2 data sets reported at different time to process them as one, so calling getAllCellInfo to get at least partially refreshed data in a single call
+                TelephonyManager.CellInfoCallback cellInfoUpdateRequestCallback = new TelephonyManager.CellInfoCallback() {
+                    private final String INNER_TAG = CollectorService.class.getSimpleName() + "." + TelephonyManager.CellInfoCallback.class.getSimpleName();
+
+                    @Override
+                    public void onCellInfo(@NonNull List<CellInfo> cellInfo) {
+                        try {
+                            List<CellInfo> allCellInfo = telephonyManager.getAllCellInfo();
+                            Timber.tag(INNER_TAG).d("onCellInfo(): Number of cells updated: %s, ignoring result from this subscription only, passing %s cells instead", cellInfo.size(), allCellInfo.size());
+                            processCellInfo(allCellInfo);
+                        } catch (SecurityException ex) {
+                            Timber.tag(INNER_TAG).e(ex, "onCellInfo(): coarse location or phone permission is denied");
+                            stopSelf();
+                        }
+                    }
+
+                    @Override
+                    public void onError(int errorCode, Throwable detail) {
+                        Timber.tag(INNER_TAG).e(detail, "onError(): Error %s occurred when requesting cell info update", errorCode);
+                    }
+                };
+                cellInfoUpdateRequestCallbacks.add(telephoneManagerIndex, cellInfoUpdateRequestCallback);
+            }
         }
 
         // run scheduled cell listener
@@ -390,11 +431,15 @@ public class CollectorService extends Service {
                 try {
                     List<CellInfo> cellInfo;
                     if (MobileUtils.isApi29Limited()) {
-                        // value is cached and update needs to be requested
-                        telephonyManager.requestCellInfoUpdate(getMainExecutor(), cellInfoUpdateRequestCallback);
+                        for (int i = 0; i < telephonyManagers.size(); i++) {
+                            TelephonyManager telephonyManager = telephonyManagers.get(i);
+                            TelephonyManager.CellInfoCallback cellInfoUpdateRequestCallback = cellInfoUpdateRequestCallbacks.get(i);
+                            // value is cached and update needs to be requested
+                            telephonyManager.requestCellInfoUpdate(getMainExecutor(), cellInfoUpdateRequestCallback);
+                        }
                     } else {
                         // value should be refreshed on the call
-                        cellInfo = telephonyManager.getAllCellInfo();
+                        cellInfo = telephonyManagers.get(0).getAllCellInfo();
                         if (cellInfo == null) {
                             Timber.tag(INNER_TAG).d("run(): Null reported");
                             return;
@@ -403,7 +448,7 @@ public class CollectorService extends Service {
                         processCellInfo(cellInfo);
                     }
                 } catch (SecurityException ex) {
-                    Timber.tag(INNER_TAG).e(ex, "run(): coarse location or phone  permission is denied");
+                    Timber.tag(INNER_TAG).e(ex, "run(): coarse location or phone permission is denied");
                     stopSelf();
                 }
             }
@@ -416,7 +461,8 @@ public class CollectorService extends Service {
         boolean collectNeighboringCells = MyApplication.getPreferencesProvider().getCollectNeighboringCells();
         measurementParser = new MeasurementParserFactory().CreateApi1Parser(transportMode.getAccuracy(), collectNeighboringCells);
         getMeasurementParserHandler().post(measurementParser);
-        phoneStateListener = new PhoneStateListener() {
+        TelephonyManager telephonyManager = telephonyManagers.get(0);
+        PhoneStateListener phoneStateListener = new PhoneStateListener() {
             private final String INNER_TAG = CollectorService.class.getSimpleName() + ".Legacy" + PhoneStateListener.class.getSimpleName();
 
             @Override
@@ -434,7 +480,7 @@ public class CollectorService extends Service {
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
                         neighboringCells = getNeighboringCellInfo(telephonyManager);
                     }
-                    processCellLocation(cellLocation, neighboringCells);
+                    processCellLocation(telephonyManager, cellLocation, neighboringCells);
                 } catch (SecurityException ex) {
                     Timber.tag(INNER_TAG).e(ex, "onCellLocationChanged(): coarse location or phone permission is denied");
                     stopSelf();
@@ -442,6 +488,7 @@ public class CollectorService extends Service {
             }
         };
         try {
+            phoneStateListeners.add(phoneStateListener);
             telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS | PhoneStateListener.LISTEN_CELL_LOCATION);
         } catch (SecurityException ex) {
             Timber.e(ex, "registerApi1PhoneStateListener(): coarse location permission is denied");
@@ -460,7 +507,7 @@ public class CollectorService extends Service {
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
                         neighboringCells = getNeighboringCellInfo(telephonyManager);
                     }
-                    processCellLocation(cellLocation, neighboringCells);
+                    processCellLocation(telephonyManager, cellLocation, neighboringCells);
                 } catch (SecurityException ex) {
                     Timber.tag(INNER_TAG).e(ex, "run(): coarse location or phone permission is denied");
                     stopSelf();
@@ -474,7 +521,7 @@ public class CollectorService extends Service {
         measurementUpdater.setLastCellInfo(cellInfo);
     }
 
-    private void processCellLocation(CellLocation cellLocation, List<NeighboringCellInfo> neighboringCells) {
+    private void processCellLocation(TelephonyManager telephonyManager, CellLocation cellLocation, List<NeighboringCellInfo> neighboringCells) {
         // get network type
         int networkTypeInt = telephonyManager.getNetworkType();
         NetworkGroup networkType = NetworkTypeUtils.getNetworkGroup(networkTypeInt);
