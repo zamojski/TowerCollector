@@ -62,6 +62,10 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
             showCollectorPermissionsDenied(context);
             return;
         }
+        if (!GpsUtils.isGpsEnabled(context)) {
+            showGpsNotAvailable(context);
+            return;
+        }
         Timber.d("startCollectorService(): Starting service from broadcast");
         Intent intent = getCollectorIntent(context, source);
 
@@ -126,5 +130,10 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
     private void showCollectorPermissionsDenied(Context context) {
         Timber.d("showCollectorPermissionsDenied(): Cannot start collector due to denied permissions");
         Toast.makeText(context, R.string.permission_collector_denied_intent_message, Toast.LENGTH_LONG).show();
+    }
+
+    private void showGpsNotAvailable(Context context) {
+        Timber.d("showGpsNotAvailable(): Cannot start collector because GPS is not available");
+        Toast.makeText(context, R.string.collector_gps_unavailable, Toast.LENGTH_LONG).show();
     }
 }
