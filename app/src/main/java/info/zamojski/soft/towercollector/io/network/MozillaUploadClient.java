@@ -46,10 +46,7 @@ public class MozillaUploadClient extends ClientBase implements IUploadClient {
 
             Response response = client.newCall(request).execute();
             return handleResponse(response.code(), response.body().string());
-        } catch (SocketTimeoutException ex) {
-            Timber.d(ex, "uploadMeasurements(): Timeout encountered");
-            return RequestResult.ConnectionError;
-        } catch (ConnectException ex) {
+        } catch (SocketTimeoutException | ConnectException ex) {
             Timber.d(ex, "uploadMeasurements(): Timeout encountered");
             return RequestResult.ConnectionError;
         } catch (IOException ex) {

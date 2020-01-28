@@ -11,8 +11,6 @@ import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
 import javax.net.ssl.SSLException;
-import javax.net.ssl.SSLHandshakeException;
-import javax.net.ssl.SSLProtocolException;
 
 import info.zamojski.soft.towercollector.MyApplication;
 
@@ -32,10 +30,6 @@ public abstract class ClientBase {
 
     protected void reportException(Exception ex) {
         MyApplication.handleSilentException(ex);
-    }
-
-    protected boolean isCipherUnsupported(Throwable throwable) {
-        return (throwable instanceof SSLProtocolException || throwable instanceof SSLHandshakeException);
     }
 
     private boolean isSuppressed(Throwable throwable) {

@@ -8,7 +8,6 @@ import android.os.Build;
 
 import java.security.KeyStore;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.net.ssl.SSLContext;
@@ -16,7 +15,6 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-import okhttp3.CipherSuite;
 import okhttp3.ConnectionSpec;
 import okhttp3.OkHttpClient;
 import okhttp3.TlsVersion;
@@ -26,14 +24,6 @@ public class ExtendedOkHttpClientBuilder {
 
     public OkHttpClient.Builder newBuilder() {
         return enableTls12(new OkHttpClient().newBuilder());
-    }
-
-    public OkHttpClient.Builder newLegacyBuilder() {
-        return enableLegacyCiphers(newBuilder());
-    }
-
-    public OkHttpClient.Builder newClearTextBuilder() {
-        return enableClearTextOnly(new OkHttpClient().newBuilder());
     }
 
     /**
@@ -48,7 +38,7 @@ public class ExtendedOkHttpClientBuilder {
      * @return the (potentially modified) [OkHttpClient.Builder]
      */
     private OkHttpClient.Builder enableTls12(OkHttpClient.Builder clientBuilder) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP_MR1) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP_MR1) {
             try {
                 TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
                 trustManagerFactory.init((KeyStore) null);
@@ -61,7 +51,6 @@ public class ExtendedOkHttpClientBuilder {
                 List<ConnectionSpec> specs = new ArrayList<>();
                 specs.add(getModernTls12Spec());
                 specs.add(getCompatibleTls12Spec());
-                specs.add(getLegacyCiphersSpec()); // NOTE: Required on some Kitkat devices
 
                 clientBuilder.connectionSpecs(specs);
             } catch (Exception ex) {
@@ -69,20 +58,6 @@ public class ExtendedOkHttpClientBuilder {
             }
         }
         return clientBuilder;
-    }
-
-    /**
-     * At the time of writing OpenCellID (behind cloudflare) used ciphers removed from OkHttp 3.10.0
-     */
-    private OkHttpClient.Builder enableLegacyCiphers(OkHttpClient.Builder clientBuilder) {
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
-            clientBuilder.connectionSpecs(Collections.singletonList(getLegacyCiphersSpec()));
-        }
-        return clientBuilder;
-    }
-
-    private OkHttpClient.Builder enableClearTextOnly(OkHttpClient.Builder clientBuilder) {
-        return clientBuilder.connectionSpecs(Collections.singletonList(ConnectionSpec.CLEARTEXT));
     }
 
     private ConnectionSpec getModernTls12Spec() {
@@ -94,21 +69,6 @@ public class ExtendedOkHttpClientBuilder {
     private ConnectionSpec getCompatibleTls12Spec() {
         return new ConnectionSpec.Builder(ConnectionSpec.COMPATIBLE_TLS)
                 .tlsVersions(TlsVersion.TLS_1_2)
-                .build();
-    }
-
-    private ConnectionSpec getLegacyCiphersSpec() {
-        return new ConnectionSpec.Builder(ConnectionSpec.COMPATIBLE_TLS)
-                .tlsVersions(TlsVersion.TLS_1_2, TlsVersion.TLS_1_1, TlsVersion.TLS_1_0)
-                .cipherSuites(
-                        CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
-                        CipherSuite.TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,
-                        CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,
-                        CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA,
-                        CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,
-                        CipherSuite.TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,
-                        CipherSuite.TLS_RSA_WITH_AES_128_CBC_SHA,
-                        CipherSuite.TLS_RSA_WITH_AES_256_CBC_SHA)
                 .build();
     }
 }

@@ -20,8 +20,6 @@ import timber.log.Timber;
 
 public class OcidUploadClient extends ClientBase implements IUploadClient {
 
-    private static boolean UseClearTextFallback = false; // for the lifetime of the app
-
     private static final MediaType CSV = MediaType.parse("text/csv");
 
     private String url;
@@ -36,26 +34,12 @@ public class OcidUploadClient extends ClientBase implements IUploadClient {
 
     @Override
     public RequestResult uploadMeasurements(String content) {
-        if (UseClearTextFallback) {
-            return uploadMeasurementsClearText(content);
-        } else {
-            RequestResult result = uploadMeasurementsEncrypted(content);
-            if (result == RequestResult.Failure && UseClearTextFallback) {
-                Timber.w("uploadMeasurements(): Switching to clear text fallback upload");
-                result = uploadMeasurementsClearText(content);
-            }
-            return result;
-        }
+        return uploadMeasurementsEncrypted(content);
     }
 
     private RequestResult uploadMeasurementsEncrypted(String content) {
         Timber.d("uploadMeasurementsEncrypted(): Sending encrypted post request");
-        return uploadMeasurementsCommon(new ExtendedOkHttpClientBuilder().newLegacyBuilder(), url, content);
-    }
-
-    private RequestResult uploadMeasurementsClearText(String content) {
-        Timber.w("uploadMeasurementsClearText(): Sending clear text post request");
-        return uploadMeasurementsCommon(new ExtendedOkHttpClientBuilder().newClearTextBuilder(), url.replace("https://", "http://"), content);
+        return uploadMeasurementsCommon(new ExtendedOkHttpClientBuilder().newBuilder(), url, content);
     }
 
     private RequestResult uploadMeasurementsCommon(OkHttpClient.Builder clientBuilder, String url, String content) {
@@ -78,15 +62,11 @@ public class OcidUploadClient extends ClientBase implements IUploadClient {
 
             Response response = client.newCall(request).execute();
             return handleResponse(response.code(), response.body().string());
-        } catch (SocketTimeoutException ex) {
-            Timber.d(ex, "uploadMeasurements(): Timeout encountered");
-            return RequestResult.ConnectionError;
-        } catch (ConnectException ex) {
+        } catch (SocketTimeoutException | ConnectException ex) {
             Timber.d(ex, "uploadMeasurements(): Timeout encountered");
             return RequestResult.ConnectionError;
         } catch (IOException ex) {
             Timber.d(ex, "uploadMeasurements(): Errors encountered");
-            UseClearTextFallback |= isCipherUnsupported(ex);
             reportExceptionWithSuppress(ex);
             return RequestResult.Failure;
         }
