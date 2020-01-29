@@ -33,8 +33,7 @@
 -printmapping mapping.txt
 
 # Keep line numbers so they appear in the stack trace of the develeper console
-#-keepattributes SourceFile,LineNumberTable
--keepattributes LineNumberTable
+-keepattributes SourceFile,LineNumberTable
 
 # The -optimizations option disables some arithmetic simplifications that Dalvik 1.0 and 1.5 can't handle.
 #skip according to default file comment -optimizations !code/simplification/arithmetic
