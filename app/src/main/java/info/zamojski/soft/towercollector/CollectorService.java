@@ -158,9 +158,14 @@ public class CollectorService extends Service {
             try {
                 SubscriptionManager subscriptionManager = (SubscriptionManager) getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
                 List<SubscriptionInfo> activeSubscriptions = subscriptionManager.getActiveSubscriptionInfoList();
-                for (SubscriptionInfo subscription : activeSubscriptions) {
-                    TelephonyManager telephonyManager = defaultTelephonyManager.createForSubscriptionId(subscription.getSubscriptionId());
-                    telephonyTriples.add(new TelephonyTriple(telephonyManager));
+                if (activeSubscriptions == null) {
+                    // fallback in case subscriptions state is unknown
+                    telephonyTriples.add(new TelephonyTriple(defaultTelephonyManager));
+                } else {
+                    for (SubscriptionInfo subscription : activeSubscriptions) {
+                        TelephonyManager telephonyManager = defaultTelephonyManager.createForSubscriptionId(subscription.getSubscriptionId());
+                        telephonyTriples.add(new TelephonyTriple(telephonyManager));
+                    }
                 }
             } catch (SecurityException ex) {
                 Timber.e(ex, "onCreate(): phone permission is denied");
