@@ -1,0 +1,4 @@
+- Fix crash when stopping collector service if not fully initialized.
+- Fix crash when no active SIM cards on collector start.
+- Show warning when GPS not available while starting collecting through intent.
+- Enforce secure connections.
