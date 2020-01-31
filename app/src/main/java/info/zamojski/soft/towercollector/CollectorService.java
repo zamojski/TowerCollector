@@ -439,7 +439,7 @@ public class CollectorService extends Service {
                     if (MobileUtils.isApi29Limited()) {
                         for (TelephonyTriple telephonyTriple : telephonyTriples) {
                             TelephonyManager telephonyManager = telephonyTriple.getTelephonyManager();
-                            TelephonyManager.CellInfoCallback cellInfoUpdateRequestCallback = telephonyTriple.getCellInfoUpdateRequestCallback();
+                            TelephonyManager.CellInfoCallback cellInfoUpdateRequestCallback = (TelephonyManager.CellInfoCallback) telephonyTriple.getCellInfoUpdateRequestCallback();
                             // value is cached and update needs to be requested
                             telephonyManager.requestCellInfoUpdate(getMainExecutor(), cellInfoUpdateRequestCallback);
                         }

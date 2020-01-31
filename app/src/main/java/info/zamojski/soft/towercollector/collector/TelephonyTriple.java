@@ -10,7 +10,7 @@ import android.telephony.TelephonyManager;
 public class TelephonyTriple {
     private final TelephonyManager telephonyManager;
     private PhoneStateListener phoneStateListener;
-    private TelephonyManager.CellInfoCallback cellInfoUpdateRequestCallback;
+    private Object cellInfoUpdateRequestCallback; // object to reuse the type on lower api TelephonyManager.CellInfoCallback on which it's always null
 
     public TelephonyTriple(TelephonyManager telephonyManager) {
         this.telephonyManager = telephonyManager;
@@ -28,11 +28,11 @@ public class TelephonyTriple {
         this.phoneStateListener = phoneStateListener;
     }
 
-    public TelephonyManager.CellInfoCallback getCellInfoUpdateRequestCallback() {
+    public Object getCellInfoUpdateRequestCallback() {
         return cellInfoUpdateRequestCallback;
     }
 
-    public void setCellInfoUpdateRequestCallback(TelephonyManager.CellInfoCallback cellInfoUpdateRequestCallback) {
+    public void setCellInfoUpdateRequestCallback(Object cellInfoUpdateRequestCallback) {
         this.cellInfoUpdateRequestCallback = cellInfoUpdateRequestCallback;
     }
 }
