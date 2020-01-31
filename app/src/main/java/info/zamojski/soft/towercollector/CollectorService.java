@@ -158,8 +158,8 @@ public class CollectorService extends Service {
             try {
                 SubscriptionManager subscriptionManager = (SubscriptionManager) getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
                 List<SubscriptionInfo> activeSubscriptions = subscriptionManager.getActiveSubscriptionInfoList();
-                if (activeSubscriptions == null) {
-                    // fallback in case subscriptions state is unknown
+                if (activeSubscriptions == null || activeSubscriptions.isEmpty()) {
+                    // fallback in case subscriptions state is unknown or inactive
                     telephonyTriples.add(new TelephonyTriple(defaultTelephonyManager));
                 } else {
                     for (SubscriptionInfo subscription : activeSubscriptions) {
