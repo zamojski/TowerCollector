@@ -1,0 +1,2 @@
+- Fix crash when starting collector.
+- Improve look of shortcut icons on some launchers.

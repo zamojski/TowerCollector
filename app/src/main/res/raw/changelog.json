@@ -1,6 +1,14 @@
 {
   "Entries": [
     {
+      "VersionCode": 2010555,
+      "Title": "Changes in version 2.1.5",
+      "Messages": [
+        "Fix crash when starting collector.",
+        "Improve look of shortcut icons on some launchers."
+      ]
+    },
+    {
       "VersionCode": 2010454,
       "Title": "Changes in version 2.1.4",
       "Messages": [
@@ -36,15 +44,6 @@
         "Fix 5G (NR) and TD-SCDMA network type field not handled properly in upload and export.",
         "Add support for background location permission on Android 10.",
         "Remove code for not supported Android versions."
-      ]
-    },
-    {
-      "VersionCode": 2010044,
-      "Title": "Changes in version 2.1.0",
-      "Description": "Newly added support for 5G (NR) and TD-SCDMA currently allows you to collect an export data to CSV and GPX formats. It's not possible to upload such measurements because OpenCellId and Mozilla Location Services don't accept them yet. Because 5G is not available in my country and TD-SCDMA is used only in China I'm not able to test them with real data, so if you find any issues related to collecting, export or upload please contact me!",
-      "Messages": [
-        "Dropped support for Android 4.0-4.4.",
-        "Add support for 5G (NR) and TD-SCDMA on Android 10+."
       ]
     }
   ]
