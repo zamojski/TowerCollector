@@ -170,6 +170,7 @@ public class CollectorService extends Service {
             } catch (SecurityException ex) {
                 Timber.e(ex, "onCreate(): phone permission is denied");
                 stopSelf();
+                return;
             }
         } else { // single-sim, single listener
             telephonyTriples.add(new TelephonyTriple(defaultTelephonyManager));
@@ -221,12 +222,14 @@ public class CollectorService extends Service {
         } catch (SecurityException ex) {
             Timber.e(ex, "onStartCommand(): coarse location permission is denied");
             stopSelf();
+            return START_NOT_STICKY;
         }
         // make sure GPS is available on the device otherwise the following lines will throw an exception
         if (!GpsUtils.isGpsEnabled(this)) {
             Timber.w("onStartCommand(): GPS is unavailable, stopping");
             Toast.makeText(this, R.string.collector_gps_unavailable, Toast.LENGTH_LONG).show();
             stopSelf();
+            return START_NOT_STICKY;
         }
         try {
             // listen for GPS location change
@@ -239,6 +242,7 @@ public class CollectorService extends Service {
         } catch (SecurityException ex) {
             Timber.e(ex, "onStartCommand(): fine location permission is denied");
             stopSelf();
+            return START_NOT_STICKY;
         }
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         registerWakeLockAcquirer();
