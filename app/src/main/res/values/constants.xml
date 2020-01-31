@@ -147,4 +147,7 @@
     <string name="network_group_tdscdma" translatable="false">TD-SCDMA</string>
     <string name="network_group_nr" translatable="false">NR</string>
 
+    <string name="shortcut_id_collector_toggle" translatable="false">collector_toggle</string>
+    <string name="shortcut_id_uploader_toggle" translatable="false">uploader_toggle</string>
+
 </resources>

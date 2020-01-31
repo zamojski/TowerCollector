@@ -772,6 +772,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             // start service
             ContextCompat.startForegroundService(this, intent);
             EventBus.getDefault().post(new CollectorStartedEvent(intent));
+            ApkUtils.reportShortcutUsage(MyApplication.getApplication(), R.string.shortcut_id_collector_toggle);
         }
     }
 
@@ -825,6 +826,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private void stopCollectorService() {
         stopService(new Intent(this, CollectorService.class));
+        ApkUtils.reportShortcutUsage(MyApplication.getApplication(), R.string.shortcut_id_collector_toggle);
     }
 
     private void startUploaderServiceWithCheck() {
@@ -925,6 +927,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             intent.putExtra(UploaderService.INTENT_KEY_UPLOAD_TRY_REUPLOAD, isReuploadIfUploadFailsEnabled);
             intent.putExtra(UploaderService.INTENT_KEY_START_INTENT_SOURCE, IntentSource.User);
             ContextCompat.startForegroundService(this, intent);
+            ApkUtils.reportShortcutUsage(MyApplication.getApplication(), R.string.shortcut_id_uploader_toggle);
         } else
             Toast.makeText(getApplication(), R.string.uploader_already_running, Toast.LENGTH_LONG).show();
     }

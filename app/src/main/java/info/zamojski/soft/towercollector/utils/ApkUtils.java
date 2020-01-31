@@ -8,7 +8,10 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ShortcutManager;
 import android.os.Build;
+
+import androidx.annotation.StringRes;
 
 import java.util.List;
 
@@ -90,5 +93,12 @@ public class ApkUtils {
         // https://issuetracker.google.com/issues/68427483
         // https://stackoverflow.com/questions/46992843/interstitial-admob-ads-illegalstateexception-only-fullscreen-activities-can-r/48665610#48665610
         return context.getApplicationInfo().targetSdkVersion > Build.VERSION_CODES.O && Build.VERSION.SDK_INT == Build.VERSION_CODES.O;
+    }
+
+    public static void reportShortcutUsage(Context context, @StringRes int shortcutId) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            ShortcutManager shortcutManager = (ShortcutManager) context.getSystemService(Context.SHORTCUT_SERVICE);
+            shortcutManager.reportShortcutUsed(context.getString(R.string.shortcut_id_collector_toggle));
+        }
     }
 }

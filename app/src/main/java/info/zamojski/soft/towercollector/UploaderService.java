@@ -231,6 +231,7 @@ public class UploaderService extends Service {
                 isCancelled.set(true);
                 // change notification to canceling
                 updateNotification();
+                ApkUtils.reportShortcutUsage(MyApplication.getApplication(), R.string.shortcut_id_uploader_toggle);
             }
         }
     };

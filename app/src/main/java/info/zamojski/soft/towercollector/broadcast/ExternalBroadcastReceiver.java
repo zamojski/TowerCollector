@@ -20,6 +20,7 @@ import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.UploaderService;
 import info.zamojski.soft.towercollector.analytics.IntentSource;
 import info.zamojski.soft.towercollector.events.CollectorStartedEvent;
+import info.zamojski.soft.towercollector.utils.ApkUtils;
 import info.zamojski.soft.towercollector.utils.BackgroundTaskHelper;
 import info.zamojski.soft.towercollector.utils.GpsUtils;
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
@@ -71,11 +72,13 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
 
         ContextCompat.startForegroundService(context, intent);
         EventBus.getDefault().post(new CollectorStartedEvent(intent));
+        ApkUtils.reportShortcutUsage(context, R.string.shortcut_id_collector_toggle);
     }
 
     public void stopCollectorService(Context context) {
         Timber.d("stopCollectorService(): Stopping service from broadcast");
         context.stopService(getCollectorIntent(context));
+        ApkUtils.reportShortcutUsage(context, R.string.shortcut_id_collector_toggle);
     }
 
     private Intent getCollectorIntent(Context context, IntentSource source) {
@@ -93,6 +96,7 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
             return;
         Timber.d("startCollectorService(): Starting service from broadcast");
         ContextCompat.startForegroundService(context, getUploaderIntent(context));
+        ApkUtils.reportShortcutUsage(context, R.string.shortcut_id_uploader_toggle);
     }
 
     public void stopUploaderService(Context context) {
@@ -100,6 +104,7 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         // don't use stopService because the worker needs to be stopped first
         Intent stopIntent = new Intent(UploaderService.BROADCAST_INTENT_STOP_SERVICE);
         context.sendBroadcast(stopIntent);
+        ApkUtils.reportShortcutUsage(context, R.string.shortcut_id_uploader_toggle);
     }
 
     private Intent getUploaderIntent(Context context) {
