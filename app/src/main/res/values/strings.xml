@@ -143,6 +143,8 @@
     <string name="export_dialog_finished_message">The files have been saved to <xliff:g id="dir_name">%s</xliff:g>.\n\n<i>Please consider contribution to one of the projects by uploading your measurements!</i></string>
     <string name="clear_dialog_title">Clear all data</string>
     <string name="clear_dialog_message">Are you sure you want to permanently delete all locally stored data?</string>
+    <string name="delete_dialog_title">Delete exported</string>
+    <string name="delete_dialog_message">Are you sure you want to permanently delete exported data?</string>
     <string name="clear_toast_finished">Database cleared</string>
     <string name="export_toast_failed">Export failed: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">unknown error</string>

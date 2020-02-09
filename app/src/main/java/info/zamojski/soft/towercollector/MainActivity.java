@@ -708,9 +708,22 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             startUploaderServiceWithCheck();
         });
         builder.setNegativeButton(R.string.dialog_delete, (dialog, which) -> {
-            MeasurementsDatabase.getInstance(MainActivity.this).deleteAllMeasurements();
-            EventBus.getDefault().post(new PrintMainWindowEvent());
-            MyApplication.getAnalytics().sendExportDeleteAction();
+            // show dialog that runs async task
+            AlertDialog.Builder deleteBuilder = new AlertDialog.Builder(this);
+            deleteBuilder.setTitle(R.string.delete_dialog_title);
+            deleteBuilder.setMessage(R.string.delete_dialog_message);
+            deleteBuilder.setPositiveButton(R.string.dialog_ok, (positiveDialog, positiveWhich) -> {
+                MeasurementsDatabase.getInstance(MainActivity.this).deleteAllMeasurements();
+                EventBus.getDefault().post(new PrintMainWindowEvent());
+                MyApplication.getAnalytics().sendExportDeleteAction();
+            });
+            deleteBuilder.setNegativeButton(R.string.dialog_cancel, (negativeDialog, id) -> {
+                // cancel
+            });
+            AlertDialog deleteDialog = deleteBuilder.create();
+            deleteDialog.setCanceledOnTouchOutside(true);
+            deleteDialog.setCancelable(true);
+            deleteDialog.show();
         });
         AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(false);
