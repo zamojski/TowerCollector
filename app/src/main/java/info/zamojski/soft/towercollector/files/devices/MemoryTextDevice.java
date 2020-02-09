@@ -27,4 +27,9 @@ public class MemoryTextDevice implements IWritableTextDevice {
     public void close() {
     }
 
+    @Override
+    public String getPath() {
+        throw new UnsupportedOperationException("In-memory device is not persisted!");
+    }
+
 }

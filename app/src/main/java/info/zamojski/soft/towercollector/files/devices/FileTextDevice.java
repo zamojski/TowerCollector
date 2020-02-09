@@ -35,6 +35,7 @@ public class FileTextDevice implements IWritableTextDevice {
         throw new UnsupportedOperationException("Device is write-only");
     }
 
+    @Override
     public String getPath() {
         return this.path;
     }

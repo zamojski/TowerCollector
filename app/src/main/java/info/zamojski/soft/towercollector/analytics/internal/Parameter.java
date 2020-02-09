@@ -15,6 +15,7 @@ public class Parameter {
     public static final String Duration = "Duration";
     public static final String Enabled = "Enabled";
     public static final String FileType = "FileType";
+    public static final String NumberOfFiles = "NumberOfFiles";
     public static final String HelpSection = "HelpSection";
     public static final String Locations = "Locations";
     public static final String Market = "Market";

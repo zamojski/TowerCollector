@@ -37,6 +37,10 @@ public abstract class TextGeneratorWrapperBase implements IProgressiveTextGenera
         }
     }
 
+    public IWritableTextDevice getDevice() {
+        return device;
+    }
+
     @Override
     public void cancel() {
         cancel = true;

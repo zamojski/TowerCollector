@@ -6,8 +6,8 @@ package info.zamojski.soft.towercollector.files.generators.wrappers.interfaces;
 
 public interface IProgressiveTextGeneratorWrapper extends ITextGeneratorWrapper {
 
-    public void addProgressListener(IProgressListener listener);
+    void addProgressListener(IProgressListener listener);
 
-    public void removeProgressListener(IProgressListener listener);
+    void removeProgressListener(IProgressListener listener);
 
 }

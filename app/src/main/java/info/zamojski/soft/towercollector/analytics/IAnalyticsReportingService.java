@@ -20,6 +20,8 @@ public interface IAnalyticsReportingService {
 
     void sendExportFinished(long duration, String fileType, AnalyticsStatistics stats);
 
+    void sendExportFinishedTotal(long duration, int numberOfFiles, AnalyticsStatistics stats);
+
     void sendExportDeleteAction();
 
     void sendExportKeepAction();

@@ -5,10 +5,19 @@
 package info.zamojski.soft.towercollector.providers.preferences;
 
 import info.zamojski.soft.towercollector.R;
+import info.zamojski.soft.towercollector.enums.FileType;
 
 import android.content.Context;
+import android.text.TextUtils;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class PreferencesProvider {
+
+    private static final String ENUM_SERIALIZATION_DELIMITER = ";";
 
     private BooleanPreferenceProvider booleanPreferenceProvider;
     private IntegerPreferenceProvider integerPreferenceProvider;
@@ -183,5 +192,16 @@ public class PreferencesProvider {
 
     public void setReuploadIfUploadFailsEnabled(boolean value) {
         booleanPreferenceProvider.setPreference(R.string.preferences_reupload_if_upload_fails_key, value);
+    }
+
+    public List<FileType> getEnabledExportFileTypes() {
+        String value = stringPreferenceProvider.getPreference(R.string.preferences_enabled_export_types_key, R.string.preferences_enabled_export_types_default_value);
+        FileType[] fileTypes = FileType.valuesOf(TextUtils.split(value, ENUM_SERIALIZATION_DELIMITER));
+        return Arrays.asList(fileTypes);
+    }
+
+    public void setEnabledExportFileTypes(List<FileType> fileTypes) {
+        String value = TextUtils.join(ENUM_SERIALIZATION_DELIMITER, (fileTypes == null ? Collections.EMPTY_LIST : fileTypes));
+        stringPreferenceProvider.setPreference(R.string.preferences_enabled_export_types_key, value);
     }
 }

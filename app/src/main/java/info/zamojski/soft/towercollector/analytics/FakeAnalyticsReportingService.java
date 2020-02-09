@@ -38,6 +38,11 @@ public class FakeAnalyticsReportingService implements IAnalyticsReportingService
     }
 
     @Override
+    public void sendExportFinishedTotal(long duration, int numberOfFiles, AnalyticsStatistics stats) {
+
+    }
+
+    @Override
     public void sendExportDeleteAction() {
 
     }

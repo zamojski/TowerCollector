@@ -10,12 +10,14 @@ import java.io.IOException;
 
 public interface IWritableTextDevice {
 
-    public void write(String s) throws IOException;
+    void write(String s) throws IOException;
 
-    public String read();
+    String read();
 
-    public void open() throws DeviceOperationException, IOException;
+    void open() throws DeviceOperationException, IOException;
 
-    public void close();
+    void close();
+
+    String getPath();
 
 }

@@ -4,6 +4,21 @@
 
 package info.zamojski.soft.towercollector.enums;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum FileType {
-    Unknown, Csv, CsvOcid, Gpx, JsonMls
+    Unknown, Csv, CsvOcid, Gpx, JsonMls;
+
+    public static FileType[] valuesOf(String[] values) {
+        List<FileType> fileTypes = new ArrayList<>();
+        for (String value : values) {
+            try {
+                fileTypes.add(valueOf(value));
+            } catch (IllegalArgumentException ex) {
+                // ignore as this means incompatibility
+            }
+        }
+        return fileTypes.toArray(new FileType[0]);
+    }
 }

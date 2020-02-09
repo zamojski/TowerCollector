@@ -27,6 +27,9 @@
     <string name="preferences_reupload_if_upload_fails_key" translatable="false">reupload_if_upload_fails</string>
     <bool name="preferences_reupload_if_upload_fails_default_value" translatable="false">true</bool>
 
+    <string name="preferences_enabled_export_types_key" translatable="false">enabled_export_types</string>
+    <string name="preferences_enabled_export_types_default_value" translatable="false"></string>
+
     <string name="preferences_opencellid_enabled_key" translatable="false">opencellid_enabled</string>
     <bool name="preferences_opencellid_enabled_default_value" translatable="false">true</bool>
 

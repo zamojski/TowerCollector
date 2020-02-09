@@ -13,6 +13,7 @@ import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.GeneratorResult;
 import info.zamojski.soft.towercollector.files.DeviceOperationException;
+import info.zamojski.soft.towercollector.files.DeviceOperationException.Reason;
 import info.zamojski.soft.towercollector.files.FileGeneratorResult;
 import info.zamojski.soft.towercollector.files.devices.IWritableTextDevice;
 import info.zamojski.soft.towercollector.files.formatters.json.IJsonFormatter;
@@ -70,10 +71,10 @@ public class JsonTextGeneratorWrapper extends TextGeneratorWrapperBase {
             notifyProgressListeners(locationsCount, locationsCount);
             if (cancel) {
                 Timber.d("generate(): Export cancelled");
-                return new FileGeneratorResult(GeneratorResult.Cancelled, DeviceOperationException.Reason.Unknown);
+                return new FileGeneratorResult(GeneratorResult.Cancelled, Reason.Unknown);
             } else {
                 Timber.d("generate(): All %s locations exported", locationsCount);
-                return new FileGeneratorResult(GeneratorResult.Succeeded, DeviceOperationException.Reason.Unknown);
+                return new FileGeneratorResult(GeneratorResult.Succeeded, Reason.Unknown);
             }
         } catch (DeviceOperationException ex) {
             Timber.e(ex, "generate(): Failed to check external memory compatibility");
@@ -82,7 +83,7 @@ public class JsonTextGeneratorWrapper extends TextGeneratorWrapperBase {
         } catch (IOException ex) {
             Timber.e(ex, "generate(): Failed to save data on external memory");
             MyApplication.handleSilentException(ex);
-            return new FileGeneratorResult(GeneratorResult.Failed, DeviceOperationException.Reason.Unknown, ex.getMessage());
+            return new FileGeneratorResult(GeneratorResult.Failed, Reason.Unknown, ex.getMessage());
         } finally {
             // just for sure
             device.close();

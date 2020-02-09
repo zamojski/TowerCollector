@@ -86,6 +86,17 @@ public class GoogleAnalyticsReportingService implements IAnalyticsReportingServi
     }
 
     @Override
+    public void sendExportFinishedTotal(long duration, int numberOfFiles, AnalyticsStatistics stats) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(Parameter.NumberOfFiles, numberOfFiles);
+        bundle.putInt(Parameter.Locations, stats.getLocations());
+        bundle.putInt(Parameter.Cells, stats.getCells());
+        bundle.putInt(Parameter.Days, stats.getDays());
+        bundle.putLong(Parameter.Duration, duration);
+        this.analytics.logEvent(Event.MeasurementsExportedTotal, bundle);
+    }
+
+    @Override
     public void sendExportDeleteAction() {
         sendExportAction(Label.Delete);
     }

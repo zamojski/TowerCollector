@@ -11,6 +11,7 @@ public class Event {
     public static final String MeasurementsCollected = "MeasurementsCollected";
     public static final String MeasurementsUploaded = "MeasurementsUploaded";
     public static final String MeasurementsExported = "MeasurementsExported";
+    public static final String MeasurementsExportedTotal = "MeasurementsExportedTotal";
     public static final String ActionAfterExportSelected = "ActionAfterExportSelected";
     public static final String PrefsAppThemeSelected = "PrefsAppThemeSelected";
     public static final String PrefsCollectorApiVersionSelected = "PrefsCollectorApiVersionSelected";

@@ -33,11 +33,11 @@ public class FileUtils {
     }
 
     public static String getCurrentDateFileName(String extension) {
-        return getCurrentDateFileName("", extension);
+        return getCurrentDateFileName(new Date(), "", extension);
     }
 
-    public static String getCurrentDateFileName(String nameSuffix, String extension) {
-        return new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.ENGLISH).format(new Date()) + nameSuffix + "." + extension;
+    public static String getCurrentDateFileName(Date dateTime, String nameSuffix, String extension) {
+        return new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.ENGLISH).format(dateTime) + nameSuffix + "." + extension;
     }
 
     public static String getFileExtension(File file) {

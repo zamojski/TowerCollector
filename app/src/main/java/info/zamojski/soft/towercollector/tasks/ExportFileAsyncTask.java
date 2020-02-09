@@ -4,15 +4,30 @@
 
 package info.zamojski.soft.towercollector.tasks;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Message;
+import android.widget.Toast;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import info.zamojski.soft.towercollector.MainActivity.InternalMessageHandler;
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
-import info.zamojski.soft.towercollector.MainActivity.InternalMessageHandler;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.FileType;
 import info.zamojski.soft.towercollector.files.FileGeneratorResult;
 import info.zamojski.soft.towercollector.files.devices.FileTextDevice;
+import info.zamojski.soft.towercollector.files.devices.IWritableTextDevice;
 import info.zamojski.soft.towercollector.files.formatters.csv.CsvExportFormatter;
 import info.zamojski.soft.towercollector.files.formatters.csv.CsvUploadFormatter;
+import info.zamojski.soft.towercollector.files.generators.wrappers.CompositeTextGeneratorWrapper;
 import info.zamojski.soft.towercollector.files.generators.wrappers.CsvTextGeneratorWrapper;
 import info.zamojski.soft.towercollector.files.generators.wrappers.GpxTextGeneratorWrapper;
 import info.zamojski.soft.towercollector.files.generators.wrappers.JsonTextGeneratorWrapper;
@@ -23,41 +38,31 @@ import info.zamojski.soft.towercollector.utils.FileUtils;
 import info.zamojski.soft.towercollector.utils.StringUtils;
 import timber.log.Timber;
 
-import java.io.File;
-
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Message;
-
-
-import android.widget.Toast;
-
 public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorResult> implements IProgressListener {
 
-    public static final String ABSOLUTE_PATH = "EXPORTED_FILE_ABSOLUTE_PATH";
+    public static final String DIR_PATH = "EXPORTED_DIR_PATH";
+
     private Context context;
-    private FileTextDevice device;
-    private IProgressiveTextGeneratorWrapper generatorWrapper;
 
     private Handler handler;
+    private File appDir;
+    private CompositeTextGeneratorWrapper generator;
 
     private ProgressDialog dialog;
 
-    public ExportFileAsyncTask(Context context, Handler handler, String path, FileType fileType) {
+    public ExportFileAsyncTask(Context context, Handler handler, List<FileType> fileTypes) {
         this.context = context;
-        this.device = new FileTextDevice(path);
         this.handler = handler;
-        this.generatorWrapper = CreateTextGeneratorWrapper(fileType);
+
+        appDir = FileUtils.getExternalStorageAppDir();
+        CreateGenerators(fileTypes);
     }
 
     @Override
     protected void onPreExecute() {
         Timber.d("onPreExecute(): Starting export");
         MyApplication.startBackgroundTask(this);
-        generatorWrapper.addProgressListener(this);
+        generator.addProgressListener(this);
     }
 
     @Override
@@ -67,46 +72,39 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
         Thread.currentThread().setName(ExportFileAsyncTask.class.getSimpleName() + ".Worker");
         long startTime = System.currentTimeMillis();
         // run generator
-        FileGeneratorResult result = generatorWrapper.generate();
+        FileGeneratorResult result = generator.generate();
         // send stats
         long endTime = System.currentTimeMillis();
         AnalyticsStatistics stats = MeasurementsDatabase.getInstance(context).getAnalyticsStatistics();
-        String fileExt = FileUtils.getFileExtension(device.getPath());
         long duration = (endTime - startTime);
-        MyApplication.getAnalytics().sendExportFinished(duration, fileExt, stats);
+        MyApplication.getAnalytics().sendExportFinishedTotal(duration, generator.getSubGenerators().size(), stats);
         return result;
     }
 
     @Override
     protected void onProgressUpdate(Integer... progress) {
-        int current = progress[0];
-        int max = progress[1];
-        int currentPercent = (int) Math.round(100.0 * current / max);
-        int maxPercent = 100;
-        if (current == 0) {
+        int currentPercent = progress[0];
+        int maxPercent = progress[1];
+        Timber.d("Updating progress: %s %s", currentPercent,maxPercent);
+        if (dialog == null) {
             // show loading indicator
             dialog = new ProgressDialog(context);
             dialog.setTitle(R.string.export_dialog_progress_title);
             dialog.setMessage(context.getString(R.string.export_dialog_progress_message));
             dialog.setCancelable(false);
             dialog.setCanceledOnTouchOutside(false);
-            dialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.dialog_cancel), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    // cancel generation and it will return that task should be cancelled (anyway we cleanup in onCancelled to be sure)
-                    generatorWrapper.cancel();
-                }
+            dialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.dialog_cancel), (dialog, which) -> {
+                // cancel generation and it will return that task should be cancelled (anyway we cleanup in onCancelled to be sure)
+                generator.cancel();
             });
             dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
             dialog.setMax(maxPercent);
             dialog.show();
         } else if (currentPercent >= maxPercent) {
             // hide loading indicator
-            if (dialog != null)
-                dialog.dismiss();
+            dialog.dismiss();
         } else {
-            if (dialog != null)
-                dialog.setProgress(currentPercent);
+            dialog.setProgress(currentPercent);
         }
     }
 
@@ -114,7 +112,7 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
     protected void onPostExecute(FileGeneratorResult result) {
         Timber.d("onPostExecute(): Showing result: %s", result);
         MyApplication.stopBackgroundTask();
-        generatorWrapper.removeProgressListener(this);
+        generator.removeProgressListener(this);
         // check result
         switch (result.getResult()) {
             case NoData:
@@ -124,7 +122,7 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
                 // show dialog
                 Message msg = new Message();
                 msg.what = InternalMessageHandler.EXPORT_FINISHED_UI_REFRESH;
-                msg.getData().putString(ABSOLUTE_PATH, device.getPath());
+                msg.getData().putString(DIR_PATH, appDir.getPath());
                 handler.sendMessage(msg);
                 break;
             case Cancelled:
@@ -166,7 +164,7 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
     protected void onCancelled() {
         Timber.d("onCancelled(): Export cancelled");
         MyApplication.stopBackgroundTask();
-        generatorWrapper.removeProgressListener(this);
+        generator.removeProgressListener(this);
         // hide loading indicator
         if (dialog != null)
             dialog.dismiss();
@@ -177,31 +175,57 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
         publishProgress(value, max);
     }
 
-    private IProgressiveTextGeneratorWrapper CreateTextGeneratorWrapper(FileType fileType) {
-        switch (fileType) {
-            case Csv:
-                return new CsvTextGeneratorWrapper(context, device, new CsvExportFormatter());
-            case CsvOcid:
-                return new CsvTextGeneratorWrapper(context, device, new CsvUploadFormatter());
-            case Gpx:
-                return new GpxTextGeneratorWrapper(context, device);
-            case JsonMls:
-                return new JsonTextGeneratorWrapper(context, device);
-            default:
-                throw new UnsupportedOperationException("This type of file is not supported");
+    private void CreateGenerators(List<FileType> fileTypes) {
+        List<IProgressiveTextGeneratorWrapper> subGenerators = new ArrayList<>();
+        Date currentDateTime = new Date();
+        for (FileType fileType : fileTypes) {
+            switch (fileType) {
+                case Csv: {
+                    String path = FileUtils.combinePath(appDir, FileUtils.getCurrentDateFileName(currentDateTime, "", "csv"));
+                    FileTextDevice device = new FileTextDevice(path);
+                    subGenerators.add(new CsvTextGeneratorWrapper(context, device, new CsvExportFormatter()));
+                    break;
+                }
+                case CsvOcid: {
+                    String path = FileUtils.combinePath(appDir, FileUtils.getCurrentDateFileName(currentDateTime, "-ocid", "csv"));
+                    FileTextDevice device = new FileTextDevice(path);
+                    subGenerators.add(new CsvTextGeneratorWrapper(context, device, new CsvUploadFormatter()));
+                }
+                break;
+                case Gpx: {
+                    String path = FileUtils.combinePath(appDir, FileUtils.getCurrentDateFileName(currentDateTime, "", "gpx"));
+                    FileTextDevice device = new FileTextDevice(path);
+                    subGenerators.add(new GpxTextGeneratorWrapper(context, device));
+                }
+                break;
+                case JsonMls: {
+                    String path = FileUtils.combinePath(appDir, FileUtils.getCurrentDateFileName(currentDateTime, "", "json"));
+                    FileTextDevice device = new FileTextDevice(path);
+                    subGenerators.add(new JsonTextGeneratorWrapper(context, device));
+                }
+                break;
+                default:
+                    throw new UnsupportedOperationException("This file type " + fileType + " is not supported");
+            }
         }
+        generator = new CompositeTextGeneratorWrapper(subGenerators);
     }
 
     private void deleteFile() {
-        // delete file if exists
-        device.close();
-        File file = new File(device.getPath());
-        if (file.exists()) {
-            Timber.d("deleteFile(): Deleting exported file");
-            if (file.delete()) {
-                Timber.d("deleteFile(): Exported file deleted");
-            } else {
-                Timber.d("deleteFile(): Cannot delete file after export fail");
+        for (IProgressiveTextGeneratorWrapper subGenerator : generator.getSubGenerators()) {
+            IWritableTextDevice device = subGenerator.getDevice();
+            // delete file if exists
+            device.close();
+            if (device instanceof FileTextDevice) {
+                File file = new File(device.getPath());
+                if (file.exists()) {
+                    Timber.d("deleteFile(): Deleting exported file");
+                    if (file.delete()) {
+                        Timber.d("deleteFile(): Exported file deleted");
+                    } else {
+                        Timber.d("deleteFile(): Cannot delete file after export fail");
+                    }
+                }
             }
         }
     }

@@ -40,6 +40,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -58,9 +59,9 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import info.zamojski.soft.towercollector.analytics.IntentSource;
@@ -90,7 +91,6 @@ import info.zamojski.soft.towercollector.utils.ApkUtils;
 import info.zamojski.soft.towercollector.utils.BackgroundTaskHelper;
 import info.zamojski.soft.towercollector.utils.BatteryUtils;
 import info.zamojski.soft.towercollector.utils.DateUtils;
-import info.zamojski.soft.towercollector.utils.FileUtils;
 import info.zamojski.soft.towercollector.utils.GpsUtils;
 import info.zamojski.soft.towercollector.utils.NetworkUtils;
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private BroadcastReceiver airplaneModeBroadcastReceiver = new AirplaneModeBroadcastReceiver();
     private BroadcastReceiver batterySaverBroadcastReceiver = null;
 
-    private String exportedFileAbsolutePath;
+    private String exportedDirAbsolutePath;
     private boolean showExportFinishedDialog = false;
 
     private Boolean canStartNetworkTypeSystemActivityResult = null;
@@ -698,34 +698,25 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         // show dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle(R.string.export_dialog_finished_title);
-        builder.setMessage(getString(R.string.export_dialog_finished_message, exportedFileAbsolutePath));
-        builder.setPositiveButton(R.string.dialog_keep, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // cancel
-                MyApplication.getAnalytics().sendExportKeepAction();
-            }
+        builder.setMessage(getString(R.string.export_dialog_finished_message, exportedDirAbsolutePath));
+        builder.setPositiveButton(R.string.dialog_keep, (dialog, which) -> {
+            // cancel
+            MyApplication.getAnalytics().sendExportKeepAction();
         });
-        builder.setNeutralButton(R.string.dialog_upload, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                MyApplication.getAnalytics().sendExportUploadAction();
-                startUploaderServiceWithCheck();
-            }
+        builder.setNeutralButton(R.string.dialog_upload, (dialog, which) -> {
+            MyApplication.getAnalytics().sendExportUploadAction();
+            startUploaderServiceWithCheck();
         });
-        builder.setNegativeButton(R.string.dialog_delete, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                MeasurementsDatabase.getInstance(MainActivity.this).deleteAllMeasurements();
-                EventBus.getDefault().post(new PrintMainWindowEvent());
-                MyApplication.getAnalytics().sendExportDeleteAction();
-            }
+        builder.setNegativeButton(R.string.dialog_delete, (dialog, which) -> {
+            MeasurementsDatabase.getInstance(MainActivity.this).deleteAllMeasurements();
+            EventBus.getDefault().post(new PrintMainWindowEvent());
+            MyApplication.getAnalytics().sendExportDeleteAction();
         });
         AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
         dialog.show();
-        exportedFileAbsolutePath = null;
+        exportedDirAbsolutePath = null;
     }
 
     // ========== MENU START/STOP METHODS ========== //
@@ -941,63 +932,45 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             return;
         }
         if (StorageUtils.isExternalMemoryWritable()) {
-            final Map<String, FileType> fileTypes = getFileTypes();
-            final String[] fileTypeNames = fileTypes.keySet().toArray(new String[fileTypes.size()]);
-            // show dialog that runs async task
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.export_dialog_format_selection_title);
-            builder.setItems(fileTypeNames, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int itemIndex) {
-                    String selectedItem = fileTypeNames[itemIndex];
-                    Timber.d("onCreateDialog(): User selected position: %s", selectedItem);
-                    // parse response
-                    FileType selectedType = FileType.Unknown;
-                    // pass selected means of transport
-                    if (fileTypes.containsKey(selectedItem)) {
-                        selectedType = fileTypes.get(selectedItem);
-                    }
-                    String nameSuffix = "";
-                    String extension;
-                    switch (selectedType) {
-                        case Csv:
-                            extension = "csv";
-                            break;
-                        case CsvOcid:
-                            nameSuffix = "-ocid";
-                            extension = "csv";
-                            break;
-                        case Gpx:
-                            extension = "gpx";
-                            break;
-                        case JsonMls:
-                            extension = "json";
-                            break;
-                        default:
-                            // cancel
-                            extension = null;
-                            break;
-                    }
-                    if (selectedType != FileType.Unknown) {
-                        String path = FileUtils.combinePath(FileUtils.getExternalStorageAppDir(), FileUtils.getCurrentDateFileName(nameSuffix, extension));
-                        ExportFileAsyncTask task = new ExportFileAsyncTask(MainActivity.this, new InternalMessageHandler(MainActivity.this), path, selectedType);
-                        task.execute();
-                    }
-                }
-            }).setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int id) {
-                    // cancel
+            final PreferencesProvider preferencesProvider = MyApplication.getPreferencesProvider();
+            List<FileType> recentFileTypes = preferencesProvider.getEnabledExportFileTypes();
+            LayoutInflater inflater = LayoutInflater.from(this);
+            View dialogLayout = inflater.inflate(R.layout.configure_exporter_dialog, null);
+            final CheckBox csvExportCheckbox = dialogLayout.findViewById(R.id.csv_export_dialog_checkbox);
+            csvExportCheckbox.setChecked(recentFileTypes.contains(FileType.Csv));
+            final CheckBox gpxExportCheckbox = dialogLayout.findViewById(R.id.gpx_export_dialog_checkbox);
+            gpxExportCheckbox.setChecked(recentFileTypes.contains(FileType.Gpx));
+            final CheckBox csvOcidExportCheckbox = dialogLayout.findViewById(R.id.csv_ocid_export_dialog_checkbox);
+            csvOcidExportCheckbox.setChecked(recentFileTypes.contains(FileType.CsvOcid));
+            final CheckBox jsonMlsExportCheckbox = dialogLayout.findViewById(R.id.json_mls_export_dialog_checkbox);
+            jsonMlsExportCheckbox.setChecked(recentFileTypes.contains(FileType.JsonMls));
+            AlertDialog alertDialog = new AlertDialog.Builder(this).setView(dialogLayout).create();
+            alertDialog.setCanceledOnTouchOutside(true);
+            alertDialog.setCancelable(true);
+            alertDialog.setTitle(R.string.export_dialog_format_selection_title);
+            alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_export), (dialog, which) -> {
+                List<FileType> selectedFileTypes = new ArrayList<>();
+                if (csvExportCheckbox.isChecked())
+                    selectedFileTypes.add(FileType.Csv);
+                if (gpxExportCheckbox.isChecked())
+                    selectedFileTypes.add(FileType.Gpx);
+                if (csvOcidExportCheckbox.isChecked())
+                    selectedFileTypes.add(FileType.CsvOcid);
+                if (jsonMlsExportCheckbox.isChecked())
+                    selectedFileTypes.add(FileType.JsonMls);
+                preferencesProvider.setEnabledExportFileTypes(selectedFileTypes);
+                Timber.d("startExportAsyncTask(): User selected positions: %s", TextUtils.join(",", selectedFileTypes));
+                if (selectedFileTypes.isEmpty()) {
+                    Toast.makeText(getApplication(), R.string.export_toast_no_file_types_selected, Toast.LENGTH_LONG).show();
+                } else {
+                    ExportFileAsyncTask task = new ExportFileAsyncTask(MainActivity.this, new InternalMessageHandler(MainActivity.this), selectedFileTypes);
+                    task.execute();
                 }
             });
-            AlertDialog dialog = builder.create();
-            dialog.setCanceledOnTouchOutside(true);
-            dialog.setCancelable(true);
-            dialog.show();
-            //ExportFormatSelectionDialogFragment dialog = new ExportFormatSelectionDialogFragment();
-            //dialog.setContext(this);
-            //dialog.setHandler(new InternalMessageHandler(this));
-            //dialog.show(getSupportFragmentManager(), dialog.getClass().getSimpleName());
+            alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.dialog_cancel), (dialog, which) -> {
+                // empty
+            });
+            alertDialog.show();
         } else if (StorageUtils.isExternalMemoryPresent()) {
             Toast.makeText(getApplication(), R.string.export_toast_storage_read_only, Toast.LENGTH_LONG).show();
         } else {
@@ -1300,19 +1273,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
     }
 
-    private Map<String, FileType> getFileTypes() {
-        Timber.d("getFileTypes(): Loading file types");
-        final String[] resLabels = getResources().getStringArray(R.array.export_formats_labels);
-        final String[] resValues = getResources().getStringArray(R.array.export_formats_values);
-        Map<String, FileType> fileTypes = new LinkedHashMap<String, FileType>();
-        for (int i = 0; i < resLabels.length; i++) {
-            String label = resLabels[i];
-            String value = resValues[i];
-            fileTypes.put(label, FileType.valueOf(value));
-        }
-        return fileTypes;
-    }
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(CollectorStartedEvent event) {
         bindService(event.getIntent(), collectorServiceConnection, 0);
@@ -1342,7 +1302,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case EXPORT_FINISHED_UI_REFRESH:
-                    mainActivity.exportedFileAbsolutePath = msg.getData().getString(ExportFileAsyncTask.ABSOLUTE_PATH);
+                    mainActivity.exportedDirAbsolutePath = msg.getData().getString(ExportFileAsyncTask.DIR_PATH);
                     if (!mainActivity.isMinimized)
                         mainActivity.displayExportFinishedDialog();
                     else

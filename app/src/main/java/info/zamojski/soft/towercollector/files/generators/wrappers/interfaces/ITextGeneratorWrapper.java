@@ -5,11 +5,14 @@
 package info.zamojski.soft.towercollector.files.generators.wrappers.interfaces;
 
 import info.zamojski.soft.towercollector.files.FileGeneratorResult;
+import info.zamojski.soft.towercollector.files.devices.IWritableTextDevice;
 
 public interface ITextGeneratorWrapper {
 
-    public FileGeneratorResult generate();
+    FileGeneratorResult generate();
 
-    public void cancel();
+    void cancel();
+
+    IWritableTextDevice getDevice();
 
 }
