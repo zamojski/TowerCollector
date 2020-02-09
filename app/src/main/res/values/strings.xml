@@ -226,7 +226,9 @@
     <string name="export_format_csv">CSV</string>
     <string name="export_format_gpx">GPX</string>
     <string name="export_format_csv_ocid">CSV for OpenCellID.org</string>
-    <string name="export_format_json_mls">JSON for Mozilla Location Services</string>    <string name="ocid_name" translatable="false">OpenCellID.org</string>
+    <string name="export_format_json_mls">JSON for Mozilla Location Services</string>
+    <string name="export_format_zip">Compress each exported file</string>
+    <string name="ocid_name" translatable="false">OpenCellID.org</string>
     <string name="mls_name" translatable="false">Mozilla Location Services</string>
     <string name="upload_configurator_dialog_title">Configure upload target</string>
     <string name="enter_valid_api_key">You have to enter valid API Key in preferences</string>

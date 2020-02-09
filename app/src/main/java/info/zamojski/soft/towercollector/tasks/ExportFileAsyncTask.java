@@ -25,6 +25,7 @@ import info.zamojski.soft.towercollector.enums.FileType;
 import info.zamojski.soft.towercollector.files.FileGeneratorResult;
 import info.zamojski.soft.towercollector.files.devices.FileTextDevice;
 import info.zamojski.soft.towercollector.files.devices.IWritableTextDevice;
+import info.zamojski.soft.towercollector.files.devices.ZipFileTextDevice;
 import info.zamojski.soft.towercollector.files.formatters.csv.CsvExportFormatter;
 import info.zamojski.soft.towercollector.files.formatters.csv.CsvUploadFormatter;
 import info.zamojski.soft.towercollector.files.generators.wrappers.CompositeTextGeneratorWrapper;
@@ -85,7 +86,7 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
     protected void onProgressUpdate(Integer... progress) {
         int currentPercent = progress[0];
         int maxPercent = progress[1];
-        Timber.d("Updating progress: %s %s", currentPercent,maxPercent);
+        Timber.d("Updating progress: %s %s", currentPercent, maxPercent);
         if (dialog == null) {
             // show loading indicator
             dialog = new ProgressDialog(context);
@@ -176,32 +177,30 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
     }
 
     private void CreateGenerators(List<FileType> fileTypes) {
+        boolean compressFiles = fileTypes.contains(FileType.Compress);
+        fileTypes.remove(FileType.Compress); // not a separate format
         List<IProgressiveTextGeneratorWrapper> subGenerators = new ArrayList<>();
         Date currentDateTime = new Date();
         for (FileType fileType : fileTypes) {
             switch (fileType) {
                 case Csv: {
                     String path = FileUtils.combinePath(appDir, FileUtils.getCurrentDateFileName(currentDateTime, "", "csv"));
-                    FileTextDevice device = new FileTextDevice(path);
-                    subGenerators.add(new CsvTextGeneratorWrapper(context, device, new CsvExportFormatter()));
+                    subGenerators.add(new CsvTextGeneratorWrapper(context, getTextDevice(path, compressFiles), new CsvExportFormatter()));
                     break;
                 }
                 case CsvOcid: {
                     String path = FileUtils.combinePath(appDir, FileUtils.getCurrentDateFileName(currentDateTime, "-ocid", "csv"));
-                    FileTextDevice device = new FileTextDevice(path);
-                    subGenerators.add(new CsvTextGeneratorWrapper(context, device, new CsvUploadFormatter()));
+                    subGenerators.add(new CsvTextGeneratorWrapper(context, getTextDevice(path, compressFiles), new CsvUploadFormatter()));
                 }
                 break;
                 case Gpx: {
                     String path = FileUtils.combinePath(appDir, FileUtils.getCurrentDateFileName(currentDateTime, "", "gpx"));
-                    FileTextDevice device = new FileTextDevice(path);
-                    subGenerators.add(new GpxTextGeneratorWrapper(context, device));
+                    subGenerators.add(new GpxTextGeneratorWrapper(context, getTextDevice(path, compressFiles)));
                 }
                 break;
                 case JsonMls: {
                     String path = FileUtils.combinePath(appDir, FileUtils.getCurrentDateFileName(currentDateTime, "", "json"));
-                    FileTextDevice device = new FileTextDevice(path);
-                    subGenerators.add(new JsonTextGeneratorWrapper(context, device));
+                    subGenerators.add(new JsonTextGeneratorWrapper(context, getTextDevice(path, compressFiles)));
                 }
                 break;
                 default:
@@ -209,6 +208,10 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
             }
         }
         generator = new CompositeTextGeneratorWrapper(subGenerators);
+    }
+
+    private IWritableTextDevice getTextDevice(String path, boolean compressFiles) {
+        return compressFiles ? new ZipFileTextDevice(path) : new FileTextDevice(path);
     }
 
     private void deleteFile() {

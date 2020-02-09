@@ -957,6 +957,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             csvOcidExportCheckbox.setChecked(recentFileTypes.contains(FileType.CsvOcid));
             final CheckBox jsonMlsExportCheckbox = dialogLayout.findViewById(R.id.json_mls_export_dialog_checkbox);
             jsonMlsExportCheckbox.setChecked(recentFileTypes.contains(FileType.JsonMls));
+            final CheckBox compressExportCheckbox = dialogLayout.findViewById(R.id.compress_export_dialog_checkbox);
+            compressExportCheckbox.setChecked(recentFileTypes.contains(FileType.Compress));
             AlertDialog alertDialog = new AlertDialog.Builder(this).setView(dialogLayout).create();
             alertDialog.setCanceledOnTouchOutside(true);
             alertDialog.setCancelable(true);
@@ -971,6 +973,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                     selectedFileTypes.add(FileType.CsvOcid);
                 if (jsonMlsExportCheckbox.isChecked())
                     selectedFileTypes.add(FileType.JsonMls);
+                if (compressExportCheckbox.isChecked())
+                    selectedFileTypes.add(FileType.Compress);
                 preferencesProvider.setEnabledExportFileTypes(selectedFileTypes);
                 Timber.d("startExportAsyncTask(): User selected positions: %s", TextUtils.join(",", selectedFileTypes));
                 if (selectedFileTypes.isEmpty()) {

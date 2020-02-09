@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum FileType {
-    Unknown, Csv, CsvOcid, Gpx, JsonMls;
+    Unknown, Csv, CsvOcid, Gpx, JsonMls, Compress;
 
     public static FileType[] valuesOf(String[] values) {
         List<FileType> fileTypes = new ArrayList<>();
