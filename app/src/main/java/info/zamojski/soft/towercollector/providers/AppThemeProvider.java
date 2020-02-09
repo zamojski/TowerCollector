@@ -17,7 +17,7 @@ public class AppThemeProvider {
         this.darkThemeName = context.getString(R.string.preferences_app_theme_mode_entries_value_dark);
     }
 
-    public int getTheme(String themeName) {
+    public int getAppTheme(String themeName) {
         if (themeName.equals(lightThemeName)) {
             return R.style.LightAppTheme;
         } else if (themeName.equals(darkThemeName)) {
@@ -25,6 +25,17 @@ public class AppThemeProvider {
         } else {
             // default
             return R.style.LightAppTheme;
+        }
+    }
+
+    public int getPopupTheme(String themeName) {
+        if (themeName.equals(lightThemeName)) {
+            return R.style.LightPopupTheme;
+        } else if (themeName.equals(darkThemeName)) {
+            return R.style.DarkPopupTheme;
+        } else {
+            // default
+            return R.style.LightPopupTheme;
         }
     }
 }

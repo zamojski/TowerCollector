@@ -5,7 +5,6 @@
 package info.zamojski.soft.towercollector.views;
 
 import java.util.Date;
-import java.util.Locale;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
@@ -21,8 +20,8 @@ import timber.log.Timber;
 
 import android.os.Bundle;
 
-
 import androidx.annotation.NonNull;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,8 +51,6 @@ public class MainLastFragment extends MainFragmentBase {
     private TextView lastGpsAccuracyValueTextView;
     private TextView lastDateTimeValueTextView;
 
-    private Locale locale;
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.main_last_fragment, container, false);
@@ -64,7 +61,6 @@ public class MainLastFragment extends MainFragmentBase {
     @Override
     protected void configureOnResume() {
         super.configureOnResume();
-        locale = new Locale(getString(R.string.locale));
         getAndPrintOrClearMeasurement();
     }
 
@@ -118,9 +114,9 @@ public class MainLastFragment extends MainFragmentBase {
         int neighboringCellsCount = measurement.getNeighboringCellsCount();
         int mainCellsCount = measurement.getMainCells().size();
         Cell mainCell = measurement.getMainCells().get(0);
-        lastNumberOfCellsValueTextView.setText(getString(R.string.main_last_number_of_cells_value, mainCellsCount, neighboringCellsCount));
+        lastNumberOfCellsValueTextView.setText(String.format(locale, getStringForLocale(R.string.main_last_number_of_cells_value), mainCellsCount, neighboringCellsCount));
         int networkNameId = NetworkTypeUtils.getNetworkGroupNameResId(mainCell.getNetworkType());
-        lastNetworkTypeValueTextView.setText(getString(networkNameId));
+        lastNetworkTypeValueTextView.setText(getStringForLocale(networkNameId));
         // only for UMTS/LTE with valid CID
         if ((mainCell.getNetworkType() == NetworkGroup.Wcdma || mainCell.getNetworkType() == NetworkGroup.Lte) && mainCell.getLongCid() != Cell.UNKNOWN_CID) {
             lastLongCellIdValueTableRow.setVisibility(View.VISIBLE);
@@ -131,24 +127,24 @@ public class MainLastFragment extends MainFragmentBase {
             lastCellIdRncValueTableRow.setVisibility(View.GONE);
             lastCellIdValueTableRow.setVisibility(View.VISIBLE);
         }
-        lastLongCellIdValueTextView.setText(String.valueOf(mainCell.getLongCid()));
-        lastCellIdRncValueTextView.setText(String.format(locale, getString(R.string.main_last_cell_id_rnc_value), mainCell.getShortCid(), mainCell.getRnc()));
-        lastCellIdValueTextView.setText(String.valueOf(mainCell.getCid()));
-        lastMccValueTextView.setText((mainCell.getMcc() != Cell.UNKNOWN_CID ? String.valueOf(mainCell.getMcc()) : ""));
-        lastMncValueTextView.setText(String.valueOf(mainCell.getMnc()));
-        lastLacValueTextView.setText(String.valueOf(mainCell.getLac()));
+        lastLongCellIdValueTextView.setText(String.format(locale, "%d", mainCell.getLongCid()));
+        lastCellIdRncValueTextView.setText(String.format(locale, getStringForLocale(R.string.main_last_cell_id_rnc_value), mainCell.getShortCid(), mainCell.getRnc()));
+        lastCellIdValueTextView.setText(String.format(locale, "%d", mainCell.getCid()));
+        lastMccValueTextView.setText((mainCell.getMcc() != Cell.UNKNOWN_CID ? String.format(locale, "%d", mainCell.getMcc()) : ""));
+        lastMncValueTextView.setText(String.format(locale, "%d", mainCell.getMnc()));
+        lastLacValueTextView.setText(String.format(locale, "%d", mainCell.getLac()));
         if (mainCell.getDbm() != Cell.UNKNOWN_SIGNAL) {
-            lastSignalStrengthValueTextView.setText(getString(R.string.main_last_signal_strength_value, mainCell.getDbm()));
+            lastSignalStrengthValueTextView.setText(String.format(locale, getStringForLocale(R.string.main_last_signal_strength_value), mainCell.getDbm()));
         } else {
-            lastSignalStrengthValueTextView.setText(getString(R.string.main_signal_strength_not_available));
+            lastSignalStrengthValueTextView.setText(getStringForLocale(R.string.main_signal_strength_not_available));
         }
-        lastLatitudeValueTextView.setText(String.format(locale, getString(R.string.main_last_latitude_value), measurement.getLatitude()));
-        lastLongitudeValueTextView.setText(String.format(locale, getString(R.string.main_last_longitude_value), measurement.getLongitude()));
+        lastLatitudeValueTextView.setText(String.format(locale, getStringForLocale(R.string.main_last_latitude_value), measurement.getLatitude()));
+        lastLongitudeValueTextView.setText(String.format(locale, getStringForLocale(R.string.main_last_longitude_value), measurement.getLongitude()));
         if (measurement.getGpsAccuracy() != Measurement.GPS_VALUE_NOT_AVAILABLE)
-            lastGpsAccuracyValueTextView.setText(String.format(locale, getString(R.string.main_last_gps_accuracy_value),
+            lastGpsAccuracyValueTextView.setText(String.format(locale, getStringForLocale(R.string.main_last_gps_accuracy_value),
                     (useImperialUnits ? UnitConverter.convertMetersToFeet(measurement.getGpsAccuracy()) : measurement.getGpsAccuracy()), preferredLengthUnit));
         else
-            lastGpsAccuracyValueTextView.setText(getString(R.string.main_gps_accuracy_not_available));
+            lastGpsAccuracyValueTextView.setText(getStringForLocale(R.string.main_gps_accuracy_not_available));
         lastDateTimeValueTextView.setText(dateTimeFormatStandard.format(new Date(measurement.getMeasuredAt())));
     }
 

@@ -12,12 +12,22 @@
         <item name="menu_stop_compat">@drawable/menu_stop_light</item>
     </style>
 
+    <style name="LightPopupTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:layout_marginStart">4dp</item>
+        <item name="android:layout_marginEnd">4dp</item>
+    </style>
+
     <style name="DarkAppTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="icon_color">@color/icon_dark</item>
         <item name="android:textColor">@color/text_dark</item>
         <item name="android:textColorSecondary">@color/text_secondary_dark</item>
         <item name="toolbar_background_color">@color/toolbar_dark</item>
         <item name="menu_stop_compat">@drawable/menu_stop_dark</item>
+    </style>
+
+    <style name="DarkPopupTheme" parent="ThemeOverlay.AppCompat">
+        <item name="android:layout_marginStart">4dp</item>
+        <item name="android:layout_marginEnd">4dp</item>
     </style>
 
     <style name="DefaultSplashScreenAppTheme" parent="Theme.AppCompat.Dialog">

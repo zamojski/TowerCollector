@@ -158,6 +158,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         activityView = findViewById(R.id.main_root);
         //setup toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        toolbar.setPopupTheme(MyApplication.getCurrentPopupTheme());
         setSupportActionBar(toolbar);
         // setup tabbed layout
         MainActivityPagerAdapter pageAdapter = new MainActivityPagerAdapter(getSupportFragmentManager(), getApplication());

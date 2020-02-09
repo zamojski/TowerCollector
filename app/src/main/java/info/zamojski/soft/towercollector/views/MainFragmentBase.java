@@ -25,8 +25,11 @@ import info.zamojski.soft.towercollector.utils.NetworkUtils;
 import info.zamojski.soft.towercollector.utils.UnitConverter;
 import timber.log.Timber;
 
+import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.view.View;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -51,6 +54,9 @@ public abstract class MainFragmentBase extends Fragment {
 
     protected SimpleDateFormat dateTimeFormatStandard;
 
+    protected Locale locale;
+    private Resources resourcesForLocale;
+
     @Override
     public void onResume() {
         super.onResume();
@@ -68,6 +74,10 @@ public abstract class MainFragmentBase extends Fragment {
     }
 
     protected void configureOnResume() {
+        locale = new Locale(getString(R.string.locale));
+        Configuration configuration = new Configuration(getContext().getResources().getConfiguration());
+        configuration.setLocale(locale);
+        resourcesForLocale = getContext().createConfigurationContext(configuration).getResources();
     }
 
     protected void configureOnPause() {
@@ -141,6 +151,10 @@ public abstract class MainFragmentBase extends Fragment {
         } else {
             hideGpsStatus();
         }
+    }
+
+    protected String getStringForLocale(@StringRes int resId) {
+        return resourcesForLocale.getString(resId);
     }
 
     private void printGpsStatus(GpsStatus status, float lastAccuracy) {

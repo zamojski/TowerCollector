@@ -35,6 +35,7 @@ import android.app.NotificationManager;
 import android.os.Build;
 
 import androidx.appcompat.app.AppCompatDelegate;
+
 import android.util.Log;
 import android.widget.Toast;
 
@@ -49,6 +50,7 @@ public class MyApplication extends Application {
     private static Thread.UncaughtExceptionHandler defaultHandler;
 
     private static int appTheme;
+    private static int popupTheme;
 
     private static String backgroundTaskName = null;
 
@@ -137,7 +139,8 @@ public class MyApplication extends Application {
         Timber.d("initTheme(): Initializing theme");
         String appThemeName = getPreferencesProvider().getAppTheme();
         AppThemeProvider themeProvider = new AppThemeProvider(this);
-        appTheme = themeProvider.getTheme(appThemeName);
+        appTheme = themeProvider.getAppTheme(appThemeName);
+        popupTheme = themeProvider.getPopupTheme(appThemeName);
     }
 
     private void initAnalytics() {
@@ -204,6 +207,10 @@ public class MyApplication extends Application {
         return appTheme;
     }
 
+    public static int getCurrentPopupTheme() {
+        return popupTheme;
+    }
+
     public static PreferencesProvider getPreferencesProvider() {
         return prefProvider;
     }
@@ -226,7 +233,7 @@ public class MyApplication extends Application {
 
     public synchronized static void handleSilentException(Throwable throwable) {
         String throwableHash = HashUtils.toSha1(throwable.toString());
-        if(!handledSilentExceptionHashes.contains(throwableHash)) {
+        if (!handledSilentExceptionHashes.contains(throwableHash)) {
             handledSilentExceptionHashes.add(throwableHash);
             ACRA.getErrorReporter().handleSilentException(throwable);
         }

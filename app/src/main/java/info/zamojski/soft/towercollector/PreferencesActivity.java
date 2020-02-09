@@ -42,6 +42,7 @@ public class PreferencesActivity extends AppCompatPreferenceActivity {
         LinearLayout root = (LinearLayout) findViewById(android.R.id.list).getParent().getParent().getParent();
         Toolbar toolbar = (Toolbar) LayoutInflater.from(this).inflate(R.layout.preferences_toolbar, root, false);
         root.addView(toolbar, 0);
+        toolbar.setPopupTheme(MyApplication.getCurrentPopupTheme());
         setSupportActionBar(toolbar);
 
         ActionBar actionBar = getSupportActionBar();

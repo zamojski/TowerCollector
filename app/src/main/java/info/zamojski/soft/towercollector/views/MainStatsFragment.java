@@ -16,7 +16,6 @@ import timber.log.Timber;
 
 import android.os.Bundle;
 
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,9 +38,6 @@ public class MainStatsFragment extends MainFragmentBase {
 
     private TextView mainStatsToUploadOcidValueTextView;
     private TextView mainStatsToUploadMlsValueTextView;
-
-    private String mainStatsLocalTitlePattern;
-    private String mainStatsGlobalTitlePattern;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -73,9 +69,6 @@ public class MainStatsFragment extends MainFragmentBase {
 
         mainStatsToUploadOcidValueTextView = view.findViewById(R.id.main_stats_to_upload_ocid_locations_value_textview);
         mainStatsToUploadMlsValueTextView = view.findViewById(R.id.main_stats_to_upload_mls_locations_value_textview);
-
-        mainStatsLocalTitlePattern = getString(R.string.main_stats_local_title);
-        mainStatsGlobalTitlePattern = getString(R.string.main_stats_global_title);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -95,19 +88,18 @@ public class MainStatsFragment extends MainFragmentBase {
         long sinceLocal = stats.getSinceLocal();
         if (sinceLocal == 0)
             sinceLocal = System.currentTimeMillis();
-        mainStatsLocalTitleTextView.setText(String.format(mainStatsLocalTitlePattern, dateTimeFormatStandard.format(new Date(sinceLocal))));
+        mainStatsLocalTitleTextView.setText(String.format(locale, getStringForLocale(R.string.main_stats_local_title), dateTimeFormatStandard.format(new Date(sinceLocal))));
         long sinceGlobal = stats.getSinceGlobal();
         if (sinceGlobal == 0)
             sinceGlobal = System.currentTimeMillis();
-        mainStatsGlobalTitleTextView.setText(String.format(mainStatsGlobalTitlePattern, dateTimeFormatStandard.format(new Date(sinceGlobal))));
-
-        mainStatsTodayLocationsValueTextView.setText(String.valueOf(stats.getLocationsToday()));
-        mainStatsTodayCellsValueTextView.setText(String.format("%d (%d)", stats.getCellsToday(), stats.getDiscoveredCellsToday()));
-        mainStatsLocalLocationsValueTextView.setText(String.valueOf(stats.getLocationsLocal()));
-        mainStatsLocalCellsValueTextView.setText(String.format("%d (%d)", stats.getCellsLocal(), stats.getDiscoveredCellsLocal()));
-        mainStatsGlobalLocationsValueTextView.setText(String.valueOf(stats.getLocationsGlobal()));
-        mainStatsGlobalCellsValueTextView.setText(String.valueOf(stats.getDiscoveredCellsGlobal()));
-        mainStatsToUploadOcidValueTextView.setText(String.valueOf(stats.getToUploadOcid()));
-        mainStatsToUploadMlsValueTextView.setText(String.valueOf(stats.getToUploadMls()));
+        mainStatsGlobalTitleTextView.setText(String.format(locale, getStringForLocale(R.string.main_stats_global_title), dateTimeFormatStandard.format(new Date(sinceGlobal))));
+        mainStatsTodayLocationsValueTextView.setText(String.format(locale, "%d", stats.getLocationsToday()));
+        mainStatsTodayCellsValueTextView.setText(String.format(locale, "%d (%d)", stats.getCellsToday(), stats.getDiscoveredCellsToday()));
+        mainStatsLocalLocationsValueTextView.setText(String.format(locale, "%d", stats.getLocationsLocal()));
+        mainStatsLocalCellsValueTextView.setText(String.format(locale, "%d (%d)", stats.getCellsLocal(), stats.getDiscoveredCellsLocal()));
+        mainStatsGlobalLocationsValueTextView.setText(String.format(locale, "%d", stats.getLocationsGlobal()));
+        mainStatsGlobalCellsValueTextView.setText(String.format(locale, "%d", stats.getDiscoveredCellsGlobal()));
+        mainStatsToUploadOcidValueTextView.setText(String.format(locale, "%d", stats.getToUploadOcid()));
+        mainStatsToUploadMlsValueTextView.setText(String.format(locale, "%d", stats.getToUploadMls()));
     }
 }
