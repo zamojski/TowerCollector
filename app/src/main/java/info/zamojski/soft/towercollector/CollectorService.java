@@ -389,7 +389,7 @@ public class CollectorService extends Service {
                     }
                     try {
                         List<CellInfo> allCellInfo = telephonyManager.getAllCellInfo();
-                        Timber.tag(INNER_TAG).d("onCellInfoChanged(): Number of cells changed: %s, ignoring result from this subscription only, passing %s cells instead", cellInfo.size(), allCellInfo.size());
+                        Timber.tag(INNER_TAG).d("onCellInfoChanged(): Number of cells changed: %s, ignoring result from this subscription only, passing %s cells instead", cellInfo.size(), allCellInfo == null ? "null" : allCellInfo.size());
                         processCellInfo(allCellInfo);
                     } catch (SecurityException ex) {
                         Timber.tag(INNER_TAG).e(ex, "onCellInfoChanged(): coarse location or phone permission is denied");
