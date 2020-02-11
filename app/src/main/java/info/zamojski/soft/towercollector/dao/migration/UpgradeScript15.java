@@ -6,13 +6,10 @@ package info.zamojski.soft.towercollector.dao.migration;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import timber.log.Timber;
-
 class UpgradeScript15 implements IUpgradeScript {
 
     @Override
     public void performUpgrade(SQLiteDatabase database) {
-        Timber.d("performUpgrade(): Upgrading db to version 15");
         // remove corrupted data - may result in incorrect statistics being presented (again, in case it failed somehow after upgrade)
         database.execSQL("DELETE FROM measurements WHERE row_id NOT IN (SELECT measurement_id FROM cell_signals)");
         // change value from int max to long max (it should never happen anyway)

@@ -6,13 +6,10 @@ package info.zamojski.soft.towercollector.dao.migration;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import timber.log.Timber;
-
 class UpgradeScript12 implements IUpgradeScript {
 
     @Override
     public void performUpgrade(SQLiteDatabase database) {
-        Timber.d("performUpgrade(): Upgrading db to version 12");
         // add new columns with default values
         database.execSQL("ALTER TABLE measurements ADD COLUMN uploaded_to_ocid_at INTEGER DEFAULT NULL");
         database.execSQL("ALTER TABLE measurements ADD COLUMN uploaded_to_mls_at INTEGER DEFAULT NULL");

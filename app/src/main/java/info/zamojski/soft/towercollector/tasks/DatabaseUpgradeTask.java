@@ -23,7 +23,7 @@ public class DatabaseUpgradeTask {
     }
 
     public void upgrade() {
-        Timber.d("doInBackground(): Loading data and running migration if necessary");
+        Timber.d("upgrade(): Loading data and running migration if necessary");
         try {
             // invalidate database (protects against crash when database swapped while application paused - generally for testing)
             MeasurementsDatabase.invalidateInstance(MyApplication.getApplication());
@@ -35,7 +35,7 @@ public class DatabaseUpgradeTask {
             long duration = (endTime - startTime);
             MyApplication.getAnalytics().sendMigrationFinished(duration, oldDbVersion, stats);
         } catch (RuntimeException ex) {
-            Timber.e(ex, "doInBackground(): Database migration crashed");
+            Timber.e(ex, "upgrade(): Database migration from version %s crashed", oldDbVersion);
             Toast.makeText(activity, "Database upgrade failed. Please clear app data or reinstall.", Toast.LENGTH_LONG).show();
             MyApplication.handleSilentException(ex);
             throw ex;

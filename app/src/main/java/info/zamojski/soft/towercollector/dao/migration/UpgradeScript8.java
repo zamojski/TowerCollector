@@ -6,14 +6,10 @@ package info.zamojski.soft.towercollector.dao.migration;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import timber.log.Timber;
-
 class UpgradeScript8 implements IUpgradeScript {
-
 
     @Override
     public void performUpgrade(SQLiteDatabase database) {
-        Timber.d("performUpgrade(): Upgrading db to version 8");
         // cleanup
         database.execSQL("DELETE FROM measurements WHERE lat < -90 OR lat > 90 OR lat = 0 OR lon < -180 OR lon > 180 OR lon = 0");
         String cellFilterGsm = "(cid >= 1 AND cid <= 268435455 AND lac >= 1 AND lac <= 65535 AND mnc >= 0 AND mnc <= 999 AND mcc >= 100 AND mcc <= 999)";

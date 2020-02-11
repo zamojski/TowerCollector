@@ -6,14 +6,10 @@ package info.zamojski.soft.towercollector.dao.migration;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import timber.log.Timber;
-
 class UpgradeScript9 implements IUpgradeScript {
-
 
     @Override
     public void performUpgrade(SQLiteDatabase database) {
-        Timber.d("performUpgrade(): Upgrading db to version 9");
         // backup old table
         database.execSQL("ALTER TABLE measurements RENAME TO measurements_backup");
         // drop indexes and trigger on old table

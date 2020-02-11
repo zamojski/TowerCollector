@@ -9,6 +9,8 @@ import java.util.List;
 
 import android.database.sqlite.SQLiteDatabase;
 
+import timber.log.Timber;
+
 public class DbMigrationHelper {
 
     private SQLiteDatabase database;
@@ -16,13 +18,19 @@ public class DbMigrationHelper {
 
     public DbMigrationHelper(SQLiteDatabase database) {
         this.database = database;
-        this.upgradeScripts = new ArrayList<IUpgradeScript>();
+        this.upgradeScripts = new ArrayList<>();
     }
 
     public void upgrade(int from, int to) {
         registerScripts(from);
         for (IUpgradeScript script : upgradeScripts) {
-            script.performUpgrade(database);
+            try {
+                Timber.i("upgrade(): Executing upgrade script %s", script.getClass().getSimpleName());
+                script.performUpgrade(database);
+            } catch (RuntimeException ex) {
+                Timber.e(ex, "upgrade(): Upgrade script %s failed", script.getClass().getSimpleName());
+                throw ex;
+            }
         }
     }
 

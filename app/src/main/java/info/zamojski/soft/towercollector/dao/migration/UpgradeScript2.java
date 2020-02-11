@@ -6,14 +6,10 @@ package info.zamojski.soft.towercollector.dao.migration;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import timber.log.Timber;
-
 class UpgradeScript2 implements IUpgradeScript {
-
 
     @Override
     public void performUpgrade(SQLiteDatabase database) {
-        Timber.d("performUpgrade(): Upgrading db to version 2");
         // remove unused table
         database.execSQL("DROP INDEX IF EXISTS IX_operators_mcc_mnc");
         database.execSQL("DROP TABLE IF EXISTS operators");

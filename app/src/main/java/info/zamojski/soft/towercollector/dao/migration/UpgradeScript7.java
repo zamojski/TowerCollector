@@ -6,14 +6,10 @@ package info.zamojski.soft.towercollector.dao.migration;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import timber.log.Timber;
-
 class UpgradeScript7 implements IUpgradeScript {
-
 
     @Override
     public void performUpgrade(SQLiteDatabase database) {
-        Timber.d("performUpgrade(): Upgrading db to version 7");
         // migrate data
         database.execSQL("UPDATE measurements SET ta = 2147483647 WHERE ta = -1000");
         database.execSQL("UPDATE measurements SET asu = 2147483647 WHERE asu = -1000");
