@@ -6,12 +6,6 @@
     <string name="preferences_keep_screen_on_mode_disabled">Deshabilitado</string>
     <string name="preferences_keep_screen_on_mode_dim">Atenuado</string>
     <string name="preferences_keep_screen_on_mode_full">Brillo completo</string>
-    <string-array name="export_formats_labels">
-        <item>CSV</item>
-        <item>GPX</item>
-        <item>CSV para OpenCellID.org</item>
-        <item>JSON para Mozilla Location Services</item>
-    </string-array>
     <string-array name="preferences_collector_low_battery_action_entries_labels">
         <item>Hacer nada</item>
         <item>Detener recolección</item>

@@ -27,6 +27,7 @@
     <string name="dialog_cancel">Cancelar</string>
     <string name="dialog_register">Registrarse</string>
     <string name="dialog_enter_api_key">Entrar</string>
+    <string name="dialog_export">Exportar</string>
     <string name="dialog_upload">Enviar</string>
     <string name="dialog_keep">Mantener</string>
     <string name="dialog_delete">Borrar</string>
@@ -123,14 +124,17 @@
     <string name="error_reporting_notification_text">La aplicación ha fallado. Por favor, envíe un informe de error para ayudar a solucionar el problema.</string>
     <string name="error_reporting_notification_comment_prompt">Añade tu comentario</string>
     <string name="export_toast_storage_read_only">El almacenamiento externo es de solo lectura.</string>
+    <string name="export_toast_no_file_types_selected">No hay tipos de archivo seleccionados para la exportación.</string>
     <string name="export_toast_no_storage">No se encontró el almacenamiento externo.</string>
-    <string name="export_dialog_format_selection_title">Seleccione el formato:</string>
+    <string name="export_dialog_format_selection_title">Seleccionar formatos de archivo</string>
     <string name="export_dialog_progress_title">Exportando</string>
     <string name="export_dialog_progress_message">Guardando en el directorio de \"TowerCollector\" situado en almacenamiento externo con la fecha y hora actual como nombres de archivo.</string>
     <string name="export_dialog_finished_title">Exportación exitosa</string>
-    <string name="export_dialog_finished_message">Archivo guardado como <xliff:g id="file_name">%s</xliff:g>.\n<i>¡Por favor considere la contribución a uno de los proyectos al subir sus mediciones!</i></string>
+    <string name="export_dialog_finished_message">Los archivos se han guardado en <xliff:g id="dir_name">%s</xliff:g>.\n\n<i>¡Por favor considere la contribución a uno de los proyectos al subir sus mediciones!</i></string>
     <string name="clear_dialog_title">Borrar todos los datos</string>
     <string name="clear_dialog_message">¿Está seguro de que desea eliminar permanentemente todos los datos almacenados localmente?</string>
+    <string name="delete_dialog_title">Eliminar exportado</string>
+    <string name="delete_dialog_message">¿Está seguro de que desea eliminar permanentemente los datos exportados?</string>
     <string name="clear_toast_finished">Base de datos borrada</string>
     <string name="export_toast_failed">Exportación fallida: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">error desconocido</string>
@@ -209,6 +213,11 @@
     <string name="battery_saver">Ahorro de batería activado</string>
     <string name="web_browser_missing">Por favor instale un navegador web para abrir la página</string>
     <string name="uploader_all_projects_disabled">Cargar a todos los proyectos está deshabilitado</string>
+    <string name="export_format_csv">CSV</string>
+    <string name="export_format_gpx">GPX</string>
+    <string name="export_format_csv_ocid">CSV para OpenCellID.org</string>
+    <string name="export_format_json_mls">JSON para Mozilla Location Services</string>
+    <string name="export_format_zip">Comprime cada archivo exportado</string>
     <string name="upload_configurator_dialog_title">Configurar destino de carga</string>
     <string name="enter_valid_api_key">Debe introducir la clave de API válida en las preferencias</string>
     <string name="reupload_measurements_if_upload_fails_for_one_of_projects">Intente subir las mediciones de nuevo si la carga falla para uno de los proyectos</string>

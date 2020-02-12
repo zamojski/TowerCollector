@@ -27,6 +27,7 @@
     <string name="dialog_cancel">Abbrechen</string>
     <string name="dialog_register">Registrieren</string>
     <string name="dialog_enter_api_key">Eingeben</string>
+    <string name="dialog_export">Exportieren</string>
     <string name="dialog_upload">Hochladen</string>
     <string name="dialog_keep">Behalten</string>
     <string name="dialog_delete">Löschen</string>
@@ -84,7 +85,7 @@
     <string name="main_menu_preferences_button">Einstellungen</string>
     <string name="main_menu_network_type_button">Netzwerktyp</string>
     <string name="collector_notification_channel_name">Erfassung</string>
-    <string name="collector_notification_title">erfasse</string>
+    <string name="collector_notification_title">Erfassen</string>
     <string name="collector_notification_stats"><xliff:g id="number_of_measurements">%1$d</xliff:g> Messungen von <xliff:g id="number_of_cells">%2$d</xliff:g> Zellen heute</string>
     <string name="collector_notification_status">GPS Status: <xliff:g id="status">%s</xliff:g>.</string>
     <string name="collector_gps_unavailable">Kann Erfassung nicht starten weil GPS nicht verfügbar ist.</string>
@@ -123,14 +124,17 @@
     <string name="error_reporting_notification_text">Die App ist abgestürzt. Bitte senden Sie einen Fehlerbericht um bei der Behebung zu helfen.</string>
     <string name="error_reporting_notification_comment_prompt">Kommentar hinzufügen</string>
     <string name="export_toast_storage_read_only">Externer Speicher ist schreibgeschützt.</string>
+    <string name="export_toast_no_file_types_selected">Kein Dateityp für Export ausgewählt</string>
     <string name="export_toast_no_storage">Externen Speicher nicht gefunden.</string>
-    <string name="export_dialog_format_selection_title">Gewünschtes Format:</string>
+    <string name="export_dialog_format_selection_title">Gewünschtes Dateityp</string>
     <string name="export_dialog_progress_title">exportiere</string>
     <string name="export_dialog_progress_message">Speichere Datei in das Verzeichnis \"TowerCollector\" am externen Speicher, der Dateiname entspricht der aktuellen Uhrzeit.</string>
     <string name="export_dialog_finished_title">Export erfolgreich</string>
-    <string name="export_dialog_finished_message">Datei abgespeichert: <xliff:g id="file_name">%s</xliff:g>.\n\n<i>Bitte überlegen Sie, zu einem der Projekte beizutragen indem Sie ihre Messungen hochladen!</i></string>
+    <string name="export_dialog_finished_message">Dateien wurden gespeichert in: <xliff:g id="dir_name">%s</xliff:g>.\n\n<i>Bitte überlegen Sie, zu einem der Projekte beizutragen indem Sie ihre Messungen hochladen!</i></string>
     <string name="clear_dialog_title">Alle Daten löschen</string>
     <string name="clear_dialog_message">Sind Sie sicher, dass Sie alle lokal gespeicherten Daten löschen wollen?</string>
+    <string name="delete_dialog_title">Exportierte Daten löschen</string>
+    <string name="delete_dialog_message">Sind Sie sicher dass Sie exportierte Daten permanent löschen wollen?</string>
     <string name="clear_toast_finished">Daten gelöscht</string>
     <string name="export_toast_failed">Export fehlgeschlagen: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">unbekannter Fehler</string>
@@ -209,6 +213,11 @@
     <string name="battery_saver">Stromsparen aktiviert</string>
     <string name="web_browser_missing">Bitte installieren Sie einen Web Browser um die Seite zu öffnen</string>
     <string name="uploader_all_projects_disabled">Upload zu allen Projekten deaktiviert</string>
+    <string name="export_format_csv">CSV</string>
+    <string name="export_format_gpx">GPX</string>
+    <string name="export_format_csv_ocid">CSV für OpenCellID.org</string>
+    <string name="export_format_json_mls">JSON für den Mozilla Location Service</string>
+    <string name="export_format_zip">Exportierte Dateien komprimieren</string>
     <string name="upload_configurator_dialog_title">Upload-Ziel konfigurieren</string>
     <string name="enter_valid_api_key">Sie müssen einen gültigen API-Key in den Einstellungen setzen</string>
     <string name="reupload_measurements_if_upload_fails_for_one_of_projects">Upload zu einem Projekt erneut versuchen wenn ein Fehler passiert ist</string>

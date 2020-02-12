@@ -27,6 +27,7 @@
     <string name="dialog_cancel">取消</string>
     <string name="dialog_register">注册</string>
     <string name="dialog_enter_api_key">输入</string>
+    <string name="dialog_export">导出</string>
     <string name="dialog_upload">上传</string>
     <string name="dialog_keep">保持不变</string>
     <string name="dialog_delete">删除</string>
@@ -123,14 +124,17 @@
     <string name="error_reporting_notification_text">此应用崩溃了。请发送错误报告以帮助解决问题。</string>
     <string name="error_reporting_notification_comment_prompt">添加您的评论</string>
     <string name="export_toast_storage_read_only">外部存储是只读的。</string>
+    <string name="export_toast_no_file_types_selected">没有选择要导出的文件类型。</string>
     <string name="export_toast_no_storage">未找到外部存储空间。</string>
-    <string name="export_dialog_format_selection_title">选择格式：</string>
+    <string name="export_dialog_format_selection_title">选择文件格式</string>
     <string name="export_dialog_progress_title">导出中</string>
     <string name="export_dialog_progress_message">保存到外部存储器上的“TowerCollector”文件夹，以当前日期和时间作为文件名。</string>
     <string name="export_dialog_finished_title">导出成功</string>
-    <string name="export_dialog_finished_message">文件保存为 <xliff:g id="file_name">%s</xliff:g>。\n\n<i>请考虑通过上传您的测量数据来对其中一个项目做贡献！</i></string>
+    <string name="export_dialog_finished_message">文件已保存到 <xliff:g id="dir_name">%s</xliff:g>。\n\n<i>请考虑通过上传您的测量数据来对其中一个项目做贡献！</i></string>
     <string name="clear_dialog_title">清除所有数据</string>
     <string name="clear_dialog_message">您确定要永久删除所有本地存储的数据吗？</string>
+    <string name="delete_dialog_title">删除导出的数据</string>
+    <string name="delete_dialog_message">您确定要永久删除导出的数据吗？</string>
     <string name="clear_toast_finished">数据库已清空</string>
     <string name="export_toast_failed">导出失败： <xliff:g id="failure_reason">%s</xliff:g>。</string>
     <string name="export_toast_failed_cause_unknown">未知错误</string>
@@ -209,6 +213,11 @@
     <string name="battery_saver">省电模式处于活动状态</string>
     <string name="web_browser_missing">请安装网页浏览器打开网页</string>
     <string name="uploader_all_projects_disabled">已禁用上传到所有项目</string>
+    <string name="export_format_csv">CSV</string>
+    <string name="export_format_gpx">GPX</string>
+    <string name="export_format_csv_ocid">用于OpenCellID.org的CSV格式</string>
+    <string name="export_format_json_mls">适用于Mozilla位置服务的JSON格式</string>
+    <string name="export_format_zip">压缩每个导出的文件</string>
     <string name="upload_configurator_dialog_title">配置上传目标</string>
     <string name="enter_valid_api_key">您必须在配置中输入有效的API密钥</string>
     <string name="reupload_measurements_if_upload_fails_for_one_of_projects">如果其中一个项目上传失败，请尝试再次上传测量数据</string>

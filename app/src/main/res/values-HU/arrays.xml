@@ -6,12 +6,6 @@
     <string name="preferences_keep_screen_on_mode_disabled">Kikapcsolva</string>
     <string name="preferences_keep_screen_on_mode_dim">Halványítás</string>
     <string name="preferences_keep_screen_on_mode_full">Teljes fényerő</string>
-    <string-array name="export_formats_labels">
-        <item>CSV</item>
-        <item>GPX</item>
-        <item>CSV az OpenCellID.org-hoz</item>
-        <item>JSON az Mozilla Location Serviceshez</item>
-    </string-array>
     <string-array name="preferences_collector_low_battery_action_entries_labels">
         <item>Ne tegyen semmit</item>
         <item>Adatgyűjtés leállítása</item>

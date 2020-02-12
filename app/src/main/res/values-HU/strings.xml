@@ -27,6 +27,7 @@
     <string name="dialog_cancel">Mégse</string>
     <string name="dialog_register">Regisztráció</string>
     <string name="dialog_enter_api_key">Megadás</string>
+    <string name="dialog_export">Exportálás</string>
     <string name="dialog_upload">Feltöltés</string>
     <string name="dialog_keep">Megtartás</string>
     <string name="dialog_delete">Törlés</string>
@@ -123,14 +124,17 @@
     <string name="error_reporting_notification_text">Az alkalmazás összeomlott. Küldj hibajelentést a probléma megoldásához.</string>
     <string name="error_reporting_notification_comment_prompt">Adj meg egy megjegyzést</string>
     <string name="export_toast_storage_read_only">A külső tároló csak olvasható.</string>
+    <string name="export_toast_no_file_types_selected">Nem választott ki fájltípust az exportáláshoz.</string>
     <string name="export_toast_no_storage">A külső tároló nem található.</string>
-    <string name="export_dialog_format_selection_title">Válassz formátumot:</string>
+    <string name="export_dialog_format_selection_title">Válassza ki a fájlformátumokat</string>
     <string name="export_dialog_progress_title">Exportálás</string>
     <string name="export_dialog_progress_message">Mentés a külső tárhely „TowerCollector” mappájába a jelenlegi dátumot és időt használva fájlnévként.</string>
     <string name="export_dialog_finished_title">Exportálás sikeres</string>
-    <string name="export_dialog_finished_message">Fájl elmentve <xliff:g id="file_name">%s</xliff:g> néven.\n\n<i>Fontolja meg a közreműködést az egyik projektben a mérések feltöltésével!</i></string>
+    <string name="export_dialog_finished_message">A fájlokat a <xliff:g id="dir_name">%s</xliff:g> mentette.\n\n<i>Fontolja meg a közreműködést az egyik projektben a mérések feltöltésével!</i></string>
     <string name="clear_dialog_title">Minden adat törlése</string>
     <string name="clear_dialog_message">Biztos, hogy véglegesen eltávolítod a helyben tárolt adatokat?</string>
+    <string name="delete_dialog_title">Az exportált adatok törlése</string>
+    <string name="delete_dialog_message">Biztosan véglegesen törli az exportált adatokat?</string>
     <string name="clear_toast_finished">Adatbázis törölve</string>
     <string name="export_toast_failed">Exportálás sikertelen: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">ismeretlen hiba</string>
@@ -209,6 +213,11 @@
     <string name="battery_saver">Az akkumulátor kímélő aktív</string>
     <string name="web_browser_missing">Telepíts egy webböngészőt az oldal megnyitásához</string>
     <string name="uploader_all_projects_disabled">A feltöltés az összes projekt esetén le van tiltva</string>
+    <string name="export_format_csv">CSV</string>
+    <string name="export_format_gpx">GPX</string>
+    <string name="export_format_csv_ocid">CSV az OpenCellID.org-hoz</string>
+    <string name="export_format_json_mls">JSON az Mozilla Location Serviceshez</string>
+    <string name="export_format_zip">Tömörítse az összes exportált fájlt</string>
     <string name="upload_configurator_dialog_title">Feltöltési cél beállítása</string>
     <string name="enter_valid_api_key">Meg kell adnod egy érvényes API-kulcsot a beállításokban</string>
     <string name="reupload_measurements_if_upload_fails_for_one_of_projects">Próbáld újra feltölteni a méréseket, ha a feltöltés nem sikerül az egyik projektnél</string>

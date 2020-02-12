@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- This Source Code Form is subject to the terms of the Mozilla Public
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources>
     <string name="preferences_keep_screen_on_mode_disabled">Wyłączony</string>
     <string name="preferences_keep_screen_on_mode_dim">Ściemniony</string>
     <string name="preferences_keep_screen_on_mode_full">Pełna jasność</string>
-    <string-array name="export_formats_labels">
-        <item>CSV</item>
-        <item>GPX</item>
-        <item>CSV dla OpenCellID.org</item>
-        <item>JSON dla Mozilla Location Services</item>
-    </string-array>
     <string-array name="preferences_collector_low_battery_action_entries_labels">
         <item>Nic</item>
         <item>Zatrzymaj zbieranie</item>

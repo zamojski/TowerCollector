@@ -6,12 +6,6 @@
     <string name="preferences_keep_screen_on_mode_disabled">已禁用</string>
     <string name="preferences_keep_screen_on_mode_dim">变暗</string>
     <string name="preferences_keep_screen_on_mode_full">全亮度</string>
-    <string-array name="export_formats_labels">
-        <item>CSV</item>
-        <item>GPX</item>
-        <item>用于OpenCellID.org的CSV格式</item>
-        <item>适用于Mozilla位置服务的JSON格式</item>
-    </string-array>
     <string-array name="preferences_collector_low_battery_action_entries_labels">
         <item>无动作</item>
         <item>停止收集</item>
