@@ -10,12 +10,13 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceCategory;
-import android.preference.PreferenceManager;
-import android.preference.SwitchPreference;
 import android.widget.Toast;
+
+import androidx.preference.ListPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.PreferenceManager;
+import androidx.preference.SwitchPreferenceCompat;
 
 import info.zamojski.soft.towercollector.BuildConfig;
 import info.zamojski.soft.towercollector.CollectorService;
@@ -39,12 +40,11 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
     private ListPreference fileLoggingLevelPreference;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferences_advanced);
 
-        collectorApiVersionPreference = (ListPreference) findPreference(getString(R.string.preferences_collector_api_version_key));
-        fileLoggingLevelPreference = (ListPreference) findPreference(getString(R.string.preferences_file_logging_level_key));
+        collectorApiVersionPreference = findPreference(getString(R.string.preferences_collector_api_version_key));
+        fileLoggingLevelPreference = findPreference(getString(R.string.preferences_file_logging_level_key));
 
         fileLoggingLevelPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
@@ -149,8 +149,8 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
     private void setupErrorReportingAvailability() {
         boolean available = BuildConfig.ACRA_SETTINGS_AVAILABLE;
         if (!available) {
-            PreferenceCategory settingsCategoryPreference = (PreferenceCategory) findPreference(getString(R.string.preferences_advanced_category_settings_key));
-            SwitchPreference errorReportingSilentPreference = (SwitchPreference) findPreference(getString(R.string.preferences_error_reporting_silent_key));
+            PreferenceCategory settingsCategoryPreference = findPreference(getString(R.string.preferences_advanced_category_settings_key));
+            SwitchPreferenceCompat errorReportingSilentPreference = findPreference(getString(R.string.preferences_error_reporting_silent_key));
             settingsCategoryPreference.removePreference(errorReportingSilentPreference);
         }
     }

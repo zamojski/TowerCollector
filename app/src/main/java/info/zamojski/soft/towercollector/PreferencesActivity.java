@@ -4,29 +4,25 @@
 
 package info.zamojski.soft.towercollector;
 
-import info.zamojski.soft.towercollector.preferences.AdvancedPreferenceFragment;
-import info.zamojski.soft.towercollector.preferences.UploadPreferenceFragment;
-import info.zamojski.soft.towercollector.preferences.CollectorPreferenceFragment;
-import info.zamojski.soft.towercollector.preferences.DisplayPreferenceFragment;
-import info.zamojski.soft.towercollector.preferences.GeneralPreferenceFragment;
-import info.zamojski.soft.towercollector.preferences.HelpPreferenceFragment;
-import info.zamojski.soft.towercollector.preferences.InformationPreferenceFragment;
-import info.zamojski.soft.towercollector.utils.ApkUtils;
-
-import java.util.List;
-
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import androidx.core.app.NavUtils;
+
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.widget.LinearLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
 
-import com.example.android.supportv7.app.AppCompatPreferenceActivity;
+import org.jetbrains.annotations.NotNull;
 
-public class PreferencesActivity extends AppCompatPreferenceActivity {
+import info.zamojski.soft.towercollector.preferences.HeaderPreferenceFragment;
+import info.zamojski.soft.towercollector.utils.ApkUtils;
+
+public class PreferencesActivity extends AppCompatActivity implements PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
+
+    private static final String TITLE_TAG = "PREFERENCES_ACTIVITY_TITLE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,52 +31,68 @@ public class PreferencesActivity extends AppCompatPreferenceActivity {
         // set fixed screen orientation
         if (!ApkUtils.isRunningOnBuggyOreoSetRequestedOrientation(this))
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setContentView(R.layout.preferences);
+        if (savedInstanceState == null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.preferences_container, new HeaderPreferenceFragment())
+                    .commit();
+        } else {
+            setTitle(savedInstanceState.getCharSequence(TITLE_TAG));
+        }
+        getSupportFragmentManager().addOnBackStackChangedListener(
+                new FragmentManager.OnBackStackChangedListener() {
+                    @Override
+                    public void onBackStackChanged() {
+                        if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+                            setTitle(R.string.app_title_preferences);
+                        }
+                    }
+                });
         setupActionBar();
     }
 
+    @Override
+    public void onSaveInstanceState(@NotNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // save current activity title so we can set it again after a configuration change
+        outState.putCharSequence(TITLE_TAG, getTitle());
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        if (getSupportFragmentManager().popBackStackImmediate()) {
+            return true;
+        }
+        return super.onSupportNavigateUp();
+    }
+
+    @Override
+    public boolean onPreferenceStartFragment(PreferenceFragmentCompat caller, Preference pref) {
+        // instantiate the new Fragment
+        final Bundle args = pref.getExtras();
+        final Fragment fragment = getSupportFragmentManager().getFragmentFactory().instantiate(
+                getClassLoader(),
+                pref.getFragment());
+        fragment.setArguments(args);
+        fragment.setTargetFragment(caller, 0);
+        // replace the existing Fragment with the new Fragment
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.preferences_container, fragment)
+                .addToBackStack(null)
+                .commit();
+        setTitle(pref.getTitle());
+        return true;
+    }
+
     private void setupActionBar() {
-        LinearLayout root = (LinearLayout) findViewById(android.R.id.list).getParent().getParent().getParent();
-        Toolbar toolbar = (Toolbar) LayoutInflater.from(this).inflate(R.layout.preferences_toolbar, root, false);
-        root.addView(toolbar, 0);
+        Toolbar toolbar = findViewById(R.id.preferences_toolbar);
         toolbar.setPopupTheme(MyApplication.getCurrentPopupTheme());
         setSupportActionBar(toolbar);
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            // Show the Up button in the action bar.
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                if (!super.onOptionsItemSelected(item)) {
-                    NavUtils.navigateUpFromSameTask(this);
-                }
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onBuildHeaders(List<Header> target) {
-        loadHeadersFromResource(R.xml.preferences_headers, target);
-    }
-
-    /**
-     * This method stops fragment injection in malicious applications.
-     * Make sure to deny any unknown fragments here.
-     */
-    @Override
-    protected boolean isValidFragment(String fragmentName) {
-        return (AdvancedPreferenceFragment.class.getName().equals(fragmentName)
-                || UploadPreferenceFragment.class.getName().equals(fragmentName)
-                || CollectorPreferenceFragment.class.getName().equals(fragmentName)
-                || DisplayPreferenceFragment.class.getName().equals(fragmentName)
-                || GeneralPreferenceFragment.class.getName().equals(fragmentName)
-                || HelpPreferenceFragment.class.getName().equals(fragmentName)
-                || InformationPreferenceFragment.class.getName().equals(fragmentName));
     }
 }

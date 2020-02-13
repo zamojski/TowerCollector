@@ -5,10 +5,11 @@
 package info.zamojski.soft.towercollector.controls;
 
 import android.content.Context;
-import android.preference.EditTextPreference;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+
+import androidx.preference.EditTextPreference;
 
 public class TrimmedEditTextPreference extends EditTextPreference {
     public TrimmedEditTextPreference(Context context, AttributeSet attrs, int defStyle) {
@@ -27,11 +28,6 @@ public class TrimmedEditTextPreference extends EditTextPreference {
     public String getText() {
         String value = super.getText();
         return TextUtils.isEmpty(value) ? "" : value;
-    }
-
-    @Override
-    protected void onSetInitialValue(boolean restoreValue, Object defaultValue) {
-        super.setText(restoreValue ? getPersistedString(null) : (String) defaultValue);
     }
 
     @Override

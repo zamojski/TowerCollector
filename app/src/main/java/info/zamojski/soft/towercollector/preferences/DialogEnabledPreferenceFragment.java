@@ -12,9 +12,10 @@ import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.preference.Preference;
-import android.preference.PreferenceScreen;
 import android.widget.Toast;
+
+import androidx.preference.Preference;
+import androidx.preference.PreferenceScreen;
 
 public abstract class DialogEnabledPreferenceFragment extends PreferenceFragmentBase {
 
@@ -23,7 +24,7 @@ public abstract class DialogEnabledPreferenceFragment extends PreferenceFragment
     }
 
     protected void setupDialog(final int preferenceKey, final int title, final int content, final boolean textIsSelectable) {
-        PreferenceScreen preference = (PreferenceScreen) findPreference(getString(preferenceKey));
+        PreferenceScreen preference = findPreference(getString(preferenceKey));
         preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -35,7 +36,7 @@ public abstract class DialogEnabledPreferenceFragment extends PreferenceFragment
     }
 
     protected void setupOpenInDefaultWebBrowser(int preferenceKey, final int urlResourceId) {
-        PreferenceScreen preference = (PreferenceScreen) findPreference(getString(preferenceKey));
+        PreferenceScreen preference = findPreference(getString(preferenceKey));
         preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -52,7 +53,7 @@ public abstract class DialogEnabledPreferenceFragment extends PreferenceFragment
     }
 
     protected void setupDialog(final int preferenceKey, final int title, final String content) {
-        PreferenceScreen preference = (PreferenceScreen) findPreference(getString(preferenceKey));
+        PreferenceScreen preference = findPreference(getString(preferenceKey));
         preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -64,7 +65,7 @@ public abstract class DialogEnabledPreferenceFragment extends PreferenceFragment
     }
 
     protected void showConfirmationDialog(final int preferenceKey, final int title, final int content, final DialogInterface.OnClickListener confirmedAction) {
-        PreferenceScreen preference = (PreferenceScreen) findPreference(getString(preferenceKey));
+        PreferenceScreen preference = findPreference(getString(preferenceKey));
         preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -75,7 +76,7 @@ public abstract class DialogEnabledPreferenceFragment extends PreferenceFragment
     }
 
     protected void setupOnClick(final int preferenceKey, final Preference.OnPreferenceClickListener clickAction) {
-        PreferenceScreen preference = (PreferenceScreen) findPreference(getString(preferenceKey));
+        PreferenceScreen preference = findPreference(getString(preferenceKey));
         preference.setOnPreferenceClickListener(clickAction);
     }
 }

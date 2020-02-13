@@ -12,20 +12,24 @@ import timber.log.Timber;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.widget.Toast;
+
+import androidx.preference.PreferenceManager;
 
 public class UploadPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
 
     private TrimmedEditTextPreference apiKeyPreference;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.preferences_upload);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        setPreferencesFromResource(R.xml.preferences_upload, rootKey);
 
-        apiKeyPreference = (TrimmedEditTextPreference) findPreference(getString(R.string.preferences_api_key_key));
+        apiKeyPreference = findPreference(getString(R.string.preferences_api_key_key));
+        apiKeyPreference.setOnBindEditTextListener(editText -> {
+            editText.setInputType(InputType.TYPE_CLASS_TEXT);
+        });
 
         setupRegisterApiKeyLink();
 

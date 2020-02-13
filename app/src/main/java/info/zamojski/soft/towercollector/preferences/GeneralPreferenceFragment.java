@@ -7,10 +7,11 @@ package info.zamojski.soft.towercollector.preferences;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
-import android.preference.PreferenceCategory;
-import android.preference.PreferenceManager;
-import android.preference.PreferenceScreen;
-import android.preference.SwitchPreference;
+
+import androidx.preference.PreferenceCategory;
+import androidx.preference.PreferenceManager;
+import androidx.preference.PreferenceScreen;
+import androidx.preference.SwitchPreferenceCompat;
 
 import info.zamojski.soft.towercollector.BuildConfig;
 import info.zamojski.soft.towercollector.MyApplication;
@@ -20,8 +21,7 @@ import timber.log.Timber;
 public class GeneralPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferences_general);
 
         setupUsageStatisticsAvailability();
@@ -52,13 +52,13 @@ public class GeneralPreferenceFragment extends DialogEnabledPreferenceFragment i
     private void setupUsageStatisticsAvailability() {
         boolean available = BuildConfig.ANALYTICS_AVAILABLE;
         if (!available) {
-            PreferenceCategory settingsCategoryPreference = (PreferenceCategory) findPreference(getString(R.string.preferences_general_category_settings_key));
-            SwitchPreference trackingPreference = (SwitchPreference) findPreference(getString(R.string.preferences_tracking_enabled_key));
+            PreferenceCategory settingsCategoryPreference = findPreference(getString(R.string.preferences_general_category_settings_key));
+            SwitchPreferenceCompat trackingPreference = findPreference(getString(R.string.preferences_tracking_enabled_key));
             settingsCategoryPreference.removePreference(trackingPreference);
 
             // We have only one help preference so the whole category is to be removed
             PreferenceScreen generalScreenPreference = getPreferenceScreen();
-            PreferenceCategory helpCategoryPreference = (PreferenceCategory) findPreference(getString(R.string.preferences_general_category_help_key));
+            PreferenceCategory helpCategoryPreference = findPreference(getString(R.string.preferences_general_category_help_key));
             generalScreenPreference.removePreference(helpCategoryPreference);
         } else {
             setupUsageStatisticsDialog();

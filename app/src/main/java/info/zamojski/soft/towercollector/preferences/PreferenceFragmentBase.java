@@ -8,11 +8,12 @@ import info.zamojski.soft.towercollector.PreferencesActivity;
 import info.zamojski.soft.towercollector.R;
 
 import android.content.Intent;
-import android.preference.ListPreference;
-import android.preference.PreferenceFragment;
 import android.view.MenuItem;
 
-public abstract class PreferenceFragmentBase extends PreferenceFragment {
+import androidx.preference.ListPreference;
+import androidx.preference.PreferenceFragmentCompat;
+
+public abstract class PreferenceFragmentBase extends PreferenceFragmentCompat {
 
     /**
      * This is to be called when PreferenceFragment is opened directly,

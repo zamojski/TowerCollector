@@ -2,73 +2,73 @@
 <!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
-        android:key="@string/preferences_general_category_settings_key"
-        android:title="@string/preferences_category_settings_title">
-        <SwitchPreference
-            android:defaultValue="@bool/preferences_gps_optimizations_enabled_default_value"
-            android:key="@string/preferences_gps_optimizations_enabled_key"
-            android:summaryOff="@string/preferences_gps_optimizations_enabled_off_summary"
-            android:summaryOn="@string/preferences_gps_optimizations_enabled_on_summary"
-            android:title="@string/preferences_gps_optimizations_enabled_title" />
-        <SwitchPreference
-            android:defaultValue="@bool/preferences_collect_neighboring_cells_default_value"
-            android:key="@string/preferences_collect_neighboring_cells_key"
-            android:summaryOff="@string/preferences_collect_neighboring_cells_off_summary"
-            android:summaryOn="@string/preferences_collect_neighboring_cells_on_summary"
-            android:title="@string/preferences_collect_neighboring_cells_title" />
-        <SwitchPreference
-            android:defaultValue="@bool/preferences_notify_measurements_collected_default_value"
-            android:key="@string/preferences_notify_measurements_collected_key"
-            android:summaryOff="@string/preferences_notify_measurements_collected_off_summary"
-            android:summaryOn="@string/preferences_notify_measurements_collected_on_summary"
-            android:title="@string/preferences_notify_measurements_collected_title" />
+        app:key="@string/preferences_general_category_settings_key"
+        app:title="@string/preferences_category_settings_title">
+        <SwitchPreferenceCompat
+            app:defaultValue="@bool/preferences_gps_optimizations_enabled_default_value"
+            app:key="@string/preferences_gps_optimizations_enabled_key"
+            app:summaryOff="@string/preferences_gps_optimizations_enabled_off_summary"
+            app:summaryOn="@string/preferences_gps_optimizations_enabled_on_summary"
+            app:title="@string/preferences_gps_optimizations_enabled_title" />
+        <SwitchPreferenceCompat
+            app:defaultValue="@bool/preferences_collect_neighboring_cells_default_value"
+            app:key="@string/preferences_collect_neighboring_cells_key"
+            app:summaryOff="@string/preferences_collect_neighboring_cells_off_summary"
+            app:summaryOn="@string/preferences_collect_neighboring_cells_on_summary"
+            app:title="@string/preferences_collect_neighboring_cells_title" />
+        <SwitchPreferenceCompat
+            app:defaultValue="@bool/preferences_notify_measurements_collected_default_value"
+            app:key="@string/preferences_notify_measurements_collected_key"
+            app:summaryOff="@string/preferences_notify_measurements_collected_off_summary"
+            app:summaryOn="@string/preferences_notify_measurements_collected_on_summary"
+            app:title="@string/preferences_notify_measurements_collected_title" />
 
         <info.zamojski.soft.towercollector.controls.HtmlSummaryListPreference
-            android:defaultValue="@string/preferences_collector_keep_screen_on_mode_default_value"
-            android:entries="@array/preferences_keep_screen_on_mode_entries_labels"
-            android:entryValues="@array/preferences_keep_screen_on_mode_entries_values"
-            android:key="@string/preferences_collector_keep_screen_on_mode_key"
-            android:summary="@string/preferences_collector_keep_screen_on_summary"
-            android:title="@string/preferences_collector_keep_screen_on_title" />
+            app:defaultValue="@string/preferences_collector_keep_screen_on_mode_default_value"
+            app:entries="@array/preferences_keep_screen_on_mode_entries_labels"
+            app:entryValues="@array/preferences_keep_screen_on_mode_entries_values"
+            app:key="@string/preferences_collector_keep_screen_on_mode_key"
+            app:summary="@string/preferences_collector_keep_screen_on_summary"
+            app:title="@string/preferences_collector_keep_screen_on_title" />
 
-        <SwitchPreference
-            android:defaultValue="@bool/preferences_hide_collector_notification_default_value"
-            android:key="@string/preferences_hide_collector_notification_key"
-            android:summaryOff="@string/preferences_hide_collector_notification_off_summary"
-            android:summaryOn="@string/preferences_hide_collector_notification_on_summary"
-            android:title="@string/preferences_hide_collector_notification_title" />
+        <SwitchPreferenceCompat
+            app:defaultValue="@bool/preferences_hide_collector_notification_default_value"
+            app:key="@string/preferences_hide_collector_notification_key"
+            app:summaryOff="@string/preferences_hide_collector_notification_off_summary"
+            app:summaryOn="@string/preferences_hide_collector_notification_on_summary"
+            app:title="@string/preferences_hide_collector_notification_title" />
 
-        <SwitchPreference
-            android:defaultValue="@bool/preferences_start_collector_at_boot_default_value"
-            android:key="@string/preferences_start_collector_at_boot_key"
-            android:summaryOff="@string/preferences_start_collector_at_boot_off_summary"
-            android:summaryOn="@string/preferences_start_collector_at_boot_on_summary"
-            android:title="@string/preferences_start_collector_at_boot_title" />
+        <SwitchPreferenceCompat
+            app:defaultValue="@bool/preferences_start_collector_at_boot_default_value"
+            app:key="@string/preferences_start_collector_at_boot_key"
+            app:summaryOff="@string/preferences_start_collector_at_boot_off_summary"
+            app:summaryOn="@string/preferences_start_collector_at_boot_on_summary"
+            app:title="@string/preferences_start_collector_at_boot_title" />
 
         <info.zamojski.soft.towercollector.controls.HtmlSummaryListPreference
-            android:defaultValue="@string/preferences_collector_low_battery_action_default_value"
-            android:entries="@array/preferences_collector_low_battery_action_entries_labels"
-            android:entryValues="@array/preferences_collector_low_battery_action_entries_values"
-            android:key="@string/preferences_collector_low_battery_action_key"
-            android:summary="@string/preferences_collector_low_battery_action_summary"
-            android:title="@string/preferences_collector_low_battery_action_title" />
+            app:defaultValue="@string/preferences_collector_low_battery_action_default_value"
+            app:entries="@array/preferences_collector_low_battery_action_entries_labels"
+            app:entryValues="@array/preferences_collector_low_battery_action_entries_values"
+            app:key="@string/preferences_collector_low_battery_action_key"
+            app:summary="@string/preferences_collector_low_battery_action_summary"
+            app:title="@string/preferences_collector_low_battery_action_title" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/preferences_category_help_title">
+    <PreferenceCategory app:title="@string/preferences_category_help_title">
         <PreferenceScreen
-            android:key="@string/preferences_about_neighboring_cells_key"
-            android:summary="@string/preferences_about_neighboring_cells_summary"
-            android:title="@string/preferences_about_neighboring_cells_title" />
+            app:key="@string/preferences_about_neighboring_cells_key"
+            app:summary="@string/preferences_about_neighboring_cells_summary"
+            app:title="@string/preferences_about_neighboring_cells_title" />
         <PreferenceScreen
-            android:key="@string/preferences_about_collector_keep_screen_on_key"
-            android:summary="@string/preferences_about_collector_keep_screen_on_summary"
-            android:title="@string/preferences_about_collector_keep_screen_on_title" />
+            app:key="@string/preferences_about_collector_keep_screen_on_key"
+            app:summary="@string/preferences_about_collector_keep_screen_on_summary"
+            app:title="@string/preferences_about_collector_keep_screen_on_title" />
         <PreferenceScreen
-            android:key="@string/preferences_about_notify_measurements_collected_key"
-            android:summary="@string/preferences_about_notify_measurements_collected_summary"
-            android:title="@string/preferences_about_notify_measurements_collected_title" />
+            app:key="@string/preferences_about_notify_measurements_collected_key"
+            app:summary="@string/preferences_about_notify_measurements_collected_summary"
+            app:title="@string/preferences_about_notify_measurements_collected_title" />
     </PreferenceCategory>
 
 </PreferenceScreen>

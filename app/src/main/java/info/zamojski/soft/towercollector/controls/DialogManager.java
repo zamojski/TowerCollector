@@ -38,9 +38,9 @@ public class DialogManager {
         HtmlTextView messageView = (HtmlTextView) dialogLayout.findViewById(R.id.html_info_dialog_textview);
         messageView.setTextAppearance(context, (largeText ? android.R.style.TextAppearance_Medium : android.R.style.TextAppearance_Small));
         if (messageId != null) {
-            messageView.setHtml(messageId, new HtmlResImageGetter(messageView));
+            messageView.setHtml(messageId, new HtmlResImageGetter(context));
         } else {
-            messageView.setHtml(message, new HtmlResImageGetter(messageView));
+            messageView.setHtml(message, new HtmlResImageGetter(context));
         }
         // don't move above settings content because it won't work
         messageView.setTextIsSelectable(textIsSelectable);

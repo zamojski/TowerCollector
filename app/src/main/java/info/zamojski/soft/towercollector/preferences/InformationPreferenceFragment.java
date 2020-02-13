@@ -11,14 +11,14 @@ import info.zamojski.soft.towercollector.utils.ResourceUtils;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceScreen;
+
+import androidx.preference.Preference;
+import androidx.preference.PreferenceScreen;
 
 public class InformationPreferenceFragment extends DialogEnabledPreferenceFragment {
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferences_information);
 
         setupWebsiteLink();
@@ -39,7 +39,7 @@ public class InformationPreferenceFragment extends DialogEnabledPreferenceFragme
     }
 
     private void setupContactEmailLink() {
-        PreferenceScreen preference = (PreferenceScreen) findPreference(getString(R.string.preferences_contact_email_link_key));
+        PreferenceScreen preference = findPreference(getString(R.string.preferences_contact_email_link_key));
         preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {

@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?><!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
-        android:key="@string/preferences_general_category_settings_key"
-        android:title="@string/preferences_category_settings_title">
-        <SwitchPreference
-            android:defaultValue="@bool/preferences_tracking_enabled_default_value"
-            android:key="@string/preferences_tracking_enabled_key"
-            android:summaryOff="@string/preferences_tracking_enabled_off_summary"
-            android:summaryOn="@string/preferences_tracking_enabled_on_summary"
-            android:title="@string/preferences_tracking_enabled_title" />
-        <SwitchPreference
-            android:defaultValue="@bool/preferences_update_check_enabled_default_value"
-            android:key="@string/preferences_update_check_enabled_key"
-            android:summaryOff="@string/preferences_update_check_enabled_off_summary"
-            android:summaryOn="@string/preferences_update_check_enabled_on_summary"
-            android:title="@string/preferences_update_check_enabled_title" />
+        app:key="@string/preferences_general_category_settings_key"
+        app:title="@string/preferences_category_settings_title">
+        <SwitchPreferenceCompat
+            app:defaultValue="@bool/preferences_tracking_enabled_default_value"
+            app:key="@string/preferences_tracking_enabled_key"
+            app:summaryOff="@string/preferences_tracking_enabled_off_summary"
+            app:summaryOn="@string/preferences_tracking_enabled_on_summary"
+            app:title="@string/preferences_tracking_enabled_title" />
+        <SwitchPreferenceCompat
+            app:defaultValue="@bool/preferences_update_check_enabled_default_value"
+            app:key="@string/preferences_update_check_enabled_key"
+            app:summaryOff="@string/preferences_update_check_enabled_off_summary"
+            app:summaryOn="@string/preferences_update_check_enabled_on_summary"
+            app:title="@string/preferences_update_check_enabled_title" />
     </PreferenceCategory>
     <PreferenceCategory
-        android:key="@string/preferences_general_category_help_key"
-        android:title="@string/preferences_category_help_title">
+        app:key="@string/preferences_general_category_help_key"
+        app:title="@string/preferences_category_help_title">
         <PreferenceScreen
-            android:key="@string/preferences_about_tracking_key"
-            android:summary="@string/preferences_about_tracking_summary"
-            android:title="@string/preferences_about_tracking_title" />
+            app:key="@string/preferences_about_tracking_key"
+            app:summary="@string/preferences_about_tracking_summary"
+            app:title="@string/preferences_about_tracking_title" />
     </PreferenceCategory>
 
 </PreferenceScreen>

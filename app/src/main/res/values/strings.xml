@@ -15,8 +15,6 @@
     <string name="network_type_unknown">Unknown</string>
     <string name="network_group_unknown">Unknown</string>
     <string name="app_title_preferences">Preferences</string>
-    <string name="app_title_help">Help</string>
-    <string name="app_title_about">About</string>
     <string name="dialog_want_enable_gps">Do you want open location settings to enable GPS?</string>
     <string name="dialog_could_not_open_android_settings">Could not open Android settings. Open them manually to change.</string>
     <string name="dialog_select_email_app">Select email application</string>

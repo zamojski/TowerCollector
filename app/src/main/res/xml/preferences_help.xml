@@ -2,21 +2,21 @@
 <!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory android:title="@string/preferences_category_help_title">
+    <PreferenceCategory app:title="@string/preferences_category_help_title">
         <PreferenceScreen
-            android:key="@string/preferences_introduction_link_key"
-            android:summary="@string/preferences_introduction_link_summary"
-            android:title="@string/preferences_introduction_link_title"/>
+            app:key="@string/preferences_introduction_link_key"
+            app:summary="@string/preferences_introduction_link_summary"
+            app:title="@string/preferences_introduction_link_title"/>
         <PreferenceScreen
-            android:key="@string/preferences_best_practices_link_key"
-            android:summary="@string/preferences_best_practices_link_summary"
-            android:title="@string/preferences_best_practices_link_title"/>
+            app:key="@string/preferences_best_practices_link_key"
+            app:summary="@string/preferences_best_practices_link_summary"
+            app:title="@string/preferences_best_practices_link_title"/>
         <PreferenceScreen
-            android:key="@string/preferences_external_integration_link_key"
-            android:summary="@string/preferences_external_integration_link_summary"
-            android:title="@string/preferences_external_integration_link_title"/>
+            app:key="@string/preferences_external_integration_link_key"
+            app:summary="@string/preferences_external_integration_link_summary"
+            app:title="@string/preferences_external_integration_link_title"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

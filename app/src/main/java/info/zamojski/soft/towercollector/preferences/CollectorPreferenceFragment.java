@@ -13,13 +13,12 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.PreferenceCategory;
-import android.preference.PreferenceManager;
-
-
-import android.preference.SwitchPreference;
 import android.widget.Toast;
+
+import androidx.preference.ListPreference;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.PreferenceManager;
+import androidx.preference.SwitchPreferenceCompat;
 
 public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
 
@@ -27,12 +26,11 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
     private ListPreference collectorLowBatteryActionPreference;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferences_collector);
 
-        collectorKeepScreenOnPreference = (ListPreference) findPreference(getString(R.string.preferences_collector_keep_screen_on_mode_key));
-        collectorLowBatteryActionPreference = (ListPreference) findPreference(getString(R.string.preferences_collector_low_battery_action_key));
+        collectorKeepScreenOnPreference = findPreference(getString(R.string.preferences_collector_keep_screen_on_mode_key));
+        collectorLowBatteryActionPreference = findPreference(getString(R.string.preferences_collector_low_battery_action_key));
 
         setupNeighboringCellsDialog();
         setupCollectorKeepScreenOnDialog();
@@ -42,10 +40,10 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
     }
 
     private void setupHideCollectorNotificationAvailability() {
-        boolean available = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN && Build.VERSION.SDK_INT < Build.VERSION_CODES.O);
+        boolean available = Build.VERSION.SDK_INT < Build.VERSION_CODES.O;
         if (!available) {
-            PreferenceCategory settingsCategoryPreference = (PreferenceCategory) findPreference(getString(R.string.preferences_general_category_settings_key));
-            SwitchPreference hideCollectorNotificationPreference = (SwitchPreference) findPreference(getString(R.string.preferences_hide_collector_notification_key));
+            PreferenceCategory settingsCategoryPreference = findPreference(getString(R.string.preferences_general_category_settings_key));
+            SwitchPreferenceCompat hideCollectorNotificationPreference = findPreference(getString(R.string.preferences_hide_collector_notification_key));
             settingsCategoryPreference.removePreference(hideCollectorNotificationPreference);
         }
     }

@@ -5,17 +5,12 @@
 package info.zamojski.soft.towercollector.controls;
 
 import android.content.Context;
-import android.preference.ListPreference;
 import android.text.Html;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+
+import androidx.preference.ListPreference;
 
 public class HtmlSummaryListPreference extends ListPreference {
-
-    private TextView summaryTextView;
-    private String summaryText;
 
     public HtmlSummaryListPreference(Context context) {
         super(context);
@@ -25,31 +20,8 @@ public class HtmlSummaryListPreference extends ListPreference {
         super(context, attributeSet);
     }
 
-    protected void onBindView(View paramView) {
-        super.onBindView(paramView);
-        // remove previous summary instance from view
-        if (this.summaryTextView != null) {
-            ((ViewGroup) this.summaryTextView.getParent()).removeView(this.summaryTextView);
-        }
-        // find current summary instance on view
-        this.summaryTextView = (TextView) paramView.findViewById(android.R.id.summary);
-        // replace current summary instance with new one
-        if (this.summaryTextView != null) {
-            this.summaryTextView.setVisibility(View.GONE);
-            TextView newSummaryTextView = new TextView(getContext());
-            newSummaryTextView.setLayoutParams(this.summaryTextView.getLayoutParams());
-            newSummaryTextView.setEnabled(this.summaryTextView.isEnabled());
-            ((ViewGroup) this.summaryTextView.getParent()).addView(newSummaryTextView);
-            this.summaryTextView = newSummaryTextView;
-            if (this.summaryText != null) {
-                this.summaryTextView.setText(Html.fromHtml(this.summaryText));
-            }
-        }
-    }
-
     @Override
     public void setSummary(CharSequence summary) {
-        this.summaryText = summary.toString();
-        super.setSummary(summaryText);
+        super.setSummary(Html.fromHtml(summary.toString()));
     }
 }

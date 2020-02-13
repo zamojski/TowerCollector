@@ -1,61 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?><!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory android:title="@string/preferences_category_settings_title">
-        <SwitchPreference
-            android:defaultValue="@bool/preferences_upload_show_configurator_default_value"
-            android:key="@string/preferences_upload_show_configurator_key"
-            android:summaryOff="@string/preferences_upload_show_configurator_off_summary"
-            android:summaryOn="@string/preferences_upload_show_configurator_on_summary"
-            android:title="@string/preferences_upload_show_configurator_title" />
-        <SwitchPreference
-            android:defaultValue="@bool/preferences_reupload_if_upload_fails_default_value"
-            android:key="@string/preferences_reupload_if_upload_fails_key"
-            android:summaryOff="@string/preferences_reupload_if_upload_fails_off_summary"
-            android:summaryOn="@string/preferences_reupload_if_upload_fails_on_summary"
-            android:title="@string/preferences_reupload_if_upload_fails_title" />
+    <PreferenceCategory app:title="@string/preferences_category_settings_title">
+        <SwitchPreferenceCompat
+            app:defaultValue="@bool/preferences_upload_show_configurator_default_value"
+            app:key="@string/preferences_upload_show_configurator_key"
+            app:summaryOff="@string/preferences_upload_show_configurator_off_summary"
+            app:summaryOn="@string/preferences_upload_show_configurator_on_summary"
+            app:title="@string/preferences_upload_show_configurator_title" />
+        <SwitchPreferenceCompat
+            app:defaultValue="@bool/preferences_reupload_if_upload_fails_default_value"
+            app:key="@string/preferences_reupload_if_upload_fails_key"
+            app:summaryOff="@string/preferences_reupload_if_upload_fails_off_summary"
+            app:summaryOn="@string/preferences_reupload_if_upload_fails_on_summary"
+            app:title="@string/preferences_reupload_if_upload_fails_title" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/ocid_name">
-        <SwitchPreference
-            android:defaultValue="@bool/preferences_opencellid_enabled_default_value"
-            android:key="@string/preferences_opencellid_enabled_key"
-            android:summaryOff="@string/preferences_opencellid_enabled_off_summary"
-            android:summaryOn="@string/preferences_opencellid_enabled_on_summary"
-            android:title="@string/preferences_opencellid_enabled_title" />
+    <PreferenceCategory app:title="@string/ocid_name">
+        <SwitchPreferenceCompat
+            app:defaultValue="@bool/preferences_opencellid_enabled_default_value"
+            app:key="@string/preferences_opencellid_enabled_key"
+            app:summaryOff="@string/preferences_opencellid_enabled_off_summary"
+            app:summaryOn="@string/preferences_opencellid_enabled_on_summary"
+            app:title="@string/preferences_opencellid_enabled_title" />
         <info.zamojski.soft.towercollector.controls.TrimmedEditTextPreference
-            android:defaultValue="@string/preferences_api_key_default_value"
-            android:inputType="text"
-            android:key="@string/preferences_api_key_key"
-            android:summary="@string/preferences_api_key_summary"
-            android:title="@string/preferences_api_key_title" />
+            app:defaultValue="@string/preferences_api_key_default_value"
+            app:key="@string/preferences_api_key_key"
+            app:summary="@string/preferences_api_key_summary"
+            app:title="@string/preferences_api_key_title" />
         <PreferenceScreen
-            android:key="@string/preferences_api_key_link_key"
-            android:summary="@string/preferences_api_key_link_summary"
-            android:title="@string/preferences_api_key_link_title" />
+            app:key="@string/preferences_api_key_link_key"
+            app:summary="@string/preferences_api_key_link_summary"
+            app:title="@string/preferences_api_key_link_title" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/mls_name">
-        <SwitchPreference
-            android:defaultValue="@bool/preferences_mls_enabled_default_value"
-            android:key="@string/preferences_mls_enabled_key"
-            android:summaryOff="@string/preferences_mls_enabled_off_summary"
-            android:summaryOn="@string/preferences_mls_enabled_on_summary"
-            android:title="@string/preferences_mls_enabled_title" />
+    <PreferenceCategory app:title="@string/mls_name">
+        <SwitchPreferenceCompat
+            app:defaultValue="@bool/preferences_mls_enabled_default_value"
+            app:key="@string/preferences_mls_enabled_key"
+            app:summaryOff="@string/preferences_mls_enabled_off_summary"
+            app:summaryOn="@string/preferences_mls_enabled_on_summary"
+            app:title="@string/preferences_mls_enabled_title" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/preferences_category_help_title">
+    <PreferenceCategory app:title="@string/preferences_category_help_title">
         <PreferenceScreen
-            android:key="@string/preferences_about_api_key_key"
-            android:summary="@string/preferences_about_api_key_summary"
-            android:title="@string/preferences_about_api_key_title" />
+            app:key="@string/preferences_about_api_key_key"
+            app:summary="@string/preferences_about_api_key_summary"
+            app:title="@string/preferences_about_api_key_title" />
         <PreferenceScreen
-            android:key="@string/preferences_about_opencellid_project_key"
-            android:summary="@string/preferences_about_opencellid_project_summary"
-            android:title="@string/preferences_about_opencellid_project_title" />
+            app:key="@string/preferences_about_opencellid_project_key"
+            app:summary="@string/preferences_about_opencellid_project_summary"
+            app:title="@string/preferences_about_opencellid_project_title" />
         <PreferenceScreen
-            android:key="@string/preferences_about_mls_project_key"
-            android:summary="@string/preferences_about_mls_project_summary"
-            android:title="@string/preferences_about_mls_project_title" />
+            app:key="@string/preferences_about_mls_project_key"
+            app:summary="@string/preferences_about_mls_project_summary"
+            app:title="@string/preferences_about_mls_project_title" />
     </PreferenceCategory>
 
 </PreferenceScreen>
