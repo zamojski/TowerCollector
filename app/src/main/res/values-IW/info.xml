@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+    <string name="info_about_api_key_title">מפתח API</string>
+    <string name="info_about_opencellid_project_title">מיזם OpenCellID</string>
+    <string name="info_about_mls_project_title">מיזם שירותי המיקום של Mozilla</string>
+    <string name="info_usage_statistics_title">סטטיסטיקת שימוש</string>
+    <string name="info_about_application_title">על אודות</string>
+    <string name="info_introduction_title">היכרות</string>
+    <string name="info_best_practices_title">המלצות לשימוש נכון</string>
+    <string name="info_external_integration_title">שילוב עם גורמים חיצוניים</string>
+    <string name="info_privacy_statement_title">הצהרת פרטיות</string>
+    <string name="info_open_source_licenses_title">רישיונות קוד פתוח</string>
+    <string name="info_about_neighboring_cells_title">אנטנות סמוכות</string>
+    <string name="info_about_collector_api_version_title">גרסת ה־API של מנגנון האיסוף</string>
+    <string name="info_about_main_keep_screen_on_title">להשאיר את המסך פעיל כאשר גלוי</string>
+    <string name="info_about_collector_keep_screen_on_title">להשאיר את המסך פעיל בזמן איסוף</string>
+    <string name="info_about_notify_measurements_collected_title">להודיע על המדידות שנאספו</string>
+</resources>

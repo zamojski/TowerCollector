@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+    <string name="permission_required">נדרשת הרשאה</string>
+    <string name="permission_denied">ההרשאה נדחתה</string>
+    <string name="permission_export_rationale_message">יש להעניק הרשאות לאחסון כדי לייצא מדידות לקובץ</string>
+    <string name="permission_export_denied_message">ייצוא המדידות מבוטל עקב העדר הרשאות</string>
+    <string name="permission_export_never_ask_again_message">ייצוא הרשאות אינו זמין עקב העדר הרשאות לאחסון</string>
+    <string name="permission_storage_rationale_message">יש להעניק הרשאות לאחסון כדי להשתמש בתכונה</string>
+    <string name="permission_storage_denied_message">הפעולה מבוטלת עקב העדר הרשאה</string>
+    <string name="permission_storage_never_ask_again_message">התכונה אינה זמינה עקב העדר הרשאה לאחסון</string>
+    <string name="permission_logging_denied_temporarily_message">התיעוד לקובץ יומן מושבת באופן זמני עקב הרשאת גישה לאחסון שנדחתה</string>
+    <string name="permission_collector_rationale_message">יש להעניק הרשאות למיקום ולטלפון כדי לאסוף מדידות.</string>
+    <string name="permission_collector_rationale_api29_message">\n\nאם ברצונך להשתמש ביישומון עליך לוודא שבחרת באפשרות ‚לאפשר תמיד’ כדי לקבל הרשאה לגשת למיקום המכשיר!</string>
+    <string name="permission_collector_denied_message">איסוף המדידות מבוטל עקב העדר הרשאות</string>
+    <string name="permission_collector_never_ask_again_message">איסוף המדידות אינו זמין עקב העדר הרשאות לגישה ו/או הרשאות לטלפון</string>
+    <string name="permission_collector_denied_intent_message">איסוף המדידות מבוטל עקב הרשאות שנדחו, יש לפתוח את היישומון כדי להעניק את ההרשאות המתאימות תחילה</string>
+    <string name="permission_uploader_denied_message">ההעלאה בוטלה עקב העדר הרשאה לגשת לאינטרנט.</string>
+</resources>

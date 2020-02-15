@@ -1,0 +1,21 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+
+<p>&rlm;Tower Collector חושף משימות שניתן להריץ על ידי יישומונים אחרים ששולחים <i>intents</i> כגון Tasker,‏ Automate או Llama. עליך להשתמש בסוג <i>Broadcast</i> (שידור) לכל הפעילויות שמוגדרות להלן. למידע נוסף על אופן הביצוע של שילוב שכזה כדאי לעיין בעזרה של היישומון.<br />
+כמו בתוך היישומון אין אפשרות להפעיל יותר ממשימה אחת בו־זמנית!</p>
+<h3>הפעלת האיסוף</h3>
+<p>מנגנון האיסוף יתחיל עם ההגדרות שבהעדפות: פעולה:</p>
+<code>info.zamojski.soft.towercollector.COLLECTOR_START</code>
+<h3>עצירת האיסוף</h3>
+<p>מנגנון האיסוף ייעצר מיידית. פעולה:</p>
+<code>info.zamojski.soft.towercollector.COLLECTOR_STOP</code>
+<h3>התחלת העלאה</h3>
+<p>העלאה תתחיל עם התצורה מההעדפות. פעולה:</p>
+<code>info.zamojski.soft.towercollector.UPLOADER_START</code>
+<h3>עצירת ההעלאה</h3>
+<p>ההעלאה תבוטל בקרוב. פעולה:</p>
+<code>info.zamojski.soft.towercollector.UPLOADER_STOP</code>
+<h3>&rlm;Android 8+</h3>
+<p>ב־Android Oreo וגרסאות חדשות יותר עליך להגדיר בנוסף שם חבילת רכיב:</p>
+<code>info.zamojski.soft.towercollector</code>
