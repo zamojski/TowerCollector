@@ -38,7 +38,7 @@ public class MozillaUploadClient extends ClientBase implements IUploadClient {
                     .build();
 
             // add json as request content
-            RequestBody requestBody = RequestBody.create(JSON, content);
+            RequestBody requestBody = RequestBody.create(content, JSON);
             Request request = new Request.Builder()
                     .url(uploadUrl)
                     .post(requestBody)

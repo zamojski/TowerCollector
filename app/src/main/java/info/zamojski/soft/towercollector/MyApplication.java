@@ -192,7 +192,7 @@ public class MyApplication extends Application {
         customizedFields.remove(ReportField.DEVICE_ID);
         // remove BuildConfig to avoid leakage of configuration data in report
         customizedFields.remove(ReportField.BUILD_CONFIG);
-        return customizedFields.toArray(new ReportField[customizedFields.size()]);
+        return customizedFields.toArray(new ReportField[0]);
     }
 
     public static IAnalyticsReportingService getAnalytics() {
