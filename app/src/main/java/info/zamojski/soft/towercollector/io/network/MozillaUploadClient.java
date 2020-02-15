@@ -63,10 +63,15 @@ public class MozillaUploadClient extends ClientBase implements IUploadClient {
         if (code >= 500 && code <= 599) {
             return RequestResult.ServerError;
         }
-        if (code == 400 || code == 403) {
+        if (code == 400) {
             RuntimeException ex = new RequestException(body);
             reportException(ex);
             return RequestResult.ConfigurationError;
+        }
+        if (code == 403) {
+            RuntimeException ex = new RequestException(body);
+            reportException(ex);
+            return RequestResult.LimitExceeded;
         }
         // don't report captive portals
         if (code != 302) {

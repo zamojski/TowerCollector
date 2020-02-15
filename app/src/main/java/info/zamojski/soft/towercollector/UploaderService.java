@@ -58,7 +58,7 @@ public class UploaderService extends Service {
     public static final String INTENT_KEY_RESULT_DESCRIPTION = "result_description";
     public static final String INTENT_KEY_START_INTENT_SOURCE = "start_intent_source";
     public static final int NOTIFICATION_ID = 'U';
-    private static final int LOCATIONS_PER_PART = 80;
+    private static final int LOCATIONS_PER_PART = 100;
 
     private HandlerThread handlerThread;
     private Handler handler;
@@ -172,6 +172,8 @@ public class UploaderService extends Service {
                 return R.string.uploader_failure;
             case PermissionDenied:
                 return R.string.permission_denied;
+            case LimitExceeded:
+                return R.string.uploader_limit_exceeded;
             default:
                 return R.string.unknown_error;
         }
@@ -203,6 +205,8 @@ public class UploaderService extends Service {
                 return R.string.uploader_failure_description;
             case PermissionDenied:
                 return R.string.permission_uploader_denied_message;
+            case LimitExceeded:
+                return R.string.uploader_limit_exceeded_description;
             default:
                 return R.string.unknown_error;
         }
@@ -303,7 +307,7 @@ public class UploaderService extends Service {
                 mlsUploadResult = UploadResult.Success;
             } else if (mlsUploadResult != UploadResult.DeleteFailed && mlsUploadResult != UploadResult.NotStarted) {
                 // can be cancelled or failed after uploading few parts (but not all)
-                if (succeededParts[1] > 0) {
+                if (succeededParts[1] > 0 && mlsUploadResult != UploadResult.LimitExceeded) {
                     mlsUploadResult = UploadResult.PartiallySucceeded;
                 }
             }
@@ -538,6 +542,8 @@ public class UploaderService extends Service {
                     return UploadResult.ServerError;
                 } else if (response == RequestResult.ConnectionError) {
                     return UploadResult.ConnectionError;
+                } else if (response == RequestResult.LimitExceeded) {
+                    return UploadResult.LimitExceeded;
                 } else if (response == RequestResult.Failure) {
                     return UploadResult.Failure;
                 } else if (response == RequestResult.Success) {
