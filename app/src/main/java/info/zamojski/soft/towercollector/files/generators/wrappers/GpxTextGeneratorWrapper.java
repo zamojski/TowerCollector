@@ -6,6 +6,8 @@ package info.zamojski.soft.towercollector.files.generators.wrappers;
 
 import android.content.Context;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -22,6 +24,7 @@ import info.zamojski.soft.towercollector.files.formatters.gpx.model.HeaderData;
 import info.zamojski.soft.towercollector.files.generators.GpxTextGenerator;
 import info.zamojski.soft.towercollector.model.Boundaries;
 import info.zamojski.soft.towercollector.model.Measurement;
+import info.zamojski.soft.towercollector.model.Statistics;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
 import timber.log.Timber;
 
@@ -56,6 +59,11 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
             // write header
             Measurement firstMeasurement = MeasurementsDatabase.getInstance(context).getFirstMeasurement();
             Measurement lastMeasurement = MeasurementsDatabase.getInstance(context).getLastMeasurement();
+            if (locationsCount != 0 && (firstMeasurement == null || lastMeasurement == null)) {
+                Statistics stats = MeasurementsDatabase.getInstance(context).getMeasurementsStatistics();
+                String dump = MeasurementsDatabase.getInstance(context).quickDump();
+                MyApplication.handleSilentException(new DumpException("Inconsistent GPX export data", locationsCount, firstMeasurement, lastMeasurement, stats, dump));
+            }
             Boundaries bounds = MeasurementsDatabase.getInstance(context).getLocationBounds();
             HeaderData headerData = new HeaderData();
             headerData.ApkVersion = ApkUtils.getApkVersionName(context);
@@ -106,6 +114,36 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
         } finally {
             // just for sure
             device.close();
+        }
+    }
+
+    public class DumpException extends RuntimeException {
+
+        private int locationsCount;
+        private Measurement firstMeasurement;
+        private Measurement lastMeasurement;
+        private Statistics stats;
+        private String dump;
+
+        public DumpException(String message, int locationsCount, Measurement firstMeasurement, Measurement lastMeasurement, Statistics stats, String dump) {
+            super(message);
+            this.locationsCount = locationsCount;
+            this.firstMeasurement = firstMeasurement;
+            this.lastMeasurement = lastMeasurement;
+            this.stats = stats;
+            this.dump = dump;
+        }
+
+        @NotNull
+        @Override
+        public String toString() {
+            return getMessage() + "{" +
+                    "locationsCount=" + locationsCount +
+                    ", firstMeasurement=" + firstMeasurement +
+                    ", lastMeasurement=" + lastMeasurement +
+                    ", stats=" + stats +
+                    ", dump='" + dump + '\'' +
+                    '}';
         }
     }
 }

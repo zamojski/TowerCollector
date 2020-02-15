@@ -578,6 +578,113 @@ public class MeasurementsDatabase {
         return deletedCellSignals;
     }
 
+    public String quickDump() {
+        StringBuilder sb = new StringBuilder(10000);
+        SQLiteDatabase db = helper.getReadableDatabase();
+        {
+            sb.append("--CELLS TABLE ")
+                    .append(CellsTable.COLUMN_ROW_ID)
+                    .append(",").append(CellsTable.COLUMN_DISCOVERED_AT)
+                    .append("\r\n");
+            String query = "SELECT "
+                    + CellsTable.COLUMN_ROW_ID
+                    + "," + CellsTable.COLUMN_DISCOVERED_AT
+                    + " FROM " + CellsTable.TABLE_NAME;
+            Cursor cursor = db.rawQuery(query, null);
+            if (cursor.moveToNext()) {
+                int rowId = cursor.getInt(0);
+                long discoveredAt = cursor.getLong(1);
+                sb.append(rowId)
+                        .append(",").append(discoveredAt)
+                        .append("\r\n");
+            }
+            cursor.close();
+        }
+        {
+            sb.append("--MEASUREMENTS TABLE ")
+                    .append(MeasurementsTable.COLUMN_ROW_ID)
+                    .append(",").append(MeasurementsTable.COLUMN_MEASURED_AT)
+                    .append(",").append(MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT)
+                    .append(",").append(MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT)
+                    .append("\r\n");
+            String query = "SELECT "
+                    + MeasurementsTable.COLUMN_ROW_ID
+                    + "," + MeasurementsTable.COLUMN_MEASURED_AT
+                    + "," + MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT
+                    + "," + MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT
+                    + " FROM " + MeasurementsTable.TABLE_NAME;
+            Cursor cursor = db.rawQuery(query, null);
+            if (cursor.moveToNext()) {
+                int rowId = cursor.getInt(0);
+                long measuredAt = cursor.getLong(1);
+                long uploadedToOcidAt = cursor.getLong(2);
+                long uploadedToMlsAt = cursor.getLong(3);
+                sb.append(rowId)
+                        .append(",").append(measuredAt)
+                        .append(",").append(uploadedToOcidAt)
+                        .append(",").append(uploadedToMlsAt)
+                        .append("\r\n");
+            }
+            cursor.close();
+        }
+        {
+            sb.append("--CELL_SIGNALS TABLE ")
+                    .append(CellSignalsTable.COLUMN_ROW_ID)
+                    .append(",").append(CellSignalsTable.COLUMN_CELL_ID)
+                    .append(",").append(CellSignalsTable.COLUMN_MEASUREMENT_ID)
+                    .append(",").append(CellSignalsTable.COLUMN_NEIGHBORING)
+                    .append("\r\n");
+            String query = "SELECT "
+                    + CellSignalsTable.COLUMN_ROW_ID
+                    + "," + CellSignalsTable.COLUMN_CELL_ID
+                    + "," + CellSignalsTable.COLUMN_MEASUREMENT_ID
+                    + "," + CellSignalsTable.COLUMN_NEIGHBORING
+                    + " FROM " + CellSignalsTable.TABLE_NAME;
+            Cursor cursor = db.rawQuery(query, null);
+            if (cursor.moveToNext()) {
+                int rowId = cursor.getInt(0);
+                int cellId = cursor.getInt(1);
+                int measurementId = cursor.getInt(2);
+                int isNeighboring = cursor.getInt(3);
+                sb.append(rowId)
+                        .append(",").append(cellId)
+                        .append(",").append(measurementId)
+                        .append(",").append(isNeighboring)
+                        .append("\r\n");
+            }
+            cursor.close();
+        }
+        {
+            sb.append("--CELLS TABLE ")
+                    .append(StatsTable.COLUMN_ROW_ID)
+                    .append(",").append(StatsTable.COLUMN_TOTAL_MEASUREMENTS)
+                    .append(",").append(StatsTable.COLUMN_TOTAL_DISCOVERED_CELLS)
+                    .append(",").append(StatsTable.COLUMN_TOTAL_SINCE)
+                    .append("\r\n");
+            String query = "SELECT "
+                    + StatsTable.COLUMN_ROW_ID
+                    + "," + StatsTable.COLUMN_TOTAL_MEASUREMENTS
+                    + "," + StatsTable.COLUMN_TOTAL_DISCOVERED_CELLS
+                    + "," + StatsTable.COLUMN_TOTAL_SINCE
+                    + " FROM " + StatsTable.TABLE_NAME;
+            Cursor cursor = db.rawQuery(query, null);
+            if (cursor.moveToNext()) {
+                int rowId = cursor.getInt(0);
+                int totalMeasurements = cursor.getInt(1);
+                int discoveredCells = cursor.getInt(2);
+                long totalSince = cursor.getLong(3);
+                sb.append(rowId)
+                        .append(",").append(totalMeasurements)
+                        .append(",").append(discoveredCells)
+                        .append(",").append(totalSince)
+                        .append("\r\n");
+            }
+            cursor.close();
+        }
+
+        return sb.toString();
+    }
+
     private void invalidateCache() {
         lastMeasurementCache = null;
         lastStatisticsCache = null;
