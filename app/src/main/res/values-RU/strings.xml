@@ -15,8 +15,6 @@
     <string name="network_type_unknown">Не определена</string>
     <string name="network_group_unknown">Не определена</string>
     <string name="app_title_preferences">Настройки</string>
-    <string name="app_title_help">Помощь</string>
-    <string name="app_title_about">О приложении</string>
     <string name="dialog_want_enable_gps">Вы хотите открыть настройки местоположения, чтобы включить GPS?</string>
     <string name="dialog_could_not_open_android_settings">Не могу открыть настройки Android. Откройте их вручную, чтобы изменить.</string>
     <string name="dialog_select_email_app">Выберите приложение для электронной почты</string>
@@ -118,6 +116,8 @@
     <string name="uploader_connection_error_description">Не удалось связаться с сервером из-за ошибки, связанной с сетью, которая может быть вызвана отсутствием, слишком медленным или нестабильным подключением к Интернету. Проверьте, что вы используете последнюю версию приложения и повторите попытку. Если эта проблема наблюдается в течение длительного времени, пожалуйста, дайте мне знать.</string>
     <string name="uploader_server_error">Ошибка сервера</string>
     <string name="uploader_server_error_description">Сервер сообщил о внутренней ошибке, что может значить, что он перегружен, временно недоступен или отключён для обслуживания. Пожалуйста, повторите попытку позже. Если эта проблема будет повторяться долгое время, пожалуйста, дайте мне знать.</string>
+    <string name="uploader_limit_exceeded">Превышен лимит использования</string>
+    <string name="uploader_limit_exceeded_description">Превышен ежедневный лимит использования приложения. Пожалуйста, попробуйте еще раз завтра.</string>
     <string name="other_notification_channel_name">Другое</string>
     <string name="error_reporting_notification_channel_name">Отчёт об ошибке</string>
     <string name="error_reporting_notification_title">Произошла неизвестная ошибка</string>

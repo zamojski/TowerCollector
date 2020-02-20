@@ -15,8 +15,6 @@
     <string name="network_type_unknown">未知</string>
     <string name="network_group_unknown">未知</string>
     <string name="app_title_preferences">配置</string>
-    <string name="app_title_help">帮助</string>
-    <string name="app_title_about">关于</string>
     <string name="dialog_want_enable_gps">是否要打开位置设置来开启GPS？</string>
     <string name="dialog_could_not_open_android_settings">无法打开安卓设置。请手动打开并更改。</string>
     <string name="dialog_select_email_app">选择电子邮件应用</string>
@@ -118,6 +116,8 @@
     <string name="uploader_connection_error_description">无法访问服务器，可能是由于断开、太慢或不稳定的Internet连接引起的网络相关错误。请检查您是否有最新的应用版本，然后重试。如果您长时间遇到此问题，请告诉我。</string>
     <string name="uploader_server_error">服务器错误</string>
     <string name="uploader_server_error_description">服务器返回内部错误，这可能意味着它过载、暂时不可用或停机以进行维护。请稍后再试。如果您长时间遇到此问题，请告诉我。</string>
+    <string name="uploader_limit_exceeded">超出使用限制</string>
+    <string name="uploader_limit_exceeded_description">已超出该应用程序的每日使用限制。 请明天再试。</string>
     <string name="other_notification_channel_name">其它</string>
     <string name="error_reporting_notification_channel_name">错误报告</string>
     <string name="error_reporting_notification_title">发生意外错误</string>

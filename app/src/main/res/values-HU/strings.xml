@@ -15,8 +15,6 @@
     <string name="network_type_unknown">Ismeretlen</string>
     <string name="network_group_unknown">Ismeretlen</string>
     <string name="app_title_preferences">Beállítások</string>
-    <string name="app_title_help">Súgó</string>
-    <string name="app_title_about">Névjegy</string>
     <string name="dialog_want_enable_gps">Be szeretnéd kapcsolni a GPS-t a beállításokban?</string>
     <string name="dialog_could_not_open_android_settings">Az Android beállítások nem nyithatóak meg. Nyisd meg kézzel a módosításhoz.</string>
     <string name="dialog_select_email_app">E-mail alkalmazás kiválasztása</string>
@@ -118,6 +116,8 @@
     <string name="uploader_connection_error_description">A kiszolgáló hálózati hiba miatt nem érhető el, amelyet hiányzó, túl lassú vagy bizonytalan internetkapcsolat okozhat. Ellenőrizd, hogy a legfrissebb alkalmazásverzióval rendelkezel, és próbáld újra. Ha hosszú ideig találkozol ezzel a problémával, tudasd velem.</string>
     <string name="uploader_server_error">Kiszolgálóhiba</string>
     <string name="uploader_server_error_description">A kiszolgáló belső hibát adott vissza, ami azt jelenti, hogy túlterhelt, átmenetileg nem érhető el, vagy karbantartás miatt nem működik. Próbáld újra később. Ha hosszú ideig találkozol ezzel a problémával, tudasd velem.</string>
+    <string name="uploader_limit_exceeded">A használati határ túllépve</string>
+    <string name="uploader_limit_exceeded_description">Az alkalmazás napi felhasználási korlátját túllépte. Kérjük, holnap próbálkozzon újra.</string>
     <string name="other_notification_channel_name">Egyéb</string>
     <string name="error_reporting_notification_channel_name">Hibajelentés</string>
     <string name="error_reporting_notification_title">Váratlan hiba történt</string>

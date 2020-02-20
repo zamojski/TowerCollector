@@ -15,8 +15,6 @@
     <string name="network_type_unknown">Desconhecido</string>
     <string name="network_group_unknown">Desconhecido</string>
     <string name="app_title_preferences">Preferências</string>
-    <string name="app_title_help">Ajuda</string>
-    <string name="app_title_about">Sobre</string>
     <string name="dialog_want_enable_gps">Você deseja abrir as configurações de localização para habilitar o GPS ?</string>
     <string name="dialog_could_not_open_android_settings">Não foi possível abrir as configurações do Android. Abra-os manualmente para mudar.</string>
     <string name="dialog_select_email_app">Selecione a aplicação de email</string>
@@ -118,6 +116,8 @@
     <string name="uploader_connection_error_description">O servidor não pôde ser alcançado por conta de algum erro relacionado à rede que pode ser causada por falta, lentidão ou instabilidade de conexão de internet. Peço que você verifique se possui a última versão da aplicação e tente novamente. Se você continuar a ter este problema por muito tempo, favor me informar.</string>
     <string name="uploader_server_error">Erro de servidor</string>
     <string name="uploader_server_error_description">O servidor retornou um erro interno que pode significar que ele está sobrecarregado, indisponível temporariamente ou fora para manutenção. Tente novamente mais tarde. Se o problema persistir por muito tempo, favor me informar.</string>
+    <string name="uploader_limit_exceeded">Excedeu o limite de uso</string>
+    <string name="uploader_limit_exceeded_description">O limite diário de uso do app foi excedido. Favor tentar novamente amanhã.</string>
     <string name="other_notification_channel_name">Outro</string>
     <string name="error_reporting_notification_channel_name">Reportar erro</string>
     <string name="error_reporting_notification_title">Ocorreu um erro inexperado</string>

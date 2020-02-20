@@ -15,8 +15,6 @@
     <string name="network_type_unknown">לא ידועה</string>
     <string name="network_group_unknown">לא ידועה</string>
     <string name="app_title_preferences">העדפות</string>
-    <string name="app_title_help">עזרה</string>
-    <string name="app_title_about">על אודות</string>
     <string name="dialog_want_enable_gps">לפתוח את הגדרות המיקום כדי להפעיל GPS?</string>
     <string name="dialog_could_not_open_android_settings">לא ניתן לפתוח את ההגדרות של Android. יש לפתוח אותן ידנית כדי לשנות.</string>
     <string name="dialog_select_email_app">בחירת יישומון דוא״ל</string>
@@ -118,6 +116,8 @@
     <string name="uploader_connection_error_description">לא ניתן להגיע לשרת עקב תקלת רשת שכנראה קרתה עקב מחסור או תקלה בקישור לאינטרנט. נא לבדוק שגרסת היישומון עדכנית ולנסות שוב. אם תקלה זו נמשכת זמן רב, נא לעדכן אותי.</string>
     <string name="uploader_server_error">שגיאת שרת</string>
     <string name="uploader_server_error_description">השרת החזיר שגיאה פנימית שכנראה מרמזת שהוא עמוס מאוד, לא זמין לבינתיים או מושבת לצורך תחזוקה. נא לנסות שוב מאוחר יותר. אם תקלה זו נמשכת זמן רב, נא לעדכן אותי.</string>
+    <string name="uploader_limit_exceeded">חרגת ממגבלת השימוש</string>
+    <string name="uploader_limit_exceeded_description">חרגת ממגבלת השימוש היומית ביישומון. נא לנסות שוב מחר.</string>
     <string name="other_notification_channel_name">אחר</string>
     <string name="error_reporting_notification_channel_name">הדיווח נכשל</string>
     <string name="error_reporting_notification_title">אירעה שגיאה בלתי ידועה</string>

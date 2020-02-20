@@ -15,8 +15,6 @@
     <string name="network_type_unknown">Sconosciuto</string>
     <string name="network_group_unknown">Sconosciuto</string>
     <string name="app_title_preferences">Preferenze</string>
-    <string name="app_title_help">Guida</string>
-    <string name="app_title_about">Info su</string>
     <string name="dialog_want_enable_gps">Vuoi aprire le impostazioni di localizzazione per abilitare il GPS?</string>
     <string name="dialog_could_not_open_android_settings">Impossibile aprire le impostazioni di Android. Aprirle manualmente per cambiarle.</string>
     <string name="dialog_select_email_app">Scegli l\'applicazione per l\'email</string>
@@ -118,6 +116,8 @@
     <string name="uploader_connection_error_description">Non è stato possibile raggiungere il server a causa di un errore di rete che potrebbe essere causato da una connessione Internet mancante, troppo lenta o instabile. Si prega di verificare se si dispone della versione più recente dell\'applicazione e riprovare. Se si verifica questo problema per un lungo periodo, per favore fatemelo sapere.</string>
     <string name="uploader_server_error">Errore del server</string>
     <string name="uploader_server_error_description">Il server ha restituito un errore interno che potrebbe significare che è sovraccarico, temporaneamente non disponibile o inattivo per manutenzione. Per favore riprova più tardi. Se si verifica questo problema per un lungo periodo, per favore fatemelo sapere.</string>
+    <string name="uploader_limit_exceeded">Limite di utilizzo superato</string>
+    <string name="uploader_limit_exceeded_description">È stato superato il limite di utilizzo giornaliero per l\'app. Per favore, riprova domani.</string>
     <string name="other_notification_channel_name">Altro</string>
     <string name="error_reporting_notification_channel_name">Segnalazione degli errori</string>
     <string name="error_reporting_notification_title">Errore inaspettato</string>
