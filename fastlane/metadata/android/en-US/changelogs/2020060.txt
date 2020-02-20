@@ -1,0 +1,9 @@
+- Adjusted MLS integration for upload usage limitations.
+- Added option to export to multiple file types at once.
+- Added option to compress each exported file.
+- Added confirmation for delete action after export.
+- Added Hebrew translation. Thanks Yaron Shahrabani!
+- Improved support for RTL languages.
+- Updated translations.
+- Small fixes and improvements.
+- Updated external components.
