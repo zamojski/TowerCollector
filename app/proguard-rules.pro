@@ -47,6 +47,9 @@
 -keep public class * extends android.view.View
 -keep public class * extends android.preference.Preference
 
+# AndroidX
+-keep public class * extends androidx.fragment.app.Fragment
+
 # Custom view components might be accessed from your layout files
 -keep public class * extends android.view.View {
     public <init>(android.content.Context);
