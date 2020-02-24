@@ -125,6 +125,8 @@
     <string name="uploader_connection_error_description">The server could not be reached because due to network related error which may be caused by missing, too slow or unstable Internet connection. Please check if you have latest application version and try again. If you encounter this problem for a long time, please let me know.</string>
     <string name="uploader_server_error">Server error</string>
     <string name="uploader_server_error_description">The server returned internal error which may mean that it is overloaded, temporarily unavailable or down for maintenance. Please try again later. If you encounter this problem for a long time, please let me know.</string>
+    <string name="uploader_limit_exceeded">Usage limit exceeded</string>
+    <string name="uploader_limit_exceeded_description">The daily usage limit for the app has been exceeded. Please try again tomorrow.</string>
     <string name="uploader_result_message" translatable="false">OCID: <xliff:g id="message_for_ocid">%1$s</xliff:g> | MLS: <xliff:g id="message_for_mls">%2$s</xliff:g></string>
     <string name="uploader_result_description" translatable="false">OCID: <xliff:g id="message_for_ocid">%1$s</xliff:g>\n\nMLS: <xliff:g id="message_for_mls">%2$s</xliff:g></string>
     <string name="other_notification_channel_name">Other</string>

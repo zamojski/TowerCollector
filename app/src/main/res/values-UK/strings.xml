@@ -117,6 +117,8 @@
     <string name="uploader_connection_error_description">Сервер недосяжний через помилку, пов\'язану з мережею, яка може бути викликана відсутнім, занадто повільним або нестабільним підключенням до Інтернету. Перевірте наявність останньої версії програми та повторіть спробу. Якщо ви постійно стикаєтеся з цією проблемою, дайте мені знати.</string>
     <string name="uploader_server_error">Помилка серверу</string>
     <string name="uploader_server_error_description">Сервер повернув внутрішню помилку, що може означати, що він перевантажений, тимчасово недоступний або зупинений для технічного обслуговування. Будь-ласка спробуйте пізніше. Якщо проблема виникає постійно, дайте мені знати.</string>
+    <string name="uploader_limit_exceeded">Ліміт використання перевищено</string>
+    <string name="uploader_limit_exceeded_description">Щоденний ліміт використання для додатка перевищено. Повторіть спробу завтра.</string>
     <string name="other_notification_channel_name">Інший</string>
     <string name="error_reporting_notification_channel_name">Повідомлення про помилки</string>
     <string name="error_reporting_notification_title">Несподівана помилка</string>

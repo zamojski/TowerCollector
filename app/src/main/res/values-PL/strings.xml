@@ -117,6 +117,8 @@
     <string name="uploader_connection_error_description">Serwer jest nieosiągalny z powodu problemów sieciowych, które mogą być spowodowane brakiem, zbyt wolnym lub niestabilnym połączeniem internetowym. Sprawdź czy posiadasz najnowszą wersję aplikacji i spróbuj ponownie. Jeżeli problem będzie występował przez dłuższy czas, to proszę o kontakt.</string>
     <string name="uploader_server_error">Błąd serwera</string>
     <string name="uploader_server_error_description">Serwer zwrócił informację o błędzie wewnętrznym, co może oznaczać iż jest przeciążony, tymczasowo niedostępny lub przeprowadzane są prace administracyjne. Spróbuj ponownie później. Jeżeli problem będzie występował przez dłuższy czas, to proszę o kontakt.</string>
+    <string name="uploader_limit_exceeded">Dzienny limit przekroczony</string>
+    <string name="uploader_limit_exceeded_description">Aplikacja przekroczyła dzienny limit użyć. Proszę spróbować ponownie jutro.</string>
     <string name="other_notification_channel_name">Pozostałe</string>
     <string name="error_reporting_notification_channel_name">Raportowanie błędów</string>
     <string name="error_reporting_notification_title">Wystąpił niespodziewany błąd</string>

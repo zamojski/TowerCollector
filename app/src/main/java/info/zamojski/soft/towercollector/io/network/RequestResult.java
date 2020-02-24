@@ -5,5 +5,5 @@
 package info.zamojski.soft.towercollector.io.network;
 
 public enum RequestResult {
-    Success, Failure, ConfigurationError, InvalidApiKey, ConnectionError, ServerError
+    Success, Failure, ConfigurationError, InvalidApiKey, ConnectionError, ServerError, LimitExceeded
 }

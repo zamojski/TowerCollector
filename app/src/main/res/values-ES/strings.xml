@@ -117,6 +117,8 @@
     <string name="uploader_connection_error_description">No se pudo acceder al servidor debido a un error relacionado con la red que puede deberse a una conexión a Internet perdida, demasiado lenta o inestable. Compruebe si tiene la última versión de la aplicación y vuelva a intentarlo. Si se encuentra con este problema durante mucho tiempo, hágamelo saber.</string>
     <string name="uploader_server_error">Error del servidor</string>
     <string name="uploader_server_error_description">El servidor devolvió el error interno que puede significar que está sobrecargado, temporalmente no disponible o abajo para el mantenimiento. Por favor Inténtalo más tarde. Si usted encuentra este problema por un tiempo largo, déjeme por favor saber.</string>
+    <string name="uploader_limit_exceeded">Límite de uso excedido</string>
+    <string name="uploader_limit_exceeded_description">Se ha excedido el límite de uso diario de la aplicación. Por favor intente de nuevo mañana.</string>
     <string name="other_notification_channel_name">Otros</string>
     <string name="error_reporting_notification_channel_name">Informes de errores</string>
     <string name="error_reporting_notification_title">Error inEsperado</string>
