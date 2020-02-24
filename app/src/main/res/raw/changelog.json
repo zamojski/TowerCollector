@@ -1,6 +1,14 @@
 {
   "Entries": [
     {
+      "VersionCode": 2000944,
+      "Title": "Changes in version 2.0.9",
+      "Description": "<b>!Important!</b> Mozilla decided to <a href=\"https://blog.mozilla.org/services/2019/09/03/a-new-policy-for-mozilla-location-service/\">limit API usage</a> of their location service. The older versions of Tower Collector will not be able to contribute to MLS project from March 1, 2020.<br /><i>The OpenCellID API keys are remain valid and don't need to be changed.</i>",
+      "Messages": [
+        "Adjusted MLS integration for upload usage limitations."
+      ]
+    },
+    {
       "VersionCode": 2000843,
       "Title": "Changes in version 2.0.8",
       "Description": "Currently less than 4% percent of your devices use Android 4.0-4.4. Unfortunately, this blocks the possibility of implementing security and stability enhancements on all other devices. Therefore, I decided that <b>this version is the last to support the Android 4.x line</b> and from now on it will only receive critical patches and updates to keep it usable. Android 5.0 will be the new minimum supported version.",
@@ -42,15 +50,6 @@
         "Fixed crash when checking for updates on Samsung Galaxy S9+.",
         "Fixed failing export to GPX.",
         "Changed upload result notification to be single line."
-      ]
-    },
-    {
-      "VersionCode": 2000439,
-      "Title": "Changes in version 2.0.4",
-      "Description": "Do you want stay updated? Follow one of the app communities <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> or <a href=\"https://twitter.com/towercollector/\">Twitter</a>!",
-      "Messages": [
-        "Attempt to fix failing export to GPX.",
-        "Replace Google+ links with Twitter."
       ]
     }
   ]
