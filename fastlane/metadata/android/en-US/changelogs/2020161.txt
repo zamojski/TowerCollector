@@ -1,0 +1,2 @@
+- Fix language code for Hebrew.
+- Improved error handling.

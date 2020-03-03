@@ -1,6 +1,14 @@
 {
   "Entries": [
     {
+      "VersionCode": 2020161,
+      "Title": "Changes in version 2.2.1",
+      "Messages": [
+        "Fix language code for Hebrew.",
+        "Improved error handling."
+      ]
+    },
+    {
       "VersionCode": 2020059,
       "Title": "Changes in version 2.2.0",
       "Description": "<b>!Important!</b> Mozilla decided to <a href=\"https://blog.mozilla.org/services/2019/09/03/a-new-policy-for-mozilla-location-service/\">limit API usage</a> of their location service. The older versions of Tower Collector will not be able to contribute to MLS project from March 1, 2020.<br /><i>The OpenCellID API keys are remain valid and don't need to be changed.</i>",
@@ -41,13 +49,6 @@
         "Fix only measurements from first SIM card collected on Android 10. Thanks Kami!",
         "Fix crash on Samsung Galaxy A6.",
         "Updated Chinese, Hungarian, Italian and Spanish translations."
-      ]
-    },
-    {
-      "VersionCode": 2010250,
-      "Title": "Changes in version 2.1.2",
-      "Messages": [
-        "Fix duplicated logs when file logging enabled."
       ]
     }
   ]
