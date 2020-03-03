@@ -591,7 +591,7 @@ public class MeasurementsDatabase {
                     + "," + CellsTable.COLUMN_DISCOVERED_AT
                     + " FROM " + CellsTable.TABLE_NAME;
             Cursor cursor = db.rawQuery(query, null);
-            if (cursor.moveToNext()) {
+            while (cursor.moveToNext()) {
                 int rowId = cursor.getInt(0);
                 long discoveredAt = cursor.getLong(1);
                 sb.append(rowId)
@@ -614,7 +614,7 @@ public class MeasurementsDatabase {
                     + "," + MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT
                     + " FROM " + MeasurementsTable.TABLE_NAME;
             Cursor cursor = db.rawQuery(query, null);
-            if (cursor.moveToNext()) {
+            while (cursor.moveToNext()) {
                 int rowId = cursor.getInt(0);
                 long measuredAt = cursor.getLong(1);
                 long uploadedToOcidAt = cursor.getLong(2);
@@ -641,7 +641,7 @@ public class MeasurementsDatabase {
                     + "," + CellSignalsTable.COLUMN_NEIGHBORING
                     + " FROM " + CellSignalsTable.TABLE_NAME;
             Cursor cursor = db.rawQuery(query, null);
-            if (cursor.moveToNext()) {
+            while (cursor.moveToNext()) {
                 int rowId = cursor.getInt(0);
                 int cellId = cursor.getInt(1);
                 int measurementId = cursor.getInt(2);
@@ -655,7 +655,7 @@ public class MeasurementsDatabase {
             cursor.close();
         }
         {
-            sb.append("--CELLS TABLE ")
+            sb.append("--STATS TABLE ")
                     .append(StatsTable.COLUMN_ROW_ID)
                     .append(",").append(StatsTable.COLUMN_TOTAL_MEASUREMENTS)
                     .append(",").append(StatsTable.COLUMN_TOTAL_DISCOVERED_CELLS)
@@ -668,7 +668,7 @@ public class MeasurementsDatabase {
                     + "," + StatsTable.COLUMN_TOTAL_SINCE
                     + " FROM " + StatsTable.TABLE_NAME;
             Cursor cursor = db.rawQuery(query, null);
-            if (cursor.moveToNext()) {
+            while (cursor.moveToNext()) {
                 int rowId = cursor.getInt(0);
                 int totalMeasurements = cursor.getInt(1);
                 int discoveredCells = cursor.getInt(2);
