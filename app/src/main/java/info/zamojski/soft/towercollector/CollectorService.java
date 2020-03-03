@@ -211,6 +211,8 @@ public class CollectorService extends Service {
             keepScreenOnMode = KeepScreenOnMode.Disabled;
         Timber.d("onStartCommand(): Keep screen on mode: %s", keepScreenOnModeString);
         startIntentSource = (IntentSource) intent.getSerializableExtra(INTENT_KEY_START_INTENT_SOURCE);
+        if (startIntentSource == null)
+            startIntentSource = IntentSource.System;
         // save interval (max by default, because it may be reconnected in a moment)
         currentIntervalValue.set(transportMode.getMaxTime());
         measurementUpdater.setMinDistanceAndInterval(transportMode.getDistance(), transportMode.getMaxTime());
