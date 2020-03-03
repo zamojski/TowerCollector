@@ -3,7 +3,7 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
-    <string name="locale">he</string>
+    <string name="locale">iw</string>
     <string name="shortcut_collecting_toggle_short">איסוף</string>
     <string name="shortcut_collecting_toggle_long">שינוי מצב איסוף</string>
     <string name="shortcut_upload_toggle_short">העלאה</string>
