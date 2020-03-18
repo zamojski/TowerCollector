@@ -44,7 +44,7 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
     public FileGeneratorResult generate() {
         try {
             // get number of locations to process
-            int locationsCount = MeasurementsDatabase.getInstance(context).getAllLocationsCount();
+            int locationsCount = MeasurementsDatabase.getInstance(context).getAllLocationsCount(false);
             // check if there is anything to process
             if (locationsCount == 0) {
                 Timber.d("generate(): Cancelling save due to no data");

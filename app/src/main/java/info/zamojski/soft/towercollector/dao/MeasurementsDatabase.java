@@ -218,13 +218,13 @@ public class MeasurementsDatabase {
         return lastMeasurement;
     }
 
-    public int getAllLocationsCount() {
-        Timber.d("getAllLocationsCount(): Getting number of locations");
+    public int getAllLocationsCount(boolean includePartiallyUploaded) {
+        Timber.d("getAllLocationsCount(): Getting number of locations, including partially uploaded = %s", includePartiallyUploaded);
         int count = 0;
         final String measurementsCount = "MEASUREMENTS_COUNT";
         SQLiteDatabase db = helper.getReadableDatabase();
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
-        queryBuilder.setTables(MeasurementsTable.TABLE_NAME);
+        queryBuilder.setTables(includePartiallyUploaded ? MeasurementsTable.TABLE_NAME : NotUploadedMeasurementsView.VIEW_NAME);
         String[] columns = new String[]{"COUNT(*) AS " + measurementsCount};
         Cursor cursorTotal = queryBuilder.query(db, columns, null, null, null, null, null);
         if (cursorTotal.moveToNext()) {

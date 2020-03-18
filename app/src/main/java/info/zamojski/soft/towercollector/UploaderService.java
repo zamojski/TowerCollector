@@ -269,7 +269,7 @@ public class UploaderService extends Service {
             startForeground(UploaderService.NOTIFICATION_ID, notification);
 
             // get number of locations to upload
-            int locationsCount = MeasurementsDatabase.getInstance(getApplication()).getAllLocationsCount();
+            int locationsCount = MeasurementsDatabase.getInstance(getApplication()).getAllLocationsCount(true);
 
             // check if there is anything to upload
             if (locationsCount == 0) {
