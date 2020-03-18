@@ -1,0 +1,2 @@
+- Fix crash due to inconsistency when exporting to GPX file.
+- Fix crash when collecting on some Xiaomi phones.

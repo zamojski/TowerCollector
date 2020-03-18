@@ -1,6 +1,14 @@
 {
   "Entries": [
     {
+      "VersionCode": 2020262,
+      "Title": "Changes in version 2.2.2",
+      "Messages": [
+        "Fix crash due to inconsistency when exporting to GPX file.",
+        "Fix crash when collecting on some Xiaomi phones."
+      ]
+    },
+    {
       "VersionCode": 2020161,
       "Title": "Changes in version 2.2.1",
       "Messages": [
@@ -40,15 +48,6 @@
         "Fix crash when no active SIM cards on collector start.",
         "Show warning when GPS not available while starting collecting through intent.",
         "Enforce secure connections."
-      ]
-    },
-    {
-      "VersionCode": 2010352,
-      "Title": "Changes in version 2.1.3",
-      "Messages": [
-        "Fix only measurements from first SIM card collected on Android 10. Thanks Kami!",
-        "Fix crash on Samsung Galaxy A6.",
-        "Updated Chinese, Hungarian, Italian and Spanish translations."
       ]
     }
   ]
