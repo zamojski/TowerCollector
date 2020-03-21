@@ -1,0 +1,1 @@
+- Fix GPS Week Number Rollover on devices manufactured between 2006 and 2016.

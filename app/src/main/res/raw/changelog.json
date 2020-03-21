@@ -1,6 +1,13 @@
 {
   "Entries": [
     {
+      "VersionCode": 2020363,
+      "Title": "Changes in version 2.2.3",
+      "Messages": [
+        "Fix GPS Week Number Rollover on devices manufactured between 2006 and 2016."
+      ]
+    },
+    {
       "VersionCode": 2020262,
       "Title": "Changes in version 2.2.2",
       "Messages": [
@@ -38,16 +45,6 @@
       "Messages": [
         "Fix crash when starting collector.",
         "Improve look of shortcut icons on some launchers."
-      ]
-    },
-    {
-      "VersionCode": 2010454,
-      "Title": "Changes in version 2.1.4",
-      "Messages": [
-        "Fix crash when stopping collector service if not fully initialized.",
-        "Fix crash when no active SIM cards on collector start.",
-        "Show warning when GPS not available while starting collecting through intent.",
-        "Enforce secure connections."
       ]
     }
   ]
