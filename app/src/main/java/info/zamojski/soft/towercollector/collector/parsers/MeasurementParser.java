@@ -5,6 +5,8 @@
 package info.zamojski.soft.towercollector.collector.parsers;
 
 import org.greenrobot.eventbus.EventBus;
+
+import info.zamojski.soft.towercollector.BuildConfig;
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.collector.ParseResult;
 import info.zamojski.soft.towercollector.collector.validators.ConditionsValidator;
@@ -71,11 +73,19 @@ public abstract class MeasurementParser implements Runnable {
     protected void fixMeasurementTimestamp(Measurement measurement, Location location) {
         // update timestamp if user has incorrect system time in phone
         // that means if earlier than fix or later by one day
+        // but only if gps time later than app build time
         long systemTimestamp = measurement.getMeasuredAt();
         long gpsTimestamp = location.getTime();
         if (!systemTimeValidator.isValid(systemTimestamp, gpsTimestamp)) {
-            Timber.d("fixMeasurementTimestamp(): Fixing measurement time = %s, gps time = %s", systemTimestamp, gpsTimestamp);
-            measurement.setMeasuredAt(gpsTimestamp);
+            long appBuildTimestamp = BuildConfig.BUILD_DATE_TIME;
+            Timber.i("fixMeasurementTimestamp(): Fixing measurement time = %s, gps time = %s, app time = %s", systemTimestamp, gpsTimestamp, appBuildTimestamp);
+            // starting on November 3, 2019, mobile devices manufactured between 2006 and 2016 may have their GPS accuracy impacted due to GPS Rollover issue
+            if (gpsTimestamp >= appBuildTimestamp) {
+                measurement.setMeasuredAt(gpsTimestamp);
+                Timber.i("fixMeasurementTimestamp(): Fixed measurement time using gps time");
+            } else if (systemTimestamp < appBuildTimestamp) {
+                throw new IllegalStateException("System (" + systemTimestamp + ") and GPS (" + gpsTimestamp + ") timestamps are older than app build time (" + appBuildTimestamp + ")");
+            }
         }
     }
 
