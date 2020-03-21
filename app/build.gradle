@@ -41,6 +41,7 @@ android {
         // Other
         buildConfigField "String", "UPDATE_CHECK_FEED_URI", props['other_updateCheckFeedUri']
         buildConfigField "String", "CONTACT_EMAIL", rot135(props['other_contactEmail'])
+        buildConfigField "Long", "BUILD_DATE_TIME", String.format("%dL", new Date().getTime())
     }
     signingConfigs {
         release {
