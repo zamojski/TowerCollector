@@ -714,7 +714,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             deleteBuilder.setTitle(R.string.delete_dialog_title);
             deleteBuilder.setMessage(R.string.delete_dialog_message);
             deleteBuilder.setPositiveButton(R.string.dialog_ok, (positiveDialog, positiveWhich) -> {
-                MeasurementsDatabase.getInstance(MainActivity.this).deleteAllMeasurements();
+                MeasurementsDatabase.getInstance(MyApplication.getApplication()).deleteAllMeasurements();
                 EventBus.getDefault().post(new PrintMainWindowEvent());
                 MyApplication.getAnalytics().sendExportDeleteAction();
             });
@@ -1019,7 +1019,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         builder.setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                MeasurementsDatabase.getInstance(MainActivity.this).clearAllData();
+                MeasurementsDatabase.getInstance(MyApplication.getApplication()).clearAllData();
                 Toast.makeText(MainActivity.this, R.string.clear_toast_finished, Toast.LENGTH_SHORT).show();
                 EventBus.getDefault().post(new PrintMainWindowEvent());
             }

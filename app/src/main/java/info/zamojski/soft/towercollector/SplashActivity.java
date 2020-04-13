@@ -135,7 +135,7 @@ public class SplashActivity extends Activity {
     }
 
     private void ensureDatabaseUpToDate() {
-        int currentDbVersion = MeasurementsDatabase.getDatabaseVersion(getApplication());
+        int currentDbVersion = MeasurementsDatabase.getDatabaseVersion(MyApplication.getApplication());
         if (currentDbVersion != MeasurementsDatabase.DATABASE_FILE_VERSION) {
             Timber.d("ensureDatabaseUpToDate(): Upgrading database");
             databaseUpgradeRunning = true;
@@ -147,8 +147,8 @@ public class SplashActivity extends Activity {
             databaseUpgradeRunning = false;
         }
         // Load last measurement and stats into cache
-        MeasurementsDatabase.getInstance(getApplication()).getLastMeasurement();
-        MeasurementsDatabase.getInstance(getApplication()).getMeasurementsStatistics();
+        MeasurementsDatabase.getInstance(MyApplication.getApplication()).getLastMeasurement();
+        MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
     }
 
     private void startMainActivity() {

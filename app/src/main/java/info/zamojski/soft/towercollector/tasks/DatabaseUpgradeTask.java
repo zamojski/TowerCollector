@@ -26,7 +26,7 @@ public class DatabaseUpgradeTask {
         Timber.d("upgrade(): Loading data and running migration if necessary");
         try {
             // invalidate database (protects against crash when database swapped while application paused - generally for testing)
-            MeasurementsDatabase.invalidateInstance(MyApplication.getApplication());
+            MeasurementsDatabase.invalidateInstance();
             long startTime = System.currentTimeMillis();
             // one of below will trigger data migration if necessary (long operation)
             MeasurementsDatabase.getInstance(MyApplication.getApplication()).forceDatabaseUpgrade();

@@ -44,7 +44,7 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
     public FileGeneratorResult generate() {
         try {
             // get number of locations to process
-            int locationsCount = MeasurementsDatabase.getInstance(context).getAllLocationsCount(false);
+            int locationsCount = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getAllLocationsCount(false);
             // check if there is anything to process
             if (locationsCount == 0) {
                 Timber.d("generate(): Cancelling save due to no data");
@@ -59,17 +59,17 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
             device.open();
             notifyProgressListeners(0, locationsCount);
             // write header
-            Measurement firstMeasurement = MeasurementsDatabase.getInstance(context).getFirstMeasurement();
-            Measurement lastMeasurement = MeasurementsDatabase.getInstance(context).getLastMeasurement();
+            Measurement firstMeasurement = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getFirstMeasurement();
+            Measurement lastMeasurement = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getLastMeasurement();
             if (locationsCount != 0 && (firstMeasurement == null || lastMeasurement == null)) {
-                Statistics stats = MeasurementsDatabase.getInstance(context).getMeasurementsStatistics();
-                String dump = MeasurementsDatabase.getInstance(context).quickDump();
+                Statistics stats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
+                String dump = MeasurementsDatabase.getInstance(MyApplication.getApplication()).quickDump();
                 final String DB_DUMP_KEY = "DB_DUMP";
                 ACRA.getErrorReporter().putCustomData(DB_DUMP_KEY, dump);
                 MyApplication.handleSilentException(new DumpException("Inconsistent GPX export data", locationsCount, firstMeasurement, lastMeasurement, stats));
                 ACRA.getErrorReporter().removeCustomData(DB_DUMP_KEY);
             }
-            Boundaries bounds = MeasurementsDatabase.getInstance(context).getLocationBounds();
+            Boundaries bounds = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getLocationBounds();
             HeaderData headerData = new HeaderData();
             headerData.ApkVersion = ApkUtils.getApkVersionName(context);
             headerData.FirstMeasurementTimestamp = firstMeasurement.getMeasuredAt();
@@ -81,7 +81,7 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
             // get locations in loop
             for (int i = 0; i < partsCount; i++) {
                 // get from database
-                List<Measurement> measurements = MeasurementsDatabase.getInstance(context).getMeasurementsPart(i * LOCATIONS_PER_PART, LOCATIONS_PER_PART);
+                List<Measurement> measurements = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsPart(i * LOCATIONS_PER_PART, LOCATIONS_PER_PART);
                 // write to file
                 for (Measurement m : measurements) {
                     // if time difference is more than 30 minutes then create new segment

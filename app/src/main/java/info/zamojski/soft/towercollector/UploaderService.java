@@ -269,7 +269,7 @@ public class UploaderService extends Service {
             startForeground(UploaderService.NOTIFICATION_ID, notification);
 
             // get number of locations to upload
-            int locationsCount = MeasurementsDatabase.getInstance(getApplication()).getAllLocationsCount(true);
+            int locationsCount = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getAllLocationsCount(true);
 
             // check if there is anything to upload
             if (locationsCount == 0) {
@@ -280,7 +280,7 @@ public class UploaderService extends Service {
                 return;
             }
 
-            AnalyticsStatistics startStats = MeasurementsDatabase.getInstance(getApplication()).getAnalyticsStatistics();
+            AnalyticsStatistics startStats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getAnalyticsStatistics();
             long startTime = System.currentTimeMillis();
 
             // calculate number of upload parts
@@ -317,8 +317,8 @@ public class UploaderService extends Service {
                     || mlsUploadResult == UploadResult.Success || mlsUploadResult == UploadResult.PartiallySucceeded) {
                 long endTime = System.currentTimeMillis();
                 long duration = (endTime - startTime);
-                String networkType = NetworkUtils.getNetworkType(getApplication());
-                AnalyticsStatistics endStats = MeasurementsDatabase.getInstance(getApplication()).getAnalyticsStatistics();
+                String networkType = NetworkUtils.getNetworkType(MyApplication.getApplication());
+                AnalyticsStatistics endStats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getAnalyticsStatistics();
                 AnalyticsStatistics stats = new AnalyticsStatistics();
                 stats.setLocations(startStats.getLocations() - endStats.getLocations());
                 stats.setCells(startStats.getCells() - endStats.getCells());
@@ -337,7 +337,7 @@ public class UploaderService extends Service {
             int ocidSucceededParts = 0, mlsSucceededParts = 0;
             boolean continueOcidUpload = isOpenCellIdUploadEnabled;
             boolean continueMlsUpload = isMlsUploadEnabled;
-            Statistics stats = MeasurementsDatabase.getInstance(getApplication()).getMeasurementsStatistics();
+            Statistics stats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
             int numberToUploadOcid = stats.getToUploadOcid();
             int numberToUploadMls = stats.getToUploadMls();
             // for each part start new upload
@@ -352,7 +352,7 @@ public class UploaderService extends Service {
                 int progress = (int) (100.0 * i / partsCount);
                 updateNotification(progress);
                 // prepare data starting from oldest
-                List<Measurement> measurements = MeasurementsDatabase.getInstance(getApplication()).getMeasurementsPartIncludingPartiallyUploaded(i * LOCATIONS_PER_PART, LOCATIONS_PER_PART);
+                List<Measurement> measurements = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsPartIncludingPartiallyUploaded(i * LOCATIONS_PER_PART, LOCATIONS_PER_PART);
 
                 Timber.d("upload(): Continue upload to OCID = %s, MLS = %s", continueOcidUpload, continueMlsUpload);
 
@@ -385,7 +385,7 @@ public class UploaderService extends Service {
                         Timber.d("upload(): Deleting measurements because OCID enabled = %s and successful = %s, MLS enabled = %s and successful = %s", isOpenCellIdUploadEnabled, ocidSuccessful, isMlsUploadEnabled, mlsSuccessful);
                         // delete sent measurements
                         int[] rowIds = getMeasurementIds(measurements);
-                        int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).markAsUploaded(rowIds, System.currentTimeMillis(), System.currentTimeMillis());
+                        int numberOfDeleted = MeasurementsDatabase.getInstance(MyApplication.getApplication()).markAsUploaded(rowIds, System.currentTimeMillis(), System.currentTimeMillis());
                         if (numberOfDeleted == 0) {
                             ocidUploadResult = UploadResult.DeleteFailed;
                             mlsUploadResult = UploadResult.DeleteFailed;
@@ -395,7 +395,7 @@ public class UploaderService extends Service {
                         Timber.d("upload(): Marking measurements as uploaded to OCID");
                         // keep for mls
                         int[] rowIds = getMeasurementIds(groupedMeasurements.get(UploadTarget.Ocid));
-                        int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).markAsUploaded(rowIds, System.currentTimeMillis(), null);
+                        int numberOfDeleted = MeasurementsDatabase.getInstance(MyApplication.getApplication()).markAsUploaded(rowIds, System.currentTimeMillis(), null);
                         if (numberOfDeleted == 0) {
                             ocidUploadResult = UploadResult.DeleteFailed;
                             break;
@@ -404,7 +404,7 @@ public class UploaderService extends Service {
                         Timber.d("upload(): Marking measurements as uploaded to MLS");
                         // keep for ocid
                         int[] rowIds = getMeasurementIds(groupedMeasurements.get(UploadTarget.Mls));
-                        int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).markAsUploaded(rowIds, null, System.currentTimeMillis());
+                        int numberOfDeleted = MeasurementsDatabase.getInstance(MyApplication.getApplication()).markAsUploaded(rowIds, null, System.currentTimeMillis());
                         if (numberOfDeleted == 0) {
                             mlsUploadResult = UploadResult.DeleteFailed;
                             break;
@@ -417,7 +417,7 @@ public class UploaderService extends Service {
                     Timber.d("upload(): Deleting measurements because OCID enabled = %s and successful = %s, MLS enabled = %s and successful = %s", isOpenCellIdUploadEnabled, ocidSuccessful, isMlsUploadEnabled, mlsSuccessful);
                     // delete sent measurements
                     int[] rowIds = getMeasurementIds(measurements);
-                    int numberOfDeleted = MeasurementsDatabase.getInstance(getApplication()).markAsUploaded(rowIds, System.currentTimeMillis(), System.currentTimeMillis());
+                    int numberOfDeleted = MeasurementsDatabase.getInstance(MyApplication.getApplication()).markAsUploaded(rowIds, System.currentTimeMillis(), System.currentTimeMillis());
                     if (numberOfDeleted == 0) {
                         ocidUploadResult = UploadResult.DeleteFailed;
                         mlsUploadResult = UploadResult.DeleteFailed;
@@ -432,7 +432,7 @@ public class UploaderService extends Service {
             }
 
             // clean anyway because it doesn't hurt
-            MeasurementsDatabase.getInstance(getApplication()).clearOlderUploadedPartiallyAndUploadedFully();
+            MeasurementsDatabase.getInstance(MyApplication.getApplication()).clearOlderUploadedPartiallyAndUploadedFully();
 
             return new int[]{ocidSucceededParts, mlsSucceededParts};
         }

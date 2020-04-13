@@ -39,7 +39,7 @@ public class CompositeTextGeneratorWrapper extends TextGeneratorWrapperBase {
                     lastResult = generator.generate();
                     // send stats
                     long endTime = System.currentTimeMillis();
-                    AnalyticsStatistics stats = MeasurementsDatabase.getInstance(context).getAnalyticsStatistics();
+                    AnalyticsStatistics stats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getAnalyticsStatistics();
                     String fileExt = FileUtils.getFileExtension(generator.getDevice().getPath());
                     long duration = (endTime - startTime);
                     MyApplication.getAnalytics().sendExportFinished(duration, fileExt, stats);

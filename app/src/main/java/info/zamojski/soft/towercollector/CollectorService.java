@@ -178,7 +178,7 @@ public class CollectorService extends Service {
         boolean hideNotification = MyApplication.getPreferencesProvider().getHideCollectorNotification();
         notificationHelper = new CollectorNotificationHelper(this, hideNotification);
         // create notification
-        startStats = MeasurementsDatabase.getInstance(getApplication()).getMeasurementsStatistics();
+        startStats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
         startTime = lastLocationObtainedTime = System.currentTimeMillis();
         EventBus.getDefault().register(this);
         // register receiver
@@ -323,7 +323,7 @@ public class CollectorService extends Service {
         if (externalBroadcastSenderThread != null)
             externalBroadcastSenderThread.quit();
         long duration = (endTime - startTime);
-        Statistics endStats = MeasurementsDatabase.getInstance(getApplication()).getMeasurementsStatistics();
+        Statistics endStats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
         int numberOfCollectedLocations = endStats.getLocationsLocal() - startStats.getLocationsLocal();
         int numberOfCollectedCells = endStats.getCellsLocal() - startStats.getCellsLocal();
         AnalyticsStatistics stats = new AnalyticsStatistics();
@@ -354,7 +354,7 @@ public class CollectorService extends Service {
         if (getString(R.string.preferences_collector_api_version_entries_value_auto).equals(collectorApiVersion)) {
             // auto detection
             MyApplication.getAnalytics().sendPrefsCollectorApiVersion(0);
-            if (MobileUtils.isApi17FullyCompatible(getApplication())) {
+            if (MobileUtils.isApi17FullyCompatible(MyApplication.getApplication())) {
                 registerApi17PhoneStateListener();
             } else {
                 registerApi1PhoneStateListener();

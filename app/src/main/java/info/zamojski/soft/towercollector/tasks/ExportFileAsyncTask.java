@@ -76,7 +76,7 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
         FileGeneratorResult result = generator.generate();
         // send stats
         long endTime = System.currentTimeMillis();
-        AnalyticsStatistics stats = MeasurementsDatabase.getInstance(context).getAnalyticsStatistics();
+        AnalyticsStatistics stats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getAnalyticsStatistics();
         long duration = (endTime - startTime);
         MyApplication.getAnalytics().sendExportFinishedTotal(duration, generator.getSubGenerators().size(), stats);
         return result;

@@ -34,7 +34,7 @@ public class CsvTextGeneratorWrapper extends TextGeneratorWrapperBase {
     public FileGeneratorResult generate() {
         try {
             // get number of locations to process
-            int locationsCount = MeasurementsDatabase.getInstance(context).getAllLocationsCount(false);
+            int locationsCount = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getAllLocationsCount(false);
             // check if there is anything to process
             if (locationsCount == 0) {
                 Timber.d("generate(): Cancelling save due to no data");
@@ -53,7 +53,7 @@ public class CsvTextGeneratorWrapper extends TextGeneratorWrapperBase {
             // get locations in loop
             for (int i = 0; i < partsCount; i++) {
                 // get from database
-                List<Measurement> measurements = MeasurementsDatabase.getInstance(context).getMeasurementsPart(i * LOCATIONS_PER_PART, LOCATIONS_PER_PART);
+                List<Measurement> measurements = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsPart(i * LOCATIONS_PER_PART, LOCATIONS_PER_PART);
                 // write to file
                 generator.writeEntryChunk(measurements);
                 notifyProgressListeners(i * LOCATIONS_PER_PART + measurements.size(), locationsCount);

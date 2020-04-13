@@ -49,8 +49,7 @@ public class MainStatsFragment extends MainFragmentBase {
     @Override
     protected void configureOnResume() {
         super.configureOnResume();
-        MyApplication app = MyApplication.getApplication();
-        Statistics stats = MeasurementsDatabase.getInstance(app).getMeasurementsStatistics();
+        Statistics stats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
         printStatistics(stats);
     }
 

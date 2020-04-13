@@ -738,7 +738,7 @@ public class MeasurementsDatabase {
         return instance;
     }
 
-    public static void invalidateInstance(Context context) {
+    public static void invalidateInstance() {
         synchronized (MeasurementsDatabase.class) {
             instance = null;
         }

@@ -49,7 +49,7 @@ public class DatabaseOperations {
                     FileUtils.copyFile(srcFile, dstFile);
                     Timber.d("copyDatabase(): Database " + operation + "ed");
                     int operationMessage = operation.equals(OPERATION_IMPORT) ? R.string.database_import_message : R.string.database_export_message;
-                    MeasurementsDatabase.invalidateInstance(MyApplication.getApplication());
+                    MeasurementsDatabase.invalidateInstance();
                     Toast.makeText(context, operationMessage, Toast.LENGTH_LONG).show();
                 } else {
                     Timber.d("copyDatabase(): External storage is read only");
@@ -71,7 +71,7 @@ public class DatabaseOperations {
         boolean deleted = dbFile.delete();
         if (deleted) {
             Timber.d("deleteDatabase(): File deleted");
-            MeasurementsDatabase.invalidateInstance(context);
+            MeasurementsDatabase.invalidateInstance();
             Toast.makeText(context, "Database file deleted", Toast.LENGTH_LONG).show();
         } else {
             Timber.e("deleteDatabase(): Failed to delete database");
