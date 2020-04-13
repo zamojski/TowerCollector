@@ -166,6 +166,10 @@ public class CollectorService extends Service {
                         TelephonyManager telephonyManager = defaultTelephonyManager.createForSubscriptionId(subscription.getSubscriptionId());
                         telephonyTriples.add(new TelephonyTriple(telephonyManager));
                     }
+                    // if due to some stupid bug active subscription don't have telephony manager
+                    if (telephonyTriples.isEmpty()) {
+                        telephonyTriples.add(new TelephonyTriple(defaultTelephonyManager));
+                    }
                 }
             } catch (SecurityException ex) {
                 Timber.e(ex, "onCreate(): phone permission is denied");
@@ -909,7 +913,7 @@ public class CollectorService extends Service {
         }
         // Optimization: it doesn't make sense to refresh if nothing changes (after save updated in a different way)
         else if (statusChanged) {
-            updateNotification(MeasurementsDatabase.getInstance(getApplication()).getMeasurementsStatistics());
+            updateNotification(MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics());
         }
     }
 
