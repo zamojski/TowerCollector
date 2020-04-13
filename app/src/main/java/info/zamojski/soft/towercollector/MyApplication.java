@@ -22,16 +22,19 @@ import org.greenrobot.eventbus.EventBus;
 
 import info.zamojski.soft.towercollector.analytics.AnalyticsServiceFactory;
 import info.zamojski.soft.towercollector.analytics.IAnalyticsReportingService;
+import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.logging.ConsoleLoggingTree;
 import info.zamojski.soft.towercollector.logging.FileLoggingTree;
 import info.zamojski.soft.towercollector.providers.AppThemeProvider;
 import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvider;
+import info.zamojski.soft.towercollector.utils.ExceptionUtils;
 import info.zamojski.soft.towercollector.utils.HashUtils;
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
 
 import android.Manifest;
 import android.app.Application;
 import android.app.NotificationManager;
+import android.database.sqlite.SQLiteDatabaseCorruptException;
 import android.os.Build;
 
 import androidx.appcompat.app.AppCompatDelegate;
@@ -85,6 +88,9 @@ public class MyApplication extends Application {
             @Override
             public void uncaughtException(Thread thread, Throwable ex) {
                 Timber.e(ex, "CRASHED");
+                if (ExceptionUtils.getRootCause(ex) instanceof SQLiteDatabaseCorruptException) {
+                    MeasurementsDatabase.deleteDatabase(getApplication());
+                }
                 defaultHandler.uncaughtException(thread, ex);
             }
         });

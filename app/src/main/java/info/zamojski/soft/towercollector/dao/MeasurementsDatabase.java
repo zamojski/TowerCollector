@@ -744,6 +744,15 @@ public class MeasurementsDatabase {
         }
     }
 
+    public static void deleteDatabase(Context context) {
+        Timber.d("Deleting corrupted database");
+        synchronized (MeasurementsDatabase.class) {
+            invalidateInstance();
+            boolean deleted = context.deleteDatabase(DATABASE_FILE_NAME);
+            Timber.w("Corrupted database deleted = %s", deleted);
+        }
+    }
+
     // ========== INNER OBJECTS ========== //
 
     private static class MeasurementsOpenHelper extends SQLiteOpenHelper {
