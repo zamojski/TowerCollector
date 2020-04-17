@@ -91,7 +91,10 @@ public class MyApplication extends Application {
                 if (ExceptionUtils.getRootCause(ex) instanceof SQLiteDatabaseCorruptException) {
                     MeasurementsDatabase.deleteDatabase(getApplication());
                 }
-                defaultHandler.uncaughtException(thread, ex);
+                // strange but it happens that app is tested on devices with lower SDK - don't send ACRA reports
+                if (Build.VERSION.SDK_INT >= BuildConfig.MIN_SDK_VERSION) {
+                    defaultHandler.uncaughtException(thread, ex);
+                }
             }
         });
     }

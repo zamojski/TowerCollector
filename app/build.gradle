@@ -26,21 +26,22 @@ android {
         println 'Defining custom build config fields'
         assert props
         // ACRA
-        buildConfigField "Boolean", "ACRA_SEND_REPORTS_IN_DEV_MODE", props['acra_sendReportsInDevMode']
-        buildConfigField "Boolean", "ACRA_SETTINGS_AVAILABLE", props['acra_settings_available']
+        buildConfigField "boolean", "ACRA_SEND_REPORTS_IN_DEV_MODE", props['acra_sendReportsInDevMode']
+        buildConfigField "boolean", "ACRA_SETTINGS_AVAILABLE", props['acra_settings_available']
         buildConfigField "String", "ACRA_FORM_URI", props['acra_formUri']
         buildConfigField "String", "ACRA_HTTP_METHOD", props['acra_httpMethod']
         buildConfigField "String", "ACRA_REPORT_TYPE", props['acra_reportType']
         buildConfigField "String", "ACRA_FORM_URI_BASIC_AUTH_LOGIN", rot135(props['acra_formUriBasicAuthLogin'])
         buildConfigField "String", "ACRA_FORM_URI_BASIC_AUTH_PASSWORD", rotHex(props['acra_formUriBasicAuthPassword'])
         // Analytics
-        buildConfigField "Boolean", "ANALYTICS_AVAILABLE", props['analytics_available']
+        buildConfigField "boolean", "ANALYTICS_AVAILABLE", props['analytics_available']
         // MLS
         buildConfigField "String", "MLS_API_KEY", rotHex(props['mls_apiKey'])
         // Other
         buildConfigField "String", "UPDATE_CHECK_FEED_URI", props['other_updateCheckFeedUri']
         buildConfigField "String", "CONTACT_EMAIL", rot135(props['other_contactEmail'])
-        buildConfigField "Long", "BUILD_DATE_TIME", String.format("%dL", new Date().getTime())
+        buildConfigField "long", "BUILD_DATE_TIME", String.format("%dL", new Date().getTime())
+        buildConfigField "int", "MIN_SDK_VERSION", String.format("%d", minSdkVersion.apiLevel)
     }
     signingConfigs {
         release {
