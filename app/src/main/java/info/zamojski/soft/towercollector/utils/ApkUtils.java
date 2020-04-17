@@ -73,7 +73,7 @@ public class ApkUtils {
     public static void reportShortcutUsage(Context context, @StringRes int shortcutId) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             ShortcutManager shortcutManager = (ShortcutManager) context.getSystemService(Context.SHORTCUT_SERVICE);
-            shortcutManager.reportShortcutUsed(context.getString(R.string.shortcut_id_collector_toggle));
+            shortcutManager.reportShortcutUsed(context.getString(shortcutId));
         }
     }
 }
