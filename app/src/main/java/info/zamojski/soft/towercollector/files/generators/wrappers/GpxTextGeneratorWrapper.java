@@ -12,7 +12,6 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.util.List;
 
-import info.zamojski.soft.towercollector.BuildConfig;
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.GeneratorResult;
@@ -71,7 +70,7 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
             }
             Boundaries bounds = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getLocationBounds();
             HeaderData headerData = new HeaderData();
-            headerData.ApkVersion = ApkUtils.getApkVersionName(context);
+            headerData.ApkVersion = ApkUtils.getApkVersionName();
             headerData.FirstMeasurementTimestamp = firstMeasurement.getMeasuredAt();
             headerData.LastMeasurementTimestamp = lastMeasurement.getMeasuredAt();
             headerData.Boundaries = bounds;

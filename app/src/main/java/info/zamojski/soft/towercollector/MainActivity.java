@@ -676,7 +676,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private void displayDevelopersMessages() {
         int previousVersionCode = MyApplication.getPreferencesProvider().getPreviousDeveloperMessagesVersion();
-        int currentVersionCode = ApkUtils.getApkVersionCode(getApplication());
+        int currentVersionCode = ApkUtils.getApkVersionCode();
         if (previousVersionCode != currentVersionCode) {
             MyApplication.getPreferencesProvider().setRecentDeveloperMessagesVersion(currentVersionCode);
             // skip recent changes for first startup
@@ -1265,7 +1265,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             if (diffInDays >= 1) {
                 // check if network available
                 if (NetworkUtils.isNetworkAvailable(getApplication())) {
-                    int currentVersion = ApkUtils.getApkVersionCode(getApplication());
+                    int currentVersion = ApkUtils.getApkVersionCode();
                     String updateFeedUrl = String.format(BuildConfig.UPDATE_CHECK_FEED_URI, currentVersion);
                     if (!StringUtils.isNullEmptyOrWhitespace(updateFeedUrl)) {
                         UpdateCheckAsyncTask updateCheckTask = new UpdateCheckAsyncTask(getApplication(), currentVersion);

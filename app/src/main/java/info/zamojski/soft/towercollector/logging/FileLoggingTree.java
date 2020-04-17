@@ -17,7 +17,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
 import info.zamojski.soft.towercollector.utils.FileUtils;
 import timber.log.Timber;
@@ -56,7 +55,7 @@ public class FileLoggingTree extends Timber.DebugTree {
                     firstRun = false;
                     // write identification data once initialization finished
                     log(Log.DEBUG, ApkUtils.getDeviceName());
-                    log(Log.DEBUG, ApkUtils.getApkVersionNameWithSuffix(MyApplication.getApplication()));
+                    log(Log.DEBUG, ApkUtils.getApkVersionNameWithSuffix());
                 }
             }
         }

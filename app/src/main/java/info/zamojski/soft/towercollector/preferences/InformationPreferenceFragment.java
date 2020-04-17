@@ -5,6 +5,7 @@
 package info.zamojski.soft.towercollector.preferences;
 
 import info.zamojski.soft.towercollector.BuildConfig;
+import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
 import info.zamojski.soft.towercollector.utils.ResourceUtils;
@@ -33,7 +34,7 @@ public class InformationPreferenceFragment extends DialogEnabledPreferenceFragme
     }
 
     private void setupAboutDialog() {
-        String versionName = ApkUtils.getApkVersionNameWithSuffix(getActivity());
+        String versionName = ApkUtils.getApkVersionNameWithSuffix();
         String content = ResourceUtils.getRawResource(getActivity(), R.raw.info_about_application_content).replace("%VERSION_NAME%", versionName);
         setupDialog(R.string.preferences_about_link_key, R.string.info_about_application_title, content);
     }
@@ -47,7 +48,7 @@ public class InformationPreferenceFragment extends DialogEnabledPreferenceFragme
                 mail.setType("message/rfc822");
                 mail.putExtra(Intent.EXTRA_EMAIL, new String[]{BuildConfig.CONTACT_EMAIL});
                 mail.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.preferences_email_title));
-                mail.putExtra(Intent.EXTRA_TEXT, ApkUtils.getInstallationInfo(getActivity()));
+                mail.putExtra(Intent.EXTRA_TEXT, ApkUtils.getInstallationInfo(MyApplication.getApplication()));
                 startActivity(Intent.createChooser(mail, getString(R.string.dialog_select_email_app)));
                 return true;
             }
