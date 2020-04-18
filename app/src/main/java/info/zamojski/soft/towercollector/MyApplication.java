@@ -19,6 +19,7 @@ import org.acra.config.NotificationConfigurationBuilder;
 import org.acra.data.StringFormat;
 import org.acra.sender.HttpSender;
 import org.greenrobot.eventbus.EventBus;
+import org.jetbrains.annotations.NotNull;
 
 import info.zamojski.soft.towercollector.analytics.AnalyticsServiceFactory;
 import info.zamojski.soft.towercollector.analytics.IAnalyticsReportingService;
@@ -39,6 +40,7 @@ import android.os.Build;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
+import android.os.DeadObjectException;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -86,13 +88,14 @@ public class MyApplication extends Application {
         defaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
             @Override
-            public void uncaughtException(Thread thread, Throwable ex) {
+            public void uncaughtException(@NotNull Thread thread, @NotNull Throwable ex) {
                 Timber.e(ex, "CRASHED");
                 if (ExceptionUtils.getRootCause(ex) instanceof SQLiteDatabaseCorruptException) {
                     MeasurementsDatabase.deleteDatabase(getApplication());
                 }
                 // strange but it happens that app is tested on devices with lower SDK - don't send ACRA reports
-                if (Build.VERSION.SDK_INT >= BuildConfig.MIN_SDK_VERSION) {
+                // also ignore errors caused by system failures
+                if (Build.VERSION.SDK_INT >= BuildConfig.MIN_SDK_VERSION && !(ExceptionUtils.getRootCause(ex) instanceof DeadObjectException)) {
                     defaultHandler.uncaughtException(thread, ex);
                 }
             }
