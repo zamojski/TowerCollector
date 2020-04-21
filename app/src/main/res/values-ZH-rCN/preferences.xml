@@ -78,6 +78,8 @@
     <string name="preferences_website_link_summary">访问开发人员的网站，其中包含说明和应用商店下载链接。</string>
     <string name="preferences_contact_email_link_title">联系开发者</string>
     <string name="preferences_contact_email_link_summary">向开发人员发送包含您的问题、疑问和想法的电子邮件。</string>
+    <string name="preferences_github_link_title">GitHub页面</string>
+    <string name="preferences_github_link_summary">打开GitHub页面，您可以在其中找到源代码，为应用程序做出贡献，报告问题并分享想法。</string>
     <string name="preferences_facebook_community_link_title">Facebook社区</string>
     <string name="preferences_facebook_community_link_summary">打开Facebook社区页面，您可以在其中找到有用的信息、链接，发布想法和提问。</string>
     <string name="preferences_twitter_community_link_title">Twitter 社区</string>

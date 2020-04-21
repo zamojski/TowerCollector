@@ -78,6 +78,8 @@
     <string name="preferences_website_link_summary">Abre o website do desenvolvedor contendo a descrição e o link para download nas app stores.</string>
     <string name="preferences_contact_email_link_title">Contactar desenvolvedor</string>
     <string name="preferences_contact_email_link_summary">Envia um e-mail com seus problemas, perguntas e idéias ao desenvolvedor.</string>
+    <string name="preferences_github_link_title">Página GitHub</string>
+    <string name="preferences_github_link_summary">Abre a página do GitHub, onde você pode encontrar o código fonte, contribuir com o aplicativo, relatar problemas e compartilhar idéias.</string>
     <string name="preferences_facebook_community_link_title">Comunidade do Facebook</string>
     <string name="preferences_facebook_community_link_summary">Abre a página da Comunidade do Facebook onde você pode encontrar informações úteis, links, postar idéias e fazer perguntas.</string>
     <string name="preferences_twitter_community_link_title">Comunidade Twitter</string>

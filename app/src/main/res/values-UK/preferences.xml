@@ -78,6 +78,8 @@
     <string name="preferences_website_link_summary">Відкриває веб-сайт розробника, де містяться описи та магазини завантажень додатків.</string>
     <string name="preferences_contact_email_link_title">Зв\'язатися з розробником</string>
     <string name="preferences_contact_email_link_summary">Надсилання електронною поштою виявлені проблеми, питання та ідеї розробнику.</string>
+    <string name="preferences_github_link_title">Сторінка GitHub</string>
+    <string name="preferences_github_link_summary">Відкриває сторінку GitHub, де ви можете знайти вихідний код, внести вклад у програму, повідомити про проблеми та обмінятися ідеями.</string>
     <string name="preferences_facebook_community_link_title">Спільнота Facebook</string>
     <string name="preferences_facebook_community_link_summary">Відкриває сторінку спільноти Facebook, де ви можете знайти корисну інформацію, посилання, публікувати ідеї та задавати питання.</string>
     <string name="preferences_twitter_community_link_title">Спільнота Twitter</string>

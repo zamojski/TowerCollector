@@ -18,6 +18,10 @@
             app:summary="@string/preferences_contact_email_link_summary"
             app:title="@string/preferences_contact_email_link_title"/>
         <PreferenceScreen
+            app:key="@string/preferences_github_link_key"
+            app:summary="@string/preferences_github_link_summary"
+            app:title="@string/preferences_github_link_title"/>
+        <PreferenceScreen
             app:key="@string/preferences_facebook_community_link_key"
             app:summary="@string/preferences_facebook_community_link_summary"
             app:title="@string/preferences_facebook_community_link_title"/>

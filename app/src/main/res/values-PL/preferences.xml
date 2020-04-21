@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- This Source Code Form is subject to the terms of the Mozilla Public
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources>
@@ -78,6 +78,8 @@
     <string name="preferences_website_link_summary">Otwiera stronę twórcy aplikacji zawierającą opis i linki do sklepów pozwalających na pobranie.</string>
     <string name="preferences_contact_email_link_title">Skontaktuj się z twórcą</string>
     <string name="preferences_contact_email_link_summary">Wysyła email z twoimi problemami, pytaniami i pomysłami to autora aplikacji.</string>
+    <string name="preferences_github_link_title">Strona GitHub</string>
+    <string name="preferences_github_link_summary">Otwiera stronę GitHub, na której możesz znaleźć kod źródłowy aplikacji, pomóc w jej rozwoju, zgłaszać błędy i dzielić się pomysłami.</string>
     <string name="preferences_facebook_community_link_title">Społeczność Facebook</string>
     <string name="preferences_facebook_community_link_summary">Otwiera stronę społeczności Facebook, na której możesz znaleźć przydatne informacje, linki, przesyłać pomysły i zadawać pytania.</string>
     <string name="preferences_twitter_community_link_title">Społeczność Twittera</string>

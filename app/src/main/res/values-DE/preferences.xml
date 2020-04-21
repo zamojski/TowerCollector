@@ -78,6 +78,8 @@
     <string name="preferences_website_link_summary">Öffnet die Webseite des Entwicklers mit der Beschreibung und Download-Links zu den verschiedenen App-Stores.</string>
     <string name="preferences_contact_email_link_title">Entwickler kontaktieren</string>
     <string name="preferences_contact_email_link_summary">Sendet eine E-Mail mit Ihren Problemen, Fragen und Ideen an den Entwickler.</string>
+    <string name="preferences_github_link_title">GitHub-Seite</string>
+    <string name="preferences_github_link_summary">Öffnet GitHub, wo Sie den Source Code finden, zur Entwicklung beitragen, Probleme melden und Ideen mitteilen können.</string>
     <string name="preferences_facebook_community_link_title">Facebook Community</string>
     <string name="preferences_facebook_community_link_summary">Öffnet die Facebook Community Seite auf der man nützliche Informationen und Links finden, Ideen vorschlagen oder Fragen stellen kann.</string>
     <string name="preferences_twitter_community_link_title">Twitter Community</string>
