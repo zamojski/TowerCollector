@@ -1,0 +1,6 @@
+- Fix crash when app database is corrupted.
+- Fix crash on buggy phones incorrectly reporting number of active SIM cards.
+- Fix wrong shortcut usage reported to the system causing wrong one selected as the most commonly used.
+- Add GitHub page link.
+- Improve error handling.
+- Small improvements.

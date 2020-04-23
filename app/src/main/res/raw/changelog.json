@@ -1,6 +1,18 @@
 {
   "Entries": [
     {
+      "VersionCode": 2020464,
+      "Title": "Changes in version 2.2.4",
+      "Messages": [
+        "Fix crash when app database is corrupted.",
+        "Fix crash on buggy phones incorrectly reporting number of active SIM cards.",
+        "Fix wrong shortcut usage reported to the system causing wrong one selected as the most commonly used.",
+        "Add GitHub page link.",
+        "Improve error handling.",
+        "Small improvements."
+      ]
+    },
+    {
       "VersionCode": 2020363,
       "Title": "Changes in version 2.2.3",
       "Messages": [
@@ -37,14 +49,6 @@
         "Updated translations.",
         "Small fixes and improvements.",
         "Updated external components."
-      ]
-    },
-    {
-      "VersionCode": 2010555,
-      "Title": "Changes in version 2.1.5",
-      "Messages": [
-        "Fix crash when starting collector.",
-        "Improve look of shortcut icons on some launchers."
       ]
     }
   ]
