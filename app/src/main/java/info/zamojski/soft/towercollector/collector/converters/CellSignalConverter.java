@@ -30,9 +30,10 @@ public class CellSignalConverter {
             CellSignalStrengthGsm signal = gsmCellInfo.getCellSignalStrength();
             int asu = signal.getAsuLevel();
             int dbm = signal.getDbm();
+            int ta = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? signal.getTimingAdvance() : Cell.UNKNOWN_SIGNAL;
             if (asu == NeighboringCellInfo.UNKNOWN_RSSI)
                 asu = Cell.UNKNOWN_SIGNAL;
-            cell.setGsmSignalInfo(asu, dbm);
+            cell.setGsmSignalInfo(asu, dbm, ta);
         } else if (cellInfo instanceof CellInfoWcdma) {
             CellInfoWcdma wcdmaCellInfo = (CellInfoWcdma) cellInfo;
             CellSignalStrengthWcdma signal = wcdmaCellInfo.getCellSignalStrength();

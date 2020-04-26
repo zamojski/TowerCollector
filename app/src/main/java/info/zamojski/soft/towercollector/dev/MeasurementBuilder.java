@@ -53,8 +53,8 @@ public class MeasurementBuilder {
         return this;
     }
 
-    public MeasurementBuilder setGsmSignal(int asu, int dbm) {
-        c.setGsmSignalInfo(asu, dbm);
+    public MeasurementBuilder setGsmSignal(int asu, int dbm, int ta) {
+        c.setGsmSignalInfo(asu, dbm, ta);
         return this;
     }
 

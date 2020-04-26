@@ -201,10 +201,10 @@ public class Cell implements Serializable {
         this.networkType = NetworkGroup.Gsm;
     }
 
-    public void setGsmSignalInfo(int asu, int signalStrength) {
+    public void setGsmSignalInfo(int asu, int signalStrength, int timingAdvance) {
         this.asu = asu;
         this.dbm = signalStrength;
-        this.ta = UNKNOWN_SIGNAL;
+        this.ta = timingAdvance;
     }
 
     public void setWcdmaCellInfo(int mcc, int mnc, int lac, int cid, int psc) {
