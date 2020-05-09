@@ -1,0 +1,2 @@
+- Collect more signal related values for all network types.
+- Add Timing Advance to GSM.

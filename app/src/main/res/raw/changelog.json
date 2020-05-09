@@ -1,6 +1,14 @@
 {
   "Entries": [
     {
+      "VersionCode": 2030065,
+      "Title": "Changes in version 2.3.0",
+      "Messages": [
+        "Collect more signal related values for all network types.",
+        "Add Timing Advance to GSM."
+      ]
+    },
+    {
       "VersionCode": 2020464,
       "Title": "Changes in version 2.2.4",
       "Messages": [
@@ -33,22 +41,6 @@
       "Messages": [
         "Fix language code for Hebrew.",
         "Improved error handling."
-      ]
-    },
-    {
-      "VersionCode": 2020059,
-      "Title": "Changes in version 2.2.0",
-      "Description": "<b>!Important!</b> Mozilla decided to <a href=\"https://blog.mozilla.org/services/2019/09/03/a-new-policy-for-mozilla-location-service/\">limit API usage</a> of their location service. The older versions of Tower Collector will not be able to contribute to MLS project from March 1, 2020.<br /><i>The OpenCellID API keys are remain valid and don't need to be changed.</i>",
-      "Messages": [
-        "Adjusted MLS integration for upload usage limitations.",
-        "Added option to export to multiple file types at once.",
-        "Added option to compress each exported file.",
-        "Added confirmation for delete action after export.",
-        "Added Hebrew translation. Thanks Yaron Shahrabani!",
-        "Improved support for RTL languages.",
-        "Updated translations.",
-        "Small fixes and improvements.",
-        "Updated external components."
       ]
     }
   ]
