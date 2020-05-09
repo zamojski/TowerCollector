@@ -34,7 +34,7 @@ import timber.log.Timber;
 public class MeasurementsDatabase {
 
     public static final String DATABASE_FILE_NAME = "measurements.db";
-    public static final int DATABASE_FILE_VERSION = 15;
+    public static final int DATABASE_FILE_VERSION = 16;
 
     private static final int NUM_OF_DELETIONS_PER_ONE_QUERY = 50;
 
@@ -141,6 +141,23 @@ public class MeasurementsDatabase {
                     values.put(CellSignalsTable.COLUMN_TA, cell.getTa());
                     values.put(CellSignalsTable.COLUMN_ASU, cell.getAsu());
                     values.put(CellSignalsTable.COLUMN_DBM, cell.getDbm());
+                    values.put(CellSignalsTable.COLUMN_RSRP, cell.getRsrp());
+                    values.put(CellSignalsTable.COLUMN_RSRQ, cell.getRsrq());
+                    values.put(CellSignalsTable.COLUMN_RSSI, cell.getRssi());
+                    values.put(CellSignalsTable.COLUMN_RSSNR, cell.getRssnr());
+                    values.put(CellSignalsTable.COLUMN_CQI, cell.getCqi());
+                    values.put(CellSignalsTable.COLUMN_RSCP, cell.getRscp());
+                    values.put(CellSignalsTable.COLUMN_CSI_RSRP, cell.getCsiRsrp());
+                    values.put(CellSignalsTable.COLUMN_CSI_RSRQ, cell.getCsiRsrq());
+                    values.put(CellSignalsTable.COLUMN_CSI_SINR, cell.getCsiSinr());
+                    values.put(CellSignalsTable.COLUMN_SS_RSRP, cell.getSsRsrp());
+                    values.put(CellSignalsTable.COLUMN_SS_RSRQ, cell.getSsRsrq());
+                    values.put(CellSignalsTable.COLUMN_SS_SINR, cell.getSsSinr());
+                    values.put(CellSignalsTable.COLUMN_CDMA_DBM, cell.getCdmaDbm());
+                    values.put(CellSignalsTable.COLUMN_CDMA_ECIO, cell.getCdmaEcio());
+                    values.put(CellSignalsTable.COLUMN_EVDO_DBM, cell.getEvdoDbm());
+                    values.put(CellSignalsTable.COLUMN_EVDO_ECIO, cell.getEvdoEcio());
+                    values.put(CellSignalsTable.COLUMN_EVDO_SNR, cell.getEvdoSnr());
                     long rowId = db.insert(CellSignalsTable.TABLE_NAME, null, values);
                     boolean localResult = false;
                     if (rowId != -1) {
@@ -379,6 +396,23 @@ public class MeasurementsDatabase {
                 CellSignalsTable.COLUMN_TA,
                 CellSignalsTable.COLUMN_ASU,
                 CellSignalsTable.COLUMN_DBM,
+                CellSignalsTable.COLUMN_RSRP,
+                CellSignalsTable.COLUMN_RSRQ,
+                CellSignalsTable.COLUMN_RSSI,
+                CellSignalsTable.COLUMN_RSSNR,
+                CellSignalsTable.COLUMN_CQI,
+                CellSignalsTable.COLUMN_RSCP,
+                CellSignalsTable.COLUMN_CSI_RSRP,
+                CellSignalsTable.COLUMN_CSI_RSRQ,
+                CellSignalsTable.COLUMN_CSI_SINR,
+                CellSignalsTable.COLUMN_SS_RSRP,
+                CellSignalsTable.COLUMN_SS_RSRQ,
+                CellSignalsTable.COLUMN_SS_SINR,
+                CellSignalsTable.COLUMN_CDMA_DBM,
+                CellSignalsTable.COLUMN_CDMA_ECIO,
+                CellSignalsTable.COLUMN_EVDO_DBM,
+                CellSignalsTable.COLUMN_EVDO_ECIO,
+                CellSignalsTable.COLUMN_EVDO_SNR,
                 MeasurementsTable.COLUMN_MEASURED_AT,
                 MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT,
                 MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT,
@@ -409,6 +443,23 @@ public class MeasurementsDatabase {
         int taColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_TA);
         int asuColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_ASU);
         int dbmColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_DBM);
+        int rsrpColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_RSRP);
+        int rsrqColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_RSRQ);
+        int rssiColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_RSSI);
+        int rssnrColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_RSSNR);
+        int cqiColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_CQI);
+        int rscpColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_RSCP);
+        int csiRsrpColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_CSI_RSRP);
+        int csiRsrqColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_CSI_RSRQ);
+        int csiSinrColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_CSI_SINR);
+        int ssRsrpColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_SS_RSRP);
+        int ssRsrqColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_SS_RSRQ);
+        int ssSinrColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_SS_SINR);
+        int cdmaDbmColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_CDMA_DBM);
+        int cdmaEcioColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_CDMA_ECIO);
+        int evdoDbmColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_EVDO_DBM);
+        int evdoEcioColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_EVDO_ECIO);
+        int evdoSnrColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_EVDO_SNR);
         int latitudeColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_LATITUDE);
         int longitudeColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_LONGITUDE);
         int gpsAccuracyColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_GPS_ACCURACY);
@@ -454,6 +505,23 @@ public class MeasurementsDatabase {
             cell.setTa(cursor.getInt(taColumnIndex));
             cell.setAsu(cursor.getInt(asuColumnIndex));
             cell.setDbm(cursor.getInt(dbmColumnIndex));
+            cell.setRsrp(cursor.getInt(rsrpColumnIndex));
+            cell.setRsrq(cursor.getInt(rsrqColumnIndex));
+            cell.setRssi(cursor.getInt(rssiColumnIndex));
+            cell.setRssnr(cursor.getInt(rssnrColumnIndex));
+            cell.setCqi(cursor.getInt(cqiColumnIndex));
+            cell.setRscp(cursor.getInt(rscpColumnIndex));
+            cell.setCsiRsrp(cursor.getInt(csiRsrpColumnIndex));
+            cell.setCsiRsrq(cursor.getInt(csiRsrqColumnIndex));
+            cell.setCsiSinr(cursor.getInt(csiSinrColumnIndex));
+            cell.setSsRsrp(cursor.getInt(ssRsrpColumnIndex));
+            cell.setSsRsrq(cursor.getInt(ssRsrqColumnIndex));
+            cell.setSsSinr(cursor.getInt(ssSinrColumnIndex));
+            cell.setCdmaDbm(cursor.getInt(cdmaDbmColumnIndex));
+            cell.setCdmaEcio(cursor.getInt(cdmaEcioColumnIndex));
+            cell.setEvdoDbm(cursor.getInt(evdoDbmColumnIndex));
+            cell.setEvdoEcio(cursor.getInt(evdoEcioColumnIndex));
+            cell.setEvdoSnr(cursor.getInt(evdoSnrColumnIndex));
             measurement.addCell(cell);
         }
         cursor.close();

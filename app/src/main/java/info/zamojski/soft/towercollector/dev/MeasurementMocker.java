@@ -38,7 +38,7 @@ public class MeasurementMocker {
 
         Cell c = new Cell();
         c.setLteCellInfo(260, 6, 5114, 1055842, 28);
-        c.setLteSignalInfo(46, -94, 76);
+        c.setLteSignalInfo(46, -94, 76, Cell.UNKNOWN_SIGNAL, Cell.UNKNOWN_SIGNAL, Cell.UNKNOWN_SIGNAL, Cell.UNKNOWN_SIGNAL, Cell.UNKNOWN_SIGNAL);
         m.addCell(c);
 
         return m;

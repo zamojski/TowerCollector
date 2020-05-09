@@ -15,6 +15,23 @@ final class CellSignalsTable implements ITable {
     static final String COLUMN_TA = "ta";
     static final String COLUMN_ASU = "asu";
     static final String COLUMN_DBM = "dbm";
+    static final String COLUMN_RSRP = "rsrp";
+    static final String COLUMN_RSRQ = "rsrq";
+    static final String COLUMN_RSSI = "rssi";
+    static final String COLUMN_RSSNR = "rssnr";
+    static final String COLUMN_CQI = "cqi";
+    static final String COLUMN_RSCP = "rscp";
+    static final String COLUMN_CSI_RSRP = "csi_rsrp";
+    static final String COLUMN_CSI_RSRQ = "csi_rsrq";
+    static final String COLUMN_CSI_SINR = "csi_sinr";
+    static final String COLUMN_SS_RSRP = "ss_rsrp";
+    static final String COLUMN_SS_RSRQ = "ss_rsrq";
+    static final String COLUMN_SS_SINR = "ss_sinr";
+    static final String COLUMN_CDMA_DBM = "cdma_dbm";
+    static final String COLUMN_CDMA_ECIO = "cdma_ecio";
+    static final String COLUMN_EVDO_DBM = "evdo_dbm";
+    static final String COLUMN_EVDO_ECIO = "evdo_ecio";
+    static final String COLUMN_EVDO_SNR = "evdo_snr";
 
     private static final String QUERY_CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" +
             COLUMN_ROW_ID + " INTEGER PRIMARY KEY NOT NULL, " +
@@ -25,6 +42,23 @@ final class CellSignalsTable implements ITable {
             COLUMN_TA + " INTEGER NOT NULL, " +
             COLUMN_ASU + " INTEGER NOT NULL, " +
             COLUMN_DBM + " INTEGER NOT NULL, " +
+            COLUMN_RSRP + " INTEGER NOT NULL, " +
+            COLUMN_RSRQ + " INTEGER NOT NULL, " +
+            COLUMN_RSSI + " INTEGER NOT NULL, " +
+            COLUMN_RSSNR + " INTEGER NOT NULL, " +
+            COLUMN_CQI + " INTEGER NOT NULL, " +
+            COLUMN_RSCP + " INTEGER NOT NULL, " +
+            COLUMN_CSI_RSRP + " INTEGER NOT NULL, " +
+            COLUMN_CSI_RSRQ + " INTEGER NOT NULL, " +
+            COLUMN_CSI_SINR + " INTEGER NOT NULL, " +
+            COLUMN_SS_RSRP + " INTEGER NOT NULL, " +
+            COLUMN_SS_RSRQ + " INTEGER NOT NULL, " +
+            COLUMN_SS_SINR + " INTEGER NOT NULL, " +
+            COLUMN_CDMA_DBM + " INTEGER NOT NULL, " +
+            COLUMN_CDMA_ECIO + " INTEGER NOT NULL, " +
+            COLUMN_EVDO_DBM + " INTEGER NOT NULL, " +
+            COLUMN_EVDO_ECIO + " INTEGER NOT NULL, " +
+            COLUMN_EVDO_SNR + " INTEGER NOT NULL, " +
             "FOREIGN KEY(" + COLUMN_MEASUREMENT_ID + ") REFERENCES " + MeasurementsTable.TABLE_NAME + "(" + MeasurementsTable.COLUMN_ROW_ID + ")," +
             "FOREIGN KEY(" + COLUMN_CELL_ID + ") REFERENCES " + CellsTable.TABLE_NAME + "(" + CellsTable.COLUMN_ROW_ID + "))";
 

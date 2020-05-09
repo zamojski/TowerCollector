@@ -63,23 +63,23 @@ public class MeasurementBuilder {
         return this;
     }
 
-    public MeasurementBuilder setLteSignal(int asu, int dbm, int ta) {
-        c.setLteSignalInfo(asu, dbm, ta);
+    public MeasurementBuilder setLteSignal(int asu, int dbm, int ta, int rsrp, int rsrq, int rssi, int rssnr, int cqi) {
+        c.setLteSignalInfo(asu, dbm, ta, rsrp, rsrq, rssi, rssnr, cqi);
         return this;
     }
 
-    public MeasurementBuilder setCdmaSignal(int asu, int dbm) {
-        c.setCdmaSignalInfo(asu, dbm);
+    public MeasurementBuilder setCdmaSignal(int asu, int dbm, int cdmaDbm, int cdmaEcio, int evdoDbm, int evdoEcio, int evdoSnr) {
+        c.setCdmaSignalInfo(asu, dbm, cdmaDbm, cdmaEcio, evdoDbm, evdoEcio, evdoSnr);
         return this;
     }
 
-    public MeasurementBuilder setNrSignal(int asu, int dbm) {
-        c.setNrSignalInfo(asu, dbm);
+    public MeasurementBuilder setNrSignal(int asu, int dbm, int csiRsrp, int csiRsrq, int csiSinr, int ssRsrp, int ssRsrq, int ssSinr) {
+        c.setNrSignalInfo(asu, dbm, csiRsrp, csiRsrq, csiSinr, ssRsrp, ssRsrq, ssSinr);
         return this;
     }
 
-    public MeasurementBuilder setTdscdmaSignal(int asu, int dbm) {
-        c.setTdscdmaSignalInfo(asu, dbm);
+    public MeasurementBuilder setTdscdmaSignal(int asu, int dbm, int rscp) {
+        c.setTdscdmaSignalInfo(asu, dbm, rscp);
         return this;
     }
 

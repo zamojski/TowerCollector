@@ -24,15 +24,19 @@ import android.telephony.NeighboringCellInfo;
 
 public class CellSignalConverter {
 
+    private static final boolean isApi26 = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
+    private static final boolean isApi29 = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q;
+
     public void update(Cell cell, CellInfo cellInfo) {
         if (cellInfo instanceof CellInfoGsm) {
             CellInfoGsm gsmCellInfo = (CellInfoGsm) cellInfo;
             CellSignalStrengthGsm signal = gsmCellInfo.getCellSignalStrength();
             int asu = signal.getAsuLevel();
             int dbm = signal.getDbm();
-            int ta = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? signal.getTimingAdvance() : Cell.UNKNOWN_SIGNAL;
+            int ta = isApi26 ? signal.getTimingAdvance() : Cell.UNKNOWN_SIGNAL;
             if (asu == NeighboringCellInfo.UNKNOWN_RSSI)
                 asu = Cell.UNKNOWN_SIGNAL;
+            // TODO add RSSI to GSM on Android R
             cell.setGsmSignalInfo(asu, dbm, ta);
         } else if (cellInfo instanceof CellInfoWcdma) {
             CellInfoWcdma wcdmaCellInfo = (CellInfoWcdma) cellInfo;
@@ -41,6 +45,7 @@ public class CellSignalConverter {
             if (asu == NeighboringCellInfo.UNKNOWN_RSSI)
                 asu = Cell.UNKNOWN_SIGNAL;
             int dbm = signal.getDbm();
+            // TODO add EC/NO to WCDMA on Android R
             cell.setWcdmaSignalInfo(asu, dbm);
         } else if (cellInfo instanceof CellInfoLte) {
             CellInfoLte lteCellInfo = (CellInfoLte) cellInfo;
@@ -50,7 +55,12 @@ public class CellSignalConverter {
                 asu = Cell.UNKNOWN_SIGNAL;
             int dbm = signal.getDbm();
             int ta = signal.getTimingAdvance();
-            cell.setLteSignalInfo(asu, dbm, ta);
+            int rsrp = isApi26 ? signal.getRsrp() : Cell.UNKNOWN_SIGNAL;
+            int rsrq = isApi26 ? signal.getRsrq() : Cell.UNKNOWN_SIGNAL;
+            int rssi = isApi29 ? signal.getRssi() : Cell.UNKNOWN_SIGNAL;
+            int rssnr = isApi26 ? signal.getRssnr() : Cell.UNKNOWN_SIGNAL;
+            int cqi = isApi26 ? signal.getCqi() : Cell.UNKNOWN_SIGNAL;
+            cell.setLteSignalInfo(asu, dbm, ta, rsrp, rsrq, rssi, rssnr, cqi);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && cellInfo instanceof CellInfoNr) {
             CellInfoNr nrCellInfo = (CellInfoNr) cellInfo;
             CellSignalStrengthNr signal = (CellSignalStrengthNr) nrCellInfo.getCellSignalStrength();
@@ -58,7 +68,13 @@ public class CellSignalConverter {
             if (asu == 99) // CellSignalStrengthNr.UNKNOWN_ASU_LEVEL not available
                 asu = Cell.UNKNOWN_SIGNAL;
             int dbm = signal.getDbm();
-            cell.setNrSignalInfo(asu, dbm);
+            int csiRsrp = signal.getCsiRsrp();
+            int csiRsrq = signal.getCsiRsrq();
+            int csiSinr = signal.getCsiSinr();
+            int ssRsrp = signal.getSsRsrp();
+            int ssRsrq = signal.getSsRsrq();
+            int ssSinr = signal.getSsSinr();
+            cell.setNrSignalInfo(asu, dbm, csiRsrp, csiRsrq, csiSinr, ssRsrp, ssRsrq, ssSinr);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && cellInfo instanceof CellInfoTdscdma) {
             CellInfoTdscdma tdscdmaCellInfo = (CellInfoTdscdma) cellInfo;
             CellSignalStrengthTdscdma signal = tdscdmaCellInfo.getCellSignalStrength();
@@ -66,7 +82,8 @@ public class CellSignalConverter {
             if (asu == 255 || asu == 99) // depending on RSSI (99) or RSCP (255)
                 asu = Cell.UNKNOWN_SIGNAL;
             int dbm = signal.getDbm();
-            cell.setTdscdmaSignalInfo(asu, dbm);
+            int rscp = signal.getRscp();
+            cell.setTdscdmaSignalInfo(asu, dbm, rscp);
         } else if (cellInfo instanceof CellInfoCdma) {
             CellInfoCdma cdmaCellInfo = (CellInfoCdma) cellInfo;
             CellSignalStrengthCdma signal = cdmaCellInfo.getCellSignalStrength();
@@ -74,7 +91,12 @@ public class CellSignalConverter {
             if (asu == NeighboringCellInfo.UNKNOWN_RSSI)
                 asu = Cell.UNKNOWN_SIGNAL;
             int dbm = signal.getDbm();
-            cell.setCdmaSignalInfo(asu, dbm);
+            int cdmaDbm = signal.getCdmaDbm();
+            int cdmaEcio = signal.getCdmaEcio();
+            int evdoDbm = signal.getEvdoDbm();
+            int evdoEcio = signal.getEvdoEcio();
+            int evdoSnr = signal.getEvdoSnr();
+            cell.setCdmaSignalInfo(asu, dbm, cdmaDbm, cdmaEcio, evdoDbm, evdoEcio, evdoSnr);
         } else {
             throw new UnsupportedOperationException("Cell signal type not supported `" + cellInfo.getClass().getName() + "`");
         }

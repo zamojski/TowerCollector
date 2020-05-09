@@ -33,7 +33,7 @@ public class CsvExportFormatter extends CsvFormatter {
 
     @Override
     public String formatHeader() {
-        return "mcc,mnc,lac,cell_id,psc,asu,dbm,ta,lat,lon,accuracy,speed,bearing,altitude,measured_at,net_type,neighboring,device\r\n";
+        return "mcc,mnc,lac,cell_id,psc,asu,dbm,ta,lat,lon,accuracy,speed,bearing,altitude,measured_at,net_type,neighboring,device,rsrp,rsrq,rssi,rssnr,cqi,rscp,csi_rsrp,csi_rsrq,csi_sinr,ss_rsrp,ss_rsrq,ss_sinr,cdma_dbm,cdma_ecio,evdo_dbm,evdo_ecio,evdo_snr\r\n";
     }
 
     @Override
@@ -92,6 +92,75 @@ public class CsvExportFormatter extends CsvFormatter {
             sb.append("\"");
             sb.append(deviceName);
             sb.append("\"");
+
+            sb.append(',');
+            int rsrp = c.getRsrp();
+            if (rsrp != Cell.UNKNOWN_SIGNAL)
+                sb.append(formatInt(rsrp));
+            sb.append(',');
+            int rsrq = c.getRsrq();
+            if (rsrq != Cell.UNKNOWN_SIGNAL)
+                sb.append(formatInt(rsrq));
+            sb.append(',');
+            int rssi = c.getRssi();
+            if (rssi != Cell.UNKNOWN_SIGNAL)
+                sb.append(formatInt(rssi));
+            sb.append(',');
+            int rssnr = c.getRssnr();
+            if (rssnr != Cell.UNKNOWN_SIGNAL)
+                sb.append(formatInt(rssnr));
+            sb.append(',');
+            int cqi = c.getCqi();
+            if (cqi != Cell.UNKNOWN_SIGNAL)
+                sb.append(formatInt(cqi));
+            sb.append(',');
+            int rscp = c.getRscp();
+            if (rscp != Cell.UNKNOWN_SIGNAL)
+                sb.append(formatInt(rscp));
+            sb.append(',');
+            int csiRsrp = c.getCsiRsrp();
+            if (csiRsrp != Cell.UNKNOWN_SIGNAL)
+                sb.append(formatInt(csiRsrp));
+            sb.append(',');
+            int csiRsrq = c.getCsiRsrq();
+            if (csiRsrq != Cell.UNKNOWN_SIGNAL)
+                sb.append(formatInt(csiRsrq));
+            sb.append(',');
+            int csiSinr = c.getCsiSinr();
+            if (csiSinr != Cell.UNKNOWN_SIGNAL)
+                sb.append(formatInt(csiSinr));
+            sb.append(',');
+            int ssRsrp = c.getSsRsrp();
+            if (ssRsrp != Cell.UNKNOWN_SIGNAL)
+                sb.append(formatInt(ssRsrp));
+            sb.append(',');
+            int ssRsrq = c.getSsRsrq();
+            if (ssRsrq != Cell.UNKNOWN_SIGNAL)
+                sb.append(formatInt(ssRsrq));
+            sb.append(',');
+            int ssSinr = c.getSsSinr();
+            if (ssSinr != Cell.UNKNOWN_SIGNAL)
+                sb.append(formatInt(ssSinr));
+            sb.append(',');
+            int cdmaDbm = c.getCdmaDbm();
+            if (cdmaDbm != Cell.UNKNOWN_SIGNAL)
+                sb.append(formatInt(cdmaDbm));
+            sb.append(',');
+            int cdmaEcio = c.getCdmaEcio();
+            if (cdmaEcio != Cell.UNKNOWN_SIGNAL)
+                sb.append(formatInt(cdmaEcio));
+            sb.append(',');
+            int evdoDbm = c.getEvdoDbm();
+            if (evdoDbm != Cell.UNKNOWN_SIGNAL)
+                sb.append(formatInt(evdoDbm));
+            sb.append(',');
+            int evdoEcio = c.getEvdoEcio();
+            if (evdoEcio != Cell.UNKNOWN_SIGNAL)
+                sb.append(formatInt(evdoEcio));
+            sb.append(',');
+            int evdoSnr = c.getEvdoSnr();
+            if (evdoSnr != Cell.UNKNOWN_SIGNAL)
+                sb.append(formatInt(evdoSnr));
 
             sb.append("\r\n");
         }

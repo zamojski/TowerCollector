@@ -7,12 +7,12 @@
 <p>Collector can send an intent every time new set of measurements is collected if set in Preferences. The content of notification will be a JSON structure with common things like time and GPS extracted. Field names and values are mapped the same way as in exported CSV file.<br />
 List of fields used by cells depend on type (net_type). Unsupported or missing values will be set to <code>null</code>.</p>
 <ul>
-    <li>GSM - mcc, mnc, lac, cell_id, asu, dbm</li>
+    <li>GSM - mcc, mnc, lac, cell_id, asu, dbm, ta</li>
     <li>UMTS - mcc, mnc, lac, cell_id, psc, asu, dbm</li>
-    <li>CDMA - sid as mnc, nid as lac, bid as cell_id, asu, dbm</li>
-    <li>LTE - mcc, mnc, tac as lac, ci as cell_id, pci as psc, ta, asu, dbm</li>
-    <li>5G NR - mcc, mnc, tac as lac, nci as cell_id, pci as psc, asu, dbm</li>
-    <li>TD-SCDMA - mcc, mnc, lac, cid as cell_id, cpid as psc, asu, dbm</li>
+    <li>CDMA - sid &rarr; mnc, nid &rarr; lac, bid &rarr; cell_id, asu, dbm, cdma_dbm, cdma_ecio, evdo_dbm, evdo_ecio, evdo_snr</li>
+    <li>LTE - mcc, mnc, tac &rarr; lac, ci &rarr; cell_id, pci &rarr; psc, ta, asu, dbm, rsrp, rsrq, rssi, rssnr, cqi</li>
+    <li>5G NR - mcc, mnc, tac &rarr; lac, nci &rarr; cell_id, pci &rarr; psc, asu, dbm, csi_rsrp, csi_rsrq, csi_sinr, ss_rsrp, ss_rsrq, ss_sinr</li>
+    <li>TD-SCDMA - mcc, mnc, lac, cid &rarr; cell_id, cpid &rarr; psc, asu, dbm, rscp</li>
 </ul>
 <p>Action:</p>
 <code>info.zamojski.soft.towercollector.MEASUREMENTS_COLLECTED</code>
@@ -38,7 +38,6 @@ List of fields used by cells depend on type (net_type). Unsupported or missing v
             "psc" : 1234,<br />
             "asu" : 12,<br />
             "dbm" : -112,<br />
-            "ta" : 21,<br />
             "neighboring" : "false",<br />
             "net_type" : "UMTS"<br />
         },<br />
@@ -52,7 +51,12 @@ List of fields used by cells depend on type (net_type). Unsupported or missing v
             "dbm" : -112,<br />
             "ta" : null,<br />
             "neighboring" : "false",<br />
-            "net_type" : "CDMA"<br />
+            "net_type" : "CDMA",<br />
+            "cdma_dbm" : null,<br />
+            "cdma_ecio" : null,<br />
+            "evdo_dbm" : null,<br />
+            "evdo_ecio" : null,<br />
+            "evdo_snr" : null<br />
         }<br />
     ]<br />
 }</code>

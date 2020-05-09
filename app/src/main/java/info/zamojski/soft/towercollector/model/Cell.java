@@ -67,6 +67,74 @@ public class Cell implements Serializable {
      * Signal Strength in dBm.
      */
     private int dbm = UNKNOWN_SIGNAL;
+    /**
+     * Reference Signal Received Power in dBm.
+     */
+    private int rsrp = UNKNOWN_SIGNAL;
+    /**
+     * Reference Signal Received Quality in dB.
+     */
+    private int rsrq = UNKNOWN_SIGNAL;
+    /**
+     * Received Signal Strength Indication in dBm.
+     */
+    private int rssi = UNKNOWN_SIGNAL;
+    /**
+     * Reference Signal Signal-to-Noise Ratio in dB.
+     */
+    private int rssnr = UNKNOWN_SIGNAL;
+    /**
+     * Channel Quality Indicator.
+     */
+    private int cqi = UNKNOWN_SIGNAL;
+    /**
+     * Received Signal Code Power in dBm.
+     */
+    private int rscp = UNKNOWN_SIGNAL;
+    /**
+     * Channel State Information (CSI) Reference Signal Received Power in dBm.
+     */
+    private int csiRsrp = UNKNOWN_SIGNAL;
+    /**
+     * Channel State Information (CSI) Reference Signal Received Quality in dB.
+     */
+    private int csiRsrq = UNKNOWN_SIGNAL;
+    /**
+     * Channel State Information (CSI) Signal-to-Noise and Interference Ratio in dB.
+     */
+    private int csiSinr = UNKNOWN_SIGNAL;
+    /**
+     * Synchronization Signal (SS) Reference Signal Received Power in dBm.
+     */
+    private int ssRsrp = UNKNOWN_SIGNAL;
+    /**
+     * Synchronization Signal (SS) Reference Signal Received Quality in dB.
+     */
+    private int ssRsrq = UNKNOWN_SIGNAL;
+    /**
+     * Synchronization Signal (SS) Signal-to-Noise and Interference Ratio in dB.
+     */
+    private int ssSinr = UNKNOWN_SIGNAL;
+    /**
+     * CDMA RSSI value in dBm.
+     */
+    private int cdmaDbm = UNKNOWN_SIGNAL;
+    /**
+     * CDMA Ec/Io value in dB*10.
+     */
+    private int cdmaEcio = UNKNOWN_SIGNAL;
+    /**
+     * EVDO RSSI value in dBm.
+     */
+    private int evdoDbm = UNKNOWN_SIGNAL;
+    /**
+     * EVDO Ec/Io value in dB*10.
+     */
+    private int evdoEcio = UNKNOWN_SIGNAL;
+    /**
+     * Signal to noise ratio.
+     */
+    private int evdoSnr = UNKNOWN_SIGNAL;
 
     public int getCellId() {
         return cellId;
@@ -192,12 +260,147 @@ public class Cell implements Serializable {
         this.cid = cid;
     }
 
+    public int getRsrp() {
+        return rsrp;
+    }
+
+    public void setRsrp(int rsrp) {
+        this.rsrp = rsrp;
+    }
+
+    public int getRsrq() {
+        return rsrq;
+    }
+
+    public void setRsrq(int rsrq) {
+        this.rsrq = rsrq;
+    }
+
+    public int getRssi() {
+        return rssi;
+    }
+
+    public void setRssi(int rssi) {
+        this.rssi = rssi;
+    }
+
+    public int getRssnr() {
+        return rssnr;
+    }
+
+    public void setRssnr(int rssnr) {
+        this.rssnr = rssnr;
+    }
+
+    public int getCqi() {
+        return cqi;
+    }
+
+    public void setCqi(int cqi) {
+        this.cqi = cqi;
+    }
+
+    public int getRscp() {
+        return rscp;
+    }
+
+    public void setRscp(int rscp) {
+        this.rscp = rscp;
+    }
+
+    public int getCsiRsrp() {
+        return csiRsrp;
+    }
+
+    public void setCsiRsrp(int csiRsrp) {
+        this.csiRsrp = csiRsrp;
+    }
+
+    public int getCsiRsrq() {
+        return csiRsrq;
+    }
+
+    public void setCsiRsrq(int csiRsrq) {
+        this.csiRsrq = csiRsrq;
+    }
+
+    public int getCsiSinr() {
+        return csiSinr;
+    }
+
+    public void setCsiSinr(int csiSinr) {
+        this.csiSinr = csiSinr;
+    }
+
+    public int getSsRsrp() {
+        return ssRsrp;
+    }
+
+    public void setSsRsrp(int ssRsrp) {
+        this.ssRsrp = ssRsrp;
+    }
+
+    public int getSsRsrq() {
+        return ssRsrq;
+    }
+
+    public void setSsRsrq(int ssRsrq) {
+        this.ssRsrq = ssRsrq;
+    }
+
+    public int getSsSinr() {
+        return ssSinr;
+    }
+
+    public void setSsSinr(int ssSinr) {
+        this.ssSinr = ssSinr;
+    }
+
+    public int getCdmaDbm() {
+        return cdmaDbm;
+    }
+
+    public void setCdmaDbm(int cdmaDbm) {
+        this.cdmaDbm = cdmaDbm;
+    }
+
+    public int getCdmaEcio() {
+        return cdmaEcio;
+    }
+
+    public void setCdmaEcio(int cdmaEcio) {
+        this.cdmaEcio = cdmaEcio;
+    }
+
+    public int getEvdoDbm() {
+        return evdoDbm;
+    }
+
+    public void setEvdoDbm(int evdoDbm) {
+        this.evdoDbm = evdoDbm;
+    }
+
+    public int getEvdoEcio() {
+        return evdoEcio;
+    }
+
+    public void setEvdoEcio(int evdoEcio) {
+        this.evdoEcio = evdoEcio;
+    }
+
+    public int getEvdoSnr() {
+        return evdoSnr;
+    }
+
+    public void setEvdoSnr(int evdoSnr) {
+        this.evdoSnr = evdoSnr;
+    }
+
     public void setGsmCellInfo(int mcc, int mnc, int lac, int cid) {
         this.mcc = mcc;
         this.mnc = mnc;
         this.lac = lac;
         this.cid = cid;
-        this.psc = UNKNOWN_CID;
         this.networkType = NetworkGroup.Gsm;
     }
 
@@ -219,22 +422,23 @@ public class Cell implements Serializable {
     public void setWcdmaSignalInfo(int asu, int signalStrength) {
         this.asu = asu;
         this.dbm = signalStrength;
-        this.ta = UNKNOWN_SIGNAL;
     }
 
     public void setCdmaCellInfo(int systemId, int networkId, int baseStationId) {
-        this.mcc = UNKNOWN_CID;
         this.mnc = systemId;
         this.lac = networkId;
         this.cid = baseStationId;
-        this.psc = UNKNOWN_CID;
         this.networkType = NetworkGroup.Cdma;
     }
 
-    public void setCdmaSignalInfo(int asu, int signalStrength) {
+    public void setCdmaSignalInfo(int asu, int signalStrength, int cdmaDbm, int cdmaEcio, int evdoDbm, int evdoEcio, int evdoSnr) {
         this.asu = asu;
         this.dbm = signalStrength;
-        this.ta = UNKNOWN_SIGNAL;
+        this.cdmaDbm = cdmaDbm;
+        this.cdmaEcio = cdmaEcio;
+        this.evdoDbm = evdoDbm;
+        this.evdoEcio = evdoEcio;
+        this.evdoSnr = evdoSnr;
     }
 
     public void setLteCellInfo(int mcc, int mnc, int tac, int ci, int pci) {
@@ -246,10 +450,15 @@ public class Cell implements Serializable {
         this.networkType = NetworkGroup.Lte;
     }
 
-    public void setLteSignalInfo(int asu, int signalStrength, int timingAdvance) {
+    public void setLteSignalInfo(int asu, int signalStrength, int timingAdvance, int rsrp, int rsrq, int rssi, int rssnr, int cqi) {
         this.asu = asu;
         this.dbm = signalStrength;
         this.ta = timingAdvance;
+        this.rsrp = rsrp;
+        this.rsrq = rsrq;
+        this.rssi = rssi;
+        this.rssnr = rssnr;
+        this.cqi = cqi;
     }
 
     public void setNrCellInfo(String mccString, String mncString, int tac, long nci, int pci) {
@@ -261,9 +470,15 @@ public class Cell implements Serializable {
         this.networkType = NetworkGroup.Nr;
     }
 
-    public void setNrSignalInfo(int asu, int signalStrength) {
+    public void setNrSignalInfo(int asu, int signalStrength, int csiRsrp, int csiRsrq, int csiSinr, int ssRsrp, int ssRsrq, int ssSinr) {
         this.asu = asu;
         this.dbm = signalStrength;
+        this.csiRsrp = csiRsrp;
+        this.csiRsrq = csiRsrq;
+        this.csiSinr = csiSinr;
+        this.ssRsrp = ssRsrp;
+        this.ssRsrq = ssRsrq;
+        this.ssSinr = ssSinr;
     }
 
     public void setTdscdmaCellInfo(String mccString, String mncString, int lac, int cid, int cpid) {
@@ -275,9 +490,10 @@ public class Cell implements Serializable {
         this.networkType = NetworkGroup.Tdscdma;
     }
 
-    public void setTdscdmaSignalInfo(int asu, int signalStrength) {
+    public void setTdscdmaSignalInfo(int asu, int signalStrength, int rscp) {
         this.asu = asu;
         this.dbm = signalStrength;
+        this.rscp = rscp;
     }
 
     public void setGsmCellLocation(int mcc, int mnc, int lac, int cid, NetworkGroup networkType) {
@@ -285,7 +501,6 @@ public class Cell implements Serializable {
         this.mnc = mnc;
         this.lac = lac;
         this.cid = cid;
-        this.psc = UNKNOWN_CID;
         this.networkType = networkType;
     }
 
@@ -301,22 +516,18 @@ public class Cell implements Serializable {
     public void setGsmLocationSignal(int asu, int signalStrength) {
         this.asu = asu;
         this.dbm = signalStrength;
-        this.ta = UNKNOWN_SIGNAL;
     }
 
     public void setCdmaCellLocation(int systemId, int networkId, int baseStationId) {
-        this.mcc = UNKNOWN_CID;
         this.mnc = systemId;
         this.lac = networkId;
         this.cid = baseStationId;
-        this.psc = UNKNOWN_CID;
         this.networkType = NetworkGroup.Cdma;
     }
 
     public void setCdmaLocationSignal(int asu, int signalStrength) {
         this.asu = asu;
         this.dbm = signalStrength;
-        this.ta = UNKNOWN_SIGNAL;
     }
 
     @NotNull
@@ -335,6 +546,23 @@ public class Cell implements Serializable {
                 ", ta=" + ta +
                 ", asu=" + asu +
                 ", dbm=" + dbm +
+                ", rsrp=" + rsrp +
+                ", rsrq=" + rsrq +
+                ", rssi=" + rssi +
+                ", rssnr=" + rssnr +
+                ", cqi=" + cqi +
+                ", rscp=" + rscp +
+                ", csiRsrp=" + csiRsrp +
+                ", csiRsrq=" + csiRsrq +
+                ", csiSinr=" + csiSinr +
+                ", ssRsrp=" + ssRsrp +
+                ", ssRsrq=" + ssRsrq +
+                ", ssSinr=" + ssSinr +
+                ", cdmaDbm=" + cdmaDbm +
+                ", cdmaEcio=" + cdmaEcio +
+                ", evdoDbm=" + evdoDbm +
+                ", evdoEcio=" + evdoEcio +
+                ", evdoSnr=" + evdoSnr +
                 '}';
     }
 }
