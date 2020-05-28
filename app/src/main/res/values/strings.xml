@@ -47,6 +47,7 @@
     <string name="unknown_error">Unknown error occurred!</string>
     <string name="main_tab_last_title">Last saved</string>
     <string name="main_tab_stats_title">Statistics</string>
+    <string name="main_tab_map_title">Map</string>
     <string name="main_gps_accuracy_not_available">Not available</string>
     <string name="main_signal_strength_not_available">Not available</string>
     <string name="date_time_format_standard">yyyy-MM-dd HH:mm:ss</string>

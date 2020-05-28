@@ -15,6 +15,7 @@ public class MainActivityPagerAdapter extends FragmentPagerAdapter {
 
     private static final int MainLastFragmentIndex = 0;
     private static final int MainStatsFragmentIndex = 1;
+    private static final int MainMapFragmentIndex = 2;
 
     private Context context;
 
@@ -30,6 +31,8 @@ public class MainActivityPagerAdapter extends FragmentPagerAdapter {
                 return new MainLastFragment();
             case MainStatsFragmentIndex:
                 return new MainStatsFragment();
+            case MainMapFragmentIndex:
+                return new MainMapFragment();
             default:
                 throw new UnsupportedOperationException("Cannot find view at position " + position);
         }
@@ -37,7 +40,7 @@ public class MainActivityPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 
     @Override
@@ -47,6 +50,8 @@ public class MainActivityPagerAdapter extends FragmentPagerAdapter {
                 return context.getString(R.string.main_tab_last_title);
             case MainStatsFragmentIndex:
                 return context.getString(R.string.main_tab_stats_title);
+            case MainMapFragmentIndex:
+                return context.getString(R.string.main_tab_map_title);
             default:
                 throw new UnsupportedOperationException("Cannot find view title at position " + position);
         }
