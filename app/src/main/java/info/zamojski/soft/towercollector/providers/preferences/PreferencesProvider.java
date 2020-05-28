@@ -21,11 +21,13 @@ public class PreferencesProvider {
 
     private BooleanPreferenceProvider booleanPreferenceProvider;
     private IntegerPreferenceProvider integerPreferenceProvider;
+    private FloatPreferenceProvider floatPreferenceProvider;
     private StringPreferenceProvider stringPreferenceProvider;
 
     public PreferencesProvider(Context context) {
         this.booleanPreferenceProvider = new BooleanPreferenceProvider(context);
         this.integerPreferenceProvider = new IntegerPreferenceProvider(context);
+        this.floatPreferenceProvider = new FloatPreferenceProvider(context);
         this.stringPreferenceProvider = new StringPreferenceProvider(context);
     }
 
@@ -203,5 +205,14 @@ public class PreferencesProvider {
     public void setEnabledExportFileTypes(List<FileType> fileTypes) {
         String value = TextUtils.join(ENUM_SERIALIZATION_DELIMITER, (fileTypes == null ? Collections.EMPTY_LIST : fileTypes));
         stringPreferenceProvider.setPreference(R.string.preferences_enabled_export_types_key, value);
+    }
+
+    public float getMainMapZoomLevel() {
+        float value = floatPreferenceProvider.getPreference(R.string.preferences_main_map_zoom_level_key, R.integer.preferences_main_map_zoom_level_default_value);
+        return value;
+    }
+
+    public void setMainMapZoomLevel(float zoomLevel) {
+        floatPreferenceProvider.setPreference(R.string.preferences_main_map_zoom_level_key, zoomLevel);
     }
 }

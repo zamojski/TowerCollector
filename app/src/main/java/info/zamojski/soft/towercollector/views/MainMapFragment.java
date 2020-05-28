@@ -14,10 +14,17 @@ import androidx.preference.PreferenceManager;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
+import org.osmdroid.events.DelayedMapListener;
+import org.osmdroid.events.MapListener;
+import org.osmdroid.events.ScrollEvent;
+import org.osmdroid.events.ZoomEvent;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.CustomZoomButtonsController;
 import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 import java.io.File;
@@ -70,6 +77,23 @@ public class MainMapFragment extends MainFragmentBase {
         mainMapView.setMinZoomLevel(null);
         mainMapView.setMaxZoomLevel(20.0);
         mainMapView.getZoomController().setVisibility(CustomZoomButtonsController.Visibility.ALWAYS);
+
+        IMapController mapController = mainMapView.getController();
+        mapController.setZoom(MyApplication.getPreferencesProvider().getMainMapZoomLevel());
+        mainMapView.addMapListener(new DelayedMapListener(new MapListener() {
+            @Override
+            public boolean onScroll(ScrollEvent scrollEvent) {
+                return false;
+            }
+
+            @Override
+            public boolean onZoom(ZoomEvent zoomEvent) {
+                MyApplication.getPreferencesProvider().setMainMapZoomLevel((float) zoomEvent.getZoomLevel());
+                return false;
+            }
+        }));
+        GeoPoint startPoint = new GeoPoint(52.069167, 19.480556);
+        mapController.setCenter(startPoint);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
