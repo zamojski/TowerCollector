@@ -5,6 +5,10 @@
 package info.zamojski.soft.towercollector.views;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +20,7 @@ import androidx.preference.PreferenceManager;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.osmdroid.api.IMapController;
+import org.osmdroid.bonuspack.clustering.RadiusMarkerClusterer;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.events.DelayedMapListener;
 import org.osmdroid.events.MapListener;
@@ -25,6 +30,7 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.CustomZoomButtonsController;
 import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.FolderOverlay;
 import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
@@ -39,6 +45,7 @@ import info.zamojski.soft.towercollector.events.MeasurementSavedEvent;
 import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
 import info.zamojski.soft.towercollector.model.Cell;
 import info.zamojski.soft.towercollector.model.Measurement;
+import info.zamojski.soft.towercollector.utils.DateUtils;
 import info.zamojski.soft.towercollector.utils.FileUtils;
 import info.zamojski.soft.towercollector.utils.NetworkTypeUtils;
 
@@ -106,32 +113,49 @@ public class MainMapFragment extends MainFragmentBase {
     private void printLastMeasurements(IMapController mapController) {
         Measurement lastMeasurement = MeasurementsDatabase.getInstance(getContext()).getLastMeasurement();
         if (lastMeasurement != null) {
-            GeoPoint startPoint = new GeoPoint(lastMeasurement.getLatitude(), lastMeasurement.getLongitude());
-            mapController.setCenter(startPoint);
-
             // TODO: temporarily load 1000 measurements instead of these visible
             List<Measurement> measurements = MeasurementsDatabase.getInstance(getContext()).getMeasurementsPart(0, 1000);
 
+            GeoPoint startPoint = new GeoPoint(measurements.get(0).getLatitude(), measurements.get(0).getLongitude());
+            mapController.setCenter(startPoint);
+
             // TODO: don't print on main thread
             // create markers
-            List<Marker> items = new ArrayList<>();
+            RadiusMarkerClusterer markers = new RadiusMarkerClusterer(getContext());
+            Bitmap clusterIcon = getBitmap(R.drawable.dot_cluster);
+            markers.setIcon(clusterIcon);
+            markers.setRadius(250);
+            markers.setMaxClusteringZoomLevel(15);
+
             for (Measurement m : measurements) {
                 Marker item = new Marker(mainMapView);
-                List<Cell> cells = m.getMainCells();
+                List<Cell> mainCells = m.getMainCells();
                 @DrawableRes int iconId;
-                if (cells.size() == 1) {
-                    iconId = NetworkTypeUtils.getNetworkGroupIcon(cells.get(0).getNetworkType());
+                if (mainCells.size() == 1) {
+                    iconId = NetworkTypeUtils.getNetworkGroupIcon(mainCells.get(0).getNetworkType());
                 } else {
-                    iconId = NetworkTypeUtils.getNetworkGroupIcon(cells.get(0).getNetworkType(), cells.get(1).getNetworkType());
+                    iconId = NetworkTypeUtils.getNetworkGroupIcon(mainCells.get(0).getNetworkType(), mainCells.get(1).getNetworkType());
                 }
+                item.setTitle(String.valueOf(m.getMeasuredAt()));
                 item.setIcon(getResources().getDrawable(iconId));
                 item.setPosition(new GeoPoint(m.getLatitude(), m.getLongitude()));
-                items.add(item);
+                markers.add(item);
             }
 
             // add overlay
-            mainMapView.getOverlays().addAll(items);
+            mainMapView.getOverlays().add(markers);
         }
+    }
+
+    private Bitmap getBitmap(@DrawableRes int drawableId) {
+        Drawable drawable = getResources().getDrawable(drawableId);
+        Canvas canvas = new Canvas();
+        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        canvas.setBitmap(bitmap);
+        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+        drawable.draw(canvas);
+
+        return bitmap;
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
