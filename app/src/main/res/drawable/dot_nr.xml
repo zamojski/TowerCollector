@@ -4,10 +4,10 @@
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
-    <solid android:color="#ffff00" />
+    <solid android:color="#aaffff00" />
     <stroke
         android:width="0.7dp"
-        android:color="#000000" />
+        android:color="#aa000000" />
     <size
         android:width="6dp"
         android:height="6dp" />
