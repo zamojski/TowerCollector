@@ -6,6 +6,7 @@ package info.zamojski.soft.towercollector.views;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,6 +58,8 @@ public class MainMapFragment extends MainFragmentBase {
     //    private MyLocationNewOverlay myLocationOverlay;
     private RadiusMarkerClusterer markersOverlay;
     private Bitmap clusterIcon;
+    private BackgroundMarkerLoaderTask backgroundMarkerLoaderTask;
+    private boolean missedMapZoomScrollUpdates = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -151,7 +154,7 @@ public class MainMapFragment extends MainFragmentBase {
             @Override
             public boolean onScroll(ScrollEvent scrollEvent) {
                 Timber.tag(INNER_TAG).d("onScroll(): Scrolling to x=%1$s, y=%2$s", scrollEvent.getX(), scrollEvent.getY());
-                loadMarkers();
+                reloadMarkers();
                 return false;
             }
 
@@ -165,7 +168,7 @@ public class MainMapFragment extends MainFragmentBase {
                 } else {
                     //TODO as above?
                 }
-                loadMarkers();
+                reloadMarkers();
                 return false;
             }
         }, MAP_DATA_LOAD_DELAY_IN_MILLIS));
@@ -211,17 +214,21 @@ public class MainMapFragment extends MainFragmentBase {
 //        });
 //    }
 
-    private void loadMarkers() {
-        //TODO async loading
-        Boundaries boundaries = getVisibleBoundaries();
-        List<MapMeasurement> measurements = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsInArea(boundaries);
-        Timber.d("loadMarkers(): Loaded %s markers", measurements.size());
+    private void reloadMarkers() {
+        if (backgroundMarkerLoaderTask == null) {
+            this.backgroundMarkerLoaderTask = new BackgroundMarkerLoaderTask();
+            Boundaries boundaries = getVisibleBoundaries();
+            this.backgroundMarkerLoaderTask.execute(boundaries);
+        } else {
+            // background load is active, we miss the scroll/zoom
+            missedMapZoomScrollUpdates = true;
+        }
+    }
+
+    private void displayMarkers(RadiusMarkerClusterer newMarkersOverlay) {
         mainMapView.getOverlays().remove(markersOverlay);
         markersOverlay.onDetach(mainMapView);
-        markersOverlay = createMarkersOverlay();
-        for (MapMeasurement m : measurements) {
-            addMarker(m);
-        }
+        markersOverlay = newMarkersOverlay;
         mainMapView.getOverlays().add(markersOverlay);
         if (mainMapView.isAnimating()) {
             mainMapView.postInvalidate();
@@ -246,7 +253,7 @@ public class MainMapFragment extends MainFragmentBase {
         return new Boundaries(minLat, minLon, maxLat, maxLon);
     }
 
-    private void addMarker(MapMeasurement m) {
+    private Marker createMarker(MapMeasurement m) {
         List<MapCell> mainCells = m.getMainCells();
         @DrawableRes int iconId;
         if (mainCells.size() == 1) {
@@ -258,7 +265,7 @@ public class MainMapFragment extends MainFragmentBase {
         item.setIcon(getResources().getDrawable(iconId));
         item.setTitle(String.valueOf(m.getDescription()));
         item.setPosition(new GeoPoint(m.getLatitude(), m.getLongitude()));
-        markersOverlay.add(item);
+        return item;
     }
 
     private void moveToLastMeasurement() {
@@ -298,13 +305,55 @@ public class MainMapFragment extends MainFragmentBase {
         Timber.d("onEvent(): MeasurementSavedEvent");
         //TODO don't add infinitely
         MapMeasurement m = MapMeasurement.fromMeasurement(event.getMeasurement());
-        addMarker(m);
+        markersOverlay.add(createMarker(m));
         moveToMeasurement(m.getLatitude(), m.getLongitude());
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(PrintMainWindowEvent event) {
         Timber.d("onEvent(): PrintMainWindowEvent");
-        loadMarkers();
+        reloadMarkers();
+    }
+
+    private class BackgroundMarkerLoaderTask extends AsyncTask<Boundaries, Void, RadiusMarkerClusterer> {
+        private final String INNER_TAG = MainMapFragment.class.getSimpleName() + "." + BackgroundMarkerLoaderTask.class.getSimpleName();
+
+        @Override
+        protected RadiusMarkerClusterer doInBackground(Boundaries... boundariesParams) {
+            RadiusMarkerClusterer result = createMarkersOverlay();
+            try {
+                Boundaries boundaries = boundariesParams[0];
+                List<MapMeasurement> measurements = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsInArea(boundaries);
+                for (MapMeasurement m : measurements) {
+                    if (isCancelled())
+                        return null;
+                    result.add(createMarker(m));
+                }
+            } catch (Exception ex) {
+                Timber.tag(INNER_TAG).e(ex, "doInBackground(): Failed to load markers");
+                cancel(false);
+            }
+
+            if (!isCancelled()) {
+                Timber.tag(INNER_TAG).d("doInBackground(): Loaded %s markers", result.getItems().size());
+                return result;
+            }
+            Timber.tag(INNER_TAG).d("doInBackground(): Markers loading cancelled");
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(RadiusMarkerClusterer result) {
+            if (!isCancelled() && result != null) {
+                displayMarkers(result);
+            }
+            backgroundMarkerLoaderTask = null;
+            // reload if scroll/zoom occurred while loading
+            if (missedMapZoomScrollUpdates) {
+                Timber.tag(INNER_TAG).d("onPostExecute(): Missed scroll/zoom updates - reloading");
+                missedMapZoomScrollUpdates = false;
+                reloadMarkers();
+            }
+        }
     }
 }
