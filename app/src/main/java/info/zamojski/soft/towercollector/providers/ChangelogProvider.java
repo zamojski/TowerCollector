@@ -33,7 +33,7 @@ public class ChangelogProvider {
 
     public ChangelogInfo getChangelog(int previousVersion) {
         try {
-            String rawChangelog = ResourceUtils.getRawResource(context, changelogId);
+            String rawChangelog = ResourceUtils.getRawString(context, changelogId);
             ChangelogInfo changelog = changelogParser.parse(rawChangelog);
             List<ChangelogEntry> entriesToRemove = new ArrayList<ChangelogEntry>();
             for (ChangelogEntry entry : changelog.getEntries()) {

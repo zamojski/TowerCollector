@@ -6,6 +6,8 @@ package info.zamojski.soft.towercollector.model;
 
 import android.text.TextUtils;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +16,7 @@ public class MapMeasurement implements Serializable {
 
     private static final long serialVersionUID = -1561704184666574202L;
 
-     /**
+    /**
      * Geographic Latitude.
      */
     private double latitude;
@@ -62,6 +64,30 @@ public class MapMeasurement implements Serializable {
         return mainCells;
     }
 
+    public String getDescription() {
+        StringBuilder sb = new StringBuilder();
+        for (MapCell c : getMainCells()) {
+            if (c.getMcc() != Cell.UNKNOWN_CID)
+                sb.append(c.getMcc()).append('-');
+            sb.append(c.getMnc())
+                    .append(c.getLac())
+                    .append(c.getCid());
+        }
+        return sb.toString();
+    }
+
+    public static MapMeasurement fromMeasurement(Measurement m) {
+        MapMeasurement mm = new MapMeasurement();
+        mm.setLatitude(m.getLatitude());
+        mm.setLongitude(m.getLongitude());
+        List<MapCell> cc = mm.getCells();
+        for (Cell c : m.getCells()) {
+            cc.add(MapCell.fromCell(c));
+        }
+        return mm;
+    }
+
+    @NotNull
     @Override
     public String toString() {
         return "MapMeasurement{" +

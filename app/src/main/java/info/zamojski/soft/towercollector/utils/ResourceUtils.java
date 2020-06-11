@@ -4,20 +4,25 @@
 
 package info.zamojski.soft.towercollector.utils;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+
+import androidx.annotation.DrawableRes;
+import androidx.annotation.RawRes;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
-import android.content.Context;
-import android.util.TypedValue;
 
 import timber.log.Timber;
 
 public class ResourceUtils {
 
-    public static String getRawResource(Context context, int resourceId) {
+    public static String getRawString(Context context, @RawRes int rawId) {
         try {
             StringBuilder builder = new StringBuilder();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(context.getResources().openRawResource(resourceId)));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(context.getResources().openRawResource(rawId)));
             String line;
             while ((line = reader.readLine()) != null) {
                 builder.append(line);
@@ -30,9 +35,18 @@ public class ResourceUtils {
         }
     }
 
-    public static String getColorFromThemeInHex(Context context, int resourceId) {
-        TypedValue typedvalueattr = new TypedValue();
-        context.getTheme().resolveAttribute(resourceId, typedvalueattr, true);
-        return String.format("#%06X", (0xFFFFFF & context.getResources().getColor(typedvalueattr.resourceId)));
+    public static Bitmap getDrawableBitmap(Context context, @DrawableRes int drawableId) {
+        try {
+            Drawable drawable = context.getResources().getDrawable(drawableId);
+            Canvas canvas = new Canvas();
+            Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+            canvas.setBitmap(bitmap);
+            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+            drawable.draw(canvas);
+            return bitmap;
+        } catch (Exception ex) {
+            Timber.e(ex, "getDrawableBitmap(): Unable to convert drawable to bitmap");
+            return null;
+        }
     }
 }

@@ -541,6 +541,7 @@ public class MeasurementsDatabase {
                 + " INNER JOIN " + CellSignalsTable.TABLE_NAME + " ON (" + NotUploadedMeasurementsView.VIEW_NAME + "." + MeasurementsTable.COLUMN_ROW_ID + " = " + CellSignalsTable.TABLE_NAME + "." + CellSignalsTable.COLUMN_MEASUREMENT_ID + ")"
                 + " INNER JOIN " + CellsTable.TABLE_NAME + " ON (" + CellSignalsTable.TABLE_NAME + "." + CellSignalsTable.COLUMN_CELL_ID + " = " + CellsTable.TABLE_NAME + "." + CellsTable.COLUMN_ROW_ID + ")");
         String[] returnedColumns = {
+                NotUploadedMeasurementsView.VIEW_NAME + "." + MeasurementsTable.COLUMN_ROW_ID + " AS " + MEASUREMENT_ROW_ID,
                 CellSignalsTable.COLUMN_NEIGHBORING,
                 MeasurementsTable.COLUMN_LATITUDE,
                 MeasurementsTable.COLUMN_LONGITUDE,
@@ -551,11 +552,15 @@ public class MeasurementsDatabase {
                 CellsTable.COLUMN_NET_TYPE
         };
         // latitude / latitude can pass north or south pole / date line and between would fail
-        String selection = MeasurementsTable.COLUMN_LATITUDE + " > " + boundaries.getMinLat()
-                + " AND " + MeasurementsTable.COLUMN_LATITUDE + " < " + boundaries.getMaxLat()
-                + " AND " + MeasurementsTable.COLUMN_LONGITUDE + " > " + boundaries.getMinLon()
-                + " AND " + MeasurementsTable.COLUMN_LONGITUDE + " < " + boundaries.getMaxLon();
-        Cursor cursor = queryBuilder.query(db, returnedColumns, selection, null, null, null, null, null);
+        String selection = MeasurementsTable.COLUMN_LATITUDE + " > ?"
+                + " AND " + MeasurementsTable.COLUMN_LATITUDE + " < ?"
+                + " AND " + MeasurementsTable.COLUMN_LONGITUDE + " > ?"
+                + " AND " + MeasurementsTable.COLUMN_LONGITUDE + " < ?";
+        String[] selectionArgs = new String[]{
+                String.valueOf(boundaries.getMinLat()), String.valueOf(boundaries.getMaxLat()), String.valueOf(boundaries.getMinLon()), String.valueOf(boundaries.getMaxLon())
+        };
+        String q = queryBuilder.buildQuery(returnedColumns, selection, null,null,null,null);
+        Cursor cursor = queryBuilder.query(db, returnedColumns, selection, selectionArgs, null, null, null, null);
         int measurementIdColumnIndex = cursor.getColumnIndex(MEASUREMENT_ROW_ID);
         int mccColumnIndex = cursor.getColumnIndex(CellsTable.COLUMN_MCC);
         int mncColumnIndex = cursor.getColumnIndex(CellsTable.COLUMN_MNC);

@@ -87,6 +87,17 @@ public class MapCell implements Serializable {
         this.cid = cid;
     }
 
+    public static MapCell fromCell(Cell c) {
+        MapCell cc = new MapCell();
+        cc.setMcc(c.getMcc());
+        cc.setMnc(c.getMnc());
+        cc.setLac(c.getLac());
+        cc.setCid(c.getCid());
+        cc.setNetworkType(c.getNetworkType());
+        cc.setNeighboring(c.isNeighboring());
+        return cc;
+    }
+
     @NotNull
     @Override
     public String toString() {
