@@ -8,7 +8,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.InputDevice;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -128,25 +130,23 @@ public class MainMapFragment extends MainFragmentBase {
         mainMapView.setMinZoomLevel(5.0);
         mainMapView.setMaxZoomLevel(20.0);
 
-//        // configure zoom using mouse wheel
-        //todo doesnt work in emulator, probably due to tabs
-//        mainMapView.setOnGenericMotionListener(new View.OnGenericMotionListener() {
-//            @Override
-//            public boolean onGenericMotion(View v, MotionEvent event) {
-//                if ((event.getSource() & InputDevice.SOURCE_CLASS_POINTER) != 0) {
-//                    if (event.getAction() == MotionEvent.ACTION_SCROLL) {
-//                        if (event.getAxisValue(MotionEvent.AXIS_VSCROLL) < 0.0f)
-//                            mainMapView.getController().zoomOut();
-//                        else {
-//                            mainMapView.getController().zoomIn();
-//                        }
-//                        return true;
-//                    }
-//                }
-//                return false;
-//            }
-//        });
-
+        // configure zoom using mouse wheel
+        mainMapView.setOnGenericMotionListener(new View.OnGenericMotionListener() {
+            @Override
+            public boolean onGenericMotion(View v, MotionEvent event) {
+                if ((event.getSource() & InputDevice.SOURCE_CLASS_POINTER) != 0) {
+                    if (event.getAction() == MotionEvent.ACTION_SCROLL) {
+                        if (event.getAxisValue(MotionEvent.AXIS_VSCROLL) < 0.0f)
+                            mainMapView.getController().zoomOut();
+                        else {
+                            mainMapView.getController().zoomIn();
+                        }
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
 
         IMapController mapController = mainMapView.getController();
         mapController.setZoom(MyApplication.getPreferencesProvider().getMainMapZoomLevel());
