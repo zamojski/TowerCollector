@@ -53,6 +53,7 @@ import timber.log.Timber;
 public class MainMapFragment extends MainFragmentBase {
 
     private static final int MAP_DATA_LOAD_DELAY_IN_MILLIS = 200;
+    private static final int MAX_MARKERS_ADDED_INDIVIDUALLY = 500;
 
     private MapView mainMapView;
     //    private MyLocationNewOverlay myLocationOverlay;
@@ -60,6 +61,7 @@ public class MainMapFragment extends MainFragmentBase {
     private Bitmap clusterIcon;
     private BackgroundMarkerLoaderTask backgroundMarkerLoaderTask;
     private boolean missedMapZoomScrollUpdates = false;
+    private int markersAddedIndividually = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -235,6 +237,7 @@ public class MainMapFragment extends MainFragmentBase {
         } else {
             mainMapView.invalidate();
         }
+        markersAddedIndividually = 0;
     }
 
     private Boundaries getVisibleBoundaries() {
@@ -302,16 +305,18 @@ public class MainMapFragment extends MainFragmentBase {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(MeasurementSavedEvent event) {
-        Timber.d("onEvent(): MeasurementSavedEvent");
-        //TODO don't add infinitely
-        MapMeasurement m = MapMeasurement.fromMeasurement(event.getMeasurement());
-        markersOverlay.add(createMarker(m));
-        moveToMeasurement(m.getLatitude(), m.getLongitude());
+        if (++markersAddedIndividually <= MAX_MARKERS_ADDED_INDIVIDUALLY) {
+            Timber.d("onEvent(): Adding single measurement to the map, added %s of %s", markersAddedIndividually, MAX_MARKERS_ADDED_INDIVIDUALLY);
+            MapMeasurement m = MapMeasurement.fromMeasurement(event.getMeasurement());
+            markersOverlay.add(createMarker(m));
+            moveToMeasurement(m.getLatitude(), m.getLongitude());
+        } else {
+            reloadMarkers();
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(PrintMainWindowEvent event) {
-        Timber.d("onEvent(): PrintMainWindowEvent");
         reloadMarkers();
     }
 
