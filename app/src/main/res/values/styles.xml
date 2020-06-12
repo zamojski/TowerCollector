@@ -6,6 +6,7 @@
 
     <style name="LightAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="icon_color">@color/icon_light</item>
+        <item name="dot_color">@color/dot_light</item>
         <item name="android:textColor">@color/text_light</item>
         <item name="android:textColorSecondary">@color/text_secondary_light</item>
         <item name="toolbar_background_color">@color/toolbar_light</item>
@@ -19,6 +20,7 @@
 
     <style name="DarkAppTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="icon_color">@color/icon_dark</item>
+        <item name="dot_color">@color/dot_dark</item>
         <item name="android:textColor">@color/text_dark</item>
         <item name="android:textColorSecondary">@color/text_secondary_dark</item>
         <item name="toolbar_background_color">@color/toolbar_dark</item>

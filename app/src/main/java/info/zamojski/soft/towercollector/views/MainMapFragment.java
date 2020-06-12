@@ -34,6 +34,7 @@ import org.osmdroid.util.BoundingBox;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
+import org.osmdroid.views.overlay.TilesOverlay;
 
 import java.io.File;
 import java.util.List;
@@ -130,6 +131,12 @@ public class MainMapFragment extends MainFragmentBase {
         mainMapView.setMinZoomLevel(5.0);
         mainMapView.setMaxZoomLevel(20.0);
 
+        if (MyApplication.getCurrentAppTheme() == R.style.DarkAppTheme)
+            mainMapView.getOverlayManager().getTilesOverlay().setColorFilter(TilesOverlay.INVERT_COLORS);
+
+        IMapController mapController = mainMapView.getController();
+        mapController.setZoom(MyApplication.getPreferencesProvider().getMainMapZoomLevel());
+
         // configure zoom using mouse wheel
         mainMapView.setOnGenericMotionListener(new View.OnGenericMotionListener() {
             @Override
@@ -148,8 +155,6 @@ public class MainMapFragment extends MainFragmentBase {
             }
         });
 
-        IMapController mapController = mainMapView.getController();
-        mapController.setZoom(MyApplication.getPreferencesProvider().getMainMapZoomLevel());
         mainMapView.addMapListener(new DelayedMapListener(new MapListener() {
             private final String INNER_TAG = MainMapFragment.class.getSimpleName() + "." + DelayedMapListener.class.getSimpleName();
 
@@ -265,7 +270,7 @@ public class MainMapFragment extends MainFragmentBase {
             iconId = NetworkTypeUtils.getNetworkGroupIcon(mainCells.get(0).getNetworkType(), mainCells.get(1).getNetworkType());
         }
         Marker item = new Marker(mainMapView);
-        item.setIcon(getResources().getDrawable(iconId));
+        item.setIcon(getResources().getDrawable(iconId, getActivity().getTheme()));
         item.setTitle(String.valueOf(m.getDescription()));
         item.setPosition(new GeoPoint(m.getLatitude(), m.getLongitude()));
         return item;

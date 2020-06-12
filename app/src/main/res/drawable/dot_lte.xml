@@ -7,7 +7,7 @@
     <solid android:color="#aa0000ff" />
     <stroke
         android:width="0.7dp"
-        android:color="#aa000000" />
+        android:color="?attr/dot_color" />
     <size
         android:width="6dp"
         android:height="6dp" />
