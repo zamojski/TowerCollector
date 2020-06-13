@@ -6,6 +6,8 @@ package info.zamojski.soft.towercollector.views;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.InputDevice;
@@ -13,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.DrawableRes;
@@ -58,6 +61,7 @@ public class MainMapFragment extends MainFragmentBase {
     private static final int MAP_DATA_LOAD_DELAY_IN_MILLIS = 200;
     private static final int MAX_MARKERS_ADDED_INDIVIDUALLY = 500;
 
+    private LocationManager locationManager;
     private MapView mainMapView;
     //    private MyLocationNewOverlay myLocationOverlay;
     private RadiusMarkerClusterer markersOverlay;
@@ -65,6 +69,12 @@ public class MainMapFragment extends MainFragmentBase {
     private BackgroundMarkerLoaderTask backgroundMarkerLoaderTask;
     private boolean missedMapZoomScrollUpdates = false;
     private int markersAddedIndividually = 0;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -155,6 +165,25 @@ public class MainMapFragment extends MainFragmentBase {
             }
         });
 
+        ImageButton myLocationButton = view.findViewById(R.id.main_map_my_location_button);
+        myLocationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Location lastLocation = null;
+                try {
+                    lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                } catch (SecurityException ex) {
+                    Timber.w(ex, "onMyLocationClick(): No permission to get last known location");
+                    Toast.makeText(getActivity(), R.string.permission_denied, Toast.LENGTH_LONG).show();
+                }
+                Timber.i("onMyLocationClick(): Moving to %s", lastLocation);
+                if (lastLocation != null) {
+                    GeoPoint myPosition = new GeoPoint(lastLocation.getLatitude(), lastLocation.getLongitude());
+                    mainMapView.getController().animateTo(myPosition);
+                }
+            }
+        });
+
         mainMapView.addMapListener(new DelayedMapListener(new MapListener() {
             private final String INNER_TAG = MainMapFragment.class.getSimpleName() + "." + DelayedMapListener.class.getSimpleName();
 
@@ -189,20 +218,7 @@ public class MainMapFragment extends MainFragmentBase {
 //        myLocationOverlay.setEnableAutoStop(true);
 //        mainMapView.getOverlayManager().add(myLocationOverlay);
 //
-//        ImageButton btCenterMap = getView().findViewById(R.id.ic_center_map);
-//
-//        btCenterMap.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //Log.i(TAG, "centerMap clicked ");
-//                //TODO get current location and move to it
-//                Measurement lastMeasurement = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getLastMeasurement();
-//                if (lastMeasurement != null) {
-//                    GeoPoint myPosition = new GeoPoint(lastMeasurement.getLatitude(), lastMeasurement.getLongitude());
-//                    mainMapView.getController().animateTo(myPosition);
-//                }
-//            }
-//        });
+
 //
 //        ImageButton btFollowMe = getView().findViewById(R.id.ic_follow_me);
 //
@@ -288,7 +304,7 @@ public class MainMapFragment extends MainFragmentBase {
     private void moveToMeasurement(double lat, double lon) {
         Timber.d("moveToMeasurement(): Moving screen to lat=%1$s, lon=%2$s", lat, lon);
         GeoPoint startPoint = new GeoPoint(lat, lon);
-        mainMapView.getController().setCenter(startPoint);
+        mainMapView.getController().animateTo(startPoint);
     }
 
     private void configureMapPreferences() {
