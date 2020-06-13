@@ -215,4 +215,13 @@ public class PreferencesProvider {
     public void setMainMapZoomLevel(float zoomLevel) {
         floatPreferenceProvider.setPreference(R.string.preferences_main_map_zoom_level_key, zoomLevel);
     }
+
+    public boolean isMainMapFollowMeEnabled() {
+        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_main_map_follow_me_enabled_key, R.bool.preferences_main_map_follow_me_enabled_default_value);
+        return value;
+    }
+
+    public void setMainMapFollowMeEnabled(boolean enabled) {
+        booleanPreferenceProvider.setPreference(R.string.preferences_main_map_follow_me_enabled_key, enabled);
+    }
 }

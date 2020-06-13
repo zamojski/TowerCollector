@@ -128,6 +128,9 @@
     <string name="preferences_main_map_zoom_level_key">main_map_zoom_level</string>
     <integer name="preferences_main_map_zoom_level_default_value">15</integer>
 
+    <string name="preferences_main_map_follow_me_enabled_key">main_map_follow_me_enabled</string>
+    <bool name="preferences_main_map_follow_me_enabled_default_value">true</bool>
+
     <string name="preferences_help_link_key" translatable="false">help_link</string>
     <string name="preferences_about_link_key" translatable="false">about_link</string>
     <string name="preferences_introduction_link_key" translatable="false">introduction_link</string>

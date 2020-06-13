@@ -7,7 +7,6 @@ package info.zamojski.soft.towercollector.views;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.InputDevice;
@@ -47,6 +46,7 @@ import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.events.MeasurementSavedEvent;
 import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
+import info.zamojski.soft.towercollector.map.FollowMyLocationOverlay;
 import info.zamojski.soft.towercollector.model.Boundaries;
 import info.zamojski.soft.towercollector.model.MapCell;
 import info.zamojski.soft.towercollector.model.MapMeasurement;
@@ -56,25 +56,19 @@ import info.zamojski.soft.towercollector.utils.NetworkTypeUtils;
 import info.zamojski.soft.towercollector.utils.ResourceUtils;
 import timber.log.Timber;
 
-public class MainMapFragment extends MainFragmentBase {
+public class MainMapFragment extends MainFragmentBase implements FollowMyLocationOverlay.FollowMyLocationChangeListener {
 
     private static final int MAP_DATA_LOAD_DELAY_IN_MILLIS = 200;
     private static final int MAX_MARKERS_ADDED_INDIVIDUALLY = 500;
 
-    private LocationManager locationManager;
     private MapView mainMapView;
-    //    private MyLocationNewOverlay myLocationOverlay;
+    private FollowMyLocationOverlay myLocationOverlay;
+    private ImageButton followMeButton;
     private RadiusMarkerClusterer markersOverlay;
     private Bitmap clusterIcon;
     private BackgroundMarkerLoaderTask backgroundMarkerLoaderTask;
     private boolean missedMapZoomScrollUpdates = false;
     private int markersAddedIndividually = 0;
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -89,8 +83,8 @@ public class MainMapFragment extends MainFragmentBase {
         super.configureOnResume();
         if (mainMapView != null)
             mainMapView.onResume();
-//        myLocationOverlay.enableFollowLocation();
-//        myLocationOverlay.enableMyLocation();
+        setFollowMe(MyApplication.getPreferencesProvider().isMainMapFollowMeEnabled());
+        myLocationOverlay.enableMyLocation();
     }
 
     @Override
@@ -98,8 +92,8 @@ public class MainMapFragment extends MainFragmentBase {
         super.configureOnPause();
         if (mainMapView != null)
             mainMapView.onPause();
-//        myLocationOverlay.disableFollowLocation();
-//        myLocationOverlay.disableMyLocation();
+        myLocationOverlay.disableFollowLocation();
+        myLocationOverlay.disableMyLocation();
     }
 
     @Override
@@ -121,7 +115,6 @@ public class MainMapFragment extends MainFragmentBase {
                 moveToLastMeasurement();
             }
         });
-//        displayCurrentLocation();
     }
 
     private RadiusMarkerClusterer createMarkersOverlay() {
@@ -136,6 +129,9 @@ public class MainMapFragment extends MainFragmentBase {
     protected void configureControls(View view) {
         super.configureControls(view);
         mainMapView = view.findViewById(R.id.main_map);
+        followMeButton = view.findViewById(R.id.main_map_follow_me_button);
+        ImageButton myLocationButton = view.findViewById(R.id.main_map_my_location_button);
+
         mainMapView.setTileSource(TileSourceFactory.MAPNIK);
         mainMapView.setMultiTouchControls(true);
         mainMapView.setMinZoomLevel(5.0);
@@ -146,6 +142,14 @@ public class MainMapFragment extends MainFragmentBase {
 
         IMapController mapController = mainMapView.getController();
         mapController.setZoom(MyApplication.getPreferencesProvider().getMainMapZoomLevel());
+
+        myLocationOverlay = new FollowMyLocationOverlay(mainMapView);
+        myLocationOverlay.setFollowMyLocationChangeListener(this);
+        myLocationOverlay.enableMyLocation();
+        myLocationOverlay.setDrawAccuracyEnabled(true);
+        myLocationOverlay.setEnableAutoStop(true);
+        setFollowMe(MyApplication.getPreferencesProvider().isMainMapFollowMeEnabled());
+        mainMapView.getOverlays().add(myLocationOverlay);
 
         // configure zoom using mouse wheel
         mainMapView.setOnGenericMotionListener(new View.OnGenericMotionListener() {
@@ -165,22 +169,22 @@ public class MainMapFragment extends MainFragmentBase {
             }
         });
 
-        ImageButton myLocationButton = view.findViewById(R.id.main_map_my_location_button);
         myLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Location lastLocation = null;
-                try {
-                    lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                } catch (SecurityException ex) {
-                    Timber.w(ex, "onMyLocationClick(): No permission to get last known location");
-                    Toast.makeText(getActivity(), R.string.permission_denied, Toast.LENGTH_LONG).show();
-                }
+                Location lastLocation = myLocationOverlay.getLastFix();
                 Timber.i("onMyLocationClick(): Moving to %s", lastLocation);
                 if (lastLocation != null) {
                     GeoPoint myPosition = new GeoPoint(lastLocation.getLatitude(), lastLocation.getLongitude());
                     mainMapView.getController().animateTo(myPosition);
                 }
+            }
+        });
+
+        followMeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setFollowMe(!myLocationOverlay.isFollowLocationEnabled());
             }
         });
 
@@ -209,33 +213,6 @@ public class MainMapFragment extends MainFragmentBase {
             }
         }, MAP_DATA_LOAD_DELAY_IN_MILLIS));
     }
-
-//    private void displayCurrentLocation() {
-//        myLocationOverlay = new MyLocationNewOverlay(new GpsMyLocationProvider(MyApplication.getApplication()), mainMapView);
-//        myLocationOverlay.enableFollowLocation();
-//        myLocationOverlay.setDrawAccuracyEnabled(true);
-//        //TODO myLocationOverlay.setPersonIcon();
-//        myLocationOverlay.setEnableAutoStop(true);
-//        mainMapView.getOverlayManager().add(myLocationOverlay);
-//
-
-//
-//        ImageButton btFollowMe = getView().findViewById(R.id.ic_follow_me);
-//
-//        btFollowMe.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //TODO logging Log.i(TAG, "btFollowMe clicked ");
-//                if (!myLocationOverlay.isFollowLocationEnabled()) {
-//                    myLocationOverlay.enableFollowLocation();
-//                    btFollowMe.setImageResource(R.drawable.ic_follow_me_on);
-//                } else {
-//                    myLocationOverlay.disableFollowLocation();
-//                    btFollowMe.setImageResource(R.drawable.ic_follow_me);
-//                }
-//            }
-//        });
-//    }
 
     private void reloadMarkers() {
         if (backgroundMarkerLoaderTask == null) {
@@ -317,6 +294,19 @@ public class MainMapFragment extends MainFragmentBase {
         Configuration.getInstance().setTileFileSystemCacheTrimBytes(100 * 1024 * 1024);
     }
 
+    private void setFollowMe(boolean enable) {
+        if (enable) {
+            Timber.i("onFollowMeClick(): Enabling follow me");
+            myLocationOverlay.enableFollowLocation();
+            followMeButton.setImageResource(R.drawable.map_follow_me_enabled);
+        } else {
+            Timber.i("onFollowMeClick(): Disabling follow me");
+            myLocationOverlay.disableFollowLocation();
+            followMeButton.setImageResource(R.drawable.map_follow_me);
+        }
+        MyApplication.getPreferencesProvider().setMainMapFollowMeEnabled(myLocationOverlay.isFollowLocationEnabled());
+    }
+
     private Bitmap getClusterIcon() {
         if (clusterIcon == null) {
             clusterIcon = ResourceUtils.getDrawableBitmap(MyApplication.getApplication(), R.drawable.dot_cluster);
@@ -339,6 +329,11 @@ public class MainMapFragment extends MainFragmentBase {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(PrintMainWindowEvent event) {
         reloadMarkers();
+    }
+
+    @Override
+    public void onFollowMyLocationChanged(boolean enabled) {
+        setFollowMe(enabled);
     }
 
     private class BackgroundMarkerLoaderTask extends AsyncTask<Boundaries, Void, RadiusMarkerClusterer> {
