@@ -279,16 +279,16 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
     private void moveToLastMeasurement() {
         Measurement lastMeasurement = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getLastMeasurement();
         if (lastMeasurement != null) {
-            moveToMeasurement(lastMeasurement.getLatitude(), lastMeasurement.getLongitude());
+            moveToLocation(lastMeasurement.getLatitude(), lastMeasurement.getLongitude());
         } else {
             Timber.d("moveToLastMeasurement(): No measurements");
         }
     }
 
-    private void moveToMeasurement(double lat, double lon) {
-        Timber.d("moveToMeasurement(): Moving screen to lat=%1$s, lon=%2$s", lat, lon);
+    private void moveToLocation(double lat, double lon) {
+        Timber.d("moveToLocation(): Moving screen to lat=%1$s, lon=%2$s", lat, lon);
         GeoPoint startPoint = new GeoPoint(lat, lon);
-        mainMapView.getController().animateTo(startPoint);
+        mainMapView.getController().setCenter(startPoint); // don't animate because it's used on first load
     }
 
     private void configureMapPreferences() {
@@ -327,7 +327,6 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
             Timber.d("onEvent(): Adding single measurement to the map, added %s of %s", markersAddedIndividually, MAX_MARKERS_ADDED_INDIVIDUALLY);
             MapMeasurement m = MapMeasurement.fromMeasurement(event.getMeasurement());
             markersOverlay.add(createMarker(m));
-            moveToMeasurement(m.getLatitude(), m.getLongitude());
         } else {
             reloadMarkers();
         }
