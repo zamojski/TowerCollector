@@ -545,6 +545,7 @@ public class MeasurementsDatabase {
                 CellSignalsTable.COLUMN_NEIGHBORING,
                 MeasurementsTable.COLUMN_LATITUDE,
                 MeasurementsTable.COLUMN_LONGITUDE,
+                MeasurementsTable.COLUMN_MEASURED_AT,
                 CellsTable.COLUMN_CID,
                 CellsTable.COLUMN_LAC,
                 CellsTable.COLUMN_MNC,
@@ -570,6 +571,7 @@ public class MeasurementsDatabase {
         int neighboringColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_NEIGHBORING);
         int latitudeColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_LATITUDE);
         int longitudeColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_LONGITUDE);
+        int measuredAtColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_MEASURED_AT);
         while (cursor.moveToNext()) {
             MapMeasurement measurement;
             int measurementId = cursor.getInt(measurementIdColumnIndex);
@@ -579,6 +581,7 @@ public class MeasurementsDatabase {
                 measurement = new MapMeasurement();
                 measurement.setLatitude(cursor.getDouble(latitudeColumnIndex));
                 measurement.setLongitude(cursor.getDouble(longitudeColumnIndex));
+                measurement.setMeasuredAt(cursor.getLong(measuredAtColumnIndex));
 
                 tempMeasurements.put(measurementId, measurement);
                 measurementList.add(measurement);

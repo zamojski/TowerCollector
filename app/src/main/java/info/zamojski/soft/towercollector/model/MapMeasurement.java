@@ -30,6 +30,10 @@ public class MapMeasurement implements Serializable {
     /**
      * Associated cells.
      */
+    /**
+     * Measured at Unix Timestamp with milliseconds.
+     */
+    private long measuredAt;
     private List<MapCell> cells = new ArrayList<>();
 
     public double getLatitude() {
@@ -46,6 +50,14 @@ public class MapMeasurement implements Serializable {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public long getMeasuredAt() {
+        return measuredAt;
+    }
+
+    public void setMeasuredAt(long measuredAt) {
+        this.measuredAt = measuredAt;
     }
 
     public List<MapCell> getCells() {
@@ -80,7 +92,7 @@ public class MapMeasurement implements Serializable {
                     .append(c.getLac())
                     .append('-')
                     .append(c.getCid())
-            .append("\r\n");
+            .append("<br/>");
         }
         return sb.toString();
     }
@@ -89,6 +101,7 @@ public class MapMeasurement implements Serializable {
         MapMeasurement mm = new MapMeasurement();
         mm.setLatitude(m.getLatitude());
         mm.setLongitude(m.getLongitude());
+        mm.setMeasuredAt(m.getMeasuredAt());
         List<MapCell> cc = mm.getCells();
         for (Cell c : m.getCells()) {
             cc.add(MapCell.fromCell(c));
@@ -102,6 +115,7 @@ public class MapMeasurement implements Serializable {
         return "MapMeasurement{" +
                 "latitude=" + latitude +
                 ", longitude=" + longitude +
+                ", measuredAt=" + measuredAt +
                 ", cells=[" + TextUtils.join(", ", cells) + "]" +
                 '}';
     }

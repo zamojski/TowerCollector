@@ -39,7 +39,10 @@ import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.TilesOverlay;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
@@ -69,6 +72,8 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
     private BackgroundMarkerLoaderTask backgroundMarkerLoaderTask;
     private boolean missedMapZoomScrollUpdates = false;
     private int markersAddedIndividually = 0;
+
+    private SimpleDateFormat dateTimeFormatStandard;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -212,6 +217,8 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
                 return false;
             }
         }, MAP_DATA_LOAD_DELAY_IN_MILLIS));
+
+        dateTimeFormatStandard = new SimpleDateFormat(getString(R.string.date_time_format_standard), new Locale(getString(R.string.locale)));
     }
 
     private void reloadMarkers() {
@@ -264,7 +271,8 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         }
         Marker item = new Marker(mainMapView);
         item.setIcon(getResources().getDrawable(iconId, getActivity().getTheme()));
-        item.setTitle(String.valueOf(m.getDescription(MyApplication.getApplication())));
+        item.setTitle(dateTimeFormatStandard.format(new Date(m.getMeasuredAt())));
+        item.setSnippet(String.valueOf(m.getDescription(MyApplication.getApplication())));
         item.setPosition(new GeoPoint(m.getLatitude(), m.getLongitude()));
         item.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
             @Override
