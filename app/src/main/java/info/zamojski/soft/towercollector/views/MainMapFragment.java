@@ -264,8 +264,15 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         }
         Marker item = new Marker(mainMapView);
         item.setIcon(getResources().getDrawable(iconId, getActivity().getTheme()));
-        item.setTitle(String.valueOf(m.getDescription()));
+        item.setTitle(String.valueOf(m.getDescription(MyApplication.getApplication())));
         item.setPosition(new GeoPoint(m.getLatitude(), m.getLongitude()));
+        item.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker, MapView mapView) {
+                marker.showInfoWindow();
+                return true;
+            }
+        });
         return item;
     }
 

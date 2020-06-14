@@ -4,6 +4,7 @@
 
 package info.zamojski.soft.towercollector.model;
 
+import android.content.Context;
 import android.text.TextUtils;
 
 import org.jetbrains.annotations.NotNull;
@@ -11,6 +12,8 @@ import org.jetbrains.annotations.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import info.zamojski.soft.towercollector.utils.NetworkTypeUtils;
 
 public class MapMeasurement implements Serializable {
 
@@ -64,14 +67,20 @@ public class MapMeasurement implements Serializable {
         return mainCells;
     }
 
-    public String getDescription() {
+    public String getDescription(Context context) {
         StringBuilder sb = new StringBuilder();
         for (MapCell c : getMainCells()) {
+            sb.append(context.getString(NetworkTypeUtils.getNetworkGroupNameResId(c.getNetworkType())))
+                    .append(": ");
             if (c.getMcc() != Cell.UNKNOWN_CID)
-                sb.append(c.getMcc()).append('-');
+                sb.append(c.getMcc())
+                        .append('-');
             sb.append(c.getMnc())
+                    .append('-')
                     .append(c.getLac())
-                    .append(c.getCid());
+                    .append('-')
+                    .append(c.getCid())
+            .append("\r\n");
         }
         return sb.toString();
     }
