@@ -58,7 +58,7 @@ public class UploaderService extends Service {
     public static final String INTENT_KEY_RESULT_DESCRIPTION = "result_description";
     public static final String INTENT_KEY_START_INTENT_SOURCE = "start_intent_source";
     public static final int NOTIFICATION_ID = 'U';
-    private static final int LOCATIONS_PER_PART = 100;
+    private static final int LOCATIONS_PER_PART = 90;
 
     private HandlerThread handlerThread;
     private Handler handler;
