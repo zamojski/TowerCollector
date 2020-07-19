@@ -63,6 +63,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
 
     private static final int MAP_DATA_LOAD_DELAY_IN_MILLIS = 200;
     private static final int MAX_MARKERS_ADDED_INDIVIDUALLY = 500;
+    private static final float BOUNDARIES_INCREASE_FACTOR = 1.2f; // 10% more each side
 
     private MapView mainMapView;
     private FollowMyLocationOverlay myLocationOverlay;
@@ -247,7 +248,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
 
     private Boundaries getVisibleBoundaries() {
         BoundingBox boundingBox = mainMapView.getProjection().getBoundingBox();
-        BoundingBox boundingBoxWithReserve = boundingBox.increaseByScale(1.2f); // 10% more each side
+        BoundingBox boundingBoxWithReserve = boundingBox.increaseByScale(BOUNDARIES_INCREASE_FACTOR);
         double minLat = boundingBoxWithReserve.getActualSouth();
         double maxLat = boundingBoxWithReserve.getActualNorth();
         double minLon = boundingBoxWithReserve.getLonWest();
