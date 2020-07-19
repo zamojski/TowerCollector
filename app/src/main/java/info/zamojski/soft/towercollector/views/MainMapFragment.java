@@ -105,6 +105,8 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        if (backgroundMarkerLoaderTask != null)
+            backgroundMarkerLoaderTask.cancel(false);
         if (mainMapView != null)
             mainMapView.onDetach();
     }
