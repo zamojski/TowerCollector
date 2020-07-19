@@ -274,13 +274,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         item.setTitle(dateTimeFormatStandard.format(new Date(m.getMeasuredAt())));
         item.setSnippet(String.valueOf(m.getDescription(MyApplication.getApplication())));
         item.setPosition(new GeoPoint(m.getLatitude(), m.getLongitude()));
-        item.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker, MapView mapView) {
-                marker.showInfoWindow();
-                return true;
-            }
-        });
+        item.setOnMarkerClickListener(MARKER_CLICK_LISTENER);
         return item;
     }
 
@@ -391,4 +385,12 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
             }
         }
     }
+
+    private static Marker.OnMarkerClickListener MARKER_CLICK_LISTENER = new Marker.OnMarkerClickListener() {
+        @Override
+        public boolean onMarkerClick(Marker marker, MapView mapView) {
+            marker.showInfoWindow();
+            return true;
+        }
+    };
 }
