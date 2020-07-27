@@ -24,6 +24,7 @@ import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.FileType;
 import info.zamojski.soft.towercollector.files.FileGeneratorResult;
 import info.zamojski.soft.towercollector.files.devices.FileTextDevice;
+import info.zamojski.soft.towercollector.files.devices.GZipFileTextDevice;
 import info.zamojski.soft.towercollector.files.devices.IWritableTextDevice;
 import info.zamojski.soft.towercollector.files.devices.ZipFileTextDevice;
 import info.zamojski.soft.towercollector.files.formatters.csv.CsvExportFormatter;
@@ -211,7 +212,15 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
     }
 
     private IWritableTextDevice getTextDevice(String path, boolean compressFiles) {
-        return compressFiles ? new ZipFileTextDevice(path) : new FileTextDevice(path);
+        if (compressFiles) {
+            String compressionFormat = MyApplication.getPreferencesProvider().getExportCompressionFormat();
+            if (compressionFormat.equals(getStringById(R.string.preferences_export_compression_format_entries_value_zip))) {
+                return new ZipFileTextDevice(path);
+            } else if (compressionFormat.equals(getStringById(R.string.preferences_export_compression_format_entries_value_gzip))) {
+                return new GZipFileTextDevice(path);
+            }
+        }
+        return new FileTextDevice(path);
     }
 
     private void deleteFile() {
