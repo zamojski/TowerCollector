@@ -64,4 +64,12 @@
         <item>@string/preferences_file_logging_level_entries_value_warning</item>
         <item>@string/preferences_file_logging_level_entries_value_error</item>
     </string-array>
+    <string-array name="preferences_export_compression_format_entries_labels" translatable="false">
+        <item>@string/preferences_export_compression_format_zip</item>
+        <item>@string/preferences_export_compression_format_gzip</item>
+    </string-array>
+    <string-array name="preferences_export_compression_format_entries_values" translatable="false">
+        <item>@string/preferences_export_compression_format_entries_value_zip</item>
+        <item>@string/preferences_export_compression_format_entries_value_gzip</item>
+    </string-array>
 </resources>

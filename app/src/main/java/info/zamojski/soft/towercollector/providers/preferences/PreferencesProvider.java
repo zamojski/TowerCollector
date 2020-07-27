@@ -204,4 +204,9 @@ public class PreferencesProvider {
         String value = TextUtils.join(ENUM_SERIALIZATION_DELIMITER, (fileTypes == null ? Collections.EMPTY_LIST : fileTypes));
         stringPreferenceProvider.setPreference(R.string.preferences_enabled_export_types_key, value);
     }
+
+    public String getExportCompressionFormat() {
+        String value = stringPreferenceProvider.getPreference(R.string.preferences_export_compression_format_key, R.string.preferences_export_compression_format_default_value);
+        return value;
+    }
 }

@@ -93,6 +93,9 @@
     <string name="preferences_keep_screen_on_mode_entries_value_dim" translatable="false">dim</string>
     <string name="preferences_keep_screen_on_mode_entries_value_full" translatable="false">full</string>
 
+    <string name="preferences_export_compression_format_zip" translatable="false">zip</string>
+    <string name="preferences_export_compression_format_gzip" translatable="false">gzip</string>
+
     <string name="preferences_collector_api_version_key" translatable="false">collector_api_version</string>
     <string name="preferences_collector_api_version_default_value" translatable="false">@string/preferences_collector_api_version_entries_value_auto</string>
     <string name="preferences_collector_api_version_entries_value_auto" translatable="false">auto</string>
@@ -119,6 +122,11 @@
     <string name="preferences_notify_measurements_collected_key" translatable="false">notify_measurements_collected</string>
     <bool name="preferences_notify_measurements_collected_default_value" translatable="false">false</bool>
     <string name="preferences_about_notify_measurements_collected_key" translatable="false">about_notify_measurements_collected</string>
+
+    <string name="preferences_export_compression_format_key" translatable="false">preferences_export_compression_format</string>
+    <string name="preferences_export_compression_format_default_value" translatable="false">@string/preferences_export_compression_format_entries_value_zip</string>
+    <string name="preferences_export_compression_format_entries_value_zip" translatable="false">zip</string>
+    <string name="preferences_export_compression_format_entries_value_gzip" translatable="false">gzip</string>
 
     <string name="preferences_about_neighboring_cells_key" translatable="false">about_neighboring_cells</string>
     <string name="preferences_main_window_recent_tab_key" translatable="false">main_window_recent_tab</string>
