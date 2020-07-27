@@ -79,6 +79,9 @@
     <string name="preferences_about_main_keep_screen_on_key" translatable="false">about_main_keep_screen_on</string>
     <string name="preferences_notification_settings_key" translatable="false">notification_settings</string>
 
+    <string name="preferences_show_collector_status_bar_key" translatable="false">show_collector_status_bar</string>
+    <bool name="preferences_show_collector_status_bar_default_value" translatable="false">false</bool>
+
     <bool name="preferences_hide_collector_notification_default_value" translatable="false">false</bool>
     <string name="preferences_hide_collector_notification_key" translatable="false">hide_collector_notification</string>
     <bool name="preferences_start_collector_at_boot_default_value" translatable="false">false</bool>

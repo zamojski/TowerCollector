@@ -209,4 +209,9 @@ public class PreferencesProvider {
         String value = stringPreferenceProvider.getPreference(R.string.preferences_export_compression_format_key, R.string.preferences_export_compression_format_default_value);
         return value;
     }
+
+    public boolean isShowCollectorStatusBarEnabled() {
+        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_show_collector_status_bar_key, R.bool.preferences_show_collector_status_bar_default_value);
+        return value;
+    }
 }

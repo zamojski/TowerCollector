@@ -212,6 +212,8 @@
     <string name="main_help_to_upload_common_locations_title">Measurements to upload</string>
     <string name="main_help_to_upload_ocid_locations_description">Number of measurements waiting for upload to OpenCellID.org.</string>
     <string name="main_help_to_upload_mls_locations_description">Number of measurements waiting for upload to Mozilla Location Services.</string>
+    <string name="collector_status_active">Collecting measurements</string>
+    <string name="collector_status_inactive">Measurements collection is stopped</string>
     <string name="status_initializing">waiting for location</string>
     <string name="status_ok">OK</string>
     <string name="status_low_gps_accuracy">low accuracy <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>

@@ -4,19 +4,31 @@
 
 package info.zamojski.soft.towercollector.views;
 
-import java.text.SimpleDateFormat;
-import java.util.Locale;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+
+import androidx.annotation.StringRes;
+import androidx.fragment.app.Fragment;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
+import info.zamojski.soft.towercollector.CollectorService;
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.enums.GpsStatus;
 import info.zamojski.soft.towercollector.enums.Validity;
 import info.zamojski.soft.towercollector.events.AirplaneModeChangedEvent;
 import info.zamojski.soft.towercollector.events.BatteryOptimizationsChangedEvent;
+import info.zamojski.soft.towercollector.events.CollectorStateChangedEvent;
 import info.zamojski.soft.towercollector.events.GpsStatusChangedEvent;
 import info.zamojski.soft.towercollector.events.PowerSaveModeChangedEvent;
 import info.zamojski.soft.towercollector.events.SystemTimeChangedEvent;
@@ -25,20 +37,14 @@ import info.zamojski.soft.towercollector.utils.NetworkUtils;
 import info.zamojski.soft.towercollector.utils.UnitConverter;
 import timber.log.Timber;
 
-import androidx.annotation.StringRes;
-import androidx.fragment.app.Fragment;
-
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.view.View;
-import android.widget.TableRow;
-import android.widget.TextView;
-
 public abstract class MainFragmentBase extends Fragment {
 
     private TableRow gpsStatusTableRow;
     private TextView gpsStatusLabelTextView;
     private TextView gpsStatusValueTextView;
+
+    private LinearLayout collectorStatusWrapperRow;
+    private TextView collectorStatusValueTextView;
 
     private TableRow invalidSystemTimeTableRow;
     private TextView invalidSystemTimeValueTextView;
@@ -78,6 +84,9 @@ public abstract class MainFragmentBase extends Fragment {
         Configuration configuration = new Configuration(getContext().getResources().getConfiguration());
         configuration.setLocale(locale);
         resourcesForLocale = getContext().createConfigurationContext(configuration).getResources();
+
+        boolean showCollectorStatusBarEnabled = MyApplication.getPreferencesProvider().isShowCollectorStatusBarEnabled();
+        setCollectorStatusBarVisible(collectorStatusWrapperRow, showCollectorStatusBarEnabled);
     }
 
     protected void configureOnPause() {
@@ -87,6 +96,10 @@ public abstract class MainFragmentBase extends Fragment {
         gpsStatusTableRow = view.findViewById(R.id.main_gps_status_tablerow);
         gpsStatusLabelTextView = view.findViewById(R.id.main_gps_status_label_textview);
         gpsStatusValueTextView = view.findViewById(R.id.main_gps_status_value_textview);
+        collectorStatusWrapperRow = view.findViewById(R.id.main_collector_status_wrapper_row);
+        collectorStatusValueTextView = view.findViewById(R.id.main_collector_status_value_textview);
+        boolean isCollectorServiceActive = MyApplication.isBackgroundTaskRunning(CollectorService.class);
+        showCollectorStatus(collectorStatusWrapperRow, collectorStatusValueTextView, isCollectorServiceActive);
         invalidSystemTimeTableRow = view.findViewById(R.id.main_invalid_system_time_tablerow);
         invalidSystemTimeValueTextView = view.findViewById(R.id.main_invalid_system_time_value_textview);
         batteryOptimizationsTableRow = view.findViewById(R.id.main_battery_optimizations_tablerow);
@@ -104,15 +117,14 @@ public abstract class MainFragmentBase extends Fragment {
         // reload preferences
         useImperialUnits = MyApplication.getPreferencesProvider().getUseImperialUnits();
         // cache units
-        if (useImperialUnits) {
-            // preferredSpeedUnit = getString(R.string.unit_speed_imperial);
-            preferredLengthUnit = getString(R.string.unit_length_imperial);
-        } else {
-            // preferredSpeedUnit = getString(R.string.unit_speed_metric);
-            preferredLengthUnit = getString(R.string.unit_length_metric);
-        }
+        preferredLengthUnit = getString(useImperialUnits ? R.string.unit_length_imperial : R.string.unit_length_metric);
         // date format
         dateTimeFormatStandard = new SimpleDateFormat(getString(R.string.date_time_format_standard), new Locale(getString(R.string.locale)));
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onEvent(CollectorStateChangedEvent event) {
+        showCollectorStatus(collectorStatusWrapperRow, collectorStatusValueTextView, event.isActive());
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
@@ -202,5 +214,17 @@ public abstract class MainFragmentBase extends Fragment {
     private void hideGpsStatus() {
         Timber.d("hideGpsStatus(): Hiding status");
         gpsStatusTableRow.setVisibility(View.GONE);
+    }
+
+    private void setCollectorStatusBarVisible(LinearLayout wrapperRow, boolean show) {
+        Timber.d("setCollectorStatusBarVisible(): Setting status bar visible = %s", show);
+        wrapperRow.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+
+    private void showCollectorStatus(LinearLayout wrapperRow, TextView value, boolean active) {
+        Timber.d("showCollectorStatus(): Setting status active = %s", active);
+        wrapperRow.setBackgroundColor(active ? getResources().getColor(R.color.background_valid) : getResources().getColor(R.color.background_needs_attention));
+        value.setTextColor(getResources().getColor(active ? R.color.text_dark : R.color.text_light));
+        value.setText(active ? R.string.collector_status_active : R.string.collector_status_inactive);
     }
 }

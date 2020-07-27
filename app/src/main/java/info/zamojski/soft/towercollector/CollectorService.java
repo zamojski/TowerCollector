@@ -64,6 +64,7 @@ import info.zamojski.soft.towercollector.enums.KeepScreenOnMode;
 import info.zamojski.soft.towercollector.enums.MeansOfTransport;
 import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.enums.Validity;
+import info.zamojski.soft.towercollector.events.CollectorStateChangedEvent;
 import info.zamojski.soft.towercollector.events.GpsStatusChangedEvent;
 import info.zamojski.soft.towercollector.events.MeasurementProcessedEvent;
 import info.zamojski.soft.towercollector.events.MeasurementSavedEvent;
@@ -260,6 +261,8 @@ public class CollectorService extends Service {
         float accuracy = getLastGpsAccuracy();
         EventBus.getDefault().postSticky(new GpsStatusChangedEvent(status, accuracy));
 
+        EventBus.getDefault().postSticky(new CollectorStateChangedEvent(true));
+
         boolean notifyCollected = MyApplication.getPreferencesProvider().getNotifyMeasurementsCollected();
         if (notifyCollected) {
             externalBroadcastSender = new ExternalBroadcastSender();
@@ -299,6 +302,7 @@ public class CollectorService extends Service {
             externalBroadcastSender.stop();
         }
         EventBus.getDefault().postSticky(new GpsStatusChangedEvent());
+        EventBus.getDefault().postSticky(new CollectorStateChangedEvent(false));
         EventBus.getDefault().unregister(this);
         if (stopRequestBroadcastReceiver != null)
             unregisterReceiver(stopRequestBroadcastReceiver);
