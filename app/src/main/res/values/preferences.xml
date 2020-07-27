@@ -115,6 +115,8 @@
     <string name="preferences_main_keep_screen_on_title">Keep screen on when visible</string>
     <string name="preferences_main_keep_screen_on_on_summary">Screen will be kept constantly on when app\'s main screen is displayed.</string>
     <string name="preferences_main_keep_screen_on_off_summary">Screen will be controlled by the system when app\'s main screen is displayed.</string>
+    <string name="preferences_notification_settings_title">Notification settings</string>
+    <string name="preferences_notification_settings_summary">Opens application notification settings.</string>
     <string name="preferences_about_main_keep_screen_on_title">About keep screen on when visible</string>
     <string name="preferences_about_main_keep_screen_on_summary">Information how this option works and when to use it.</string>
     <string name="preferences_about_collector_keep_screen_on_title">About keep screen on when collecting</string>

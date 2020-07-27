@@ -26,6 +26,11 @@
             app:summaryOff="@string/preferences_main_keep_screen_on_off_summary"
             app:summaryOn="@string/preferences_main_keep_screen_on_on_summary"
             app:title="@string/preferences_main_keep_screen_on_title"/>
+
+        <PreferenceScreen
+            app:key="@string/preferences_notification_settings_key"
+            app:summary="@string/preferences_notification_settings_summary"
+            app:title="@string/preferences_notification_settings_title"/>
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/preferences_category_help_title">
         <PreferenceScreen

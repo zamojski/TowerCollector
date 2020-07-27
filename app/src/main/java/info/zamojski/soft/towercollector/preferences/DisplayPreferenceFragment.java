@@ -4,18 +4,23 @@
 
 package info.zamojski.soft.towercollector.preferences;
 
-import info.zamojski.soft.towercollector.MyApplication;
-import info.zamojski.soft.towercollector.R;
-import timber.log.Timber;
-
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.os.Build;
 import android.os.Bundle;
-
+import android.provider.Settings;
 import android.widget.Toast;
 
 import androidx.preference.ListPreference;
+import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
+import androidx.preference.PreferenceScreen;
+
+import info.zamojski.soft.towercollector.MyApplication;
+import info.zamojski.soft.towercollector.R;
+import timber.log.Timber;
 
 public class DisplayPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
 
@@ -28,6 +33,7 @@ public class DisplayPreferenceFragment extends DialogEnabledPreferenceFragment i
         appThemePreference = findPreference(getString(R.string.preferences_app_theme_mode_key));
 
         setupMainKeepScreenOnDialog();
+        setupNotificationSettingsLink();
     }
 
     @Override
@@ -58,5 +64,35 @@ public class DisplayPreferenceFragment extends DialogEnabledPreferenceFragment i
 
     private void setupMainKeepScreenOnDialog() {
         setupDialog(R.string.preferences_about_main_keep_screen_on_key, R.string.info_about_main_keep_screen_on_title, R.raw.info_about_main_keep_screen_on_content);
+    }
+
+    private void setupNotificationSettingsLink() {
+        PreferenceScreen preference = findPreference(getString(R.string.preferences_notification_settings_key));
+        preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                openNotificationSettingsActivity();
+                return true;
+            }
+        });
+    }
+
+    private void openNotificationSettingsActivity() {
+        Intent settingsIntent;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            settingsIntent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS + 1)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    .putExtra(Settings.EXTRA_APP_PACKAGE, MyApplication.getApplication().getPackageName());
+        } else {
+            settingsIntent = new Intent("android.settings.APP_NOTIFICATION_SETTINGS")
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    .putExtra("app_package", MyApplication.getApplication().getPackageName())
+                    .putExtra("app_uid", MyApplication.getApplication().getApplicationInfo().uid);
+        }
+        try {
+            startActivity(settingsIntent);
+        } catch (ActivityNotFoundException ex) {
+            Toast.makeText(getActivity(), R.string.dialog_could_not_open_android_settings, Toast.LENGTH_LONG).show();
+        }
     }
 }
