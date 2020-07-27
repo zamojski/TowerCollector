@@ -157,14 +157,14 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         setContentView(R.layout.main);
         activityView = findViewById(R.id.main_root);
         //setup toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        Toolbar toolbar = findViewById(R.id.main_toolbar);
         toolbar.setPopupTheme(MyApplication.getCurrentPopupTheme());
         setSupportActionBar(toolbar);
         // setup tabbed layout
         MainActivityPagerAdapter pageAdapter = new MainActivityPagerAdapter(getSupportFragmentManager(), getApplication());
-        viewPager = (ViewPager) findViewById(R.id.main_pager);
+        viewPager = findViewById(R.id.main_pager);
         viewPager.setAdapter(pageAdapter);
-        tabLayout = (TabLayout) findViewById(R.id.main_tab_layout);
+        tabLayout = findViewById(R.id.main_tab_layout);
         tabLayout.setupWithViewPager(viewPager);
 
         tabLayout.addOnTabSelectedListener(this);
@@ -209,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     protected void onStart() {
         super.onStart();
         Timber.d("onStart(): Binding to service");
-        isCollectorServiceRunning.set(ApkUtils.isServiceRunning(CollectorService.SERVICE_FULL_NAME));
+        isCollectorServiceRunning.set(MyApplication.isBackgroundTaskRunning(CollectorService.class));
         if (isCollectorServiceRunning.get()) {
             bindService(new Intent(this, CollectorService.class), collectorServiceConnection, 0);
         }
@@ -925,7 +925,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private void startUploaderService(boolean isOcidUploadEnabled, boolean isMlsUploadEnabled, boolean isReuploadIfUploadFailsEnabled) {
         // start task
-        if (!ApkUtils.isServiceRunning(UploaderService.SERVICE_FULL_NAME)) {
+        if (!MyApplication.isBackgroundTaskRunning(UploaderService.class)) {
             Intent intent = new Intent(MainActivity.this, UploaderService.class);
             intent.putExtra(UploaderService.INTENT_KEY_UPLOAD_TO_OCID, isOcidUploadEnabled);
             intent.putExtra(UploaderService.INTENT_KEY_UPLOAD_TO_MLS, isMlsUploadEnabled);
@@ -1106,14 +1106,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     }
 
     private Intent createDataRoamingSettingsIntent() {
-        Intent intent = new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS);
-        // Theoretically this is not needed starting from 4.0.1 but it sometimes fails
-        // bug https://code.google.com/p/android/issues/detail?id=13368
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
-            ComponentName componentName = new ComponentName("com.android.phone", "com.android.phone.Settings");
-            intent.setComponent(componentName);
-        }
-        return intent;
+        return new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS);
     }
 
     // ========== SERVICE CONNECTIONS ========== //
