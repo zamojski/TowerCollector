@@ -161,6 +161,8 @@ public class LegacyMeasurementParser extends MeasurementParser {
 
         uniqueCellKeys.add(createCellKey(mainCell));
         for (NeighboringCellInfo cell : neighboringCells) {
+            if (cell == null)
+                continue;
             String key = createCellKey(cell, mainCell);
             if (uniqueCellKeys.contains(key)) {
                 Timber.d("removeDuplicatedNeighbors(): Remove duplicated cell: %s", key);

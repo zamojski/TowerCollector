@@ -142,6 +142,8 @@ public class Api17PlusMeasurementParser extends MeasurementParser {
         Set<String> uniqueCellKeys = new HashSet<String>();
 
         for (CellInfo cell : cells) {
+            if (cell == null)
+                continue;
             String key = cellIdentityConverter.createCellKey(cell);
             if (uniqueCellKeys.contains(key)) {
                 Timber.d("removeDuplicatedCells(): Remove duplicated cell: %s", key);
