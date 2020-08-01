@@ -326,7 +326,7 @@ public class MeasurementsDatabase {
         AnalyticsStatistics stats = new AnalyticsStatistics();
         SQLiteDatabase db = helper.getReadableDatabase();
         // get all in one query (raw is the only possible solution)
-        String query = "SELECT * FROM (SELECT COUNT(*) AS TOTAL_CELLS_COUNT FROM " + CellsTable.TABLE_NAME + ") JOIN (SELECT COUNT(*) AS TOTAL_LOCATIONS_COUNT, MIN(" + MeasurementsTable.COLUMN_MEASURED_AT + ") AS TOTAL_DAYS_MIN, MAX(" + MeasurementsTable.COLUMN_MEASURED_AT + ") AS TOTAL_DAYS_MAX FROM " + NotUploadedMeasurementsView.VIEW_NAME + ")";
+        String query = "SELECT * FROM (SELECT COUNT(" + CellSignalsTable.COLUMN_CELL_ID + ") AS TOTAL_CELLS_COUNT FROM " + CellSignalsTable.TABLE_NAME + ") JOIN (SELECT COUNT(*) AS TOTAL_LOCATIONS_COUNT, MIN(" + MeasurementsTable.COLUMN_MEASURED_AT + ") AS TOTAL_DAYS_MIN, MAX(" + MeasurementsTable.COLUMN_MEASURED_AT + ") AS TOTAL_DAYS_MAX FROM " + NotUploadedMeasurementsView.VIEW_NAME + ")";
         // Log.d(query);
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToNext()) {
