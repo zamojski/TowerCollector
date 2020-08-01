@@ -134,6 +134,7 @@ public class CollectorService extends Service {
 
     private long startTime;
     private Statistics startStats;
+    private int numberOfCollectedCells;
     private Map<NetworkGroup, Integer> collectedCellTypes = new HashMap<>();
 
     private Location lastLocation;
@@ -338,7 +339,6 @@ public class CollectorService extends Service {
         long duration = (endTime - startTime);
         Statistics endStats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
         int numberOfCollectedLocations = endStats.getLocationsLocal() - startStats.getLocationsLocal();
-        int numberOfCollectedCells = endStats.getCellsLocal() - startStats.getCellsLocal();
         AnalyticsStatistics stats = new AnalyticsStatistics();
         stats.setLocations(numberOfCollectedLocations);
         stats.setCells(numberOfCollectedCells);
@@ -651,6 +651,7 @@ public class CollectorService extends Service {
                 Integer count = collectedCellTypes.get(networkType);
                 collectedCellTypes.put(networkType, count == null ? 1 : count + 1);
             }
+            numberOfCollectedCells += measurement.getCells().size();
         }
         if (transportMode != MeansOfTransport.Fixed)
             updateDynamicInterval(event.getResult(), speed);
