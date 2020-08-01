@@ -4,6 +4,9 @@
 
 package info.zamojski.soft.towercollector.analytics;
 
+import java.util.Map;
+
+import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
 
 public interface IAnalyticsReportingService {
@@ -14,7 +17,7 @@ public interface IAnalyticsReportingService {
 
     void sendMigrationFinished(long duration, int oldDbVersion, AnalyticsStatistics stats);
 
-    void sendCollectorFinished(IntentSource source, String meansOfTransport, int apiVersion, long duration, AnalyticsStatistics stats);
+    void sendCollectorFinished(IntentSource source, String meansOfTransport, int apiVersion, long duration, AnalyticsStatistics stats, Map<NetworkGroup,Integer> collectedCellTypes);
 
     void sendUploadFinished(IntentSource source, String networkType, long duration, AnalyticsStatistics stats, boolean ocid);
 
