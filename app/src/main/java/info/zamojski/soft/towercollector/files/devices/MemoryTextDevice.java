@@ -32,4 +32,9 @@ public class MemoryTextDevice implements IWritableTextDevice {
         throw new UnsupportedOperationException("In-memory device is not persisted!");
     }
 
+    @Override
+    public String getFileType() {
+        throw new UnsupportedOperationException("In-memory device is not persisted!");
+    }
+
 }

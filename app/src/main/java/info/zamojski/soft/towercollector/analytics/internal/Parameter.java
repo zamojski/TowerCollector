@@ -18,7 +18,6 @@ public class Parameter {
     public static final String NumberOfFiles = "NumberOfFiles";
     public static final String HelpSection = "HelpSection";
     public static final String Locations = "Locations";
-    public static final String Market = "Market";
     public static final String MeansOfTransport = "MeansOfTransport";
     public static final String NetworkType = "NetworkType";
     public static final String Source = "Source";

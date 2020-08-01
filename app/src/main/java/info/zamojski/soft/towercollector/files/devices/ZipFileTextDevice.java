@@ -18,6 +18,8 @@ import info.zamojski.soft.towercollector.utils.FileUtils;
 
 public class ZipFileTextDevice implements IWritableTextDevice {
 
+    private static final String EXTENSION = "zip";
+
     private String path;
     private File file;
     private String originalFileName;
@@ -28,7 +30,7 @@ public class ZipFileTextDevice implements IWritableTextDevice {
 
     public ZipFileTextDevice(String path) {
         this.path = path;
-        this.file = new File(path + ".zip");
+        this.file = new File(path + "." + EXTENSION);
         this.originalFileName = new File(path).getName();
     }
 
@@ -45,6 +47,11 @@ public class ZipFileTextDevice implements IWritableTextDevice {
     @Override
     public String getPath() {
         return this.path;
+    }
+
+    @Override
+    public String getFileType() {
+        return FileUtils.getFileExtension(getPath()) + "+" + EXTENSION;
     }
 
     @Override

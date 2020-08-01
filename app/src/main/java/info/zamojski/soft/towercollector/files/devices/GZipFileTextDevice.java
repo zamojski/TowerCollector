@@ -16,6 +16,8 @@ import info.zamojski.soft.towercollector.utils.FileUtils;
 
 public class GZipFileTextDevice implements IWritableTextDevice {
 
+    private static final String EXTENSION = "gz";
+
     private String path;
     private File file;
 
@@ -25,7 +27,7 @@ public class GZipFileTextDevice implements IWritableTextDevice {
 
     public GZipFileTextDevice(String path) {
         this.path = path;
-        this.file = new File(path + ".gz");
+        this.file = new File(path + "." + EXTENSION);
     }
 
     @Override
@@ -41,6 +43,11 @@ public class GZipFileTextDevice implements IWritableTextDevice {
     @Override
     public String getPath() {
         return this.path;
+    }
+
+    @Override
+    public String getFileType() {
+        return FileUtils.getFileExtension(getPath()) + "+" + EXTENSION;
     }
 
     @Override

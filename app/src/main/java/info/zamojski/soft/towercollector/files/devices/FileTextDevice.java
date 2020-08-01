@@ -41,6 +41,11 @@ public class FileTextDevice implements IWritableTextDevice {
     }
 
     @Override
+    public String getFileType() {
+        return FileUtils.getFileExtension(getPath());
+    }
+
+    @Override
     public void open() throws DeviceOperationException, IOException {
         FileUtils.checkAccess(file);
         fileWriter = new FileWriter(file, false);
