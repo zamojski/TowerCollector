@@ -34,6 +34,7 @@ import info.zamojski.soft.towercollector.files.generators.wrappers.CompositeText
 import info.zamojski.soft.towercollector.files.generators.wrappers.CsvTextGeneratorWrapper;
 import info.zamojski.soft.towercollector.files.generators.wrappers.GpxTextGeneratorWrapper;
 import info.zamojski.soft.towercollector.files.generators.wrappers.JsonTextGeneratorWrapper;
+import info.zamojski.soft.towercollector.files.generators.wrappers.KmlTextGeneratorWrapper;
 import info.zamojski.soft.towercollector.files.generators.wrappers.interfaces.IProgressListener;
 import info.zamojski.soft.towercollector.files.generators.wrappers.interfaces.IProgressiveTextGeneratorWrapper;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
@@ -205,6 +206,16 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
                     subGenerators.add(new JsonTextGeneratorWrapper(context, getTextDevice(path, compressFiles)));
                 }
                 break;
+                case Kml: {
+                    String path = FileUtils.combinePath(appDir, FileUtils.getCurrentDateFileName(currentDateTime, "", "kml"));
+                    subGenerators.add(new KmlTextGeneratorWrapper(context, getTextDevice(path, compressFiles)));
+                }
+                break;
+                case Kmz: {
+                    String path = FileUtils.combinePath(appDir, FileUtils.getCurrentDateFileName(currentDateTime, "", "kml"));
+                    subGenerators.add(new KmlTextGeneratorWrapper(context, getKmzTextDevice(path)));
+                }
+                break;
                 default:
                     throw new UnsupportedOperationException("This file type " + fileType + " is not supported");
             }
@@ -222,6 +233,10 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
             }
         }
         return new FileTextDevice(path);
+    }
+
+    private IWritableTextDevice getKmzTextDevice(String path) {
+        return new ZipFileTextDevice(path, "kmz");
     }
 
     private void deleteFile() {

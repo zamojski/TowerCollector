@@ -954,6 +954,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             csvExportCheckbox.setChecked(recentFileTypes.contains(FileType.Csv));
             final CheckBox gpxExportCheckbox = dialogLayout.findViewById(R.id.gpx_export_dialog_checkbox);
             gpxExportCheckbox.setChecked(recentFileTypes.contains(FileType.Gpx));
+            final CheckBox kmlExportCheckbox = dialogLayout.findViewById(R.id.kml_export_dialog_checkbox);
+            kmlExportCheckbox.setChecked(recentFileTypes.contains(FileType.Kml));
+            final CheckBox kmzExportCheckbox = dialogLayout.findViewById(R.id.kmz_export_dialog_checkbox);
+            kmzExportCheckbox.setChecked(recentFileTypes.contains(FileType.Kmz));
             final CheckBox csvOcidExportCheckbox = dialogLayout.findViewById(R.id.csv_ocid_export_dialog_checkbox);
             csvOcidExportCheckbox.setChecked(recentFileTypes.contains(FileType.CsvOcid));
             final CheckBox jsonMlsExportCheckbox = dialogLayout.findViewById(R.id.json_mls_export_dialog_checkbox);
@@ -970,6 +974,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                     selectedFileTypes.add(FileType.Csv);
                 if (gpxExportCheckbox.isChecked())
                     selectedFileTypes.add(FileType.Gpx);
+                if (kmlExportCheckbox.isChecked())
+                    selectedFileTypes.add(FileType.Kml);
+                if (kmzExportCheckbox.isChecked())
+                    selectedFileTypes.add(FileType.Kmz);
                 if (csvOcidExportCheckbox.isChecked())
                     selectedFileTypes.add(FileType.CsvOcid);
                 if (jsonMlsExportCheckbox.isChecked())

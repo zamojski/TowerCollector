@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import android.os.Environment;
+import android.text.TextUtils;
 
 import info.zamojski.soft.towercollector.files.DeviceOperationException;
 import timber.log.Timber;
@@ -63,6 +64,11 @@ public class FileUtils {
             extension = path.substring(i + 1);
         }
         return extension;
+    }
+
+    public static String changeExtension(String path, String newExtension) {
+        String extension = getFileExtension(path);
+        return TextUtils.substring(path, 0, path.length() - extension.length()) + newExtension;
     }
 
     public static boolean copyFile(File src, File dst) {

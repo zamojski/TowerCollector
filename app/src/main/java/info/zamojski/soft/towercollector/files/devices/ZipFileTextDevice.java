@@ -22,15 +22,21 @@ public class ZipFileTextDevice implements IWritableTextDevice, IPersistedTextDev
     private String path;
     private String originalFileName;
     private String originalFileExtension;
+    private String customExtension;
 
     private ZipOutputStream zipOutputStream = null;
     private OutputStreamWriter fileWriter = null;
     private BufferedWriter bufferedWriter = null;
 
     public ZipFileTextDevice(String path) {
+        this(path, null);
+    }
+
+    public ZipFileTextDevice(String path, String customExtension) {
         this.originalFileName = new File(path).getName();
         this.originalFileExtension = FileUtils.getFileExtension(path);
-        this.path = path + "." + COMPRESSED_EXTENSION;
+        this.customExtension = customExtension;
+        this.path = customExtension != null ? FileUtils.changeExtension(path, customExtension) : (path + "." + COMPRESSED_EXTENSION);
     }
 
     @Override
@@ -50,7 +56,7 @@ public class ZipFileTextDevice implements IWritableTextDevice, IPersistedTextDev
 
     @Override
     public String getFileType() {
-        return originalFileExtension + "+" + COMPRESSED_EXTENSION;
+        return customExtension != null ? customExtension : (originalFileExtension + "+" + COMPRESSED_EXTENSION);
     }
 
     @Override
