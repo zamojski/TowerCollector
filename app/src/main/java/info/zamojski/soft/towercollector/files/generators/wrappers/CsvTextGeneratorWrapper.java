@@ -28,7 +28,7 @@ public class CsvTextGeneratorWrapper extends TextGeneratorWrapperBase {
     public CsvTextGeneratorWrapper(Context context, IWritableTextDevice device, ICsvFormatter formatter) {
         this.context = context;
         this.device = device;
-        this.generator = new CsvTextGenerator(formatter, device);
+        this.generator = new CsvTextGenerator<>(formatter, device);
     }
 
     public FileGeneratorResult generate() {

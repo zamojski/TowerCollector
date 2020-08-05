@@ -200,7 +200,7 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
                 }
                 break;
                 case JsonMls: {
-                    String path = FileUtils.combinePath(appDir, FileUtils.getCurrentDateFileName(currentDateTime, "", "json"));
+                    String path = FileUtils.combinePath(appDir, FileUtils.getCurrentDateFileName(currentDateTime, "-mls", "json"));
                     subGenerators.add(new JsonTextGeneratorWrapper(context, getTextDevice(path, compressFiles)));
                 }
                 break;

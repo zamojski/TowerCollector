@@ -9,12 +9,12 @@ import info.zamojski.soft.towercollector.model.Measurement;
 
 public interface IGpxFormatter {
 
-    public String formatHeader(HeaderData h);
+    String formatHeader(HeaderData h);
 
-    public String formatRow(Measurement m);
+    String formatEntry(Measurement m);
 
-    public String formatNewSegment();
+    String formatNewSegment();
 
-    public String formatFooter();
+    String formatFooter();
 
 }

@@ -27,7 +27,7 @@ public class GpxTextGenerator<TFormatter extends IGpxFormatter, TDevice extends 
     }
 
     public void writeEntry(Measurement m) throws IOException {
-        String entry = this.formatter.formatRow(m);
+        String entry = this.formatter.formatEntry(m);
         this.device.write(entry);
     }
 
@@ -39,9 +39,5 @@ public class GpxTextGenerator<TFormatter extends IGpxFormatter, TDevice extends 
     public void writeFooter() throws IOException {
         String footer = this.formatter.formatFooter();
         this.device.write(footer);
-    }
-
-    public String getMimeType() {
-        return "application/gpx+xml";
     }
 }

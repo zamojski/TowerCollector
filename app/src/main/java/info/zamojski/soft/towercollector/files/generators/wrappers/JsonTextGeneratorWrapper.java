@@ -29,7 +29,7 @@ public class JsonTextGeneratorWrapper extends TextGeneratorWrapperBase {
     public JsonTextGeneratorWrapper(Context context, IWritableTextDevice device) {
         this.context = context;
         this.device = device;
-        this.generator = new JsonTextGenerator(new JsonMozillaExportFormatter(), device);
+        this.generator = new JsonTextGenerator<>(new JsonMozillaExportFormatter(), device);
     }
 
     @Override

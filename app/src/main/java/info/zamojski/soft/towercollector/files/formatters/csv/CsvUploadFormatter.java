@@ -33,7 +33,7 @@ public class CsvUploadFormatter extends CsvFormatter {
     }
 
     @Override
-    public String formatRow(Measurement m) {
+    public String formatEntry(Measurement m) {
         StringBuilder sb = new StringBuilder(140);
 
         for (Cell c : m.getCells()) {

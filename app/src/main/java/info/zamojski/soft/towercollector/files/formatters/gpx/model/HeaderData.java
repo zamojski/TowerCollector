@@ -7,7 +7,6 @@ package info.zamojski.soft.towercollector.files.formatters.gpx.model;
 import info.zamojski.soft.towercollector.model.Boundaries;
 
 public class HeaderData {
-    public String ApkVersion;
     public long FirstMeasurementTimestamp, LastMeasurementTimestamp;
     public Boundaries Boundaries;
 }

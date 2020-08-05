@@ -27,20 +27,16 @@ public class CsvTextGenerator<TFormatter extends ICsvFormatter, TDevice extends 
     }
 
     public void writeEntry(Measurement m) throws IOException {
-        String entry = this.formatter.formatRow(m);
+        String entry = this.formatter.formatEntry(m);
         this.device.write(entry);
     }
 
     public void writeEntryChunk(List<Measurement> ms) throws IOException {
         StringBuilder sb = new StringBuilder();
         for (Measurement m : ms) {
-            String entry = this.formatter.formatRow(m);
+            String entry = this.formatter.formatEntry(m);
             sb.append(entry);
         }
         this.device.write(sb.toString());
-    }
-
-    public String getMimeType() {
-        return "text/csv";
     }
 }

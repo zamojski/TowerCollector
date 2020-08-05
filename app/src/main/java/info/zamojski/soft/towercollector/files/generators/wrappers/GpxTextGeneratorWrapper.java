@@ -6,9 +6,6 @@ package info.zamojski.soft.towercollector.files.generators.wrappers;
 
 import android.content.Context;
 
-import org.acra.ACRA;
-import org.jetbrains.annotations.NotNull;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -25,8 +22,6 @@ import info.zamojski.soft.towercollector.files.formatters.gpx.model.HeaderData;
 import info.zamojski.soft.towercollector.files.generators.GpxTextGenerator;
 import info.zamojski.soft.towercollector.model.Boundaries;
 import info.zamojski.soft.towercollector.model.Measurement;
-import info.zamojski.soft.towercollector.model.Statistics;
-import info.zamojski.soft.towercollector.utils.ApkUtils;
 import timber.log.Timber;
 
 public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
@@ -36,7 +31,7 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
     public GpxTextGeneratorWrapper(Context context, IWritableTextDevice device) {
         this.context = context;
         this.device = device;
-        this.generator = new GpxTextGenerator(new GpxExportFormatter(), device);
+        this.generator = new GpxTextGenerator<>(new GpxExportFormatter(), device);
     }
 
     @Override
@@ -60,17 +55,8 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
             // write header
             Measurement firstMeasurement = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getFirstMeasurement();
             Measurement lastMeasurement = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getLastMeasurement();
-            if (locationsCount != 0 && (firstMeasurement == null || lastMeasurement == null)) {
-                Statistics stats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
-                String dump = MeasurementsDatabase.getInstance(MyApplication.getApplication()).quickDump();
-                final String DB_DUMP_KEY = "DB_DUMP";
-                ACRA.getErrorReporter().putCustomData(DB_DUMP_KEY, dump);
-                MyApplication.handleSilentException(new DumpException("Inconsistent GPX export data", locationsCount, firstMeasurement, lastMeasurement, stats));
-                ACRA.getErrorReporter().removeCustomData(DB_DUMP_KEY);
-            }
             Boundaries bounds = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getLocationBounds();
             HeaderData headerData = new HeaderData();
-            headerData.ApkVersion = ApkUtils.getApkVersionName();
             headerData.FirstMeasurementTimestamp = firstMeasurement.getMeasuredAt();
             headerData.LastMeasurementTimestamp = lastMeasurement.getMeasuredAt();
             headerData.Boundaries = bounds;
@@ -118,33 +104,6 @@ public class GpxTextGeneratorWrapper extends TextGeneratorWrapperBase {
         } finally {
             // just for sure
             device.close();
-        }
-    }
-
-    public class DumpException extends RuntimeException {
-
-        private int locationsCount;
-        private Measurement firstMeasurement;
-        private Measurement lastMeasurement;
-        private Statistics stats;
-
-        public DumpException(String message, int locationsCount, Measurement firstMeasurement, Measurement lastMeasurement, Statistics stats) {
-            super(message);
-            this.locationsCount = locationsCount;
-            this.firstMeasurement = firstMeasurement;
-            this.lastMeasurement = lastMeasurement;
-            this.stats = stats;
-        }
-
-        @NotNull
-        @Override
-        public String toString() {
-            return getMessage() + "{" +
-                    "locationsCount=" + locationsCount +
-                    ", firstMeasurement=" + firstMeasurement +
-                    ", lastMeasurement=" + lastMeasurement +
-                    ", stats=" + stats +
-                    '}';
         }
     }
 }
