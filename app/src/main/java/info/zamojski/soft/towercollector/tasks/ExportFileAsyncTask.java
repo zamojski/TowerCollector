@@ -25,6 +25,7 @@ import info.zamojski.soft.towercollector.enums.FileType;
 import info.zamojski.soft.towercollector.files.FileGeneratorResult;
 import info.zamojski.soft.towercollector.files.devices.FileTextDevice;
 import info.zamojski.soft.towercollector.files.devices.GZipFileTextDevice;
+import info.zamojski.soft.towercollector.files.devices.IPersistedTextDevice;
 import info.zamojski.soft.towercollector.files.devices.IWritableTextDevice;
 import info.zamojski.soft.towercollector.files.devices.ZipFileTextDevice;
 import info.zamojski.soft.towercollector.files.formatters.csv.CsvExportFormatter;
@@ -228,14 +229,15 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
             IWritableTextDevice device = subGenerator.getDevice();
             // delete file if exists
             device.close();
-            if (device instanceof FileTextDevice) {
-                File file = new File(device.getPath());
+            if (device instanceof IPersistedTextDevice) {
+                IPersistedTextDevice persistedDevice = (IPersistedTextDevice) device;
+                File file = new File(persistedDevice.getPath());
                 if (file.exists()) {
                     Timber.d("deleteFile(): Deleting exported file");
                     if (file.delete()) {
                         Timber.d("deleteFile(): Exported file deleted");
                     } else {
-                        Timber.d("deleteFile(): Cannot delete file after export fail");
+                        Timber.d("deleteFile(): Cannot delete file after export failure");
                     }
                 }
             }

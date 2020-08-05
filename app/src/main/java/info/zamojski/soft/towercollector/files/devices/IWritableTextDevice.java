@@ -18,8 +18,4 @@ public interface IWritableTextDevice {
 
     void close();
 
-    String getPath();
-
-    String getFileType();
-
 }
