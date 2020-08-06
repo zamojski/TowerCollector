@@ -11,6 +11,8 @@
     <string name="preferences_header_general_summary">Általános beállítások, frissítések, statisztikák, stb.</string>
     <string name="preferences_header_display_title">Megjelenítés</string>
     <string name="preferences_header_display_summary">Minden a megjelenítéssel, témával, mértékegységekkel, egyebekkel kapcsolatos beállítás</string>
+    <string name="preferences_header_export_title">Exportálás</string>
+    <string name="preferences_header_export_summary">A fájl exportálással kapcsolatos beállítások stb.</string>
     <string name="preferences_header_advanced_title">Speciális</string>
     <string name="preferences_header_advanced_summary">Speciális lehetőségek és funkciók.</string>
     <string name="preferences_header_information_title">Információ</string>
@@ -57,6 +59,8 @@
     <string name="preferences_gps_optimizations_enabled_title">Adatgyűjtő GPS optimalizációja</string>
     <string name="preferences_gps_optimizations_enabled_on_summary">GPS paraméter optimalizáció lesz használva a mérések begyűjtésekor.</string>
     <string name="preferences_gps_optimizations_enabled_off_summary">A GPS optimalizáció ki van kapcsolva.</string>
+    <string name="preferences_export_compression_format_title">Tömörítési formátum</string>
+    <string name="preferences_export_compression_format_summary">Az exportált fájlok tömörítési formátumát határozza meg.</string>
     <string name="preferences_tracking_enabled_title">Felhasználói statisztikák küldése</string>
     <string name="preferences_tracking_enabled_on_summary">Névtelen használati statisztikák lesznek elküldve, amellyel segítesz fejleszteni az alkalmazást. Több információ lent.</string>
     <string name="preferences_tracking_enabled_off_summary">A névtelen használati statisztikák küldése ki van kapcsolva. Olvasd el lent, hogy mi lenne elküldve, ha engedélyeznéd.</string>
@@ -111,6 +115,11 @@
     <string name="preferences_main_keep_screen_on_title">Képernyő ébren tartása, ha látható</string>
     <string name="preferences_main_keep_screen_on_on_summary">A képernyő bekapcsolt állapotban lesz tartva, ha a főképernyő látszik.</string>
     <string name="preferences_main_keep_screen_on_off_summary">A képernyőt az operációs rendszer vezérli, ha az alkalmazás fő képernyője megjelenik.</string>
+    <string name="preferences_show_collector_status_bar_title">Adatgyűjtés állapotsorának megjelenítése</string>
+    <string name="preferences_show_collector_status_bar_on_summary">A gyűjtő állapotsor látható lesz.</string>
+    <string name="preferences_show_collector_status_bar_off_summary">A gyűjtő állapotsor rejtett lesz.</string>
+    <string name="preferences_notification_settings_title">Értesítési beállítások</string>
+    <string name="preferences_notification_settings_summary">Megnyitja az alkalmazás értesítési beállításait.</string>
     <string name="preferences_about_main_keep_screen_on_title">A képernyő bekapcsolva tartásáról, ha látható</string>
     <string name="preferences_about_main_keep_screen_on_summary">Információk ezen beállítás működéséről és használatáról.</string>
     <string name="preferences_about_collector_keep_screen_on_title">A képernyő bekapcsolva tartásáról adatgyűjtés közben</string>

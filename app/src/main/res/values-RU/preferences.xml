@@ -11,6 +11,8 @@
     <string name="preferences_header_general_summary">Основные настройки, обновления, статистика и др.</string>
     <string name="preferences_header_display_title">Экран</string>
     <string name="preferences_header_display_summary">Всё, что связано с экраном, темой, измерениями и др.</string>
+    <string name="preferences_header_export_title">Экспорт</string>
+    <string name="preferences_header_export_summary">Настройки, относящиеся к экспорту файлов и т. Д.</string>
     <string name="preferences_header_advanced_title">Расширенные</string>
     <string name="preferences_header_advanced_summary">Расширенные настройки и функции.</string>
     <string name="preferences_header_information_title">Информация</string>
@@ -57,6 +59,8 @@
     <string name="preferences_gps_optimizations_enabled_title">Оптимизация сбора GPS</string>
     <string name="preferences_gps_optimizations_enabled_on_summary">Во время сбора измерений будут использованы улучшенные параметры GPS.</string>
     <string name="preferences_gps_optimizations_enabled_off_summary">Оптимизация GPS параметров выключена.</string>
+    <string name="preferences_export_compression_format_title">Формат сжатия</string>
+    <string name="preferences_export_compression_format_summary">Определяет формат сжатия экспортируемых файлов.</string>
     <string name="preferences_tracking_enabled_title">Отправлять статистику</string>
     <string name="preferences_tracking_enabled_on_summary">Для улучшения приложения автору будет отправляться анонимная статистика. Больше информации ниже.</string>
     <string name="preferences_tracking_enabled_off_summary">Анонимная статистика выключена. Смотри ниже, что может отправляться, если она будет включена.</string>
@@ -111,6 +115,11 @@
     <string name="preferences_main_keep_screen_on_title">Подсветка экрана во время работы</string>
     <string name="preferences_main_keep_screen_on_on_summary">Подсветка будет постоянно включёна, когда активен главный экран.</string>
     <string name="preferences_main_keep_screen_on_off_summary">Подстветка контролируется системой, когда активен главный экран.</string>
+    <string name="preferences_show_collector_status_bar_title">Показать строку состояния сбора данных</string>
+    <string name="preferences_show_collector_status_bar_on_summary">Строка состояния сбора данных будет видна.</string>
+    <string name="preferences_show_collector_status_bar_off_summary">Строка состояния сбора данных будет скрыта.</string>
+    <string name="preferences_notification_settings_title">Настройки уведомлений</string>
+    <string name="preferences_notification_settings_summary">Открывает настройки уведомлений приложения.</string>
     <string name="preferences_about_main_keep_screen_on_title">О включении экрана во время работы</string>
     <string name="preferences_about_main_keep_screen_on_summary">Информация как эта опция работает и когда используется.</string>
     <string name="preferences_about_collector_keep_screen_on_title">О включении экрана во время работы</string>

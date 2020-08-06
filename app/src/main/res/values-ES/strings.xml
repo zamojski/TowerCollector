@@ -202,7 +202,9 @@
     <string name="main_help_to_upload_common_locations_title">Mediciones para cargar</string>
     <string name="main_help_to_upload_ocid_locations_description">Número de mediciones en espera de subida a OpenCellID.org.</string>
     <string name="main_help_to_upload_mls_locations_description">Número de mediciones en espera de subida a Mozilla Location Services.</string>
-    <string name="status_initializing">inicializar</string>
+    <string name="collector_status_active">Recogiendo medidas</string>
+    <string name="collector_status_inactive">El colector de medidas está parado</string>
+    <string name="status_initializing">esperando la ubicación</string>
     <string name="status_ok">OK</string>
     <string name="status_low_gps_accuracy">baja precisión <xliff:g id="accuracy_value">%1$.0f</xliff:g> de <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">sin localización</string>
@@ -215,6 +217,8 @@
     <string name="uploader_all_projects_disabled">Cargar a todos los proyectos está deshabilitado</string>
     <string name="export_format_csv">CSV</string>
     <string name="export_format_gpx">GPX</string>
+    <string name="export_format_kml">KML</string>
+    <string name="export_format_kmz">KMZ</string>
     <string name="export_format_csv_ocid">CSV para OpenCellID.org</string>
     <string name="export_format_json_mls">JSON para Mozilla Location Services</string>
     <string name="export_format_zip">Comprime cada archivo exportado</string>

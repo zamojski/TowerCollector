@@ -202,7 +202,9 @@
     <string name="main_help_to_upload_common_locations_title">מדידה להעלאה</string>
     <string name="main_help_to_upload_ocid_locations_description">מספר המדידות הממתינות להעלאה אל OpenCellID.org.</string>
     <string name="main_help_to_upload_mls_locations_description">מספר המדידות שממתינות להעלאה לשירותי המיקום של Mozilla.</string>
-    <string name="status_initializing">בהליכי עלייה</string>
+    <string name="collector_status_active">מדידות נאספות</string>
+    <string name="collector_status_inactive">איסוף המדידות נעצר</string>
+    <string name="status_initializing">בהמתנה למיקום</string>
     <string name="status_ok">תקין</string>
     <string name="status_low_gps_accuracy">דיוק נמוך <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">אין מיקום</string>
@@ -215,6 +217,8 @@
     <string name="uploader_all_projects_disabled">ההעלאה לכל המיזמים מושבתת</string>
     <string name="export_format_csv">CSV</string>
     <string name="export_format_gpx">GPX</string>
+    <string name="export_format_kml">KML</string>
+    <string name="export_format_kmz">KMZ</string>
     <string name="export_format_csv_ocid">CSV עבור OpenCellID.org</string>
     <string name="export_format_json_mls">JSON לשירותי המיקום של Mozilla</string>
     <string name="export_format_zip">לדחוס כל קובץ שעבר ייצוא</string>

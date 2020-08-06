@@ -11,6 +11,8 @@
     <string name="preferences_header_general_summary">常规选项、更新、统计等。</string>
     <string name="preferences_header_display_title">显示</string>
     <string name="preferences_header_display_summary">与数据显示、主题、单位等相关的一切</string>
+    <string name="preferences_header_export_title">导出</string>
+    <string name="preferences_header_export_summary">与文件导出等相关的设置</string>
     <string name="preferences_header_advanced_title">高级</string>
     <string name="preferences_header_advanced_summary">高级选项与功能。</string>
     <string name="preferences_header_information_title">信息</string>
@@ -57,6 +59,8 @@
     <string name="preferences_gps_optimizations_enabled_title">收集器GPS优化</string>
     <string name="preferences_gps_optimizations_enabled_on_summary">收集测量数据时将使用GPS参数优化。</string>
     <string name="preferences_gps_optimizations_enabled_off_summary">禁用GPS参数优化。</string>
+    <string name="preferences_export_compression_format_title">压缩格式</string>
+    <string name="preferences_export_compression_format_summary">定义导出文件的压缩格式。</string>
     <string name="preferences_tracking_enabled_title">发送使用情况统计</string>
     <string name="preferences_tracking_enabled_on_summary">将发送匿名使用情况统计信息以帮助我改进应用。更多信息如下。</string>
     <string name="preferences_tracking_enabled_off_summary">匿名使用统计信息已禁用。请查看下面启用时可能发送的内容。</string>
@@ -111,6 +115,11 @@
     <string name="preferences_main_keep_screen_on_title">可见时保持屏幕开启</string>
     <string name="preferences_main_keep_screen_on_on_summary">当应用程序的主屏幕显示时，屏幕将保持显示。</string>
     <string name="preferences_main_keep_screen_on_off_summary">当显示应用的主屏幕时，屏幕将由系统控制。</string>
+    <string name="preferences_show_collector_status_bar_title">显示数据收集状态栏</string>
+    <string name="preferences_show_collector_status_bar_on_summary">数据收集状态栏将可见。</string>
+    <string name="preferences_show_collector_status_bar_off_summary">数据收集状态栏将被隐藏。</string>
+    <string name="preferences_notification_settings_title">通知设置</string>
+    <string name="preferences_notification_settings_summary">打开应用程序通知设置。</string>
     <string name="preferences_about_main_keep_screen_on_title">关于可见时保持屏幕</string>
     <string name="preferences_about_main_keep_screen_on_summary">有关此选项如何工作以及何时使用它的信息。</string>
     <string name="preferences_about_collector_keep_screen_on_title">关于收集时保持屏幕</string>

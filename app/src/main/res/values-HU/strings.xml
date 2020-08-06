@@ -202,7 +202,9 @@
     <string name="main_help_to_upload_common_locations_title">Feltöltendő mérések</string>
     <string name="main_help_to_upload_ocid_locations_description">Az OpenCellID.org-ra feltöltésre váró mérések száma.</string>
     <string name="main_help_to_upload_mls_locations_description">A Mozilla Location Servicesre feltöltésre váró mérések száma.</string>
-    <string name="status_initializing">előkészítés</string>
+    <string name="collector_status_active">A méréseket összegyűjtik</string>
+    <string name="collector_status_inactive">A mérések gyűjtése leállt</string>
+    <string name="status_initializing">várakozás a pozícióra</string>
     <string name="status_ok">OK</string>
     <string name="status_low_gps_accuracy">alacsony pontosság: <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">nincs helyzet</string>
@@ -215,6 +217,8 @@
     <string name="uploader_all_projects_disabled">A feltöltés az összes projekt esetén le van tiltva</string>
     <string name="export_format_csv">CSV</string>
     <string name="export_format_gpx">GPX</string>
+    <string name="export_format_kml">KML</string>
+    <string name="export_format_kmz">KMZ</string>
     <string name="export_format_csv_ocid">CSV az OpenCellID.org-hoz</string>
     <string name="export_format_json_mls">JSON az Mozilla Location Serviceshez</string>
     <string name="export_format_zip">Tömörítse az összes exportált fájlt</string>

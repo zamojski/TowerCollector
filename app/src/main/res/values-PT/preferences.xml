@@ -11,6 +11,8 @@
     <string name="preferences_header_general_summary">Opções gerais, atualizações, estatísticas, etc.</string>
     <string name="preferences_header_display_title">Exibição</string>
     <string name="preferences_header_display_summary">Tudo relacionado com exibição de dados, temas, unidades, etc.</string>
+    <string name="preferences_header_export_title">Exportar</string>
+    <string name="preferences_header_export_summary">Configurações relacionadas à exportação de arquivos, etc.</string>
     <string name="preferences_header_advanced_title">Avançado</string>
     <string name="preferences_header_advanced_summary">Opções e funções avançadas.</string>
     <string name="preferences_header_information_title">Informação</string>
@@ -57,6 +59,8 @@
     <string name="preferences_gps_optimizations_enabled_title">Otimização do coletor GPS</string>
     <string name="preferences_gps_optimizations_enabled_on_summary">Otimização de parâmetros de GPS serão usados quando coletando as medições.</string>
     <string name="preferences_gps_optimizations_enabled_off_summary">Otimização de parâmetros GPS está desabilitada.</string>
+    <string name="preferences_export_compression_format_title">Formato de compressão</string>
+    <string name="preferences_export_compression_format_summary">Define o formato de compactação dos arquivos exportados.</string>
     <string name="preferences_tracking_enabled_title">Enviar estatísticas de uso</string>
     <string name="preferences_tracking_enabled_on_summary">Estatísticas de uso anônimas serão enviadas para me ajudar a melhorar a aplicação. Mais informações abaixo.</string>
     <string name="preferences_tracking_enabled_off_summary">Estatísticas de uso anônimas estão desabilitadas. Veja abaixo o que pode ser enviado se habilitada.</string>
@@ -111,6 +115,11 @@
     <string name="preferences_main_keep_screen_on_title">Manter tela ligada quando visível</string>
     <string name="preferences_main_keep_screen_on_on_summary">A tela será mantida ligada constantemente quando a tela principal do aplicativo está em exibição.</string>
     <string name="preferences_main_keep_screen_on_off_summary">A tela será controlada pelo sistema quando a tela principal do aplicativo está em exibição.</string>
+    <string name="preferences_show_collector_status_bar_title">Mostrar barra de status do coletor</string>
+    <string name="preferences_show_collector_status_bar_on_summary">A barra de status do coletor ficará visível.</string>
+    <string name="preferences_show_collector_status_bar_off_summary">A barra de status do coletor ficará oculta.</string>
+    <string name="preferences_notification_settings_title">Configurações de notificação</string>
+    <string name="preferences_notification_settings_summary">Abre as configurações de notificação do aplicativo.</string>
     <string name="preferences_about_main_keep_screen_on_title">Sobre manter tela ligada quando visível</string>
     <string name="preferences_about_main_keep_screen_on_summary">Informação sobre como esta opção funciona e quando usá-la.</string>
     <string name="preferences_about_collector_keep_screen_on_title">Sobre manter tela ligada quando coletando</string>

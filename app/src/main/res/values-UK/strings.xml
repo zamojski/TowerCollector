@@ -202,7 +202,9 @@
     <string name="main_help_to_upload_common_locations_title">Вимірювання для завантаження</string>
     <string name="main_help_to_upload_ocid_locations_description">Кількість вимірювань, що очікують завантаження на OpenCellID.org.</string>
     <string name="main_help_to_upload_mls_locations_description">Кількість вимірювань, що очікують завантаження на Mozilla Location Services.</string>
-    <string name="status_initializing">ініціалізація</string>
+    <string name="collector_status_active">Збір вимірювань</string>
+    <string name="collector_status_inactive">Збір вимірювань припинено</string>
+    <string name="status_initializing">чекаючи позиції</string>
     <string name="status_ok">добре</string>
     <string name="status_low_gps_accuracy">низька точність <xliff:g id="accuracy_value">%1$.0f</xliff:g><xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">"Позиція невизначена "</string>
@@ -215,6 +217,8 @@
     <string name="uploader_all_projects_disabled">Завантаження до всіх проектів відключено</string>
     <string name="export_format_csv">CSV</string>
     <string name="export_format_gpx">GPX</string>
+    <string name="export_format_kml">KML</string>
+    <string name="export_format_kmz">KMZ</string>
     <string name="export_format_csv_ocid">CSV для OpenCellID.org</string>
     <string name="export_format_json_mls">JSON для Mozilla Location Services</string>
     <string name="export_format_zip">Стисніть кожен експортований файл</string>
