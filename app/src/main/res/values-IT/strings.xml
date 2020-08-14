@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. --><resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
     <string name="locale">en</string>
     <string name="shortcut_collecting_toggle_short">Raccolta</string>
     <string name="shortcut_collecting_toggle_long">Attivare raccolta dati</string>
@@ -17,9 +16,9 @@
     <string name="app_title_preferences">Impostazioni</string>
     <string name="dialog_want_enable_gps">Vuoi aprire le impostazioni di localizzazione per abilitare il GPS?</string>
     <string name="dialog_could_not_open_android_settings">Impossibile aprire le impostazioni di Android. Aprirle manualmente per cambiarle.</string>
-    <string name="dialog_select_email_app">Scegli l\'applicazione per l\'email</string>
+    <string name="dialog_select_email_app">Scegli l\'applicazione e-mail</string>
     <string name="dialog_what_is_new">Messaggio dello sviluppatore!</string>
-    <string name="dialog_yes">Si</string>
+    <string name="dialog_yes">Sì</string>
     <string name="dialog_no">No</string>
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Annulla</string>
@@ -38,8 +37,9 @@
     <string name="dialog_proceed">Procedi</string>
     <string name="dialog_settings">Impostazioni</string>
     <string name="main_dialog_not_compatible_title">Problemi di compatibilità</string>
-    <string name="main_dialog_not_compatible_begin">L\'app potrebbe non funzionare perchè:\n</string>
-    <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Hardware di rete mobile non rilevato.\n</string>
+    <string name="main_dialog_not_compatible_begin">L\'app potrebbe non funzionare perché:
+\n</string>
+    <string name="main_dialog_no_compatible_mobile_radio_message">• Hardware di rete mobile non rilevato.\n</string>
     <string name="main_toast_background_task_already_running_collector">Il Servizio di Raccolta è attivo.</string>
     <string name="main_toast_background_task_already_running_uploader">Caricamento in corso.</string>
     <string name="main_toast_background_task_already_running_export">Esportazione in corso.</string>
@@ -52,7 +52,7 @@
     <string name="main_tab_stats_title">Statistiche</string>
     <string name="main_gps_accuracy_not_available">Non disponibile</string>
     <string name="main_signal_strength_not_available">Non disponibile</string>
-    <string name="date_time_format_standard">yyyy-MM-dd HH:mm:ss</string>
+    <string name="date_time_format_standard">dd/MM/yyyy HH:mm:ss</string>
     <string name="main_gps_status_label">Stato GPS:</string>
     <string name="main_stats_today_title">Oggi</string>
     <string name="main_stats_local_title">Locali da <xliff:g id="date_time">%s</xliff:g></string>
@@ -63,7 +63,7 @@
     <string name="main_stats_global_cells_label">Celle scoperte:</string>
     <string name="main_stats_to_upload_title">Da caricare</string>
     <string name="main_last_cell_title">Ultima misurazione salvata</string>
-    <string name="main_last_number_of_cells_label">Principale/adiacenti</string>
+    <string name="main_last_number_of_cells_label">Principale/adiacenti:</string>
     <string name="main_last_network_type_label">Tipo di rete:</string>
     <string name="main_last_long_cell_id_label">Cell ID Lungo:</string>
     <string name="main_last_cell_id_rnc_label">Cell ID / RNC:</string>
@@ -94,8 +94,8 @@
     <string name="uploader_notification_title">Caricamento</string>
     <string name="uploader_notification_progress_info">Caricato <xliff:g id="progress_in_percent">%d</xliff:g>%%. Seleziona per annullare.</string>
     <string name="uploader_result_dialog_title">Risultato del caricamento</string>
-    <string name="uploader_starting">Avvio caricamento&#8230;</string>
-    <string name="uploader_aborting">Annullamento del caricamento&#8230;</string>
+    <string name="uploader_starting">Avvio caricamento…</string>
+    <string name="uploader_aborting">Annullamento del caricamento…</string>
     <string name="uploader_already_running">Il caricamento è già in corso</string>
     <string name="uploader_disabled">Caricamento disabilitato</string>
     <string name="uploader_disabled_description">Caricamento disabilitato per questo progetto.</string>
