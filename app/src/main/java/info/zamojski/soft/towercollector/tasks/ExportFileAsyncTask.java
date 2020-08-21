@@ -45,6 +45,7 @@ import timber.log.Timber;
 public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorResult> implements IProgressListener {
 
     public static final String DIR_PATH = "EXPORTED_DIR_PATH";
+    public static final String FILE_PATHS = "EXPORTED_FILE_PATHS";
 
     private Context context;
 
@@ -127,6 +128,7 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
                 Message msg = new Message();
                 msg.what = InternalMessageHandler.EXPORT_FINISHED_UI_REFRESH;
                 msg.getData().putString(DIR_PATH, appDir.getPath());
+                msg.getData().putStringArray(FILE_PATHS, getGeneratedFiles());
                 handler.sendMessage(msg);
                 break;
             case Cancelled:
@@ -257,6 +259,21 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
                 }
             }
         }
+    }
+
+    private String[] getGeneratedFiles() {
+        ArrayList<String> result = new ArrayList<>();
+        for (IProgressiveTextGeneratorWrapper subGenerator : generator.getSubGenerators()) {
+            IWritableTextDevice device = subGenerator.getDevice();
+            if (device instanceof IPersistedTextDevice) {
+                IPersistedTextDevice persistedDevice = (IPersistedTextDevice) device;
+                File file = new File(persistedDevice.getPath());
+                if (file.exists()) {
+                    result.add(file.getAbsolutePath());
+                }
+            }
+        }
+        return result.toArray(new String[0]);
     }
 
     private String getStringById(int resId) {

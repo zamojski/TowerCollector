@@ -214,4 +214,13 @@ public class PreferencesProvider {
         boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_show_collector_status_bar_key, R.bool.preferences_show_collector_status_bar_default_value);
         return value;
     }
+
+    public boolean isShareExportedEnabled() {
+        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_share_exported_key, R.bool.preferences_share_exported_default_value);
+        return value;
+    }
+
+    public void setShareExportedEnabled(boolean value) {
+        booleanPreferenceProvider.setPreference(R.string.preferences_share_exported_key, value);
+    }
 }

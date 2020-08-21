@@ -27,18 +27,6 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.PowerManager;
 import android.provider.Settings;
-
-import androidx.annotation.StringRes;
-
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayout.Tab;
-
-import androidx.core.content.ContextCompat;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -50,15 +38,29 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ShareCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayout.Tab;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -91,6 +93,7 @@ import info.zamojski.soft.towercollector.utils.ApkUtils;
 import info.zamojski.soft.towercollector.utils.BackgroundTaskHelper;
 import info.zamojski.soft.towercollector.utils.BatteryUtils;
 import info.zamojski.soft.towercollector.utils.DateUtils;
+import info.zamojski.soft.towercollector.utils.FileUtils;
 import info.zamojski.soft.towercollector.utils.GpsUtils;
 import info.zamojski.soft.towercollector.utils.NetworkUtils;
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
@@ -123,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private BroadcastReceiver batterySaverBroadcastReceiver = null;
 
     private String exportedDirAbsolutePath;
+    private String[] exportedFilePaths;
     private boolean showExportFinishedDialog = false;
 
     private Boolean canStartNetworkTypeSystemActivityResult = null;
@@ -696,14 +700,32 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     public void displayExportFinishedDialog() {
         showExportFinishedDialog = false;
-        // show dialog
+
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View dialogLayout = inflater.inflate(R.layout.export_finished_dialog, null);
+        TextView messageTextView = dialogLayout.findViewById(R.id.export_finished_dialog_textview);
+        messageTextView.setText(getString(R.string.export_dialog_finished_message, exportedDirAbsolutePath));
+        boolean shareEnabled = MyApplication.getPreferencesProvider().isShareExportedEnabled();
+        final CheckBox shareCheckbox = dialogLayout.findViewById(R.id.export_finished_dialog_checkbox);
+        shareCheckbox.setChecked(shareEnabled);
+
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle(R.string.export_dialog_finished_title);
-        builder.setMessage(getString(R.string.export_dialog_finished_message, exportedDirAbsolutePath));
-        builder.setPositiveButton(R.string.dialog_keep, (dialog, which) -> {
-            // cancel
-            MyApplication.getAnalytics().sendExportKeepAction();
-        });
+        builder.setView(dialogLayout);
+        if (shareEnabled) {
+            builder.setPositiveButton(R.string.dialog_share, (dialog, which) -> {
+                exportShareAction();
+                dialog.dismiss();
+                exportedFilePaths = null;
+            });
+        } else {
+            builder.setPositiveButton(R.string.dialog_keep, (dialog, which) -> {
+                exportKeepAction();
+                dialog.dismiss();
+                exportedFilePaths = null;
+            });
+        }
+
         builder.setNeutralButton(R.string.dialog_upload, (dialog, which) -> {
             MyApplication.getAnalytics().sendExportUploadAction();
             startUploaderServiceWithCheck();
@@ -726,11 +748,56 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             deleteDialog.setCancelable(true);
             deleteDialog.show();
         });
+
         AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
+
+        dialog.setOnShowListener(dialog1 -> {
+            shareCheckbox.setChecked(shareEnabled);
+            shareCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                Button keepButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                if (isChecked) {
+                    keepButton.setText(R.string.dialog_share);
+                    keepButton.setOnClickListener(v -> {
+                        exportShareAction();
+                        dialog.dismiss();
+                        exportedFilePaths = null;
+                    });
+                } else {
+                    keepButton.setText(R.string.dialog_keep);
+                    keepButton.setOnClickListener(v -> {
+                        exportKeepAction();
+                        dialog.dismiss();
+                        exportedFilePaths = null;
+                    });
+                }
+                MyApplication.getPreferencesProvider().setShareExportedEnabled(isChecked);
+            });
+        });
+
         dialog.show();
+
         exportedDirAbsolutePath = null;
+    }
+
+    private void exportKeepAction() {
+        MyApplication.getAnalytics().sendExportKeepAction();
+    }
+
+    private void exportShareAction() {
+        MyApplication.getAnalytics().sendExportShareAction();
+        ShareCompat.IntentBuilder shareIntent = ShareCompat.IntentBuilder.from(this);
+        for (String filePath : exportedFilePaths) {
+            File file = new File(filePath);
+            Uri imageUri = FileProvider.getUriForFile(this, "info.zamojski.soft.towercollector.fileprovider", file);
+            shareIntent.addStream(imageUri);
+        }
+        String calculatedMimeType = FileUtils.getFileMimeType(exportedFilePaths);
+        shareIntent.setType(calculatedMimeType);
+        Intent intent = shareIntent.getIntent();
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivity(Intent.createChooser(intent, null));
     }
 
     // ========== MENU START/STOP METHODS ========== //

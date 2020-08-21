@@ -30,6 +30,9 @@
     <string name="preferences_enabled_export_types_key" translatable="false">enabled_export_types</string>
     <string name="preferences_enabled_export_types_default_value" translatable="false"></string>
 
+    <string name="preferences_share_exported_key" translatable="false">share_exported</string>
+    <bool name="preferences_share_exported_default_value" translatable="false">false</bool>
+
     <string name="preferences_opencellid_enabled_key" translatable="false">opencellid_enabled</string>
     <bool name="preferences_opencellid_enabled_default_value" translatable="false">true</bool>
 

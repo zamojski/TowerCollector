@@ -29,6 +29,8 @@ public interface IAnalyticsReportingService {
 
     void sendExportKeepAction();
 
+    void sendExportShareAction();
+
     void sendExportUploadAction();
 
     void sendPrefsUpdateCheckEnabled(boolean enabled);
