@@ -816,6 +816,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.Q)
     @NeedsPermission({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void startCollectorServiceApi29() {
         startCollectorServiceInternal();
@@ -848,6 +849,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.Q)
     @OnShowRationale({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorShowRationaleApi29(PermissionRequest request) {
         onStartCollectorShowRationaleInternal(request);
@@ -868,6 +870,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.Q)
     @OnPermissionDenied({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorPermissionDeniedApi29() {
         onStartCollectorPermissionDeniedInternal();
@@ -882,6 +885,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         onPermissionDenied(R.string.permission_collector_denied_message);
     }
 
+    @TargetApi(Build.VERSION_CODES.Q)
     @OnNeverAskAgain({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorNeverAskAgainApi29() {
         onStartCollectorNeverAskAgainInternal();
@@ -1389,6 +1393,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             switch (msg.what) {
                 case EXPORT_FINISHED_UI_REFRESH:
                     mainActivity.exportedDirAbsolutePath = msg.getData().getString(ExportFileAsyncTask.DIR_PATH);
+                    mainActivity.exportedFilePaths = msg.getData().getStringArray(ExportFileAsyncTask.FILE_PATHS);
                     if (!mainActivity.isMinimized)
                         mainActivity.displayExportFinishedDialog();
                     else
