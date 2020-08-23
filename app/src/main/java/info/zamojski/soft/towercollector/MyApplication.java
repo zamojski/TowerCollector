@@ -95,11 +95,27 @@ public class MyApplication extends Application {
                 }
                 // strange but it happens that app is tested on devices with lower SDK - don't send ACRA reports
                 // also ignore errors caused by system failures
-                if (Build.VERSION.SDK_INT >= BuildConfig.MIN_SDK_VERSION && !(ExceptionUtils.getRootCause(ex) instanceof DeadObjectException)) {
+                if (isSdkVersionSupported() && !hasSystemDied(ex) && !isAndroid10TelephonyManagerLambdaBug(ex)) {
                     defaultHandler.uncaughtException(thread, ex);
                 }
             }
         });
+    }
+
+    private boolean isSdkVersionSupported() {
+        return Build.VERSION.SDK_INT >= BuildConfig.MIN_SDK_VERSION;
+    }
+
+    private boolean hasSystemDied(Throwable ex) {
+        return ExceptionUtils.getRootCause(ex) instanceof DeadObjectException;
+    }
+
+    private boolean isAndroid10TelephonyManagerLambdaBug(Throwable ex) {
+        String stackTrace = ex.toString();
+        return ex instanceof NullPointerException
+                && stackTrace.contains("ParcelableException.getCause()")
+                && stackTrace.contains("TelephonyManager")
+                && stackTrace.contains("lambda$onError");
     }
 
     public void initLogger() {
