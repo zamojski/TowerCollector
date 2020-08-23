@@ -29,6 +29,7 @@
     <string name="dialog_upload">Prześlij</string>
     <string name="dialog_keep">Zachowaj</string>
     <string name="dialog_delete">Usuń</string>
+    <string name="dialog_share">Udostępnij</string>
     <string name="dialog_send">Wyślij</string>
     <string name="dialog_send_comment">Wyślij komentarz</string>
     <string name="dialog_dont_show_again">Nie pokazuj tego ponownie</string>

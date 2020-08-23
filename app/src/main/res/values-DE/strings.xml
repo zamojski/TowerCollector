@@ -29,6 +29,7 @@
     <string name="dialog_upload">Hochladen</string>
     <string name="dialog_keep">Behalten</string>
     <string name="dialog_delete">Löschen</string>
+    <string name="dialog_share">Teilen</string>
     <string name="dialog_send">Senden</string>
     <string name="dialog_send_comment">Kommentar</string>
     <string name="dialog_dont_show_again">Nicht mehr anzeigen</string>

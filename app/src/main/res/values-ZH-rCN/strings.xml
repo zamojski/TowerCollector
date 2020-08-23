@@ -29,6 +29,7 @@
     <string name="dialog_upload">上传</string>
     <string name="dialog_keep">保持不变</string>
     <string name="dialog_delete">删除</string>
+    <string name="dialog_share">分享</string>
     <string name="dialog_send">发送</string>
     <string name="dialog_send_comment">发送评论</string>
     <string name="dialog_dont_show_again">不再询问</string>

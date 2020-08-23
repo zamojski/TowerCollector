@@ -29,6 +29,7 @@
     <string name="dialog_upload">Upload</string>
     <string name="dialog_keep">Manter</string>
     <string name="dialog_delete">Apagar</string>
+    <string name="dialog_share">Compartilhar</string>
     <string name="dialog_send">Enviar</string>
     <string name="dialog_send_comment">Enviar comentário</string>
     <string name="dialog_dont_show_again">Não exiba isto novamente</string>

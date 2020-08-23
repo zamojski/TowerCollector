@@ -29,6 +29,7 @@
     <string name="dialog_upload">העלאה</string>
     <string name="dialog_keep">לשמור</string>
     <string name="dialog_delete">למחוק</string>
+    <string name="dialog_share">שיתוף</string>
     <string name="dialog_send">לשלוח</string>
     <string name="dialog_send_comment">שליחת הערה</string>
     <string name="dialog_dont_show_again">לא להציג את זה שוב</string>

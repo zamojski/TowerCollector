@@ -29,6 +29,7 @@
     <string name="dialog_upload">Caricare</string>
     <string name="dialog_keep">Mantieni</string>
     <string name="dialog_delete">Cancella</string>
+    <string name="dialog_share">Condividere</string>
     <string name="dialog_send">Invia</string>
     <string name="dialog_send_comment">Invia commento</string>
     <string name="dialog_dont_show_again">Non mostrare più</string>
