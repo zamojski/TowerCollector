@@ -111,6 +111,8 @@ public class MyApplication extends Application {
     }
 
     private boolean isAndroid10TelephonyManagerLambdaBug(Throwable ex) {
+        if (Build.VERSION.SDK_INT != Build.VERSION_CODES.Q)
+            return false;
         String stackTrace = ex.toString();
         return ex instanceof NullPointerException
                 && stackTrace.contains("ParcelableException.getCause()")
