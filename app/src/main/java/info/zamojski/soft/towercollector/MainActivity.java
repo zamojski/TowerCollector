@@ -1144,7 +1144,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             startActivityForResult(intent, BATTERY_OPTIMIZATIONS_ACTIVITY_RESULT);
         } catch (ActivityNotFoundException ex) {
             Timber.w(ex, "startBatteryOptimizationsSystemActivity(): Could not open Settings to change battery optimizations");
-            MyApplication.handleSilentException(ex);
             showCannotOpenAndroidSettingsDialog();
         }
     }
