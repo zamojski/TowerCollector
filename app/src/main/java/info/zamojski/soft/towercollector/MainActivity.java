@@ -712,6 +712,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle(R.string.export_dialog_finished_title);
         builder.setView(dialogLayout);
+        builder.setCancelable(true);
         if (shareEnabled) {
             builder.setPositiveButton(R.string.dialog_share, (dialog, which) -> {
                 exportShareAction();
@@ -725,7 +726,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 exportedFilePaths = null;
             });
         }
-
         builder.setNeutralButton(R.string.dialog_upload, (dialog, which) -> {
             MyApplication.getAnalytics().sendExportUploadAction();
             startUploaderServiceWithCheck();
@@ -748,11 +748,12 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             deleteDialog.setCancelable(true);
             deleteDialog.show();
         });
+        builder.setOnCancelListener(dialog -> {
+            exportKeepAction();
+            exportedFilePaths = null;
+        });
 
         AlertDialog dialog = builder.create();
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.setCancelable(false);
-
         dialog.setOnShowListener(dialog1 -> {
             shareCheckbox.setChecked(shareEnabled);
             shareCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
