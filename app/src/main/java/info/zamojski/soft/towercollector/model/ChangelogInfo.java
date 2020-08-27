@@ -6,6 +6,7 @@ package info.zamojski.soft.towercollector.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ChangelogInfo implements Serializable {
@@ -15,7 +16,7 @@ public class ChangelogInfo implements Serializable {
     private List<ChangelogEntry> entries;
 
     public ChangelogInfo() {
-        this.entries = new ArrayList<ChangelogEntry>();
+        this.entries = new ArrayList<>();
     }
 
     public List<ChangelogEntry> getEntries() {
@@ -23,9 +24,7 @@ public class ChangelogInfo implements Serializable {
     }
 
     public void addEntries(List<ChangelogEntry> entries) {
-        for (ChangelogEntry entry : entries) {
-            this.entries.add(entry);
-        }
+        this.entries.addAll(entries);
     }
 
     public void removeEntries(List<ChangelogEntry> entries) {
@@ -51,13 +50,11 @@ public class ChangelogInfo implements Serializable {
             this.versionCode = versionCode;
             this.title = title;
             this.description = description;
-            this.messages = new ArrayList<String>();
+            this.messages = new ArrayList<>();
         }
 
         public void addMessages(String... messages) {
-            for (String message : messages) {
-                this.messages.add(message);
-            }
+            this.messages.addAll(Arrays.asList(messages));
         }
 
         public int getVersionCode() {

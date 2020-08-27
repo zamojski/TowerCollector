@@ -1,6 +1,16 @@
 {
   "Entries": [
     {
+      "VersionCode": 2050067,
+      "Title": "Changes in version 2.5.0",
+      "Description": "If you experience app crashes on Android 10 when collecting, please make sure to update your system. One of early Android 10 versions has a defect which I cannot work around or fix :(",
+      "Messages": [
+        "Add option to share exported files.",
+        "Increase active tab indicator height.",
+        "Improve error handling."
+      ]
+    },
+    {
       "VersionCode": 2040066,
       "Title": "Changes in version 2.4.0",
       "Messages": [
@@ -41,14 +51,6 @@
       "Title": "Changes in version 2.2.3",
       "Messages": [
         "Fix GPS Week Number Rollover on devices manufactured between 2006 and 2016."
-      ]
-    },
-    {
-      "VersionCode": 2020262,
-      "Title": "Changes in version 2.2.2",
-      "Messages": [
-        "Fix crash due to inconsistency when exporting to GPX file.",
-        "Fix crash when collecting on some Xiaomi phones."
       ]
     }
   ]
