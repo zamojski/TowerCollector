@@ -11,6 +11,8 @@
     <string name="preferences_header_general_summary">אפשרויות כלליות, עדכונים, סטטיסטיקה וכו׳</string>
     <string name="preferences_header_display_title">תצוגה</string>
     <string name="preferences_header_display_summary">כל מה שקשור בהצגת נתונים, ערכת עיצוב, יחידות וכו׳</string>
+    <string name="preferences_header_export_title">ייצוא</string>
+    <string name="preferences_header_export_summary">הגדרות שקשורות בייצוא קבצים וכו׳</string>
     <string name="preferences_header_advanced_title">מתקדם</string>
     <string name="preferences_header_advanced_summary">אפשרויות ותכונות מתקדמים.</string>
     <string name="preferences_header_information_title">מידע</string>
@@ -57,6 +59,8 @@
     <string name="preferences_gps_optimizations_enabled_title">מיטוב GPS של מנגנון האיסוף</string>
     <string name="preferences_gps_optimizations_enabled_on_summary">ייעשה שימוש במיטוב משתני GPS בעת איסוף מדידות.</string>
     <string name="preferences_gps_optimizations_enabled_off_summary">מיטוב משתני GPS מושבת.</string>
+    <string name="preferences_export_compression_format_title">תצורת דחיסה</string>
+    <string name="preferences_export_compression_format_summary">מגדיר את תצורת הדחיסה של הקבצים המיוצאים.</string>
     <string name="preferences_tracking_enabled_title">שליחת סטטיסטיקת שימוש</string>
     <string name="preferences_tracking_enabled_on_summary">סטטיסטיקת שימוש אלמונית תישלח כדי לסייע לי לשפר את היישומון. פרטים נוספים להלן.</string>
     <string name="preferences_tracking_enabled_off_summary">סטטיסטיקת שימוש אלמונית מושבתת. להלן יופיע מה שעשוי להישלח אם התכונה תופעל.</string>
@@ -111,6 +115,11 @@
     <string name="preferences_main_keep_screen_on_title">להשאיר את המסך פעיל כאשר גלוי</string>
     <string name="preferences_main_keep_screen_on_on_summary">המסך יישאר פעיל תמיד כאשר המסך הראשי של היישומון מוצג.</string>
     <string name="preferences_main_keep_screen_on_off_summary">המסך יהיה בשליטת המערכת כאשר המסך הראשי של היישומון מוצג.</string>
+    <string name="preferences_show_collector_status_bar_title">הצגת סרגל מצב מנגנון איסוף</string>
+    <string name="preferences_show_collector_status_bar_on_summary">סרגל המצב של מנגנון האיסוף יופיע.</string>
+    <string name="preferences_show_collector_status_bar_off_summary">סרגל המצב של מנגנון האיסוף יוסתר.</string>
+    <string name="preferences_notification_settings_title">הגדרות התראה</string>
+    <string name="preferences_notification_settings_summary">פותח את הגדרות ההתראה של היישומון.</string>
     <string name="preferences_about_main_keep_screen_on_title">על השארת המסך פעיל כאשר היישומון גלוי</string>
     <string name="preferences_about_main_keep_screen_on_summary">מידע על איך אפשרות זו עובדת ומתי להשתמש בה.</string>
     <string name="preferences_about_collector_keep_screen_on_title">על השארת המסך פעיל בעת האיסוף</string>

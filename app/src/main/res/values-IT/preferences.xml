@@ -11,6 +11,8 @@
     <string name="preferences_header_general_summary">Opzioni generali, aggiornamenti, statistiche, etc.</string>
     <string name="preferences_header_display_title">Schermo</string>
     <string name="preferences_header_display_summary">Tutto ciò che riguarda i dati di visualizzazione, tema, unità, etc.</string>
+    <string name="preferences_header_export_title">Esporta</string>
+    <string name="preferences_header_export_summary">Impostazioni relative all\'esportazione dei file, etc.</string>
     <string name="preferences_header_advanced_title">Avanzate</string>
     <string name="preferences_header_advanced_summary">Funzioni ed opzioni avanzate.</string>
     <string name="preferences_header_information_title">Informazioni</string>
@@ -57,6 +59,8 @@
     <string name="preferences_gps_optimizations_enabled_title">Ottimizzazione del servizio di raccolta GPS</string>
     <string name="preferences_gps_optimizations_enabled_on_summary">L\'ottimizzazione dei parametri GPS sarà utilizzata durante la raccolta delle misurazioni.</string>
     <string name="preferences_gps_optimizations_enabled_off_summary">L\'ottimizzazione dei parametri GPS è disabilitata.</string>
+    <string name="preferences_export_compression_format_title">Formato di compressione</string>
+    <string name="preferences_export_compression_format_summary">Definisce il formato di compressione dei file esportati.</string>
     <string name="preferences_tracking_enabled_title">Invia statistiche d\'uso</string>
     <string name="preferences_tracking_enabled_on_summary">Verranno inviate statistiche di utilizzo anonime per aiutarmi a migliorare l\'app. Maggiori informazioni qui sotto.</string>
     <string name="preferences_tracking_enabled_off_summary">Le statistiche di utilizzo anonime sono disabilitate. Vedi sotto cosa potrebbe essere inviato se abilitato.</string>
@@ -111,6 +115,11 @@
     <string name="preferences_main_keep_screen_on_title">Tieni lo schermo acceso quando visibile</string>
     <string name="preferences_main_keep_screen_on_on_summary">Lo schermo sarà mantenuto costantemente attivo quando viene visualizzata la schermata principale dell\'app.</string>
     <string name="preferences_main_keep_screen_on_off_summary">Lo schermo sarà controllato dal sistema quando viene visualizzata la schermata principale dell\'app.</string>
+    <string name="preferences_show_collector_status_bar_title">Mostra la barra di stato del raccoglitore</string>
+    <string name="preferences_show_collector_status_bar_on_summary">La barra di stato sarà visibile.</string>
+    <string name="preferences_show_collector_status_bar_off_summary">La barra di stato sarà nascosta.</string>
+    <string name="preferences_notification_settings_title">Impostazioni delle notifiche</string>
+    <string name="preferences_notification_settings_summary">Apre le impostazioni di notifica dell\'applicazione.</string>
     <string name="preferences_about_main_keep_screen_on_title">Info sul mantenimento dello schermo acceso quando visibile</string>
     <string name="preferences_about_main_keep_screen_on_summary">Informazioni su come funziona questa opzione e su quando usarla.</string>
     <string name="preferences_about_collector_keep_screen_on_title">Info sul mantenimento dello schermo acceso durante la raccolta dati</string>

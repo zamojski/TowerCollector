@@ -33,14 +33,10 @@ public class CsvUploadFormatter extends CsvFormatter {
     }
 
     @Override
-    public String formatRow(Measurement m) {
+    public String formatEntry(Measurement m) {
         StringBuilder sb = new StringBuilder(140);
 
         for (Cell c : m.getCells()) {
-            if (c.getNetworkType() == NetworkGroup.Tdscdma || c.getNetworkType() == NetworkGroup.Nr) {
-                // skip as not supported
-                continue;
-            }
             sb.append(formatCoordinate(m.getLatitude()));
             sb.append(',');
             sb.append(formatCoordinate(m.getLongitude()));
@@ -77,11 +73,11 @@ public class CsvUploadFormatter extends CsvFormatter {
                 // sid
                 sb.append(',');
                 // lac
-                if (c.getNetworkType() != NetworkGroup.Lte)
+                if (c.getNetworkType() != NetworkGroup.Lte && c.getNetworkType() != NetworkGroup.Nr)
                     sb.append(formatInt(c.getLac()));
                 sb.append(',');
                 // tac
-                if (c.getNetworkType() == NetworkGroup.Lte)
+                if (c.getNetworkType() == NetworkGroup.Lte || c.getNetworkType() == NetworkGroup.Nr)
                     sb.append(formatInt(c.getLac()));
                 sb.append(',');
                 // nid
@@ -95,11 +91,11 @@ public class CsvUploadFormatter extends CsvFormatter {
 
             // psc
             int psc = c.getPsc();
-            if (psc != Cell.UNKNOWN_CID && c.getNetworkType() == NetworkGroup.Wcdma)
+            if (psc != Cell.UNKNOWN_CID && (c.getNetworkType() == NetworkGroup.Wcdma || c.getNetworkType() == NetworkGroup.Tdscdma))
                 sb.append(formatInt(psc));
             sb.append(',');
             // pci
-            if (psc != Cell.UNKNOWN_CID && c.getNetworkType() == NetworkGroup.Lte)
+            if (psc != Cell.UNKNOWN_CID && (c.getNetworkType() == NetworkGroup.Lte || c.getNetworkType() == NetworkGroup.Nr))
                 sb.append(formatInt(psc));
             sb.append(',');
 

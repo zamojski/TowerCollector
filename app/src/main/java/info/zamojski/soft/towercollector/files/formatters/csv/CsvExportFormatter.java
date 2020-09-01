@@ -37,7 +37,7 @@ public class CsvExportFormatter extends CsvFormatter {
     }
 
     @Override
-    public String formatRow(Measurement m) {
+    public String formatEntry(Measurement m) {
         StringBuilder sb = new StringBuilder(150);
 
         for (Cell c : m.getCells()) {

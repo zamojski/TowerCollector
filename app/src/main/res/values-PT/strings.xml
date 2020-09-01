@@ -29,6 +29,7 @@
     <string name="dialog_upload">Upload</string>
     <string name="dialog_keep">Manter</string>
     <string name="dialog_delete">Apagar</string>
+    <string name="dialog_share">Compartilhar</string>
     <string name="dialog_send">Enviar</string>
     <string name="dialog_send_comment">Enviar comentário</string>
     <string name="dialog_dont_show_again">Não exiba isto novamente</string>
@@ -202,7 +203,9 @@
     <string name="main_help_to_upload_common_locations_title">Medições a enviar</string>
     <string name="main_help_to_upload_ocid_locations_description">Número de medições aguardando serem enviadas para o OpenCellID.org.</string>
     <string name="main_help_to_upload_mls_locations_description">Número de medições aguardando serem enviadas para o Mozilla Location Services.</string>
-    <string name="status_initializing">inicializando</string>
+    <string name="collector_status_active">Coletando medidas</string>
+    <string name="collector_status_inactive">A coleta de medidas está parada</string>
+    <string name="status_initializing">esperando pela localização</string>
     <string name="status_ok">OK</string>
     <string name="status_low_gps_accuracy">baixa precisão <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">sem posicionamento</string>
@@ -215,6 +218,8 @@
     <string name="uploader_all_projects_disabled">Upload para todos os projetos está desabilitado</string>
     <string name="export_format_csv">CSV</string>
     <string name="export_format_gpx">GPX</string>
+    <string name="export_format_kml">KML</string>
+    <string name="export_format_kmz">KMZ</string>
     <string name="export_format_csv_ocid">CSV para OpenCellID.org</string>
     <string name="export_format_json_mls">JSON para Mozilla Location Services</string>
     <string name="export_format_zip">Compactar cada arquivo exportado</string>

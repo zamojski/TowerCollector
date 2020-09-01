@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/padding_medium">
+        android:padding="@dimen/padding_large">
 
         <CheckBox
             android:id="@+id/csv_export_dialog_checkbox"
@@ -23,6 +23,20 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/export_format_gpx" />
+
+        <CheckBox
+            android:id="@+id/kml_export_dialog_checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/export_format_kml" />
+
+        <CheckBox
+            android:id="@+id/kmz_export_dialog_checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/export_format_kmz" />
 
         <CheckBox
             android:id="@+id/csv_ocid_export_dialog_checkbox"

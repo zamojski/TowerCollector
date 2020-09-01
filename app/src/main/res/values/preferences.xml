@@ -11,6 +11,8 @@
     <string name="preferences_header_general_summary">General options, updates, statistics, etc.</string>
     <string name="preferences_header_display_title">Display</string>
     <string name="preferences_header_display_summary">Everything related to data display, theme, units, etc.</string>
+    <string name="preferences_header_export_title">Export</string>
+    <string name="preferences_header_export_summary">Settings related to file export, etc.</string>
     <string name="preferences_header_advanced_title">Advanced</string>
     <string name="preferences_header_advanced_summary">Advanced options and functions.</string>
     <string name="preferences_header_information_title">Information</string>
@@ -57,6 +59,8 @@
     <string name="preferences_gps_optimizations_enabled_title">Collector GPS optimization</string>
     <string name="preferences_gps_optimizations_enabled_on_summary">GPS parameters optimization will be used when collecting measurements.</string>
     <string name="preferences_gps_optimizations_enabled_off_summary">GPS parameters optimization is disabled.</string>
+    <string name="preferences_export_compression_format_title">Compression format</string>
+    <string name="preferences_export_compression_format_summary">Defines compression format of exported files.</string>
     <string name="preferences_tracking_enabled_title">Send usage statistics</string>
     <string name="preferences_tracking_enabled_on_summary">Anonymous usage statistics will be send to help me to improve the app. More info below.</string>
     <string name="preferences_tracking_enabled_off_summary">Anonymous usage statistics are disabled. See below what might be send if enabled.</string>
@@ -111,6 +115,11 @@
     <string name="preferences_main_keep_screen_on_title">Keep screen on when visible</string>
     <string name="preferences_main_keep_screen_on_on_summary">Screen will be kept constantly on when app\'s main screen is displayed.</string>
     <string name="preferences_main_keep_screen_on_off_summary">Screen will be controlled by the system when app\'s main screen is displayed.</string>
+    <string name="preferences_show_collector_status_bar_title">Show collector status bar</string>
+    <string name="preferences_show_collector_status_bar_on_summary">Collector status bar will be visible.</string>
+    <string name="preferences_show_collector_status_bar_off_summary">Collector status bar will be hidden.</string>
+    <string name="preferences_notification_settings_title">Notification settings</string>
+    <string name="preferences_notification_settings_summary">Opens application notification settings.</string>
     <string name="preferences_about_main_keep_screen_on_title">About keep screen on when visible</string>
     <string name="preferences_about_main_keep_screen_on_summary">Information how this option works and when to use it.</string>
     <string name="preferences_about_collector_keep_screen_on_title">About keep screen on when collecting</string>

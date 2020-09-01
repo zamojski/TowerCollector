@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+<?xml version="1.0" encoding="utf-8"?><!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
@@ -29,6 +28,7 @@
     <string name="dialog_upload">Upload</string>
     <string name="dialog_keep">Keep</string>
     <string name="dialog_delete">Delete</string>
+    <string name="dialog_share">Share</string>
     <string name="dialog_send">Send</string>
     <string name="dialog_send_comment">Send comment</string>
     <string name="dialog_dont_show_again">Don\'t show this again</string>
@@ -215,7 +215,9 @@
     <string name="main_help_to_upload_common_locations_title">Measurements to upload</string>
     <string name="main_help_to_upload_ocid_locations_description">Number of measurements waiting for upload to OpenCellID.org.</string>
     <string name="main_help_to_upload_mls_locations_description">Number of measurements waiting for upload to Mozilla Location Services.</string>
-    <string name="status_initializing">initializing</string>
+    <string name="collector_status_active">Collecting measurements</string>
+    <string name="collector_status_inactive">Measurements collection is stopped</string>
+    <string name="status_initializing">waiting for location</string>
     <string name="status_ok">OK</string>
     <string name="status_low_gps_accuracy">low accuracy <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">no location</string>
@@ -228,6 +230,8 @@
     <string name="uploader_all_projects_disabled">Upload to all projects is disabled</string>
     <string name="export_format_csv">CSV</string>
     <string name="export_format_gpx">GPX</string>
+    <string name="export_format_kml">KML</string>
+    <string name="export_format_kmz">KMZ</string>
     <string name="export_format_csv_ocid">CSV for OpenCellID.org</string>
     <string name="export_format_json_mls">JSON for Mozilla Location Services</string>
     <string name="export_format_zip">Compress each exported file</string>

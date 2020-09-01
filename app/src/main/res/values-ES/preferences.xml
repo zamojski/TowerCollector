@@ -11,6 +11,8 @@
     <string name="preferences_header_general_summary">Opciones generales, actualizaciones, estadísticas, etc.</string>
     <string name="preferences_header_display_title">Desplegado</string>
     <string name="preferences_header_display_summary">Todo lo relacionado con los datos mostrados, temas, unidades, etc.</string>
+    <string name="preferences_header_export_title">Exportar</string>
+    <string name="preferences_header_export_summary">Ajustes relacionados con la exportación de archivos, etc.</string>
     <string name="preferences_header_advanced_title">Avanzado</string>
     <string name="preferences_header_advanced_summary">Opciones y funciones avanzadas.</string>
     <string name="preferences_header_information_title">Información</string>
@@ -57,6 +59,8 @@
     <string name="preferences_gps_optimizations_enabled_title">Optimización de Colector de GPS</string>
     <string name="preferences_gps_optimizations_enabled_on_summary">La optimización de parametros GPS se usará al recolectar mediociones</string>
     <string name="preferences_gps_optimizations_enabled_off_summary">La optimización de parámetros GPS está deshabilitada.</string>
+    <string name="preferences_export_compression_format_title">Formato de compresión</string>
+    <string name="preferences_export_compression_format_summary">Define el formato de compresión de los archivos exportados.</string>
     <string name="preferences_tracking_enabled_title">Envíe estadísticas de uso</string>
     <string name="preferences_tracking_enabled_on_summary">Se enviarán estadisticas de uso anónimas para ayudar a mejorar la app. Más información abajo.</string>
     <string name="preferences_tracking_enabled_off_summary">El envío de estadísticas anónimas esta deshabilitado. Abajo se muestra que datos se envian si se habilita.</string>
@@ -111,6 +115,11 @@
     <string name="preferences_main_keep_screen_on_title">Mantener la pantalla encendida cuando sea visible</string>
     <string name="preferences_main_keep_screen_on_on_summary">La pantalla se mantendra encendida cuando la pantalla principal de la app se muestre.</string>
     <string name="preferences_main_keep_screen_on_off_summary">La pantalla será controlada por el sistema cuando se muestre la pantalla principal de la aplicación.</string>
+    <string name="preferences_show_collector_status_bar_title">Mostrar barra de estado del recopilador</string>
+    <string name="preferences_show_collector_status_bar_on_summary">La barra de estado del recopilador estará visible.</string>
+    <string name="preferences_show_collector_status_bar_off_summary">La barra de estado del recopilador se ocultará.</string>
+    <string name="preferences_notification_settings_title">Configuración de las notificaciones</string>
+    <string name="preferences_notification_settings_summary">Abre la configuración de notificaciones de la aplicación.</string>
     <string name="preferences_about_main_keep_screen_on_title">Acerca de mantener la pantalla encendida cuando es visible</string>
     <string name="preferences_about_main_keep_screen_on_summary">Información sobre cómo funciona esta opción y cuándo usarla.</string>
     <string name="preferences_about_collector_keep_screen_on_title">Acerca de mantener la pantalla encendida cuando se recolecta</string>

@@ -4,6 +4,9 @@
 
 package info.zamojski.soft.towercollector.analytics;
 
+import java.util.Map;
+
+import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
 
 public class FakeAnalyticsReportingService implements IAnalyticsReportingService {
@@ -23,7 +26,7 @@ public class FakeAnalyticsReportingService implements IAnalyticsReportingService
     }
 
     @Override
-    public void sendCollectorFinished(IntentSource source, String meansOfTransport, int apiVersion, long duration, AnalyticsStatistics stats) {
+    public void sendCollectorFinished(IntentSource source, String meansOfTransport, int apiVersion, long duration, AnalyticsStatistics stats, Map<NetworkGroup,Integer> collectedCellTypes) {
 
     }
 
@@ -49,6 +52,11 @@ public class FakeAnalyticsReportingService implements IAnalyticsReportingService
 
     @Override
     public void sendExportKeepAction() {
+
+    }
+
+    @Override
+    public void sendExportShareAction() {
 
     }
 

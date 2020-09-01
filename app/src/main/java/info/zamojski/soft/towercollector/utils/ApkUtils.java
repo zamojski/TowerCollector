@@ -4,17 +4,13 @@
 
 package info.zamojski.soft.towercollector.utils;
 
-import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.ShortcutManager;
 import android.os.Build;
 
 import androidx.annotation.StringRes;
 
-import java.util.List;
-
 import info.zamojski.soft.towercollector.BuildConfig;
-import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 
 public class ApkUtils {
@@ -48,17 +44,6 @@ public class ApkUtils {
 
     public static String getDeviceName() {
         return Build.MANUFACTURER + " " + Build.MODEL;
-    }
-
-    public static boolean isServiceRunning(String serviceClassName) {
-        ActivityManager activityManager = (ActivityManager) MyApplication.getApplication().getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningServiceInfo> services = activityManager.getRunningServices(Integer.MAX_VALUE);
-        for (ActivityManager.RunningServiceInfo runningServiceInfo : services) {
-            if (runningServiceInfo.service.getClassName().equals(serviceClassName)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public static boolean isRunningOnBuggyOreoSetRequestedOrientation(Context context) {

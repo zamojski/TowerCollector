@@ -1,0 +1,10 @@
+- Add upload of 5G (NR) and TD-SCDMA cells to OpenCellID.
+- Add export to KML and KMZ formats.
+- Add gzip compression of exported files with option to configure the format.
+- Add optional bar presenting Collector status.
+- Add link to application notification settings.
+- Fix database import not working due to transaction log not being deleted.
+- Fix exported file not deleted when export canceled and compression enabled.
+- Rename GPS status from 'initializing' to 'waiting for location' to be less confusing.
+- Update external libraries.
+- Many small fixes and improvements.

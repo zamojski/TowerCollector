@@ -9,11 +9,14 @@ import android.os.Bundle;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 
+import java.util.Map;
+
 import info.zamojski.soft.towercollector.BuildConfig;
 import info.zamojski.soft.towercollector.analytics.internal.Event;
 import info.zamojski.soft.towercollector.analytics.internal.Label;
 import info.zamojski.soft.towercollector.analytics.internal.Parameter;
 import info.zamojski.soft.towercollector.analytics.internal.UserProperty;
+import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
 
 public class GoogleAnalyticsReportingService implements IAnalyticsReportingService {
@@ -50,7 +53,7 @@ public class GoogleAnalyticsReportingService implements IAnalyticsReportingServi
     }
 
     @Override
-    public void sendCollectorFinished(IntentSource source, String meansOfTransport, int apiVersion, long duration, AnalyticsStatistics stats) {
+    public void sendCollectorFinished(IntentSource source, String meansOfTransport, int apiVersion, long duration, AnalyticsStatistics stats, Map<NetworkGroup, Integer> collectedCellTypes) {
         Bundle bundle = new Bundle();
         bundle.putString(Parameter.Source, convertToStartLabel(source));
         bundle.putString(Parameter.MeansOfTransport, meansOfTransport);
@@ -58,6 +61,9 @@ public class GoogleAnalyticsReportingService implements IAnalyticsReportingServi
         bundle.putInt(Parameter.Locations, stats.getLocations());
         bundle.putInt(Parameter.Cells, stats.getCells());
         bundle.putLong(Parameter.Duration, duration);
+        for (Map.Entry<NetworkGroup, Integer> entry : collectedCellTypes.entrySet()) {
+            bundle.putInt(Parameter.NetworkType + "_" + entry.getKey(), entry.getValue());
+        }
         this.analytics.logEvent(Event.MeasurementsCollected, bundle);
     }
 
@@ -104,6 +110,11 @@ public class GoogleAnalyticsReportingService implements IAnalyticsReportingServi
     @Override
     public void sendExportKeepAction() {
         sendExportAction(Label.Keep);
+    }
+
+    @Override
+    public void sendExportShareAction() {
+        sendExportAction(Label.Share);
     }
 
     @Override

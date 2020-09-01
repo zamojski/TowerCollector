@@ -5,6 +5,7 @@
 package info.zamojski.soft.towercollector.logging;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Environment;
 import android.os.Process;
 import androidx.annotation.NonNull;
@@ -56,6 +57,7 @@ public class FileLoggingTree extends Timber.DebugTree {
                     // write identification data once initialization finished
                     log(Log.DEBUG, ApkUtils.getDeviceName());
                     log(Log.DEBUG, ApkUtils.getApkVersionNameWithSuffix());
+                    log(Log.DEBUG, "Android version %s (%d)", Build.VERSION.RELEASE, Build.VERSION.SDK_INT);
                 }
             }
         }

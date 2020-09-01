@@ -14,7 +14,7 @@
     <string name="unit_speed_imperial">mph</string>
     <string name="network_type_unknown">Sconosciuto</string>
     <string name="network_group_unknown">Sconosciuto</string>
-    <string name="app_title_preferences">Preferenze</string>
+    <string name="app_title_preferences">Impostazioni</string>
     <string name="dialog_want_enable_gps">Vuoi aprire le impostazioni di localizzazione per abilitare il GPS?</string>
     <string name="dialog_could_not_open_android_settings">Impossibile aprire le impostazioni di Android. Aprirle manualmente per cambiarle.</string>
     <string name="dialog_select_email_app">Scegli l\'applicazione per l\'email</string>
@@ -23,15 +23,16 @@
     <string name="dialog_no">No</string>
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Annulla</string>
-    <string name="dialog_register">Registrare</string>
+    <string name="dialog_register">Iscriviti</string>
     <string name="dialog_enter_api_key">Invio</string>
     <string name="dialog_export">Esporta</string>
     <string name="dialog_upload">Caricare</string>
     <string name="dialog_keep">Mantieni</string>
     <string name="dialog_delete">Cancella</string>
+    <string name="dialog_share">Condividere</string>
     <string name="dialog_send">Invia</string>
     <string name="dialog_send_comment">Invia commento</string>
-    <string name="dialog_dont_show_again">Non mostrare di nuovo</string>
+    <string name="dialog_dont_show_again">Non mostrare più</string>
     <string name="dialog_proceed">Procedi</string>
     <string name="dialog_settings">Impostazioni</string>
     <string name="main_dialog_not_compatible_title">Problemi di compatibilità</string>
@@ -202,7 +203,9 @@
     <string name="main_help_to_upload_common_locations_title">Misurazioni da caricare</string>
     <string name="main_help_to_upload_ocid_locations_description">Numero di misurazioni in attesa di caricamento su OpenCellID.org.</string>
     <string name="main_help_to_upload_mls_locations_description">Numero di misurazioni in attesa di caricamento su Mozilla Location Services.</string>
-    <string name="status_initializing">inizializzazione</string>
+    <string name="collector_status_active">Raccolta misurazioni</string>
+    <string name="collector_status_inactive">La raccolta delle misurazioni è stata fermata</string>
+    <string name="status_initializing">in attesa di posizione</string>
     <string name="status_ok">OK</string>
     <string name="status_low_gps_accuracy">bassa accuratezza <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">nessuna posizione</string>
@@ -215,6 +218,8 @@
     <string name="uploader_all_projects_disabled">Caricamento disabilitato per tutti i progetti</string>
     <string name="export_format_csv">CSV</string>
     <string name="export_format_gpx">GPX</string>
+    <string name="export_format_kml">KML</string>
+    <string name="export_format_kmz">KMZ</string>
     <string name="export_format_csv_ocid">CSV per OpenCellID.org</string>
     <string name="export_format_json_mls">JSON per Mozilla Location Services</string>
     <string name="export_format_zip">Comprimi ogni file esportato</string>

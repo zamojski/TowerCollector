@@ -46,8 +46,4 @@ public class JsonTextGenerator<TFormatter extends IJsonFormatter, TDevice extend
         String footer = this.formatter.formatFooter();
         this.device.write(footer);
     }
-
-    public String getMimeType() {
-        return "application/json";
-    }
 }

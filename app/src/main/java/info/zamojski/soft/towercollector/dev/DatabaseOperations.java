@@ -42,11 +42,12 @@ public class DatabaseOperations {
 
     private static void copyDatabase(Context context, File srcFile, File dstFile, String operation) {
         try {
-            if(StorageUtils.isExternalMemoryWritable()) {
+            if (StorageUtils.isExternalMemoryWritable()) {
                 File externalStorage = Environment.getExternalStorageDirectory();
                 if (externalStorage.canWrite()) {
                     FileUtils.checkAccess(dstFile);
                     FileUtils.copyFile(srcFile, dstFile);
+                    deleteDatabaseTransactionFiles(context);
                     Timber.d("copyDatabase(): Database " + operation + "ed");
                     int operationMessage = operation.equals(OPERATION_IMPORT) ? R.string.database_import_message : R.string.database_export_message;
                     MeasurementsDatabase.invalidateInstance();
@@ -69,6 +70,7 @@ public class DatabaseOperations {
         File dbFile = getDatabasePath(context);
         Timber.d("deleteDatabase(): Deleting file %s", dbFile);
         boolean deleted = dbFile.delete();
+        deleteDatabaseTransactionFiles(context);
         if (deleted) {
             Timber.d("deleteDatabase(): File deleted");
             MeasurementsDatabase.invalidateInstance();
@@ -78,8 +80,25 @@ public class DatabaseOperations {
         }
     }
 
+    private static void deleteDatabaseTransactionFiles(Context context) {
+        deleteDatabaseTransactionFile(context, "-wal");
+        deleteDatabaseTransactionFile(context, "-shm");
+    }
+
+    private static void deleteDatabaseTransactionFile(Context context, String suffix) {
+        File transactionFile = getDatabaseTransactionFile(context, suffix);
+        if (transactionFile.exists()) {
+            Timber.i("deleteDatabaseTransactionFile(): Deleting transaction file %s", transactionFile.getName());
+            transactionFile.delete();
+        }
+    }
+
     private static File getDatabasePath(Context context) {
         return context.getDatabasePath(MeasurementsDatabase.DATABASE_FILE_NAME);
+    }
+
+    private static File getDatabaseTransactionFile(Context context, String suffix) {
+        return context.getDatabasePath(MeasurementsDatabase.DATABASE_FILE_NAME + suffix);
     }
 
     private static File getDatabaseImportPath() {

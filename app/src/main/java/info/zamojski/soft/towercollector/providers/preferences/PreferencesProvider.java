@@ -207,6 +207,25 @@ public class PreferencesProvider {
         stringPreferenceProvider.setPreference(R.string.preferences_enabled_export_types_key, value);
     }
 
+    public String getExportCompressionFormat() {
+        String value = stringPreferenceProvider.getPreference(R.string.preferences_export_compression_format_key, R.string.preferences_export_compression_format_default_value);
+        return value;
+    }
+
+    public boolean isShowCollectorStatusBarEnabled() {
+        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_show_collector_status_bar_key, R.bool.preferences_show_collector_status_bar_default_value);
+        return value;
+    }
+
+    public boolean isShareExportedEnabled() {
+        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_share_exported_key, R.bool.preferences_share_exported_default_value);
+        return value;
+    }
+
+    public void setShareExportedEnabled(boolean value) {
+        booleanPreferenceProvider.setPreference(R.string.preferences_share_exported_key, value);
+    }
+
     public float getMainMapZoomLevel() {
         float value = floatPreferenceProvider.getPreference(R.string.preferences_main_map_zoom_level_key, R.integer.preferences_main_map_zoom_level_default_value);
         return value;

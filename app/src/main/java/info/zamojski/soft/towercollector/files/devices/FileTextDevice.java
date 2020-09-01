@@ -12,17 +12,15 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class FileTextDevice implements IWritableTextDevice {
+public class FileTextDevice implements IWritableTextDevice, IPersistedTextDevice {
 
     private String path;
-    private File file;
 
     private FileWriter fileWriter = null;
     private BufferedWriter bufferedWriter = null;
 
     public FileTextDevice(String path) {
         this.path = path;
-        this.file = new File(path);
     }
 
     @Override
@@ -41,8 +39,15 @@ public class FileTextDevice implements IWritableTextDevice {
     }
 
     @Override
+    public String getFileType() {
+        return FileUtils.getFileExtension(getPath());
+    }
+
+    @Override
     public void open() throws DeviceOperationException, IOException {
+        File file = new File(getPath());
         FileUtils.checkAccess(file);
+
         fileWriter = new FileWriter(file, false);
         bufferedWriter = new BufferedWriter(fileWriter);
     }

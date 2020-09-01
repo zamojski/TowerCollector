@@ -11,6 +11,8 @@
     <string name="preferences_header_general_summary">Ogólne ustawienia, aktualizacje, statystyki, itp.</string>
     <string name="preferences_header_display_title">Wyświetlanie</string>
     <string name="preferences_header_display_summary">Wszystko powiązane z wyświetlaniem danych, motywem, jednostkami, itp.</string>
+    <string name="preferences_header_export_title">Eksport</string>
+    <string name="preferences_header_export_summary">Ustawienia związane z eksportem do plików, itp.</string>
     <string name="preferences_header_advanced_title">Zaawansowane</string>
     <string name="preferences_header_advanced_summary">Zaawansowane opcje i funkcje.</string>
     <string name="preferences_header_information_title">Informacje</string>
@@ -57,6 +59,8 @@
     <string name="preferences_gps_optimizations_enabled_title">Optymalizacja GPS podczas zbierania</string>
     <string name="preferences_gps_optimizations_enabled_on_summary">Optymalizacja parametrów GPS będzie używana w czasie zbierania próbek.</string>
     <string name="preferences_gps_optimizations_enabled_off_summary">Optymalizacja parametrów GPS jest wyłączona.</string>
+    <string name="preferences_export_compression_format_title">Format kompresji</string>
+    <string name="preferences_export_compression_format_summary">Określa format kompresji eksportowanych plików.</string>
     <string name="preferences_tracking_enabled_title">Wysyłaj statystyki użytkowania</string>
     <string name="preferences_tracking_enabled_on_summary">Anonimowe statystyki będą wysyłane, aby pomóc mi ulepszyć aplikację. Więcej informacji poniżej.</string>
     <string name="preferences_tracking_enabled_off_summary">Wysyłanie anonimowych statystyk jest wyłączone. Zobacz poniżej co może być udostępniane po włączeniu opcji.</string>
@@ -111,6 +115,11 @@
     <string name="preferences_main_keep_screen_on_title">Utrzymuj ekran włączony gdy widoczny</string>
     <string name="preferences_main_keep_screen_on_on_summary">Ekran będzie utrzymywany włączony, gdy wyświetlany jest główny ekran aplikacji.</string>
     <string name="preferences_main_keep_screen_on_off_summary">Ekran będzie kontrolowany przez system, gdy wyświetlany jest główny ekran aplikacji.</string>
+    <string name="preferences_show_collector_status_bar_title">Pokaż pasek stanu zbierania</string>
+    <string name="preferences_show_collector_status_bar_on_summary">Pasek stanu zbierania będzie widoczny.</string>
+    <string name="preferences_show_collector_status_bar_off_summary">Pasek stanu zbierania będzie ukryty.</string>
+    <string name="preferences_notification_settings_title">Ustawienia powiadomień</string>
+    <string name="preferences_notification_settings_summary">Otwiera ustawienia powiadomień aplikacji.</string>
     <string name="preferences_about_main_keep_screen_on_title">O utrzymywaniu ekranu włączonego gdy widoczny</string>
     <string name="preferences_about_main_keep_screen_on_summary">Informacje na temat działania tej opcji i kiedy z niej skorzystać.</string>
     <string name="preferences_about_collector_keep_screen_on_title">O utrzymywaniu ekranu włączonego podczas zbierania</string>

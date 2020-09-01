@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/preferences_category_settings_title">
+
+        <info.zamojski.soft.towercollector.controls.HtmlSummaryListPreference
+            app:defaultValue="@string/preferences_export_compression_format_default_value"
+            app:entries="@array/preferences_export_compression_format_entries_labels"
+            app:entryValues="@array/preferences_export_compression_format_entries_values"
+            app:key="@string/preferences_export_compression_format_key"
+            app:summary="@string/preferences_export_compression_format_summary"
+            app:title="@string/preferences_export_compression_format_title" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -8,8 +8,8 @@ import info.zamojski.soft.towercollector.model.Measurement;
 
 public interface ICsvFormatter {
 
-    public String formatHeader();
+    String formatHeader();
 
-    public String formatRow(Measurement m);
+    String formatEntry(Measurement m);
 
 }

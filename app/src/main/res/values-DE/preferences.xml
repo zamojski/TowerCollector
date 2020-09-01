@@ -11,6 +11,8 @@
     <string name="preferences_header_general_summary">Allgemeine Optionen, Updates, Statistiken, etc.</string>
     <string name="preferences_header_display_title">Anzeige</string>
     <string name="preferences_header_display_summary">Alles zur Daten-Anzeige, Themes, Einheiten, etc.</string>
+    <string name="preferences_header_export_title">Export</string>
+    <string name="preferences_header_export_summary">Einstellungen zum Datei-Export</string>
     <string name="preferences_header_advanced_title">Erweitert</string>
     <string name="preferences_header_advanced_summary">Erweiterte Optionen und Funktionen.</string>
     <string name="preferences_header_information_title">Informationen</string>
@@ -57,6 +59,8 @@
     <string name="preferences_gps_optimizations_enabled_title">GPS Optimierung der Erfassung</string>
     <string name="preferences_gps_optimizations_enabled_on_summary">GPS Parameter-Optimierung wird für die Erfassung von Messungen verwendet.</string>
     <string name="preferences_gps_optimizations_enabled_off_summary">GPS Parameter-Optimierung ist deaktiviert.</string>
+    <string name="preferences_export_compression_format_title">Dateiformat</string>
+    <string name="preferences_export_compression_format_summary">Format der komprimierten Dateien</string>
     <string name="preferences_tracking_enabled_title">Benutzungsstatistiken senden</string>
     <string name="preferences_tracking_enabled_on_summary">Anonyme Benutzungsstatistiken werden übermittelt um mir beim Verbessern der App zu helfen. Mehr Infos dazu weiter unten.</string>
     <string name="preferences_tracking_enabled_off_summary">Anonyme Benutzungsstatistiken sind deaktiviert. Siehe weiter unten was bei aktivierten Statistiken gesendet würde.</string>
@@ -111,6 +115,11 @@
     <string name="preferences_main_keep_screen_on_title">Bildschirm immer an bei Hauptbildschirm</string>
     <string name="preferences_main_keep_screen_on_on_summary">Display bleibt durchgehend ein wenn der Hauptbildschirm der App angezeigt wird.</string>
     <string name="preferences_main_keep_screen_on_off_summary">Display wird vom System gesteuert, auch wenn der Hauptbildschirm der App angezeigt wird.</string>
+    <string name="preferences_show_collector_status_bar_title">Zeige Statusbalken bei Erfassung</string>
+    <string name="preferences_show_collector_status_bar_on_summary">Statusbalken ist sichtbar</string>
+    <string name="preferences_show_collector_status_bar_off_summary">Statusbalken ist ausgeblendet</string>
+    <string name="preferences_notification_settings_title">Benachrichtungseinstellungen</string>
+    <string name="preferences_notification_settings_summary">Öffnet die Einstellungen zu den Benachrichtungen der App</string>
     <string name="preferences_about_main_keep_screen_on_title">Über Bildschirm immer an bei Hauptbildschirm</string>
     <string name="preferences_about_main_keep_screen_on_summary">Informationen darüber wie diese Option funktioniert und wann man sie am besten benutzt.</string>
     <string name="preferences_about_collector_keep_screen_on_title">Über Bildschirm immer an während Erfassung</string>

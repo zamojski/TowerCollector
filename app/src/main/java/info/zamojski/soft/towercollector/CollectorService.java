@@ -41,7 +41,9 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -64,11 +66,14 @@ import info.zamojski.soft.towercollector.enums.KeepScreenOnMode;
 import info.zamojski.soft.towercollector.enums.MeansOfTransport;
 import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.enums.Validity;
+import info.zamojski.soft.towercollector.events.CollectorStateChangedEvent;
 import info.zamojski.soft.towercollector.events.GpsStatusChangedEvent;
 import info.zamojski.soft.towercollector.events.MeasurementProcessedEvent;
 import info.zamojski.soft.towercollector.events.MeasurementSavedEvent;
 import info.zamojski.soft.towercollector.events.SystemTimeChangedEvent;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
+import info.zamojski.soft.towercollector.model.Cell;
+import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.model.Statistics;
 import info.zamojski.soft.towercollector.model.Tuple;
 import info.zamojski.soft.towercollector.utils.GpsUtils;
@@ -129,6 +134,8 @@ public class CollectorService extends Service {
 
     private long startTime;
     private Statistics startStats;
+    private int numberOfCollectedCells;
+    private Map<NetworkGroup, Integer> collectedCellTypes = new HashMap<>();
 
     private Location lastLocation;
     private long lastLocationObtainedTime;
@@ -260,6 +267,8 @@ public class CollectorService extends Service {
         float accuracy = getLastGpsAccuracy();
         EventBus.getDefault().postSticky(new GpsStatusChangedEvent(status, accuracy));
 
+        EventBus.getDefault().postSticky(new CollectorStateChangedEvent(true));
+
         boolean notifyCollected = MyApplication.getPreferencesProvider().getNotifyMeasurementsCollected();
         if (notifyCollected) {
             externalBroadcastSender = new ExternalBroadcastSender();
@@ -299,6 +308,7 @@ public class CollectorService extends Service {
             externalBroadcastSender.stop();
         }
         EventBus.getDefault().postSticky(new GpsStatusChangedEvent());
+        EventBus.getDefault().postSticky(new CollectorStateChangedEvent(false));
         EventBus.getDefault().unregister(this);
         if (stopRequestBroadcastReceiver != null)
             unregisterReceiver(stopRequestBroadcastReceiver);
@@ -329,11 +339,10 @@ public class CollectorService extends Service {
         long duration = (endTime - startTime);
         Statistics endStats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
         int numberOfCollectedLocations = endStats.getLocationsLocal() - startStats.getLocationsLocal();
-        int numberOfCollectedCells = endStats.getCellsLocal() - startStats.getCellsLocal();
         AnalyticsStatistics stats = new AnalyticsStatistics();
         stats.setLocations(numberOfCollectedLocations);
         stats.setCells(numberOfCollectedCells);
-        MyApplication.getAnalytics().sendCollectorFinished(startIntentSource, transportMode.name(), apiVersionUsed, duration, stats);
+        MyApplication.getAnalytics().sendCollectorFinished(startIntentSource, transportMode.name(), apiVersionUsed, duration, stats, collectedCellTypes);
         super.onDestroy();
     }
 
@@ -633,8 +642,16 @@ public class CollectorService extends Service {
         float speed = 0;
         if (event instanceof MeasurementSavedEvent) {
             MeasurementSavedEvent savedEvent = (MeasurementSavedEvent) event;
-            speed = savedEvent.getMeasurement().getGpsSpeed();
+            Measurement measurement = savedEvent.getMeasurement();
+            speed = measurement.getGpsSpeed();
             updateNotification(savedEvent.getStatistics());
+            // update analytics statistics
+            for (Cell cell : measurement.getMainCells()) {
+                NetworkGroup networkType = cell.getNetworkType();
+                Integer count = collectedCellTypes.get(networkType);
+                collectedCellTypes.put(networkType, count == null ? 1 : count + 1);
+            }
+            numberOfCollectedCells += measurement.getCells().size();
         }
         if (transportMode != MeansOfTransport.Fixed)
             updateDynamicInterval(event.getResult(), speed);

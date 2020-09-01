@@ -27,18 +27,6 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.PowerManager;
 import android.provider.Settings;
-
-import androidx.annotation.StringRes;
-
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayout.Tab;
-
-import androidx.core.content.ContextCompat;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -50,15 +38,29 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ShareCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayout.Tab;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -91,6 +93,7 @@ import info.zamojski.soft.towercollector.utils.ApkUtils;
 import info.zamojski.soft.towercollector.utils.BackgroundTaskHelper;
 import info.zamojski.soft.towercollector.utils.BatteryUtils;
 import info.zamojski.soft.towercollector.utils.DateUtils;
+import info.zamojski.soft.towercollector.utils.FileUtils;
 import info.zamojski.soft.towercollector.utils.GpsUtils;
 import info.zamojski.soft.towercollector.utils.NetworkUtils;
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
@@ -123,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private BroadcastReceiver batterySaverBroadcastReceiver = null;
 
     private String exportedDirAbsolutePath;
+    private String[] exportedFilePaths;
     private boolean showExportFinishedDialog = false;
 
     private Boolean canStartNetworkTypeSystemActivityResult = null;
@@ -157,14 +161,14 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         setContentView(R.layout.main);
         activityView = findViewById(R.id.main_root);
         //setup toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        Toolbar toolbar = findViewById(R.id.main_toolbar);
         toolbar.setPopupTheme(MyApplication.getCurrentPopupTheme());
         setSupportActionBar(toolbar);
         // setup tabbed layout
         MainActivityPagerAdapter pageAdapter = new MainActivityPagerAdapter(getSupportFragmentManager(), getApplication());
-        viewPager = (ViewPager) findViewById(R.id.main_pager);
+        viewPager = findViewById(R.id.main_pager);
         viewPager.setAdapter(pageAdapter);
-        tabLayout = (TabLayout) findViewById(R.id.main_tab_layout);
+        tabLayout = findViewById(R.id.main_tab_layout);
         tabLayout.setupWithViewPager(viewPager);
 
         tabLayout.addOnTabSelectedListener(this);
@@ -209,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     protected void onStart() {
         super.onStart();
         Timber.d("onStart(): Binding to service");
-        isCollectorServiceRunning.set(ApkUtils.isServiceRunning(CollectorService.SERVICE_FULL_NAME));
+        isCollectorServiceRunning.set(MyApplication.isBackgroundTaskRunning(CollectorService.class));
         if (isCollectorServiceRunning.get()) {
             bindService(new Intent(this, CollectorService.class), collectorServiceConnection, 0);
         }
@@ -696,14 +700,32 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     public void displayExportFinishedDialog() {
         showExportFinishedDialog = false;
-        // show dialog
+
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View dialogLayout = inflater.inflate(R.layout.export_finished_dialog, null);
+        TextView messageTextView = dialogLayout.findViewById(R.id.export_finished_dialog_textview);
+        messageTextView.setText(getString(R.string.export_dialog_finished_message, exportedDirAbsolutePath));
+        boolean shareEnabled = MyApplication.getPreferencesProvider().isShareExportedEnabled();
+        final CheckBox shareCheckbox = dialogLayout.findViewById(R.id.export_finished_dialog_checkbox);
+        shareCheckbox.setChecked(shareEnabled);
+
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle(R.string.export_dialog_finished_title);
-        builder.setMessage(getString(R.string.export_dialog_finished_message, exportedDirAbsolutePath));
-        builder.setPositiveButton(R.string.dialog_keep, (dialog, which) -> {
-            // cancel
-            MyApplication.getAnalytics().sendExportKeepAction();
-        });
+        builder.setView(dialogLayout);
+        builder.setCancelable(true);
+        if (shareEnabled) {
+            builder.setPositiveButton(R.string.dialog_share, (dialog, which) -> {
+                exportShareAction();
+                dialog.dismiss();
+                exportedFilePaths = null;
+            });
+        } else {
+            builder.setPositiveButton(R.string.dialog_keep, (dialog, which) -> {
+                exportKeepAction();
+                dialog.dismiss();
+                exportedFilePaths = null;
+            });
+        }
         builder.setNeutralButton(R.string.dialog_upload, (dialog, which) -> {
             MyApplication.getAnalytics().sendExportUploadAction();
             startUploaderServiceWithCheck();
@@ -726,11 +748,57 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             deleteDialog.setCancelable(true);
             deleteDialog.show();
         });
+        builder.setOnCancelListener(dialog -> {
+            exportKeepAction();
+            exportedFilePaths = null;
+        });
+
         AlertDialog dialog = builder.create();
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.setCancelable(false);
+        dialog.setOnShowListener(dialog1 -> {
+            shareCheckbox.setChecked(shareEnabled);
+            shareCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                Button keepButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                if (isChecked) {
+                    keepButton.setText(R.string.dialog_share);
+                    keepButton.setOnClickListener(v -> {
+                        exportShareAction();
+                        dialog.dismiss();
+                        exportedFilePaths = null;
+                    });
+                } else {
+                    keepButton.setText(R.string.dialog_keep);
+                    keepButton.setOnClickListener(v -> {
+                        exportKeepAction();
+                        dialog.dismiss();
+                        exportedFilePaths = null;
+                    });
+                }
+                MyApplication.getPreferencesProvider().setShareExportedEnabled(isChecked);
+            });
+        });
+
         dialog.show();
+
         exportedDirAbsolutePath = null;
+    }
+
+    private void exportKeepAction() {
+        MyApplication.getAnalytics().sendExportKeepAction();
+    }
+
+    private void exportShareAction() {
+        MyApplication.getAnalytics().sendExportShareAction();
+        ShareCompat.IntentBuilder shareIntent = ShareCompat.IntentBuilder.from(this);
+        for (String filePath : exportedFilePaths) {
+            File file = new File(filePath);
+            Uri imageUri = FileProvider.getUriForFile(this, "info.zamojski.soft.towercollector.fileprovider", file);
+            shareIntent.addStream(imageUri);
+        }
+        String calculatedMimeType = FileUtils.getFileMimeType(exportedFilePaths);
+        shareIntent.setType(calculatedMimeType);
+        Intent intent = shareIntent.getIntent();
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivity(Intent.createChooser(intent, null));
     }
 
     // ========== MENU START/STOP METHODS ========== //
@@ -749,6 +817,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.Q)
     @NeedsPermission({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void startCollectorServiceApi29() {
         startCollectorServiceInternal();
@@ -781,6 +850,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.Q)
     @OnShowRationale({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorShowRationaleApi29(PermissionRequest request) {
         onStartCollectorShowRationaleInternal(request);
@@ -801,6 +871,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.Q)
     @OnPermissionDenied({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorPermissionDeniedApi29() {
         onStartCollectorPermissionDeniedInternal();
@@ -815,6 +886,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         onPermissionDenied(R.string.permission_collector_denied_message);
     }
 
+    @TargetApi(Build.VERSION_CODES.Q)
     @OnNeverAskAgain({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorNeverAskAgainApi29() {
         onStartCollectorNeverAskAgainInternal();
@@ -925,7 +997,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private void startUploaderService(boolean isOcidUploadEnabled, boolean isMlsUploadEnabled, boolean isReuploadIfUploadFailsEnabled) {
         // start task
-        if (!ApkUtils.isServiceRunning(UploaderService.SERVICE_FULL_NAME)) {
+        if (!MyApplication.isBackgroundTaskRunning(UploaderService.class)) {
             Intent intent = new Intent(MainActivity.this, UploaderService.class);
             intent.putExtra(UploaderService.INTENT_KEY_UPLOAD_TO_OCID, isOcidUploadEnabled);
             intent.putExtra(UploaderService.INTENT_KEY_UPLOAD_TO_MLS, isMlsUploadEnabled);
@@ -954,6 +1026,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             csvExportCheckbox.setChecked(recentFileTypes.contains(FileType.Csv));
             final CheckBox gpxExportCheckbox = dialogLayout.findViewById(R.id.gpx_export_dialog_checkbox);
             gpxExportCheckbox.setChecked(recentFileTypes.contains(FileType.Gpx));
+            final CheckBox kmlExportCheckbox = dialogLayout.findViewById(R.id.kml_export_dialog_checkbox);
+            kmlExportCheckbox.setChecked(recentFileTypes.contains(FileType.Kml));
+            final CheckBox kmzExportCheckbox = dialogLayout.findViewById(R.id.kmz_export_dialog_checkbox);
+            kmzExportCheckbox.setChecked(recentFileTypes.contains(FileType.Kmz));
             final CheckBox csvOcidExportCheckbox = dialogLayout.findViewById(R.id.csv_ocid_export_dialog_checkbox);
             csvOcidExportCheckbox.setChecked(recentFileTypes.contains(FileType.CsvOcid));
             final CheckBox jsonMlsExportCheckbox = dialogLayout.findViewById(R.id.json_mls_export_dialog_checkbox);
@@ -970,6 +1046,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                     selectedFileTypes.add(FileType.Csv);
                 if (gpxExportCheckbox.isChecked())
                     selectedFileTypes.add(FileType.Gpx);
+                if (kmlExportCheckbox.isChecked())
+                    selectedFileTypes.add(FileType.Kml);
+                if (kmzExportCheckbox.isChecked())
+                    selectedFileTypes.add(FileType.Kmz);
                 if (csvOcidExportCheckbox.isChecked())
                     selectedFileTypes.add(FileType.CsvOcid);
                 if (jsonMlsExportCheckbox.isChecked())
@@ -1064,7 +1144,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             startActivityForResult(intent, BATTERY_OPTIMIZATIONS_ACTIVITY_RESULT);
         } catch (ActivityNotFoundException ex) {
             Timber.w(ex, "startBatteryOptimizationsSystemActivity(): Could not open Settings to change battery optimizations");
-            MyApplication.handleSilentException(ex);
             showCannotOpenAndroidSettingsDialog();
         }
     }
@@ -1106,14 +1185,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     }
 
     private Intent createDataRoamingSettingsIntent() {
-        Intent intent = new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS);
-        // Theoretically this is not needed starting from 4.0.1 but it sometimes fails
-        // bug https://code.google.com/p/android/issues/detail?id=13368
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
-            ComponentName componentName = new ComponentName("com.android.phone", "com.android.phone.Settings");
-            intent.setComponent(componentName);
-        }
-        return intent;
+        return new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS);
     }
 
     // ========== SERVICE CONNECTIONS ========== //
@@ -1321,6 +1393,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             switch (msg.what) {
                 case EXPORT_FINISHED_UI_REFRESH:
                     mainActivity.exportedDirAbsolutePath = msg.getData().getString(ExportFileAsyncTask.DIR_PATH);
+                    mainActivity.exportedFilePaths = msg.getData().getStringArray(ExportFileAsyncTask.FILE_PATHS);
                     if (!mainActivity.isMinimized)
                         mainActivity.displayExportFinishedDialog();
                     else

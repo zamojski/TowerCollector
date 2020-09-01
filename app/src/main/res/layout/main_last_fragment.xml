@@ -8,6 +8,8 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
+    <include layout="@layout/main_collector_status_fragment" />
+
     <include layout="@layout/main_gps_status_fragment"/>
 
     <include layout="@layout/main_invalid_system_time_fragment"/>

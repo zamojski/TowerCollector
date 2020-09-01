@@ -29,6 +29,7 @@
     <string name="dialog_upload">上传</string>
     <string name="dialog_keep">保持不变</string>
     <string name="dialog_delete">删除</string>
+    <string name="dialog_share">分享</string>
     <string name="dialog_send">发送</string>
     <string name="dialog_send_comment">发送评论</string>
     <string name="dialog_dont_show_again">不再询问</string>
@@ -202,7 +203,9 @@
     <string name="main_help_to_upload_common_locations_title">要上传的测量数据</string>
     <string name="main_help_to_upload_ocid_locations_description">等待上传到OpenCellID.org的测量数量。</string>
     <string name="main_help_to_upload_mls_locations_description">等待上传到Mozilla位置服务的测量数量。</string>
-    <string name="status_initializing">初始化中</string>
+    <string name="collector_status_active">正在收集测量</string>
+    <string name="collector_status_inactive">测量收集已停止</string>
+    <string name="status_initializing">等待位置</string>
     <string name="status_ok">好</string>
     <string name="status_low_gps_accuracy">精确度低 <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">没有位置</string>
@@ -215,6 +218,8 @@
     <string name="uploader_all_projects_disabled">已禁用上传到所有项目</string>
     <string name="export_format_csv">CSV</string>
     <string name="export_format_gpx">GPX</string>
+    <string name="export_format_kml">KML</string>
+    <string name="export_format_kmz">KMZ</string>
     <string name="export_format_csv_ocid">用于OpenCellID.org的CSV格式</string>
     <string name="export_format_json_mls">适用于Mozilla位置服务的JSON格式</string>
     <string name="export_format_zip">压缩每个导出的文件</string>

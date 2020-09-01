@@ -1,6 +1,32 @@
 {
   "Entries": [
     {
+      "VersionCode": 2050067,
+      "Title": "Changes in version 2.5.0",
+      "Description": "If you experience app crashes on Android 10 when collecting, please make sure to update your system. One of early Android 10 versions has a defect which I cannot work around or fix :(",
+      "Messages": [
+        "Add option to share exported files.",
+        "Increase active tab indicator height.",
+        "Improve error handling."
+      ]
+    },
+    {
+      "VersionCode": 2040066,
+      "Title": "Changes in version 2.4.0",
+      "Messages": [
+        "Add upload of 5G (NR) and TD-SCDMA cells to OpenCellID.",
+        "Add export to KML and KMZ formats.",
+        "Add gzip compression of exported files with option to configure the format.",
+        "Add optional bar presenting Collector status.",
+        "Add link to application notification settings.",
+        "Fix database import not working due to transaction log not being deleted.",
+        "Fix exported file not deleted when export canceled and compression enabled.",
+        "Rename GPS status from 'initializing' to 'waiting for location' to be less confusing.",
+        "Update external libraries.",
+        "Many small fixes and improvements."
+      ]
+    },
+    {
       "VersionCode": 2030065,
       "Title": "Changes in version 2.3.0",
       "Messages": [
@@ -25,22 +51,6 @@
       "Title": "Changes in version 2.2.3",
       "Messages": [
         "Fix GPS Week Number Rollover on devices manufactured between 2006 and 2016."
-      ]
-    },
-    {
-      "VersionCode": 2020262,
-      "Title": "Changes in version 2.2.2",
-      "Messages": [
-        "Fix crash due to inconsistency when exporting to GPX file.",
-        "Fix crash when collecting on some Xiaomi phones."
-      ]
-    },
-    {
-      "VersionCode": 2020161,
-      "Title": "Changes in version 2.2.1",
-      "Messages": [
-        "Fix language code for Hebrew.",
-        "Improved error handling."
       ]
     }
   ]

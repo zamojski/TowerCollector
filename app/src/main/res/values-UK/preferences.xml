@@ -11,6 +11,8 @@
     <string name="preferences_header_general_summary">Загальні параметри, оновлення, статистика тощо.</string>
     <string name="preferences_header_display_title">Дисплей</string>
     <string name="preferences_header_display_summary">Все, що стосується відображення даних, теми, одиниць тощо.</string>
+    <string name="preferences_header_export_title">Експорт</string>
+    <string name="preferences_header_export_summary">Параметри, пов\'язані з експортом файлів і т. д.</string>
     <string name="preferences_header_advanced_title">Розширені</string>
     <string name="preferences_header_advanced_summary">Розширені параметри та функції.</string>
     <string name="preferences_header_information_title">Інформація</string>
@@ -57,6 +59,8 @@
     <string name="preferences_gps_optimizations_enabled_title">Оптимізація колекторної GPS</string>
     <string name="preferences_gps_optimizations_enabled_on_summary">Оптимізація параметрів GPS буде використовуватися при зборі вимірювань.</string>
     <string name="preferences_gps_optimizations_enabled_off_summary">Оптимізація параметрів GPS відключена.</string>
+    <string name="preferences_export_compression_format_title">Формат стиснення</string>
+    <string name="preferences_export_compression_format_summary">Визначає формат стиснення експортованих файлів.</string>
     <string name="preferences_tracking_enabled_title">Надсилати статистику використання</string>
     <string name="preferences_tracking_enabled_on_summary">Анонімна статистика використання буде надсилатись, щоб допомогти вдосконалити додаток. Більше інформації нижче.</string>
     <string name="preferences_tracking_enabled_off_summary">Анонімна статистика використання відключена. Див. Нижче, що може бути відправлено, якщо ввімкнено.</string>
@@ -111,6 +115,11 @@
     <string name="preferences_main_keep_screen_on_title">Не засинати</string>
     <string name="preferences_main_keep_screen_on_on_summary">Екран буде постійно увімкненим, коли відображається головний екран додатку</string>
     <string name="preferences_main_keep_screen_on_off_summary">Екран буде контролюватися системою, коли відображається головний екран додатка.</string>
+    <string name="preferences_show_collector_status_bar_title">Показати рядок стану збору даних</string>
+    <string name="preferences_show_collector_status_bar_on_summary">Відображається рядок стану збирання даних.</string>
+    <string name="preferences_show_collector_status_bar_off_summary">Рядок стану збирання даних приховано.</string>
+    <string name="preferences_notification_settings_title">Налаштування сповіщень</string>
+    <string name="preferences_notification_settings_summary">Відкриває налаштування сповіщень програми.</string>
     <string name="preferences_about_main_keep_screen_on_title">"Про збереження екрану "</string>
     <string name="preferences_about_main_keep_screen_on_summary">Інформація про те, як ця опція працює і коли це використовувати.</string>
     <string name="preferences_about_collector_keep_screen_on_title">"Про живлення екрану на час збору інформації "</string>

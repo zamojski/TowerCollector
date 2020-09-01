@@ -24,6 +24,8 @@ import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.FileType;
 import info.zamojski.soft.towercollector.files.FileGeneratorResult;
 import info.zamojski.soft.towercollector.files.devices.FileTextDevice;
+import info.zamojski.soft.towercollector.files.devices.GZipFileTextDevice;
+import info.zamojski.soft.towercollector.files.devices.IPersistedTextDevice;
 import info.zamojski.soft.towercollector.files.devices.IWritableTextDevice;
 import info.zamojski.soft.towercollector.files.devices.ZipFileTextDevice;
 import info.zamojski.soft.towercollector.files.formatters.csv.CsvExportFormatter;
@@ -32,6 +34,7 @@ import info.zamojski.soft.towercollector.files.generators.wrappers.CompositeText
 import info.zamojski.soft.towercollector.files.generators.wrappers.CsvTextGeneratorWrapper;
 import info.zamojski.soft.towercollector.files.generators.wrappers.GpxTextGeneratorWrapper;
 import info.zamojski.soft.towercollector.files.generators.wrappers.JsonTextGeneratorWrapper;
+import info.zamojski.soft.towercollector.files.generators.wrappers.KmlTextGeneratorWrapper;
 import info.zamojski.soft.towercollector.files.generators.wrappers.interfaces.IProgressListener;
 import info.zamojski.soft.towercollector.files.generators.wrappers.interfaces.IProgressiveTextGeneratorWrapper;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
@@ -42,6 +45,7 @@ import timber.log.Timber;
 public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorResult> implements IProgressListener {
 
     public static final String DIR_PATH = "EXPORTED_DIR_PATH";
+    public static final String FILE_PATHS = "EXPORTED_FILE_PATHS";
 
     private Context context;
 
@@ -124,6 +128,7 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
                 Message msg = new Message();
                 msg.what = InternalMessageHandler.EXPORT_FINISHED_UI_REFRESH;
                 msg.getData().putString(DIR_PATH, appDir.getPath());
+                msg.getData().putStringArray(FILE_PATHS, getGeneratedFiles());
                 handler.sendMessage(msg);
                 break;
             case Cancelled:
@@ -199,8 +204,18 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
                 }
                 break;
                 case JsonMls: {
-                    String path = FileUtils.combinePath(appDir, FileUtils.getCurrentDateFileName(currentDateTime, "", "json"));
+                    String path = FileUtils.combinePath(appDir, FileUtils.getCurrentDateFileName(currentDateTime, "-mls", "json"));
                     subGenerators.add(new JsonTextGeneratorWrapper(context, getTextDevice(path, compressFiles)));
+                }
+                break;
+                case Kml: {
+                    String path = FileUtils.combinePath(appDir, FileUtils.getCurrentDateFileName(currentDateTime, "", "kml"));
+                    subGenerators.add(new KmlTextGeneratorWrapper(context, getTextDevice(path, compressFiles)));
+                }
+                break;
+                case Kmz: {
+                    String path = FileUtils.combinePath(appDir, FileUtils.getCurrentDateFileName(currentDateTime, "", "kml"));
+                    subGenerators.add(new KmlTextGeneratorWrapper(context, getKmzTextDevice(path)));
                 }
                 break;
                 default:
@@ -211,7 +226,19 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
     }
 
     private IWritableTextDevice getTextDevice(String path, boolean compressFiles) {
-        return compressFiles ? new ZipFileTextDevice(path) : new FileTextDevice(path);
+        if (compressFiles) {
+            String compressionFormat = MyApplication.getPreferencesProvider().getExportCompressionFormat();
+            if (compressionFormat.equals(getStringById(R.string.preferences_export_compression_format_entries_value_zip))) {
+                return new ZipFileTextDevice(path);
+            } else if (compressionFormat.equals(getStringById(R.string.preferences_export_compression_format_entries_value_gzip))) {
+                return new GZipFileTextDevice(path);
+            }
+        }
+        return new FileTextDevice(path);
+    }
+
+    private IWritableTextDevice getKmzTextDevice(String path) {
+        return new ZipFileTextDevice(path, "kmz");
     }
 
     private void deleteFile() {
@@ -219,18 +246,34 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
             IWritableTextDevice device = subGenerator.getDevice();
             // delete file if exists
             device.close();
-            if (device instanceof FileTextDevice) {
-                File file = new File(device.getPath());
+            if (device instanceof IPersistedTextDevice) {
+                IPersistedTextDevice persistedDevice = (IPersistedTextDevice) device;
+                File file = new File(persistedDevice.getPath());
                 if (file.exists()) {
                     Timber.d("deleteFile(): Deleting exported file");
                     if (file.delete()) {
                         Timber.d("deleteFile(): Exported file deleted");
                     } else {
-                        Timber.d("deleteFile(): Cannot delete file after export fail");
+                        Timber.d("deleteFile(): Cannot delete file after export failure");
                     }
                 }
             }
         }
+    }
+
+    private String[] getGeneratedFiles() {
+        ArrayList<String> result = new ArrayList<>();
+        for (IProgressiveTextGeneratorWrapper subGenerator : generator.getSubGenerators()) {
+            IWritableTextDevice device = subGenerator.getDevice();
+            if (device instanceof IPersistedTextDevice) {
+                IPersistedTextDevice persistedDevice = (IPersistedTextDevice) device;
+                File file = new File(persistedDevice.getPath());
+                if (file.exists()) {
+                    result.add(file.getAbsolutePath());
+                }
+            }
+        }
+        return result.toArray(new String[0]);
     }
 
     private String getStringById(int resId) {
