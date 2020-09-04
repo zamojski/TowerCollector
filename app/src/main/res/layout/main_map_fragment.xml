@@ -36,7 +36,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:background="@android:color/transparent"
             android:contentDescription="@string/main_map_my_location_button"
             android:cropToPadding="true"
