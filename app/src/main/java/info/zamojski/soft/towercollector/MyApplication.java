@@ -114,7 +114,7 @@ public class MyApplication extends Application {
         if (Build.VERSION.SDK_INT != Build.VERSION_CODES.Q)
             return false;
         String stackTrace = ex.toString();
-        return ex instanceof NullPointerException
+        return (ex instanceof NullPointerException || stackTrace.startsWith("java.lang.NullPointerException"))
                 && stackTrace.contains("ParcelableException.getCause()")
                 && stackTrace.contains("TelephonyManager")
                 && stackTrace.contains("lambda$onError");
@@ -184,6 +184,7 @@ public class MyApplication extends Application {
         CoreConfigurationBuilder configBuilder = new CoreConfigurationBuilder(this);
         // Configure connection
         configBuilder.setBuildConfigClass(BuildConfig.class);
+        configBuilder.setEnabled(BuildConfig.ACRA_SEND_REPORTS_IN_DEV_MODE);
         configBuilder.setSendReportsInDevMode(BuildConfig.ACRA_SEND_REPORTS_IN_DEV_MODE);
         configBuilder.setReportFormat(StringFormat.valueOf(BuildConfig.ACRA_REPORT_TYPE));
         configBuilder.setExcludeMatchingSharedPreferencesKeys(getString(R.string.preferences_api_key_key));
