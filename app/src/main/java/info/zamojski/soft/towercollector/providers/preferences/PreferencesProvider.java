@@ -5,6 +5,7 @@
 package info.zamojski.soft.towercollector.providers.preferences;
 
 import info.zamojski.soft.towercollector.R;
+import info.zamojski.soft.towercollector.enums.ExportAction;
 import info.zamojski.soft.towercollector.enums.FileType;
 
 import android.content.Context;
@@ -215,12 +216,12 @@ public class PreferencesProvider {
         return value;
     }
 
-    public boolean isShareExportedEnabled() {
-        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_share_exported_key, R.bool.preferences_share_exported_default_value);
-        return value;
+    public ExportAction getExportAction() {
+        String value = stringPreferenceProvider.getPreference(R.string.preferences_share_exported_key, R.string.preferences_share_exported_default_value);
+        return ExportAction.valueOf(value);
     }
 
-    public void setShareExportedEnabled(boolean value) {
-        booleanPreferenceProvider.setPreference(R.string.preferences_share_exported_key, value);
+    public void setExportAction(ExportAction value) {
+        stringPreferenceProvider.setPreference(R.string.preferences_share_exported_key, value.toString());
     }
 }
