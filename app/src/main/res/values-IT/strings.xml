@@ -30,6 +30,8 @@
     <string name="dialog_keep">Mantieni</string>
     <string name="dialog_delete">Cancella</string>
     <string name="dialog_share">Condividere</string>
+    <string name="dialog_open">Apri</string>
+    <string name="dialog_open_single">Apri (solo un file singolo)</string>
     <string name="dialog_send">Invia</string>
     <string name="dialog_send_comment">Invia commento</string>
     <string name="dialog_dont_show_again">Non mostrare più</string>
@@ -127,6 +129,7 @@
     <string name="export_toast_storage_read_only">La memoria esterna è di sola lettura.</string>
     <string name="export_toast_no_file_types_selected">Nessun tipo di file selezionato per l\'esportazione.</string>
     <string name="export_toast_no_storage">Memoria esterna non trovata.</string>
+    <string name="export_toast_no_handler_for_file_type">Nessuna applicazione per gestire il file.</string>
     <string name="export_dialog_format_selection_title">Seleziona i formati di file</string>
     <string name="export_dialog_progress_title">Esportazione in corso</string>
     <string name="export_dialog_progress_message">Salvataggio nella cartella \"TowerCollector\" della memoria esterna con data e ora correnti come nome del file.</string>
@@ -134,7 +137,7 @@
     <string name="export_dialog_finished_message">I file sono stati salvati in <xliff:g id="dir_name">%s</xliff:g>.\n\n<i>Per favore contribuisci ad uno dei progetti caricando le tue misurazioni!</i></string>
     <string name="clear_dialog_title">Cancella tutti i dati</string>
     <string name="clear_dialog_message">Si è sicuri di voler rimuovere definitivamente tutti i dati memorizzati localmente?</string>
-    <string name="delete_dialog_title">Elimina esportato</string>
+    <string name="delete_dialog_title">Elimina esportati</string>
     <string name="delete_dialog_message">Sei sicuro di voler eliminare definitivamente i dati esportati?</string>
     <string name="clear_toast_finished">Database cancellato</string>
     <string name="export_toast_failed">Esportazione fallita: <xliff:g id="failure_reason">%s</xliff:g>.</string>
@@ -218,8 +221,6 @@
     <string name="uploader_all_projects_disabled">Caricamento disabilitato per tutti i progetti</string>
     <string name="export_format_csv">CSV</string>
     <string name="export_format_gpx">GPX</string>
-    <string name="export_format_kml">KML</string>
-    <string name="export_format_kmz">KMZ</string>
     <string name="export_format_csv_ocid">CSV per OpenCellID.org</string>
     <string name="export_format_json_mls">JSON per Mozilla Location Services</string>
     <string name="export_format_zip">Comprimi ogni file esportato</string>

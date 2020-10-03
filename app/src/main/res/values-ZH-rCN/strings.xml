@@ -30,6 +30,8 @@
     <string name="dialog_keep">保持不变</string>
     <string name="dialog_delete">删除</string>
     <string name="dialog_share">分享</string>
+    <string name="dialog_open">打开</string>
+    <string name="dialog_open_single">打开（仅单个文件）</string>
     <string name="dialog_send">发送</string>
     <string name="dialog_send_comment">发送评论</string>
     <string name="dialog_dont_show_again">不再询问</string>
@@ -127,6 +129,7 @@
     <string name="export_toast_storage_read_only">外部存储是只读的。</string>
     <string name="export_toast_no_file_types_selected">没有选择要导出的文件类型。</string>
     <string name="export_toast_no_storage">未找到外部存储空间。</string>
+    <string name="export_toast_no_handler_for_file_type">没有应用程序来处理文件类型。</string>
     <string name="export_dialog_format_selection_title">选择文件格式</string>
     <string name="export_dialog_progress_title">导出中</string>
     <string name="export_dialog_progress_message">保存到外部存储器上的“TowerCollector”文件夹，以当前日期和时间作为文件名。</string>
@@ -218,8 +221,6 @@
     <string name="uploader_all_projects_disabled">已禁用上传到所有项目</string>
     <string name="export_format_csv">CSV</string>
     <string name="export_format_gpx">GPX</string>
-    <string name="export_format_kml">KML</string>
-    <string name="export_format_kmz">KMZ</string>
     <string name="export_format_csv_ocid">用于OpenCellID.org的CSV格式</string>
     <string name="export_format_json_mls">适用于Mozilla位置服务的JSON格式</string>
     <string name="export_format_zip">压缩每个导出的文件</string>

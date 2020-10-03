@@ -30,6 +30,8 @@
     <string name="dialog_keep">Mantener</string>
     <string name="dialog_delete">Borrar</string>
     <string name="dialog_share">Compartir</string>
+    <string name="dialog_open">Abrir</string>
+    <string name="dialog_open_single">Abrir (solo un archivo)</string>
     <string name="dialog_send">Enviar</string>
     <string name="dialog_send_comment">Enviar comentario</string>
     <string name="dialog_dont_show_again">No mostrar este mensaje de nuevo</string>
@@ -127,6 +129,7 @@
     <string name="export_toast_storage_read_only">El almacenamiento externo es de solo lectura.</string>
     <string name="export_toast_no_file_types_selected">No hay tipos de archivo seleccionados para la exportación.</string>
     <string name="export_toast_no_storage">No se encontró el almacenamiento externo.</string>
+    <string name="export_toast_no_handler_for_file_type">Ninguna aplicación para manejar el archivo.</string>
     <string name="export_dialog_format_selection_title">Seleccionar formatos de archivo</string>
     <string name="export_dialog_progress_title">Exportando</string>
     <string name="export_dialog_progress_message">Guardando en el directorio de \"TowerCollector\" situado en almacenamiento externo con la fecha y hora actual como nombres de archivo.</string>

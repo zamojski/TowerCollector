@@ -100,7 +100,7 @@
     <string name="preferences_collector_api_version_summary">Определяет версию API, используемую для получения информации от соты.</string>
     <string name="preferences_about_collector_api_version_title">О версии API Сборщика</string>
     <string name="preferences_about_collector_api_version_summary">Информация об отличиях между версиями API.</string>
-    <string name="preferences_file_logging_level_title">Уровень протокола</string>
+    <string name="preferences_file_logging_level_title">Уровень журналирования</string>
     <string name="preferences_file_logging_level_summary">Определяет уровень регистрации диагностических сообщений в файле. Помните, что очень подробное ведение журнала может замедлить работу приложения и создать большие файлы журналов. Должна присутствовать внешняя память.</string>
     <string name="preferences_collect_neighboring_cells_title">Сбор соседних сот</string>
     <string name="preferences_collect_neighboring_cells_on_summary">Собирать соседние соты, если доступны.</string>
@@ -113,7 +113,7 @@
     <string name="preferences_about_notify_measurements_collected_title">Об оповещениях о собранных измерениях</string>
     <string name="preferences_about_notify_measurements_collected_summary">Информация об уведомлениях других приложений во время сборки измерений</string>
     <string name="preferences_main_keep_screen_on_title">Подсветка экрана во время работы</string>
-    <string name="preferences_main_keep_screen_on_on_summary">Подсветка будет постоянно включёна, когда активен главный экран.</string>
+    <string name="preferences_main_keep_screen_on_on_summary">Подсветка будет постоянно включена, когда активен главный экран.</string>
     <string name="preferences_main_keep_screen_on_off_summary">Подстветка контролируется системой, когда активен главный экран.</string>
     <string name="preferences_show_collector_status_bar_title">Показать строку состояния сбора данных</string>
     <string name="preferences_show_collector_status_bar_on_summary">Строка состояния сбора данных будет видна.</string>
