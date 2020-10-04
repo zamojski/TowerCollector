@@ -1,6 +1,14 @@
 {
   "Entries": [
     {
+      "VersionCode": 2050168,
+      "Title": "Changes in version 2.5.1",
+      "Description": "If you experience app crashes on Android 10 when collecting, please make sure to update your system. One of early Android 10 versions has a defect which I cannot work around or fix :(",
+      "Messages": [
+        "Add option to open single exported file."
+      ]
+    },
+    {
       "VersionCode": 2050067,
       "Title": "Changes in version 2.5.0",
       "Description": "If you experience app crashes on Android 10 when collecting, please make sure to update your system. One of early Android 10 versions has a defect which I cannot work around or fix :(",
@@ -44,13 +52,6 @@
         "Add GitHub page link.",
         "Improve error handling.",
         "Small improvements."
-      ]
-    },
-    {
-      "VersionCode": 2020363,
-      "Title": "Changes in version 2.2.3",
-      "Messages": [
-        "Fix GPS Week Number Rollover on devices manufactured between 2006 and 2016."
       ]
     }
   ]
