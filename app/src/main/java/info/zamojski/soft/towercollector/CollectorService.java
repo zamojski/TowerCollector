@@ -310,12 +310,9 @@ public class CollectorService extends Service {
         EventBus.getDefault().postSticky(new GpsStatusChangedEvent());
         EventBus.getDefault().postSticky(new CollectorStateChangedEvent(false));
         EventBus.getDefault().unregister(this);
-        if (stopRequestBroadcastReceiver != null)
-            unregisterReceiver(stopRequestBroadcastReceiver);
-        if (batteryStatusBroadcastReceiver != null)
-            unregisterReceiver(batteryStatusBroadcastReceiver);
-        if (locationModeOrProvidersChanged != null)
-            unregisterReceiver(locationModeOrProvidersChanged);
+        unregisterReceiverSafely(stopRequestBroadcastReceiver);
+        unregisterReceiverSafely(batteryStatusBroadcastReceiver);
+        unregisterReceiverSafely(locationModeOrProvidersChanged);
         long endTime = System.currentTimeMillis();
         notificationManager.cancel(NOTIFICATION_ID);
         if (locationManager != null) {
@@ -964,6 +961,16 @@ public class CollectorService extends Service {
                 break;
         }
         return getString(R.string.collector_notification_status, statusString);
+    }
+
+    private void unregisterReceiverSafely(BroadcastReceiver broadcastReceiver) {
+        if (broadcastReceiver != null) {
+            try {
+                unregisterReceiver(broadcastReceiver);
+            } catch (IllegalArgumentException ex) {
+                Timber.d(ex);
+            }
+        }
     }
 
     public float getLastGpsAccuracy() {
