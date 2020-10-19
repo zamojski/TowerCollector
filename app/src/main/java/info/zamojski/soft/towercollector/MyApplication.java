@@ -114,7 +114,7 @@ public class MyApplication extends Application {
         if (Build.VERSION.SDK_INT != Build.VERSION_CODES.Q)
             return false;
         String stackTrace = ex.toString();
-        return (ex instanceof NullPointerException || stackTrace.startsWith("java.lang.NullPointerException"))
+        return (ex instanceof NullPointerException || stackTrace.contains("java.lang.NullPointerException"))
                 && stackTrace.contains("ParcelableException.getCause()")
                 && stackTrace.contains("TelephonyManager")
                 && stackTrace.contains("lambda$onError");
