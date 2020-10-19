@@ -147,7 +147,7 @@ public class CollectorService extends Service {
     private PowerManager powerManager;
     private PowerManager.WakeLock wakeLock;
 
-    private IntentSource startIntentSource;
+    private IntentSource startIntentSource = IntentSource.System;
     private int apiVersionUsed;
 
     // ========== SERVICE ========== //
