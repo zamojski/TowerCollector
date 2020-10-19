@@ -787,6 +787,7 @@ public class MeasurementsDatabase {
             // read something to prevent from being removed while optimization (I hope)
             Cursor cursor = db.rawQuery("SELECT 1", null);
             cursor.close();
+            db.close();
             Timber.d("forceDatabaseUpgrade(): Database successfully opened for R/W");
         } catch (SQLiteException ex) {
             Timber.e(ex, "forceDatabaseUpgrade(): Failed to open for R/W");

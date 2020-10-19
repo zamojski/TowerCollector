@@ -33,6 +33,8 @@ final class CellSignalsTable implements ITable {
     static final String COLUMN_EVDO_ECIO = "evdo_ecio";
     static final String COLUMN_EVDO_SNR = "evdo_snr";
 
+    private static final String QUERY_DROP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
+
     private static final String QUERY_CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" +
             COLUMN_ROW_ID + " INTEGER PRIMARY KEY NOT NULL, " +
             COLUMN_MEASUREMENT_ID + " INTEGER NOT NULL, " +
@@ -73,6 +75,7 @@ final class CellSignalsTable implements ITable {
     @Override
     public String[] getCreateQueries() {
         return new String[]{
+                QUERY_DROP_TABLE,
                 QUERY_CREATE_TABLE,
                 QUERY_CREATE_INDEX_MEASUREMENT_ID,
                 QUERY_CREATE_INDEX_CELL_ID,
