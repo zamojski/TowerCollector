@@ -765,10 +765,14 @@ public class MeasurementsDatabase {
         SQLiteDatabase db = null;
         try {
             File path = context.getDatabasePath(DATABASE_FILE_NAME);
-            // open manually to prevent database upgrade or creation
-            db = SQLiteDatabase.openDatabase(path.toString(), null, SQLiteDatabase.OPEN_READONLY);
-            version = db.getVersion(); // equivalent of PRAGMA user_version
-            Timber.d("getDatabaseVersion(): Database file version %s", version);
+            if (path.exists()) {
+                // open manually to prevent database upgrade or creation
+                db = SQLiteDatabase.openDatabase(path.toString(), null, SQLiteDatabase.OPEN_READONLY);
+                version = db.getVersion(); // equivalent of PRAGMA user_version
+                Timber.d("getDatabaseVersion(): Database file version %s", version);
+            } else {
+                Timber.d("getDatabaseVersion(): Database file missing");
+            }
         } catch (SQLiteException ex) {
             Timber.e(ex, "getDatabaseVersion(): Database file cannot be opened");
         } finally {
