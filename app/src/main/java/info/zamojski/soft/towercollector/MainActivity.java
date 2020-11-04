@@ -906,7 +906,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private void onStartCollectorShowRationaleInternal(PermissionRequest request) {
         if (GpsUtils.isBackgroundLocationAware()) {
             String message = getString(R.string.permission_collector_rationale_message)
-                    + getString(R.string.permission_collector_rationale_api29_message);
+                    + getString(GpsUtils.isBackgroundLocationPermissionHidden() ? R.string.permission_collector_rationale_api30_message : R.string.permission_collector_rationale_api29_message);
             onShowRationale(request, message);
         } else {
             onShowRationale(request, R.string.permission_collector_rationale_message);
@@ -940,7 +940,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     }
 
     void onStartCollectorNeverAskAgainInternal() {
-        onNeverAskAgain(R.string.permission_collector_never_ask_again_message);
+        onNeverAskAgain(GpsUtils.isBackgroundLocationAware() ? R.string.permission_collector_never_ask_again_api29_message : R.string.permission_collector_never_ask_again_message);
     }
 
     private void stopCollectorService() {

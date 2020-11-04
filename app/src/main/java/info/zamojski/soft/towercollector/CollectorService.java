@@ -11,6 +11,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ServiceInfo;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -199,7 +200,11 @@ public class CollectorService extends Service {
         registerReceiver(locationModeOrProvidersChanged, new IntentFilter(LocationManager.PROVIDERS_CHANGED_ACTION));
         Notification notification = notificationHelper.createNotification(notificationManager, getGpsStatusNotificationText(getGpsStatus()));
         // start as foreground service to prevent from killing
-        startForeground(NOTIFICATION_ID, notification);
+        if (GpsUtils.isBackgroundLocationAware()) {
+            startForeground(NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
+        } else {
+            startForeground(NOTIFICATION_ID, notification);
+        }
     }
 
     @Override
