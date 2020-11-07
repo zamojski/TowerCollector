@@ -135,6 +135,15 @@ public class Cell implements Serializable {
      * Signal to noise ratio.
      */
     private int evdoSnr = UNKNOWN_SIGNAL;
+    /**
+     * Ec/No (Energy per chip over the noise spectral density) as dB
+     */
+    private int ecNo = UNKNOWN_SIGNAL;
+    /**
+     * Absolute Radio Frequency Channel Number.
+     */
+    private int arfcn = UNKNOWN_CID;
+
 
     public int getCellId() {
         return cellId;
@@ -396,6 +405,22 @@ public class Cell implements Serializable {
         this.evdoSnr = evdoSnr;
     }
 
+    public int getEcNo() {
+        return ecNo;
+    }
+
+    public void setEcNo(int ecNo) {
+        this.ecNo = ecNo;
+    }
+
+    public int getArfcn() {
+        return arfcn;
+    }
+
+    public void setArfcn(int arfcn) {
+        this.arfcn = arfcn;
+    }
+
     public void setGsmCellInfo(int mcc, int mnc, int lac, int cid) {
         this.mcc = mcc;
         this.mnc = mnc;
@@ -404,10 +429,12 @@ public class Cell implements Serializable {
         this.networkType = NetworkGroup.Gsm;
     }
 
-    public void setGsmSignalInfo(int asu, int signalStrength, int timingAdvance) {
+    public void setGsmSignalInfo(int asu, int signalStrength, int timingAdvance, int rssi, int arfcn) {
         this.asu = asu;
         this.dbm = signalStrength;
         this.ta = timingAdvance;
+        this.rssi = rssi;
+        this.arfcn = arfcn;
     }
 
     public void setWcdmaCellInfo(int mcc, int mnc, int lac, int cid, int psc) {
@@ -419,9 +446,11 @@ public class Cell implements Serializable {
         this.networkType = NetworkGroup.Wcdma;
     }
 
-    public void setWcdmaSignalInfo(int asu, int signalStrength) {
+    public void setWcdmaSignalInfo(int asu, int signalStrength, int ecNo, int arfcn) {
         this.asu = asu;
         this.dbm = signalStrength;
+        this.ecNo = ecNo;
+        this.arfcn = arfcn;
     }
 
     public void setCdmaCellInfo(int systemId, int networkId, int baseStationId) {
@@ -450,7 +479,7 @@ public class Cell implements Serializable {
         this.networkType = NetworkGroup.Lte;
     }
 
-    public void setLteSignalInfo(int asu, int signalStrength, int timingAdvance, int rsrp, int rsrq, int rssi, int rssnr, int cqi) {
+    public void setLteSignalInfo(int asu, int signalStrength, int timingAdvance, int rsrp, int rsrq, int rssi, int rssnr, int cqi, int arfcn) {
         this.asu = asu;
         this.dbm = signalStrength;
         this.ta = timingAdvance;
@@ -459,6 +488,7 @@ public class Cell implements Serializable {
         this.rssi = rssi;
         this.rssnr = rssnr;
         this.cqi = cqi;
+        this.arfcn = arfcn;
     }
 
     public void setNrCellInfo(String mccString, String mncString, int tac, long nci, int pci) {
@@ -470,7 +500,7 @@ public class Cell implements Serializable {
         this.networkType = NetworkGroup.Nr;
     }
 
-    public void setNrSignalInfo(int asu, int signalStrength, int csiRsrp, int csiRsrq, int csiSinr, int ssRsrp, int ssRsrq, int ssSinr) {
+    public void setNrSignalInfo(int asu, int signalStrength, int csiRsrp, int csiRsrq, int csiSinr, int ssRsrp, int ssRsrq, int ssSinr, int arfcn) {
         this.asu = asu;
         this.dbm = signalStrength;
         this.csiRsrp = csiRsrp;
@@ -479,6 +509,7 @@ public class Cell implements Serializable {
         this.ssRsrp = ssRsrp;
         this.ssRsrq = ssRsrq;
         this.ssSinr = ssSinr;
+        this.arfcn = arfcn;
     }
 
     public void setTdscdmaCellInfo(String mccString, String mncString, int lac, int cid, int cpid) {
@@ -490,10 +521,11 @@ public class Cell implements Serializable {
         this.networkType = NetworkGroup.Tdscdma;
     }
 
-    public void setTdscdmaSignalInfo(int asu, int signalStrength, int rscp) {
+    public void setTdscdmaSignalInfo(int asu, int signalStrength, int rscp, int arfcn) {
         this.asu = asu;
         this.dbm = signalStrength;
         this.rscp = rscp;
+        this.arfcn = arfcn;
     }
 
     public void setGsmCellLocation(int mcc, int mnc, int lac, int cid, NetworkGroup networkType) {
@@ -563,6 +595,8 @@ public class Cell implements Serializable {
                 ", evdoDbm=" + evdoDbm +
                 ", evdoEcio=" + evdoEcio +
                 ", evdoSnr=" + evdoSnr +
+                ", ecNo=" + ecNo +
+                ", arfcn=" + arfcn +
                 '}';
     }
 }

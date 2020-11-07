@@ -80,6 +80,8 @@ public class JsonBroadcastFormatter extends JsonFormatterBase implements IJsonFo
                 cell.put("evdo_dbm", formatNullable(c.getEvdoDbm(), Cell.UNKNOWN_SIGNAL));
                 cell.put("evdo_ecio", formatNullable(c.getEvdoEcio(), Cell.UNKNOWN_SIGNAL));
                 cell.put("evdo_snr", formatNullable(c.getEvdoSnr(), Cell.UNKNOWN_SIGNAL));
+                cell.put("ec_no", formatNullable(c.getEcNo(), Cell.UNKNOWN_SIGNAL));
+                cell.put("arfcn", formatNullable(c.getArfcn(), Cell.UNKNOWN_CID));
                 cell.put("neighboring", c.isNeighboring());
                 cell.put("net_type", cellUtils.getSystemType(c.getNetworkType()));
                 cells.put(cell);

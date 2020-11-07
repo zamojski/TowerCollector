@@ -53,18 +53,18 @@ public class MeasurementBuilder {
         return this;
     }
 
-    public MeasurementBuilder setGsmSignal(int asu, int dbm, int ta) {
-        c.setGsmSignalInfo(asu, dbm, ta);
+    public MeasurementBuilder setGsmSignal(int asu, int dbm, int ta, int rssi, int arfcn) {
+        c.setGsmSignalInfo(asu, dbm, ta, rssi, arfcn);
         return this;
     }
 
-    public MeasurementBuilder setWcdmaSignal(int asu, int dbm) {
-        c.setWcdmaSignalInfo(asu, dbm);
+    public MeasurementBuilder setWcdmaSignal(int asu, int dbm, int ecNo, int arfcn) {
+        c.setWcdmaSignalInfo(asu, dbm, ecNo, arfcn);
         return this;
     }
 
-    public MeasurementBuilder setLteSignal(int asu, int dbm, int ta, int rsrp, int rsrq, int rssi, int rssnr, int cqi) {
-        c.setLteSignalInfo(asu, dbm, ta, rsrp, rsrq, rssi, rssnr, cqi);
+    public MeasurementBuilder setLteSignal(int asu, int dbm, int ta, int rsrp, int rsrq, int rssi, int rssnr, int cqi, int arfcn) {
+        c.setLteSignalInfo(asu, dbm, ta, rsrp, rsrq, rssi, rssnr, cqi, arfcn);
         return this;
     }
 
@@ -73,13 +73,13 @@ public class MeasurementBuilder {
         return this;
     }
 
-    public MeasurementBuilder setNrSignal(int asu, int dbm, int csiRsrp, int csiRsrq, int csiSinr, int ssRsrp, int ssRsrq, int ssSinr) {
-        c.setNrSignalInfo(asu, dbm, csiRsrp, csiRsrq, csiSinr, ssRsrp, ssRsrq, ssSinr);
+    public MeasurementBuilder setNrSignal(int asu, int dbm, int csiRsrp, int csiRsrq, int csiSinr, int ssRsrp, int ssRsrq, int ssSinr, int arfcn) {
+        c.setNrSignalInfo(asu, dbm, csiRsrp, csiRsrq, csiSinr, ssRsrp, ssRsrq, ssSinr, arfcn);
         return this;
     }
 
-    public MeasurementBuilder setTdscdmaSignal(int asu, int dbm, int rscp) {
-        c.setTdscdmaSignalInfo(asu, dbm, rscp);
+    public MeasurementBuilder setTdscdmaSignal(int asu, int dbm, int rscp, int arfcn) {
+        c.setTdscdmaSignalInfo(asu, dbm, rscp, arfcn);
         return this;
     }
 

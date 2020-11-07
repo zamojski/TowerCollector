@@ -32,6 +32,8 @@ final class CellSignalsTable implements ITable {
     static final String COLUMN_EVDO_DBM = "evdo_dbm";
     static final String COLUMN_EVDO_ECIO = "evdo_ecio";
     static final String COLUMN_EVDO_SNR = "evdo_snr";
+    static final String COLUMN_EC_NO = "ec_no";
+    static final String COLUMN_ARFCN = "arfcn";
 
     private static final String QUERY_DROP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
@@ -61,6 +63,8 @@ final class CellSignalsTable implements ITable {
             COLUMN_EVDO_DBM + " INTEGER NOT NULL, " +
             COLUMN_EVDO_ECIO + " INTEGER NOT NULL, " +
             COLUMN_EVDO_SNR + " INTEGER NOT NULL, " +
+            COLUMN_EC_NO + " INTEGER NOT NULL, " +
+            COLUMN_ARFCN + " INTEGER NOT NULL, " +
             "FOREIGN KEY(" + COLUMN_MEASUREMENT_ID + ") REFERENCES " + MeasurementsTable.TABLE_NAME + "(" + MeasurementsTable.COLUMN_ROW_ID + ")," +
             "FOREIGN KEY(" + COLUMN_CELL_ID + ") REFERENCES " + CellsTable.TABLE_NAME + "(" + CellsTable.COLUMN_ROW_ID + "))";
 

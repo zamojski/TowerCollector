@@ -34,7 +34,7 @@ import timber.log.Timber;
 public class MeasurementsDatabase {
 
     public static final String DATABASE_FILE_NAME = "measurements.db";
-    public static final int DATABASE_FILE_VERSION = 16;
+    public static final int DATABASE_FILE_VERSION = 17;
 
     private static final int NUM_OF_DELETIONS_PER_ONE_QUERY = 50;
 
@@ -158,6 +158,8 @@ public class MeasurementsDatabase {
                     values.put(CellSignalsTable.COLUMN_EVDO_DBM, cell.getEvdoDbm());
                     values.put(CellSignalsTable.COLUMN_EVDO_ECIO, cell.getEvdoEcio());
                     values.put(CellSignalsTable.COLUMN_EVDO_SNR, cell.getEvdoSnr());
+                    values.put(CellSignalsTable.COLUMN_EC_NO, cell.getEcNo());
+                    values.put(CellSignalsTable.COLUMN_ARFCN, cell.getArfcn());
                     long rowId = db.insert(CellSignalsTable.TABLE_NAME, null, values);
                     boolean localResult = false;
                     if (rowId != -1) {
@@ -413,6 +415,8 @@ public class MeasurementsDatabase {
                 CellSignalsTable.COLUMN_EVDO_DBM,
                 CellSignalsTable.COLUMN_EVDO_ECIO,
                 CellSignalsTable.COLUMN_EVDO_SNR,
+                CellSignalsTable.COLUMN_EC_NO,
+                CellSignalsTable.COLUMN_ARFCN,
                 MeasurementsTable.COLUMN_MEASURED_AT,
                 MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT,
                 MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT,
@@ -460,6 +464,8 @@ public class MeasurementsDatabase {
         int evdoDbmColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_EVDO_DBM);
         int evdoEcioColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_EVDO_ECIO);
         int evdoSnrColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_EVDO_SNR);
+        int ecNoColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_EC_NO);
+        int arfcnColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_ARFCN);
         int latitudeColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_LATITUDE);
         int longitudeColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_LONGITUDE);
         int gpsAccuracyColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_GPS_ACCURACY);
@@ -522,6 +528,8 @@ public class MeasurementsDatabase {
             cell.setEvdoDbm(cursor.getInt(evdoDbmColumnIndex));
             cell.setEvdoEcio(cursor.getInt(evdoEcioColumnIndex));
             cell.setEvdoSnr(cursor.getInt(evdoSnrColumnIndex));
+            cell.setEcNo(cursor.getInt(ecNoColumnIndex));
+            cell.setArfcn(cursor.getInt(arfcnColumnIndex));
             measurement.addCell(cell);
         }
         cursor.close();
