@@ -25,6 +25,9 @@ android {
         Properties props = getCustomProperties()
         println 'Defining custom build config fields'
         assert props
+        // Build
+        buildConfigField "long", "BUILD_DATE_TIME", "${new Date().getTime()}"
+        buildConfigField "int", "MIN_SDK_VERSION", "${minSdkVersion.apiLevel}"
         // ACRA
         buildConfigField "boolean", "ACRA_SEND_REPORTS_IN_DEV_MODE", props['acra_sendReportsInDevMode']
         buildConfigField "boolean", "ACRA_SETTINGS_AVAILABLE", props['acra_settings_available']
@@ -40,8 +43,6 @@ android {
         // Other
         buildConfigField "String", "UPDATE_CHECK_FEED_URI", props['other_updateCheckFeedUri']
         buildConfigField "String", "CONTACT_EMAIL", rot135(props['other_contactEmail'])
-        buildConfigField "long", "BUILD_DATE_TIME", String.format("%dL", new Date().getTime())
-        buildConfigField "int", "MIN_SDK_VERSION", String.format("%d", minSdkVersion.apiLevel)
     }
     signingConfigs {
         release {
@@ -86,7 +87,7 @@ android {
             buildConfigField "String", "MARKET_NAME", '"F-Droid"'
         }
     }
-    lintOptions{
+    lintOptions {
         disable 'MissingTranslation'
     }
 }
@@ -99,7 +100,7 @@ dependencies {
     implementation 'androidx.core:core:1.3.2'
     implementation 'androidx.preference:preference:1.1.1'
     implementation 'com.google.android.material:material:1.2.1'
-    officialImplementation 'com.google.firebase:firebase-analytics:17.6.0'
+    officialImplementation 'com.google.firebase:firebase-analytics:18.0.0'
     implementation 'org.greenrobot:eventbus:3.2.0'
     implementation 'ch.acra:acra-http:5.5.1'
     implementation 'ch.acra:acra-notification:5.5.1'
