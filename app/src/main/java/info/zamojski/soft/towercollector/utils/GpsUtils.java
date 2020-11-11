@@ -33,10 +33,6 @@ public class GpsUtils {
     }
 
     private static boolean hasGpsPermissions(Context context) {
-        boolean hasGpsPermission = PermissionUtils.hasPermission(context, Manifest.permission.ACCESS_FINE_LOCATION);
-        if (hasGpsPermission && isBackgroundLocationAware()) {
-            return PermissionUtils.hasPermission(context, Manifest.permission.ACCESS_BACKGROUND_LOCATION);
-        }
-        return hasGpsPermission;
+        return PermissionUtils.hasPermission(context, Manifest.permission.ACCESS_FINE_LOCATION);
     }
 }

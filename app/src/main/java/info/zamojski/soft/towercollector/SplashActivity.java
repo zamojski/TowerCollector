@@ -109,7 +109,7 @@ public class SplashActivity extends Activity {
                 if (MyApplication.isBackgroundTaskRunning(CollectorService.class)) {
                     new ExternalBroadcastReceiver().stopCollectorService(MyApplication.getApplication());
                 } else {
-                    new ExternalBroadcastReceiver().startCollectorService(MyApplication.getApplication(), IntentSource.Shortcut);
+                    new ExternalBroadcastReceiver().startCollectorServiceFromForeground(MyApplication.getApplication(), IntentSource.Shortcut);
                 }
                 Timber.d("startCollectorAsync(): Closing splash screen window");
                 finish();

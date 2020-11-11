@@ -13,11 +13,12 @@
     <string name="permission_storage_never_ask_again_message">The function is unavailable due to denied storage permission</string>
     <string name="permission_logging_denied_temporarily_message">Temporarily disabling file logging due to denied storage permission</string>
     <string name="permission_collector_rationale_message">Location and phone permissions must be granted to collect measurements.</string>
-    <string name="permission_collector_rationale_api29_message">\n\nIf you want to use the app be sure to select \'allow all the time\' option for access device\'s location permission!</string>
-    <string name="permission_collector_rationale_api30_message">\n\nIf you want to use the app be sure to select \'allow in settings\' and then select \'allow all the time\' option for access device\'s location permission! Otherwise some of the features will not work properly!</string>
+    <string name="permission_collector_rationale_api29_message">If you want to use this function be sure to select \'allow all the time\' option for access device\'s location permission!</string>
+    <string name="permission_collector_rationale_api30_message">If you want to use this function be sure to select \'allow in settings\' and then select \'allow all the time\' option for access device\'s location permission!</string>
     <string name="permission_collector_denied_message">Cancelling measurement collecting due to denied permissions</string>
     <string name="permission_collector_never_ask_again_message">Measurement collecting is unavailable due to denied location and/or phone permissions</string>
     <string name="permission_collector_never_ask_again_api29_message">Measurement collecting is unavailable due to denied background location and/or phone permissions</string>
     <string name="permission_collector_denied_intent_message">Cancelling measurement collecting due to denied permissions, open the app to grant necessary permissions first</string>
+    <string name="permission_collector_denied_background_location_message">Disabling start at device boot due to denied background location permission.</string>
     <string name="permission_uploader_denied_message">Upload cancelled due to denied internet permission.</string>
 </resources>

@@ -4,11 +4,10 @@
 
 package info.zamojski.soft.towercollector.preferences;
 
-import info.zamojski.soft.towercollector.CollectorService;
-import info.zamojski.soft.towercollector.MyApplication;
-import info.zamojski.soft.towercollector.R;
-import timber.log.Timber;
-
+import android.Manifest;
+import android.annotation.TargetApi;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Build;
@@ -16,14 +15,30 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.preference.ListPreference;
+import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceManager;
 import androidx.preference.SwitchPreferenceCompat;
 
+import info.zamojski.soft.towercollector.CollectorService;
+import info.zamojski.soft.towercollector.MyApplication;
+import info.zamojski.soft.towercollector.R;
+import info.zamojski.soft.towercollector.utils.GpsUtils;
+import info.zamojski.soft.towercollector.utils.PermissionUtils;
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.OnNeverAskAgain;
+import permissions.dispatcher.OnPermissionDenied;
+import permissions.dispatcher.OnShowRationale;
+import permissions.dispatcher.PermissionRequest;
+import permissions.dispatcher.RuntimePermissions;
+import timber.log.Timber;
+
+@RuntimePermissions
 public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
 
     private ListPreference collectorKeepScreenOnPreference;
     private ListPreference collectorLowBatteryActionPreference;
+    private SwitchPreferenceCompat startCollectorAtBootPreference;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -31,6 +46,25 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
 
         collectorKeepScreenOnPreference = findPreference(getString(R.string.preferences_collector_keep_screen_on_mode_key));
         collectorLowBatteryActionPreference = findPreference(getString(R.string.preferences_collector_low_battery_action_key));
+        startCollectorAtBootPreference = findPreference(getString(R.string.preferences_start_collector_at_boot_key));
+
+        startCollectorAtBootPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                if (newValue.equals(false)) {
+                    Timber.d("onStartCollectorAtBootChangeListener(): Disabling start at boot");
+                } else {
+                    Timber.d("onStartCollectorAtBootChangeListener(): Requesting permission");
+                    // NOTE: delegate the permission handling to generated method
+                    if (GpsUtils.isBackgroundLocationAware()) {
+                        CollectorPreferenceFragmentPermissionsDispatcher.requestStartAtBootApi29WithPermissionCheck(CollectorPreferenceFragment.this);
+                    } else {
+                        CollectorPreferenceFragmentPermissionsDispatcher.requestStartAtBootWithPermissionCheck(CollectorPreferenceFragment.this);
+                    }
+                }
+                return true;
+            }
+        });
 
         setupNeighboringCellsDialog();
         setupCollectorKeepScreenOnDialog();
@@ -55,6 +89,10 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
         // set summaries
         setupListPreferenceSummary(collectorKeepScreenOnPreference, R.string.preferences_collector_keep_screen_on_summary);
         setupListPreferenceSummary(collectorLowBatteryActionPreference, R.string.preferences_collector_low_battery_action_summary);
+        if (startCollectorAtBootPreference.isChecked() && GpsUtils.isBackgroundLocationAware() && !PermissionUtils.hasPermission(getContext(), Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
+            startCollectorAtBootPreference.setChecked(false);
+            Toast.makeText(getActivity(), R.string.permission_collector_denied_background_location_message, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -98,5 +136,107 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
 
     private void setupCollectorKeepScreenOnDialog() {
         setupDialog(R.string.preferences_about_notify_measurements_collected_key, R.string.info_about_notify_measurements_collected_title, R.raw.info_about_notify_measurements_collected_content, true);
+    }
+
+    @TargetApi(Build.VERSION_CODES.Q)
+    @NeedsPermission({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void requestStartAtBootApi29() {
+        requestStartAtBootInternal();
+    }
+
+    @NeedsPermission({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void requestStartAtBoot() {
+        requestStartAtBootInternal();
+    }
+
+    private void requestStartAtBootInternal() {
+        Timber.d("requestStartAtBootInternal(): Called");
+        // Do nothing but request needed permissions so the service can be started by system
+    }
+
+    @TargetApi(Build.VERSION_CODES.Q)
+    @OnShowRationale({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void onStartAtBootRationaleApi29(final PermissionRequest request) {
+        onStartAtBootRationaleInternal(request);
+    }
+
+    @OnShowRationale({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void onStartAtBootRationale(final PermissionRequest request) {
+        onStartAtBootRationaleInternal(request);
+    }
+
+    private void onStartAtBootRationaleInternal(PermissionRequest request) {
+        String message = getString(R.string.permission_collector_rationale_message);
+        if (GpsUtils.isBackgroundLocationAware()) {
+            message += "\n\n" + getString(GpsUtils.isBackgroundLocationPermissionHidden() ? R.string.permission_collector_rationale_api30_message : R.string.permission_collector_rationale_api29_message);
+        }
+        new AlertDialog.Builder(getActivity())
+                .setTitle(R.string.permission_required)
+                .setMessage(message)
+                .setCancelable(true)
+                .setPositiveButton(R.string.dialog_proceed, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        request.proceed();
+                    }
+                })
+                .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        request.cancel();
+                    }
+                })
+                .show();
+    }
+
+    @TargetApi(Build.VERSION_CODES.Q)
+    @OnPermissionDenied({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void onStartAtBootPermissionDeniedApi29() {
+        onStartAtBootPermissionDeniedInternal();
+    }
+
+    @OnPermissionDenied({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void onStartAtBootPermissionDenied() {
+        onStartAtBootPermissionDeniedInternal();
+    }
+
+    private void onStartAtBootPermissionDeniedInternal() {
+        startCollectorAtBootPreference.setChecked(false);
+        Toast.makeText(getActivity(), R.string.permission_collector_denied_message, Toast.LENGTH_LONG).show();
+    }
+
+    @TargetApi(Build.VERSION_CODES.Q)
+    @OnNeverAskAgain({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void onStartAtBootNeverAskAgainApi29() {
+        onStartAtBootNeverAskAgainInternal();
+    }
+
+    @OnNeverAskAgain({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void onStartAtBootNeverAskAgain() {
+        onStartAtBootNeverAskAgainInternal();
+    }
+
+    void onStartAtBootNeverAskAgainInternal() {
+        startCollectorAtBootPreference.setChecked(false);
+        String message = getString(GpsUtils.isBackgroundLocationAware() ? R.string.permission_collector_never_ask_again_api29_message : R.string.permission_collector_never_ask_again_message);
+        new AlertDialog.Builder(getActivity())
+                .setTitle(R.string.permission_denied)
+                .setMessage(message)
+                .setCancelable(true)
+                .setPositiveButton(R.string.dialog_settings, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        PermissionUtils.openAppSettings(getActivity());
+                    }
+                })
+                .setNegativeButton(R.string.dialog_cancel, null)
+                .show();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // NOTE: delegate the permission handling to generated method
+        CollectorPreferenceFragmentPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
     }
 }
