@@ -1,0 +1,7 @@
+- Improve request background location permission only when needed on Android 10 and 11.
+- Collect RSSI for GSM, Ec/No for WCDMA on Android 11 and ARFCN for various versions.
+- Fix exception when stopping Collector.
+- Fix issues with corrupted databases having only part of the tables created.
+- Fix error when checking database version before it gets created.
+- Improve error handling.
+- Many small improvements.

@@ -1,6 +1,20 @@
 {
   "Entries": [
     {
+      "VersionCode": 2060069,
+      "Title": "Changes in version 2.6.0",
+      "Description": "If you experience app crashes on Android 10 when collecting, please make sure to update your system. One of early Android 10 versions has a defect which I cannot work around or fix :(",
+      "Messages": [
+        "Improve request background location permission only when needed on Android 10 and 11.",
+        "Collect RSSI for GSM, Ec/No for WCDMA on Android 11 and ARFCN for various versions.",
+        "Fix exception when stopping Collector.",
+        "Fix issues with corrupted databases having only part of the tables created.",
+        "Fix error when checking database version before it gets created.",
+        "Improve error handling.",
+        "Many small improvements."
+      ]
+    },
+    {
       "VersionCode": 2050168,
       "Title": "Changes in version 2.5.1",
       "Description": "If you experience app crashes on Android 10 when collecting, please make sure to update your system. One of early Android 10 versions has a defect which I cannot work around or fix :(",
@@ -40,18 +54,6 @@
       "Messages": [
         "Collect more signal related values for all network types.",
         "Add Timing Advance to GSM."
-      ]
-    },
-    {
-      "VersionCode": 2020464,
-      "Title": "Changes in version 2.2.4",
-      "Messages": [
-        "Fix crash when app database is corrupted.",
-        "Fix crash on buggy phones incorrectly reporting number of active SIM cards.",
-        "Fix wrong shortcut usage reported to the system causing wrong one selected as the most commonly used.",
-        "Add GitHub page link.",
-        "Improve error handling.",
-        "Small improvements."
       ]
     }
   ]
