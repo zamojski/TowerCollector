@@ -219,8 +219,6 @@
     <string name="battery_saver">省电模式处于活动状态</string>
     <string name="web_browser_missing">请安装网页浏览器打开网页</string>
     <string name="uploader_all_projects_disabled">已禁用上传到所有项目</string>
-    <string name="export_format_csv">CSV</string>
-    <string name="export_format_gpx">GPX</string>
     <string name="export_format_csv_ocid">用于OpenCellID.org的CSV格式</string>
     <string name="export_format_json_mls">适用于Mozilla位置服务的JSON格式</string>
     <string name="export_format_zip">压缩每个导出的文件</string>

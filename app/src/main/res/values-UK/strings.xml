@@ -219,8 +219,6 @@
     <string name="battery_saver">Увімкнена економія заряду</string>
     <string name="web_browser_missing">Будь ласка, встановіть веб-браузер, щоб відкрити сторінку</string>
     <string name="uploader_all_projects_disabled">Завантаження до всіх проектів відключено</string>
-    <string name="export_format_csv">CSV</string>
-    <string name="export_format_gpx">GPX</string>
     <string name="export_format_csv_ocid">CSV для OpenCellID.org</string>
     <string name="export_format_json_mls">JSON для Mozilla Location Services</string>
     <string name="export_format_zip">Стисніть кожен експортований файл</string>

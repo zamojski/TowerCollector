@@ -219,8 +219,6 @@
     <string name="battery_saver">Режим энергосбережения активен</string>
     <string name="web_browser_missing">Пожалуйста, установите браузер, чтобы открыть страницу</string>
     <string name="uploader_all_projects_disabled">Выгрузка отключена для всех проектов</string>
-    <string name="export_format_csv">CSV</string>
-    <string name="export_format_gpx">GPX</string>
     <string name="export_format_csv_ocid">CSV для OpenCellID.org</string>
     <string name="export_format_json_mls">JSON для Mozilla Location Services</string>
     <string name="export_format_zip">Сжимать каждый экспортируемый файл</string>

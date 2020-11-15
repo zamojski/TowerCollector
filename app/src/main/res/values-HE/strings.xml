@@ -219,8 +219,6 @@
     <string name="battery_saver">מופעל חיסכון בסוללה</string>
     <string name="web_browser_missing">נא להתקין דפדפן כדי לפתוח את העמוד</string>
     <string name="uploader_all_projects_disabled">ההעלאה לכל המיזמים מושבתת</string>
-    <string name="export_format_csv">CSV</string>
-    <string name="export_format_gpx">GPX</string>
     <string name="export_format_csv_ocid">CSV עבור OpenCellID.org</string>
     <string name="export_format_json_mls">JSON לשירותי המיקום של Mozilla</string>
     <string name="export_format_zip">לדחוס כל קובץ שעבר ייצוא</string>

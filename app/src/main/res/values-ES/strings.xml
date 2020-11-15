@@ -219,10 +219,6 @@
     <string name="battery_saver">Ahorro de batería activado</string>
     <string name="web_browser_missing">Por favor instale un navegador web para abrir la página</string>
     <string name="uploader_all_projects_disabled">Cargar a todos los proyectos está deshabilitado</string>
-    <string name="export_format_csv">CSV</string>
-    <string name="export_format_gpx">GPX</string>
-    <string name="export_format_kml">KML</string>
-    <string name="export_format_kmz">KMZ</string>
     <string name="export_format_csv_ocid">CSV para OpenCellID.org</string>
     <string name="export_format_json_mls">JSON para Mozilla Location Services</string>
     <string name="export_format_zip">Comprime cada archivo exportado</string>

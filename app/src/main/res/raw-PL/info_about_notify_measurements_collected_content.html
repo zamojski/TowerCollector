@@ -7,12 +7,12 @@
 <p>Podczas zbierania mogą zostać wysyłane powiadomienia za każdym razem, gdy nowy zbiór próbek jest zapisywany, o ile odpowiednia opcja została włączona w Ustawieniach. Zawartość powiadomienia będzie zapisana w formacie JSON, a części wspólne zbioru próbek, takie jak czas i współrzędne, będą wydzielone. Nazwy pól i wartości są takie same jak w wyeksportowanym pliku CSV.<br />
 Lista pól dostępnych dla przekaźników zależy od jego typu (net_type). Nieobsługiwane lub brakujące wartości zostaną ustawione na <code>null</code>.</p>
 <ul>
-    <li>GSM - mcc, mnc, lac, cell_id, asu, dbm, ta</li>
-    <li>UMTS - mcc, mnc, lac, cell_id, psc, asu, dbm</li>
+    <li>GSM - mcc, mnc, lac, cell_id, asu, dbm, ta, rssi, arfcn</li>
+    <li>UMTS - mcc, mnc, lac, cell_id, psc, asu, dbm, ec_no, arfcn</li>
     <li>CDMA - sid &rarr; mnc, nid &rarr; lac, bid &rarr; cell_id, asu, dbm, cdma_dbm, cdma_ecio, evdo_dbm, evdo_ecio, evdo_snr</li>
-    <li>LTE - mcc, mnc, tac &rarr; lac, ci &rarr; cell_id, pci &rarr; psc, ta, asu, dbm, rsrp, rsrq, rssi, rssnr, cqi</li>
-    <li>5G NR - mcc, mnc, tac &rarr; lac, nci &rarr; cell_id, pci &rarr; psc, asu, dbm, csi_rsrp, csi_rsrq, csi_sinr, ss_rsrp, ss_rsrq, ss_sinr</li>
-    <li>TD-SCDMA - mcc, mnc, lac, cid &rarr; cell_id, cpid &rarr; psc, asu, dbm, rscp</li>
+    <li>LTE - mcc, mnc, tac &rarr; lac, ci &rarr; cell_id, pci &rarr; psc, ta, asu, dbm, rsrp, rsrq, rssi, rssnr, cqi, arfcn</li>
+    <li>5G NR - mcc, mnc, tac &rarr; lac, nci &rarr; cell_id, pci &rarr; psc, asu, dbm, csi_rsrp, csi_rsrq, csi_sinr, ss_rsrp, ss_rsrq, ss_sinr, arfcn</li>
+    <li>TD-SCDMA - mcc, mnc, lac, cid &rarr; cell_id, cpid &rarr; psc, asu, dbm, rscp, arfcn</li>
 </ul>
 <p>Akcja:</p>
 <code>info.zamojski.soft.towercollector.MEASUREMENTS_COLLECTED</code>
