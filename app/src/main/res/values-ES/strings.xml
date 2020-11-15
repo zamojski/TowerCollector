@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. --><resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
     <string name="locale">es</string>
     <string name="shortcut_collecting_toggle_short">Recolectar</string>
     <string name="shortcut_collecting_toggle_long">Alternar recogida</string>
@@ -38,16 +37,18 @@
     <string name="dialog_proceed">Proceder</string>
     <string name="dialog_settings">Configuración</string>
     <string name="main_dialog_not_compatible_title">Problemas de compatibilidad</string>
-    <string name="main_dialog_not_compatible_begin">La aplicación puede no funcionar por:</string>
-    <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Hardware de red móvil no detectado.</string>
-    <string name="main_toast_background_task_already_running_collector">El servicio Collector está ejecutándose</string>
-    <string name="main_toast_background_task_already_running_uploader">El servicio Uploader está ejecutándose</string>
+    <string name="main_dialog_not_compatible_begin">La aplicación puede no funcionar por:
+\n</string>
+    <string name="main_dialog_no_compatible_mobile_radio_message">• Hardware de red móvil no detectado.
+\n</string>
+    <string name="main_toast_background_task_already_running_collector">El servicio Collector está ejecutándose.</string>
+    <string name="main_toast_background_task_already_running_uploader">El servicio Uploader está ejecutándose.</string>
     <string name="main_toast_background_task_already_running_export">La Exportación está encendida.</string>
     <string name="main_toast_background_task_already_running_unknown">Tarea en segundo plano encendida.</string>
     <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> Por favor deténgala antes de iniciar otra tarea.</string>
     <string name="enabled">habilitado</string>
     <string name="disabled">deshabilitado</string>
-    <string name="unknown_error">Ocurrió un error desconocido</string>
+    <string name="unknown_error">¡Ocurrió un error desconocido!</string>
     <string name="main_tab_last_title">Último guardado</string>
     <string name="main_tab_stats_title">Estadísticas</string>
     <string name="main_gps_accuracy_not_available">No disponible</string>
@@ -94,8 +95,8 @@
     <string name="uploader_notification_title">Subiendo info</string>
     <string name="uploader_notification_progress_info">Subido el <xliff:g id="progress_in_percent">%d</xliff:g>%%. Seleccione para cancelar.</string>
     <string name="uploader_result_dialog_title">Subir resultado</string>
-    <string name="uploader_starting">Iniciando subida&#8230;</string>
-    <string name="uploader_aborting">Cancelando subida&#8230;</string>
+    <string name="uploader_starting">Iniciando subida…</string>
+    <string name="uploader_aborting">Cancelando subida…</string>
     <string name="uploader_already_running">La subida ya está en progreso.</string>
     <string name="uploader_disabled">Subida deshabilitada</string>
     <string name="uploader_disabled_description">Subida deshabilitada para este proyecto.</string>

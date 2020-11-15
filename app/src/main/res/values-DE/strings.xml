@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. --><resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
     <string name="locale">de</string>
     <string name="shortcut_collecting_toggle_short">Sammeln</string>
     <string name="shortcut_collecting_toggle_long">Sammeln ein-/ausschalten</string>
@@ -17,7 +16,7 @@
     <string name="app_title_preferences">Einstellungen</string>
     <string name="dialog_want_enable_gps">Möchten Sie die Standort-Einstellungen öffnen um GPS zu aktivieren?</string>
     <string name="dialog_could_not_open_android_settings">Konnte Android-Einstellungen nicht öffnen. Bitte öffnen Sie diese manuell um sie zu ändern.</string>
-    <string name="dialog_select_email_app">E-Mail Anwendung auswählen</string>
+    <string name="dialog_select_email_app">E-Mail-Anwendung auswählen</string>
     <string name="dialog_what_is_new">Nachricht vom Entwickler!</string>
     <string name="dialog_yes">Ja</string>
     <string name="dialog_no">Nein</string>
@@ -39,7 +38,7 @@
     <string name="dialog_settings">Einstellungen</string>
     <string name="main_dialog_not_compatible_title">Kompatibilitätsprobleme</string>
     <string name="main_dialog_not_compatible_begin">Diese App funktioniert eventuell nicht weil:</string>
-    <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Keine Mobilfunkhardware gefunden wurde.</string>
+    <string name="main_dialog_no_compatible_mobile_radio_message">• Keine Mobilfunkhardware gefunden wurde.</string>
     <string name="main_toast_background_task_already_running_collector">Datenerfassung läuft.</string>
     <string name="main_toast_background_task_already_running_uploader">Upload der Messungen läuft.</string>
     <string name="main_toast_background_task_already_running_export">Export der gesammelten Messungen läuft.</string>
@@ -94,8 +93,8 @@
     <string name="uploader_notification_title">hochladen</string>
     <string name="uploader_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% hochgeladen. Tippen um abzubrechen.</string>
     <string name="uploader_result_dialog_title">Upload Ergebnis</string>
-    <string name="uploader_starting">Starte Upload&#8230;</string>
-    <string name="uploader_aborting">Upload abbrechen&#8230;</string>
+    <string name="uploader_starting">Starte Upload…</string>
+    <string name="uploader_aborting">Upload abbrechen…</string>
     <string name="uploader_already_running">Upload läuft bereits.</string>
     <string name="uploader_disabled">Upload deaktiviert</string>
     <string name="uploader_disabled_description">Upload deaktiviert für dieses Projekt</string>
