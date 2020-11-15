@@ -228,10 +228,10 @@
     <string name="battery_saver">Battery saver enabled</string>
     <string name="web_browser_missing">Please install web browser to open the page</string>
     <string name="uploader_all_projects_disabled">Upload to all projects is disabled</string>
-    <string name="export_format_csv">CSV</string>
-    <string name="export_format_gpx">GPX</string>
-    <string name="export_format_kml">KML</string>
-    <string name="export_format_kmz">KMZ</string>
+    <string name="export_format_csv" translatable="false">CSV</string>
+    <string name="export_format_gpx" translatable="false">GPX</string>
+    <string name="export_format_kml" translatable="false">KML</string>
+    <string name="export_format_kmz" translatable="false">KMZ</string>
     <string name="export_format_csv_ocid">CSV for OpenCellID.org</string>
     <string name="export_format_json_mls">JSON for Mozilla Location Services</string>
     <string name="export_format_zip">Compress each exported file</string>
