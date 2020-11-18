@@ -109,7 +109,7 @@ public class SplashActivity extends Activity {
                 if (MyApplication.isBackgroundTaskRunning(CollectorService.class)) {
                     new ExternalBroadcastReceiver().stopCollectorService(MyApplication.getApplication());
                 } else {
-                    new ExternalBroadcastReceiver().startCollectorService(MyApplication.getApplication(), IntentSource.Shortcut);
+                    new ExternalBroadcastReceiver().startCollectorServiceFromForeground(MyApplication.getApplication(), IntentSource.Shortcut);
                 }
                 Timber.d("startCollectorAsync(): Closing splash screen window");
                 finish();
@@ -153,7 +153,7 @@ public class SplashActivity extends Activity {
 
     private void startMainActivity() {
         Timber.d("startMainActivity(): Starting main window");
-        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 

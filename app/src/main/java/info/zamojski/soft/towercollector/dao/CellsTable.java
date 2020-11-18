@@ -15,6 +15,8 @@ final class CellsTable implements ITable {
     static final String COLUMN_NET_TYPE = "net_type";
     static final String COLUMN_DISCOVERED_AT = "discovered_at";
 
+    private static final String QUERY_DROP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
+
     private static final String QUERY_CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" +
             COLUMN_ROW_ID + " INTEGER PRIMARY KEY NOT NULL, " +
             COLUMN_MCC + " INTEGER NOT NULL, " +
@@ -33,6 +35,7 @@ final class CellsTable implements ITable {
     @Override
     public String[] getCreateQueries() {
         return new String[]{
+                QUERY_DROP_TABLE,
                 QUERY_CREATE_TABLE,
                 QUERY_CREATE_TRIGGER_ON_INSERT
         };

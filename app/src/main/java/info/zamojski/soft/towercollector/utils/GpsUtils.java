@@ -15,6 +15,10 @@ public class GpsUtils {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q;
     }
 
+    public static boolean isBackgroundLocationPermissionHidden() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.R;
+    }
+
     public static boolean isGpsEnabled(Context context) {
         if (hasGpsPermissions(context)) {
             LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
@@ -29,10 +33,6 @@ public class GpsUtils {
     }
 
     private static boolean hasGpsPermissions(Context context) {
-        boolean hasGpsPermission = PermissionUtils.hasPermission(context, Manifest.permission.ACCESS_FINE_LOCATION);
-        if (hasGpsPermission && isBackgroundLocationAware()) {
-            return PermissionUtils.hasPermission(context, Manifest.permission.ACCESS_BACKGROUND_LOCATION);
-        }
-        return hasGpsPermission;
+        return PermissionUtils.hasPermission(context, Manifest.permission.ACCESS_FINE_LOCATION);
     }
 }

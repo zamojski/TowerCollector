@@ -1,0 +1,17 @@
+Tower Collector gives you opportunity to contribute in OpenCellID.org and Mozilla Location Services projects by uploading GPS locations of GSM/UMTS/LTE/CDMA/TD-SCDMA/5G (NR) cell towers from your area. The measurements help map the extent of mobile phone network coverage. You can use the app to collect data for personal purposes and export them to various files.
+
+Some features:
+• specially optimized GPS parameters to reduce battery drain
+• upload to OpenCellID.org and Mozilla Location Services (MLS) projects
+• export to SD card as CSV, JSON, GPX, KML and KMZ.
+• ad-free, forever!
+
+The OpenCellID.org project goal is to create a worldwide open source database of mobile cell locations. Tower Collector gives you opportunity to contribute in OpenCellID project by uploading cell towers locations from your area. Collected data can be used to quickly locate devices without enabling GPS.
+
+Mozilla Location Services (MLS) is an open source project, aiming to create a worldwide database of wireless network infrastructure identifiers (cell towers, WiFi access points, Bluetooth beacons) correlated with GPS locations. Aggregated cell location set is available under the public domain "Creative Commons (CC-0)" license.
+
+Please help me translate it to other languages, visit http://i18n.zamojski.info/
+
+This application does not collect, store or send any information which can be used to directly identify user, device which is being used or any other personal information.
+
+BUG REPORTS AND FEATURE REQUEST VIA EMAIL OR GITHUB ISSUES PLEASE.

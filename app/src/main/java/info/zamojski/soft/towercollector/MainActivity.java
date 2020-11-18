@@ -40,7 +40,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -71,6 +73,7 @@ import info.zamojski.soft.towercollector.broadcast.AirplaneModeBroadcastReceiver
 import info.zamojski.soft.towercollector.broadcast.BatterySaverBroadcastReceiver;
 import info.zamojski.soft.towercollector.controls.DialogManager;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
+import info.zamojski.soft.towercollector.enums.ExportAction;
 import info.zamojski.soft.towercollector.enums.FileType;
 import info.zamojski.soft.towercollector.enums.MeansOfTransport;
 import info.zamojski.soft.towercollector.enums.Validity;
@@ -705,25 +708,33 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         View dialogLayout = inflater.inflate(R.layout.export_finished_dialog, null);
         TextView messageTextView = dialogLayout.findViewById(R.id.export_finished_dialog_textview);
         messageTextView.setText(getString(R.string.export_dialog_finished_message, exportedDirAbsolutePath));
-        boolean shareEnabled = MyApplication.getPreferencesProvider().isShareExportedEnabled();
-        final CheckBox shareCheckbox = dialogLayout.findViewById(R.id.export_finished_dialog_checkbox);
-        shareCheckbox.setChecked(shareEnabled);
+        ExportAction recentAction = MyApplication.getPreferencesProvider().getExportAction();
+        boolean singleFile = exportedFilePaths.length == 1;
+        if (!singleFile && recentAction == ExportAction.Open)
+            recentAction = ExportAction.Keep;
+        final RadioButton keepRadioButton = dialogLayout.findViewById(R.id.export_finished_dialog_keep_radiobutton);
+        final RadioButton openRadioButton = dialogLayout.findViewById(R.id.export_finished_dialog_open_radiobutton);
+        final RadioButton shareRadioButton = dialogLayout.findViewById(R.id.export_finished_dialog_share_radiobutton);
+        openRadioButton.setEnabled(singleFile);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle(R.string.export_dialog_finished_title);
         builder.setView(dialogLayout);
         builder.setCancelable(true);
-        if (shareEnabled) {
+        if (recentAction == ExportAction.Share) {
             builder.setPositiveButton(R.string.dialog_share, (dialog, which) -> {
                 exportShareAction();
-                dialog.dismiss();
-                exportedFilePaths = null;
+                dismissExportFinishedDialog(dialog);
+            });
+        } else if (recentAction == ExportAction.Open) {
+            builder.setPositiveButton(R.string.dialog_open, (dialog, which) -> {
+                exportOpenAction();
+                dismissExportFinishedDialog(dialog);
             });
         } else {
             builder.setPositiveButton(R.string.dialog_keep, (dialog, which) -> {
                 exportKeepAction();
-                dialog.dismiss();
-                exportedFilePaths = null;
+                dismissExportFinishedDialog(dialog);
             });
         }
         builder.setNeutralButton(R.string.dialog_upload, (dialog, which) -> {
@@ -754,27 +765,39 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         });
 
         AlertDialog dialog = builder.create();
+        ExportAction finalRecentAction = recentAction;
         dialog.setOnShowListener(dialog1 -> {
-            shareCheckbox.setChecked(shareEnabled);
-            shareCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                Button keepButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            keepRadioButton.setChecked(finalRecentAction == ExportAction.Keep);
+            openRadioButton.setChecked(finalRecentAction == ExportAction.Open);
+            shareRadioButton.setChecked(finalRecentAction == ExportAction.Share);
+            CompoundButton.OnCheckedChangeListener listener = (buttonView, isChecked) -> {
+                Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
                 if (isChecked) {
-                    keepButton.setText(R.string.dialog_share);
-                    keepButton.setOnClickListener(v -> {
-                        exportShareAction();
-                        dialog.dismiss();
-                        exportedFilePaths = null;
-                    });
-                } else {
-                    keepButton.setText(R.string.dialog_keep);
-                    keepButton.setOnClickListener(v -> {
-                        exportKeepAction();
-                        dialog.dismiss();
-                        exportedFilePaths = null;
-                    });
+                    if (buttonView == openRadioButton) {
+                        positiveButton.setText(R.string.dialog_open);
+                        positiveButton.setOnClickListener(v -> {
+                            exportOpenAction();
+                            dismissExportFinishedDialog(dialog);
+                        });
+                    } else if (buttonView == shareRadioButton) {
+                        positiveButton.setText(R.string.dialog_share);
+                        positiveButton.setOnClickListener(v -> {
+                            exportShareAction();
+                            dismissExportFinishedDialog(dialog);
+                        });
+                    } else {
+                        positiveButton.setText(R.string.dialog_keep);
+                        positiveButton.setOnClickListener(v -> {
+                            exportKeepAction();
+                            dismissExportFinishedDialog(dialog);
+                        });
+                    }
+                    MyApplication.getPreferencesProvider().setExportAction(finalRecentAction);
                 }
-                MyApplication.getPreferencesProvider().setShareExportedEnabled(isChecked);
-            });
+            };
+            keepRadioButton.setOnCheckedChangeListener(listener);
+            openRadioButton.setOnCheckedChangeListener(listener);
+            shareRadioButton.setOnCheckedChangeListener(listener);
         });
 
         dialog.show();
@@ -782,8 +805,27 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         exportedDirAbsolutePath = null;
     }
 
+    private void dismissExportFinishedDialog(DialogInterface dialog) {
+        dialog.dismiss();
+        exportedFilePaths = null;
+    }
+
     private void exportKeepAction() {
         MyApplication.getAnalytics().sendExportKeepAction();
+    }
+
+    private void exportOpenAction() {
+        Intent openIntent = new Intent(Intent.ACTION_VIEW);
+        File file = new File(exportedFilePaths[0]);
+        Uri fileUri = FileProvider.getUriForFile(this, getString(R.string.file_provider_authority), file);
+        String calculatedMimeType = getApplication().getContentResolver().getType(fileUri);
+        openIntent.setDataAndType(fileUri, calculatedMimeType);
+        openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        if (openIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(openIntent);
+        } else {
+            Toast.makeText(getApplication(), R.string.export_toast_no_handler_for_file_type, Toast.LENGTH_LONG).show();
+        }
     }
 
     private void exportShareAction() {
@@ -791,10 +833,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         ShareCompat.IntentBuilder shareIntent = ShareCompat.IntentBuilder.from(this);
         for (String filePath : exportedFilePaths) {
             File file = new File(filePath);
-            Uri imageUri = FileProvider.getUriForFile(this, "info.zamojski.soft.towercollector.fileprovider", file);
-            shareIntent.addStream(imageUri);
+            Uri fileUri = FileProvider.getUriForFile(this, getString(R.string.file_provider_authority), file);
+            shareIntent.addStream(fileUri);
         }
-        String calculatedMimeType = FileUtils.getFileMimeType(exportedFilePaths);
+        String calculatedMimeType = FileUtils.getFileMimeType(getApplication(), exportedFilePaths);
         shareIntent.setType(calculatedMimeType);
         Intent intent = shareIntent.getIntent();
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -810,25 +852,11 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             backgroundTaskHelper.showTaskRunningMessage(runningTaskClassName);
             return;
         }
-        if (GpsUtils.isBackgroundLocationAware()) {
-            MainActivityPermissionsDispatcher.startCollectorServiceApi29WithPermissionCheck(MainActivity.this);
-        } else {
-            MainActivityPermissionsDispatcher.startCollectorServiceWithPermissionCheck(MainActivity.this);
-        }
-    }
-
-    @TargetApi(Build.VERSION_CODES.Q)
-    @NeedsPermission({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
-    void startCollectorServiceApi29() {
-        startCollectorServiceInternal();
+        MainActivityPermissionsDispatcher.startCollectorServiceWithPermissionCheck(MainActivity.this);
     }
 
     @NeedsPermission({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void startCollectorService() {
-        startCollectorServiceInternal();
-    }
-
-    private void startCollectorServiceInternal() {
         askAndSetGpsEnabled();
         if (isGpsEnabled) {
             Timber.d("startCollectorService(): Air plane mode off, starting service");
@@ -850,31 +878,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.Q)
-    @OnShowRationale({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
-    void onStartCollectorShowRationaleApi29(PermissionRequest request) {
-        onStartCollectorShowRationaleInternal(request);
-    }
-
     @OnShowRationale({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorShowRationale(PermissionRequest request) {
-        onStartCollectorShowRationaleInternal(request);
-    }
-
-    private void onStartCollectorShowRationaleInternal(PermissionRequest request) {
-        if (GpsUtils.isBackgroundLocationAware()) {
-            String message = getString(R.string.permission_collector_rationale_message)
-                    + getString(R.string.permission_collector_rationale_api29_message);
-            onShowRationale(request, message);
-        } else {
-            onShowRationale(request, R.string.permission_collector_rationale_message);
-        }
-    }
-
-    @TargetApi(Build.VERSION_CODES.Q)
-    @OnPermissionDenied({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
-    void onStartCollectorPermissionDeniedApi29() {
-        onStartCollectorPermissionDeniedInternal();
+        onShowRationale(request, R.string.permission_collector_rationale_message);
     }
 
     @OnPermissionDenied({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
@@ -886,18 +892,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         onPermissionDenied(R.string.permission_collector_denied_message);
     }
 
-    @TargetApi(Build.VERSION_CODES.Q)
-    @OnNeverAskAgain({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
-    void onStartCollectorNeverAskAgainApi29() {
-        onStartCollectorNeverAskAgainInternal();
-    }
-
     @OnNeverAskAgain({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorNeverAskAgain() {
-        onStartCollectorNeverAskAgainInternal();
-    }
-
-    void onStartCollectorNeverAskAgainInternal() {
         onNeverAskAgain(R.string.permission_collector_never_ask_again_message);
     }
 

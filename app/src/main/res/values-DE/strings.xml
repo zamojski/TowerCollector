@@ -30,6 +30,8 @@
     <string name="dialog_keep">Behalten</string>
     <string name="dialog_delete">Löschen</string>
     <string name="dialog_share">Teilen</string>
+    <string name="dialog_open">Öffnen</string>
+    <string name="dialog_open_single">Öffnen (nur einzelne Datei)</string>
     <string name="dialog_send">Senden</string>
     <string name="dialog_send_comment">Kommentar</string>
     <string name="dialog_dont_show_again">Nicht mehr anzeigen</string>
@@ -127,7 +129,8 @@
     <string name="export_toast_storage_read_only">Externer Speicher ist schreibgeschützt.</string>
     <string name="export_toast_no_file_types_selected">Kein Dateityp für Export ausgewählt</string>
     <string name="export_toast_no_storage">Externen Speicher nicht gefunden.</string>
-    <string name="export_dialog_format_selection_title">Gewünschtes Dateityp</string>
+    <string name="export_toast_no_handler_for_file_type">Keine App für dieses Dateiformat gefunden.</string>
+    <string name="export_dialog_format_selection_title">Gewünschtes Dateiformat</string>
     <string name="export_dialog_progress_title">exportiere</string>
     <string name="export_dialog_progress_message">Speichere Datei in das Verzeichnis \"TowerCollector\" am externen Speicher, der Dateiname entspricht der aktuellen Uhrzeit.</string>
     <string name="export_dialog_finished_title">Export erfolgreich</string>
@@ -216,10 +219,6 @@
     <string name="battery_saver">Stromsparen aktiviert</string>
     <string name="web_browser_missing">Bitte installieren Sie einen Web Browser um die Seite zu öffnen</string>
     <string name="uploader_all_projects_disabled">Upload zu allen Projekten deaktiviert</string>
-    <string name="export_format_csv">CSV</string>
-    <string name="export_format_gpx">GPX</string>
-    <string name="export_format_kml">KML</string>
-    <string name="export_format_kmz">KMZ</string>
     <string name="export_format_csv_ocid">CSV für OpenCellID.org</string>
     <string name="export_format_json_mls">JSON für den Mozilla Location Service</string>
     <string name="export_format_zip">Exportierte Dateien komprimieren</string>

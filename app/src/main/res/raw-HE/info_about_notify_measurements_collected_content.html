@@ -7,12 +7,12 @@
 <p>מנגנון האיסוף יכול לשלוח intent בכל פעם שסדרה חדשה של בדיקות נאספת אם כך הוגדר בהגדרות. התוכן של ההתראות יהיה במבנה JSON עם דברים משותפים כמו זמן ו־GPS שיחולצו. שמות השדות והערכים ממופים באותו האופן כמו בקובץ CSV.<br />
 רשימת השדות בשימוש האנטנות תלויה בסוג (net_type). ערכים בלתי נתמכים או חסרים יוגדרו לכדי <code>null</code>.</p>
 <ul>
-    <li>GSM - mcc, mnc, lac, cell_id, asu, dbm, ta</li>
-    <li>UMTS - mcc, mnc, lac, cell_id, psc, asu, dbm</li>
+    <li>GSM - mcc, mnc, lac, cell_id, asu, dbm, ta, rssi, arfcn</li>
+    <li>UMTS - mcc, mnc, lac, cell_id, psc, asu, dbm, ec_no, arfcn</li>
     <li>CDMA - sid &rarr; mnc, nid &rarr; lac, bid &rarr; cell_id, asu, dbm, cdma_dbm, cdma_ecio, evdo_dbm, evdo_ecio, evdo_snr</li>
-    <li>LTE - mcc, mnc, tac &rarr; lac, ci &rarr; cell_id, pci &rarr; psc, ta, asu, dbm, rsrp, rsrq, rssi, rssnr, cqi</li>
-    <li>5G NR - mcc, mnc, tac &rarr; lac, nci &rarr; cell_id, pci &rarr; psc, asu, dbm, csi_rsrp, csi_rsrq, csi_sinr, ss_rsrp, ss_rsrq, ss_sinr</li>
-    <li>TD-SCDMA - mcc, mnc, lac, cid &rarr; cell_id, cpid &rarr; psc, asu, dbm, rscp</li>
+    <li>LTE - mcc, mnc, tac &rarr; lac, ci &rarr; cell_id, pci &rarr; psc, ta, asu, dbm, rsrp, rsrq, rssi, rssnr, cqi, arfcn</li>
+    <li>5G NR - mcc, mnc, tac &rarr; lac, nci &rarr; cell_id, pci &rarr; psc, asu, dbm, csi_rsrp, csi_rsrq, csi_sinr, ss_rsrp, ss_rsrq, ss_sinr, arfcn</li>
+    <li>TD-SCDMA - mcc, mnc, lac, cid &rarr; cell_id, cpid &rarr; psc, asu, dbm, rscp, arfcn</li>
 </ul>
 <p>פעולה:</p>
 <code>info.zamojski.soft.towercollector.MEASUREMENTS_COLLECTED</code>

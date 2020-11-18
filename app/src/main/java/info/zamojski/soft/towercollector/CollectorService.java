@@ -11,6 +11,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ServiceInfo;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -147,7 +148,7 @@ public class CollectorService extends Service {
     private PowerManager powerManager;
     private PowerManager.WakeLock wakeLock;
 
-    private IntentSource startIntentSource;
+    private IntentSource startIntentSource = IntentSource.System;
     private int apiVersionUsed;
 
     // ========== SERVICE ========== //
@@ -199,7 +200,11 @@ public class CollectorService extends Service {
         registerReceiver(locationModeOrProvidersChanged, new IntentFilter(LocationManager.PROVIDERS_CHANGED_ACTION));
         Notification notification = notificationHelper.createNotification(notificationManager, getGpsStatusNotificationText(getGpsStatus()));
         // start as foreground service to prevent from killing
-        startForeground(NOTIFICATION_ID, notification);
+        if (GpsUtils.isBackgroundLocationAware()) {
+            startForeground(NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
+        } else {
+            startForeground(NOTIFICATION_ID, notification);
+        }
     }
 
     @Override
@@ -310,12 +315,9 @@ public class CollectorService extends Service {
         EventBus.getDefault().postSticky(new GpsStatusChangedEvent());
         EventBus.getDefault().postSticky(new CollectorStateChangedEvent(false));
         EventBus.getDefault().unregister(this);
-        if (stopRequestBroadcastReceiver != null)
-            unregisterReceiver(stopRequestBroadcastReceiver);
-        if (batteryStatusBroadcastReceiver != null)
-            unregisterReceiver(batteryStatusBroadcastReceiver);
-        if (locationModeOrProvidersChanged != null)
-            unregisterReceiver(locationModeOrProvidersChanged);
+        unregisterReceiverSafely(stopRequestBroadcastReceiver);
+        unregisterReceiverSafely(batteryStatusBroadcastReceiver);
+        unregisterReceiverSafely(locationModeOrProvidersChanged);
         long endTime = System.currentTimeMillis();
         notificationManager.cancel(NOTIFICATION_ID);
         if (locationManager != null) {
@@ -964,6 +966,16 @@ public class CollectorService extends Service {
                 break;
         }
         return getString(R.string.collector_notification_status, statusString);
+    }
+
+    private void unregisterReceiverSafely(BroadcastReceiver broadcastReceiver) {
+        if (broadcastReceiver != null) {
+            try {
+                unregisterReceiver(broadcastReceiver);
+            } catch (IllegalArgumentException ex) {
+                Timber.d(ex);
+            }
+        }
     }
 
     public float getLastGpsAccuracy() {

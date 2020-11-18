@@ -40,7 +40,7 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
         if (collectorStartAction.equals(action)) {
-            startCollectorService(context, IntentSource.Application);
+            startCollectorServiceFromForeground(context, IntentSource.Application);
         } else if (collectorStopAction.equals(action)) {
             stopCollectorService(context);
         } else if (uploaderStartAction.equals(action)) {
@@ -50,16 +50,24 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         } else if (Intent.ACTION_BOOT_COMPLETED.equals(action) || quickBootPowerOnAction.equals(action)) {
             boolean startAtBootEnabled = MyApplication.getPreferencesProvider().getStartCollectorAtBoot();
             if (startAtBootEnabled) {
-                startCollectorService(context, IntentSource.System);
+                startCollectorServiceFromBackground(context, IntentSource.System);
             }
         }
     }
 
-    public void startCollectorService(Context context, IntentSource source) {
+    public void startCollectorServiceFromForeground(Context context, IntentSource source) {
+        startCollectorServiceInternal(context, source, false);
+    }
+
+    public void startCollectorServiceFromBackground(Context context, IntentSource source) {
+        startCollectorServiceInternal(context, source, true);
+    }
+
+    private void startCollectorServiceInternal(Context context, IntentSource source, boolean isBackground) {
         if (!canStartBackgroundService(context)) {
             return;
         }
-        if (!hasAllCollectorRequiredPermissions(context)) {
+        if (!(isBackground ? hasAllCollectorBackgroundPermissions(context) : hasAllCollectorForegroundPermissions(context))) {
             showCollectorPermissionsDenied(context);
             return;
         }
@@ -124,12 +132,12 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         return true;
     }
 
-    private boolean hasAllCollectorRequiredPermissions(Context context) {
-        if (GpsUtils.isBackgroundLocationAware()) {
-            return PermissionUtils.hasPermissions(context, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE);
-        } else {
-            return PermissionUtils.hasPermissions(context, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE);
-        }
+    private boolean hasAllCollectorForegroundPermissions(Context context) {
+        return PermissionUtils.hasPermissions(context, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE);
+    }
+
+    private boolean hasAllCollectorBackgroundPermissions(Context context) {
+        return hasAllCollectorForegroundPermissions(context) && (!GpsUtils.isBackgroundLocationAware() || PermissionUtils.hasPermission(context, Manifest.permission.ACCESS_BACKGROUND_LOCATION));
     }
 
     private void showCollectorPermissionsDenied(Context context) {

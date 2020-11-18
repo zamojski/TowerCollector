@@ -30,6 +30,8 @@
     <string name="dialog_keep">Manter</string>
     <string name="dialog_delete">Apagar</string>
     <string name="dialog_share">Compartilhar</string>
+    <string name="dialog_open">Abrir</string>
+    <string name="dialog_open_single">Abrir (somente arquivo único)</string>
     <string name="dialog_send">Enviar</string>
     <string name="dialog_send_comment">Enviar comentário</string>
     <string name="dialog_dont_show_again">Não exiba isto novamente</string>
@@ -127,6 +129,7 @@
     <string name="export_toast_storage_read_only">Armazenamento externo é somente leitura.</string>
     <string name="export_toast_no_file_types_selected">Nenhum tipo de arquivo selecionado para exportação.</string>
     <string name="export_toast_no_storage">Armazenamento externo não encontrado.</string>
+    <string name="export_toast_no_handler_for_file_type">Nenhum aplicativo para lidar com o arquivo.</string>
     <string name="export_dialog_format_selection_title">Selecione formatos de arquivo:</string>
     <string name="export_dialog_progress_title">Exportando</string>
     <string name="export_dialog_progress_message">Salvando na pasta \"TowerCollector\" na memória externa com data e hora atual como nome de arquivo.</string>
@@ -216,10 +219,6 @@
     <string name="battery_saver">Economia de bateria ativado</string>
     <string name="web_browser_missing">Favor instalar navegador web para abrir a página</string>
     <string name="uploader_all_projects_disabled">Upload para todos os projetos está desabilitado</string>
-    <string name="export_format_csv">CSV</string>
-    <string name="export_format_gpx">GPX</string>
-    <string name="export_format_kml">KML</string>
-    <string name="export_format_kmz">KMZ</string>
     <string name="export_format_csv_ocid">CSV para OpenCellID.org</string>
     <string name="export_format_json_mls">JSON para Mozilla Location Services</string>
     <string name="export_format_zip">Compactar cada arquivo exportado</string>

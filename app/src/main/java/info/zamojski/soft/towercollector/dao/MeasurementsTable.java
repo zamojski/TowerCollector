@@ -19,6 +19,8 @@ final class MeasurementsTable implements ITable {
     static final String COLUMN_UPLOADED_TO_OCID_AT = "uploaded_to_ocid_at";
     static final String COLUMN_UPLOADED_TO_MLS_AT = "uploaded_to_mls_at";
 
+    private static final String QUERY_DROP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
+
     static final String QUERY_CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" +
             COLUMN_ROW_ID + " INTEGER PRIMARY KEY NOT NULL, " +
             COLUMN_LOCATION_HASHCODE + " CHARACTER(40) NOT NULL, " +
@@ -44,6 +46,7 @@ final class MeasurementsTable implements ITable {
     @Override
     public String[] getCreateQueries() {
         return new String[]{
+                QUERY_DROP_TABLE,
                 QUERY_CREATE_TABLE,
                 QUERY_CREATE_INDEX_MEASURED_AT,
                 QUERY_CREATE_INDEX_UPLOADED_TO_OCID_AT,

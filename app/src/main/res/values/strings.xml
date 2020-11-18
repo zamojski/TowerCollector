@@ -29,6 +29,8 @@
     <string name="dialog_keep">Keep</string>
     <string name="dialog_delete">Delete</string>
     <string name="dialog_share">Share</string>
+    <string name="dialog_open">Open</string>
+    <string name="dialog_open_single">Open (single file only)</string>
     <string name="dialog_send">Send</string>
     <string name="dialog_send_comment">Send comment</string>
     <string name="dialog_dont_show_again">Don\'t show this again</string>
@@ -139,6 +141,7 @@
     <string name="export_toast_storage_read_only">External storage is read only.</string>
     <string name="export_toast_no_file_types_selected">No file types selected for export.</string>
     <string name="export_toast_no_storage">External storage not found.</string>
+    <string name="export_toast_no_handler_for_file_type">No application to handle the file.</string>
     <string name="export_dialog_format_selection_title">Select file formats</string>
     <string name="export_dialog_progress_title">Exporting</string>
     <string name="export_dialog_progress_message">Saving to \"TowerCollector\" folder on external memory with current date and time as file name.</string>
@@ -228,10 +231,10 @@
     <string name="battery_saver">Battery saver enabled</string>
     <string name="web_browser_missing">Please install web browser to open the page</string>
     <string name="uploader_all_projects_disabled">Upload to all projects is disabled</string>
-    <string name="export_format_csv">CSV</string>
-    <string name="export_format_gpx">GPX</string>
-    <string name="export_format_kml">KML</string>
-    <string name="export_format_kmz">KMZ</string>
+    <string name="export_format_csv" translatable="false">CSV</string>
+    <string name="export_format_gpx" translatable="false">GPX</string>
+    <string name="export_format_kml" translatable="false">KML</string>
+    <string name="export_format_kmz" translatable="false">KMZ</string>
     <string name="export_format_csv_ocid">CSV for OpenCellID.org</string>
     <string name="export_format_json_mls">JSON for Mozilla Location Services</string>
     <string name="export_format_zip">Compress each exported file</string>

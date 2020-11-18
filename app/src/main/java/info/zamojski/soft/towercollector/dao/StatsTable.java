@@ -12,6 +12,8 @@ final class StatsTable implements ITable {
     static final String COLUMN_TOTAL_DISCOVERED_CELLS = "total_discovered_cells";
     static final String COLUMN_TOTAL_SINCE = "total_since";
 
+    private static final String QUERY_DROP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
+
     private static final String QUERY_CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" +
             COLUMN_ROW_ID + " INTEGER PRIMARY KEY NOT NULL, " +
             COLUMN_TOTAL_MEASUREMENTS + " INTEGER NOT NULL, " +
@@ -25,6 +27,7 @@ final class StatsTable implements ITable {
     @Override
     public String[] getCreateQueries() {
         return new String[]{
+                QUERY_DROP_TABLE,
                 QUERY_CREATE_TABLE,
                 QUERY_INSERT_DEFAULT_ROW
         };

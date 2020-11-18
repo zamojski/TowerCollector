@@ -30,6 +30,8 @@
     <string name="dialog_keep">Megtartás</string>
     <string name="dialog_delete">Törlés</string>
     <string name="dialog_share">Megosztani</string>
+    <string name="dialog_open">Megnyitás</string>
+    <string name="dialog_open_single">Megnyitás (csak egy fájl)</string>
     <string name="dialog_send">Küldés</string>
     <string name="dialog_send_comment">Megjegyzés küldése</string>
     <string name="dialog_dont_show_again">Ne mutassa újra</string>
@@ -127,6 +129,7 @@
     <string name="export_toast_storage_read_only">A külső tároló csak olvasható.</string>
     <string name="export_toast_no_file_types_selected">Nem választott ki fájltípust az exportáláshoz.</string>
     <string name="export_toast_no_storage">A külső tároló nem található.</string>
+    <string name="export_toast_no_handler_for_file_type">Egyetlen alkalmazás sem tudja kezelni a fájlt.</string>
     <string name="export_dialog_format_selection_title">Válassza ki a fájlformátumokat</string>
     <string name="export_dialog_progress_title">Exportálás</string>
     <string name="export_dialog_progress_message">Mentés a külső tárhely „TowerCollector” mappájába a jelenlegi dátumot és időt használva fájlnévként.</string>
@@ -216,10 +219,6 @@
     <string name="battery_saver">Az akkumulátor kímélő aktív</string>
     <string name="web_browser_missing">Telepíts egy webböngészőt az oldal megnyitásához</string>
     <string name="uploader_all_projects_disabled">A feltöltés az összes projekt esetén le van tiltva</string>
-    <string name="export_format_csv">CSV</string>
-    <string name="export_format_gpx">GPX</string>
-    <string name="export_format_kml">KML</string>
-    <string name="export_format_kmz">KMZ</string>
     <string name="export_format_csv_ocid">CSV az OpenCellID.org-hoz</string>
     <string name="export_format_json_mls">JSON az Mozilla Location Serviceshez</string>
     <string name="export_format_zip">Tömörítse az összes exportált fájlt</string>

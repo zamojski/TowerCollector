@@ -13,9 +13,12 @@
     <string name="permission_storage_never_ask_again_message">Функція недоступна через відмову в дозволі зберігання</string>
     <string name="permission_logging_denied_temporarily_message">Тимчасове відключення реєстрації файлів через відсутність дозволу на зберігання.</string>
     <string name="permission_collector_rationale_message">Для збирання вимірів необхідно надати дозволи на отримання місцезнаходження та стан телефону (мережі).</string>
-    <string name="permission_collector_rationale_api29_message">\n\nЯкщо ви хочете використовувати додаток не забудьте вибрати опцію \"завжди дозволяти\" для доступу до пристрою дозволу на доступ!</string>
+    <string name="permission_collector_rationale_api29_message">Якщо ви хочете скористатися цією функцією, обов’язково виберіть параметр «дозволити весь час» для дозволу на доступ пристрою до місцезнаходження!</string>
+    <string name="permission_collector_rationale_api30_message">Якщо ви хочете скористатися цією функцією, обов’язково виберіть «дозволити в налаштуваннях», а потім виберіть «дозволити весь час» для доступу до дозволу на місцезнаходження пристрою!</string>
     <string name="permission_collector_denied_message">Скасування збирання вимірювань через відмову у дозволах</string>
     <string name="permission_collector_never_ask_again_message">Збір вимірювань недоступний через відмову у дозволах визначення місцезнаходження та / або стану телефону</string>
+    <string name="permission_collector_never_ask_again_api29_message">Збір вимірювань недоступний через заборону фонового розташування та / або дозволів телефону</string>
     <string name="permission_collector_denied_intent_message">Скасувавши збирання вимірювань через відмовлені дозволи. Перед запуском додатку надайте необхідні дозволи</string>
+    <string name="permission_collector_denied_background_location_message">Вимкнення запуску під час завантаження пристрою через відмову у дозволі фонового розташування.</string>
     <string name="permission_uploader_denied_message">Вивантаження скасовано через відмову у дозволі на Інтернет.</string>
 </resources>

@@ -30,6 +30,8 @@
     <string name="dialog_keep">Тримайся</string>
     <string name="dialog_delete">Видалити</string>
     <string name="dialog_share">Поділитися</string>
+    <string name="dialog_open">Відкрити</string>
+    <string name="dialog_open_single">Відкрити (лише для одного файлу)</string>
     <string name="dialog_send">Відправити</string>
     <string name="dialog_send_comment">Надіслати коментар</string>
     <string name="dialog_dont_show_again">Не показувати це знову</string>
@@ -127,6 +129,7 @@
     <string name="export_toast_storage_read_only">Зовнішній пристрій призначений тільки для читання.</string>
     <string name="export_toast_no_file_types_selected">Для експорту не вибрано типів файлів.</string>
     <string name="export_toast_no_storage">Зовнішній пристрій не знайдено.</string>
+    <string name="export_toast_no_handler_for_file_type">Немає програми для обробки формату файлу.</string>
     <string name="export_dialog_format_selection_title">Виберіть формати файлів</string>
     <string name="export_dialog_progress_title">Експорт</string>
     <string name="export_dialog_progress_message">Збереження в папку «TowerCollector» на зовнішній пам\'яті з поточною датою і часом в якості імені файлу.</string>
@@ -216,10 +219,6 @@
     <string name="battery_saver">Увімкнена економія заряду</string>
     <string name="web_browser_missing">Будь ласка, встановіть веб-браузер, щоб відкрити сторінку</string>
     <string name="uploader_all_projects_disabled">Завантаження до всіх проектів відключено</string>
-    <string name="export_format_csv">CSV</string>
-    <string name="export_format_gpx">GPX</string>
-    <string name="export_format_kml">KML</string>
-    <string name="export_format_kmz">KMZ</string>
     <string name="export_format_csv_ocid">CSV для OpenCellID.org</string>
     <string name="export_format_json_mls">JSON для Mozilla Location Services</string>
     <string name="export_format_zip">Стисніть кожен експортований файл</string>

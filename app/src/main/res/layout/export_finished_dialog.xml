@@ -19,12 +19,30 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             tools:text="Sample content" />
 
-        <CheckBox
-            android:id="@+id/export_finished_dialog_checkbox"
+        <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/padding_large"
-            android:text="@string/dialog_share" />
+            android:layout_marginTop="@dimen/padding_large">
+
+            <RadioButton
+                android:id="@+id/export_finished_dialog_keep_radiobutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_keep" />
+
+            <RadioButton
+                android:id="@+id/export_finished_dialog_open_radiobutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_open_single" />
+
+            <RadioButton
+                android:id="@+id/export_finished_dialog_share_radiobutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_share" />
+
+        </RadioGroup>
     </LinearLayout>
 
 </ScrollView>
