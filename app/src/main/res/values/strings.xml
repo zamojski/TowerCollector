@@ -152,6 +152,8 @@
     <string name="delete_dialog_title">Delete exported</string>
     <string name="delete_dialog_message">Are you sure you want to permanently delete exported data?</string>
     <string name="clear_toast_finished">Database cleared</string>
+    <string name="clear_map_cache_finished">Map cache cleared</string>
+    <string name="clear_map_cache_failed">Failed to clear map cache</string>
     <string name="export_toast_failed">Export failed: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">unknown error</string>
     <string name="export_toast_failed_cause_directory_not_exists">cannot create directory</string>

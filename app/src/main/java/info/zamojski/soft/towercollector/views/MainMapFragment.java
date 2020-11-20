@@ -55,6 +55,7 @@ import info.zamojski.soft.towercollector.model.MapCell;
 import info.zamojski.soft.towercollector.model.MapMeasurement;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.utils.FileUtils;
+import info.zamojski.soft.towercollector.utils.MapUtils;
 import info.zamojski.soft.towercollector.utils.NetworkTypeUtils;
 import info.zamojski.soft.towercollector.utils.ResourceUtils;
 import timber.log.Timber;
@@ -78,7 +79,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        configureMapPreferences();
+        MapUtils.configureMap(MyApplication.getApplication());
         View rootView = inflater.inflate(R.layout.main_map_fragment, container, false);
         configureControls(rootView);
         return rootView;
@@ -294,16 +295,6 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         Timber.d("moveToLocation(): Moving screen to lat=%1$s, lon=%2$s", lat, lon);
         GeoPoint startPoint = new GeoPoint(lat, lon);
         mainMapView.getController().setCenter(startPoint); // don't animate because it's used on first load
-    }
-
-    private void configureMapPreferences() {
-        Context context = MyApplication.getApplication();
-        Configuration.getInstance().load(context, PreferenceManager.getDefaultSharedPreferences(context));
-        File mapDataFolder = new File(FileUtils.getExternalStorageAppDir(), "MapData");
-        Configuration.getInstance().setOsmdroidBasePath(mapDataFolder);
-        Configuration.getInstance().setOsmdroidTileCache(new File(mapDataFolder, "Cache"));
-        Configuration.getInstance().setTileFileSystemCacheMaxBytes(150 * 1024 * 1024);
-        Configuration.getInstance().setTileFileSystemCacheTrimBytes(100 * 1024 * 1024);
     }
 
     private void setFollowMe(boolean enable) {

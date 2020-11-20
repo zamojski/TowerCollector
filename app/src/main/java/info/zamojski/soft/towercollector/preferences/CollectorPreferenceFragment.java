@@ -48,6 +48,15 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
         collectorLowBatteryActionPreference = findPreference(getString(R.string.preferences_collector_low_battery_action_key));
         startCollectorAtBootPreference = findPreference(getString(R.string.preferences_start_collector_at_boot_key));
 
+        setupCollectorAtBootPreference();
+        setupNeighboringCellsDialog();
+        setupCollectorKeepScreenOnDialog();
+        setupNotifyMeasurementsCollectedDialog();
+
+        setupHideCollectorNotificationAvailability();
+    }
+
+    private void setupCollectorAtBootPreference() {
         startCollectorAtBootPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -65,12 +74,6 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
                 return true;
             }
         });
-
-        setupNeighboringCellsDialog();
-        setupCollectorKeepScreenOnDialog();
-        setupNotifyMeasurementsCollectedDialog();
-
-        setupHideCollectorNotificationAvailability();
     }
 
     private void setupHideCollectorNotificationAvailability() {

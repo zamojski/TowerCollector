@@ -98,6 +98,7 @@ import info.zamojski.soft.towercollector.utils.BatteryUtils;
 import info.zamojski.soft.towercollector.utils.DateUtils;
 import info.zamojski.soft.towercollector.utils.FileUtils;
 import info.zamojski.soft.towercollector.utils.GpsUtils;
+import info.zamojski.soft.towercollector.utils.MapUtils;
 import info.zamojski.soft.towercollector.utils.NetworkUtils;
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
 import info.zamojski.soft.towercollector.utils.StorageUtils;
@@ -1097,6 +1098,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             public void onClick(DialogInterface dialog, int which) {
                 MeasurementsDatabase.getInstance(MyApplication.getApplication()).clearAllData();
                 Toast.makeText(MainActivity.this, R.string.clear_toast_finished, Toast.LENGTH_SHORT).show();
+                MapUtils.clearMapCache(MainActivity.this);
                 EventBus.getDefault().post(new PrintMainWindowEvent());
             }
         });
