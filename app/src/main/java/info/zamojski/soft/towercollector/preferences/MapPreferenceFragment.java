@@ -11,16 +11,24 @@ import android.widget.Toast;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 import androidx.preference.PreferenceScreen;
+import androidx.preference.SwitchPreferenceCompat;
+
+import org.greenrobot.eventbus.EventBus;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
+import info.zamojski.soft.towercollector.events.MapEnabledChanged;
 import info.zamojski.soft.towercollector.utils.MapUtils;
 
 public class MapPreferenceFragment extends DialogEnabledPreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
+    private SwitchPreferenceCompat mapEnablePreference;
+
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferences_map);
+
+        mapEnablePreference = findPreference(getString(R.string.preferences_main_map_enable_key));
 
         MapUtils.configureMap(MyApplication.getApplication());
         setupClearCache();
@@ -51,7 +59,13 @@ public class MapPreferenceFragment extends DialogEnabledPreferenceFragment imple
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equals(getString(R.string.preferences_main_map_force_light_theme_key))) {
+        if (key.equals(getString(R.string.preferences_main_map_enable_key))) {
+            boolean mapEnabledValue = mapEnablePreference.isChecked();
+            if (!mapEnabledValue) {
+                MapUtils.clearMapCache(getActivity());
+            }
+            EventBus.getDefault().postSticky(new MapEnabledChanged());
+        } else if (key.equals(getString(R.string.preferences_main_map_force_light_theme_key))) {
             Toast.makeText(getActivity(), R.string.preferences_restart_app, Toast.LENGTH_SHORT).show();
         }
     }

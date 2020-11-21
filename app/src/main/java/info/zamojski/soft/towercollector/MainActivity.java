@@ -81,6 +81,7 @@ import info.zamojski.soft.towercollector.events.AirplaneModeChangedEvent;
 import info.zamojski.soft.towercollector.events.BatteryOptimizationsChangedEvent;
 import info.zamojski.soft.towercollector.events.CollectorStartedEvent;
 import info.zamojski.soft.towercollector.events.GpsStatusChangedEvent;
+import info.zamojski.soft.towercollector.events.MapEnabledChanged;
 import info.zamojski.soft.towercollector.events.PowerSaveModeChangedEvent;
 import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
 import info.zamojski.soft.towercollector.events.SystemTimeChangedEvent;
@@ -389,6 +390,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private void hideInvalidSystemTime() {
         EventBus.getDefault().postSticky(new SystemTimeChangedEvent(Validity.Valid));
+    }
+
+    private void refreshTabs() {
+        viewPager.getAdapter().notifyDataSetChanged();
     }
 
     // have to be public to prevent Force Close
@@ -1373,6 +1378,11 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             invalidateOptionsMenu();
             hideInvalidSystemTime();
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onEvent(MapEnabledChanged event) {
+        refreshTabs();
     }
 
     // ========== INNER OBJECTS ========== //

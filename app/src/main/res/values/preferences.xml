@@ -142,6 +142,9 @@
     <string name="preferences_import_preferences_summary">Imports app\'s internal preferences from preferences.xml file located in TowerCollector folder.</string>
     <string name="preferences_export_preferences_title">Export preferences</string>
     <string name="preferences_export_preferences_summary">Exports app\'s internal preferences to preferences.xml file located in TowerCollector folder.</string>
+    <string name="preferences_main_map_enable_title">Enable map</string>
+    <string name="preferences_main_map_enable_on_summary">Map tab is visible. Disabling will clear cache.</string>
+    <string name="preferences_main_map_enable_off_summary">Map tab is hidden.</string>
     <string name="preferences_main_map_force_light_theme_title">Force light theme</string>
     <string name="preferences_main_map_force_light_theme_on_summary">Light map theme is always used.</string>
     <string name="preferences_main_map_force_light_theme_off_summary">Map theme will follow the Display preferences.</string>

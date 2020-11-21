@@ -148,6 +148,9 @@
     <string name="preferences_main_map_follow_me_enabled_key" translatable="false">main_map_follow_me_enabled</string>
     <bool name="preferences_main_map_follow_me_enabled_default_value" translatable="false">true</bool>
 
+    <string name="preferences_main_map_enable_key" translatable="false">main_map_enable</string>
+    <bool name="preferences_main_map_enable_default_value" translatable="false">true</bool>
+
     <string name="preferences_main_map_force_light_theme_key" translatable="false">main_map_force_light_mode</string>
     <bool name="preferences_main_map_force_light_theme_default_value" translatable="false">false</bool>
 

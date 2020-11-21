@@ -4,22 +4,25 @@
 
 package info.zamojski.soft.towercollector.views;
 
+import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 
 import android.content.Context;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
-public class MainActivityPagerAdapter extends FragmentPagerAdapter {
+public class MainActivityPagerAdapter extends FragmentStatePagerAdapter {
 
     private static final int MainLastFragmentIndex = 0;
     private static final int MainStatsFragmentIndex = 1;
     private static final int MainMapFragmentIndex = 2;
 
-    private Context context;
+    private final Context context;
 
     public MainActivityPagerAdapter(FragmentManager fm, Context context) {
         super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
@@ -43,7 +46,7 @@ public class MainActivityPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 2 + (MyApplication.getPreferencesProvider().isMainMapEnabled() ? 1 : 0);
     }
 
     @Override
@@ -58,5 +61,11 @@ public class MainActivityPagerAdapter extends FragmentPagerAdapter {
             default:
                 throw new UnsupportedOperationException("Cannot find view title at position " + position);
         }
+    }
+
+    @Override
+    public int getItemPosition(@NonNull Object object) {
+        // reset position when invalidating
+        return POSITION_NONE;
     }
 }
