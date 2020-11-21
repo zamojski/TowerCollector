@@ -244,4 +244,9 @@ public class PreferencesProvider {
     public void setMainMapFollowMeEnabled(boolean enabled) {
         booleanPreferenceProvider.setPreference(R.string.preferences_main_map_follow_me_enabled_key, enabled);
     }
+
+    public boolean isMainMapForceLightThemeEnabled() {
+        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_main_map_force_light_theme_key, R.bool.preferences_main_map_force_light_theme_default_value);
+        return value;
+    }
 }

@@ -6,6 +6,13 @@
 
     <PreferenceCategory app:title="@string/preferences_category_settings_title">
 
+        <SwitchPreferenceCompat
+            app:defaultValue="@bool/preferences_main_map_force_light_theme_default_value"
+            app:key="@string/preferences_main_map_force_light_theme_key"
+            app:summaryOff="@string/preferences_main_map_force_light_theme_off_summary"
+            app:summaryOn="@string/preferences_main_map_force_light_theme_on_summary"
+            app:title="@string/preferences_main_map_force_light_theme_title"/>
+
         <PreferenceScreen
             app:key="@string/preferences_main_map_clear_cache_key"
             app:summary="@string/preferences_main_map_clear_cache_summary"

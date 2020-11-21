@@ -146,7 +146,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         mainMapView.setMinZoomLevel(5.0);
         mainMapView.setMaxZoomLevel(20.0);
 
-        if (MyApplication.getCurrentAppTheme() == R.style.DarkAppTheme)
+        if (MyApplication.getCurrentAppTheme() == R.style.DarkAppTheme && !MyApplication.getPreferencesProvider().isMainMapForceLightThemeEnabled())
             mainMapView.getOverlayManager().getTilesOverlay().setColorFilter(TilesOverlay.INVERT_COLORS);
 
         IMapController mapController = mainMapView.getController();
