@@ -28,7 +28,7 @@ public class MapPreferenceFragment extends DialogEnabledPreferenceFragment {
     }
 
     private void setupClearCache() {
-        PreferenceScreen preference = findPreference(getString(R.string.preferences_map_clear_cache_key));
+        PreferenceScreen preference = findPreference(getString(R.string.preferences_main_map_clear_cache_key));
         preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {

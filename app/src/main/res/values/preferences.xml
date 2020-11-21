@@ -142,6 +142,6 @@
     <string name="preferences_import_preferences_summary">Imports app\'s internal preferences from preferences.xml file located in TowerCollector folder.</string>
     <string name="preferences_export_preferences_title">Export preferences</string>
     <string name="preferences_export_preferences_summary">Exports app\'s internal preferences to preferences.xml file located in TowerCollector folder.</string>
-    <string name="preferences_clear_map_cache_title">Clear cache</string>
-    <string name="preferences_clear_map_cache_summary">Clears map cache folder to free some space.</string>
+    <string name="preferences_main_map_clear_cache_title">Clear cache</string>
+    <string name="preferences_main_map_clear_cache_summary">Clears map cache folder to free some space.</string>
 </resources>

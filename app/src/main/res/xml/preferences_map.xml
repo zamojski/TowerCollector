@@ -7,9 +7,9 @@
     <PreferenceCategory app:title="@string/preferences_category_settings_title">
 
         <PreferenceScreen
-            app:key="@string/preferences_map_clear_cache_key"
-            app:summary="@string/preferences_clear_map_cache_summary"
-            app:title="@string/preferences_clear_map_cache_title"/>
+            app:key="@string/preferences_main_map_clear_cache_key"
+            app:summary="@string/preferences_main_map_clear_cache_summary"
+            app:title="@string/preferences_main_map_clear_cache_title"/>
 
     </PreferenceCategory>
 
