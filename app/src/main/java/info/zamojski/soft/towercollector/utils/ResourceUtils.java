@@ -5,6 +5,7 @@
 package info.zamojski.soft.towercollector.utils;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
@@ -36,8 +37,12 @@ public class ResourceUtils {
     }
 
     public static Bitmap getDrawableBitmap(Context context, @DrawableRes int drawableId) {
+        return getDrawableBitmap(context, drawableId, null);
+    }
+
+    public static Bitmap getDrawableBitmap(Context context, @DrawableRes int drawableId, Resources.Theme theme) {
         try {
-            Drawable drawable = context.getResources().getDrawable(drawableId);
+            Drawable drawable = context.getResources().getDrawable(drawableId, theme);
             Canvas canvas = new Canvas();
             Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
             canvas.setBitmap(bitmap);

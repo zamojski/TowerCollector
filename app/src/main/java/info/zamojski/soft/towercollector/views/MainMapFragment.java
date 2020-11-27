@@ -4,6 +4,7 @@
 
 package info.zamojski.soft.towercollector.views;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.os.AsyncTask;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.view.ContextThemeWrapper;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -152,6 +154,8 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         myLocationOverlay.enableMyLocation();
         myLocationOverlay.setDrawAccuracyEnabled(true);
         myLocationOverlay.setEnableAutoStop(true);
+        myLocationOverlay.setDirectionArrow(ResourceUtils.getDrawableBitmap(MyApplication.getApplication(), R.drawable.map_person, getForcedTheme()),
+                ResourceUtils.getDrawableBitmap(MyApplication.getApplication(), R.drawable.map_direction_arrow, getForcedTheme()));
         setFollowMe(MyApplication.getPreferencesProvider().isMainMapFollowMeEnabled());
         mainMapView.getOverlays().add(myLocationOverlay);
 
@@ -218,6 +222,10 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         }, MAP_DATA_LOAD_DELAY_IN_MILLIS));
 
         dateTimeFormatStandard = new SimpleDateFormat(getString(R.string.date_time_format_standard), new Locale(getString(R.string.locale)));
+    }
+
+    private Resources.Theme getForcedTheme() {
+        return MyApplication.getPreferencesProvider().isMainMapForceLightThemeEnabled() ? new ContextThemeWrapper(getActivity(), R.style.LightAppTheme).getTheme() : getActivity().getTheme();
     }
 
     private void reloadMarkers() {
