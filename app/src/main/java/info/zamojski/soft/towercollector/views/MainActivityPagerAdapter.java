@@ -6,7 +6,9 @@ package info.zamojski.soft.towercollector.views;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
+import info.zamojski.soft.towercollector.utils.PermissionUtils;
 
+import android.Manifest;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
@@ -38,7 +40,10 @@ public class MainActivityPagerAdapter extends FragmentStatePagerAdapter {
             case MainStatsFragmentIndex:
                 return new MainStatsFragment();
             case MainMapFragmentIndex:
-                return new MainMapFragment();
+                if (MyApplication.getPreferencesProvider().isMainMapConfigured()
+                        && PermissionUtils.hasPermissions(MyApplication.getApplication(), Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION))
+                    return new MainMapFragment();
+                return new MainMapConfigureFragment();
             default:
                 throw new UnsupportedOperationException("Cannot find view at position " + position);
         }

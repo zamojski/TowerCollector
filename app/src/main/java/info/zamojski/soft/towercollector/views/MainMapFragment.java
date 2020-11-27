@@ -4,7 +4,6 @@
 
 package info.zamojski.soft.towercollector.views;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.os.AsyncTask;
@@ -20,13 +19,11 @@ import android.widget.Toast;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.preference.PreferenceManager;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.clustering.RadiusMarkerClusterer;
-import org.osmdroid.config.Configuration;
 import org.osmdroid.events.DelayedMapListener;
 import org.osmdroid.events.MapListener;
 import org.osmdroid.events.ScrollEvent;
@@ -38,7 +35,6 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.TilesOverlay;
 
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -54,7 +50,6 @@ import info.zamojski.soft.towercollector.model.Boundaries;
 import info.zamojski.soft.towercollector.model.MapCell;
 import info.zamojski.soft.towercollector.model.MapMeasurement;
 import info.zamojski.soft.towercollector.model.Measurement;
-import info.zamojski.soft.towercollector.utils.FileUtils;
 import info.zamojski.soft.towercollector.utils.MapUtils;
 import info.zamojski.soft.towercollector.utils.NetworkTypeUtils;
 import info.zamojski.soft.towercollector.utils.ResourceUtils;
@@ -380,7 +375,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         }
     }
 
-    private static Marker.OnMarkerClickListener MARKER_CLICK_LISTENER = new Marker.OnMarkerClickListener() {
+    private static final Marker.OnMarkerClickListener MARKER_CLICK_LISTENER = new Marker.OnMarkerClickListener() {
         @Override
         public boolean onMarkerClick(Marker marker, MapView mapView) {
             marker.showInfoWindow();

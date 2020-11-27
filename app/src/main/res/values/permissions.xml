@@ -20,5 +20,8 @@
     <string name="permission_collector_never_ask_again_api29_message">Measurement collecting is unavailable due to denied background location and/or phone permissions</string>
     <string name="permission_collector_denied_intent_message">Cancelling measurement collecting due to denied permissions, open the app to grant necessary permissions first</string>
     <string name="permission_collector_denied_background_location_message">Disabling start at device boot due to denied background location permission.</string>
+    <string name="permission_map_rationale_message">Location permission must be granted to display your location on the map.</string>
+    <string name="permission_map_denied_message">Map cannot be enabled due to denied location permission</string>
+    <string name="permission_map_never_ask_again_message">Map is unavailable due to denied location permission</string>
     <string name="permission_uploader_denied_message">Upload cancelled due to denied internet permission.</string>
 </resources>

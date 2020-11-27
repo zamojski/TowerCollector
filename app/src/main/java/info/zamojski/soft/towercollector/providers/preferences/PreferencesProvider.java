@@ -254,6 +254,15 @@ public class PreferencesProvider {
         booleanPreferenceProvider.setPreference(R.string.preferences_main_map_enable_key, enabled);
     }
 
+    public boolean isMainMapConfigured() {
+        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_main_map_is_configured_key, R.bool.preferences_main_map_is_configured_default_value);
+        return value;
+    }
+
+    public void setMainMapConfigured(boolean configured) {
+        booleanPreferenceProvider.setPreference(R.string.preferences_main_map_is_configured_key, configured);
+    }
+
     public boolean isMainMapForceLightThemeEnabled() {
         boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_main_map_force_light_theme_key, R.bool.preferences_main_map_force_light_theme_default_value);
         return value;
