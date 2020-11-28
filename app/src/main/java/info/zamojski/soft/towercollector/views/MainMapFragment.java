@@ -15,7 +15,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
@@ -210,12 +209,6 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
             public boolean onZoom(ZoomEvent zoomEvent) {
                 Timber.tag(INNER_TAG).d("onZoom(): Changing zoom level to %s", zoomEvent.getZoomLevel());
                 MyApplication.getPreferencesProvider().setMainMapZoomLevel((float) zoomEvent.getZoomLevel());
-                if (zoomEvent.getZoomLevel() < 9.0) {
-                    //TODO for zoom above certain point don't load actual cells but only the number of them and display toast? level=8-10?
-                    Toast.makeText(MyApplication.getApplication(), "Zoom level " + zoomEvent.getZoomLevel(), Toast.LENGTH_SHORT).show();
-                } else {
-                    //TODO as above?
-                }
                 reloadMarkers();
                 return false;
             }

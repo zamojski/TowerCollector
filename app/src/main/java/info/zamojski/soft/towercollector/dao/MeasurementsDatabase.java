@@ -568,7 +568,6 @@ public class MeasurementsDatabase {
         String[] selectionArgs = new String[]{
                 String.valueOf(boundaries.getMinLat()), String.valueOf(boundaries.getMaxLat()), String.valueOf(boundaries.getMinLon()), String.valueOf(boundaries.getMaxLon())
         };
-        String q = queryBuilder.buildQuery(returnedColumns, selection, null,null,null,null);
         Cursor cursor = queryBuilder.query(db, returnedColumns, selection, selectionArgs, null, null, null, null);
         int measurementIdColumnIndex = cursor.getColumnIndex(MEASUREMENT_ROW_ID);
         int mccColumnIndex = cursor.getColumnIndex(CellsTable.COLUMN_MCC);
