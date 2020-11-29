@@ -129,7 +129,7 @@
     <string name="preferences_hide_collector_notification_off_summary">Notification will be visible all the time.</string>
     <string name="preferences_start_collector_at_boot_title">Start collecting at device boot</string>
     <string name="preferences_start_collector_at_boot_on_summary">Collecting will be automatically started at device boot. The app must be installed on internal memory to make it working.</string>
-    <string name="preferences_start_collector_at_boot_off_summary">The app will not start collecting at device boot. The app can be installed anywhere.</string>
+    <string name="preferences_start_collector_at_boot_off_summary">The app will not start collecting at device boot. The app can be installed anywhere. Background location permission must be granted to use this function.</string>
     <string name="preferences_collector_low_battery_action_title">Low battery action</string>
     <string name="preferences_collector_low_battery_action_summary">Defines what will happen when battery level goes low and collector is running.</string>
     <string name="preferences_import_database_title">Import database</string>
