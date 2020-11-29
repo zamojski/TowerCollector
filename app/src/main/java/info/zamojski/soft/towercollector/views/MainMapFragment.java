@@ -15,11 +15,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.core.content.res.ResourcesCompat;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -135,7 +137,10 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         super.configureControls(view);
         mainMapView = view.findViewById(R.id.main_map);
         followMeButton = view.findViewById(R.id.main_map_follow_me_button);
+        followMeButton.setOnLongClickListener(IMAGE_BUTTON_LONG_CLICK_LISTENER);
         ImageButton myLocationButton = view.findViewById(R.id.main_map_my_location_button);
+        myLocationButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.map_my_location, getForcedTheme()));
+        myLocationButton.setOnLongClickListener(IMAGE_BUTTON_LONG_CLICK_LISTENER);
 
         mainMapView.setTileSource(TileSourceFactory.MAPNIK);
         mainMapView.setMultiTouchControls(true);
@@ -270,7 +275,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
             iconId = NetworkTypeUtils.getNetworkGroupIcon(mainCells.get(0).getNetworkType(), mainCells.get(1).getNetworkType());
         }
         Marker item = new Marker(mainMapView);
-        item.setIcon(getResources().getDrawable(iconId, getActivity().getTheme()));
+        item.setIcon(getResources().getDrawable(iconId, getForcedTheme()));
         item.setTitle(dateTimeFormatStandard.format(new Date(m.getMeasuredAt())));
         item.setSnippet(String.valueOf(m.getDescription(MyApplication.getApplication())));
         item.setPosition(new GeoPoint(m.getLatitude(), m.getLongitude()));
@@ -297,11 +302,11 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         if (enable) {
             Timber.i("onFollowMeClick(): Enabling follow me");
             myLocationOverlay.enableFollowLocation();
-            followMeButton.setImageResource(R.drawable.map_follow_me_enabled);
+            followMeButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.map_follow_me_enabled, getForcedTheme()));
         } else {
             Timber.i("onFollowMeClick(): Disabling follow me");
             myLocationOverlay.disableFollowLocation();
-            followMeButton.setImageResource(R.drawable.map_follow_me);
+            followMeButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.map_follow_me, getForcedTheme()));
         }
         MyApplication.getPreferencesProvider().setMainMapFollowMeEnabled(myLocationOverlay.isFollowLocationEnabled());
     }
@@ -380,6 +385,14 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         @Override
         public boolean onMarkerClick(Marker marker, MapView mapView) {
             marker.showInfoWindow();
+            return true;
+        }
+    };
+
+    private final View.OnLongClickListener IMAGE_BUTTON_LONG_CLICK_LISTENER = new View.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+            Toast.makeText(getActivity(), v.getContentDescription(), Toast.LENGTH_SHORT).show();
             return true;
         }
     };

@@ -2,7 +2,6 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -42,8 +41,7 @@
             android:cropToPadding="true"
             android:paddingHorizontal="10dp"
             android:paddingVertical="10dp"
-            android:src="@drawable/map_my_location"
-            tools:tooltipText="@string/main_map_my_location_button" />
+            android:src="@drawable/map_my_location" />
 
         <ImageButton
             android:id="@+id/main_map_follow_me_button"
@@ -56,8 +54,7 @@
             android:cropToPadding="true"
             android:paddingHorizontal="10dp"
             android:paddingVertical="10dp"
-            android:src="@drawable/map_follow_me"
-            tools:tooltipText="@string/main_map_follow_me_button" />
+            android:src="@drawable/map_follow_me" />
 
     </RelativeLayout>
 
