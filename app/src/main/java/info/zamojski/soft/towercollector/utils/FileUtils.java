@@ -5,7 +5,6 @@
 package info.zamojski.soft.towercollector.utils;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Environment;
 import android.text.TextUtils;
 
@@ -16,12 +15,25 @@ import java.io.IOException;
 import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import info.zamojski.soft.towercollector.files.DeviceOperationException;
 import timber.log.Timber;
 
 public class FileUtils {
+
+    private static final Map<String, String> ExtensionToMimeTypeMap = new HashMap<String, String>() {{
+        put("csv", "text/csv");
+        put("json", "application/json");
+        put("gpx", "application/gpx+xml");
+        put("kml", "application/vnd.google-earth.kml+xml");
+        put("kmz", "application/vnd.google-earth.kmz");
+        put("zip", "application/zip");
+        put("gz", "application/gzip");
+        put("*", "application/octet-stream");
+    }};
 
     public static String combinePath(File path1, String path2) {
         return new File(path1, path2).getPath();
@@ -62,13 +74,19 @@ public class FileUtils {
 
     public static String getFileMimeType(Context context, String... paths) {
         if (paths.length == 1)
-            return context.getContentResolver().getType(Uri.parse(paths[0]));
+            return getFileMimeType(paths[0]);
         for (String path : paths) {
             String fileExtension = getFileExtension(path).toLowerCase();
             if ("gz".equals(fileExtension) || "zip".equals(fileExtension) || "kmz".equals(fileExtension))
                 return "application/octet-stream";
         }
         return "text/*";
+    }
+
+    private static String getFileMimeType(String path) {
+        String extension = getFileExtension(path).toLowerCase();
+        String mimeType = ExtensionToMimeTypeMap.get(extension);
+        return mimeType != null ? mimeType : ExtensionToMimeTypeMap.get("*");
     }
 
     public static String changeExtension(String path, String newExtension) {
