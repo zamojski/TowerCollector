@@ -217,11 +217,11 @@ public class PreferencesProvider {
     }
 
     public ExportAction getExportAction() {
-        String value = stringPreferenceProvider.getPreference(R.string.preferences_share_exported_key, R.string.preferences_share_exported_default_value);
+        String value = stringPreferenceProvider.getPreference(R.string.preferences_export_action_key, R.string.preferences_export_action_default_value);
         return ExportAction.valueOf(value);
     }
 
     public void setExportAction(ExportAction value) {
-        stringPreferenceProvider.setPreference(R.string.preferences_share_exported_key, value.toString());
+        stringPreferenceProvider.setPreference(R.string.preferences_export_action_key, value.toString());
     }
 }
