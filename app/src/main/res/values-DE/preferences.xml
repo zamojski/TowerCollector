@@ -129,7 +129,7 @@
     <string name="preferences_hide_collector_notification_off_summary">Benachrichtigungen sind immer sichtbar.</string>
     <string name="preferences_start_collector_at_boot_title">Erfassung direkt nach Bootvorgang starten</string>
     <string name="preferences_start_collector_at_boot_on_summary">Die Erfassung wird direkt nach dem Hochfahren des Geräts gestartet. Dazu muss die App im internen Speicher installiert sein.</string>
-    <string name="preferences_start_collector_at_boot_off_summary">Die App wird nach dem Hochfahren nicht automatisch mit der Erfassung starten. Deswegen kann sie überall installiert werden.</string>
+    <string name="preferences_start_collector_at_boot_off_summary">Die App wird nach dem Hochfahren nicht automatisch mit der Erfassung starten. Deswegen kann sie überall installiert werden. Berechtigung für Standortzugriff im Hintergrund wird benötigt.</string>
     <string name="preferences_collector_low_battery_action_title">Aktion bei niedrigem Akkustand</string>
     <string name="preferences_collector_low_battery_action_summary">Legt fest was bei einer laufenden Erfassung gemacht werden soll wenn der Akkustand niedrig wird.</string>
     <string name="preferences_import_database_title">Datenbank importieren</string>

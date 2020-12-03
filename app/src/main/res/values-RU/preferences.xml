@@ -12,7 +12,7 @@
     <string name="preferences_header_display_title">Экран</string>
     <string name="preferences_header_display_summary">Всё, что связано с экраном, темой, измерениями и др.</string>
     <string name="preferences_header_export_title">Экспорт</string>
-    <string name="preferences_header_export_summary">Настройки, относящиеся к экспорту файлов и т. Д.</string>
+    <string name="preferences_header_export_summary">Настройки, относящиеся к экспорту файлов.</string>
     <string name="preferences_header_advanced_title">Расширенные</string>
     <string name="preferences_header_advanced_summary">Расширенные настройки и функции.</string>
     <string name="preferences_header_information_title">Информация</string>
@@ -129,7 +129,7 @@
     <string name="preferences_hide_collector_notification_off_summary">Уведомления будут видимы всё время.</string>
     <string name="preferences_start_collector_at_boot_title">Запускать сборщик во время включения устройства.</string>
     <string name="preferences_start_collector_at_boot_on_summary">Сбор сот начнётся автоматически сразу после запуска устройства. Для работы этого режима программа должна быть установлена на внутреннем устройстве памяти.</string>
-    <string name="preferences_start_collector_at_boot_off_summary">Приложение не будет автоматически запускать Сборщик во время включения устройства.</string>
+    <string name="preferences_start_collector_at_boot_off_summary">Приложение не будет автоматически запускать Сборщик во время включения устройства. Приложение можно установить где угодно. Для использования этой функции необходимо предоставить разрешение на определение местоположения в фоновом режиме.</string>
     <string name="preferences_collector_low_battery_action_title">Действие при низком заряде</string>
     <string name="preferences_collector_low_battery_action_summary">Определяет что случится, когда будет низкий заряд батареи во время работы Сборщика.</string>
     <string name="preferences_import_database_title">Загрузка базы данных</string>

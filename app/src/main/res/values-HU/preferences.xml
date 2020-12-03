@@ -12,7 +12,7 @@
     <string name="preferences_header_display_title">Megjelenítés</string>
     <string name="preferences_header_display_summary">Minden a megjelenítéssel, témával, mértékegységekkel, egyebekkel kapcsolatos beállítás</string>
     <string name="preferences_header_export_title">Exportálás</string>
-    <string name="preferences_header_export_summary">A fájl exportálással kapcsolatos beállítások stb.</string>
+    <string name="preferences_header_export_summary">A fájl exportálással kapcsolatos beállítások.</string>
     <string name="preferences_header_advanced_title">Speciális</string>
     <string name="preferences_header_advanced_summary">Speciális lehetőségek és funkciók.</string>
     <string name="preferences_header_information_title">Információ</string>
@@ -129,7 +129,7 @@
     <string name="preferences_hide_collector_notification_off_summary">Az értesítés mindig látható lesz.</string>
     <string name="preferences_start_collector_at_boot_title">Az adatgyűjtés elindítása az eszköz indulásakor</string>
     <string name="preferences_start_collector_at_boot_on_summary">Az adatgyűjtés automatikusan elindul az eszköz bekapcsolásakor. A funkció működéséhez az alkalmazást a belső tárhelyre kell telepíteni.</string>
-    <string name="preferences_start_collector_at_boot_off_summary">Az alkalmazás nem fog bekapcsoláskor elindulni. Bármely tárhelyre telepíthető.</string>
+    <string name="preferences_start_collector_at_boot_off_summary">Az alkalmazás nem fog bekapcsoláskor elindulni. Bármely tárhelyre telepíthető. A funkció használatához háttérhely-engedélyt kell adni.</string>
     <string name="preferences_collector_low_battery_action_title">Alacsony akkumulátorszintkor</string>
     <string name="preferences_collector_low_battery_action_summary">Meghatározza, hogy mi fog történni, ha az akkumulátor töltöttségi szintje alacsony és az adatgyűjtő fut.</string>
     <string name="preferences_import_database_title">Adatbázis importálása</string>
