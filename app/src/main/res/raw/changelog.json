@@ -1,6 +1,17 @@
 {
   "Entries": [
     {
+      "VersionCode": 2060170,
+      "Title": "Changes in version 2.6.1",
+      "Messages": [
+        "Fix crash when loading preferences.",
+        "Fix last export action not remembered.",
+        "Fix 'No apps can perform this action' when sharing exported file.",
+        "Add French translation. Thanks to Poussinou, m.dutendas, mondstern and others :)",
+        "Add information about background location permission to start at boot option."
+      ]
+    },
+    {
       "VersionCode": 2060069,
       "Title": "Changes in version 2.6.0",
       "Description": "If you experience app crashes on Android 10 when collecting, please make sure to update your system. One of early Android 10 versions has a defect which I cannot work around or fix :(",
@@ -46,14 +57,6 @@
         "Rename GPS status from 'initializing' to 'waiting for location' to be less confusing.",
         "Update external libraries.",
         "Many small fixes and improvements."
-      ]
-    },
-    {
-      "VersionCode": 2030065,
-      "Title": "Changes in version 2.3.0",
-      "Messages": [
-        "Collect more signal related values for all network types.",
-        "Add Timing Advance to GSM."
       ]
     }
   ]

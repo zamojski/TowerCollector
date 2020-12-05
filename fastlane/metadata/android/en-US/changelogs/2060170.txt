@@ -1,0 +1,5 @@
+- Fix crash when loading preferences.
+- Fix last export action not remembered.
+- Fix 'No apps can perform this action' when sharing exported file.
+- Add French translation. Thanks to Poussinou, m.dutendas, mondstern and others :)
+- Add information about background location permission to start at boot option.
