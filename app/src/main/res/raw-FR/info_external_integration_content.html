@@ -1,0 +1,21 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+
+<p>Tower Collector propose des tâches qui peuvent être exécutées par d'autres applications qui envoient des <i>intents</i> comme Tasker, Automate ou Llama. Vous devez utiliser le type <i>Broadcast</i> pour toutes les activités définies ci-dessous. Pour plus d'information sur la façon de faire de telles intégrations, consultez l'aide de ces applications.<br />
+<i>Vérifiez notamment qu'il est possible de démarrer plus d'une tâche à la fois !</i></p>
+<h3>Début Collector</h3>
+<p>Collector sera démarré en utilisant les paramètres définis dans les préférences. Action:</p>
+<code>info.zamojski.soft.towercollector.COLLECTOR_START</code>
+<h3>Arrêter Collector</h3>
+<p>Collector sera arrêté immédiatement. Action:</p>
+<code>info.zamojski.soft.towercollector.COLLECTOR_STOP</code>
+<h3>Commencez À Télécharger</h3>
+<p>Le téléversement va être démarré selon la configuration "Action :" définie dans les Préférences.</p>
+<code>info.zamojski.soft.towercollector.UPLOADER_START</code>
+<h3>Arrêter Téléchargement</h3>
+<p>Le téléchargement sera bientôt annulé. Action:</p>
+<code>info.zamojski.soft.towercollector.UPLOADER_STOP</code>
+<h3>Android 8+</h3>
+<p>Sur Android Oreo et plus récent vous devez définir en outre le nom du paquet de Composant:</p>
+<code>info.zamojski.soft.towercollector</code>
