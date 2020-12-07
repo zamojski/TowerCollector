@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+    <string name="info_about_api_key_title">Clé API</string>
+    <string name="info_about_opencellid_project_title">Projet OpenCellID</string>
+    <string name="info_about_mls_project_title">Projet Mozilla Location Services.</string>
+    <string name="info_usage_statistics_title">Statistiques d\'utilisation</string>
+    <string name="info_about_application_title">À propos</string>
+    <string name="info_introduction_title">Introduction</string>
+    <string name="info_best_practices_title">Meilleures pratiques</string>
+    <string name="info_external_integration_title">L\'intégration externe</string>
+    <string name="info_privacy_statement_title">Régles de confidentialité</string>
+    <string name="info_open_source_licenses_title">Licences open source</string>
+    <string name="info_about_neighboring_cells_title">Cellules voisines</string>
+    <string name="info_about_collector_api_version_title">Version de l\'API Collector</string>
+    <string name="info_about_main_keep_screen_on_title">Gardez l\'écran allumé lorsqu\'il est visible</string>
+    <string name="info_about_collector_keep_screen_on_title">Garder l\'écran allumé lors de la collecte</string>
+    <string name="info_about_notify_measurements_collected_title">Notifier les mesures collectées</string>
+</resources>

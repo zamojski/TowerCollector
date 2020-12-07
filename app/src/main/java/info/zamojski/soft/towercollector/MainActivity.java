@@ -779,26 +779,30 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             CompoundButton.OnCheckedChangeListener listener = (buttonView, isChecked) -> {
                 Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
                 if (isChecked) {
+                    ExportAction newRecentAction;
                     if (buttonView == openRadioButton) {
+                        newRecentAction = ExportAction.Open;
                         positiveButton.setText(R.string.dialog_open);
                         positiveButton.setOnClickListener(v -> {
                             exportOpenAction();
                             dismissExportFinishedDialog(dialog);
                         });
                     } else if (buttonView == shareRadioButton) {
+                        newRecentAction = ExportAction.Share;
                         positiveButton.setText(R.string.dialog_share);
                         positiveButton.setOnClickListener(v -> {
                             exportShareAction();
                             dismissExportFinishedDialog(dialog);
                         });
                     } else {
+                        newRecentAction = ExportAction.Keep;
                         positiveButton.setText(R.string.dialog_keep);
                         positiveButton.setOnClickListener(v -> {
                             exportKeepAction();
                             dismissExportFinishedDialog(dialog);
                         });
                     }
-                    MyApplication.getPreferencesProvider().setExportAction(finalRecentAction);
+                    MyApplication.getPreferencesProvider().setExportAction(newRecentAction);
                 }
             };
             keepRadioButton.setOnCheckedChangeListener(listener);

@@ -114,10 +114,20 @@ public class MyApplication extends Application {
         if (Build.VERSION.SDK_INT != Build.VERSION_CODES.Q)
             return false;
         String stackTrace = ex.toString();
-        return (ex instanceof NullPointerException || stackTrace.contains("java.lang.NullPointerException"))
-                && stackTrace.contains("ParcelableException.getCause()")
-                && stackTrace.contains("TelephonyManager")
-                && stackTrace.contains("lambda$onError");
+        Boolean isType = ex instanceof NullPointerException;
+        Boolean isTypeString = stackTrace.contains("java.lang.NullPointerException");
+        Boolean containsParcelableException = stackTrace.contains("ParcelableException.getCause()");
+        Boolean containsTelephonyManager = stackTrace.contains("TelephonyManager");
+        Boolean containsLambdaOnError = stackTrace.contains("lambda$onError");
+        ACRA.getErrorReporter().putCustomData("isType", isType.toString());
+        ACRA.getErrorReporter().putCustomData("isTypeString", isTypeString.toString());
+        ACRA.getErrorReporter().putCustomData("containsParcelableException", containsParcelableException.toString());
+        ACRA.getErrorReporter().putCustomData("containsTelephonyManager", containsTelephonyManager.toString());
+        ACRA.getErrorReporter().putCustomData("containsLambdaOnError", containsLambdaOnError.toString());
+        return (isType || isTypeString)
+                && containsParcelableException
+                && containsTelephonyManager
+                && containsLambdaOnError;
     }
 
     public void initLogger() {
