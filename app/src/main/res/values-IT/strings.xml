@@ -50,6 +50,7 @@
     <string name="unknown_error">Errore sconosciuto!</string>
     <string name="main_tab_last_title">Ultimo salvataggio</string>
     <string name="main_tab_stats_title">Statistiche</string>
+    <string name="main_tab_map_title">Mappa</string>
     <string name="main_gps_accuracy_not_available">Non disponibile</string>
     <string name="main_signal_strength_not_available">Non disponibile</string>
     <string name="date_time_format_standard">yyyy-MM-dd HH:mm:ss</string>
@@ -76,6 +77,10 @@
     <string name="main_last_longitude_label">Longitudine:</string>
     <string name="main_last_gps_accuracy_label">Accuratezza:</string>
     <string name="main_last_date_time_label">Data di salvataggio:</string>
+    <string name="main_map_my_location_button">Sposta nella mia posizione</string>
+    <string name="main_map_follow_me_button">Segui la mia posizione</string>
+    <string name="main_map_enable">Abilitare</string>
+    <string name="main_map_disable">Inabilitare</string>
     <string name="main_menu_start_button">Avvia la raccolta dati</string>
     <string name="main_menu_stop_button">Termina la raccolta dati</string>
     <string name="main_menu_upload_button">Caricare</string>
@@ -140,6 +145,8 @@
     <string name="delete_dialog_title">Elimina esportati</string>
     <string name="delete_dialog_message">Sei sicuro di voler eliminare definitivamente i dati esportati?</string>
     <string name="clear_toast_finished">Database cancellato</string>
+    <string name="clear_map_cache_finished">Cache della mappa cancellata</string>
+    <string name="clear_map_cache_failed">Impossibile svuotare la cache della mappa</string>
     <string name="export_toast_failed">Esportazione fallita: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">errore sconosciuto</string>
     <string name="export_toast_failed_cause_directory_not_exists">impossibile creare la cartella</string>

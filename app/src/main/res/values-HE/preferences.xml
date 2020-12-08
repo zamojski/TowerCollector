@@ -13,6 +13,8 @@
     <string name="preferences_header_display_summary">כל מה שקשור בהצגת נתונים, ערכת עיצוב, יחידות וכו׳</string>
     <string name="preferences_header_export_title">ייצוא</string>
     <string name="preferences_header_export_summary">הגדרות הקשורות לייצוא קבצים</string>
+    <string name="preferences_header_map_title">מפה</string>
+    <string name="preferences_header_map_summary">הגדרות שקשורות למפה.</string>
     <string name="preferences_header_advanced_title">מתקדם</string>
     <string name="preferences_header_advanced_summary">אפשרויות ותכונות מתקדמים.</string>
     <string name="preferences_header_information_title">מידע</string>
@@ -140,4 +142,12 @@
     <string name="preferences_import_preferences_summary">מייבא את ההעדפות הפנימיות של היישומון מקובץ preferences.xml שנמצא בתיקיית TowerCollector.</string>
     <string name="preferences_export_preferences_title">העדפות ייצוא</string>
     <string name="preferences_export_preferences_summary">מייצא את ההעדפות הפנימיות של היישומון לקובץ preferences.xml בתיקיית TowerCollector.</string>
+    <string name="preferences_main_map_enable_title">הפעלת מפה</string>
+    <string name="preferences_main_map_enable_on_summary">לשונית המפה גלויה. ההשבתה תפנה את המטמון.</string>
+    <string name="preferences_main_map_enable_off_summary">לשונית המפה מוסתרת.</string>
+    <string name="preferences_main_map_force_light_theme_title">אילוץ ערכת עיצוב בהירה</string>
+    <string name="preferences_main_map_force_light_theme_on_summary">תמיד יעשה שימוש במפה בהירה.</string>
+    <string name="preferences_main_map_force_light_theme_off_summary">ערכת העיצוב של המפה תותאם להגדרות התצורה.</string>
+    <string name="preferences_main_map_clear_cache_title">פינוי המטמון</string>
+    <string name="preferences_main_map_clear_cache_summary">מפנה את תיקיית זיכרון המטמון כדי לפנות מקום.</string>
 </resources>

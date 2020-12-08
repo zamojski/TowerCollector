@@ -13,6 +13,8 @@
     <string name="preferences_header_display_summary">Tudo relacionado com exibição de dados, temas, unidades, etc.</string>
     <string name="preferences_header_export_title">Exportar</string>
     <string name="preferences_header_export_summary">Configurações relacionadas à exportação de arquivos.</string>
+    <string name="preferences_header_map_title">Mapa</string>
+    <string name="preferences_header_map_summary">Configurações relacionadas ao mapa.</string>
     <string name="preferences_header_advanced_title">Avançado</string>
     <string name="preferences_header_advanced_summary">Opções e funções avançadas.</string>
     <string name="preferences_header_information_title">Informação</string>
@@ -140,4 +142,12 @@
     <string name="preferences_import_preferences_summary">Importa as preferências internas do app a partir do arquivo preferences.xml localizado na pasta do TowerCollector.</string>
     <string name="preferences_export_preferences_title">Exportar preferências</string>
     <string name="preferences_export_preferences_summary">Exporta as preferências internas do app para o arquivo preferences.xml localizado na pasta do TowerCollector.</string>
+    <string name="preferences_main_map_enable_title">Habilitar mapa</string>
+    <string name="preferences_main_map_enable_on_summary">A guia do mapa está visível. A desativação limpará o cache.</string>
+    <string name="preferences_main_map_enable_off_summary">A guia do mapa está oculta.</string>
+    <string name="preferences_main_map_force_light_theme_title">Sempre use o tema claro</string>
+    <string name="preferences_main_map_force_light_theme_on_summary">O tema claro do mapa sempre será usado.</string>
+    <string name="preferences_main_map_force_light_theme_off_summary">O tema do mapa seguirá as preferências de exibição.</string>
+    <string name="preferences_main_map_clear_cache_title">Limpar cache</string>
+    <string name="preferences_main_map_clear_cache_summary">Limpa a pasta de cache do mapa para liberar espaço.</string>
 </resources>

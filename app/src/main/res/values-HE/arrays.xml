@@ -15,8 +15,6 @@
         <item>בהיר</item>
     </string-array>
     <string name="preferences_collector_api_version_auto">זיהוי אוטומטי</string>
-    <string name="preferences_collector_api_version_api_17">Android 4.2 API</string>
-    <string name="preferences_collector_api_version_api_1">Android 1.0 API</string>
     <string name="preferences_file_logging_level_disabled">מושבת</string>
     <string name="preferences_file_logging_level_debug">ניפוי שגיאות</string>
     <string name="preferences_file_logging_level_info">מידע</string>

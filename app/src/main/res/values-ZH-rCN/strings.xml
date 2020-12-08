@@ -50,6 +50,7 @@
     <string name="unknown_error">发生未知错误！</string>
     <string name="main_tab_last_title">最近保存</string>
     <string name="main_tab_stats_title">统计</string>
+    <string name="main_tab_map_title">地图</string>
     <string name="main_gps_accuracy_not_available">不可用</string>
     <string name="main_signal_strength_not_available">不可用</string>
     <string name="date_time_format_standard">yyyy年M月dd日 HH:mm:ss</string>
@@ -76,6 +77,10 @@
     <string name="main_last_longitude_label">经度：</string>
     <string name="main_last_gps_accuracy_label">准确度：</string>
     <string name="main_last_date_time_label">保存时间：</string>
+    <string name="main_map_my_location_button">移到我的位置</string>
+    <string name="main_map_follow_me_button">跟随我的位置</string>
+    <string name="main_map_enable">启用</string>
+    <string name="main_map_disable">禁用</string>
     <string name="main_menu_start_button">开始收集</string>
     <string name="main_menu_stop_button">停止收集</string>
     <string name="main_menu_upload_button">上传</string>
@@ -140,6 +145,8 @@
     <string name="delete_dialog_title">删除导出的数据</string>
     <string name="delete_dialog_message">您确定要永久删除导出的数据吗？</string>
     <string name="clear_toast_finished">数据库已清空</string>
+    <string name="clear_map_cache_finished">地图缓存已清除</string>
+    <string name="clear_map_cache_failed">无法清除地图缓存</string>
     <string name="export_toast_failed">导出失败： <xliff:g id="failure_reason">%s</xliff:g>。</string>
     <string name="export_toast_failed_cause_unknown">未知错误</string>
     <string name="export_toast_failed_cause_directory_not_exists">无法创建文件夹</string>

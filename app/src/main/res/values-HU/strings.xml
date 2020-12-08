@@ -50,6 +50,7 @@
     <string name="unknown_error">Ismeretlen hiba történt!</string>
     <string name="main_tab_last_title">Utolsó mentés</string>
     <string name="main_tab_stats_title">Statisztikák</string>
+    <string name="main_tab_map_title">Térkép</string>
     <string name="main_gps_accuracy_not_available">Nem érhető el</string>
     <string name="main_signal_strength_not_available">Nem érhető el</string>
     <string name="date_time_format_standard">yyyy.MM.dd. HH:mm:ss</string>
@@ -76,6 +77,10 @@
     <string name="main_last_longitude_label">Hosszúság:</string>
     <string name="main_last_gps_accuracy_label">Pontosság:</string>
     <string name="main_last_date_time_label">Mentés ideje:</string>
+    <string name="main_map_my_location_button">Ugrás a saját helyzethez</string>
+    <string name="main_map_follow_me_button">Saját helyzet követése</string>
+    <string name="main_map_enable">Bekapcsolás</string>
+    <string name="main_map_disable">Kikapcsolás</string>
     <string name="main_menu_start_button">Adatgyűjtés elindítása</string>
     <string name="main_menu_stop_button">Adatgyűjtés leállítása</string>
     <string name="main_menu_upload_button">Feltöltés</string>
@@ -140,6 +145,8 @@
     <string name="delete_dialog_title">Az exportált adatok törlése</string>
     <string name="delete_dialog_message">Biztosan véglegesen törli az exportált adatokat?</string>
     <string name="clear_toast_finished">Adatbázis törölve</string>
+    <string name="clear_map_cache_finished">Térkép gyorsítótára törölve</string>
+    <string name="clear_map_cache_failed">A térkép gyorsítótárának törlése sikertelen</string>
     <string name="export_toast_failed">Exportálás sikertelen: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">ismeretlen hiba</string>
     <string name="export_toast_failed_cause_directory_not_exists">nem lehet könyvtárat létrehozni</string>

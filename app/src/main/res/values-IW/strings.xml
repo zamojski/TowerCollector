@@ -50,6 +50,7 @@
     <string name="unknown_error">אירעה שגיאה בלתי ידועה!</string>
     <string name="main_tab_last_title">שמירה אחרונה</string>
     <string name="main_tab_stats_title">סטטיסטיקה</string>
+    <string name="main_tab_map_title">מפה</string>
     <string name="main_gps_accuracy_not_available">לא זמין</string>
     <string name="main_signal_strength_not_available">לא זמין</string>
     <string name="date_time_format_standard">yyyy-MM-dd HH:mm:ss</string>
@@ -76,6 +77,10 @@
     <string name="main_last_longitude_label">קו אורך:</string>
     <string name="main_last_gps_accuracy_label">דיוק:</string>
     <string name="main_last_date_time_label">מועד שמירה:</string>
+    <string name="main_map_my_location_button">מעבר למיקום שלי</string>
+    <string name="main_map_follow_me_button">מעקב אחר המיקום שלי</string>
+    <string name="main_map_enable">הפעלה</string>
+    <string name="main_map_disable">השבתה</string>
     <string name="main_menu_start_button">להתחיל את האיסוף</string>
     <string name="main_menu_stop_button">לעצור את האיסוף</string>
     <string name="main_menu_upload_button">העלאה</string>
@@ -140,6 +145,8 @@
     <string name="delete_dialog_title">מחיקת המיוצאים</string>
     <string name="delete_dialog_message">למחוק לצמיתות את הנתונים שיוצאו?</string>
     <string name="clear_toast_finished">תוכן מסד הנתונים נמחק</string>
+    <string name="clear_map_cache_finished">מטמון המפה התנקה</string>
+    <string name="clear_map_cache_failed">ניקוי מטמון המפה נכשל</string>
     <string name="export_toast_failed">הייצוא נכשל: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">שגיאה לא ידועה</string>
     <string name="export_toast_failed_cause_directory_not_exists">לא ניתן ליצור תיקייה</string>

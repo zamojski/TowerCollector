@@ -50,6 +50,7 @@
     <string name="unknown_error">Произошла неизвестная ошибка!</string>
     <string name="main_tab_last_title">Измерение</string>
     <string name="main_tab_stats_title">Статистика</string>
+    <string name="main_tab_map_title">Карта</string>
     <string name="main_gps_accuracy_not_available">Недоступно</string>
     <string name="main_signal_strength_not_available">Недоступно</string>
     <string name="date_time_format_standard">dd.MM.yyyy HH:mm:ss</string>
@@ -76,6 +77,10 @@
     <string name="main_last_longitude_label">Долгота:</string>
     <string name="main_last_gps_accuracy_label">Точность:</string>
     <string name="main_last_date_time_label">Время сохранения:</string>
+    <string name="main_map_my_location_button">Перейти на мою позицию</string>
+    <string name="main_map_follow_me_button">Следуй моей позиции</string>
+    <string name="main_map_enable">Включить</string>
+    <string name="main_map_disable">Отключить</string>
     <string name="main_menu_start_button">Начать сбор</string>
     <string name="main_menu_stop_button">Остановить сбор</string>
     <string name="main_menu_upload_button">Выгрузить</string>
@@ -140,6 +145,8 @@
     <string name="delete_dialog_title">Удалить экспортированное</string>
     <string name="delete_dialog_message">Вы уверены, что хотите удалить все экспортированные данные безвозвратно?</string>
     <string name="clear_toast_finished">База данных очищена</string>
+    <string name="clear_map_cache_finished">Кеш карты очищен</string>
+    <string name="clear_map_cache_failed">Не удалось очистить кеш карты</string>
     <string name="export_toast_failed">Ошибка экспорта: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">неизвестная ошибка</string>
     <string name="export_toast_failed_cause_directory_not_exists">невозможно создать папку</string>

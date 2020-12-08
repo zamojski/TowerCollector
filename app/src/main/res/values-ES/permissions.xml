@@ -20,5 +20,8 @@
     <string name="permission_collector_never_ask_again_api29_message">La recopilación de medidas no está disponible debido a la denegación de la ubicación en segundo plano y / o permisos telefónicos</string>
     <string name="permission_collector_denied_intent_message">Cancelación de la recolección de mediciones debido a permisos denegados, abra la aplicación para conceder los permisos necesarios primero</string>
     <string name="permission_collector_denied_background_location_message">Deshabilitar el inicio en el arranque del dispositivo debido a la denegación del permiso de ubicación en segundo plano.</string>
+    <string name="permission_map_rationale_message">Se debe otorgar permiso de ubicación para mostrar su ubicación en el mapa.</string>
+    <string name="permission_map_denied_message">El mapa no se puede habilitar debido al permiso de ubicación denegado</string>
+    <string name="permission_map_never_ask_again_message">El mapa no está disponible debido al permiso de ubicación denegado</string>
     <string name="permission_uploader_denied_message">Carga cancelada debido al permiso de Internet negado.</string>
 </resources>

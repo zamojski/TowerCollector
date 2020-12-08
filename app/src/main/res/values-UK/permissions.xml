@@ -20,5 +20,8 @@
     <string name="permission_collector_never_ask_again_api29_message">Збір вимірювань недоступний через заборону фонового розташування та / або дозволів телефону</string>
     <string name="permission_collector_denied_intent_message">Скасувавши збирання вимірювань через відмовлені дозволи. Перед запуском додатку надайте необхідні дозволи</string>
     <string name="permission_collector_denied_background_location_message">Вимкнення запуску під час завантаження пристрою через відмову у дозволі фонового розташування.</string>
+    <string name="permission_map_rationale_message">Потрібно надати дозвіл на розташування для відображення вашого місцезнаходження на карті.</string>
+    <string name="permission_map_denied_message">Карту неможливо ввімкнути через відмову в дозволі розташування</string>
+    <string name="permission_map_never_ask_again_message">Карта недоступна через відмову в дозволі розташування</string>
     <string name="permission_uploader_denied_message">Вивантаження скасовано через відмову у дозволі на Інтернет.</string>
 </resources>

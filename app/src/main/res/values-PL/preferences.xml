@@ -13,6 +13,8 @@
     <string name="preferences_header_display_summary">Wszystko powiązane z wyświetlaniem danych, motywem, jednostkami, itp.</string>
     <string name="preferences_header_export_title">Eksport</string>
     <string name="preferences_header_export_summary">Ustawienia związane z eksportem do plików.</string>
+    <string name="preferences_header_map_title">Mapa</string>
+    <string name="preferences_header_map_summary">Ustawienia mapy.</string>
     <string name="preferences_header_advanced_title">Zaawansowane</string>
     <string name="preferences_header_advanced_summary">Zaawansowane opcje i funkcje.</string>
     <string name="preferences_header_information_title">Informacje</string>
@@ -140,4 +142,12 @@
     <string name="preferences_import_preferences_summary">Importuje wewnętrzne ustawienia aplikacji z pliku preferences.xml w folderze TowerCollector.</string>
     <string name="preferences_export_preferences_title">Eksport ustawień</string>
     <string name="preferences_export_preferences_summary">Eksportuje wewnętrzne ustawienia aplikacji do pliku preferences.xml w folderze TowerCollector.</string>
+    <string name="preferences_main_map_enable_title">Włącz mapę</string>
+    <string name="preferences_main_map_enable_on_summary">Mapa jest widoczna. Wyłączenie wyczyści pamięć podręczną.</string>
+    <string name="preferences_main_map_enable_off_summary">Mapa jest ukryta.</string>
+    <string name="preferences_main_map_force_light_theme_title">Wymuś jasny motyw</string>
+    <string name="preferences_main_map_force_light_theme_on_summary">Jasny motyw mapy zawsze będzie używany.</string>
+    <string name="preferences_main_map_force_light_theme_off_summary">Motyw mapy będzie zgodny z ustawieniami Wyświetlania.</string>
+    <string name="preferences_main_map_clear_cache_title">Wyczyść pamięć podręczną</string>
+    <string name="preferences_main_map_clear_cache_summary">Czyści pamięć podręczną mapy, aby zwolnić pamięć.</string>
 </resources>

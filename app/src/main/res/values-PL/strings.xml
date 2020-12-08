@@ -50,6 +50,7 @@
     <string name="unknown_error">Wystąpił nieznany błąd!</string>
     <string name="main_tab_last_title">Ostatnio zapisana</string>
     <string name="main_tab_stats_title">Statystyki</string>
+    <string name="main_tab_map_title">Mapa</string>
     <string name="main_gps_accuracy_not_available">Niedostępna</string>
     <string name="main_signal_strength_not_available">Niedostępna</string>
     <string name="date_time_format_standard">dd.MM.yyyy HH:mm:ss</string>
@@ -76,6 +77,10 @@
     <string name="main_last_longitude_label">Długość geogr.:</string>
     <string name="main_last_gps_accuracy_label">Dokładność GPS:</string>
     <string name="main_last_date_time_label">Data zapisania:</string>
+    <string name="main_map_my_location_button">Przejdź do mojego położenia</string>
+    <string name="main_map_follow_me_button">Wyłącz</string>
+    <string name="main_map_enable">Włącz</string>
+    <string name="main_map_disable">Wyłącz</string>
     <string name="main_menu_start_button">Rozpocznij zbieranie</string>
     <string name="main_menu_stop_button">Zatrzymaj zbieranie</string>
     <string name="main_menu_upload_button">Prześlij próbki</string>
@@ -140,6 +145,8 @@
     <string name="delete_dialog_title">Usuń wyeksportowane dane</string>
     <string name="delete_dialog_message">Czy jesteś pewien, że chcesz usunąć wyeksportowane dane?</string>
     <string name="clear_toast_finished">Baza danych została wyczyszczona</string>
+    <string name="clear_map_cache_finished">Pamięć podręczna mapy została wyczyszczona</string>
+    <string name="clear_map_cache_failed">Wystąpił błąd podczas czyszczenia pamięci podręcznej mapy</string>
     <string name="export_toast_failed">Eksport nie powiódł się: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">nieznany błąd</string>
     <string name="export_toast_failed_cause_directory_not_exists">nie można utworzyć folderu</string>

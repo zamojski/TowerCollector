@@ -50,6 +50,7 @@
     <string name="unknown_error">Ocurrió un error desconocido</string>
     <string name="main_tab_last_title">Último guardado</string>
     <string name="main_tab_stats_title">Estadísticas</string>
+    <string name="main_tab_map_title">Mapa</string>
     <string name="main_gps_accuracy_not_available">No disponible</string>
     <string name="main_signal_strength_not_available">No disponible</string>
     <string name="date_time_format_standard">dd-MM-yyyy HH:mm:ss</string>
@@ -76,6 +77,10 @@
     <string name="main_last_longitude_label">Longitud:</string>
     <string name="main_last_gps_accuracy_label">Precisión:</string>
     <string name="main_last_date_time_label">Hora de guardado:</string>
+    <string name="main_map_my_location_button">Mover a mi ubicación</string>
+    <string name="main_map_follow_me_button">Sigue mi ubicación</string>
+    <string name="main_map_enable">Habilitar</string>
+    <string name="main_map_disable">Inhabilitar</string>
     <string name="main_menu_start_button">Comenzar localización</string>
     <string name="main_menu_stop_button">Detener recolección</string>
     <string name="main_menu_upload_button">Subir</string>
@@ -140,6 +145,8 @@
     <string name="delete_dialog_title">Eliminar exportado</string>
     <string name="delete_dialog_message">¿Está seguro de que desea eliminar permanentemente los datos exportados?</string>
     <string name="clear_toast_finished">Base de datos borrada</string>
+    <string name="clear_map_cache_finished">Se borró la caché del mapa</string>
+    <string name="clear_map_cache_failed">Could not clear map cache</string>
     <string name="export_toast_failed">Exportación fallida: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">error desconocido</string>
     <string name="export_toast_failed_cause_directory_not_exists">imposible crear directorio</string>

@@ -20,5 +20,8 @@
     <string name="permission_collector_never_ask_again_api29_message">Сбор измерений недоступен из-за запрещенного фонового определения местоположения и / или разрешений телефона</string>
     <string name="permission_collector_denied_intent_message">Отмена сбора измерений до тех пор пока не будут даны права доступа, сначала откройте приложение чтобы дать необходимые права доступа</string>
     <string name="permission_collector_denied_background_location_message">Отключение запуска при загрузке устройства из-за отказа в разрешении фонового расположения.</string>
+    <string name="permission_map_rationale_message">Для отображения вашего местоположения на карте необходимо предоставить разрешение на определение местоположения.</string>
+    <string name="permission_map_denied_message">Невозможно включить карту из-за отказа в разрешении местоположения</string>
+    <string name="permission_map_never_ask_again_message">Карта недоступна из-за отказа в разрешении местоположения</string>
     <string name="permission_uploader_denied_message">Загрузка отменена, т.к. нет доступа к интернету.</string>
 </resources>

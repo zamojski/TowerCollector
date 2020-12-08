@@ -20,5 +20,8 @@
     <string name="permission_collector_never_ask_again_api29_message">A mérések gyűjtése nem érhető el, mert a háttérbeli helyadatok vagy a telefon engedély nincs megadva.</string>
     <string name="permission_collector_denied_intent_message">Mérés begyűjtés megszakítása a megtagadott jogosultságok miatt, először nyissa meg az alkalmazást és adja meg a szükséges jogosultságokat.</string>
     <string name="permission_collector_denied_background_location_message">Az indítás letiltása az eszköz indításakor a háttér helymeghatározási engedély megtagadása miatt.</string>
+    <string name="permission_map_rationale_message">A Tartózkodási hely engedély szükséges a saját helyzet megjelenítéséhez a térképen.</string>
+    <string name="permission_map_denied_message">A megtagadott tartózkodási hely engedély miatt a térkép nem kapcsolható be</string>
+    <string name="permission_map_never_ask_again_message">A megtagadott tartózkodási hely engedély miatt a térkép nem érhető el</string>
     <string name="permission_uploader_denied_message">Feltöltés megszakítva a megtagadott internet-elérési jogosultság miatt.</string>
 </resources>

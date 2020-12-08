@@ -50,6 +50,7 @@
     <string name="unknown_error">Une erreur inconnue s\'est produite !</string>
     <string name="main_tab_last_title">"Dernière sauvegarde "</string>
     <string name="main_tab_stats_title">Statistiques</string>
+    <string name="main_tab_map_title">Carte</string>
     <string name="main_gps_accuracy_not_available">Indisponible</string>
     <string name="main_signal_strength_not_available">Indisponible</string>
     <string name="date_time_format_standard">yyyy-MM-dd HH:mm:ss</string>
@@ -76,6 +77,10 @@
     <string name="main_last_longitude_label">Longitude :</string>
     <string name="main_last_gps_accuracy_label">Précision :</string>
     <string name="main_last_date_time_label">Heure d\'enregistrement :</string>
+    <string name="main_map_my_location_button">Déplacer vers mon emplacement</string>
+    <string name="main_map_follow_me_button">Suivez mon emplacement</string>
+    <string name="main_map_enable">Activer</string>
+    <string name="main_map_disable">Désactiver</string>
     <string name="main_menu_start_button">Commencer la collecte</string>
     <string name="main_menu_stop_button">Arrêter la collecte</string>
     <string name="main_menu_upload_button">Uploader</string>
@@ -140,6 +145,8 @@
     <string name="delete_dialog_title">Supprimer l\'export</string>
     <string name="delete_dialog_message">Êtes-vous sûr de vouloir supprimer définitivement les données exportées ?</string>
     <string name="clear_toast_finished">Base de donnée effacée</string>
+    <string name="clear_map_cache_finished">Cache de la carte effacé</string>
+    <string name="clear_map_cache_failed">Échec de la effacé du cache de la carte</string>
     <string name="export_toast_failed">L\'exportation a échoué : <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">erreur inconnue</string>
     <string name="export_toast_failed_cause_directory_not_exists">Impossible de créer le répertoire</string>
