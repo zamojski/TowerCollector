@@ -64,6 +64,7 @@ public class MapPreferenceFragment extends DialogEnabledPreferenceFragment imple
             if (!mapEnabledValue) {
                 MapUtils.clearMapCache(getActivity());
             }
+            MyApplication.getPreferencesProvider().invalidateMainMapEnabledCache();
             EventBus.getDefault().postSticky(new MapEnabledChanged());
         } else if (key.equals(getString(R.string.preferences_main_map_force_light_theme_key))) {
             Toast.makeText(getActivity(), R.string.preferences_restart_app, Toast.LENGTH_SHORT).show();
