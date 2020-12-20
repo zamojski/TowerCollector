@@ -72,6 +72,8 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
     private BackgroundMarkerLoaderTask backgroundMarkerLoaderTask;
     private boolean missedMapZoomScrollUpdates = false;
     private int markersAddedIndividually = 0;
+    private boolean isLightThemeForced;
+    private Resources.Theme theme;
 
     private SimpleDateFormat dateTimeFormatStandard;
 
@@ -135,11 +137,13 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
     @Override
     protected void configureControls(View view) {
         super.configureControls(view);
+        isLightThemeForced = MyApplication.getPreferencesProvider().isMainMapForceLightThemeEnabled();
+        theme = isLightThemeForced ? new ContextThemeWrapper(getActivity(), R.style.LightAppTheme).getTheme() : getActivity().getTheme();
         mainMapView = view.findViewById(R.id.main_map);
         followMeButton = view.findViewById(R.id.main_map_follow_me_button);
         followMeButton.setOnLongClickListener(IMAGE_BUTTON_LONG_CLICK_LISTENER);
         ImageButton myLocationButton = view.findViewById(R.id.main_map_my_location_button);
-        myLocationButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.map_my_location, getForcedTheme()));
+        myLocationButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.map_my_location, theme));
         myLocationButton.setOnLongClickListener(IMAGE_BUTTON_LONG_CLICK_LISTENER);
 
         mainMapView.setTileSource(TileSourceFactory.MAPNIK);
@@ -147,7 +151,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         mainMapView.setMinZoomLevel(5.0);
         mainMapView.setMaxZoomLevel(20.0);
 
-        if (MyApplication.getCurrentAppTheme() == R.style.DarkAppTheme && !MyApplication.getPreferencesProvider().isMainMapForceLightThemeEnabled())
+        if (MyApplication.getCurrentAppTheme() == R.style.DarkAppTheme && !isLightThemeForced)
             mainMapView.getOverlayManager().getTilesOverlay().setColorFilter(TilesOverlay.INVERT_COLORS);
 
         IMapController mapController = mainMapView.getController();
@@ -158,8 +162,8 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         myLocationOverlay.enableMyLocation();
         myLocationOverlay.setDrawAccuracyEnabled(true);
         myLocationOverlay.setEnableAutoStop(true);
-        myLocationOverlay.setDirectionArrow(ResourceUtils.getDrawableBitmap(MyApplication.getApplication(), R.drawable.map_person, getForcedTheme()),
-                ResourceUtils.getDrawableBitmap(MyApplication.getApplication(), R.drawable.map_direction_arrow, getForcedTheme()));
+        myLocationOverlay.setDirectionArrow(ResourceUtils.getDrawableBitmap(MyApplication.getApplication(), R.drawable.map_person, theme),
+                ResourceUtils.getDrawableBitmap(MyApplication.getApplication(), R.drawable.map_direction_arrow, theme));
         setFollowMe(MyApplication.getPreferencesProvider().isMainMapFollowMeEnabled());
         mainMapView.getOverlays().add(myLocationOverlay);
 
@@ -275,7 +279,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
             iconId = NetworkTypeUtils.getNetworkGroupIcon(mainCells.get(0).getNetworkType(), mainCells.get(1).getNetworkType());
         }
         Marker item = new Marker(mainMapView);
-        item.setIcon(getResources().getDrawable(iconId, getForcedTheme()));
+        item.setIcon(getResources().getDrawable(iconId, theme));
         item.setTitle(dateTimeFormatStandard.format(new Date(m.getMeasuredAt())));
         item.setSnippet(String.valueOf(m.getDescription(MyApplication.getApplication())));
         item.setPosition(new GeoPoint(m.getLatitude(), m.getLongitude()));
@@ -302,11 +306,11 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         if (enable) {
             Timber.i("onFollowMeClick(): Enabling follow me");
             myLocationOverlay.enableFollowLocation();
-            followMeButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.map_follow_me_enabled, getForcedTheme()));
+            followMeButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.map_follow_me_enabled, theme));
         } else {
             Timber.i("onFollowMeClick(): Disabling follow me");
             myLocationOverlay.disableFollowLocation();
-            followMeButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.map_follow_me, getForcedTheme()));
+            followMeButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.map_follow_me, theme));
         }
         MyApplication.getPreferencesProvider().setMainMapFollowMeEnabled(myLocationOverlay.isFollowLocationEnabled());
     }
