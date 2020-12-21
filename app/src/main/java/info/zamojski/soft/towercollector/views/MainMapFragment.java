@@ -53,6 +53,7 @@ import info.zamojski.soft.towercollector.model.Boundaries;
 import info.zamojski.soft.towercollector.model.MapCell;
 import info.zamojski.soft.towercollector.model.MapMeasurement;
 import info.zamojski.soft.towercollector.model.Measurement;
+import info.zamojski.soft.towercollector.model.Tuple;
 import info.zamojski.soft.towercollector.utils.MapUtils;
 import info.zamojski.soft.towercollector.utils.NetworkTypeUtils;
 import info.zamojski.soft.towercollector.utils.ResourceUtils;
@@ -72,6 +73,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
     private BackgroundMarkerLoaderTask backgroundMarkerLoaderTask;
     private boolean missedMapZoomScrollUpdates = false;
     private int markersAddedIndividually = 0;
+    private BoundingBox lastLoadedBoundingBox = null;
     private boolean isLightThemeForced;
     private Resources.Theme theme;
 
@@ -210,7 +212,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
             @Override
             public boolean onScroll(ScrollEvent scrollEvent) {
                 Timber.tag(INNER_TAG).d("onScroll(): Scrolling to x=%1$s, y=%2$s", scrollEvent.getX(), scrollEvent.getY());
-                reloadMarkers();
+                reloadMarkers(false);
                 return false;
             }
 
@@ -218,7 +220,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
             public boolean onZoom(ZoomEvent zoomEvent) {
                 Timber.tag(INNER_TAG).d("onZoom(): Changing zoom level to %s", zoomEvent.getZoomLevel());
                 MyApplication.getPreferencesProvider().setMainMapZoomLevel((float) zoomEvent.getZoomLevel());
-                reloadMarkers();
+                reloadMarkers(true);
                 return false;
             }
         }, MAP_DATA_LOAD_DELAY_IN_MILLIS));
@@ -230,11 +232,27 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         return MyApplication.getPreferencesProvider().isMainMapForceLightThemeEnabled() ? new ContextThemeWrapper(getActivity(), R.style.LightAppTheme).getTheme() : getActivity().getTheme();
     }
 
-    private void reloadMarkers() {
+    private void reloadMarkers(boolean force) {
         if (backgroundMarkerLoaderTask == null) {
-            this.backgroundMarkerLoaderTask = new BackgroundMarkerLoaderTask();
-            Boundaries boundaries = getVisibleBoundaries();
-            this.backgroundMarkerLoaderTask.execute(boundaries);
+            if (force || lastLoadedBoundingBox == null) {
+                Timber.d("reloadMarkers(): Loading markers due to force=%1$s, lastLoadedBoundingBox=%2$s", force, lastLoadedBoundingBox);
+                Tuple<Boundaries, BoundingBox> boundaries = getVisibleBoundaries();
+                this.backgroundMarkerLoaderTask = new BackgroundMarkerLoaderTask(boundaries.getItem2());
+                this.backgroundMarkerLoaderTask.execute(boundaries.getItem1());
+            } else {
+                BoundingBox boundingBox = mainMapView.getProjection().getBoundingBox();
+                double north = boundingBox.getActualNorth();
+                double south = boundingBox.getActualSouth();
+                double east = boundingBox.getLonEast();
+                double west = boundingBox.getLonWest();
+                if (!lastLoadedBoundingBox.contains(north, east) || !lastLoadedBoundingBox.contains(north, west)
+                        || !lastLoadedBoundingBox.contains(south, east) || !lastLoadedBoundingBox.contains(south, west)) {
+                    Timber.d("reloadMarkers(): No overlap between new and previously loaded bounding boxes");
+                    reloadMarkers(true);
+                } else {
+                    Timber.d("reloadMarkers(): New and previously loaded bounding boxes overlap, skipping load");
+                }
+            }
         } else {
             // background load is active, we miss the scroll/zoom
             missedMapZoomScrollUpdates = true;
@@ -254,7 +272,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         markersAddedIndividually = 0;
     }
 
-    private Boundaries getVisibleBoundaries() {
+    private Tuple<Boundaries, BoundingBox> getVisibleBoundaries() {
         BoundingBox boundingBox = mainMapView.getProjection().getBoundingBox();
         BoundingBox boundingBoxWithReserve = boundingBox.increaseByScale(BOUNDARIES_INCREASE_FACTOR);
         double minLat = boundingBoxWithReserve.getActualSouth();
@@ -267,7 +285,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
             minLon = maxLon;
             maxLon = swap;
         }
-        return new Boundaries(minLat, minLon, maxLat, maxLon);
+        return new Tuple<Boundaries, BoundingBox>(new Boundaries(minLat, minLon, maxLat, maxLon), boundingBoxWithReserve);
     }
 
     private Marker createMarker(MapMeasurement m) {
@@ -328,14 +346,15 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
             Timber.d("onEvent(): Adding single measurement to the map, added %s of %s", markersAddedIndividually, MAX_MARKERS_ADDED_INDIVIDUALLY);
             MapMeasurement m = MapMeasurement.fromMeasurement(event.getMeasurement());
             markersOverlay.add(createMarker(m));
+            markersOverlay.invalidate();
         } else {
-            reloadMarkers();
+            reloadMarkers(true);
         }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(PrintMainWindowEvent event) {
-        reloadMarkers();
+        reloadMarkers(false);
     }
 
     @Override
@@ -345,6 +364,12 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
 
     private class BackgroundMarkerLoaderTask extends AsyncTask<Boundaries, Void, RadiusMarkerClusterer> {
         private final String INNER_TAG = MainMapFragment.class.getSimpleName() + "." + BackgroundMarkerLoaderTask.class.getSimpleName();
+
+        private final BoundingBox boundingBox;
+
+        public BackgroundMarkerLoaderTask(BoundingBox boundingBox) {
+            this.boundingBox = boundingBox;
+        }
 
         @Override
         protected RadiusMarkerClusterer doInBackground(Boundaries... boundariesParams) {
@@ -375,12 +400,13 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
             if (!isCancelled() && result != null) {
                 displayMarkers(result);
             }
+            lastLoadedBoundingBox = boundingBox;
             backgroundMarkerLoaderTask = null;
             // reload if scroll/zoom occurred while loading
             if (missedMapZoomScrollUpdates) {
                 Timber.tag(INNER_TAG).d("onPostExecute(): Missed scroll/zoom updates - reloading");
                 missedMapZoomScrollUpdates = false;
-                reloadMarkers();
+                reloadMarkers(true);
             }
         }
     }
