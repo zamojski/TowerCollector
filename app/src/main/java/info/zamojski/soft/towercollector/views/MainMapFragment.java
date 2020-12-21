@@ -68,6 +68,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
     private MapView mainMapView;
     private FollowMyLocationOverlay myLocationOverlay;
     private ImageButton followMeButton;
+    private ImageButton myLocationButton;
     private RadiusMarkerClusterer markersOverlay;
     private Bitmap clusterIcon;
     private BackgroundMarkerLoaderTask backgroundMarkerLoaderTask;
@@ -90,6 +91,11 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
     @Override
     protected void configureOnResume() {
         super.configureOnResume();
+        boolean themeChanged = reloadTheme();
+        if (themeChanged) {
+            reloadMapTheme();
+            reloadMarkers(true);
+        }
         if (mainMapView != null)
             mainMapView.onResume();
         setFollowMe(MyApplication.getPreferencesProvider().isMainMapFollowMeEnabled());
@@ -139,22 +145,17 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
     @Override
     protected void configureControls(View view) {
         super.configureControls(view);
-        isLightThemeForced = MyApplication.getPreferencesProvider().isMainMapForceLightThemeEnabled();
-        theme = isLightThemeForced ? new ContextThemeWrapper(getActivity(), R.style.LightAppTheme).getTheme() : getActivity().getTheme();
+        reloadTheme();
         mainMapView = view.findViewById(R.id.main_map);
         followMeButton = view.findViewById(R.id.main_map_follow_me_button);
         followMeButton.setOnLongClickListener(IMAGE_BUTTON_LONG_CLICK_LISTENER);
-        ImageButton myLocationButton = view.findViewById(R.id.main_map_my_location_button);
-        myLocationButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.map_my_location, theme));
+        myLocationButton = view.findViewById(R.id.main_map_my_location_button);
         myLocationButton.setOnLongClickListener(IMAGE_BUTTON_LONG_CLICK_LISTENER);
 
         mainMapView.setTileSource(TileSourceFactory.MAPNIK);
         mainMapView.setMultiTouchControls(true);
         mainMapView.setMinZoomLevel(5.0);
         mainMapView.setMaxZoomLevel(20.0);
-
-        if (MyApplication.getCurrentAppTheme() == R.style.DarkAppTheme && !isLightThemeForced)
-            mainMapView.getOverlayManager().getTilesOverlay().setColorFilter(TilesOverlay.INVERT_COLORS);
 
         IMapController mapController = mainMapView.getController();
         mapController.setZoom(MyApplication.getPreferencesProvider().getMainMapZoomLevel());
@@ -164,10 +165,10 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         myLocationOverlay.enableMyLocation();
         myLocationOverlay.setDrawAccuracyEnabled(true);
         myLocationOverlay.setEnableAutoStop(true);
-        myLocationOverlay.setDirectionArrow(ResourceUtils.getDrawableBitmap(MyApplication.getApplication(), R.drawable.map_person, theme),
-                ResourceUtils.getDrawableBitmap(MyApplication.getApplication(), R.drawable.map_direction_arrow, theme));
         setFollowMe(MyApplication.getPreferencesProvider().isMainMapFollowMeEnabled());
         mainMapView.getOverlays().add(myLocationOverlay);
+
+        reloadMapTheme();
 
         // configure zoom using mouse wheel
         mainMapView.setOnGenericMotionListener(new View.OnGenericMotionListener() {
@@ -226,10 +227,6 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         }, MAP_DATA_LOAD_DELAY_IN_MILLIS));
 
         dateTimeFormatStandard = new SimpleDateFormat(getString(R.string.date_time_format_standard), new Locale(getString(R.string.locale)));
-    }
-
-    private Resources.Theme getForcedTheme() {
-        return MyApplication.getPreferencesProvider().isMainMapForceLightThemeEnabled() ? new ContextThemeWrapper(getActivity(), R.style.LightAppTheme).getTheme() : getActivity().getTheme();
     }
 
     private void reloadMarkers(boolean force) {
@@ -338,6 +335,23 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
             clusterIcon = ResourceUtils.getDrawableBitmap(MyApplication.getApplication(), R.drawable.dot_cluster);
         }
         return clusterIcon;
+    }
+
+    private boolean reloadTheme() {
+        boolean previousLightTheme = isLightThemeForced;
+        isLightThemeForced = MyApplication.getPreferencesProvider().isMainMapForceLightThemeEnabled();
+        theme = isLightThemeForced ? new ContextThemeWrapper(getActivity(), R.style.LightAppTheme).getTheme() : getActivity().getTheme();
+        return previousLightTheme != isLightThemeForced;
+    }
+
+    private void reloadMapTheme() {
+        myLocationButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.map_my_location, theme));
+        if (MyApplication.getCurrentAppTheme() == R.style.DarkAppTheme && !isLightThemeForced)
+            mainMapView.getOverlayManager().getTilesOverlay().setColorFilter(TilesOverlay.INVERT_COLORS);
+        else
+            mainMapView.getOverlayManager().getTilesOverlay().setColorFilter(null);
+        myLocationOverlay.setDirectionArrow(ResourceUtils.getDrawableBitmap(MyApplication.getApplication(), R.drawable.map_person, theme),
+                ResourceUtils.getDrawableBitmap(MyApplication.getApplication(), R.drawable.map_direction_arrow, theme));
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
