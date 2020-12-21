@@ -109,7 +109,7 @@ dependencies {
     implementation 'org.permissionsdispatcher:permissionsdispatcher:4.7.0'
     annotationProcessor 'org.permissionsdispatcher:permissionsdispatcher-processor:4.7.0'
     implementation 'com.jakewharton.timber:timber:4.7.1'
-    implementation 'org.osmdroid:osmdroid-android:6.1.6'
+    implementation 'org.osmdroid:osmdroid-android:6.1.8'
     implementation 'com.github.MKergall:osmbonuspack:6.6.0'
 }
 
