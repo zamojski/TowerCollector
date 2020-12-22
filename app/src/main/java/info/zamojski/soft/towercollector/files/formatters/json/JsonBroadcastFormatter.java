@@ -59,6 +59,8 @@ public class JsonBroadcastFormatter extends JsonFormatterBase implements IJsonFo
                 cell.put("mnc", c.getMnc());
                 cell.put("lac", c.getLac());
                 cell.put("cell_id", c.getCid());
+                cell.put("short_cell_id", formatNullable(c.getShortCid(), Cell.UNKNOWN_CID_LONG));
+                cell.put("rnc", formatNullable(c.getRnc(), Cell.UNKNOWN_CID_LONG));
                 cell.put("psc", formatNullable(c.getPsc(), Cell.UNKNOWN_CID));
                 cell.put("asu", formatNullable(c.getAsu(), Cell.UNKNOWN_SIGNAL));
                 cell.put("dbm", formatNullable(c.getDbm(), Cell.UNKNOWN_SIGNAL));
@@ -106,6 +108,12 @@ public class JsonBroadcastFormatter extends JsonFormatterBase implements IJsonFo
     }
 
     private Object formatNullable(int value, int invalid) {
+        if (value == invalid)
+            return JSONObject.NULL;
+        return value;
+    }
+
+    private Object formatNullable(long value, long invalid) {
         if (value == invalid)
             return JSONObject.NULL;
         return value;

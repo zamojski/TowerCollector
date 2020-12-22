@@ -118,7 +118,7 @@ public class MainLastFragment extends MainFragmentBase {
         int networkNameId = NetworkTypeUtils.getNetworkGroupNameResId(mainCell.getNetworkType());
         lastNetworkTypeValueTextView.setText(getStringForLocale(networkNameId));
         // only for UMTS/LTE with valid CID
-        if ((mainCell.getNetworkType() == NetworkGroup.Wcdma || mainCell.getNetworkType() == NetworkGroup.Lte) && mainCell.getLongCid() != Cell.UNKNOWN_CID) {
+        if ((mainCell.getNetworkType() == NetworkGroup.Wcdma || mainCell.getNetworkType() == NetworkGroup.Lte) && mainCell.getLongCid() != Cell.UNKNOWN_CID_LONG) {
             lastLongCellIdValueTableRow.setVisibility(View.VISIBLE);
             lastCellIdRncValueTableRow.setVisibility(View.VISIBLE);
             lastCellIdValueTableRow.setVisibility(View.GONE);

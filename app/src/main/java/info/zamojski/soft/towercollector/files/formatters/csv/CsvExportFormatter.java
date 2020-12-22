@@ -33,7 +33,7 @@ public class CsvExportFormatter extends CsvFormatter {
 
     @Override
     public String formatHeader() {
-        return "mcc,mnc,lac,cell_id,psc,asu,dbm,ta,lat,lon,accuracy,speed,bearing,altitude,measured_at,net_type,neighboring,device,rsrp,rsrq,rssi,rssnr,cqi,rscp,csi_rsrp,csi_rsrq,csi_sinr,ss_rsrp,ss_rsrq,ss_sinr,cdma_dbm,cdma_ecio,evdo_dbm,evdo_ecio,evdo_snr,ec_no,arfcn\r\n";
+        return "mcc,mnc,lac,cell_id,short_cell_id,rnc,psc,asu,dbm,ta,lat,lon,accuracy,speed,bearing,altitude,measured_at,net_type,neighboring,device,rsrp,rsrq,rssi,rssnr,cqi,rscp,csi_rsrp,csi_rsrq,csi_sinr,ss_rsrp,ss_rsrq,ss_sinr,cdma_dbm,cdma_ecio,evdo_dbm,evdo_ecio,evdo_snr,ec_no,arfcn\r\n";
     }
 
     @Override
@@ -51,6 +51,14 @@ public class CsvExportFormatter extends CsvFormatter {
             sb.append(formatInt(c.getLac()));
             sb.append(',');
             sb.append(formatLong(c.getCid()));
+            sb.append(',');
+            long shortCid = c.getShortCid();
+            if (shortCid != Cell.UNKNOWN_CID_LONG)
+                sb.append(formatLong(shortCid));
+            sb.append(',');
+            long rnc = c.getRnc();
+            if (rnc != Cell.UNKNOWN_CID_LONG)
+                sb.append(formatLong(rnc));
             sb.append(',');
             int psc = c.getPsc();
             if (psc != Cell.UNKNOWN_CID)

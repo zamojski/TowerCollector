@@ -235,30 +235,28 @@ public class Cell implements Serializable {
 
     public long getLongCid() {
         if (cid <= 65536)
-            return UNKNOWN_CID;
+            return UNKNOWN_CID_LONG;
         return cid;
     }
 
     public long getShortCid() {
         if (cid <= 65536)
-            return UNKNOWN_CID;
+            return UNKNOWN_CID_LONG;
         if (networkType == NetworkGroup.Wcdma)
             return cid % 65536;
-        else if (networkType == NetworkGroup.Nr) // TODO: 5G rule unknown
-            return 0;
-        else // LTE (reversed order)
+        else if(networkType== NetworkGroup.Lte) // LTE (reversed order)
             return cid / 256;
+        return UNKNOWN_CID_LONG;
     }
 
     public long getRnc() {
         if (cid <= 65536)
-            return UNKNOWN_CID;
+            return UNKNOWN_CID_LONG;
         if (networkType == NetworkGroup.Wcdma)
             return cid / 65536;
-        else if (networkType == NetworkGroup.Nr) // TODO: 5G rule unknown
-            return 0;
-        else // LTE (reversed order)
+        else if(networkType== NetworkGroup.Lte) // LTE (reversed order)
             return cid % 256;
+        return UNKNOWN_CID_LONG;
     }
 
     public long getCid() {
@@ -421,7 +419,7 @@ public class Cell implements Serializable {
         this.arfcn = arfcn;
     }
 
-    public void setGsmCellInfo(int mcc, int mnc, int lac, int cid) {
+    public void setGsmCellInfo(int mcc, int mnc, int lac, long cid) {
         this.mcc = mcc;
         this.mnc = mnc;
         this.lac = lac;
@@ -437,7 +435,7 @@ public class Cell implements Serializable {
         this.arfcn = arfcn;
     }
 
-    public void setWcdmaCellInfo(int mcc, int mnc, int lac, int cid, int psc) {
+    public void setWcdmaCellInfo(int mcc, int mnc, int lac, long cid, int psc) {
         this.mcc = mcc;
         this.mnc = mnc;
         this.lac = lac;
@@ -453,7 +451,7 @@ public class Cell implements Serializable {
         this.arfcn = arfcn;
     }
 
-    public void setCdmaCellInfo(int systemId, int networkId, int baseStationId) {
+    public void setCdmaCellInfo(int systemId, int networkId, long baseStationId) {
         this.mnc = systemId;
         this.lac = networkId;
         this.cid = baseStationId;
@@ -470,7 +468,7 @@ public class Cell implements Serializable {
         this.evdoSnr = evdoSnr;
     }
 
-    public void setLteCellInfo(int mcc, int mnc, int tac, int ci, int pci) {
+    public void setLteCellInfo(int mcc, int mnc, int tac, long ci, int pci) {
         this.mcc = mcc;
         this.mnc = mnc;
         this.lac = tac;
@@ -512,7 +510,7 @@ public class Cell implements Serializable {
         this.arfcn = arfcn;
     }
 
-    public void setTdscdmaCellInfo(String mccString, String mncString, int lac, int cid, int cpid) {
+    public void setTdscdmaCellInfo(String mccString, String mncString, int lac, long cid, int cpid) {
         this.mcc = StringUtils.toInteger(mccString, Cell.UNKNOWN_CID);
         this.mnc = StringUtils.toInteger(mncString, Cell.UNKNOWN_CID);
         this.lac = lac;
@@ -528,7 +526,7 @@ public class Cell implements Serializable {
         this.arfcn = arfcn;
     }
 
-    public void setGsmCellLocation(int mcc, int mnc, int lac, int cid, NetworkGroup networkType) {
+    public void setGsmCellLocation(int mcc, int mnc, int lac, long cid, NetworkGroup networkType) {
         this.mcc = mcc;
         this.mnc = mnc;
         this.lac = lac;
@@ -550,7 +548,7 @@ public class Cell implements Serializable {
         this.dbm = signalStrength;
     }
 
-    public void setCdmaCellLocation(int systemId, int networkId, int baseStationId) {
+    public void setCdmaCellLocation(int systemId, int networkId, long baseStationId) {
         this.mnc = systemId;
         this.lac = networkId;
         this.cid = baseStationId;
