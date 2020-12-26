@@ -112,8 +112,8 @@
     <string name="uploader_partially_succeeded_description">Przesłana została część danych zanim wysyłanie zostało przerwane. Zatrzymanie mogło zostać wywołane na twoje żądanie lub przez błąd, na który natrafiła aplikacja.</string>
     <string name="uploader_failure">Przesyłanie przerwane</string>
     <string name="uploader_failure_description">Przesyłanie zostało przerwane z powodu nieznanego błędu. Sprawdź czy posiadasz najnowszą wersję aplikacji. Jeżeli problem będzie występował przez dłuższy czas, to proszę o kontakt.</string>
-    <string name="uploader_invalid_api_key">Nieprawidłowy klucz API</string>
-    <string name="uploader_invalid_api_key_description">Nie znaleziono użytkownika z wprowadzonym w ustawieniach aplikacji kluczem API. Sprawdź czy klucz został poprawnie wprowadzony.</string>
+    <string name="uploader_invalid_api_key">Nieprawidłowy klucz dostępu</string>
+    <string name="uploader_invalid_api_key_description">Nie znaleziono użytkownika z kluczem dostępu wprowadzonym w ustawieniach aplikacji. Sprawdź czy klucz został poprawnie wprowadzony.</string>
     <string name="uploader_invalid_input_data">Nieprawidłowe dane</string>
     <string name="uploader_invalid_input_data_description">Serwer odrzucił dane wysłane przez aplikację. Sprawdź czy posiadasz najnowszą wersję aplikacji. Jeżeli problem będzie występował przez dłuższy czas, to proszę o kontakt.</string>
     <string name="uploader_no_data">Brak danych do przesłania</string>
@@ -230,7 +230,7 @@
     <string name="export_format_json_mls">JSON dla Mozilla Location Services</string>
     <string name="export_format_zip">Kompresuj każdy plik</string>
     <string name="upload_configurator_dialog_title">Wybierz cel przesyłania</string>
-    <string name="enter_valid_api_key">Wprowadź poprawny klucz API w ustawieniach</string>
+    <string name="enter_valid_api_key">Wprowadź poprawny klucz dostępu w ustawieniach</string>
     <string name="reupload_measurements_if_upload_fails_for_one_of_projects">Ponów próbę jeżeli przesyłanie do jednego z projektów zawiedzie</string>
     <string name="unsafe_operation_warning_title">Niebezpieczna operacja</string>
     <string name="unsafe_operation_warning_message">Ta opcja może uszkodzić konfigurację aplikacji i spowodować jej awarię. W takim przypadku musisz wyczyścić dane aplikacji w ustawieniach Androida. Musisz całkowicie zamknąć aplikację, a następnie otworzyć ją ponownie, aby zobaczyć zmiany!\n\nUżywasz na własne ryzyko!</string>

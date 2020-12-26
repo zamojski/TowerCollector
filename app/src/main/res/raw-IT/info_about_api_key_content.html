@@ -2,10 +2,11 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 
-<p>La chiave API (token) è una stringa speciale utilizzata per autorizzare l'utente a caricare le misurazioni raccolte nel database OpenCellID.</p>
+<p>Il token di accesso (chiave API) è una stringa speciale utilizzata per autorizzare l'utente a caricare le misurazioni raccolte nel database OpenCellID.</p>
 <p>La chiave corretta deve essere composta da cifre 0-9 e lettere a-f. A seconda della data di registrazione, il formato della chiave potrebbe essere simile a questo:</p>
 <ul>
-<li><code>9743a66f914cc249efca164485a19c5c</code> &#8211; 32 caratteri;</li>
-<li><code>9743a66f-914c-c249-efca-164485a19c5c</code> &#8211; 32 caratteri in cinque gruppi separati da un trattino, in totale 36 caratteri.</li>
-<li><code>9743a66f914cc2</code> &#8211; 14 caratteri;</li>
+<li><code>pk.9743a66f914cc249efca164485a19c5c</code> &#8211; 32 caratteri, preceduti da "pk.", per un totale di 35 caratteri</li>
+<li><code>9743a66f914cc249efca164485a19c5c</code> &#8211; 32 caratteri</li>
+<li><code>9743a66f-914c-c249-efca-164485a19c5c</code> &#8211; 32 caratteri in cinque gruppi separati da un trattino, in totale 36 caratteri</li>
+<li><code>9743a66f914cc2</code> &#8211; 14 caratteri</li>
 </ul>

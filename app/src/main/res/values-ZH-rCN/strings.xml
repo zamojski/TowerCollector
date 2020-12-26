@@ -112,8 +112,8 @@
     <string name="uploader_partially_succeeded_description">部分已上传意味着在上传中止之前已成功发送了一些数据。这可能是由您的请求或遇到的错误引起的。</string>
     <string name="uploader_failure">上传失败</string>
     <string name="uploader_failure_description">因未知原因，上传失败。请检查是否安装最新版应用。若问题长期存在，请向我反馈。</string>
-    <string name="uploader_invalid_api_key">无效的 API key</string>
-    <string name="uploader_invalid_api_key_description">无法找到在应用配置中输入API密钥的用户。请检查输入的API密钥是否正确。</string>
+    <string name="uploader_invalid_api_key">无效的访问令牌</string>
+    <string name="uploader_invalid_api_key_description">无法找到在应用配置中输入访问令牌的用户。请检查输入的访问令牌是否正确。</string>
     <string name="uploader_invalid_input_data">无效数据</string>
     <string name="uploader_invalid_input_data_description">服务器拒绝了此应用的数据发送。请检查您是否已安装最新版本的应用。如果你遇到这个问题很长时间，请让我知道。</string>
     <string name="uploader_no_data">没有内容可以上传</string>
@@ -230,7 +230,7 @@
     <string name="export_format_json_mls">适用于Mozilla位置服务的JSON格式</string>
     <string name="export_format_zip">压缩每个导出的文件</string>
     <string name="upload_configurator_dialog_title">配置上传目标</string>
-    <string name="enter_valid_api_key">您必须在配置中输入有效的API密钥</string>
+    <string name="enter_valid_api_key">您必须在配置中输入有效的访问令牌</string>
     <string name="reupload_measurements_if_upload_fails_for_one_of_projects">如果其中一个项目上传失败，请尝试再次上传测量数据</string>
     <string name="unsafe_operation_warning_title">不安全的操作</string>
     <string name="unsafe_operation_warning_message">此选项可能会破坏应用的配置并导致崩溃。在这种情况下，您必须在Android设置中清除应用数据。您需要完全关闭并重新打开应用以查看更改！\n\n你需要自己承担风险来使用它！</string>
