@@ -4,7 +4,7 @@
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources>
     <string name="preferences_keep_screen_on_mode_disabled">Désactivé</string>
-    <string name="preferences_keep_screen_on_mode_dim">"Atténué "</string>
+    <string name="preferences_keep_screen_on_mode_dim">Atténué</string>
     <string name="preferences_keep_screen_on_mode_full">Luminosité maximale</string>
     <string-array name="preferences_collector_low_battery_action_entries_labels">
         <item>Rien</item>
@@ -18,6 +18,6 @@
     <string name="preferences_file_logging_level_disabled">Désactivé</string>
     <string name="preferences_file_logging_level_debug">Déboguer</string>
     <string name="preferences_file_logging_level_info">Info</string>
-    <string name="preferences_file_logging_level_warning">"Attention "</string>
+    <string name="preferences_file_logging_level_warning">Attention</string>
     <string name="preferences_file_logging_level_error">Erreur</string>
 </resources>

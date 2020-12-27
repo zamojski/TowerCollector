@@ -53,7 +53,7 @@
     <string name="main_tab_map_title">Карта</string>
     <string name="main_gps_accuracy_not_available">Недоступно</string>
     <string name="main_signal_strength_not_available">Недоступно</string>
-    <string name="date_time_format_standard">рррр-ММ-дд гг:хх:сс</string>
+    <string name="date_time_format_standard">yyyy-ММ-dd HH:mm:ss</string>
     <string name="main_gps_status_label">Стан GPS:</string>
     <string name="main_stats_today_title">Сьогодні</string>
     <string name="main_stats_local_title">Починаючи з <xliff:g id="date_time">%s</xliff:g></string>
@@ -96,9 +96,9 @@
     <string name="collector_notification_status">GPS статус: <xliff:g id="status">%s</xliff:g></string>
     <string name="collector_gps_unavailable">Неможливо розпочати збирати, тому що GPS недоступний.</string>
     <string name="uploader_notification_channel_name">Вивантажувач</string>
-    <string name="uploader_notification_title">"Вивантаження "</string>
+    <string name="uploader_notification_title">Вивантаження</string>
     <string name="uploader_notification_progress_info">Завантажено <xliff:g id="progress_in_percent">%d</xliff:g>%%. Виберіть для скасування.</string>
-    <string name="uploader_result_dialog_title">"Результат вивантаження "</string>
+    <string name="uploader_result_dialog_title">Результат вивантаження</string>
     <string name="uploader_starting">Початок вивантаження&#8230;</string>
     <string name="uploader_aborting">Зупиняємо вивантаження&#8230;</string>
     <string name="uploader_already_running">Вивантаження вже працює.</string>
@@ -108,7 +108,7 @@
     <string name="uploader_aborted_description">Нічого не вивантажено</string>
     <string name="uploader_success">Вивантаження успішне</string>
     <string name="uploader_success_description">Вивантажено успішно. Дякуємо за ваш внесок!</string>
-    <string name="uploader_partially_succeeded">"Частково вивантажено "</string>
+    <string name="uploader_partially_succeeded">Частково вивантажено</string>
     <string name="uploader_partially_succeeded_description">Частково вивантажені означають, що деякі дані були успішно відправлені до зупинки вивантаження. Це може бути викликано вашим запитом або помилкою.</string>
     <string name="uploader_failure">Збій при вивантаженні</string>
     <string name="uploader_failure_description">Помилка завантаження через невідому причину. Перевірте наявність останньої версії додатка. Якщо ви зіткнулися з цією проблемою не вперше, дайте мені знати.</string>
@@ -154,7 +154,7 @@
     <string name="export_toast_failed_cause_file_not_writable">Файл доступний тільки для читання</string>
     <string name="export_toast_no_data">Немає даних для експорту.</string>
     <string name="export_toast_cancelled">Експорт скасований.</string>
-    <string name="updater_notification_ticker">"Зверніть увагу: доступна нова версія програми "</string>
+    <string name="updater_notification_ticker">Зверніть увагу: доступна нова версія програми</string>
     <string name="updater_notification_title">Нова версія доступна</string>
     <string name="updater_notification_download_options">Виберіть для перегляду параметрів завантаження</string>
     <string name="updater_dialog_new_version_available">Вибір джерела завантаження</string>
@@ -187,7 +187,7 @@
     <string name="mail_help_last_number_of_cells_title">Кількість сот</string>
     <string name="mail_help_last_number_of_cells_description">Кількість основних та сусідніх сот, до яких телефон має доступ.</string>
     <string name="main_help_last_network_type_title">Тип мережі</string>
-    <string name="main_help_last_network_type_description">"Тип мобільної мережі, до якої підключився телефон "</string>
+    <string name="main_help_last_network_type_description">Тип мобільної мережі, до якої підключився телефон</string>
     <string name="main_help_last_long_cell_id_title">Довгий ІД соти</string>
     <string name="main_help_last_long_cell_id_description">Довгий унікальний ідентифікатор вежі соти, до якого телефон був підключений.\nДля мереж UMTS LCID, також званий UDRAN CID, являє собою об\'єднання RNC (ідентифікатор контролера радіостанції) та Cell ID (унікальний ідентифікатор Cell Tower).\nДля мереж LTE LCID, також називається E-UTRAN CID, являє собою об\'єднання eNodeB (ідентифікатор контролера радіостанції) та Cell ID (унікальний ідентифікатор Cell Tower).</string>
     <string name="main_help_last_cell_id_rnc_title">Мобільна вежа ID / RNC</string>
@@ -198,14 +198,14 @@
     <string name="main_help_last_lac_description">Унікальний ідентифікатор призначений для групи стільникових стільникових телефонів, до яких був підключений телефон.</string>
     <string name="main_help_last_mcc_title">Мобільний код країни</string>
     <string name="main_help_last_mcc_description">Унікальний код країни оператора мережі, до якого підключено телефон.</string>
-    <string name="main_help_last_mnc_title">"Код мобільної мережі "</string>
+    <string name="main_help_last_mnc_title">Код мобільної мережі</string>
     <string name="main_help_last_mnc_description">Унікальний ідентифікатор постачальника послуг у країні, до якої телефон був підключений.</string>
     <string name="main_help_last_signal_strength_title">Сила сигналу</string>
     <string name="main_help_last_signal_strength_description">Сила сигналу мережі, виміряна при збереженні, виражена в дБм (коефіцієнт потужності в децибелах (дБ) вимірюваної потужності з посиланням на 1 міліватт (мВт)). Подвоєння цієї величини означає потужність сигналу в 10 разів більше. Значення ближче до 0 вказують сильніший сигнал.</string>
     <string name="main_help_last_latitude_title">Широта</string>
     <string name="main_help_last_latitude_description">Географічна широта збереженої позиції. Позитивне значення представляє північна півкуля, негативна південна частина. Чим вища абсолютна величина, тим далі від екватора</string>
     <string name="main_help_last_longitude_title">Довгота</string>
-    <string name="main_help_last_longitude_description">"Географічна довгота збереженої позиції. Позитивне значення представляє позицію на схід від Грінвіча, негативне захід. Чим вища абсолютна величина, тим далі від Грінвіча "</string>
+    <string name="main_help_last_longitude_description">Географічна довгота збереженої позиції. Позитивне значення представляє позицію на схід від Грінвіча, негативне захід. Чим вища абсолютна величина, тим далі від Грінвіча</string>
     <string name="main_help_last_gps_accuracy_title">Точність GPS</string>
     <string name="main_help_last_gps_accuracy_description">Точність позиції, отриманої з GPS.</string>
     <string name="main_help_last_date_time_title">Збережений час</string>
@@ -218,7 +218,7 @@
     <string name="status_initializing">чекаючи позиції</string>
     <string name="status_ok">добре</string>
     <string name="status_low_gps_accuracy">низька точність <xliff:g id="accuracy_value">%1$.0f</xliff:g><xliff:g id="accuracy_unit">%2$s</xliff:g></string>
-    <string name="status_no_gps_location">"Позиція невизначена "</string>
+    <string name="status_no_gps_location">Позиція невизначена</string>
     <string name="status_disabled">вимкнено</string>
     <string name="invalid_system_time">Дата / час системи недійсний</string>
     <string name="airplane_mode">Режим літака увімкнено</string>
