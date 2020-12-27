@@ -1,0 +1,58 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+
+<p>Tower Collector sisteme yüklenmiş diğer uygulamaları <i>intent</i> yayınlayarak bilgilendirebilir. Bu tür bildirimleri nasıl dinleyeceğiniz ve kullanacağınızla ilgili daha fazla bilgi için o uygulamanın yardım bölümüne bakın.</p>
+<h3>Ölçüm toplama etkinliği</h3>
+<p>Toplayıcı, tercihlerde ayarlanmışsa, her yeni ölçüm seti toplandığında bir intent gönderebilir. Bildirim içeriği, zaman ve GPS gibi ortak şeylerin çıkarıldığı bir JSON yapısı olacaktır. Alan adları ve değerleri, dışa aktarılan CSV dosyasında olduğu gibi eşlenir. <br />
+Hücreler tarafından kullanılan alanların listesi türe (net_type) bağlıdır. Desteklenmeyen veya eksik değerler <code> null </code> olarak ayarlanacaktır.</p>
+<ul>
+    <li>GSM - mcc, mnc, lac, cell_id, asu, dbm</li>
+    <li>UMTS - mcc, mnc, lac, cell_id, psc, asu, dbm</li>
+    <li>CDMA - sid as mnc, nid as lac, bid as cell_id, asu, dbm</li>
+    <li>LTE - mcc, mnc, tac as lac, ci as cell_id, pci as psc, ta, asu, dbm</li>
+    <li>5G NR - mcc, mnc, tac as lac, nci as cell_id, pci as psc, asu, dbm</li>
+    <li>TD-SCDMA - mcc, mnc, lac, cid as cell_id, cpid as psc, asu, dbm</li>
+</ul>
+<p>Eylem:</p>
+<code>info.zamojski.soft.towercollector.MEASUREMENTS_COLLECTED</code>
+<p>Ekstralar anahtarı:</p>
+<code>measurements</code>
+<p>Ekstralar değer örneği:</p>
+<code>{<br />
+    "measured_at" : 1234567890123,<br />
+    "gps" : {<br />
+        "lat" : 12.3213123,<br />
+        "lon" : -54.4535435543,<br />
+        "accuracy" : 12.0,<br />
+        "speed" : 13.21,<br />
+        "bearing" : 212.2,<br />
+        "altitude" : 121.0<br />
+    }<br />
+    "cells" : [<br />
+        {<br />
+            "mcc" : 260,<br />
+            "mnc" : 06,<br />
+            "lac" : 5115,<br />
+            "cell_id" : 214325525,<br />
+            "psc" : 1234,<br />
+            "asu" : 12,<br />
+            "dbm" : -112,<br />
+            "ta" : 21,<br />
+            "neighboring" : "false",<br />
+            "net_type" : "UMTS"<br />
+        },<br />
+        {<br />
+            "mcc" : null,<br />
+            "mnc" : 16,<br />
+            "lac" : 5115,<br />
+            "cell_id" : 2143255,<br />
+            "psc" : null,<br />
+            "asu" : 13,<br />
+            "dbm" : -112,<br />
+            "ta" : null,<br />
+            "neighboring" : "false",<br />
+            "net_type" : "CDMA"<br />
+        }<br />
+    ]<br />
+}</code>
