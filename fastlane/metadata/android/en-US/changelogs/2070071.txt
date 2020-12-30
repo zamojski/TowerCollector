@@ -1,0 +1,5 @@
+- Add new map tab presenting locally stored measurements.
+- Add short CID and RNC to CSV export and JSON notifications.
+- Add support for new OpenCellID access token (formerly API key) format.
+- Add Turkish translation. Thanks to Gökdeniz Küçükali :)
+- Update translations.
