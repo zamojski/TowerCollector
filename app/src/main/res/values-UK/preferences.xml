@@ -7,12 +7,14 @@
     <string name="preferences_header_upload_summary">Варіанти вкладів проектів.</string>
     <string name="preferences_header_collector_title">Збирач</string>
     <string name="preferences_header_collector_summary">Параметри збору вимірів, параметри GPS тощо.</string>
-    <string name="preferences_header_general_title">"Загальні "</string>
+    <string name="preferences_header_general_title">Загальні</string>
     <string name="preferences_header_general_summary">Загальні параметри, оновлення, статистика тощо.</string>
     <string name="preferences_header_display_title">Дисплей</string>
     <string name="preferences_header_display_summary">Все, що стосується відображення даних, теми, одиниць тощо.</string>
     <string name="preferences_header_export_title">Експорт</string>
     <string name="preferences_header_export_summary">Параметри, пов\'язані з експортом файлів.</string>
+    <string name="preferences_header_map_title">Карта</string>
+    <string name="preferences_header_map_summary">Налаштування, пов\'язані з картою.</string>
     <string name="preferences_header_advanced_title">Розширені</string>
     <string name="preferences_header_advanced_summary">Розширені параметри та функції.</string>
     <string name="preferences_header_information_title">Інформація</string>
@@ -35,13 +37,13 @@
     <string name="preferences_opencellid_enabled_title">Увімкнути завантаження OCID</string>
     <string name="preferences_opencellid_enabled_on_summary">Вимірювання будуть завантажені на OpenCellID.org.</string>
     <string name="preferences_opencellid_enabled_off_summary">Вимірювання не будуть завантажені в OpenCellID.org.</string>
-    <string name="preferences_api_key_title">Ключ API</string>
+    <string name="preferences_api_key_title">Маркер доступу</string>
     <string name="preferences_api_key_summary">Ключ, необхідний для завантаження ваших даних.</string>
-    <string name="preferences_api_key_invalid">Введений ключ API недійсний. Правильний формат описано в довідці.</string>
-    <string name="preferences_api_key_link_title">Отримайте власний ключ API</string>
+    <string name="preferences_api_key_invalid">Введений маркер доступу недійсний. Правильний формат описано в довідці.</string>
+    <string name="preferences_api_key_link_title">Отримайте власний маркер доступу</string>
     <string name="preferences_api_key_link_summary">Зареєструйтесь безкоштовно на сайті OpenCellID.org.</string>
-    <string name="preferences_about_api_key_title">Про ключ API OpenCellID</string>
-    <string name="preferences_about_api_key_summary">Інформація про ключ API та правильне форматування.</string>
+    <string name="preferences_about_api_key_title">Про маркер доступу OpenCellID</string>
+    <string name="preferences_about_api_key_summary">Інформація про маркер доступу (ключ API) та правильне форматування.</string>
     <string name="preferences_about_opencellid_project_title">Про проект OpenCellID</string>
     <string name="preferences_about_opencellid_project_summary">Інформація про проект OpenCellID.org.</string>
     <string name="preferences_mls_enabled_title">Увімкнути завантаження MLS</string>
@@ -65,7 +67,7 @@
     <string name="preferences_tracking_enabled_on_summary">Анонімна статистика використання буде надсилатись, щоб допомогти вдосконалити додаток. Більше інформації нижче.</string>
     <string name="preferences_tracking_enabled_off_summary">Анонімна статистика використання відключена. Див. Нижче, що може бути відправлено, якщо ввімкнено.</string>
     <string name="preferences_about_tracking_title">Про статистику використання</string>
-    <string name="preferences_about_tracking_summary">"Інформація про те, що і чому надсилається "</string>
+    <string name="preferences_about_tracking_summary">Інформація про те, що і чому надсилається</string>
     <string name="preferences_error_reporting_silent_title">Автоматичні повідомлення про помилки</string>
     <string name="preferences_error_reporting_silent_on_summary">Програма автоматично надсилатиме звіти про помилки, які допоможуть вирішити проблему.</string>
     <string name="preferences_error_reporting_silent_off_summary">Додаток запитає вас про підтвердження перед надсиланням звіту, який може допомогти вирішити проблему.</string>
@@ -107,7 +109,7 @@
     <string name="preferences_collect_neighboring_cells_off_summary">Сусідні соти будуть відкинуті.</string>
     <string name="preferences_about_neighboring_cells_title">Про сусідні соти</string>
     <string name="preferences_about_neighboring_cells_summary">Інформація про сусідні соти.</string>
-    <string name="preferences_notify_measurements_collected_title">"Повідомити про зібрані вимірювання "</string>
+    <string name="preferences_notify_measurements_collected_title">Повідомити про зібрані вимірювання</string>
     <string name="preferences_notify_measurements_collected_on_summary">Інші додатки будуть повідомлені про зібрані виміри. Більш детальна інформація нижче.</string>
     <string name="preferences_notify_measurements_collected_off_summary">Повідомлення в інші додатки про зібрані вимірах відключені. Більш детальна інформація нижче.</string>
     <string name="preferences_about_notify_measurements_collected_title">Про що повідомляється в  зібраних вимірюваннях</string>
@@ -120,9 +122,9 @@
     <string name="preferences_show_collector_status_bar_off_summary">Рядок стану збирання даних приховано.</string>
     <string name="preferences_notification_settings_title">Налаштування сповіщень</string>
     <string name="preferences_notification_settings_summary">Відкриває налаштування сповіщень програми.</string>
-    <string name="preferences_about_main_keep_screen_on_title">"Про збереження екрану "</string>
+    <string name="preferences_about_main_keep_screen_on_title">Про збереження екрану</string>
     <string name="preferences_about_main_keep_screen_on_summary">Інформація про те, як ця опція працює і коли це використовувати.</string>
-    <string name="preferences_about_collector_keep_screen_on_title">"Про живлення екрану на час збору інформації "</string>
+    <string name="preferences_about_collector_keep_screen_on_title">Про живлення екрану на час збору інформації</string>
     <string name="preferences_about_collector_keep_screen_on_summary">Інформація, як ця опція працює і коли це використовувати.</string>
     <string name="preferences_hide_collector_notification_title">Приховати повідомлення</string>
     <string name="preferences_hide_collector_notification_on_summary">Сповіщення не відображатимуться на екрані блокування та у рядку стану, якщо його не буде розгорнуто. Поведінка може відрізнятися між пристроями.</string>
@@ -132,7 +134,7 @@
     <string name="preferences_start_collector_at_boot_off_summary">Додаток не почне збір при завантаженні пристрою. Додаток може бути встановлено в будь-якому місці. Для використання цієї функції потрібно надати дозвіл на фонове розташування.</string>
     <string name="preferences_collector_low_battery_action_title">Низький рівень заряду батареї</string>
     <string name="preferences_collector_low_battery_action_summary">Визначає, що станеться, коли рівень заряду акумулятора знизиться, а колектор працює.</string>
-    <string name="preferences_import_database_title">"Імпорт бази даних "</string>
+    <string name="preferences_import_database_title">Імпорт бази даних</string>
     <string name="preferences_import_database_summary">Програма імпортує дані з файлу measurements.db, розташованому в папці TowerCollector.</string>
     <string name="preferences_export_database_title">Експорт бази даних</string>
     <string name="preferences_export_database_summary">Експорт даних до файлу measurements.db, що розташований в папці TowerCollector.</string>
@@ -140,4 +142,12 @@
     <string name="preferences_import_preferences_summary">Імпортує налаштування з файлу preferences.xml, що розташований в папці TowerCollector.</string>
     <string name="preferences_export_preferences_title">Експорт налаштувань</string>
     <string name="preferences_export_preferences_summary">Експорт налаштувань додатку до файлу preferences.xml, розташованому в папці TowerCollector.</string>
+    <string name="preferences_main_map_enable_title">Увімкнути карту</string>
+    <string name="preferences_main_map_enable_on_summary">Видно вкладку карта. Вимкнення очистить кэш.</string>
+    <string name="preferences_main_map_enable_off_summary">Вкладка карта прихована.</string>
+    <string name="preferences_main_map_force_light_theme_title">Примусити світлу тему</string>
+    <string name="preferences_main_map_force_light_theme_on_summary">Завжди буде використана легка тема карти.</string>
+    <string name="preferences_main_map_force_light_theme_off_summary">Тема карти буде відповідати налаштуванням відображення.</string>
+    <string name="preferences_main_map_clear_cache_title">Очистити кеш</string>
+    <string name="preferences_main_map_clear_cache_summary">Очищает папку кэша карти, щоб звільнити місце.</string>
 </resources>

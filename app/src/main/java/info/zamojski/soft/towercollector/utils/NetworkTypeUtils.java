@@ -6,6 +6,11 @@ package info.zamojski.soft.towercollector.utils;
 
 import android.telephony.TelephonyManager;
 
+import androidx.annotation.DrawableRes;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.enums.NetworkGroup;
 
@@ -61,5 +66,64 @@ public class NetworkTypeUtils {
             default:
                 return NetworkGroup.Unknown;
         }
+    }
+
+    public static @DrawableRes
+    int getNetworkGroupIcon(NetworkGroup networkType) {
+        switch (networkType) {
+            case Cdma:
+                return R.drawable.dot_cdma;
+            case Gsm:
+                return R.drawable.dot_gsm;
+            case Wcdma:
+                return R.drawable.dot_wcdma;
+            case Lte:
+                return R.drawable.dot_lte;
+            case Nr:
+                return R.drawable.dot_nr;
+            case Tdscdma:
+                return R.drawable.dot_tdscdma;
+            default:
+                return R.drawable.dot_unknown;
+        }
+    }
+
+    public static @DrawableRes
+    int getNetworkGroupIcon(NetworkGroup firstNetworkType, NetworkGroup secondNetworkType) {
+        if (firstNetworkType == secondNetworkType || firstNetworkType == NetworkGroup.Cdma || firstNetworkType == NetworkGroup.Tdscdma)
+            return getNetworkGroupIcon(firstNetworkType);
+
+        List<NetworkGroup> networkTypes = new ArrayList<>();
+        networkTypes.add(firstNetworkType);
+        networkTypes.add(secondNetworkType);
+        if (networkTypes.contains(NetworkGroup.Gsm)) {
+            if (networkTypes.contains(NetworkGroup.Wcdma)) {
+                return R.drawable.dot_wcdma_gsm;
+            } else if (networkTypes.contains(NetworkGroup.Lte)) {
+                return R.drawable.dot_lte_gsm;
+            } else if (networkTypes.contains(NetworkGroup.Nr)) {
+                return R.drawable.dot_nr_gsm;
+            } else {
+                return R.drawable.dot_gsm;
+            }
+        } else if (networkTypes.contains(NetworkGroup.Wcdma)) {
+            if (networkTypes.contains(NetworkGroup.Lte)) {
+                return R.drawable.dot_lte_wcdma;
+            } else if (networkTypes.contains(NetworkGroup.Nr)) {
+                return R.drawable.dot_nr_wcdma;
+            } else {
+                return R.drawable.dot_wcdma;
+            }
+        } else if (networkTypes.contains(NetworkGroup.Lte)) {
+            if (networkTypes.contains(NetworkGroup.Nr)) {
+                return R.drawable.dot_nr_lte;
+            } else {
+                return R.drawable.dot_lte;
+            }
+        } else if (networkTypes.contains(NetworkGroup.Nr)) {
+            return R.drawable.dot_nr;
+        }
+
+        return getNetworkGroupIcon(secondNetworkType);
     }
 }

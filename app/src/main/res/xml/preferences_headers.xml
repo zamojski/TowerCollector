@@ -39,6 +39,13 @@
         app:title="@string/preferences_header_export_title" />
 
     <Preference
+        app:fragment="info.zamojski.soft.towercollector.preferences.MapPreferenceFragment"
+        app:icon="@drawable/prefs_map"
+        app:key="map_preference_header"
+        app:summary="@string/preferences_header_map_summary"
+        app:title="@string/preferences_header_map_title" />
+
+    <Preference
         app:fragment="info.zamojski.soft.towercollector.preferences.AdvancedPreferenceFragment"
         app:icon="@drawable/prefs_advanced"
         app:key="advanced_preference_header"

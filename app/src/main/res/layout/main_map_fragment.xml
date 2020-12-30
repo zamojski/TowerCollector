@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?><!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/main_collector_status_fragment" />
+
+    <include layout="@layout/main_gps_status_fragment" />
+
+    <include layout="@layout/main_invalid_system_time_fragment" />
+
+    <include layout="@layout/main_airplane_mode_fragment" />
+
+    <include layout="@layout/main_battery_optimization_fragment" />
+
+    <include layout="@layout/main_power_save_mode_fragment" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <org.osmdroid.views.MapView
+            android:id="@+id/main_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageButton
+            android:id="@+id/main_map_my_location_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/main_map_my_location_button"
+            android:cropToPadding="true"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
+            android:src="@drawable/map_my_location" />
+
+        <ImageButton
+            android:id="@+id/main_map_follow_me_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/main_map_my_location_button"
+            android:layout_alignStart="@+id/main_map_my_location_button"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/main_map_follow_me_button"
+            android:cropToPadding="true"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
+            android:src="@drawable/map_follow_me" />
+
+    </RelativeLayout>
+
+</LinearLayout>

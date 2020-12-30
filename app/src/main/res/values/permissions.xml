@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- This Source Code Form is subject to the terms of the Mozilla Public
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources>
@@ -20,5 +20,8 @@
     <string name="permission_collector_never_ask_again_api29_message">Measurement collecting is unavailable due to denied background location and/or phone permissions</string>
     <string name="permission_collector_denied_intent_message">Cancelling measurement collecting due to denied permissions, open the app to grant necessary permissions first</string>
     <string name="permission_collector_denied_background_location_message">Disabling start at device boot due to denied background location permission.</string>
+    <string name="permission_map_rationale_message">Location permission must be granted to display your location on the map.</string>
+    <string name="permission_map_denied_message">The map cannot be enabled due to denied location permission</string>
+    <string name="permission_map_never_ask_again_message">The map is unavailable due to denied location permission</string>
     <string name="permission_uploader_denied_message">Upload cancelled due to denied internet permission.</string>
 </resources>

@@ -13,6 +13,8 @@
     <string name="preferences_header_display_summary">Minden a megjelenítéssel, témával, mértékegységekkel, egyebekkel kapcsolatos beállítás</string>
     <string name="preferences_header_export_title">Exportálás</string>
     <string name="preferences_header_export_summary">A fájl exportálással kapcsolatos beállítások.</string>
+    <string name="preferences_header_map_title">Térkép</string>
+    <string name="preferences_header_map_summary">Térképpel kapcsolatos beállítások.</string>
     <string name="preferences_header_advanced_title">Speciális</string>
     <string name="preferences_header_advanced_summary">Speciális lehetőségek és funkciók.</string>
     <string name="preferences_header_information_title">Információ</string>
@@ -35,13 +37,13 @@
     <string name="preferences_opencellid_enabled_title">OCID feltöltés engedélyezése</string>
     <string name="preferences_opencellid_enabled_on_summary">A mérések feltöltésre kerülnek az OpenCellID.org-ra.</string>
     <string name="preferences_opencellid_enabled_off_summary">A mérések nem lesznek feltöltve az OpenCellID.org-ra.</string>
-    <string name="preferences_api_key_title">API kulcs</string>
-    <string name="preferences_api_key_summary">Kulcs szükséges a méréseid feltöltéséhez.</string>
-    <string name="preferences_api_key_invalid">A megadott API kulcs érvénytelen. A helyes formátum megtalálható a Segítség menüpontban.</string>
-    <string name="preferences_api_key_link_title">Szerezz saját API kulcsot</string>
+    <string name="preferences_api_key_title">Hozzáférési token</string>
+    <string name="preferences_api_key_summary">Token szükséges a méréseid feltöltéséhez.</string>
+    <string name="preferences_api_key_invalid">A megadott hozzáférési token érvénytelen. A helyes formátum megtalálható a Segítség menüpontban.</string>
+    <string name="preferences_api_key_link_title">Szerezz saját hozzáférési tokent</string>
     <string name="preferences_api_key_link_summary">Regisztrálj ingyen az OpenCellID.org weblapján.</string>
-    <string name="preferences_about_api_key_title">Az OpenCellID API kulcsról</string>
-    <string name="preferences_about_api_key_summary">Információ az API-kulcsról és a helyes formázásról.</string>
+    <string name="preferences_about_api_key_title">Az OpenCellID hozzáférési tokenről</string>
+    <string name="preferences_about_api_key_summary">Információ a hozzáférési tokenről (API kulcs) és a helyes formázásról.</string>
     <string name="preferences_about_opencellid_project_title">Az OpenCellID projektről</string>
     <string name="preferences_about_opencellid_project_summary">Információk az OpenCellID.org projektről.</string>
     <string name="preferences_mls_enabled_title">MLS feltöltés engedélyezése</string>
@@ -140,4 +142,12 @@
     <string name="preferences_import_preferences_summary">Importálja az alkalmazás belső beállításait a TowerCollector mappában lévő preferences.xml fájlból.</string>
     <string name="preferences_export_preferences_title">Beállítások exportálása</string>
     <string name="preferences_export_preferences_summary">Exportálja az alkalmazás belső beállításait a TowerCollector mappában lévő preferences.xml fájlba.</string>
+    <string name="preferences_main_map_enable_title">Térkép bekapcsolása</string>
+    <string name="preferences_main_map_enable_on_summary">A térkép lap látható. A kikapcsolása törölni fogja a gyorsítótárat.</string>
+    <string name="preferences_main_map_enable_off_summary">A térkép lap rejtett.</string>
+    <string name="preferences_main_map_force_light_theme_title">Kényszerítse a világos téma</string>
+    <string name="preferences_main_map_force_light_theme_on_summary">A térkép világos témája mindig felhasználásra kerül.</string>
+    <string name="preferences_main_map_force_light_theme_off_summary">A térkép témája követi a megjelenítési beállításokat.</string>
+    <string name="preferences_main_map_clear_cache_title">Gyorsítótár törlése</string>
+    <string name="preferences_main_map_clear_cache_summary">Törli a térkép gyorsítótár-mappáját, hogy helyet szabadítson fel.</string>
 </resources>

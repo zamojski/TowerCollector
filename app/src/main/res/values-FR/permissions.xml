@@ -20,5 +20,8 @@
     <string name="permission_collector_never_ask_again_api29_message">La collecte des mesures n\'est pas disponible en raison du refus de l\'emplacement en arrière-plan et / ou des autorisations téléphoniques</string>
     <string name="permission_collector_denied_intent_message">Annulation de la collecte de mesures en raison du manque d\'autorisations, ouvrez en premier lieu l\'application pour accorder les autorisations nécessaires</string>
     <string name="permission_collector_denied_background_location_message">Désactivation du démarrage au démarrage de l\'appareil en raison d\'une autorisation d\'emplacement en arrière-plan refusée.</string>
+    <string name="permission_map_rationale_message">L\'autorisation de localisation doit être accordée pour afficher votre position sur la carte.</string>
+    <string name="permission_map_denied_message">La carte ne peut pas être activée en raison de l\'autorisation de localisation refusée</string>
+    <string name="permission_map_never_ask_again_message">La carte n\'est pas disponible en raison du refus d\'autorisation de localisation</string>
     <string name="permission_uploader_denied_message">Envo annulé en raison d\'un manque d\'autorisation sur Internet.</string>
 </resources>

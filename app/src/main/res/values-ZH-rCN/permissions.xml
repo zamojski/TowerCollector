@@ -20,5 +20,8 @@
     <string name="permission_collector_never_ask_again_api29_message">由于背景位置和/或电话权限被拒绝，无法进行测量收集</string>
     <string name="permission_collector_denied_intent_message">由于拒绝权限而取消收集测量数据，请先打开应用以授予必要的权限</string>
     <string name="permission_collector_denied_background_location_message">由于拒绝了后台位置权限，因此在设备启动时禁用了启动。</string>
+    <string name="permission_map_rationale_message">必须授予位置权限才能在地图上显示您的位置。</string>
+    <string name="permission_map_denied_message">由于拒绝了位置权限，因此无法启用地图</string>
+    <string name="permission_map_never_ask_again_message">由于拒绝了位置权限，因此地图不可用</string>
     <string name="permission_uploader_denied_message">由于拒绝联网权限，上传已取消</string>
 </resources>

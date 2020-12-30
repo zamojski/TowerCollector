@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/preferences_category_settings_title">
+
+        <SwitchPreferenceCompat
+            app:defaultValue="@bool/preferences_main_map_enable_default_value"
+            app:key="@string/preferences_main_map_enable_key"
+            app:summaryOff="@string/preferences_main_map_enable_off_summary"
+            app:summaryOn="@string/preferences_main_map_enable_on_summary"
+            app:title="@string/preferences_main_map_enable_title"/>
+
+        <SwitchPreferenceCompat
+            app:defaultValue="@bool/preferences_main_map_force_light_theme_default_value"
+            app:key="@string/preferences_main_map_force_light_theme_key"
+            app:summaryOff="@string/preferences_main_map_force_light_theme_off_summary"
+            app:summaryOn="@string/preferences_main_map_force_light_theme_on_summary"
+            app:title="@string/preferences_main_map_force_light_theme_title"/>
+
+        <PreferenceScreen
+            app:key="@string/preferences_main_map_clear_cache_key"
+            app:summary="@string/preferences_main_map_clear_cache_summary"
+            app:title="@string/preferences_main_map_clear_cache_title"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -36,7 +36,7 @@ public class InformationPreferenceFragment extends DialogEnabledPreferenceFragme
 
     private void setupAboutDialog() {
         String versionName = ApkUtils.getApkVersionNameWithSuffix();
-        String content = ResourceUtils.getRawResource(getActivity(), R.raw.info_about_application_content).replace("%VERSION_NAME%", versionName);
+        String content = ResourceUtils.getRawString(getActivity(), R.raw.info_about_application_content).replace("%VERSION_NAME%", versionName);
         setupDialog(R.string.preferences_about_link_key, R.string.info_about_application_title, content);
     }
 

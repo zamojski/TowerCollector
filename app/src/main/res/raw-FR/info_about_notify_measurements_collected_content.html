@@ -9,9 +9,9 @@
 La liste des champs utilisés par les cellules dépend du type (net_type). Les valeurs non prises en charge ou manquantes seront définies sur <code>null</code>.</p>
 <ul>
     <li>GSM - mcc, mnc, lac, cell_id, asu, dbm, ta, rssi, arfcn</li>
-    <li>UMTS - mcc, mnc, lac, cell_id, psc, asu, dbm, ec_no, arfcn</li>
+    <li>UMTS - mcc, mnc, lac, cell_id, short_cell_id, rnc, psc, asu, dbm, ec_no, arfcn</li>
     <li>CDMA - sid &rarr; mnc, nid &rarr; lac, bid &rarr; cell_id, asu, dbm, cdma_dbm, cdma_ecio, evdo_dbm, evdo_ecio, evdo_snr</li>
-    <li>LTE - mcc, mnc, tac &rarr; lac, ci &rarr; cell_id, pci &rarr; psc, ta, asu, dbm, rsrp, rsrq, rssi, rssnr, cqi, arfcn</li>
+    <li>LTE - mcc, mnc, tac &rarr; lac, ci &rarr; cell_id, short_cell_id, rnc, pci &rarr; psc, ta, asu, dbm, rsrp, rsrq, rssi, rssnr, cqi, arfcn</li>
     <li>5G NR - mcc, mnc, tac &rarr; lac, nci &rarr; cell_id, pci &rarr; psc, asu, dbm, csi_rsrp, csi_rsrq, csi_sinr, ss_rsrp, ss_rsrq, ss_sinr, arfcn</li>
     <li>TD-SCDMA - mcc, mnc, lac, cid &rarr; cell_id, cpid &rarr; psc, asu, dbm, rscp, arfcn</li>
 </ul>

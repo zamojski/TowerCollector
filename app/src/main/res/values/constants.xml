@@ -140,7 +140,24 @@
     <string name="preferences_about_neighboring_cells_key" translatable="false">about_neighboring_cells</string>
     <string name="preferences_main_window_recent_tab_key" translatable="false">main_window_recent_tab</string>
 
-    <integer name="preferences_main_window_recent_tab_default_value">0</integer>
+    <integer name="preferences_main_window_recent_tab_default_value" translatable="false">0</integer>
+
+    <string name="preferences_main_map_zoom_level_key" translatable="false">main_map_zoom_level</string>
+    <integer name="preferences_main_map_zoom_level_default_value" translatable="false">15</integer>
+
+    <string name="preferences_main_map_follow_me_enabled_key" translatable="false">main_map_follow_me_enabled</string>
+    <bool name="preferences_main_map_follow_me_enabled_default_value" translatable="false">true</bool>
+
+    <string name="preferences_main_map_enable_key" translatable="false">main_map_enable</string>
+    <bool name="preferences_main_map_enable_default_value" translatable="false">true</bool>
+
+    <string name="preferences_main_map_is_configured_key" translatable="false">main_map_is_configured</string>
+    <bool name="preferences_main_map_is_configured_default_value" translatable="false">false</bool>
+
+    <string name="preferences_main_map_force_light_theme_key" translatable="false">main_map_force_light_mode</string>
+    <bool name="preferences_main_map_force_light_theme_default_value" translatable="false">false</bool>
+
+    <string name="preferences_main_map_clear_cache_key" translatable="false">main_map_clear_cache</string>
 
     <string name="preferences_help_link_key" translatable="false">help_link</string>
     <string name="preferences_about_link_key" translatable="false">about_link</string>

@@ -13,6 +13,8 @@
     <string name="preferences_header_display_summary">与数据显示、主题、单位等相关的一切</string>
     <string name="preferences_header_export_title">导出</string>
     <string name="preferences_header_export_summary">与文件导出相关的设置。</string>
+    <string name="preferences_header_map_title">地图</string>
+    <string name="preferences_header_map_summary">地图相关设置。</string>
     <string name="preferences_header_advanced_title">高级</string>
     <string name="preferences_header_advanced_summary">高级选项与功能。</string>
     <string name="preferences_header_information_title">信息</string>
@@ -35,13 +37,13 @@
     <string name="preferences_opencellid_enabled_title">启用OCID上传</string>
     <string name="preferences_opencellid_enabled_on_summary">测量数据将上传至OpenCellID.org。</string>
     <string name="preferences_opencellid_enabled_off_summary">测量数据将不会上传至OpenCellID.org。</string>
-    <string name="preferences_api_key_title">API密钥</string>
-    <string name="preferences_api_key_summary">上传测量结果所需的密钥。</string>
-    <string name="preferences_api_key_invalid">输入的API密钥无效。帮助中描述了正确的格式。</string>
-    <string name="preferences_api_key_link_title">获取您自己的API密钥</string>
+    <string name="preferences_api_key_title">访问令牌</string>
+    <string name="preferences_api_key_summary">上传测量值所需的令牌。</string>
+    <string name="preferences_api_key_invalid">输入的访问令牌无效。帮助中描述了正确的格式。</string>
+    <string name="preferences_api_key_link_title">获取您自己的访问令牌</string>
     <string name="preferences_api_key_link_summary">在OpenCellID.org网站上免费注册。</string>
-    <string name="preferences_about_api_key_title">关于OpenCellID API密钥</string>
-    <string name="preferences_about_api_key_summary">有关API密钥和正确格式的信息。</string>
+    <string name="preferences_about_api_key_title">关于OpenCellID访问令牌</string>
+    <string name="preferences_about_api_key_summary">有关访问令牌（API密钥）和正确格式的信息。</string>
     <string name="preferences_about_opencellid_project_title">关于OpenCelllID项目</string>
     <string name="preferences_about_opencellid_project_summary">有关OpenCelllD.org项目的信息。</string>
     <string name="preferences_mls_enabled_title">启用MLS上传</string>
@@ -140,4 +142,12 @@
     <string name="preferences_import_preferences_summary">从位于TowerCollector文件夹中的preferences.xml文件导入应用的内部配置。</string>
     <string name="preferences_export_preferences_title">导出配置</string>
     <string name="preferences_export_preferences_summary">将应用的内部配置导出到位于TowerCollector文件夹中的preferences.xml文件。</string>
+    <string name="preferences_main_map_enable_title">启用地图</string>
+    <string name="preferences_main_map_enable_on_summary">地图选项卡可见。 禁用将清除缓存。</string>
+    <string name="preferences_main_map_enable_off_summary">地图选项卡被隐藏。</string>
+    <string name="preferences_main_map_force_light_theme_title">始终使用浅色主题</string>
+    <string name="preferences_main_map_force_light_theme_on_summary">将始终使用地图的浅色主题。</string>
+    <string name="preferences_main_map_force_light_theme_off_summary">地图主题将遵循显示首选项。</string>
+    <string name="preferences_main_map_clear_cache_title">清除缓存</string>
+    <string name="preferences_main_map_clear_cache_summary">清除地图缓存文件夹以释放一些空间。</string>
 </resources>

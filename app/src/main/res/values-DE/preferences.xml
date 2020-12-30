@@ -12,7 +12,9 @@
     <string name="preferences_header_display_title">Anzeige</string>
     <string name="preferences_header_display_summary">Alles zur Daten-Anzeige, Themes, Einheiten, etc.</string>
     <string name="preferences_header_export_title">Export</string>
-    <string name="preferences_header_export_summary">Einstellungen zum Datei-Export</string>
+    <string name="preferences_header_export_summary">Einstellungen zum Datei-Export.</string>
+    <string name="preferences_header_map_title">Karte</string>
+    <string name="preferences_header_map_summary">Einstellungen zur Karte.</string>
     <string name="preferences_header_advanced_title">Erweitert</string>
     <string name="preferences_header_advanced_summary">Erweiterte Optionen und Funktionen.</string>
     <string name="preferences_header_information_title">Informationen</string>
@@ -35,13 +37,13 @@
     <string name="preferences_opencellid_enabled_title">OCID-Upload aktivieren</string>
     <string name="preferences_opencellid_enabled_on_summary">Messungen werden zu OpenCellID.org hochgeladen.</string>
     <string name="preferences_opencellid_enabled_off_summary">Messungen werden nicht zu OpenCellID.org hochgeladen.</string>
-    <string name="preferences_api_key_title">API-Key</string>
+    <string name="preferences_api_key_title">Zugriffstoken</string>
     <string name="preferences_api_key_summary">Notwendig für Upload der Messungen.</string>
-    <string name="preferences_api_key_invalid">Eingegebener API-Key ist ungültig. Wie der API-Key genau aussehen muss, ist in der Hilfe beschrieben.</string>
-    <string name="preferences_api_key_link_title">Eigenen API-Key beantragen</string>
+    <string name="preferences_api_key_invalid">Eingegebener Zugriffstoken ist ungültig. Wie das Zugriffstoken genau aussehen muss, ist in der Hilfe beschrieben.</string>
+    <string name="preferences_api_key_link_title">Eigenen Zugriffstoken beantragen</string>
     <string name="preferences_api_key_link_summary">Kostenlos auf der OpenCellID.org-Webseite registrieren.</string>
-    <string name="preferences_about_api_key_title">Über den OpenCellID API-Key</string>
-    <string name="preferences_about_api_key_summary">Informationen über den API-Key und das korrekte Format.</string>
+    <string name="preferences_about_api_key_title">Über das OpenCellID-Zugriffstoken</string>
+    <string name="preferences_about_api_key_summary">Informationen über das Zugriffstoken und das korrekte Format.</string>
     <string name="preferences_about_opencellid_project_title">Über das OpenCellID-Projekt</string>
     <string name="preferences_about_opencellid_project_summary">Informationen über das OpenCellID.org Projekt.</string>
     <string name="preferences_mls_enabled_title">MLS-Upload aktivieren</string>
@@ -140,4 +142,12 @@
     <string name="preferences_import_preferences_summary">Importiert die app-internen Einstellungen aus der Datei preferences.xml aus dem TowerCollector-Verzeichnis.</string>
     <string name="preferences_export_preferences_title">Einstellungen exportieren</string>
     <string name="preferences_export_preferences_summary">Exportiert die app-internen Einstellungen in die Datei preferences.xml in das TowerCollector-Verzeichnis.</string>
+    <string name="preferences_main_map_enable_title">Karte aktivieren</string>
+    <string name="preferences_main_map_enable_on_summary">Tab für Karte ist sichtbar. Deaktivieren leert Karten-Cache.</string>
+    <string name="preferences_main_map_enable_off_summary">Tab für Karte ist ausgeblendet.</string>
+    <string name="preferences_main_map_force_light_theme_title">Immer helles Farbschema</string>
+    <string name="preferences_main_map_force_light_theme_on_summary">Verwende immer helles Farbschema für Karte.</string>
+    <string name="preferences_main_map_force_light_theme_off_summary">Karte verwendet Farbschema der Anzeige-Einstellungen.</string>
+    <string name="preferences_main_map_clear_cache_title">Cache leeren</string>
+    <string name="preferences_main_map_clear_cache_summary">Leert Cache der Kartendaten um etwas Speicherplatz freizugeben.</string>
 </resources>

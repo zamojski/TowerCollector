@@ -6,7 +6,7 @@ package info.zamojski.soft.towercollector.preferences;
 
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.controls.TrimmedEditTextPreference;
-import info.zamojski.soft.towercollector.utils.Validator;
+import info.zamojski.soft.towercollector.utils.ApiKeyValidator;
 import timber.log.Timber;
 
 import android.content.SharedPreferences;
@@ -60,7 +60,7 @@ public class UploadPreferenceFragment extends DialogEnabledPreferenceFragment im
             Timber.d("onSharedPreferenceChanged(): User set API key = \"%s\"", apiKeyValue);
             boolean isApiKeyEmpty = TextUtils.isEmpty(apiKeyValue);
             apiKeyPreference.setSummary(formatValueString(R.string.preferences_api_key_summary, (!isApiKeyEmpty ? apiKeyValue : getString(R.string.preferences_value_undefined))));
-            if (!isApiKeyEmpty && !Validator.isOpenCellIdApiKeyValid(apiKeyValue)) {
+            if (!isApiKeyEmpty && !ApiKeyValidator.isOpenCellIdApiKeyValid(apiKeyValue)) {
                 Timber.d("onSharedPreferenceChanged(): User defined invalid API key = \"%s\"", apiKeyValue);
                 Timber.i("onSharedPreferenceChanged(): User defined invalid API key");
                 Toast.makeText(getActivity(), getString(R.string.preferences_api_key_invalid), Toast.LENGTH_LONG).show();

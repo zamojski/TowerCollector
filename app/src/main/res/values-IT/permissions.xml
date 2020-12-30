@@ -20,5 +20,8 @@
     <string name="permission_collector_never_ask_again_api29_message">La raccolta delle misurazioni non è disponibile a causa della negazione della posizione in background e / o delle autorizzazioni del telefono</string>
     <string name="permission_collector_denied_intent_message">Annullamento della raccolta delle misure a causa di autorizzazioni negate, aprire l\'app per concedere prima le autorizzazioni necessarie</string>
     <string name="permission_collector_denied_background_location_message">Disattivazione dell\'avvio all\'avvio del dispositivo a causa di un permesso negato per la posizione in background.</string>
+    <string name="permission_map_rationale_message">È necessario concedere l\'autorizzazione alla posizione per visualizzare la tua posizione sulla mappa.</string>
+    <string name="permission_map_denied_message">La mappa non può essere abilitata a causa dell\'autorizzazione alla posizione negata</string>
+    <string name="permission_map_never_ask_again_message">La mappa non è disponibile a causa dell\'autorizzazione alla posizione negata</string>
     <string name="permission_uploader_denied_message">Caricamento annullato a causa del rifiuto di autorizzazione Internet.</string>
 </resources>

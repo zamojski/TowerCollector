@@ -81,6 +81,7 @@ import info.zamojski.soft.towercollector.events.AirplaneModeChangedEvent;
 import info.zamojski.soft.towercollector.events.BatteryOptimizationsChangedEvent;
 import info.zamojski.soft.towercollector.events.CollectorStartedEvent;
 import info.zamojski.soft.towercollector.events.GpsStatusChangedEvent;
+import info.zamojski.soft.towercollector.events.MapEnabledChanged;
 import info.zamojski.soft.towercollector.events.PowerSaveModeChangedEvent;
 import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
 import info.zamojski.soft.towercollector.events.SystemTimeChangedEvent;
@@ -98,12 +99,13 @@ import info.zamojski.soft.towercollector.utils.BatteryUtils;
 import info.zamojski.soft.towercollector.utils.DateUtils;
 import info.zamojski.soft.towercollector.utils.FileUtils;
 import info.zamojski.soft.towercollector.utils.GpsUtils;
+import info.zamojski.soft.towercollector.utils.MapUtils;
 import info.zamojski.soft.towercollector.utils.NetworkUtils;
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
 import info.zamojski.soft.towercollector.utils.StorageUtils;
 import info.zamojski.soft.towercollector.utils.StringUtils;
 import info.zamojski.soft.towercollector.utils.UpdateDialogArrayAdapter;
-import info.zamojski.soft.towercollector.utils.Validator;
+import info.zamojski.soft.towercollector.utils.ApiKeyValidator;
 import info.zamojski.soft.towercollector.views.MainActivityPagerAdapter;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
@@ -388,6 +390,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private void hideInvalidSystemTime() {
         EventBus.getDefault().postSticky(new SystemTimeChangedEvent(Validity.Valid));
+    }
+
+    private void refreshTabs() {
+        viewPager.getAdapter().notifyDataSetChanged();
     }
 
     // have to be public to prevent Force Close
@@ -924,7 +930,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             Timber.d("startUploaderServiceWithCheck(): Showing upload configurator");
             // check API key
             String apiKey = preferencesProvider.getApiKey();
-            boolean isApiKeyValid = Validator.isOpenCellIdApiKeyValid(apiKey);
+            boolean isApiKeyValid = ApiKeyValidator.isOpenCellIdApiKeyValid(apiKey);
             LayoutInflater inflater = LayoutInflater.from(this);
             View dialogLayout = inflater.inflate(R.layout.configure_uploader_dialog, null);
             final CheckBox ocidUploadCheckbox = dialogLayout.findViewById(R.id.ocid_upload_dialog_checkbox);
@@ -1101,6 +1107,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             public void onClick(DialogInterface dialog, int which) {
                 MeasurementsDatabase.getInstance(MyApplication.getApplication()).clearAllData();
                 Toast.makeText(MainActivity.this, R.string.clear_toast_finished, Toast.LENGTH_SHORT).show();
+                MapUtils.clearMapCache(MainActivity.this);
                 EventBus.getDefault().post(new PrintMainWindowEvent());
             }
         });
@@ -1375,6 +1382,11 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             invalidateOptionsMenu();
             hideInvalidSystemTime();
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onEvent(MapEnabledChanged event) {
+        refreshTabs();
     }
 
     // ========== INNER OBJECTS ========== //

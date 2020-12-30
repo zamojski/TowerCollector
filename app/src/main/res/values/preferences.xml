@@ -12,7 +12,9 @@
     <string name="preferences_header_display_title">Display</string>
     <string name="preferences_header_display_summary">Everything related to data display, theme, units, etc.</string>
     <string name="preferences_header_export_title">Export</string>
-    <string name="preferences_header_export_summary">Settings related to file export, etc.</string>
+    <string name="preferences_header_export_summary">Settings related to file export.</string>
+    <string name="preferences_header_map_title">Map</string>
+    <string name="preferences_header_map_summary">Settings related to map.</string>
     <string name="preferences_header_advanced_title">Advanced</string>
     <string name="preferences_header_advanced_summary">Advanced options and functions.</string>
     <string name="preferences_header_information_title">Information</string>
@@ -35,13 +37,13 @@
     <string name="preferences_opencellid_enabled_title">Enable OCID upload</string>
     <string name="preferences_opencellid_enabled_on_summary">Measurements will be uploaded to OpenCellID.org.</string>
     <string name="preferences_opencellid_enabled_off_summary">Measurements will not be uploaded to OpenCellID.org.</string>
-    <string name="preferences_api_key_title">API key</string>
-    <string name="preferences_api_key_summary">The key required to upload your measurements.</string>
-    <string name="preferences_api_key_invalid">Entered API key is invalid. The correct format is described in Help.</string>
-    <string name="preferences_api_key_link_title">Get your own API key</string>
+    <string name="preferences_api_key_title">Access token</string>
+    <string name="preferences_api_key_summary">The token required to upload your measurements.</string>
+    <string name="preferences_api_key_invalid">Entered access token is invalid. The correct format is described in Help.</string>
+    <string name="preferences_api_key_link_title">Get your own access token</string>
     <string name="preferences_api_key_link_summary">Register for free on OpenCellID.org website.</string>
-    <string name="preferences_about_api_key_title">About OpenCellID API key</string>
-    <string name="preferences_about_api_key_summary">Information about API key and correct formatting.</string>
+    <string name="preferences_about_api_key_title">About OpenCellID access token</string>
+    <string name="preferences_about_api_key_summary">Information about access token (API key) and correct formatting.</string>
     <string name="preferences_about_opencellid_project_title">About OpenCellID project</string>
     <string name="preferences_about_opencellid_project_summary">Information about OpenCellID.org project.</string>
     <string name="preferences_mls_enabled_title">Enable MLS upload</string>
@@ -140,4 +142,12 @@
     <string name="preferences_import_preferences_summary">Imports app\'s internal preferences from preferences.xml file located in TowerCollector folder.</string>
     <string name="preferences_export_preferences_title">Export preferences</string>
     <string name="preferences_export_preferences_summary">Exports app\'s internal preferences to preferences.xml file located in TowerCollector folder.</string>
+    <string name="preferences_main_map_enable_title">Enable map</string>
+    <string name="preferences_main_map_enable_on_summary">The map tab is visible. Disabling will clear the cache.</string>
+    <string name="preferences_main_map_enable_off_summary">The map tab is hidden.</string>
+    <string name="preferences_main_map_force_light_theme_title">Enforce the light theme</string>
+    <string name="preferences_main_map_force_light_theme_on_summary">The light theme of the map will always be used.</string>
+    <string name="preferences_main_map_force_light_theme_off_summary">The map theme will follow the Display preferences.</string>
+    <string name="preferences_main_map_clear_cache_title">Clear cache</string>
+    <string name="preferences_main_map_clear_cache_summary">Clears map cache folder to free up some space.</string>
 </resources>

@@ -3,7 +3,7 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources>
-    <string name="info_about_api_key_title">API-Key</string>
+    <string name="info_about_api_key_title">Zugriffstoken (API-Key)</string>
     <string name="info_about_opencellid_project_title">OpenCellID Projekt</string>
     <string name="info_about_mls_project_title">Mozilla Location Services Projekt</string>
     <string name="info_usage_statistics_title">Benutzungsstatistiken</string>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+    <string name="info_about_api_key_title">Erişim tokeni (API anahtarı)</string>
+    <string name="info_about_opencellid_project_title">OpenCellID projesi</string>
+    <string name="info_about_mls_project_title">Mozilla Konum Hizmetleri projesi</string>
+    <string name="info_usage_statistics_title">Kullanım istatistikleri</string>
+    <string name="info_about_application_title">Hakkında</string>
+    <string name="info_introduction_title">Tanıtım</string>
+    <string name="info_best_practices_title">En iyi yöntemler</string>
+    <string name="info_external_integration_title">Dış entegrasyon</string>
+    <string name="info_privacy_statement_title">Gizlilik Bildirgesi</string>
+    <string name="info_open_source_licenses_title">Açık kaynak lisansları</string>
+    <string name="info_about_neighboring_cells_title">Komşu hücreler</string>
+    <string name="info_about_collector_api_version_title">Toplayıcı API sürümü</string>
+    <string name="info_about_main_keep_screen_on_title">Uygulama açıkken ekranı açık tut</string>
+    <string name="info_about_collector_keep_screen_on_title">Toplama yapılıyorken ekranı açık tut</string>
+    <string name="info_about_notify_measurements_collected_title">Toplanan ölçümleri bildir</string>
+</resources>

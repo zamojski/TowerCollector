@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+    <string name="permission_required">İzin gerekli</string>
+    <string name="permission_denied">İzin reddedildi</string>
+    <string name="permission_export_rationale_message">Ölçümleri bir dosyaya aktarmak için depolama izni verilmelidir</string>
+    <string name="permission_export_denied_message">Ölçümlerin aktarılması reddedilen izinler sebebiyle iptal edildi</string>
+    <string name="permission_export_never_ask_again_message">Reddedilen depolama izni nedeniyle ölçüm dışa aktarılamıyor</string>
+    <string name="permission_storage_rationale_message">İşlevi kullanmak için depolama izni verilmelidir</string>
+    <string name="permission_storage_denied_message">İzin verilmediği için işlem iptal ediliyor</string>
+    <string name="permission_storage_never_ask_again_message">Reddedilen depolama izni nedeniyle işlev kullanılamıyor</string>
+    <string name="permission_logging_denied_temporarily_message">Depolama izninin reddedilmesi nedeniyle dosya günlük kaydı geçici olarak devre dışı bırakılıyor</string>
+    <string name="permission_collector_rationale_message">Ölçümlerin toplanması için konum ve telefon izinleri verilmelidir.</string>
+    <string name="permission_collector_rationale_api29_message">Bu işlevi kullanmak istiyorsanız, cihaz konumuna erişim izni için \'her zaman izin ver\' seçeneğini seçtiğinizden emin olun!</string>
+    <string name="permission_collector_rationale_api30_message">Bu işlevi kullanmak istiyorsanız, \'ayarlardan izin ver\' i seçtiğinizden emin olun ve ardından cihaz konumuna erişim izni için  \'her zaman izin ver\' seçeneğini seçin!</string>
+    <string name="permission_collector_denied_message">Reddedilen izinler nedeniyle ölçüm toplaması iptal ediliyor</string>
+    <string name="permission_collector_never_ask_again_message">Reddedilen konum ve / veya telefon izinleri nedeniyle ölçüm toplama kullanılamıyor</string>
+    <string name="permission_collector_never_ask_again_api29_message">Reddedilen arka plan konumu ve / veya telefon izinleri nedeniyle ölçüm toplama kullanılamıyor</string>
+    <string name="permission_collector_denied_intent_message">Reddedilen izinler nedeniyle ölçüm toplama iptal ediliyor, gerekli izinleri vermek için önce uygulamayı açın</string>
+    <string name="permission_collector_denied_background_location_message">Reddedilen arka plan konum izinlerinden dolayı \'cihaz açılışında toplamaya başla\' işlevi devre dışı bırakılıyor.</string>
+    <string name="permission_map_rationale_message">Konumunuzu haritada görüntülemek için konum izni verilmelidir.</string>
+    <string name="permission_map_denied_message">Reddedilen konum izni nedeniyle harita etkinleştirilemiyor.</string>
+    <string name="permission_map_never_ask_again_message">Reddedilen konum izni nedeniyle harita kullanılamıyor</string>
+    <string name="permission_uploader_denied_message">İnternet izni reddedildiği için yükleme iptal edildi.</string>
+</resources>

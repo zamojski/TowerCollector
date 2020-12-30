@@ -25,6 +25,8 @@ import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
 import info.zamojski.soft.towercollector.model.Boundaries;
 import info.zamojski.soft.towercollector.model.Cell;
+import info.zamojski.soft.towercollector.model.MapCell;
+import info.zamojski.soft.towercollector.model.MapMeasurement;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.model.Statistics;
 import info.zamojski.soft.towercollector.utils.DateUtils;
@@ -530,6 +532,74 @@ public class MeasurementsDatabase {
             cell.setEvdoSnr(cursor.getInt(evdoSnrColumnIndex));
             cell.setEcNo(cursor.getInt(ecNoColumnIndex));
             cell.setArfcn(cursor.getInt(arfcnColumnIndex));
+            measurement.addCell(cell);
+        }
+        cursor.close();
+        return measurementList;
+    }
+
+    public List<MapMeasurement> getMeasurementsInArea(Boundaries boundaries) {
+        Timber.d("getMeasurementsInArea(): Getting measurements from area lat<%s, %s>, lon<%s, %s>", boundaries.getMinLat(), boundaries.getMaxLat(), boundaries.getMinLon(), boundaries.getMaxLon());
+        final String MEASUREMENT_ROW_ID = "measurement_" + MeasurementsTable.COLUMN_ROW_ID;
+        Map<Integer, MapMeasurement> tempMeasurements = new HashMap<>();
+        List<MapMeasurement> measurementList = new ArrayList<>();
+        SQLiteDatabase db = helper.getReadableDatabase();
+        SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
+        queryBuilder.setTables(NotUploadedMeasurementsView.VIEW_NAME
+                + " INNER JOIN " + CellSignalsTable.TABLE_NAME + " ON (" + NotUploadedMeasurementsView.VIEW_NAME + "." + MeasurementsTable.COLUMN_ROW_ID + " = " + CellSignalsTable.TABLE_NAME + "." + CellSignalsTable.COLUMN_MEASUREMENT_ID + ")"
+                + " INNER JOIN " + CellsTable.TABLE_NAME + " ON (" + CellSignalsTable.TABLE_NAME + "." + CellSignalsTable.COLUMN_CELL_ID + " = " + CellsTable.TABLE_NAME + "." + CellsTable.COLUMN_ROW_ID + ")");
+        String[] returnedColumns = {
+                NotUploadedMeasurementsView.VIEW_NAME + "." + MeasurementsTable.COLUMN_ROW_ID + " AS " + MEASUREMENT_ROW_ID,
+                CellSignalsTable.COLUMN_NEIGHBORING,
+                MeasurementsTable.COLUMN_LATITUDE,
+                MeasurementsTable.COLUMN_LONGITUDE,
+                MeasurementsTable.COLUMN_MEASURED_AT,
+                CellsTable.COLUMN_CID,
+                CellsTable.COLUMN_LAC,
+                CellsTable.COLUMN_MNC,
+                CellsTable.COLUMN_MCC,
+                CellsTable.COLUMN_NET_TYPE
+        };
+        // latitude / latitude can pass north or south pole / date line and between would fail
+        String selection = MeasurementsTable.COLUMN_LATITUDE + " > ?"
+                + " AND " + MeasurementsTable.COLUMN_LATITUDE + " < ?"
+                + " AND " + MeasurementsTable.COLUMN_LONGITUDE + " > ?"
+                + " AND " + MeasurementsTable.COLUMN_LONGITUDE + " < ?";
+        String[] selectionArgs = new String[]{
+                String.valueOf(boundaries.getMinLat()), String.valueOf(boundaries.getMaxLat()), String.valueOf(boundaries.getMinLon()), String.valueOf(boundaries.getMaxLon())
+        };
+        Cursor cursor = queryBuilder.query(db, returnedColumns, selection, selectionArgs, null, null, null, null);
+        int measurementIdColumnIndex = cursor.getColumnIndex(MEASUREMENT_ROW_ID);
+        int mccColumnIndex = cursor.getColumnIndex(CellsTable.COLUMN_MCC);
+        int mncColumnIndex = cursor.getColumnIndex(CellsTable.COLUMN_MNC);
+        int lacColumnIndex = cursor.getColumnIndex(CellsTable.COLUMN_LAC);
+        int cidColumnIndex = cursor.getColumnIndex(CellsTable.COLUMN_CID);
+        int netTypeColumnIndex = cursor.getColumnIndex(CellsTable.COLUMN_NET_TYPE);
+        int neighboringColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_NEIGHBORING);
+        int latitudeColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_LATITUDE);
+        int longitudeColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_LONGITUDE);
+        int measuredAtColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_MEASURED_AT);
+        while (cursor.moveToNext()) {
+            MapMeasurement measurement;
+            int measurementId = cursor.getInt(measurementIdColumnIndex);
+            if (tempMeasurements.containsKey(measurementId)) {
+                measurement = tempMeasurements.get(measurementId);
+            } else {
+                measurement = new MapMeasurement();
+                measurement.setLatitude(cursor.getDouble(latitudeColumnIndex));
+                measurement.setLongitude(cursor.getDouble(longitudeColumnIndex));
+                measurement.setMeasuredAt(cursor.getLong(measuredAtColumnIndex));
+
+                tempMeasurements.put(measurementId, measurement);
+                measurementList.add(measurement);
+            }
+            MapCell cell = new MapCell();
+            cell.setMcc(cursor.getInt(mccColumnIndex));
+            cell.setMnc(cursor.getInt(mncColumnIndex));
+            cell.setLac(cursor.getInt(lacColumnIndex));
+            cell.setCid(cursor.getLong(cidColumnIndex));
+            cell.setNetworkType(NetworkGroup.fromValue(cursor.getInt(netTypeColumnIndex)));
+            cell.setNeighboring(cursor.getInt(neighboringColumnIndex) == 1);
             measurement.addCell(cell);
         }
         cursor.close();

@@ -50,6 +50,7 @@
     <string name="unknown_error">Ismeretlen hiba történt!</string>
     <string name="main_tab_last_title">Utolsó mentés</string>
     <string name="main_tab_stats_title">Statisztikák</string>
+    <string name="main_tab_map_title">Térkép</string>
     <string name="main_gps_accuracy_not_available">Nem érhető el</string>
     <string name="main_signal_strength_not_available">Nem érhető el</string>
     <string name="date_time_format_standard">yyyy.MM.dd. HH:mm:ss</string>
@@ -76,6 +77,10 @@
     <string name="main_last_longitude_label">Hosszúság:</string>
     <string name="main_last_gps_accuracy_label">Pontosság:</string>
     <string name="main_last_date_time_label">Mentés ideje:</string>
+    <string name="main_map_my_location_button">Ugrás a saját helyzethez</string>
+    <string name="main_map_follow_me_button">Saját helyzet követése</string>
+    <string name="main_map_enable">Bekapcsolás</string>
+    <string name="main_map_disable">Kikapcsolás</string>
     <string name="main_menu_start_button">Adatgyűjtés elindítása</string>
     <string name="main_menu_stop_button">Adatgyűjtés leállítása</string>
     <string name="main_menu_upload_button">Feltöltés</string>
@@ -107,8 +112,8 @@
     <string name="uploader_partially_succeeded_description">Az adatok egy részét sikerült feltölteni, mielőtt a feltöltés kérésedre vagy hiba miatt megszakadt.</string>
     <string name="uploader_failure">Feltöltés sikertelen</string>
     <string name="uploader_failure_description">Nem sikerült feltölteni ismeretlen ok miatt. Győződj meg róla, hogy az alkalmazás legújabb verziót használod. Ha hosszú ideig találkozol ezzel a problémával, akkor tudasd velem.</string>
-    <string name="uploader_invalid_api_key">Érvénytelen API kulcs</string>
-    <string name="uploader_invalid_api_key_description">A beállításokban megadott API-kulccsal rendelkező felhasználó nem található. Ellenőrizd, hogy a megadott API-kulcs helyes-e.</string>
+    <string name="uploader_invalid_api_key">Érvénytelen hozzáférési token</string>
+    <string name="uploader_invalid_api_key_description">A beállításokban megadott hozzáférési tokennel rendelkező felhasználó nem található. Ellenőrizd, hogy a megadott hozzáférési token helyes-e.</string>
     <string name="uploader_invalid_input_data">Érvénytelen adat</string>
     <string name="uploader_invalid_input_data_description">A kiszolgáló elutasította az alkalmazás által küldött adatokat. Ellenőrizd, hogy az alkalmazás legújabb verziójával rendelkezel-e. Ha hosszú ideig találkozol ezzel a problémával, akkor tudasd velem.</string>
     <string name="uploader_no_data">Nincs mit feltölteni</string>
@@ -140,6 +145,8 @@
     <string name="delete_dialog_title">Az exportált adatok törlése</string>
     <string name="delete_dialog_message">Biztosan véglegesen törli az exportált adatokat?</string>
     <string name="clear_toast_finished">Adatbázis törölve</string>
+    <string name="clear_map_cache_finished">Térkép gyorsítótára törölve</string>
+    <string name="clear_map_cache_failed">A térkép gyorsítótárának törlése sikertelen</string>
     <string name="export_toast_failed">Exportálás sikertelen: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">ismeretlen hiba</string>
     <string name="export_toast_failed_cause_directory_not_exists">nem lehet könyvtárat létrehozni</string>
@@ -223,7 +230,7 @@
     <string name="export_format_json_mls">JSON az Mozilla Location Serviceshez</string>
     <string name="export_format_zip">Tömörítse az összes exportált fájlt</string>
     <string name="upload_configurator_dialog_title">Feltöltési cél beállítása</string>
-    <string name="enter_valid_api_key">Meg kell adnod egy érvényes API-kulcsot a beállításokban</string>
+    <string name="enter_valid_api_key">Meg kell adnod egy érvényes hozzáférési token a beállításokban</string>
     <string name="reupload_measurements_if_upload_fails_for_one_of_projects">Próbáld újra feltölteni a méréseket, ha a feltöltés nem sikerül az egyik projektnél</string>
     <string name="unsafe_operation_warning_title">Nem biztonságos művelet</string>
     <string name="unsafe_operation_warning_message">Ez a lehetőség elronthatja az alkalmazás konfigurációját, és összeomlást eredményezhetsz. Ebben az esetben törölni kell az alkalmazások adatait az Android beállításokban. Be kell zárnod és újra kell indítanod az alkalmazást, hogy lásd a változtatásokat!\n\nEzt csak saját felelősségre használd!</string>

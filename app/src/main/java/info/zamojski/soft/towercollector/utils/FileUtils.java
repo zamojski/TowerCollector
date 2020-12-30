@@ -43,6 +43,14 @@ public class FileUtils {
         return new File(Environment.getExternalStorageDirectory(), "TowerCollector");
     }
 
+    public static File getCacheDir(Context context) {
+        String externalState = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(externalState)) {
+            return context.getExternalCacheDir();
+        }
+        return context.getCacheDir();
+    }
+
     public static String getCurrentDateFileName(String extension) {
         return getCurrentDateFileName(new Date(), "", extension);
     }

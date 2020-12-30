@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import androidx.annotation.IntegerRes;
 import androidx.annotation.StringRes;
 
 import info.zamojski.soft.towercollector.MyApplication;
@@ -47,7 +48,7 @@ abstract class PreferenceProviderBase<T> {
         editor.apply();
     }
 
-    abstract T getPreferenceDefaultValue(int defaultValueKey);
+    abstract T getPreferenceDefaultValue(@IntegerRes int defaultValueKey);
 
     abstract T getPreferenceValue(SharedPreferences prefs, @StringRes int valueKey, T defaultValue);
 

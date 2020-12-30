@@ -7,11 +7,11 @@ package info.zamojski.soft.towercollector.providers.preferences;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.enums.ExportAction;
 import info.zamojski.soft.towercollector.enums.FileType;
+import info.zamojski.soft.towercollector.utils.Cache;
 
 import android.content.Context;
 import android.text.TextUtils;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -20,13 +20,17 @@ public class PreferencesProvider {
 
     private static final String ENUM_SERIALIZATION_DELIMITER = ";";
 
-    private BooleanPreferenceProvider booleanPreferenceProvider;
-    private IntegerPreferenceProvider integerPreferenceProvider;
-    private StringPreferenceProvider stringPreferenceProvider;
+    private final BooleanPreferenceProvider booleanPreferenceProvider;
+    private final IntegerPreferenceProvider integerPreferenceProvider;
+    private final FloatPreferenceProvider floatPreferenceProvider;
+    private final StringPreferenceProvider stringPreferenceProvider;
+
+    private final Cache<Integer, Boolean> booleanCache = new Cache<>();
 
     public PreferencesProvider(Context context) {
         this.booleanPreferenceProvider = new BooleanPreferenceProvider(context);
         this.integerPreferenceProvider = new IntegerPreferenceProvider(context);
+        this.floatPreferenceProvider = new FloatPreferenceProvider(context);
         this.stringPreferenceProvider = new StringPreferenceProvider(context);
     }
 
@@ -223,5 +227,55 @@ public class PreferencesProvider {
 
     public void setExportAction(ExportAction value) {
         stringPreferenceProvider.setPreference(R.string.preferences_export_action_key, value.toString());
+    }
+
+    public float getMainMapZoomLevel() {
+        float value = floatPreferenceProvider.getPreference(R.string.preferences_main_map_zoom_level_key, R.integer.preferences_main_map_zoom_level_default_value);
+        return value;
+    }
+
+    public void setMainMapZoomLevel(float zoomLevel) {
+        floatPreferenceProvider.setPreference(R.string.preferences_main_map_zoom_level_key, zoomLevel);
+    }
+
+    public boolean isMainMapFollowMeEnabled() {
+        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_main_map_follow_me_enabled_key, R.bool.preferences_main_map_follow_me_enabled_default_value);
+        return value;
+    }
+
+    public void setMainMapFollowMeEnabled(boolean enabled) {
+        booleanPreferenceProvider.setPreference(R.string.preferences_main_map_follow_me_enabled_key, enabled);
+    }
+
+    public boolean isMainMapEnabled() {
+        Boolean value = booleanCache.get(R.string.preferences_main_map_enable_key);
+        if(value == null) {
+            value = booleanPreferenceProvider.getPreference(R.string.preferences_main_map_enable_key, R.bool.preferences_main_map_enable_default_value);
+            booleanCache.set(R.string.preferences_main_map_enable_key, value);
+        }
+        return value;
+    }
+
+    public void setMainMapEnabled(boolean enabled) {
+        booleanPreferenceProvider.setPreference(R.string.preferences_main_map_enable_key, enabled);
+        booleanCache.set(R.string.preferences_main_map_enable_key, enabled);
+    }
+
+    public void invalidateMainMapEnabledCache() {
+        booleanCache.invalidate(R.string.preferences_main_map_enable_key);
+    }
+
+    public boolean isMainMapConfigured() {
+        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_main_map_is_configured_key, R.bool.preferences_main_map_is_configured_default_value);
+        return value;
+    }
+
+    public void setMainMapConfigured(boolean configured) {
+        booleanPreferenceProvider.setPreference(R.string.preferences_main_map_is_configured_key, configured);
+    }
+
+    public boolean isMainMapForceLightThemeEnabled() {
+        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_main_map_force_light_theme_key, R.bool.preferences_main_map_force_light_theme_default_value);
+        return value;
     }
 }

@@ -13,6 +13,8 @@
     <string name="preferences_header_display_summary">Todo lo relacionado con los datos mostrados, temas, unidades, etc.</string>
     <string name="preferences_header_export_title">Exportar</string>
     <string name="preferences_header_export_summary">Ajustes relacionados con la exportación de archivos.</string>
+    <string name="preferences_header_map_title">Mapa</string>
+    <string name="preferences_header_map_summary">Configuraciones relacionadas con el mapa.</string>
     <string name="preferences_header_advanced_title">Avanzado</string>
     <string name="preferences_header_advanced_summary">Opciones y funciones avanzadas.</string>
     <string name="preferences_header_information_title">Información</string>
@@ -35,13 +37,13 @@
     <string name="preferences_opencellid_enabled_title">Habilitar subir a OCID</string>
     <string name="preferences_opencellid_enabled_on_summary">Las mediciones se cargarán a OpenCellID.org.</string>
     <string name="preferences_opencellid_enabled_off_summary">Las mediciones no se cargarán a OpenCellID.org.</string>
-    <string name="preferences_api_key_title">Llave del API</string>
-    <string name="preferences_api_key_summary">Se requiere la llave del API para subir las mediciones.</string>
-    <string name="preferences_api_key_invalid">La llave del API que tecleo es inválida. El formato correcto se describe en la Ayuda.</string>
-    <string name="preferences_api_key_link_title">Obtenga su propia llave del API</string>
+    <string name="preferences_api_key_title">Token de acceso</string>
+    <string name="preferences_api_key_summary">El token necesario para subir las mediciones.</string>
+    <string name="preferences_api_key_invalid">El token de acceso introducido no es válido. El formato correcto se describe en la Ayuda.</string>
+    <string name="preferences_api_key_link_title">Obtenga su propio token de acceso</string>
     <string name="preferences_api_key_link_summary">Regístrese gratis en la página web OpenCellID.org</string>
-    <string name="preferences_about_api_key_title">Acerca de la clave API de OpenCellID</string>
-    <string name="preferences_about_api_key_summary">Información sobre la clave API y el formato correcto.</string>
+    <string name="preferences_about_api_key_title">Acerca del token de acceso OpenCellID</string>
+    <string name="preferences_about_api_key_summary">Información sobre el token de acceso (clave API) y el formato correcto.</string>
     <string name="preferences_about_opencellid_project_title">Acerca del proyecto OpenCellID</string>
     <string name="preferences_about_opencellid_project_summary">Información sobre el proyecto OpenCellID.org.</string>
     <string name="preferences_mls_enabled_title">Habilitar subir a MLS</string>
@@ -140,4 +142,12 @@
     <string name="preferences_import_preferences_summary">Importa las preferencias internas de App desde el archivo preferences.xml ubicado en la carpeta TowerCollector</string>
     <string name="preferences_export_preferences_title">Exportar preferencias</string>
     <string name="preferences_export_preferences_summary">Exporta las preferencias internas de la aplicación al archivo preferences.xml ubicado en la carpeta TowerCollector.</string>
+    <string name="preferences_main_map_enable_title">Habilitar mapa</string>
+    <string name="preferences_main_map_enable_on_summary">La pestaña del mapa está visible. La desactivación borrará el caché.</string>
+    <string name="preferences_main_map_enable_off_summary">La pestaña del mapa está oculta.</string>
+    <string name="preferences_main_map_force_light_theme_title">Hacer cumplir el tema de la luz</string>
+    <string name="preferences_main_map_force_light_theme_on_summary">Siempre se utilizará el tema claro del mapa.</string>
+    <string name="preferences_main_map_force_light_theme_off_summary">El tema del mapa seguirá las preferencias de visualización.</string>
+    <string name="preferences_main_map_clear_cache_title">Limpiar caché</string>
+    <string name="preferences_main_map_clear_cache_summary">Borra la carpeta de caché del mapa para liberar espacio.</string>
 </resources>

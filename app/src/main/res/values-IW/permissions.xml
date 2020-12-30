@@ -20,5 +20,8 @@
     <string name="permission_collector_never_ask_again_api29_message">איסוף מדידות אינו זמין עקב הרשאת קבלת מיקום ברקע ו/או הרשאות לטלפון</string>
     <string name="permission_collector_denied_intent_message">איסוף המדידות מבוטל עקב הרשאות שנדחו, יש לפתוח את היישומון כדי להעניק את ההרשאות המתאימות תחילה</string>
     <string name="permission_collector_denied_background_location_message">ההתחלה עם הפעלת המכשיר מושבתת עקב הרשאת קבלת מיקום ברקע.</string>
+    <string name="permission_map_rationale_message">יש להעניק הרשאת מיקום להצגת המיקום שלך במפה.</string>
+    <string name="permission_map_denied_message">לא ניתן להפעיל את המפה עקב הרשאות מיקום שנדחו</string>
+    <string name="permission_map_never_ask_again_message">המפה אינה זמינה עקב הרשאות מיקום שנדחו</string>
     <string name="permission_uploader_denied_message">ההעלאה בוטלה עקב העדר הרשאה לגשת לאינטרנט.</string>
 </resources>

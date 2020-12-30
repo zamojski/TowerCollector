@@ -20,5 +20,8 @@
     <string name="permission_collector_never_ask_again_api29_message">Zbieranie próbek jest niemożliwe z powodu braku uprawnień / ograniczeń dostępu do lokalizacji i/lub telefonu.</string>
     <string name="permission_collector_denied_intent_message">Anulowano zbieranie próbek z powodu braku uprawnień, otwórz aplikację i nadaj wymagane uprawnienia</string>
     <string name="permission_collector_denied_background_location_message">Zbieranie po uruchomieniu urządzenia zostało wyłączone z powodu braku dostępu do lokalizacji w tle.</string>
+    <string name="permission_map_rationale_message">Uprawnień dostępu do lokalizacji są wymagane, aby wyświetlić twoją pozycję na mapie.</string>
+    <string name="permission_map_denied_message">Mapa nie zostanie włączona z powodu odmowy przydzielenia uprawnień dostępu do lokalizacji</string>
+    <string name="permission_map_never_ask_again_message">Mapa jest niedostępna z powodu odmowy uprawnień dostępu do lokalizacji</string>
     <string name="permission_uploader_denied_message">Przesyłanie przerwane z powodu braku uprawnień dostępu do internetu.</string>
 </resources>
