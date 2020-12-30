@@ -41,7 +41,7 @@
     <string name="main_dialog_not_compatible_begin">L\'application peut ne pas fonctionner car :</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Pas de carte réseau mobile détectée.\n</string>
     <string name="main_toast_background_task_already_running_collector">Le service de collecte est en cours d\'exécution.</string>
-    <string name="main_toast_background_task_already_running_uploader">Transmission en cours d'exécution</string>
+    <string name="main_toast_background_task_already_running_uploader">Transmission en cours d\'exécution</string>
     <string name="main_toast_background_task_already_running_export">La tâche d\'export est en cours d\'exécution.</string>
     <string name="main_toast_background_task_already_running_unknown">L\'application s\'exécute en arrière-plan.</string>
     <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> Veuillez l\'arrêter avant de commencer une autre tâche.</string>
@@ -55,7 +55,7 @@
     <string name="main_signal_strength_not_available">Indisponible</string>
     <string name="date_time_format_standard">yyyy-MM-dd HH:mm:ss</string>
     <string name="main_gps_status_label">Statut du GPS :</string>
-    <string name="main_stats_today_title">Aujourd'hui</string>
+    <string name="main_stats_today_title">Aujourd\'hui</string>
     <string name="main_stats_local_title">Local depuis <xliff:g id="date_time">%s</xliff:g></string>
     <string name="main_stats_locations_label">Mesures :</string>
     <string name="main_stats_cells_label">Cellules (découvertes) :</string>
