@@ -19,9 +19,9 @@ import info.zamojski.soft.towercollector.R;
 
 public class MapUtils {
     public static void configureMap(Context context) {
-        Configuration.getInstance().load(context, PreferenceManager.getDefaultSharedPreferences(context));
         Configuration.getInstance().setOsmdroidBasePath(getMapBasePath(context));
         Configuration.getInstance().setOsmdroidTileCache(getMapCachePath(context));
+        Configuration.getInstance().load(context, PreferenceManager.getDefaultSharedPreferences(context));
         Configuration.getInstance().setTileFileSystemCacheMaxBytes(150 * 1024 * 1024);
         Configuration.getInstance().setTileFileSystemCacheTrimBytes(100 * 1024 * 1024);
     }
