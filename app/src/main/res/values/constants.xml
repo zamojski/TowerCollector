@@ -10,6 +10,8 @@
     <string name="upload_url_opencellid_org" translatable="false">https://www.opencellid.org/measure/uploadCsv</string>
     <string name="upload_url_mls" translatable="false">https://location.services.mozilla.com/v2/geosubmit?key=<xliff:g id="api_key">%s</xliff:g></string>
 
+    <string name="map_copyright" translatable="false">© <a href="https://www.openstreetmap.org/copyright/">OpenStreetMap</a> contributors</string>
+
     <string name="file_provider_authority" translatable="false">info.zamojski.soft.towercollector.fileprovider</string>
 
     <string name="preferences_current_value_summary_format" translatable="false"><![CDATA[<br/><b>[%s]</b>]]></string>

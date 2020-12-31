@@ -56,6 +56,18 @@
             android:paddingVertical="10dp"
             android:src="@drawable/map_follow_me" />
 
+        <TextView
+            android:id="@+id/main_map_copyright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:background="?attr/icon_background_color"
+            android:paddingHorizontal="5dp"
+            android:text="@string/map_copyright"
+            android:textColor="?attr/icon_color"
+            android:textSize="@dimen/smallest_font" />
+
     </RelativeLayout>
 
 </LinearLayout>

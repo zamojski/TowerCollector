@@ -9,12 +9,14 @@ import android.graphics.Bitmap;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.InputDevice;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.DrawableRes;
@@ -151,6 +153,9 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         followMeButton.setOnLongClickListener(IMAGE_BUTTON_LONG_CLICK_LISTENER);
         myLocationButton = view.findViewById(R.id.main_map_my_location_button);
         myLocationButton.setOnLongClickListener(IMAGE_BUTTON_LONG_CLICK_LISTENER);
+
+        TextView copyrightTextView = view.findViewById(R.id.main_map_copyright);
+        copyrightTextView.setMovementMethod(LinkMovementMethod.getInstance());
 
         mainMapView.setTileSource(TileSourceFactory.MAPNIK);
         mainMapView.setMultiTouchControls(true);
