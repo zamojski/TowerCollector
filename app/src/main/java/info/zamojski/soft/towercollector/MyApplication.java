@@ -4,6 +4,8 @@
 
 package info.zamojski.soft.towercollector;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -113,21 +115,28 @@ public class MyApplication extends Application {
     private boolean isAndroid10TelephonyManagerLambdaBug(Throwable ex) {
         if (Build.VERSION.SDK_INT != Build.VERSION_CODES.Q)
             return false;
-        String stackTrace = ex.toString();
-        Boolean isType = ex instanceof NullPointerException;
-        Boolean isTypeString = stackTrace.contains("java.lang.NullPointerException");
-        Boolean containsParcelableException = stackTrace.contains("ParcelableException.getCause()");
-        Boolean containsTelephonyManager = stackTrace.contains("TelephonyManager");
-        Boolean containsLambdaOnError = stackTrace.contains("lambda$onError");
-        ACRA.getErrorReporter().putCustomData("isType", isType.toString());
-        ACRA.getErrorReporter().putCustomData("isTypeString", isTypeString.toString());
-        ACRA.getErrorReporter().putCustomData("containsParcelableException", containsParcelableException.toString());
-        ACRA.getErrorReporter().putCustomData("containsTelephonyManager", containsTelephonyManager.toString());
-        ACRA.getErrorReporter().putCustomData("containsLambdaOnError", containsLambdaOnError.toString());
+        String stackTrace = getFullStackTrace(ex);
+        boolean isType = ex instanceof NullPointerException;
+        boolean isTypeString = stackTrace.contains("java.lang.NullPointerException");
+        boolean containsParcelableException = stackTrace.contains("ParcelableException.getCause()");
+        boolean containsTelephonyManager = stackTrace.contains("TelephonyManager");
+        boolean containsLambdaOnError = stackTrace.contains("lambda$onError");
         return (isType || isTypeString)
                 && containsParcelableException
                 && containsTelephonyManager
                 && containsLambdaOnError;
+    }
+
+    private String getFullStackTrace(Throwable ex) {
+        try {
+            ByteArrayOutputStream stackTraceStream = new ByteArrayOutputStream();
+            PrintStream printStream = new PrintStream(stackTraceStream);
+            ex.printStackTrace(printStream);
+            printStream.close();
+            return stackTraceStream.toString();
+        } catch (Throwable ignore) {
+            return ex.toString();
+        }
     }
 
     public void initLogger() {
