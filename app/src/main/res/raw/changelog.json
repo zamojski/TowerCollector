@@ -1,6 +1,13 @@
 {
   "Entries": [
     {
+      "VersionCode": 2070172,
+      "Title": "Changes in version 2.7.1",
+      "Messages": [
+        "Try to fix crash when map configuration was not fully initialized."
+      ]
+    },
+    {
       "VersionCode": 2070071,
       "Title": "Changes in version 2.7.0",
       "Description" : "This version introduces the new tab containing the map that presents measurements stored on your device. I'm open to any feedback, feel free to contact me by email, Twitter, Facebook or GitHub - links in Preferences :)",
@@ -43,16 +50,6 @@
       "Description": "If you experience app crashes on Android 10 when collecting, please make sure to update your system. One of early Android 10 versions has a defect which I cannot work around or fix :(",
       "Messages": [
         "Add option to open single exported file."
-      ]
-    },
-    {
-      "VersionCode": 2050067,
-      "Title": "Changes in version 2.5.0",
-      "Description": "If you experience app crashes on Android 10 when collecting, please make sure to update your system. One of early Android 10 versions has a defect which I cannot work around or fix :(",
-      "Messages": [
-        "Add option to share exported files.",
-        "Increase active tab indicator height.",
-        "Improve error handling."
       ]
     }
   ]
