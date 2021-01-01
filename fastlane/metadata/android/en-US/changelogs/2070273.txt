@@ -1,0 +1,1 @@
+- Add copyright notice for OpenStreetMap.org to the map tab.

@@ -1,1 +1,1 @@
-- Try to fix crash when map configuration was not fully initialized.
+- Fix crash when map configuration was not fully initialized.

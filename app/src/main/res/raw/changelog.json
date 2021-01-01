@@ -1,6 +1,13 @@
 {
   "Entries": [
     {
+      "VersionCode": 2070273,
+      "Title": "Changes in version 2.7.2",
+      "Messages": [
+        "Add copyright notice for OpenStreetMap.org to the map tab."
+      ]
+    },
+    {
       "VersionCode": 2070172,
       "Title": "Changes in version 2.7.1",
       "Messages": [
