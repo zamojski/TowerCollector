@@ -2,4 +2,41 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 
-<p>Bu uygulama kullanıcıyı, cihazı ya da kişisel bilgileri doğrudan tanımlamak için kullanılabilecek bilgileri toplamaz, saklamaz veya göndermez.<br />Gizliliğinizi sağlamak için, bu uygulama paylaşılmış anahtarlar yada proxy sunucuları KULLANMAZ. Bu nedenle kendi API anahtarınıza sahip olmanız gerekir. Anahtarınızı bilen herkes, göz atma ve silme dahil, yüklenen verileriniz üzerinde tam kontrole sahiptir. <br /><i> Anahtarınızın gizliliğini koruyarak, gizliliğinize dikkat edersiniz! </i></p>
+<p>Gizlilik çok önemlidir, bu nedenle uygulama yalnızca hizmetleri sağlamak için gerekli bilgileri toplar ve iletir. Uygulama sizi, cihazınızı veya diğer kişisel bilgileri kişisel olarak tanımlayabilecek herhangi bir bilgiyi toplamaz, saklamaz veya göndermez.</p>
+
+<p><strong>Bu gizlilik politikasını kabul etmiyorsanız, lütfen uygulamayı yüklemeyin veya kaldırmayın. Uygulamanın mobil cihazdan kalıcı olarak kaldırılması, uygulamanın kullanımının sonlandırılmasına eşdeğerdir.</strong></p>
+
+<h3>Ana fonksiyonlar</h3>
+<p>Uygulamanın temel işlevi, baz istasyonu tanımlayıcılarını, sinyal gücünü ve cihaz konumunu (koordinatları) toplamaktır. Bu bilgiler cihazınızda yerel olarak depolanır ve açık rızanız ve eyleminiz olmadan asla iletilmez. Toplanan veriler, cihazınızda saklanan dosyaya aktarılabilir veya OpenCellID.org ve Mozilla Konum Hizmetleri (MLS) projelerinde paylaşılabilir. Gizliliğin korunduğundan emin olmak için uygulama, aktarım sırasında verilerinize erişebilecek herhangi bir proxy sunucusu KULLANMAZ. Harici hizmetlere giden tüm trafik, HTTPS protokolü kullanılarak şifrelenir.</p>
+
+<p><strong>OpenCellID.org</strong> projesine katkı, uygulama tercihlerine girilmesi gereken kişisel bir Erişim Simgesi (API Anahtarı) gerektirir. Anahtar yalnızca ölçümleri proje veritabanına yüklemek için kullanılacak ve cihazı başka bir senaryoda asla terk etmeyecektir. Erişim Belirtecini bilen herkes, göz atma ve silme dahil olmak üzere yüklenen veriler üzerinde tam kontrole sahiptir. Erişim Jetonunun gizliliğini korumak sizin sorumluluğunuzdadır!</p>
+
+<p><strong>MLS'ye katkı</strong> projesi, yüklenen ölçümlere göz atma yeteneği sağlamayan paylaşılan API Anahtarı kullanır.</p>
+
+<ul>
+<li><a href="https://community.opencellid.org/privacy">OpenCellID.org gizlilik politikası</a></li>
+<li><a href="https://location.services.mozilla.com/privacy">Mozilla Location Services gizlilik politikası</a></li>
+</ul>
+
+<p>Uygulamanın çoğu özelliği <strong>ön plan konum iznini</strong> gerektirir, ancak cihaz başlangıcında ölçümleri toplamaya başlamak için <strong>arka plan konum izninin</strong> verilmesi gerekir.</p>
+
+<h3>İsteğe bağlı işlevler</h3>
+
+<p><strong>Harita</strong> özelliği, OpenStreetMap tarafından <a href="https://wiki.osmfoundation.org/wiki/Terms_of_Use">kullanım şartları</a> altında sağlanan hizmetleri kullanır.</p>
+
+<p><strong>Geliştiriciyle iletişime geç</strong> özelliği, seçilen e-posta istemcisinde yeni bir e-posta iletisi oluşturur. Mesaj, sorun gidermeye yardımcı olmak için cihazla ilgili aşağıdaki teknik bilgileri içerir:</p>
+<ul>
+<li>Uygulama sürümü</li>
+<li>Android sürümü</li>
+<li>Cihaz üreticisi ve modeli</li>
+</ul>
+
+<p><strong>Tercihleri dışa aktar</strong> veya <strong>Veritabanını dışa aktar</strong> özelliği, uygulama tercihlerini veya veritabanını cihazınızdaki ayrılmış klasöre kopyalar. Dosyalar, başka herhangi bir uygulamanın erişebildiği paylaşılan belleğe yerleştirilirse, hassas veriler (OpenCellID Erişim Belirteci gibi) korumasız olabilir.</p>
+
+<p><strong>Hata Ayıklama düzeyinde dosya günlüğü</strong> özelliği, cihazınızdaki ayrılmış klasörde çok ayrıntılı günlük dosyaları oluşturur. Günlük, geçerli konumunuz ve cihazınızın bağlı olduğu baz istasyonu gibi hassas bilgileri içerebilir. Bu seçenek yalnızca sorun giderme için geçici olarak kullanılmalıdır.</p>
+
+<h3>Sorun giderme yardımcıları</h3>
+
+<p>Uygulama, <strong>anonim kullanım istatistiklerini</strong> toplar. Veriler, uygulamanın nasıl kullanıldığını, çeşitli işlevlerin çalıştırılma sürelerinin ve en popüler özelliklerin daha iyi anlaşılmasına yardımcı olmak için yalnızca geliştirici ile paylaşılır. Toplanan veriler, genel performansı, kullanılabilirliği ve kullanıcı deneyimini iyileştirmek için kullanılır. Veriler, <a href="https://policies.google.com/privacy">Google'ın gizlilik politikası</a> kapsamında Google tarafından sağlanan Firebase için üçüncü taraf Google Analytics kitaplığı kullanılarak toplanır.</p>
+
+<p>Uygulama, yerleşik <strong>otomatik kilitlenme raporlama</strong> sistemine sahiptir. Uygulama hatası raporları yalnızca geliştiriciyle paylaşılır ve çökme nedeni ve cihaz yapılandırması hakkında bilgiler içerir. Sizi veya cihazı tanımlamak için kullanılabilecek herhangi bir bilgi İÇERMEZ.</p>

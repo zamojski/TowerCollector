@@ -2,4 +2,41 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 
-<p>Questa applicazione non raccoglie, memorizza o invia alcuna informazione che può essere utilizzata per identificare direttamente l'utente, il dispositivo che viene utilizzato o altre informazioni personali. <br /> Per garantire la tua privacy questa applicazione NON usa chiavi condivise o server proxy. Per questo motivo è necessario avere la propria chiave API. Chiunque conosca la tua chiave ha il pieno controllo sui dati caricati, inclusa la navigazione e l'eliminazione.<br /> <i> Proteggendo la riservatezza della tua chiave, ti prendi cura della tua privacy! </i></p>
+<p>La privacy è molto importante, quindi l'applicazione raccoglie e trasmette solo le informazioni necessarie per fornire i servizi. L'applicazione NON raccoglie, memorizza o invia alcuna informazione che possa identificare personalmente l'utente, il suo dispositivo o qualsiasi altra informazione personale.</p>
+
+<p><strong>Se non si accetta questa politica sulla privacy, si prega di non installare o di disinstallare l'applicazione. Rimuovere permanentemente l'applicazione dal dispositivo mobile equivale a terminare l'uso dell'applicazione.</strong></p>
+
+<h3>Le funzioni principali</h3>
+<p>La funzionalità principale dell'applicazione è quella di raccogliere gli identificatori delle torri cellulari, l'intensità del segnale e la posizione del dispositivo (coordinate). Queste informazioni sono memorizzate localmente sul vostro dispositivo e non saranno mai trasmesse senza una vostra azione esplicita o senza il vostro consenso. I dati raccolti possono essere esportati nel file persistente sul dispositivo o condivisi nei progetti OpenCellID.org e Mozilla Location Services (MLS). Per garantire la protezione della privacy, l'applicazione NON utilizza alcun server proxy che potrebbe accedere ai tuoi dati in transito. Tutto il traffico verso i servizi esterni è criptato utilizzando il protocollo HTTPS.</p>
+
+<p><strong>Il contributo al progetto OpenCellID.org</strong> richiede un Token di accesso personale (API Key) che deve essere inserito nelle preferenze dell'applicazione. La chiave sarà utilizzata solo per caricare le misurazioni nel database del progetto e non lascerà mai il dispositivo in nessun altro scenario. Chiunque conosca l'Access Token ha il pieno controllo dei dati caricati, compresa la navigazione e la cancellazione. È vostra responsabilità proteggere la riservatezza del Token di accesso!</p>
+
+<p><strong>Il contributo al progetto MLS</strong> utilizza una API Key condivisa che non fornisce la possibilità di consultare le misure caricate.</p>
+
+<ul>
+<li><a href="https://community.opencellid.org/privacy">La privacy policy di OpenCellID.org</a></li>
+<li><a href="https://location.services.mozilla.com/privacy">La privacy policy di Mozilla Location Services</a></li>
+</ul>
+
+<p>La maggior parte delle caratteristiche dell'applicazione richiede il permesso <strong>di localizzazione in background</strong> e comunque, per iniziare a raccogliere le misure all'avvio del dispositivo, il permesso <strong>di localizzazione in background</strong> deve essere concesso.</p>
+
+<h3>Le funzioni opzionali</h3>
+
+<p>La funzione <strong>mappa</strong> utilizza i servizi forniti da OpenStreetMap sotto <a href="https://wiki.osmfoundation.org/wiki/Terms_of_Use">le condizioni di utilizzo</a>.</p>
+
+<p>La funzione <strong>Contatta lo sviluppatore</strong> creerà un nuovo messaggio di posta elettronica nel client di posta elettronica selezionato. Il messaggio include le seguenti informazioni tecniche sul dispositivo per aiutare nella risoluzione dei problemi:</p>
+<ul>
+<li>La versione dell'applicazione</li>
+<li>La versione Android</li>
+<li>Marca e modello del device</li>
+</ul>
+
+<p>La funzione <strong>Preferenze di esportazione</strong> o <strong>Base dati di esportazione</strong> copierà le preferenze dell'applicazione o il database nella cartella dedicata sul dispositivo. Se i file sono posizionati sulla memoria condivisa, a cui qualsiasi altra applicazione ha accesso, allora i dati sensibili (come l'OpenCellID Access Token) potrebbero non essere protetti.</p>
+
+<p>La funzione <strong>registra su file a livello di Debug</strong> creerà file di log molto dettagliati nella cartella dedicata sul vostro dispositivo. Il log può contenere le informazioni sensibili, come la vostra posizione attuale e la torre cellulare a cui il vostro dispositivo è collegato. Questa opzione dovrebbe essere usata solo temporaneamente per la risoluzione dei problemi.</p>
+
+<h3>Gli aiutanti per la risoluzione dei problemi</h3>
+
+<p>L'applicazione raccoglie <strong>le statistiche di utilizzo anonime</strong>. I dati vengono condivisi solo con lo sviluppatore, per aiutare a capire meglio come viene utilizzata l'applicazione, quali sono i tempi di esecuzione delle varie funzioni e quali sono le caratteristiche più popolari. I dati raccolti vengono utilizzati per migliorare le prestazioni complessive, l'usabilità e l'esperienza dell'utente. I dati sono raccolti utilizzando la libreria di terzi di Google Analytics for Firebase fornita da Google sotto <a href="https://policies.google.com/privacy">la politica sulla privacy di Google</a>.</p>
+
+<p>L'applicazione ha incorporato il sistema <strong>automatizzato di segnalazione di crash</strong>. I rapporti di guasto dell'applicazione sono condivisi solo con lo sviluppatore e contengono informazioni sulla causa del crash e sulla configurazione del dispositivo. NON include alcuna informazione che possa essere utilizzata per identificare l'utente o il dispositivo.</p>

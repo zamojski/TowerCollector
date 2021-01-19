@@ -2,4 +2,41 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 
-<p>Cette application ne collecte, ne stocke ni n'envoie aucune information pouvant être utilisée pour identifier directement l'utilisateur, l'appareil utilisé ou toute autre information personnelle.<br /> Pour garantir le respect de votre vie privée, cette application n'utilise PAS de clés partagées ni de serveurs proxy. Pour cette raison, vous devez disposer de votre propre clé API. Toute personne disposant de  votre clé a le contrôle total de vos données téléchargées, y compris la consultation et la suppression.<br /><i> En protégeant la confidentialité de votre clé, vous protégez votre vie privée!</i></p>
+<p>La confidentialité est très importante, de sorte que l'application ne collecte et ne transmet que les informations nécessaires pour fournir les services. L'application ne collecte, ne stocke ni n'envoie aucune information qui pourrait vous identifier personnellement, votre appareil ou toute autre information personnelle.</p>
+
+<p><strong>Si vous n'acceptez pas cette politique de confidentialité, veuillez ne pas installer ni désinstaller l'application. Supprimer définitivement l'application de l'appareil mobile équivaut à mettre fin à l'utilisation de l'application.</strong></p>
+
+<h3>Les principales fonctions</h3>
+<p>La fonctionnalité principale de l'application est de collecter les identifiants des tours cellulaires, la force du signal et l'emplacement de l'appareil (coordonnées). Ces informations sont stockées localement sur votre appareil et ne seront jamais transmises sans votre consentement explicite et votre action. Les données collectées peuvent être exportées vers le fichier conservé sur votre appareil ou partagées vers des projets OpenCellID.org et Mozilla Location Services (MLS). Pour garantir la protection de la confidentialité, l'application n'utilise AUCUN serveur proxy qui pourrait accéder à vos données en transit. Tout le trafic vers les services externes est chiffré à l'aide du protocole HTTPS.</p>
+
+<p>La <strong>contribution au projet OpenCellID.org</strong> nécessite un jeton d'accès personnel (clé API) qui doit être saisi dans les préférences de l'application. La clé ne sera utilisée que pour télécharger les mesures dans la base de données du projet et ne quittera jamais l'appareil dans un autre scénario. Quiconque connaît le jeton d'accès a un contrôle total sur les données téléchargées, y compris la navigation et la suppression. Il est de votre responsabilité de protéger la confidentialité du jeton d'accès!</p>
+
+<p>La <strong>contribution au projet MLS</strong> utilise une clé API partagée qui ne permet pas de parcourir les mesures importées.</p>
+
+<ul>
+<li><a href="https://community.opencellid.org/privacy">La politique de confidentialité d'OpenCellID.org</a></li>
+<li><a href="https://location.services.mozilla.com/privacy">Politique de confidentialité de Mozilla Location Services</a></li>
+</ul>
+
+<p>La plupart des fonctionnalités de l'application nécessitent l '<strong>autorisation de localisation au premier plan</strong>, cependant, pour commencer à collecter les mesures au démarrage de l'appareil, l' <strong>autorisation de localisation en arrière-plan</strong> doit être accordée.</p>
+
+<h3>Les fonctions optionnelles</h3>
+
+<p>La fonctionnalité <strong>carte</strong> utilise les services fournis par OpenStreetMap sous <a href="https://wiki.osmfoundation.org/wiki/Terms_of_Use">les conditions d'utilisation</a>.</p>
+
+<p>La fonctionnalité <strong>Contacter le développeur</strong> créera un nouvel e-mail dans le client de messagerie sélectionné. Le message comprend les informations techniques suivantes sur l'appareil afin d'aider au dépannage:</p>
+<ul>
+<li>La version de l'application</li>
+<li>La version Android</li>
+<li>Le fabricant et le modèle de l'appareil</li>
+</ul>
+
+<p>La fonction <strong>Exporter les préférences</strong> ou <strong>Exporter la base de données</strong> copiera les préférences de l'application ou la base de données dans le dossier dédié de votre appareil. Si les fichiers sont placés sur la mémoire partagée, à laquelle toute autre application a accès, les données sensibles (comme le jeton d'accès OpenCellID) peuvent ne pas être protégées.</p>
+
+<p>La fonction <strong>journalisation des fichiers au niveau du débogage</strong> créera des fichiers journaux très détaillés dans le dossier dédié de votre appareil. Le journal peut contenir des informations sensibles, telles que votre emplacement actuel et la tour cellulaire à laquelle votre appareil est connecté. Cette option ne doit être utilisée que temporairement pour le dépannage.</p>
+
+<h3>Les aides au dépannage</h3>
+
+<p>L'application collecte <strong>les statistiques d'utilisation anonymes</strong>. Les données sont partagées uniquement avec le développeur, afin d'aider à mieux comprendre comment l'application est utilisée, quels sont les temps d'exécution des différentes fonctions et quelles sont les fonctionnalités les plus populaires. Les données collectées sont utilisées pour améliorer les performances globales, la convivialité et l'expérience utilisateur. Les données sont collectées à l'aide de la bibliothèque tierce Google Analytics pour Firebase fournie par Google sous <a href="https://policies.google.com/privacy">la politique de confidentialité de Google</a>.</p>
+
+<p>L'application intègre le système de <strong>rapport automatisé des plantages</strong>. Les rapports d'échec de l'application sont partagés uniquement avec le développeur et contiennent des informations sur la cause de l'incident et la configuration de l'appareil. Il n'inclut aucune information pouvant être utilisée pour vous identifier ou identifier l'appareil.</p>

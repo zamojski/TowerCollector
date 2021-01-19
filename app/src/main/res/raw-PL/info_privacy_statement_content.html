@@ -2,4 +2,41 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 
-<p>Ta aplikacja nie zbiera, nie przechowuje oraz nie wysyła żadnych informacji, które mogłyby zostać wykorzystane do bezpośredniej identyfikacji użytkownika, wykorzystywanego urządzenia lub jakiejkolwiek innej danej personalnej.<br />W celu zwiększenia prywatności ta aplikacja NIE wykorzystuje współdzielonych kluczy API i serwerów pośredniczących. Wiąże się to z koniecznością posiadania własnego klucza API. Osoba będąca w posiadaniu klucza ma pełną kontrolę nad zgromadzonymi danymi, włącznie z możliwością przeglądania i kasowania. <br /><i>Dbając o poufność swojego klucza, dbasz o swoją prywatność!</i></p>
+<p>Prywatność jest bardzo ważna, dlatego aplikacja zbiera i przesyła wyłącznie informacje konieczne do świadczenia funkcjonowania. Aplikacja NIE zbiera, NIE przechowuje, ani NIE przesyła żadnych informacji, które mogłyby zostać wykorzystane do zidentyfikowania ciebie, twojego urządzenia, ani żadnej informacji osobistej.</p>
+
+<p><strong>Jeżeli nie zgadzasz się z tą polityką prywatności, nie instaluj lub odinstaluj aplikację. Trwałe usunięcie aplikacji z urządzenia mobilnego jest równoważne zaprzestaniu korzystania z aplikacji.</strong></p>
+
+<h3>Główne funkcje</h3>
+<p>Główną funkcjonalność aplikacji stanowi zbieranie identyfikatorów przekaźników sieci komórkowej, siły sygnału oraz lokalizacji urządzenia (współrzędnych). Te informacje są przechowywane lokalnie na twoim urządzeniu i nigdy nie zostaną przesłane bez twojej wyraźnej zgody i akcji. Zebrane dane mogą zostać wyeksportowane do plików przechowywanych w pamięci urządzenia lub udostępnione projektom OpenCellId.org oraz Mozilla Location Services. Aby zapewnić prywatność, aplikacja NIE korzysta z serwerów proxy (pośredniczących), które mogłyby uzyskać dostęp do danych w trakcie transmisji. Wszystkie połączenia z aplikacji do zewnętrznych usług korzystają z szyfrowanego protokołu HTTPS.</p>
+
+<p><strong>Przesyłanie do OpenCellID.org</strong> wymaga wprowadzenia osobistego klucza dostępu (klucza API) w ustawieniach aplikacji. Klucz będzie używany do przesłania próbek do bazy danych projektu i nigdy nie zostanie wykorzystany w innym celu. Ktokolwiek zna klucz dostępu posiada pełną kontrolę nad przesłanymi danymi, włączając w to przeglądanie i kasowanie. Twoim obowiązkiem jest ochrona poufności Twojego klucza dostępu!</p>
+
+<p><strong>Przesyłanie do MLS</strong> korzysta ze współdzielonego klucza API, który nie umożliwia przeglądania przesłanych próbek.</p>
+
+<ul>
+<li><a href="https://community.opencellid.org/privacy">Polityka prywatności OpenCellID.org</a></li>
+<li><a href="https://location.services.mozilla.com/privacy">Polityka prywatności Mozilla Location Services</a></li>
+</ul>
+
+<p>Większość funkcji aplikacji wymaga <strong>dostępu do lokalizacji urządzenia podczas działania</strong>, jednakże, aby automatycznie uruchomić zbieranie próbek przy uruchamianiu urządzenia, konieczne jest przyznanie <strong>dostępu do lokalizacji urządzenia w tle</strong>.</p>
+
+<h3>Funkcje opcjonalne</h3>
+
+<p><strong>Mapa</strong> korzysta z usług dostarczanych przez OpenStreetMap na określonych <a href="https://wiki.osmfoundation.org/wiki/Terms_of_Use">warunkach użytkowania</a>.</p>
+
+<p><strong>Kontakt z twórcą</strong> tworzy nową wiadomość email w wybranej aplikacji pocztowej. Wiadomość zawiera podstawowe dane techniczne urządzenia, które mogą być przydatne przy rozwiązywaniu problemów:</p>
+<ul>
+<li>Wersja aplikacji</li>
+<li>Wersja Androida</li>
+<li>Producent i model urządzenia</li>
+</ul>
+
+<p><strong>Eksport ustawień</strong> i <strong>Eksport bazy danych </strong> wykonują kopię ustawień lub bazy danych aplikacji do wybranego folderu w pamięci urządzenia. Jeżeli wybrany folder znajduje się w pamięci współdzielonej, do której dostęp mają inne aplikacje, wówczas wrażliwe dane (takie jak klucz dostępu OpenCellID) mogą nie być chronione.</p>
+
+<p><strong>Logowanie do pliku na poziomie diagnostycznym</strong> tworzy bardzo szczegółowe pliki logów w wybranym folderze w pamięci urządzenia. Log może zawierać wrażliwe dane, takie jak twoje obecne położenie i nadajnik do którego urządzenia jest podłączone. Ta opcja powinna być używana tymczasowo w celu rozwiązywania problemów.</p>
+
+<h3>Pomoc w diagnostyce problemów</h3>
+
+<p>Aplikacja zbiera <strong>anonimowe statystyki użycia</strong>. Dane są udostępniane wyłącznie twórcy aplikacji w celu lepszego zrozumienia jak aplikacja jest wykorzystywana, jakie są czasy działania poszczególnych funkcji oraz jakie funkcje są używane najczęściej. Zebrane dane służą do poprawy ogólnej wydajności aplikacji, użyteczności i komfortu użytkowania. Dane zbierane są za pomocą zewnętrznej biblioteki Google Analytics for Firebase dostarczanej przez Google i przetwarzane zgodnie z <a href="https://policies.google.com/privacy">polityką prywatności Google</a>.</p>
+
+<p>Aplikacja posiada wbudowany mechanizm <strong>automatycznego raportowania błędów</strong>. Raporty błędów aplikacji są dostępne wyłącznie dla twórcy aplikacji i zawierają informacje o przyczynie błędu i konfiguracji urządzenia. Raporty NIE zawierają informacji pozwalających na zidentyfikowanie ciebie, ani twojego urządzenia.</p>
