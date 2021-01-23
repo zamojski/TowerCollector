@@ -38,6 +38,7 @@ import org.osmdroid.util.BoundingBox;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
+import org.osmdroid.views.overlay.ScaleBarOverlay;
 import org.osmdroid.views.overlay.TilesOverlay;
 
 import java.text.SimpleDateFormat;
@@ -172,6 +173,11 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         myLocationOverlay.setEnableAutoStop(true);
         setFollowMe(MyApplication.getPreferencesProvider().isMainMapFollowMeEnabled());
         mainMapView.getOverlays().add(myLocationOverlay);
+
+        ScaleBarOverlay scaleOverlay = new ScaleBarOverlay(mainMapView);
+        scaleOverlay.setAlignBottom(true);
+        scaleOverlay.setUnitsOfMeasure(MyApplication.getPreferencesProvider().getUseImperialUnits() ? ScaleBarOverlay.UnitsOfMeasure.imperial : ScaleBarOverlay.UnitsOfMeasure.metric);
+        mainMapView.getOverlays().add(scaleOverlay);
 
         reloadMapTheme();
 
