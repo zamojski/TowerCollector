@@ -233,28 +233,36 @@ public class Cell implements Serializable {
         this.dbm = dBm;
     }
 
+    // NOTE: keep synchronized with MapCell implementation
+    public boolean isCidLong() {
+        return ((getNetworkType() == NetworkGroup.Wcdma || getNetworkType() == NetworkGroup.Lte) && getLongCid() != Cell.UNKNOWN_CID_LONG);
+    }
+
+    // NOTE: keep synchronized with MapCell implementation
     public long getLongCid() {
         if (cid <= 65536)
             return UNKNOWN_CID_LONG;
         return cid;
     }
 
+    // NOTE: keep synchronized with MapCell implementation
     public long getShortCid() {
         if (cid <= 65536)
             return UNKNOWN_CID_LONG;
         if (networkType == NetworkGroup.Wcdma)
             return cid % 65536;
-        else if(networkType== NetworkGroup.Lte) // LTE (reversed order)
+        else if (networkType == NetworkGroup.Lte) // LTE (reversed order)
             return cid / 256;
         return UNKNOWN_CID_LONG;
     }
 
+    // NOTE: keep synchronized with MapCell implementation
     public long getRnc() {
         if (cid <= 65536)
             return UNKNOWN_CID_LONG;
         if (networkType == NetworkGroup.Wcdma)
             return cid / 65536;
-        else if(networkType== NetworkGroup.Lte) // LTE (reversed order)
+        else if (networkType == NetworkGroup.Lte) // LTE (reversed order)
             return cid % 256;
         return UNKNOWN_CID_LONG;
     }

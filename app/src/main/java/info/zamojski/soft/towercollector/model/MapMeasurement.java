@@ -13,6 +13,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.utils.NetworkTypeUtils;
 
 public class MapMeasurement implements Serializable {
@@ -80,8 +81,14 @@ public class MapMeasurement implements Serializable {
     }
 
     public String getDescription(Context context) {
+        boolean appendNewLine = false;
         StringBuilder sb = new StringBuilder();
         for (MapCell c : getMainCells()) {
+            if (appendNewLine) {
+                sb.append("<br/>");
+            } else {
+                appendNewLine = true;
+            }
             sb.append(context.getString(NetworkTypeUtils.getNetworkGroupNameResId(c.getNetworkType())))
                     .append(": ");
             if (c.getMcc() != Cell.UNKNOWN_CID)
@@ -91,8 +98,14 @@ public class MapMeasurement implements Serializable {
                     .append('-')
                     .append(c.getLac())
                     .append('-')
-                    .append(c.getCid())
-            .append("<br/>");
+                    .append(c.getCid());
+            if (c.isCidLong()) {
+                sb.append(" (")
+                        .append(c.getShortCid())
+                        .append('-')
+                        .append(c.getRnc())
+                        .append(')');
+            }
         }
         return sb.toString();
     }
