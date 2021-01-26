@@ -131,7 +131,7 @@
     <string name="preferences_hide_collector_notification_off_summary">La notification sera visible en permanence.</string>
     <string name="preferences_start_collector_at_boot_title">Commencer la collecte au démarrage de l\'appareil</string>
     <string name="preferences_start_collector_at_boot_on_summary">La collecte débutera automatiquement au démarrage de l\'appareil. L\'application doit être installée sur la mémoire interne pour que cela fonctionne.</string>
-    <string name="preferences_start_collector_at_boot_off_summary">L\'application ne débutera pas la collecte au démarrage de l\'appareil. L\'application peut être installée n\'importe où. L\'autorisation de localisation en arrière-plan doit être accordée pour utiliser cette fonction.</string>
+    <string name="preferences_start_collector_at_boot_off_summary">L\'application ne débutera pas la collecte au démarrage de l\'appareil. L\'application peut être installée n\'importe où. L\'autorisation de localisation en arrière-plan doit être accordée pour utiliser cette fonction, sinon l\'application ne pourra pas collecter de mesures.</string>
     <string name="preferences_collector_low_battery_action_title">Action de batterie faible</string>
     <string name="preferences_collector_low_battery_action_summary">Définit ce qui se passera lorsque le niveau de la batterie est bas et que le collecteur est en cours d\'exécution.</string>
     <string name="preferences_import_database_title">Importer la base de données</string>

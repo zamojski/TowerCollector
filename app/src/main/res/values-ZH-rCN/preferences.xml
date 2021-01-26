@@ -131,7 +131,7 @@
     <string name="preferences_hide_collector_notification_off_summary">通知将始终可见。</string>
     <string name="preferences_start_collector_at_boot_title">在设备启动时开始收集</string>
     <string name="preferences_start_collector_at_boot_on_summary">收集将在设备启动时自动启动。应用必须安装在内部存储器上才能使其正常工作。</string>
-    <string name="preferences_start_collector_at_boot_off_summary">该应用不会在设备启动时开始收集。该应用可以安装在任何地方。必须授予后台位置权限才能使用此功能。</string>
+    <string name="preferences_start_collector_at_boot_off_summary">该应用不会在设备启动时开始收集。该应用可以安装在任何地方。必须授予背景位置权限才能使用此功能，否则该应用将无法收集测量值。</string>
     <string name="preferences_collector_low_battery_action_title">低电量时操作</string>
     <string name="preferences_collector_low_battery_action_summary">定义当电池电量变低且收集器正在运行时会发生什么。</string>
     <string name="preferences_import_database_title">导入数据库</string>

@@ -131,7 +131,7 @@
     <string name="preferences_hide_collector_notification_off_summary">La notificación será visible todo el tiempo.</string>
     <string name="preferences_start_collector_at_boot_title">Empezar a recolectar cuando el equipo sea encendido</string>
     <string name="preferences_start_collector_at_boot_on_summary">La recolección se iniciará automaticamente cuando el equipo se encienda. La app debe de estar instalada en la memoria interna para que esto funcione.</string>
-    <string name="preferences_start_collector_at_boot_off_summary">La app no iniciará automaticamente la recolección. La app puede ser instalada en cualquier ubicación. Se debe otorgar permiso de ubicación en segundo plano para utilizar esta función.</string>
+    <string name="preferences_start_collector_at_boot_off_summary">La app no iniciará automaticamente la recolección. La app puede ser instalada en cualquier ubicación. Se debe otorgar el permiso de ubicación de fondo para usar esta función; de lo contrario, la aplicación no podrá recopilar mediciones.</string>
     <string name="preferences_collector_low_battery_action_title">Acción de batería baja</string>
     <string name="preferences_collector_low_battery_action_summary">Define lo que ocurrirá cuando el nivel de la batería esté bajo y la recolección se esté ejecutando.</string>
     <string name="preferences_import_database_title">Importar base de datos</string>

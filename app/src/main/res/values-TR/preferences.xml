@@ -131,7 +131,7 @@
     <string name="preferences_hide_collector_notification_off_summary">Bildirimler her zaman görünür olacak.</string>
     <string name="preferences_start_collector_at_boot_title">Cihaz açılışında toplama işlemine başla</string>
     <string name="preferences_start_collector_at_boot_on_summary">Toplama, cihaz açılışında otomatik olarak başlayacaktır. Uygulamanın çalışması için dahili belleğe yüklenmesi gerekir.</string>
-    <string name="preferences_start_collector_at_boot_off_summary">Uygulama, cihaz açılışında toplamaya başlamaz. Uygulama herhangi bir yere kurulabilir. Bu işlevi kullanmak için arka plan konum izni verilmelidir.</string>
+    <string name="preferences_start_collector_at_boot_off_summary">Uygulama, cihaz açılışında toplamaya başlamaz. Uygulama herhangi bir yere kurulabilir. Bu işlevi kullanmak için arka plan konum izni verilmelidir, aksi takdirde uygulama ölçümleri toplayamaz.</string>
     <string name="preferences_collector_low_battery_action_title">Düşük pil eylemi</string>
     <string name="preferences_collector_low_battery_action_summary">Pil seviyesi düştüğünde ve toplayıcı çalışırken ne olacağını tanımlar.</string>
     <string name="preferences_import_database_title">Veri tabanını içe aktar</string>

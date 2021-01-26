@@ -131,7 +131,7 @@
     <string name="preferences_hide_collector_notification_off_summary">La notifica sarà sempre visibile.</string>
     <string name="preferences_start_collector_at_boot_title">Avvia la raccolta dati all\'avvio del dispositivo</string>
     <string name="preferences_start_collector_at_boot_on_summary">La raccolta dati sarà avviata automaticamente all\'avvio del dispositivo. L\'app deve essere installata nella memoria interna affinchè funzioni.</string>
-    <string name="preferences_start_collector_at_boot_off_summary">L\'app non avvierà la raccolta dati all\'avvio del dispositivo. L\'app può essere installata ovunque. Per utilizzare questa funzione è necessario concedere l\'autorizzazione alla posizione in background.</string>
+    <string name="preferences_start_collector_at_boot_off_summary">L\'app non avvierà la raccolta dati all\'avvio del dispositivo. L\'app può essere installata ovunque. L\'autorizzazione alla posizione in background deve essere concessa per utilizzare questa funzione, altrimenti l\'app non sarà in grado di raccogliere misurazioni.</string>
     <string name="preferences_collector_low_battery_action_title">Azioni in caso di batteria scarica</string>
     <string name="preferences_collector_low_battery_action_summary">Definisce cosa accadrà quando il livello della batteria si abbassa e la raccolta dati è in funzione.</string>
     <string name="preferences_import_database_title">Importa database</string>

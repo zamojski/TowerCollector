@@ -131,7 +131,7 @@
     <string name="preferences_hide_collector_notification_off_summary">A notificação ficará visível todo o tempo.</string>
     <string name="preferences_start_collector_at_boot_title">Inicia a coleta no boot do dispositivo.</string>
     <string name="preferences_start_collector_at_boot_on_summary">A coleta será iniciada automaticamente no boot do dispositivo. O aplicativo deve estar instalado na memória interna para que isso funcione.</string>
-    <string name="preferences_start_collector_at_boot_off_summary">O aplicativo não iniciará a coleta no boot do dispositivo. O aplicativo pode estar instalado em qualquer lugar. A permissão de localização em segundo plano deve ser concedida para usar esta função.</string>
+    <string name="preferences_start_collector_at_boot_off_summary">O aplicativo não iniciará a coleta no boot do dispositivo. O aplicativo pode estar instalado em qualquer lugar. A permissão de localização em segundo plano deve ser concedida para usar esta função, caso contrário, o aplicativo não será capaz de coletar medições.</string>
     <string name="preferences_collector_low_battery_action_title">Ação quando a bateria está baixa</string>
     <string name="preferences_collector_low_battery_action_summary">Define o que acontece quando o nível de bateria está baixo e o coletor está rodando.</string>
     <string name="preferences_import_database_title">Importar banco de dados</string>

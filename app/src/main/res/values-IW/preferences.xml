@@ -131,7 +131,7 @@
     <string name="preferences_hide_collector_notification_off_summary">ההתראה תהיה גלויה תמיד.</string>
     <string name="preferences_start_collector_at_boot_title">להתחיל לאסוף עם הפעלת המכשיר</string>
     <string name="preferences_start_collector_at_boot_on_summary">האיסוף יתחיל אוטומטית עם הפעלת המכשיר. יש להתקין את היישומון על זיכרון פנימי כדי שתכונה זו תוכל לפעול.</string>
-    <string name="preferences_start_collector_at_boot_off_summary">היישומון לא יתחיל לאסוף עם הפעלת המכשיר. ניתן להתקין את היישומון בכל מקום. יש להעניק הרשאות לקבלת המיקום ברקע כדי להשתמש ביכולת הזו.</string>
+    <string name="preferences_start_collector_at_boot_off_summary">היישומון לא יתחיל לאסוף עם הפעלת המכשיר. לא יכול להתקין את היישומון בכל מקום. יש להעניק הרשאת מיקום רקע לשימוש בפונקציה זו, אחרת האפליקציה לא תוכל לאסוף מדידות.</string>
     <string name="preferences_collector_low_battery_action_title">פעולת סוללה חלשה</string>
     <string name="preferences_collector_low_battery_action_summary">הגדרה של מה יקרה כאשר עצמת הסוללה נחלשת ומנגנון האיסוף עדיין פעיל.</string>
     <string name="preferences_import_database_title">ייבוא מסד נתונים</string>
