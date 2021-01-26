@@ -1,0 +1,3 @@
+- Improve privacy statement according to updated Google Play policy.
+- Add scale bar to the map.
+- Add short CID and RNC to map maker description.
