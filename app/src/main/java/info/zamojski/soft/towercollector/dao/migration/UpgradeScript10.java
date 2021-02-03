@@ -116,7 +116,6 @@ class UpgradeScript10 implements IUpgradeScript {
                 locationValues.put("speed", speed);
                 locationValues.put("bearing", bearing);
                 locationValues.put("altitude", altitude);
-                @SuppressWarnings("unused")
                 long locationRowId = database.insert("locations", null, locationValues);
 
                 ContentValues measurementValues = new ContentValues();
@@ -128,7 +127,6 @@ class UpgradeScript10 implements IUpgradeScript {
                 measurementValues.put("asu", asu);
                 measurementValues.put("dbm", dbm);
                 measurementValues.put("measured_at", measuredAt);
-                @SuppressWarnings("unused")
                 long measurementRowId = database.insert("measurements", null, measurementValues);
             }
 

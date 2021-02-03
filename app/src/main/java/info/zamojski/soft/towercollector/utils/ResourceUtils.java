@@ -12,6 +12,7 @@ import android.graphics.drawable.Drawable;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.RawRes;
+import androidx.core.content.res.ResourcesCompat;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -42,7 +43,7 @@ public class ResourceUtils {
 
     public static Bitmap getDrawableBitmap(Context context, @DrawableRes int drawableId, Resources.Theme theme) {
         try {
-            Drawable drawable = context.getResources().getDrawable(drawableId, theme);
+            Drawable drawable = ResourcesCompat.getDrawable(context.getResources(), drawableId, theme);
             Canvas canvas = new Canvas();
             Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
             canvas.setBitmap(bitmap);

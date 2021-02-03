@@ -305,7 +305,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
             iconId = NetworkTypeUtils.getNetworkGroupIcon(mainCells.get(0).getNetworkType(), mainCells.get(1).getNetworkType());
         }
         Marker item = new Marker(mainMapView);
-        item.setIcon(getResources().getDrawable(iconId, theme));
+        item.setIcon(ResourcesCompat.getDrawable(getResources(), iconId, theme));
         item.setTitle(dateTimeFormatStandard.format(new Date(m.getMeasuredAt())));
         item.setSnippet(String.valueOf(m.getDescription(MyApplication.getApplication())));
         item.setPosition(new GeoPoint(m.getLatitude(), m.getLongitude()));

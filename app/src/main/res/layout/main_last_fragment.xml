@@ -50,7 +50,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:onClick="displayHelpOnClick">
+                android:onClick="displayHelpOnClick"
+                android:focusable="true">
 
                 <TextView
                     android:id="@+id/main_last_number_of_cells_label_textview"
@@ -74,7 +75,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:onClick="displayHelpOnClick">
+                android:onClick="displayHelpOnClick"
+                android:focusable="true">
 
                 <TextView
                     android:id="@+id/main_last_network_type_label_textview"
@@ -98,7 +100,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:onClick="displayHelpOnClick">
+                android:onClick="displayHelpOnClick"
+                android:focusable="true">
 
                 <TextView
                     android:id="@+id/main_last_long_cell_id_label_textview"
@@ -122,7 +125,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:onClick="displayHelpOnClick">
+                android:onClick="displayHelpOnClick"
+                android:focusable="true">
 
                 <TextView
                     android:id="@+id/main_last_cell_id_rnc_label_textview"
@@ -146,7 +150,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:onClick="displayHelpOnClick">
+                android:onClick="displayHelpOnClick"
+                android:focusable="true">
 
                 <TextView
                     android:id="@+id/main_last_cell_id_label_textview"
@@ -170,7 +175,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:onClick="displayHelpOnClick">
+                android:onClick="displayHelpOnClick"
+                android:focusable="true">
 
                 <TextView
                     android:id="@+id/main_last_lac_label_textview"
@@ -194,7 +200,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:onClick="displayHelpOnClick">
+                android:onClick="displayHelpOnClick"
+                android:focusable="true">
 
                 <TextView
                     android:id="@+id/main_last_mcc_label_textview"
@@ -218,7 +225,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:onClick="displayHelpOnClick">
+                android:onClick="displayHelpOnClick"
+                android:focusable="true">
 
                 <TextView
                     android:id="@+id/main_last_mnc_label_textview"
@@ -242,7 +250,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:onClick="displayHelpOnClick">
+                android:onClick="displayHelpOnClick"
+                android:focusable="true">
 
                 <TextView
                     android:id="@+id/main_last_signal_strength_label_textview"
@@ -266,7 +275,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:onClick="displayHelpOnClick">
+                android:onClick="displayHelpOnClick"
+                android:focusable="true">
 
                 <TextView
                     android:id="@+id/main_last_latitude_label_textview"
@@ -290,7 +300,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:onClick="displayHelpOnClick">
+                android:onClick="displayHelpOnClick"
+                android:focusable="true">
 
                 <TextView
                     android:id="@+id/main_last_longitude_label_textview"
@@ -314,7 +325,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:onClick="displayHelpOnClick">
+                android:onClick="displayHelpOnClick"
+                android:focusable="true">
 
                 <TextView
                     android:id="@+id/main_last_gps_accuracy_label_textview"
@@ -338,7 +350,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:onClick="displayHelpOnClick">
+                android:onClick="displayHelpOnClick"
+                android:focusable="true">
 
                 <TextView
                     android:id="@+id/main_last_date_time_label_textview"

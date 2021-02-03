@@ -66,6 +66,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import info.zamojski.soft.towercollector.analytics.IntentSource;
@@ -298,31 +299,31 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // start action
-        switch (item.getItemId()) {
-            case R.id.main_menu_start:
-                startCollectorServiceWithCheck();
-                return true;
-            case R.id.main_menu_stop:
-                stopCollectorService();
-                return true;
-            case R.id.main_menu_upload:
-                startUploaderServiceWithCheck();
-                return true;
-            case R.id.main_menu_export:
-                // NOTE: delegate the permission handling to generated method
-                MainActivityPermissionsDispatcher.startExportAsyncTaskWithPermissionCheck(this);
-                return true;
-            case R.id.main_menu_clear:
-                startCleanup();
-                return true;
-            case R.id.main_menu_preferences:
-                startPreferencesActivity();
-                return true;
-            case R.id.main_menu_network_type:
-                startNetworkTypeSystemActivity();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        int itemId = item.getItemId();
+        if (itemId == R.id.main_menu_start) {
+            startCollectorServiceWithCheck();
+            return true;
+        } else if (itemId == R.id.main_menu_stop) {
+            stopCollectorService();
+            return true;
+        } else if (itemId == R.id.main_menu_upload) {
+            startUploaderServiceWithCheck();
+            return true;
+        } else if (itemId == R.id.main_menu_export) {
+            // NOTE: delegate the permission handling to generated method
+            MainActivityPermissionsDispatcher.startExportAsyncTaskWithPermissionCheck(this);
+            return true;
+        } else if (itemId == R.id.main_menu_clear) {
+            startCleanup();
+            return true;
+        } else if (itemId == R.id.main_menu_preferences) {
+            startPreferencesActivity();
+            return true;
+        } else if (itemId == R.id.main_menu_network_type) {
+            startNetworkTypeSystemActivity();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 
@@ -400,99 +401,76 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     public void displayHelpOnClick(View view) {
         int titleId = View.NO_ID;
         int messageId = View.NO_ID;
-        switch (view.getId()) {
-            case R.id.main_gps_status_tablerow:
-                titleId = R.string.main_help_gps_status_title;
-                messageId = R.string.main_help_gps_status_description;
-                break;
-            case R.id.main_invalid_system_time_tablerow:
-                titleId = R.string.main_help_invalid_system_time_title;
-                messageId = R.string.main_help_invalid_system_time_description;
-                break;
-            case R.id.main_stats_today_locations_tablerow:
-                titleId = R.string.main_help_today_locations_title;
-                messageId = R.string.main_help_today_locations_description;
-                break;
-            case R.id.main_stats_today_cells_tablerow:
-                titleId = R.string.main_help_today_cells_title;
-                messageId = R.string.main_help_today_cells_description;
-                break;
-            case R.id.main_stats_local_locations_tablerow:
-                titleId = R.string.main_help_local_locations_title;
-                messageId = R.string.main_help_local_locations_description;
-                break;
-            case R.id.main_stats_local_cells_tablerow:
-                titleId = R.string.main_help_local_cells_title;
-                messageId = R.string.main_help_local_cells_description;
-                break;
-            case R.id.main_stats_global_locations_tablerow:
-                titleId = R.string.main_help_global_locations_title;
-                messageId = R.string.main_help_global_locations_description;
-                break;
-            case R.id.main_stats_global_cells_tablerow:
-                titleId = R.string.main_help_global_cells_title;
-                messageId = R.string.main_help_global_cells_description;
-                break;
-            case R.id.main_last_number_of_cells_tablerow:
-                titleId = R.string.mail_help_last_number_of_cells_title;
-                messageId = R.string.mail_help_last_number_of_cells_description;
-                break;
-            case R.id.main_last_network_type_tablerow:
-                titleId = R.string.main_help_last_network_type_title;
-                messageId = R.string.main_help_last_network_type_description;
-                break;
-            case R.id.main_last_long_cell_id_tablerow:
-                titleId = R.string.main_help_last_long_cell_id_title;
-                messageId = R.string.main_help_last_long_cell_id_description;
-                break;
-            case R.id.main_last_cell_id_rnc_tablerow:
-                titleId = R.string.main_help_last_cell_id_rnc_title;
-                messageId = R.string.main_help_last_cell_id_rnc_description;
-                break;
-            case R.id.main_last_cell_id_tablerow:
-                titleId = R.string.main_help_last_cell_id_title;
-                messageId = R.string.main_help_last_cell_id_description;
-                break;
-            case R.id.main_last_lac_tablerow:
-                titleId = R.string.main_help_last_lac_title;
-                messageId = R.string.main_help_last_lac_description;
-                break;
-            case R.id.main_last_mcc_tablerow:
-                titleId = R.string.main_help_last_mcc_title;
-                messageId = R.string.main_help_last_mcc_description;
-                break;
-            case R.id.main_last_mnc_tablerow:
-                titleId = R.string.main_help_last_mnc_title;
-                messageId = R.string.main_help_last_mnc_description;
-                break;
-            case R.id.main_last_signal_strength_tablerow:
-                titleId = R.string.main_help_last_signal_strength_title;
-                messageId = R.string.main_help_last_signal_strength_description;
-                break;
-            case R.id.main_last_latitude_tablerow:
-                titleId = R.string.main_help_last_latitude_title;
-                messageId = R.string.main_help_last_latitude_description;
-                break;
-            case R.id.main_last_longitude_tablerow:
-                titleId = R.string.main_help_last_longitude_title;
-                messageId = R.string.main_help_last_longitude_description;
-                break;
-            case R.id.main_last_gps_accuracy_tablerow:
-                titleId = R.string.main_help_last_gps_accuracy_title;
-                messageId = R.string.main_help_last_gps_accuracy_description;
-                break;
-            case R.id.main_last_date_time_tablerow:
-                titleId = R.string.main_help_last_date_time_title;
-                messageId = R.string.main_help_last_date_time_description;
-                break;
-            case R.id.main_stats_to_upload_ocid_locations_tablerow:
-                titleId = R.string.main_help_to_upload_common_locations_title;
-                messageId = R.string.main_help_to_upload_ocid_locations_description;
-                break;
-            case R.id.main_stats_to_upload_mls_locations_tablerow:
-                titleId = R.string.main_help_to_upload_common_locations_title;
-                messageId = R.string.main_help_to_upload_mls_locations_description;
-                break;
+        int viewId = view.getId();
+        if (viewId == R.id.main_gps_status_tablerow) {
+            titleId = R.string.main_help_gps_status_title;
+            messageId = R.string.main_help_gps_status_description;
+        } else if (viewId == R.id.main_invalid_system_time_tablerow) {
+            titleId = R.string.main_help_invalid_system_time_title;
+            messageId = R.string.main_help_invalid_system_time_description;
+        } else if (viewId == R.id.main_stats_today_locations_tablerow) {
+            titleId = R.string.main_help_today_locations_title;
+            messageId = R.string.main_help_today_locations_description;
+        } else if (viewId == R.id.main_stats_today_cells_tablerow) {
+            titleId = R.string.main_help_today_cells_title;
+            messageId = R.string.main_help_today_cells_description;
+        } else if (viewId == R.id.main_stats_local_locations_tablerow) {
+            titleId = R.string.main_help_local_locations_title;
+            messageId = R.string.main_help_local_locations_description;
+        } else if (viewId == R.id.main_stats_local_cells_tablerow) {
+            titleId = R.string.main_help_local_cells_title;
+            messageId = R.string.main_help_local_cells_description;
+        } else if (viewId == R.id.main_stats_global_locations_tablerow) {
+            titleId = R.string.main_help_global_locations_title;
+            messageId = R.string.main_help_global_locations_description;
+        } else if (viewId == R.id.main_stats_global_cells_tablerow) {
+            titleId = R.string.main_help_global_cells_title;
+            messageId = R.string.main_help_global_cells_description;
+        } else if (viewId == R.id.main_last_number_of_cells_tablerow) {
+            titleId = R.string.mail_help_last_number_of_cells_title;
+            messageId = R.string.mail_help_last_number_of_cells_description;
+        } else if (viewId == R.id.main_last_network_type_tablerow) {
+            titleId = R.string.main_help_last_network_type_title;
+            messageId = R.string.main_help_last_network_type_description;
+        } else if (viewId == R.id.main_last_long_cell_id_tablerow) {
+            titleId = R.string.main_help_last_long_cell_id_title;
+            messageId = R.string.main_help_last_long_cell_id_description;
+        } else if (viewId == R.id.main_last_cell_id_rnc_tablerow) {
+            titleId = R.string.main_help_last_cell_id_rnc_title;
+            messageId = R.string.main_help_last_cell_id_rnc_description;
+        } else if (viewId == R.id.main_last_cell_id_tablerow) {
+            titleId = R.string.main_help_last_cell_id_title;
+            messageId = R.string.main_help_last_cell_id_description;
+        } else if (viewId == R.id.main_last_lac_tablerow) {
+            titleId = R.string.main_help_last_lac_title;
+            messageId = R.string.main_help_last_lac_description;
+        } else if (viewId == R.id.main_last_mcc_tablerow) {
+            titleId = R.string.main_help_last_mcc_title;
+            messageId = R.string.main_help_last_mcc_description;
+        } else if (viewId == R.id.main_last_mnc_tablerow) {
+            titleId = R.string.main_help_last_mnc_title;
+            messageId = R.string.main_help_last_mnc_description;
+        } else if (viewId == R.id.main_last_signal_strength_tablerow) {
+            titleId = R.string.main_help_last_signal_strength_title;
+            messageId = R.string.main_help_last_signal_strength_description;
+        } else if (viewId == R.id.main_last_latitude_tablerow) {
+            titleId = R.string.main_help_last_latitude_title;
+            messageId = R.string.main_help_last_latitude_description;
+        } else if (viewId == R.id.main_last_longitude_tablerow) {
+            titleId = R.string.main_help_last_longitude_title;
+            messageId = R.string.main_help_last_longitude_description;
+        } else if (viewId == R.id.main_last_gps_accuracy_tablerow) {
+            titleId = R.string.main_help_last_gps_accuracy_title;
+            messageId = R.string.main_help_last_gps_accuracy_description;
+        } else if (viewId == R.id.main_last_date_time_tablerow) {
+            titleId = R.string.main_help_last_date_time_title;
+            messageId = R.string.main_help_last_date_time_description;
+        } else if (viewId == R.id.main_stats_to_upload_ocid_locations_tablerow) {
+            titleId = R.string.main_help_to_upload_common_locations_title;
+            messageId = R.string.main_help_to_upload_ocid_locations_description;
+        } else if (viewId == R.id.main_stats_to_upload_mls_locations_tablerow) {
+            titleId = R.string.main_help_to_upload_common_locations_title;
+            messageId = R.string.main_help_to_upload_mls_locations_description;
         }
         Timber.d("displayHelpOnClick(): Displaying help for title: %s", titleId);
         if (titleId != View.NO_ID && messageId != View.NO_ID) {
@@ -1345,7 +1323,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 // check if network available
                 if (NetworkUtils.isNetworkAvailable(getApplication())) {
                     int currentVersion = ApkUtils.getApkVersionCode();
-                    String updateFeedUrl = String.format(BuildConfig.UPDATE_CHECK_FEED_URI, currentVersion);
+                    String updateFeedUrl = String.format(Locale.ENGLISH, BuildConfig.UPDATE_CHECK_FEED_URI, currentVersion);
                     if (!StringUtils.isNullEmptyOrWhitespace(updateFeedUrl)) {
                         UpdateCheckAsyncTask updateCheckTask = new UpdateCheckAsyncTask(getApplication(), currentVersion);
                         updateCheckTask.execute(updateFeedUrl);
@@ -1389,7 +1367,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         refreshTabs();
     }
 
-    // ========== INNER OBJECTS ========== //
+// ========== INNER OBJECTS ========== //
 
     public static class InternalMessageHandler extends Handler {
         public static final int EXPORT_FINISHED_UI_REFRESH = 0;

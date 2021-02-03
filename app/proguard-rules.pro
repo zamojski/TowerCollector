@@ -83,19 +83,17 @@
 # Don't parse support library (some of them inherited)
 #-keep class android.support.** { *; }
 #-keep interface android.support.** { *; }
--keep class android.support.v4.app.** { *; }
--keep interface android.support.v4.app.** { *; }
+-keep class android.support.v4.app.* { *; }
+-keep interface android.support.v4.app.* { *; }
 
-# Make sure that Google Analytics doesn't get removed
--keep class com.google.analytics.** { *; }
--keep class com.google.android.** { *; }
--keep class com.google.tagmanager.** { *; }
+# Make sure that Firebase Analytics doesn't get removed
+-keep class com.google.firebase.* { *; }
 
 #inherited -keepattributes *Annotation*
 
 # EventBus
 #inherited -keepattributes *Annotation*
--keepclassmembers class ** {
+-keepclassmembers class * {
     @org.greenrobot.eventbus.Subscribe <methods>;
 }
 -keep enum org.greenrobot.eventbus.ThreadMode { *; }

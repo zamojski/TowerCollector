@@ -15,7 +15,8 @@
         android:background="@color/background_needs_attention"
         android:clickable="true"
         android:onClick="displayPowerSaveModeHelpOnClick"
-        android:visibility="gone">
+        android:visibility="gone"
+        android:focusable="true">
 
         <TextView
             android:id="@+id/main_power_save_mode_value_textview"
