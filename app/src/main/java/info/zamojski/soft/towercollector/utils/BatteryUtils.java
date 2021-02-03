@@ -19,9 +19,6 @@ public class BatteryUtils {
     }
 
     public static boolean isPowerSaveModeEnabled(Context context) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            return false;
-        }
         PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         if (pm != null && pm.isPowerSaveMode()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
