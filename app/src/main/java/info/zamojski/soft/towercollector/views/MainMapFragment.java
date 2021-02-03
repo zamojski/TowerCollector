@@ -379,7 +379,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(PrintMainWindowEvent event) {
-        reloadMarkers(false);
+        reloadMarkers(true);
     }
 
     @Override
