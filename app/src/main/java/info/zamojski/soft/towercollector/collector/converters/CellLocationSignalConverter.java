@@ -11,6 +11,7 @@ import info.zamojski.soft.towercollector.model.Cell;
 import info.zamojski.soft.towercollector.utils.UnitConverter;
 import timber.log.Timber;
 
+import android.os.Build;
 import android.telephony.NeighboringCellInfo;
 import android.telephony.SignalStrength;
 
@@ -48,6 +49,7 @@ public class CellLocationSignalConverter {
             try {
                 Method dbmMethod = getLteDbmMethod();
                 int dbm = (Integer) dbmMethod.invoke(signal);// rsrp
+                dbm = fixLteRsrpOnSamsung(dbm);
                 updateLte(cell, dbm);
             } catch (Exception ex) {
                 Timber.w(ex, "update(): Cannot read LTE signal strength from RSRP: %s", signal);
@@ -132,5 +134,16 @@ public class CellLocationSignalConverter {
             wcdmaEcioMethod = SignalStrength.class.getMethod("getWcdmaEcio", new Class[0]);
         }
         return wcdmaEcioMethod;
+    }
+
+    private int fixLteRsrpOnSamsung(int rsrp) {
+        // Hack for Samsung phones which report positive dBm with too large value
+        if (rsrp >= -1 && "samsung".equalsIgnoreCase(Build.MANUFACTURER)) {
+            rsrp /= -10;
+            if (rsrp < -140 || rsrp > -40) {
+                rsrp = Cell.UNKNOWN_SIGNAL;
+            }
+        }
+        return rsrp;
     }
 }

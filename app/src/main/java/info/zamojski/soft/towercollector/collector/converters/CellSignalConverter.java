@@ -65,9 +65,9 @@ public class CellSignalConverter {
             int asu = signal.getAsuLevel();
             if (asu == NeighboringCellInfo.UNKNOWN_RSSI)
                 asu = Cell.UNKNOWN_SIGNAL;
-            int dbm = signal.getDbm();
+            int dbm = fixLteRsrpOnSamsung(signal.getDbm());
             int ta = signal.getTimingAdvance();
-            int rsrp = isApi26 ? signal.getRsrp() : Cell.UNKNOWN_SIGNAL;
+            int rsrp = isApi26 ? fixLteRsrpOnSamsung(signal.getRsrp()) : Cell.UNKNOWN_SIGNAL;
             int rsrq = isApi26 ? signal.getRsrq() : Cell.UNKNOWN_SIGNAL;
             int rssi = isApi29 ? signal.getRssi() : Cell.UNKNOWN_SIGNAL;
             int rssnr = isApi26 ? signal.getRssnr() : Cell.UNKNOWN_SIGNAL;
@@ -117,5 +117,16 @@ public class CellSignalConverter {
         } else {
             throw new UnsupportedOperationException("Cell signal type not supported `" + cellInfo.getClass().getName() + "`");
         }
+    }
+
+    private int fixLteRsrpOnSamsung(int rsrp) {
+        // Hack for Samsung phones which report positive dBm with too large value
+        if (rsrp >= -1 && "samsung".equalsIgnoreCase(Build.MANUFACTURER)) {
+            rsrp /= -10;
+            if (rsrp < -140 || rsrp > -40) {
+                rsrp = Cell.UNKNOWN_SIGNAL;
+            }
+        }
+        return rsrp;
     }
 }
