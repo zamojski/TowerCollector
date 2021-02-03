@@ -8,7 +8,9 @@ import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Process;
+
 import androidx.annotation.NonNull;
+
 import android.util.Log;
 
 import java.io.File;
@@ -28,12 +30,15 @@ public class FileLoggingTree extends Timber.DebugTree {
 
     private static final String[] LEVELS = new String[]{"disabled", "undefined", "V", "D", "I", "W", "E"};
     private static final int DISABLED = 0;
+    private static final int FILE_EXISTENCE_CHECK_INTERVAL = 25;
 
     private final static SimpleDateFormat shortDateFormat = new SimpleDateFormat("MM-dd-HH:mm:ss.SSS", Locale.getDefault());
 
+    private File logFile;
     private OutputStreamWriter osw;
     private boolean firstRun = true;
     private int priority = DISABLED;
+    private int logCallsWithinInterval = 0;
 
     public final static FileLoggingTree INSTANCE = new FileLoggingTree();
 
@@ -66,10 +71,17 @@ public class FileLoggingTree extends Timber.DebugTree {
             return;
         }
         try {
+            if (logCallsWithinInterval++ >= FILE_EXISTENCE_CHECK_INTERVAL) {
+                logCallsWithinInterval = 0;
+                if (!logFile.exists()) {
+                    reinitialize();
+                }
+            }
             osw.write(String.format(Locale.ENGLISH, "%s %s/%s(% 5d): %s\r\n", shortDateFormat.format(new Date()), LEVELS[priority], tag, Process.myPid(), message));
             osw.flush();
         } catch (Exception ex) {
-            Log.e(TAG, "Failed to write log file!", ex);
+            Log.e(TAG, "Failed to write log file", ex);
+            reinitialize();
         }
     }
 
@@ -85,11 +97,23 @@ public class FileLoggingTree extends Timber.DebugTree {
             if (!logDir.exists()) {
                 logDir.mkdirs();
             }
-            File logFile = new File(logDir, FileUtils.getCurrentDateFileName("log"));
+            logFile = new File(logDir, FileUtils.getCurrentDateFileName("log"));
             FileOutputStream fis = new FileOutputStream(logFile);
             osw = new OutputStreamWriter(fis);
         } catch (Exception ex) {
-            Log.e(TAG, "Failed to open log file!", ex);
+            Log.e(TAG, "Failed to open log file", ex);
         }
+    }
+
+    @SuppressLint("LogNotTimber")
+    private void reinitialize() {
+        try {
+            Log.i(TAG, "Log file deleted, reinitializing");
+            osw.close();
+        } catch (Exception ex) {
+            Log.e(TAG, "Failed to close log file", ex);
+        }
+        firstRun = true;
+        initialize();
     }
 }
