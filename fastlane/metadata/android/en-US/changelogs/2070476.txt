@@ -1,0 +1,5 @@
+- Fix RSRP value too high on Samsung phones.
+- Fix map not refreshed after upload.
+- Fix log file not recreated after deletion until app gets killed.
+- Fix Ukrainian translation.
+- Small improvements.

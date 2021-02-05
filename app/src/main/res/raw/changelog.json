@@ -1,6 +1,17 @@
 {
   "Entries": [
     {
+      "VersionCode": 2070476,
+      "Title": "Changes in version 2.7.4",
+      "Messages": [
+        "Fix RSRP value too high on Samsung phones.",
+        "Fix map not refreshed after upload.",
+        "Fix log file not recreated after deletion until app gets killed.",
+        "Fix Ukrainian translation.",
+        "Small improvements."
+      ]
+    },
+    {
       "VersionCode": 2070374,
       "Title": "Changes in version 2.7.3",
       "Messages": [
@@ -33,17 +44,6 @@
         "Add support for new OpenCellID access token (formerly API key) format.",
         "Add Turkish translation. Thanks to Gökdeniz Küçükali :)",
         "Update translations."
-      ]
-    },
-    {
-      "VersionCode": 2060170,
-      "Title": "Changes in version 2.6.1",
-      "Messages": [
-        "Fix crash when loading preferences.",
-        "Fix last export action not remembered.",
-        "Fix 'No apps can perform this action' when sharing exported file.",
-        "Add French translation. Thanks to Poussinou, m.dutendas, mondstern and others :)",
-        "Add information about background location permission to start at boot option."
       ]
     }
   ]
