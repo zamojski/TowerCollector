@@ -4,9 +4,11 @@
 
 package info.zamojski.soft.towercollector;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -19,6 +21,7 @@ import org.jetbrains.annotations.NotNull;
 
 import info.zamojski.soft.towercollector.preferences.HeaderPreferenceFragment;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
+import info.zamojski.soft.towercollector.utils.StorageUtils;
 
 public class PreferencesActivity extends AppCompatActivity implements PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
@@ -50,6 +53,15 @@ public class PreferencesActivity extends AppCompatActivity implements Preference
                     }
                 });
         setupActionBar();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == StorageUtils.OPEN_DOCUMENT_ACTIVITY_RESULT) {
+            StorageUtils.persistStorageUri(this, resultCode, data);
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     @Override

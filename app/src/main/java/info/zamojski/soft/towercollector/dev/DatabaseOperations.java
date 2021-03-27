@@ -4,64 +4,122 @@
 
 package info.zamojski.soft.towercollector.dev;
 
-import java.io.File;
-
 import android.content.Context;
-import android.os.Environment;
+import android.net.Uri;
 import android.widget.Toast;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
-import info.zamojski.soft.towercollector.utils.FileUtils;
-import info.zamojski.soft.towercollector.utils.StorageUtils;
+import info.zamojski.soft.towercollector.io.filesystem.FileReader;
+import info.zamojski.soft.towercollector.io.filesystem.FileWriter;
+import info.zamojski.soft.towercollector.io.filesystem.ReadResult;
+import info.zamojski.soft.towercollector.io.filesystem.WriteResult;
 import timber.log.Timber;
 
 public class DatabaseOperations {
 
-    private static final String OPERATION_IMPORT = "import";
-    private static final String OPERATION_EXPORT = "export";
-
     public static void importDatabase(Context context) {
-        File srcFile = getDatabaseImportPath();
+        String srcFileName = getDatabaseImportFileName();
         File dstFile = getDatabasePath(context);
-        copyDatabase(context, srcFile, dstFile, OPERATION_IMPORT);
+        try {
+            Uri storageUri = MyApplication.getPreferencesProvider().getStorageUri();
+            if (storageUri != null) {
+                FileReader<Void> fileReader = new FileReader<Void>() {
+                    @Override
+                    protected Void readFileInternal(InputStream inputStream) throws Exception {
+                        try (BufferedOutputStream fileOutputStream = new BufferedOutputStream(new FileOutputStream(dstFile))) {
+                            byte[] buffer = new byte[4 * 1024];
+                            int bytesRead;
+                            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                                fileOutputStream.write(buffer, 0, bytesRead);
+                            }
+                            fileOutputStream.flush();
+                        }
+                        return null;
+                    }
+                };
+                ReadResult<Void> result = fileReader.readFile(MyApplication.getApplication(), storageUri, srcFileName);
+                switch (result.getResultType()) {
+                    case Success:
+                        Timber.d("importDatabase(): Database imported");
+                        break;
+                    case StorageNotFound:
+                        Toast.makeText(context, R.string.storage_storage_not_found, Toast.LENGTH_LONG).show();
+                        break;
+                    case FileNotFound:
+                        Toast.makeText(context, R.string.storage_file_not_found, Toast.LENGTH_LONG).show();
+                        break;
+                    case FileNotReadable:
+                        Toast.makeText(context, R.string.storage_file_not_readable, Toast.LENGTH_LONG).show();
+                        break;
+                    case Failed:
+                    default:
+                        Toast.makeText(context, context.getString(R.string.storage_read_failed, result.getErrorMessage()), Toast.LENGTH_LONG).show();
+                        break;
+                }
+            } else {
+                Timber.w("importDatabase(): Storage access denied");
+                Toast.makeText(context, R.string.storage_access_denied, Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception ex) {
+            Timber.e(ex, "importDatabase(): Failed to import database");
+            Toast.makeText(context, R.string.database_import_export_failed_message, Toast.LENGTH_LONG).show();
+        }
     }
 
     public static void exportDatabase(Context context) {
         File srcFile = getDatabasePath(context);
-        File dstFile = getDatabaseExportPath();
-        copyDatabase(context, srcFile, dstFile, OPERATION_EXPORT);
-    }
-
-    public static void exportDatabaseUnique(Context context) {
-        File srcFile = getDatabasePath(context);
-        File dstFile = getDatabaseExportUniquePath();
-        copyDatabase(context, srcFile, dstFile, OPERATION_EXPORT);
-    }
-
-    private static void copyDatabase(Context context, File srcFile, File dstFile, String operation) {
+        String dstFileName = getDatabaseExportFileName();
         try {
-            if (StorageUtils.isExternalMemoryWritable()) {
-                File externalStorage = Environment.getExternalStorageDirectory();
-                if (externalStorage.canWrite()) {
-                    FileUtils.checkAccess(dstFile);
-                    FileUtils.copyFile(srcFile, dstFile);
-                    deleteDatabaseTransactionFiles(context);
-                    Timber.d("copyDatabase(): Database " + operation + "ed");
-                    int operationMessage = operation.equals(OPERATION_IMPORT) ? R.string.database_import_message : R.string.database_export_message;
-                    MeasurementsDatabase.invalidateInstance();
-                    Toast.makeText(context, operationMessage, Toast.LENGTH_LONG).show();
-                } else {
-                    Timber.d("copyDatabase(): External storage is read only");
-                    Toast.makeText(context, R.string.export_toast_storage_read_only, Toast.LENGTH_LONG).show();
+            Uri storageUri = MyApplication.getPreferencesProvider().getStorageUri();
+            if (storageUri != null) {
+                FileWriter fileWriter = new FileWriter() {
+                    @Override
+                    protected void writeFileInternal(OutputStream outputStream) throws Exception {
+                        try (InputStream fileInputStream = new FileInputStream(srcFile)) {
+                            BufferedOutputStream fileOutputStream = new BufferedOutputStream(outputStream);
+                            byte[] buffer = new byte[4 * 1024];
+                            int bytesRead;
+                            while ((bytesRead = fileInputStream.read(buffer)) != -1) {
+                                fileOutputStream.write(buffer, 0, bytesRead);
+                            }
+                            fileOutputStream.flush();
+                        }
+                    }
+                };
+                WriteResult result = fileWriter.writeFile(MyApplication.getApplication(), storageUri, dstFileName);
+                switch (result.getResultType()) {
+                    case Success:
+                        deleteDatabaseTransactionFiles(context);
+                        MeasurementsDatabase.invalidateInstance();
+                        Timber.d("exportDatabase(): Database exported");
+                        Toast.makeText(context, R.string.database_export_message, Toast.LENGTH_LONG).show();
+                        break;
+                    case StorageNotFound:
+                        Toast.makeText(context, R.string.storage_storage_not_found, Toast.LENGTH_LONG).show();
+                        break;
+                    case FileNotWritable:
+                        Toast.makeText(context, R.string.storage_file_not_writable, Toast.LENGTH_LONG).show();
+                        break;
+                    case Failed:
+                    default:
+                        Toast.makeText(context, context.getString(R.string.storage_write_failed, result.getErrorMessage()), Toast.LENGTH_LONG).show();
+                        break;
                 }
             } else {
-                Timber.d("copyDatabase(): External storage is not available");
-                Toast.makeText(context, R.string.export_toast_no_storage, Toast.LENGTH_LONG).show();
+                Timber.w("exportDatabase(): Storage access denied");
+                Toast.makeText(context, R.string.storage_access_denied, Toast.LENGTH_LONG).show();
             }
         } catch (Exception ex) {
-            Timber.e(ex, "copyDatabase(): Cannot " + operation + " database");
+            Timber.e(ex, "exportDatabase(): Failed to export database from \"%s\" to \"%s\"", srcFile, (dstFileName != null ? dstFileName : "null"));
             Toast.makeText(context, R.string.database_import_export_failed_message, Toast.LENGTH_LONG).show();
         }
     }
@@ -101,18 +159,11 @@ public class DatabaseOperations {
         return context.getDatabasePath(MeasurementsDatabase.DATABASE_FILE_NAME + suffix);
     }
 
-    private static File getDatabaseImportPath() {
-        return new File(FileUtils.getExternalStorageAppDir(),
-                MeasurementsDatabase.DATABASE_FILE_NAME);
+    private static String getDatabaseImportFileName() {
+        return MeasurementsDatabase.DATABASE_FILE_NAME;
     }
 
-    private static File getDatabaseExportPath() {
-        return new File(FileUtils.getExternalStorageAppDir(),
-                MeasurementsDatabase.DATABASE_FILE_NAME);
-    }
-
-    private static File getDatabaseExportUniquePath() {
-        return new File(FileUtils.getExternalStorageAppDir(),
-                System.currentTimeMillis() + "_" + MeasurementsDatabase.DATABASE_FILE_NAME);
+    private static String getDatabaseExportFileName() {
+        return MeasurementsDatabase.DATABASE_FILE_NAME;
     }
 }

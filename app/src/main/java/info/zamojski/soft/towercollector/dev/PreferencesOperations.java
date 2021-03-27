@@ -4,24 +4,25 @@
 
 package info.zamojski.soft.towercollector.dev;
 
+import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
-import info.zamojski.soft.towercollector.utils.FileUtils;
-import info.zamojski.soft.towercollector.utils.StorageUtils;
+import info.zamojski.soft.towercollector.io.filesystem.FileReader;
+import info.zamojski.soft.towercollector.io.filesystem.FileWriter;
+import info.zamojski.soft.towercollector.io.filesystem.ReadResult;
+import info.zamojski.soft.towercollector.io.filesystem.WriteResult;
 import timber.log.Timber;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.os.Environment;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
@@ -31,8 +32,8 @@ public class PreferencesOperations {
 
     public static void importPreferences(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        File srcFile = getPreferencesExportPath();
-        boolean loaded = loadSharedPreferencesFromFile(context, prefs, srcFile);
+        String fileName = getPreferencesExportFileName();
+        boolean loaded = loadSharedPreferencesFromFile(context, prefs, fileName);
         if (loaded) {
             Toast.makeText(context, R.string.preferences_import_message, Toast.LENGTH_LONG).show();
         } else {
@@ -42,8 +43,8 @@ public class PreferencesOperations {
 
     public static void exportPreferences(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        File dstFile = getPreferencesExportPath();
-        boolean saved = saveSharedPreferencesToFile(context, prefs, dstFile);
+        String fileName = getPreferencesExportFileName();
+        boolean saved = saveSharedPreferencesToFile(context, prefs, fileName);
         if (saved) {
             Toast.makeText(context, R.string.preferences_export_message, Toast.LENGTH_LONG).show();
         } else {
@@ -64,94 +65,106 @@ public class PreferencesOperations {
         }
     }
 
-    private static boolean saveSharedPreferencesToFile(Context context, SharedPreferences prefs, File dst) {
-        boolean res = false;
-        ObjectOutputStream output = null;
+    private static boolean saveSharedPreferencesToFile(Context context, SharedPreferences prefs, String fileName) {
         try {
-            if (StorageUtils.isExternalMemoryWritable()) {
-                File externalStorage = Environment.getExternalStorageDirectory();
-                if (externalStorage.canWrite()) {
-                    FileUtils.checkAccess(dst);
-                    output = new ObjectOutputStream(new FileOutputStream(dst));
-                    XmlUtils.writeMapXml(prefs.getAll(), output);
-                    res = true;
-                    Timber.d("saveSharedPreferencesToFile(): Preferences exported");
-                } else {
-                    Timber.d("saveSharedPreferencesToFile(): External storage is read only");
-                    Toast.makeText(context, R.string.export_toast_storage_read_only, Toast.LENGTH_LONG).show();
+            Uri storageUri = MyApplication.getPreferencesProvider().getStorageUri();
+            if (storageUri != null) {
+                FileWriter fileWriter = new FileWriter() {
+                    @Override
+                    protected void writeFileInternal(OutputStream outputStream) throws Exception {
+                        ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+                        XmlUtils.writeMapXml(prefs.getAll(), objectOutputStream);
+                    }
+                };
+                WriteResult result = fileWriter.writeFile(MyApplication.getApplication(), storageUri, fileName);
+                switch (result.getResultType()) {
+                    case Success:
+                        Timber.d("saveSharedPreferencesToFile(): Preferences exported");
+                        return true;
+                    case StorageNotFound:
+                        Toast.makeText(context, R.string.storage_storage_not_found, Toast.LENGTH_LONG).show();
+                        return false;
+                    case FileNotWritable:
+                        Toast.makeText(context, R.string.storage_file_not_writable, Toast.LENGTH_LONG).show();
+                        return false;
+                    case Failed:
+                    default:
+                        Toast.makeText(context, context.getString(R.string.storage_write_failed, result.getErrorMessage()), Toast.LENGTH_LONG).show();
+                        return false;
                 }
             } else {
-                Timber.d("saveSharedPreferencesToFile(): External storage is not available");
-                Toast.makeText(context, R.string.export_toast_no_storage, Toast.LENGTH_LONG).show();
+                Timber.w("saveSharedPreferencesToFile(): Storage access denied");
+                Toast.makeText(context, R.string.storage_access_denied, Toast.LENGTH_LONG).show();
+                return false;
             }
         } catch (Exception ex) {
             Timber.e(ex, "saveSharedPreferencesToFile(): Cannot export preferences");
-        } finally {
-            try {
-                if (output != null) {
-                    output.flush();
-                    output.close();
-                }
-            } catch (IOException ex) {
-                Timber.e(ex, "saveSharedPreferencesToFile(): Failed to close file stream");
-            }
+            return false;
         }
-        return res;
     }
 
-    private static boolean loadSharedPreferencesFromFile(Context context, SharedPreferences prefs, File src) {
-        boolean res = false;
-        ObjectInputStream input = null;
+    private static boolean loadSharedPreferencesFromFile(Context context, SharedPreferences prefs, String fileName) {
         try {
-            if (StorageUtils.isExternalMemoryWritable() || StorageUtils.isExternalMemoryPresent()) {
-                File externalStorage = Environment.getExternalStorageDirectory();
-                if (externalStorage.canRead()) {
-                    input = new ObjectInputStream(new FileInputStream(src));
-                    Editor prefEdit = prefs.edit();
-                    prefEdit.clear();
-                    @SuppressWarnings("unchecked")
-                    Map<String, ?> entries = XmlUtils.readMapXml(input);
-                    for (Entry<String, ?> entry : entries.entrySet()) {
-                        Object v = entry.getValue();
-                        String key = entry.getKey();
-
-                        if (v instanceof Boolean)
-                            prefEdit.putBoolean(key, (Boolean) v);
-                        else if (v instanceof Float)
-                            prefEdit.putFloat(key, (Float) v);
-                        else if (v instanceof Integer)
-                            prefEdit.putInt(key, (Integer) v);
-                        else if (v instanceof Long)
-                            prefEdit.putLong(key, (Long) v);
-                        else if (v instanceof String)
-                            prefEdit.putString(key, ((String) v));
+            Uri storageUri = MyApplication.getPreferencesProvider().getStorageUri();
+            if (storageUri != null) {
+                FileReader<Map<String, ?>> fileReader = new FileReader<Map<String, ?>>() {
+                    @Override
+                    protected Map<String, ?> readFileInternal(InputStream inputStream) throws Exception {
+                        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+                        @SuppressWarnings("unchecked")
+                        Map<String, ?> entries = XmlUtils.readMapXml(objectInputStream);
+                        return entries;
                     }
-                    prefEdit.apply();
-                    Timber.d("loadSharedPreferencesFromFile(): Preferences imported");
-                    res = true;
-                } else {
-                    Timber.d("saveSharedPreferencesToFile(): External storage is not readable");
-                    Toast.makeText(context, R.string.export_toast_no_storage, Toast.LENGTH_LONG).show();
+                };
+                ReadResult<Map<String, ?>> result = fileReader.readFile(MyApplication.getApplication(), storageUri, fileName);
+                switch (result.getResultType()) {
+                    case Success:
+                        Editor prefEdit = prefs.edit();
+                        prefEdit.clear();
+                        for (Entry<String, ?> entry : result.getValue().entrySet()) {
+                            Object v = entry.getValue();
+                            String key = entry.getKey();
+
+                            if (v instanceof Boolean)
+                                prefEdit.putBoolean(key, (Boolean) v);
+                            else if (v instanceof Float)
+                                prefEdit.putFloat(key, (Float) v);
+                            else if (v instanceof Integer)
+                                prefEdit.putInt(key, (Integer) v);
+                            else if (v instanceof Long)
+                                prefEdit.putLong(key, (Long) v);
+                            else if (v instanceof String)
+                                prefEdit.putString(key, ((String) v));
+                        }
+                        prefEdit.apply();
+                        Timber.d("loadSharedPreferencesFromFile(): Preferences imported");
+                        return true;
+                    case StorageNotFound:
+                        Toast.makeText(context, R.string.storage_storage_not_found, Toast.LENGTH_LONG).show();
+                        return false;
+                    case FileNotFound:
+                        Toast.makeText(context, R.string.storage_file_not_found, Toast.LENGTH_LONG).show();
+                        return false;
+                    case FileNotReadable:
+                        Toast.makeText(context, R.string.storage_file_not_readable, Toast.LENGTH_LONG).show();
+                        return false;
+                    case Failed:
+                    default:
+                        Toast.makeText(context, context.getString(R.string.storage_read_failed, result.getErrorMessage()), Toast.LENGTH_LONG).show();
+                        return false;
                 }
             } else {
-                Timber.d("saveSharedPreferencesToFile(): External storage is not available");
-                Toast.makeText(context, R.string.export_toast_no_storage, Toast.LENGTH_LONG).show();
+                Timber.w("loadSharedPreferencesFromFile(): Storage access denied");
+                Toast.makeText(context, R.string.storage_access_denied, Toast.LENGTH_LONG).show();
+                return false;
             }
         } catch (Exception ex) {
             Timber.e(ex, "loadSharedPreferencesFromFile(): Cannot import preferences");
-        } finally {
-            try {
-                if (input != null) {
-                    input.close();
-                }
-            } catch (IOException ex) {
-                Timber.e(ex, "loadSharedPreferencesFromFile(): Failed to close file stream");
-            }
+            return false;
         }
-        return res;
     }
 
-    private static File getPreferencesExportPath() {
-        return new File(FileUtils.getExternalStorageAppDir(), "preferences.xml");
+    private static String getPreferencesExportFileName() {
+        return "preferences.xml";
     }
 }

@@ -10,6 +10,7 @@ import info.zamojski.soft.towercollector.enums.FileType;
 import info.zamojski.soft.towercollector.utils.Cache;
 
 import android.content.Context;
+import android.net.Uri;
 import android.text.TextUtils;
 
 import java.util.Arrays;
@@ -249,7 +250,7 @@ public class PreferencesProvider {
 
     public boolean isMainMapEnabled() {
         Boolean value = booleanCache.get(R.string.preferences_main_map_enable_key);
-        if(value == null) {
+        if (value == null) {
             value = booleanPreferenceProvider.getPreference(R.string.preferences_main_map_enable_key, R.bool.preferences_main_map_enable_default_value);
             booleanCache.set(R.string.preferences_main_map_enable_key, value);
         }
@@ -277,5 +278,16 @@ public class PreferencesProvider {
     public boolean isMainMapForceLightThemeEnabled() {
         boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_main_map_force_light_theme_key, R.bool.preferences_main_map_force_light_theme_default_value);
         return value;
+    }
+
+    public Uri getStorageUri() {
+        String value = stringPreferenceProvider.getPreference(R.string.preferences_storage_uri_key, R.string.preferences_storage_uri_default_value);
+        if (TextUtils.isEmpty(value))
+            return null;
+        return Uri.parse(value);
+    }
+
+    public void setStorageUri(Uri uri) {
+        stringPreferenceProvider.setPreference(R.string.preferences_storage_uri_key, uri.toString());
     }
 }

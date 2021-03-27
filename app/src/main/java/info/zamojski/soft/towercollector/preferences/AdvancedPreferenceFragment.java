@@ -9,6 +9,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.dev.DatabaseOperations;
 import info.zamojski.soft.towercollector.dev.PreferencesOperations;
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
+import info.zamojski.soft.towercollector.utils.StorageUtils;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
 import permissions.dispatcher.OnPermissionDenied;
@@ -73,7 +75,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
                 R.string.unsafe_operation_warning_message, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        AdvancedPreferenceFragmentPermissionsDispatcher.importDatabaseWithPermissionCheck(AdvancedPreferenceFragment.this);
+                        importDatabase();
                     }
                 });
     }
@@ -82,7 +84,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         setupOnClick(R.string.preferences_export_database_key, new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                AdvancedPreferenceFragmentPermissionsDispatcher.exportDatabaseWithPermissionCheck(AdvancedPreferenceFragment.this);
+                exportDatabase();
                 return true;
             }
         });
@@ -93,7 +95,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
                 R.string.unsafe_operation_warning_message, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        AdvancedPreferenceFragmentPermissionsDispatcher.importPreferencesWithPermissionCheck(AdvancedPreferenceFragment.this);
+                        importPreferences();
                     }
                 });
     }
@@ -102,7 +104,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         setupOnClick(R.string.preferences_export_preferences_key, new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                AdvancedPreferenceFragmentPermissionsDispatcher.exportPreferencesWithPermissionCheck(AdvancedPreferenceFragment.this);
+                exportPreferences();
                 return true;
             }
         });
@@ -161,28 +163,44 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         MyApplication.getApplication().initLogger();
     }
 
-    @NeedsPermission({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
     void importDatabase() {
         Timber.d("importDatabase(): Importing database");
-        DatabaseOperations.importDatabase(MyApplication.getApplication());
+        Uri storageUri = MyApplication.getPreferencesProvider().getStorageUri();
+        if (StorageUtils.canReadStorageUri(storageUri)) {
+            DatabaseOperations.importDatabase(MyApplication.getApplication());
+        } else {
+            StorageUtils.requestStorageUri(getActivity());
+        }
     }
 
-    @NeedsPermission({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
     void exportDatabase() {
         Timber.d("exportDatabase(): Exporting database");
-        DatabaseOperations.exportDatabase(MyApplication.getApplication());
+        Uri storageUri = MyApplication.getPreferencesProvider().getStorageUri();
+        if (StorageUtils.canWriteStorageUri(storageUri)) {
+            DatabaseOperations.exportDatabase(MyApplication.getApplication());
+        } else {
+            StorageUtils.requestStorageUri(getActivity());
+        }
     }
 
-    @NeedsPermission({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
     void importPreferences() {
         Timber.d("importPreferences(): Importing preferences");
-        PreferencesOperations.importPreferences(MyApplication.getApplication());
+        Uri storageUri = MyApplication.getPreferencesProvider().getStorageUri();
+        if (StorageUtils.canReadStorageUri(storageUri)) {
+            PreferencesOperations.importPreferences(MyApplication.getApplication());
+        } else {
+            StorageUtils.requestStorageUri(getActivity());
+        }
     }
 
-    @NeedsPermission({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
     void exportPreferences() {
         Timber.d("exportPreferences(): Exporting preferences");
-        PreferencesOperations.exportPreferences(MyApplication.getApplication());
+        Uri storageUri = MyApplication.getPreferencesProvider().getStorageUri();
+        if (StorageUtils.canWriteStorageUri(storageUri)) {
+            PreferencesOperations.exportPreferences(MyApplication.getApplication());
+        } else {
+            StorageUtils.requestStorageUri(getActivity());
+        }
     }
 
     @OnShowRationale({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})

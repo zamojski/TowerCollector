@@ -161,6 +161,9 @@
 
     <string name="preferences_main_map_clear_cache_key" translatable="false">main_map_clear_cache</string>
 
+    <string name="preferences_storage_uri_key" translatable="false">storage_uri</string>
+    <string name="preferences_storage_uri_default_value" translatable="false"></string>
+
     <string name="preferences_help_link_key" translatable="false">help_link</string>
     <string name="preferences_about_link_key" translatable="false">about_link</string>
     <string name="preferences_introduction_link_key" translatable="false">introduction_link</string>

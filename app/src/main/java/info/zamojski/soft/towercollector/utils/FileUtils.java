@@ -32,6 +32,8 @@ public class FileUtils {
         put("kmz", "application/vnd.google-earth.kmz");
         put("zip", "application/zip");
         put("gz", "application/gzip");
+        put("xml", "application/xml");
+        put("db", "application/x-sqlite3");
         put("*", "application/octet-stream");
     }};
 
@@ -81,6 +83,8 @@ public class FileUtils {
     }
 
     public static String getFileMimeType(Context context, String... paths) {
+        if (paths.length == 0)
+            throw new IllegalArgumentException("Provide at least one path.");
         if (paths.length == 1)
             return getFileMimeType(paths[0]);
         for (String path : paths) {

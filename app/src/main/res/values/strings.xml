@@ -150,6 +150,17 @@
     <string name="export_dialog_progress_message">Saving to \"TowerCollector\" folder on external memory with current date and time as file name.</string>
     <string name="export_dialog_finished_title">Export successful</string>
     <string name="export_dialog_finished_message">The files have been saved to <xliff:g id="dir_name">%s</xliff:g>.\n\n<i>Please consider contribution to one of the projects by uploading your measurements!</i></string>
+    <string name="storage_request_access_title">Select storage location</string>
+    <string name="storage_request_access_message">Select location to store exported files using document picker.</string>
+    <string name="storage_directory_read_only">Storage is read only.</string>
+    <string name="storage_storage_not_found">Storage not found.</string>
+    <string name="storage_file_not_found">File not found.</string>
+    <string name="storage_file_read_only">File is read only.</string>
+    <string name="storage_file_not_readable">Cannot read from file.</string>
+    <string name="storage_file_not_writable">Cannot write to file.</string>
+    <string name="storage_access_denied">Storage access denied.</string>
+    <string name="storage_read_failed">Failed to read from storage: %s.</string>
+    <string name="storage_write_failed">Failed to write to storage: %s.</string>
     <string name="clear_dialog_title">Clear all data</string>
     <string name="clear_dialog_message">Are you sure you want to permanently delete all locally stored data?</string>
     <string name="delete_dialog_title">Delete exported</string>
