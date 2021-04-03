@@ -43,7 +43,7 @@
     <string name="preferences_api_key_key" translatable="false">api_key</string>
     <string name="preferences_api_key_default_value" translatable="false" />
     <string name="preferences_api_key_link_key" translatable="false">api_key_link</string>
-    <string name="preferences_opencellid_org_sign_up_link" translatable="false">https://www.opencellid.org/#register</string>
+    <string name="preferences_opencellid_org_sign_up_link" translatable="false">https://www.opencellid.org/register.php</string>
     <string name="preferences_about_api_key_key" translatable="false">about_api_key</string>
     <string name="preferences_about_opencellid_project_key" translatable="false">about_opencellid</string>
 
