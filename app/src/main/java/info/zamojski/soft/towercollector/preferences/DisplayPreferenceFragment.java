@@ -80,7 +80,7 @@ public class DisplayPreferenceFragment extends DialogEnabledPreferenceFragment i
     private void openNotificationSettingsActivity() {
         Intent settingsIntent;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            settingsIntent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS + 1)
+            settingsIntent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     .putExtra(Settings.EXTRA_APP_PACKAGE, MyApplication.getApplication().getPackageName());
         } else {
