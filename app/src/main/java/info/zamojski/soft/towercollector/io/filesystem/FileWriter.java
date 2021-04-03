@@ -33,7 +33,7 @@ public abstract class FileWriter {
 
         DocumentFile file = storageDirectory.findFile(fileName);
         if (file == null || !file.exists()) {
-            file = storageDirectory.createFile(FileUtils.getFileMimeType(MyApplication.getApplication(), fileName), fileName);
+            file = storageDirectory.createFile(FileUtils.getFileMimeType(fileName), fileName);
             Timber.i("writeFile(): File created %s", file == null ? fileName : file.getUri().toString());
         } else {
             Timber.i("writeFile(): Overwriting file %s", file.getUri().toString());

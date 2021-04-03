@@ -4,8 +4,6 @@
 
 package info.zamojski.soft.towercollector.preferences;
 
-import android.Manifest;
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
@@ -25,17 +23,9 @@ import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.dev.DatabaseOperations;
 import info.zamojski.soft.towercollector.dev.PreferencesOperations;
-import info.zamojski.soft.towercollector.utils.PermissionUtils;
 import info.zamojski.soft.towercollector.utils.StorageUtils;
-import permissions.dispatcher.NeedsPermission;
-import permissions.dispatcher.OnNeverAskAgain;
-import permissions.dispatcher.OnPermissionDenied;
-import permissions.dispatcher.OnShowRationale;
-import permissions.dispatcher.PermissionRequest;
-import permissions.dispatcher.RuntimePermissions;
 import timber.log.Timber;
 
-@RuntimePermissions
 public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
 
     private ListPreference collectorApiVersionPreference;
@@ -47,20 +37,6 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
 
         collectorApiVersionPreference = findPreference(getString(R.string.preferences_collector_api_version_key));
         fileLoggingLevelPreference = findPreference(getString(R.string.preferences_file_logging_level_key));
-
-        fileLoggingLevelPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-            @Override
-            public boolean onPreferenceChange(Preference preference, Object newValue) {
-                if (newValue.equals(getString(R.string.preferences_file_logging_level_entries_value_disabled))) {
-                    Timber.d("onFileLoggingLevelChangeListener(): Disabling logger");
-                } else {
-                    Timber.d("onFileLoggingLevelChangeListener(): Requesting permission");
-                }
-                // NOTE: delegate the permission handling to generated method
-                AdvancedPreferenceFragmentPermissionsDispatcher.requestLoggerChangeWithPermissionCheck(AdvancedPreferenceFragment.this);
-                return true;
-            }
-        });
 
         setupApiVersionDialog();
         setupErrorReportingAvailability();
@@ -140,7 +116,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
             CharSequence fileLoggingLevelLabel = fileLoggingLevelPreference.getEntry();
             Timber.d("onSharedPreferenceChanged(): User set file logging level = \"%s\"", fileLoggingLevelValue);
             fileLoggingLevelPreference.setSummary(formatValueString(R.string.preferences_file_logging_level_summary, fileLoggingLevelLabel));
-            // NOTE: configuration reapplied in PreferenceChangeListener
+            requestLoggerChange();
         }
     }
 
@@ -157,10 +133,14 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         }
     }
 
-    @NeedsPermission({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
     void requestLoggerChange() {
         Timber.d("requestLoggerChange(): Reinitializing logger");
-        MyApplication.getApplication().initLogger();
+        Uri storageUri = MyApplication.getPreferencesProvider().getStorageUri();
+        if (StorageUtils.canWriteStorageUri(storageUri)) {
+            MyApplication.getApplication().initLogger();
+        } else {
+            StorageUtils.requestStorageUri(getActivity());
+        }
     }
 
     void importDatabase() {
@@ -201,56 +181,5 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         } else {
             StorageUtils.requestStorageUri(getActivity());
         }
-    }
-
-    @OnShowRationale({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
-    void onLoggerChangeShowRationale(final PermissionRequest request) {
-        new AlertDialog.Builder(getActivity())
-                .setTitle(R.string.permission_required)
-                .setMessage(R.string.permission_storage_rationale_message)
-                .setCancelable(true)
-                .setPositiveButton(R.string.dialog_proceed, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        request.proceed();
-                    }
-                })
-                .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        request.cancel();
-                    }
-                })
-                .show();
-    }
-
-    @OnPermissionDenied({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
-    void onLoggerChangePermissionDenied() {
-        fileLoggingLevelPreference.setValue(getString(R.string.preferences_file_logging_level_entries_value_disabled));
-        Toast.makeText(getActivity(), R.string.permission_storage_denied_message, Toast.LENGTH_LONG).show();
-    }
-
-    @OnNeverAskAgain({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
-    void onLoggerChangeNeverAskAgain() {
-        fileLoggingLevelPreference.setValue(getString(R.string.preferences_file_logging_level_entries_value_disabled));
-        new AlertDialog.Builder(getActivity())
-                .setTitle(R.string.permission_denied)
-                .setMessage(R.string.permission_storage_never_ask_again_message)
-                .setCancelable(true)
-                .setPositiveButton(R.string.dialog_settings, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        PermissionUtils.openAppSettings(getActivity());
-                    }
-                })
-                .setNegativeButton(R.string.dialog_cancel, null)
-                .show();
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        // NOTE: delegate the permission handling to generated method
-        AdvancedPreferenceFragmentPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
     }
 }

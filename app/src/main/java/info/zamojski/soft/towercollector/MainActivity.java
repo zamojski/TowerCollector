@@ -824,7 +824,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             Uri fileUri = FileProvider.getUriForFile(this, getString(R.string.file_provider_authority), file);
             shareIntent.addStream(fileUri);
         }
-        String calculatedMimeType = FileUtils.getFileMimeType(getApplication(), exportedFilePaths);
+        String calculatedMimeType = FileUtils.getFileMimeType(exportedFilePaths);
         shareIntent.setType(calculatedMimeType);
         Intent intent = shareIntent.getIntent();
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);

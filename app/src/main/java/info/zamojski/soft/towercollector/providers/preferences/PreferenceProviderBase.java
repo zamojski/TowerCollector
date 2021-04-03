@@ -23,14 +23,20 @@ abstract class PreferenceProviderBase<T> {
     }
 
     T getPreference(@StringRes int valueKey, int defaultValueKey) {
+        return getPreference(valueKey, defaultValueKey, true);
+    }
+
+    T getPreference(@StringRes int valueKey, int defaultValueKey, boolean loggerEnabled) {
         T value;
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         T defaultValue = getPreferenceDefaultValue(defaultValueKey);
         try {
             value = getPreferenceValue(prefs, valueKey, defaultValue);
-            Timber.d("getPreference(): Preference `%s` loaded with value `%s`", context.getString(valueKey), value);
+            if (loggerEnabled)
+                Timber.d("getPreference(): Preference `%s` loaded with value `%s`", context.getString(valueKey), value);
         } catch (ClassCastException ex) {
-            Timber.e(ex, "getPreference(): Error while loading preference `%s`, restoring default", context.getString(valueKey));
+            if (loggerEnabled)
+                Timber.e(ex, "getPreference(): Error while loading preference `%s`, restoring default", context.getString(valueKey));
             MyApplication.handleSilentException(ex);
             value = defaultValue;
             SharedPreferences.Editor editor = prefs.edit();

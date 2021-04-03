@@ -8,10 +8,7 @@
     <string name="permission_export_rationale_message">Storage permission must be granted to export measurements to a file</string>
     <string name="permission_export_denied_message">Cancelling measurements export due to denied permission</string>
     <string name="permission_export_never_ask_again_message">Measurements export is unavailable due to denied storage permission</string>
-    <string name="permission_storage_rationale_message">Storage permission must be granted to use the function</string>
-    <string name="permission_storage_denied_message">Cancelling the operation due to denied permission</string>
-    <string name="permission_storage_never_ask_again_message">The function is unavailable due to denied storage permission</string>
-    <string name="permission_logging_denied_temporarily_message">Temporarily disabling file logging due to denied storage permission</string>
+    <string name="permission_logging_denied_temporarily_message">Temporarily disabling file logging due to denied storage access.</string>
     <string name="permission_collector_rationale_message">Location and phone permissions must be granted to collect measurements.</string>
     <string name="permission_collector_rationale_api29_message">If you want to use this function be sure to select \'allow all the time\' option for access device\'s location permission!</string>
     <string name="permission_collector_rationale_api30_message">If you want to use this function be sure to select \'allow in settings\' and then select \'allow all the time\' option for access device\'s location permission!</string>

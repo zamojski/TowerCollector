@@ -32,12 +32,11 @@ import info.zamojski.soft.towercollector.providers.AppThemeProvider;
 import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvider;
 import info.zamojski.soft.towercollector.utils.ExceptionUtils;
 import info.zamojski.soft.towercollector.utils.HashUtils;
-import info.zamojski.soft.towercollector.utils.PermissionUtils;
 
-import android.Manifest;
 import android.app.Application;
 import android.app.NotificationManager;
 import android.database.sqlite.SQLiteDatabaseCorruptException;
+import android.net.Uri;
 import android.os.Build;
 
 import androidx.appcompat.app.AppCompatDelegate;
@@ -46,6 +45,7 @@ import android.os.DeadObjectException;
 import android.util.Log;
 import android.widget.Toast;
 
+import info.zamojski.soft.towercollector.utils.StorageUtils;
 import timber.log.Timber;
 
 public class MyApplication extends Application {
@@ -149,7 +149,8 @@ public class MyApplication extends Application {
                 Timber.uproot(FileLoggingTree.INSTANCE);
             }
         } else {
-            if (PermissionUtils.hasPermissions(this, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            Uri storageUri = MyApplication.getPreferencesProvider().getStorageUri();
+            if (StorageUtils.canWriteStorageUri(storageUri)) {
                 int fileLogLevel = Log.ERROR;
                 if (fileLoggingLevelString.equals(getString(R.string.preferences_file_logging_level_entries_value_debug))) {
                     fileLogLevel = Log.DEBUG;

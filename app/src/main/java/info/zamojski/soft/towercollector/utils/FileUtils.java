@@ -82,7 +82,7 @@ public class FileUtils {
         return extension;
     }
 
-    public static String getFileMimeType(Context context, String... paths) {
+    public static String getFileMimeType(String... paths) {
         if (paths.length == 0)
             throw new IllegalArgumentException("Provide at least one path.");
         if (paths.length == 1)

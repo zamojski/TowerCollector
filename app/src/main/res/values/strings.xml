@@ -141,9 +141,7 @@
     <string name="error_reporting_notification_title">Unexpected error occurred</string>
     <string name="error_reporting_notification_text">The app crashed. Please send error report to help fixing the problem.</string>
     <string name="error_reporting_notification_comment_prompt">Add your comment</string>
-    <string name="export_toast_storage_read_only">External storage is read only.</string>
     <string name="export_toast_no_file_types_selected">No file types selected for export.</string>
-    <string name="export_toast_no_storage">External storage not found.</string>
     <string name="export_toast_no_handler_for_file_type">No application to handle the file.</string>
     <string name="export_dialog_format_selection_title">Select file formats</string>
     <string name="export_dialog_progress_title">Exporting</string>

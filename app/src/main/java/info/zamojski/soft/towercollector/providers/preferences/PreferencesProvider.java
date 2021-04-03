@@ -281,7 +281,11 @@ public class PreferencesProvider {
     }
 
     public Uri getStorageUri() {
-        String value = stringPreferenceProvider.getPreference(R.string.preferences_storage_uri_key, R.string.preferences_storage_uri_default_value);
+        return getStorageUriWithLogger(true);
+    }
+
+    public Uri getStorageUriWithLogger(boolean loggerEnabled) {
+        String value = stringPreferenceProvider.getPreference(R.string.preferences_storage_uri_key, R.string.preferences_storage_uri_default_value, loggerEnabled);
         if (TextUtils.isEmpty(value))
             return null;
         return Uri.parse(value);
