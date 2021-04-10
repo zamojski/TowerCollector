@@ -8,20 +8,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.net.Uri;
 
-import info.zamojski.soft.towercollector.files.devices.IWritableTextDevice;
 import info.zamojski.soft.towercollector.files.generators.wrappers.interfaces.IProgressListener;
 import info.zamojski.soft.towercollector.files.generators.wrappers.interfaces.IProgressiveTextGeneratorWrapper;
 
 public abstract class TextGeneratorWrapperBase implements IProgressiveTextGeneratorWrapper {
 
-    private List<IProgressListener> progressListeners = new ArrayList<IProgressListener>();
+    private final List<IProgressListener> progressListeners = new ArrayList<IProgressListener>();
 
     protected boolean cancel = false;
 
     protected Context context;
-
-    protected IWritableTextDevice device;
 
     public void addProgressListener(IProgressListener listener) {
         progressListeners.add(listener);
@@ -37,13 +35,12 @@ public abstract class TextGeneratorWrapperBase implements IProgressiveTextGenera
         }
     }
 
-    public IWritableTextDevice getDevice() {
-        return device;
-    }
-
     @Override
     public void cancel() {
         cancel = true;
     }
 
+    public abstract Uri getFullPath();
+
+    public abstract String getFileType();
 }

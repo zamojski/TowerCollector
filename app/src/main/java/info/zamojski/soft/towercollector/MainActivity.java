@@ -62,7 +62,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -310,8 +309,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             startUploaderServiceWithCheck();
             return true;
         } else if (itemId == R.id.main_menu_export) {
-            // NOTE: delegate the permission handling to generated method
-            MainActivityPermissionsDispatcher.startExportAsyncTaskWithPermissionCheck(this);
+            startExportAsyncTask();
             return true;
         } else if (itemId == R.id.main_menu_clear) {
             startCleanup();
@@ -341,6 +339,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             // don't check resultCode because it's always 0 (user needs to manually navigate back)
             boolean airplaneModeEnabled = NetworkUtils.isInAirplaneMode(MyApplication.getApplication());
             EventBus.getDefault().postSticky(new AirplaneModeChangedEvent(airplaneModeEnabled));
+        } else if (requestCode == StorageUtils.OPEN_DOCUMENT_ACTIVITY_RESULT) {
+            StorageUtils.persistStorageUri(this, resultCode, data);
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
@@ -804,8 +804,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private void exportOpenAction() {
         Intent openIntent = new Intent(Intent.ACTION_VIEW);
-        File file = new File(exportedFilePaths[0]);
-        Uri fileUri = FileProvider.getUriForFile(this, getString(R.string.file_provider_authority), file);
+        Uri fileUri = Uri.parse(exportedFilePaths[0]);
         String calculatedMimeType = getApplication().getContentResolver().getType(fileUri);
         openIntent.setDataAndType(fileUri, calculatedMimeType);
         openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -820,8 +819,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         MyApplication.getAnalytics().sendExportShareAction();
         ShareCompat.IntentBuilder shareIntent = ShareCompat.IntentBuilder.from(this);
         for (String filePath : exportedFilePaths) {
-            File file = new File(filePath);
-            Uri fileUri = FileProvider.getUriForFile(this, getString(R.string.file_provider_authority), file);
+            Uri fileUri = Uri.parse(filePath);
             shareIntent.addStream(fileUri);
         }
         String calculatedMimeType = FileUtils.getFileMimeType(exportedFilePaths);
@@ -993,7 +991,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             Toast.makeText(getApplication(), R.string.uploader_already_running, Toast.LENGTH_LONG).show();
     }
 
-    @NeedsPermission({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
     void startExportAsyncTask() {
         String runningTaskClassName = MyApplication.getBackgroundTaskName();
         if (runningTaskClassName != null) {
@@ -1001,7 +998,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             backgroundTaskHelper.showTaskRunningMessage(runningTaskClassName);
             return;
         }
-        if (StorageUtils.isExternalMemoryWritable()) {
+        Uri storageUri = MyApplication.getPreferencesProvider().getStorageUri();
+        if (StorageUtils.canWriteStorageUri(storageUri)) {
             final PreferencesProvider preferencesProvider = MyApplication.getPreferencesProvider();
             List<FileType> recentFileTypes = preferencesProvider.getEnabledExportFileTypes();
             LayoutInflater inflater = LayoutInflater.from(this);
@@ -1053,26 +1051,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 // empty
             });
             alertDialog.show();
-        } else if (StorageUtils.isExternalMemoryPresent()) {
-            Toast.makeText(getApplication(), R.string.export_toast_storage_read_only, Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(getApplication(), R.string.export_toast_no_storage, Toast.LENGTH_LONG).show();
+            StorageUtils.requestStorageUri(this);
         }
-    }
-
-    @OnShowRationale({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
-    void onStartExportShowRationale(PermissionRequest request) {
-        onShowRationale(request, R.string.permission_export_rationale_message);
-    }
-
-    @OnPermissionDenied({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
-    void onStartExportPermissionDenied() {
-        onPermissionDenied(R.string.permission_export_denied_message);
-    }
-
-    @OnNeverAskAgain({Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
-    void onStartExportNeverAskAgain() {
-        onNeverAskAgain(R.string.permission_export_never_ask_again_message);
     }
 
     private void startCleanup() {

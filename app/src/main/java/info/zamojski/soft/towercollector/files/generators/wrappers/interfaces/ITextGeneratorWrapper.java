@@ -4,8 +4,9 @@
 
 package info.zamojski.soft.towercollector.files.generators.wrappers.interfaces;
 
+import android.net.Uri;
+
 import info.zamojski.soft.towercollector.files.FileGeneratorResult;
-import info.zamojski.soft.towercollector.files.devices.IWritableTextDevice;
 
 public interface ITextGeneratorWrapper {
 
@@ -13,6 +14,8 @@ public interface ITextGeneratorWrapper {
 
     void cancel();
 
-    IWritableTextDevice getDevice();
+    Uri getFullPath();
+
+    String getFileType();
 
 }

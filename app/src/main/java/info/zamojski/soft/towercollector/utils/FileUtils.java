@@ -6,21 +6,13 @@ package info.zamojski.soft.towercollector.utils;
 
 import android.content.Context;
 import android.os.Environment;
-import android.text.TextUtils;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-
-import info.zamojski.soft.towercollector.files.DeviceOperationException;
-import timber.log.Timber;
 
 public class FileUtils {
 
@@ -36,14 +28,6 @@ public class FileUtils {
         put("db", "application/x-sqlite3");
         put("*", "application/octet-stream");
     }};
-
-    public static String combinePath(File path1, String path2) {
-        return new File(path1, path2).getPath();
-    }
-
-    public static File getExternalStorageAppDir() {
-        return new File(Environment.getExternalStorageDirectory(), "TowerCollector");
-    }
 
     public static File getCacheDir(Context context) {
         String externalState = Environment.getExternalStorageState();
@@ -99,53 +83,5 @@ public class FileUtils {
         String extension = getFileExtension(path).toLowerCase();
         String mimeType = ExtensionToMimeTypeMap.get(extension);
         return mimeType != null ? mimeType : ExtensionToMimeTypeMap.get("*");
-    }
-
-    public static String changeExtension(String path, String newExtension) {
-        String extension = getFileExtension(path);
-        return TextUtils.substring(path, 0, path.length() - extension.length()) + newExtension;
-    }
-
-    public static boolean copyFile(File src, File dst) {
-        FileChannel srcChannel = null, dstChannel = null;
-        try {
-            srcChannel = new FileInputStream(src).getChannel();
-            dstChannel = new FileOutputStream(dst).getChannel();
-            dstChannel.transferFrom(srcChannel, 0, srcChannel.size());
-            return true;
-        } catch (IOException ex) {
-            Timber.e(ex, "copyFile(): Failed to copy file \"%s\" to \"%s\"", src, dst);
-            return false;
-        } finally {
-            if (srcChannel != null) {
-                try {
-                    srcChannel.close();
-                } catch (IOException ex) {
-                    Timber.e(ex, "copyFile(): Failed to close source channel");
-                }
-            }
-            if (dstChannel != null) {
-                try {
-                    dstChannel.close();
-                } catch (IOException ex) {
-                    Timber.e(ex, "copyFile(): Failed to close destination channel");
-                }
-            }
-        }
-    }
-
-    public static void checkAccess(File file) throws DeviceOperationException {
-        File dir = file.getParentFile();
-        // check dirs
-        if (!dir.exists() && !dir.mkdirs()) {
-            throw new DeviceOperationException("Cannot create directory: " + dir.getAbsolutePath(), DeviceOperationException.Reason.LocationNotExists);
-        }
-        if (!dir.canWrite() && !dir.setWritable(true)) {
-            throw new DeviceOperationException("Cannot make directory writable: " + dir.getAbsolutePath(), DeviceOperationException.Reason.LocationNotWritable);
-        }
-        // check file
-        if (file.exists() && !file.canWrite() && !file.setWritable(true)) {
-            throw new DeviceOperationException("Cannot make existing file writable: " + file.getAbsolutePath(), DeviceOperationException.Reason.DeviceNotWritable);
-        }
     }
 }

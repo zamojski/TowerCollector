@@ -7,12 +7,14 @@ package info.zamojski.soft.towercollector.tasks;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
 
-import java.io.File;
+import androidx.documentfile.provider.DocumentFile;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,13 +25,11 @@ import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.FileType;
 import info.zamojski.soft.towercollector.files.FileGeneratorResult;
-import info.zamojski.soft.towercollector.files.devices.FileTextDevice;
-import info.zamojski.soft.towercollector.files.devices.GZipFileTextDevice;
-import info.zamojski.soft.towercollector.files.devices.IPersistedTextDevice;
-import info.zamojski.soft.towercollector.files.devices.IWritableTextDevice;
-import info.zamojski.soft.towercollector.files.devices.ZipFileTextDevice;
 import info.zamojski.soft.towercollector.files.formatters.csv.CsvExportFormatter;
 import info.zamojski.soft.towercollector.files.formatters.csv.CsvUploadFormatter;
+import info.zamojski.soft.towercollector.files.formatters.gpx.GpxExportFormatter;
+import info.zamojski.soft.towercollector.files.formatters.json.JsonMozillaExportFormatter;
+import info.zamojski.soft.towercollector.files.formatters.kml.KmlExportFormatter;
 import info.zamojski.soft.towercollector.files.generators.wrappers.CompositeTextGeneratorWrapper;
 import info.zamojski.soft.towercollector.files.generators.wrappers.CsvTextGeneratorWrapper;
 import info.zamojski.soft.towercollector.files.generators.wrappers.GpxTextGeneratorWrapper;
@@ -37,6 +37,7 @@ import info.zamojski.soft.towercollector.files.generators.wrappers.JsonTextGener
 import info.zamojski.soft.towercollector.files.generators.wrappers.KmlTextGeneratorWrapper;
 import info.zamojski.soft.towercollector.files.generators.wrappers.interfaces.IProgressListener;
 import info.zamojski.soft.towercollector.files.generators.wrappers.interfaces.IProgressiveTextGeneratorWrapper;
+import info.zamojski.soft.towercollector.io.filesystem.CompressionFormat;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
 import info.zamojski.soft.towercollector.utils.FileUtils;
 import info.zamojski.soft.towercollector.utils.StringUtils;
@@ -47,10 +48,10 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
     public static final String DIR_PATH = "EXPORTED_DIR_PATH";
     public static final String FILE_PATHS = "EXPORTED_FILE_PATHS";
 
-    private Context context;
+    private final Context context;
 
-    private Handler handler;
-    private File appDir;
+    private final Handler handler;
+    private final Uri storageUri;
     private CompositeTextGeneratorWrapper generator;
 
     private ProgressDialog dialog;
@@ -59,7 +60,7 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
         this.context = context;
         this.handler = handler;
 
-        appDir = FileUtils.getExternalStorageAppDir();
+        storageUri = MyApplication.getPreferencesProvider().getStorageUri();
         CreateGenerators(fileTypes);
     }
 
@@ -95,7 +96,7 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
             // show loading indicator
             dialog = new ProgressDialog(context);
             dialog.setTitle(R.string.export_dialog_progress_title);
-            dialog.setMessage(context.getString(R.string.export_dialog_progress_message));
+            dialog.setMessage(context.getString(R.string.export_dialog_progress_message, storageUri.getPath()));
             dialog.setCancelable(false);
             dialog.setCanceledOnTouchOutside(false);
             dialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.dialog_cancel), (dialog, which) -> {
@@ -127,7 +128,7 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
                 // show dialog
                 Message msg = new Message();
                 msg.what = InternalMessageHandler.EXPORT_FINISHED_UI_REFRESH;
-                msg.getData().putString(DIR_PATH, appDir.getPath());
+                msg.getData().putString(DIR_PATH, storageUri.getPath());
                 msg.getData().putStringArray(FILE_PATHS, getGeneratedFiles());
                 handler.sendMessage(msg);
                 break;
@@ -186,36 +187,38 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
         fileTypes.remove(FileType.Compress); // not a separate format
         List<IProgressiveTextGeneratorWrapper> subGenerators = new ArrayList<>();
         Date currentDateTime = new Date();
+        CompressionFormat compressionFormat = getCompressionFormat(compressFiles);
+        String compressedExtension = getCompressedExtension(compressionFormat);
         for (FileType fileType : fileTypes) {
             switch (fileType) {
                 case Csv: {
-                    String path = FileUtils.combinePath(appDir, FileUtils.getCurrentDateFileName(currentDateTime, "", "csv"));
-                    subGenerators.add(new CsvTextGeneratorWrapper(context, getTextDevice(path, compressFiles), new CsvExportFormatter()));
+                    String fileName = FileUtils.getCurrentDateFileName(currentDateTime, "", "csv");
+                    subGenerators.add(new CsvTextGeneratorWrapper(context, storageUri, fileName, compressedExtension, compressionFormat, new CsvExportFormatter()));
                     break;
                 }
                 case CsvOcid: {
-                    String path = FileUtils.combinePath(appDir, FileUtils.getCurrentDateFileName(currentDateTime, "-ocid", "csv"));
-                    subGenerators.add(new CsvTextGeneratorWrapper(context, getTextDevice(path, compressFiles), new CsvUploadFormatter()));
+                    String fileName = FileUtils.getCurrentDateFileName(currentDateTime, "-ocid", "csv");
+                    subGenerators.add(new CsvTextGeneratorWrapper(context, storageUri, fileName, compressedExtension, compressionFormat, new CsvUploadFormatter()));
                 }
                 break;
                 case Gpx: {
-                    String path = FileUtils.combinePath(appDir, FileUtils.getCurrentDateFileName(currentDateTime, "", "gpx"));
-                    subGenerators.add(new GpxTextGeneratorWrapper(context, getTextDevice(path, compressFiles)));
+                    String fileName = FileUtils.getCurrentDateFileName(currentDateTime, "", "gpx");
+                    subGenerators.add(new GpxTextGeneratorWrapper(context, storageUri, fileName, compressedExtension, compressionFormat, new GpxExportFormatter()));
                 }
                 break;
                 case JsonMls: {
-                    String path = FileUtils.combinePath(appDir, FileUtils.getCurrentDateFileName(currentDateTime, "-mls", "json"));
-                    subGenerators.add(new JsonTextGeneratorWrapper(context, getTextDevice(path, compressFiles)));
+                    String fileName = FileUtils.getCurrentDateFileName(currentDateTime, "-mls", "json");
+                    subGenerators.add(new JsonTextGeneratorWrapper(context, storageUri, fileName, compressedExtension, compressionFormat, new JsonMozillaExportFormatter()));
                 }
                 break;
                 case Kml: {
-                    String path = FileUtils.combinePath(appDir, FileUtils.getCurrentDateFileName(currentDateTime, "", "kml"));
-                    subGenerators.add(new KmlTextGeneratorWrapper(context, getTextDevice(path, compressFiles)));
+                    String fileName = FileUtils.getCurrentDateFileName(currentDateTime, "", "kml");
+                    subGenerators.add(new KmlTextGeneratorWrapper(context, storageUri, fileName, compressedExtension, compressionFormat, new KmlExportFormatter()));
                 }
                 break;
                 case Kmz: {
-                    String path = FileUtils.combinePath(appDir, FileUtils.getCurrentDateFileName(currentDateTime, "", "kml"));
-                    subGenerators.add(new KmlTextGeneratorWrapper(context, getKmzTextDevice(path)));
+                    String fileName = FileUtils.getCurrentDateFileName(currentDateTime, "", "kmz");
+                    subGenerators.add(new KmlTextGeneratorWrapper(context, storageUri, fileName, null, CompressionFormat.Zip, new KmlExportFormatter()));
                 }
                 break;
                 default:
@@ -225,30 +228,35 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
         generator = new CompositeTextGeneratorWrapper(subGenerators);
     }
 
-    private IWritableTextDevice getTextDevice(String path, boolean compressFiles) {
+    private CompressionFormat getCompressionFormat(boolean compressFiles) {
         if (compressFiles) {
             String compressionFormat = MyApplication.getPreferencesProvider().getExportCompressionFormat();
-            if (compressionFormat.equals(getStringById(R.string.preferences_export_compression_format_entries_value_zip))) {
-                return new ZipFileTextDevice(path);
-            } else if (compressionFormat.equals(getStringById(R.string.preferences_export_compression_format_entries_value_gzip))) {
-                return new GZipFileTextDevice(path);
+            if (getStringById(R.string.preferences_export_compression_format_entries_value_zip).equals(compressionFormat)) {
+                return CompressionFormat.Zip;
+            } else if (getStringById(R.string.preferences_export_compression_format_entries_value_gzip).equals(compressionFormat)) {
+                return CompressionFormat.GZip;
             }
         }
-        return new FileTextDevice(path);
+        return CompressionFormat.None;
     }
 
-    private IWritableTextDevice getKmzTextDevice(String path) {
-        return new ZipFileTextDevice(path, "kmz");
+    private String getCompressedExtension(CompressionFormat compressionFormat) {
+        switch (compressionFormat) {
+            case Zip:
+                return "zip";
+            case GZip:
+                return "gz";
+            default:
+                return null; // no compression
+        }
     }
 
     private void deleteFile() {
         for (IProgressiveTextGeneratorWrapper subGenerator : generator.getSubGenerators()) {
-            IWritableTextDevice device = subGenerator.getDevice();
             // delete file if exists
-            device.close();
-            if (device instanceof IPersistedTextDevice) {
-                IPersistedTextDevice persistedDevice = (IPersistedTextDevice) device;
-                File file = new File(persistedDevice.getPath());
+            Uri fullPath = subGenerator.getFullPath();
+            if (fullPath != null) {
+                DocumentFile file = DocumentFile.fromSingleUri(context, fullPath);
                 if (file.exists()) {
                     Timber.d("deleteFile(): Deleting exported file");
                     if (file.delete()) {
@@ -264,13 +272,9 @@ public class ExportFileAsyncTask extends AsyncTask<Void, Integer, FileGeneratorR
     private String[] getGeneratedFiles() {
         ArrayList<String> result = new ArrayList<>();
         for (IProgressiveTextGeneratorWrapper subGenerator : generator.getSubGenerators()) {
-            IWritableTextDevice device = subGenerator.getDevice();
-            if (device instanceof IPersistedTextDevice) {
-                IPersistedTextDevice persistedDevice = (IPersistedTextDevice) device;
-                File file = new File(persistedDevice.getPath());
-                if (file.exists()) {
-                    result.add(file.getAbsolutePath());
-                }
+            Uri fullPath = subGenerator.getFullPath();
+            if (fullPath != null && DocumentFile.fromSingleUri(context, fullPath).exists()) {
+                result.add(fullPath.toString());
             }
         }
         return result.toArray(new String[0]);

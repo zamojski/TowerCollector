@@ -145,9 +145,9 @@
     <string name="export_toast_no_handler_for_file_type">No application to handle the file.</string>
     <string name="export_dialog_format_selection_title">Select file formats</string>
     <string name="export_dialog_progress_title">Exporting</string>
-    <string name="export_dialog_progress_message">Saving to \"TowerCollector\" folder on external memory with current date and time as file name.</string>
+    <string name="export_dialog_progress_message">Saving to \"<xliff:g id="dir_name">%s</xliff:g>\" with current date and time as file name.</string>
     <string name="export_dialog_finished_title">Export successful</string>
-    <string name="export_dialog_finished_message">The files have been saved to <xliff:g id="dir_name">%s</xliff:g>.\n\n<i>Please consider contribution to one of the projects by uploading your measurements!</i></string>
+    <string name="export_dialog_finished_message">The files have been saved to \"<xliff:g id="dir_name">%s</xliff:g>\".\n\n<i>Please consider contribution to one of the projects by uploading your measurements!</i></string>
     <string name="storage_request_access_title">Select storage location</string>
     <string name="storage_request_access_message">Select location to store exported files using document picker.</string>
     <string name="storage_directory_read_only">Storage is read only.</string>

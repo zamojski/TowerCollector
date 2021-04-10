@@ -12,8 +12,6 @@
 
     <string name="map_copyright" translatable="false">© <a href="https://www.openstreetmap.org/copyright/">OpenStreetMap</a> contributors</string>
 
-    <string name="file_provider_authority" translatable="false">info.zamojski.soft.towercollector.fileprovider</string>
-
     <string name="preferences_current_value_summary_format" translatable="false"><![CDATA[<br/><b>[%s]</b>]]></string>
 
     <string name="preferences_show_introduction_key" translatable="false">show_introduction</string>

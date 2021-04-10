@@ -7,12 +7,11 @@ package info.zamojski.soft.towercollector;
 import info.zamojski.soft.towercollector.analytics.IntentSource;
 import info.zamojski.soft.towercollector.enums.UploadResult;
 import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
-import info.zamojski.soft.towercollector.files.devices.MemoryTextDevice;
 import info.zamojski.soft.towercollector.files.formatters.csv.CsvUploadFormatter;
+import info.zamojski.soft.towercollector.files.formatters.csv.ICsvFormatter;
+import info.zamojski.soft.towercollector.files.formatters.json.IJsonFormatter;
 import info.zamojski.soft.towercollector.files.formatters.json.JsonMozillaUploadFormatter;
-import info.zamojski.soft.towercollector.files.generators.CsvTextGenerator;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
-import info.zamojski.soft.towercollector.files.generators.JsonTextGenerator;
 import info.zamojski.soft.towercollector.io.network.IUploadClient;
 import info.zamojski.soft.towercollector.io.network.MozillaUploadClient;
 import info.zamojski.soft.towercollector.io.network.OcidUploadClient;
@@ -26,7 +25,6 @@ import info.zamojski.soft.towercollector.utils.ApkUtils;
 import info.zamojski.soft.towercollector.utils.NetworkUtils;
 import timber.log.Timber;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -466,23 +464,22 @@ public class UploaderService extends Service {
         private UploadResult uploadToOcid(List<Measurement> measurements) {
             if (measurements.isEmpty())
                 return UploadResult.NoData;
-            // create generator instance
-            MemoryTextDevice device = new MemoryTextDevice();
-            CsvTextGenerator<CsvUploadFormatter, MemoryTextDevice> generator = new CsvTextGenerator<>(new CsvUploadFormatter(), device);
+            StringBuilder memoryFile = new StringBuilder();
+            ICsvFormatter formatter = new CsvUploadFormatter();
             // write measurements
             try {
-                device.open();
-                generator.writeHeader();
-                generator.writeEntryChunk(measurements);
-            } catch (IOException ex) {
-                // this should never happen for MemoryTextDevice
+                memoryFile.append(formatter.formatHeader());
+                for (Measurement m : measurements) {
+                    memoryFile.append(formatter.formatEntry(m));
+                }
+            } catch (Exception ex) {
+                // this should never happen for in-memory writes
                 Timber.tag(INNER_TAG).e(ex, "uploadToOcid(): Error while generating file");
                 MyApplication.handleSilentException(ex);
                 return UploadResult.Failure;
             }
             // get content
-            String csvContent = device.read();
-            device.close();
+            String csvContent = memoryFile.toString();
             // send request
             try {
                 IUploadClient client = new OcidUploadClient(ocidUploadUrl, appId, ocidApiKey);
@@ -514,22 +511,19 @@ public class UploaderService extends Service {
         private UploadResult uploadToMls(List<Measurement> measurements) {
             if (measurements.isEmpty())
                 return UploadResult.NoData;
-            // create generator instance
-            MemoryTextDevice device = new MemoryTextDevice();
-            JsonTextGenerator<JsonMozillaUploadFormatter, MemoryTextDevice> generator = new JsonTextGenerator<>(new JsonMozillaUploadFormatter(), device);
+            StringBuilder memoryFile = new StringBuilder();
+            IJsonFormatter formatter = new JsonMozillaUploadFormatter();
             // write measurements
             try {
-                device.open();
-                generator.writeEntries(measurements);
-            } catch (IOException ex) {
-                // this should never happen for MemoryTextDevice
+                memoryFile.append(formatter.formatList(measurements));
+            } catch (Exception ex) {
+                // this should never happen for in-memory writes
                 Timber.tag(INNER_TAG).e(ex, "uploadToMls(): Error while generating file");
                 MyApplication.handleSilentException(ex);
                 return UploadResult.Failure;
             }
             // get content
-            String jsonContent = device.read();
-            device.close();
+            String jsonContent = memoryFile.toString();
             // send request
             try {
                 IUploadClient client = new MozillaUploadClient(mlsUploadUrl, mlsApiKey);

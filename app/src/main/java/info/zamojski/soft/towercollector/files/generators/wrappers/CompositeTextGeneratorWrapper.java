@@ -4,6 +4,8 @@
 
 package info.zamojski.soft.towercollector.files.generators.wrappers;
 
+import android.net.Uri;
+
 import java.util.List;
 
 import info.zamojski.soft.towercollector.MyApplication;
@@ -11,12 +13,9 @@ import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.GeneratorResult;
 import info.zamojski.soft.towercollector.files.DeviceOperationException.Reason;
 import info.zamojski.soft.towercollector.files.FileGeneratorResult;
-import info.zamojski.soft.towercollector.files.devices.IPersistedTextDevice;
-import info.zamojski.soft.towercollector.files.devices.IWritableTextDevice;
 import info.zamojski.soft.towercollector.files.generators.wrappers.interfaces.IProgressListener;
 import info.zamojski.soft.towercollector.files.generators.wrappers.interfaces.IProgressiveTextGeneratorWrapper;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
-import info.zamojski.soft.towercollector.utils.FileUtils;
 import timber.log.Timber;
 
 public class CompositeTextGeneratorWrapper extends TextGeneratorWrapperBase {
@@ -42,12 +41,7 @@ public class CompositeTextGeneratorWrapper extends TextGeneratorWrapperBase {
                     // send stats
                     long endTime = System.currentTimeMillis();
                     AnalyticsStatistics stats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getAnalyticsStatistics();
-                    IWritableTextDevice device = generator.getDevice();
-                    String fileType = "memory";
-                    if (device instanceof IPersistedTextDevice) {
-                        IPersistedTextDevice persistedDevice = (IPersistedTextDevice) device;
-                        fileType = persistedDevice.getFileType();
-                    }
+                    String fileType = generator.getFileType();
                     long duration = (endTime - startTime);
                     MyApplication.getAnalytics().sendExportFinished(duration, fileType, stats);
                     if (lastResult.getResult() != GeneratorResult.Succeeded) {
@@ -74,6 +68,16 @@ public class CompositeTextGeneratorWrapper extends TextGeneratorWrapperBase {
         for (IProgressiveTextGeneratorWrapper generator : subGenerators) {
             generator.cancel();
         }
+    }
+
+    @Override
+    public Uri getFullPath() {
+        throw new UnsupportedOperationException("Composite wrapper is not persisted.");
+    }
+
+    @Override
+    public String getFileType() {
+        throw new UnsupportedOperationException("Composite wrapper is not persisted.");
     }
 
     public List<IProgressiveTextGeneratorWrapper> getSubGenerators() {
