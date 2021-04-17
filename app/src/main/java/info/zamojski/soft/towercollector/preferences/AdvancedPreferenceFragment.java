@@ -44,6 +44,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         setupDatabaseExport();
         setupPreferencesImport();
         setupPreferencesExport();
+        setupChangeStorageLocation();
     }
 
     private void setupDatabaseImport() {
@@ -81,6 +82,16 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 exportPreferences();
+                return true;
+            }
+        });
+    }
+
+    private void setupChangeStorageLocation() {
+        setupOnClick(R.string.preferences_change_storage_location_key, new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                StorageUtils.requestStorageUri(getActivity());
                 return true;
             }
         });
@@ -133,7 +144,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         }
     }
 
-    void requestLoggerChange() {
+    private void requestLoggerChange() {
         Timber.d("requestLoggerChange(): Reinitializing logger");
         Uri storageUri = MyApplication.getPreferencesProvider().getStorageUri();
         if (StorageUtils.canWriteStorageUri(storageUri)) {
@@ -143,7 +154,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         }
     }
 
-    void importDatabase() {
+    private void importDatabase() {
         Timber.d("importDatabase(): Importing database");
         Uri storageUri = MyApplication.getPreferencesProvider().getStorageUri();
         if (StorageUtils.canReadStorageUri(storageUri)) {
@@ -153,7 +164,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         }
     }
 
-    void exportDatabase() {
+    private void exportDatabase() {
         Timber.d("exportDatabase(): Exporting database");
         Uri storageUri = MyApplication.getPreferencesProvider().getStorageUri();
         if (StorageUtils.canWriteStorageUri(storageUri)) {
@@ -163,7 +174,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         }
     }
 
-    void importPreferences() {
+    private void importPreferences() {
         Timber.d("importPreferences(): Importing preferences");
         Uri storageUri = MyApplication.getPreferencesProvider().getStorageUri();
         if (StorageUtils.canReadStorageUri(storageUri)) {
@@ -173,7 +184,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         }
     }
 
-    void exportPreferences() {
+    private void exportPreferences() {
         Timber.d("exportPreferences(): Exporting preferences");
         Uri storageUri = MyApplication.getPreferencesProvider().getStorageUri();
         if (StorageUtils.canWriteStorageUri(storageUri)) {

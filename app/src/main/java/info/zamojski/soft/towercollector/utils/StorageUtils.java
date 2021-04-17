@@ -22,8 +22,6 @@ import java.io.File;
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 
-import static android.app.Activity.RESULT_OK;
-
 public class StorageUtils {
 
     public static final int OPEN_DOCUMENT_ACTIVITY_RESULT = 'D';
@@ -34,8 +32,9 @@ public class StorageUtils {
         alertDialog.setCancelable(true);
         alertDialog.setTitle(R.string.storage_request_access_title);
         String message = activity.getString(R.string.storage_request_access_message);
-        if (canMigrateLegacyStorage()) {
-            message += activity.getString(R.string.storage_request_access_migrate_message);
+        Uri storageUri = MyApplication.getPreferencesProvider().getStorageUri();
+        if ((storageUri != null && storageUri != Uri.EMPTY) || canMigrateLegacyStorage()) {
+            message += "\n\n" + activity.getString(R.string.storage_request_access_migrate_message);
         }
         alertDialog.setMessage(message);
         alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, activity.getString(R.string.dialog_proceed), (dialog, which) -> {
@@ -58,7 +57,7 @@ public class StorageUtils {
     }
 
     public static void persistStorageUri(Activity activity, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK) {
             Uri storageUri = data.getData();
             activity.grantUriPermission(activity.getPackageName(), storageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
             activity.getContentResolver().takePersistableUriPermission(storageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
