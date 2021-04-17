@@ -4,9 +4,13 @@
 
 package info.zamojski.soft.towercollector.views;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
@@ -57,6 +61,7 @@ import info.zamojski.soft.towercollector.model.MapCell;
 import info.zamojski.soft.towercollector.model.MapMeasurement;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.model.Tuple;
+import info.zamojski.soft.towercollector.utils.GpsUtils;
 import info.zamojski.soft.towercollector.utils.MapUtils;
 import info.zamojski.soft.towercollector.utils.NetworkTypeUtils;
 import info.zamojski.soft.towercollector.utils.ResourceUtils;
@@ -318,7 +323,12 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         if (lastMeasurement != null) {
             moveToLocation(lastMeasurement.getLatitude(), lastMeasurement.getLongitude());
         } else {
-            Timber.d("moveToLastMeasurement(): No measurements");
+            Timber.d("moveToLastMeasurement(): No measurements, moving to last known location");
+            if (GpsUtils.hasGpsPermissions(MyApplication.getApplication())) {
+                LocationManager locationManager = (LocationManager) MyApplication.getApplication().getSystemService(Context.LOCATION_SERVICE);
+                @SuppressLint("MissingPermission") Location lastKnownLocation = locationManager.getLastKnownLocation(locationManager.getBestProvider(new Criteria(), false));
+                moveToLocation(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
+            }
         }
     }
 

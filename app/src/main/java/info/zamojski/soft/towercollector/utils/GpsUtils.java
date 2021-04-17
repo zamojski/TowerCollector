@@ -32,7 +32,7 @@ public class GpsUtils {
         return false;
     }
 
-    private static boolean hasGpsPermissions(Context context) {
+    public static boolean hasGpsPermissions(Context context) {
         return PermissionUtils.hasPermission(context, Manifest.permission.ACCESS_FINE_LOCATION);
     }
 }
