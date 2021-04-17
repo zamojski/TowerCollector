@@ -4,15 +4,20 @@
 
 package info.zamojski.soft.towercollector.utils;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
 import android.widget.Toast;
 
 import androidx.documentfile.provider.DocumentFile;
+
+import java.io.File;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
@@ -28,7 +33,11 @@ public class StorageUtils {
         alertDialog.setCanceledOnTouchOutside(true);
         alertDialog.setCancelable(true);
         alertDialog.setTitle(R.string.storage_request_access_title);
-        alertDialog.setMessage(activity.getString(R.string.storage_request_access_message));
+        String message = activity.getString(R.string.storage_request_access_message);
+        if (canMigrateLegacyStorage()) {
+            message += activity.getString(R.string.storage_request_access_migrate_message);
+        }
+        alertDialog.setMessage(message);
         alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, activity.getString(R.string.dialog_proceed), (dialog, which) -> {
             Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
             intent.putExtra("android.content.extra.SHOW_ADVANCED", true);
@@ -50,10 +59,10 @@ public class StorageUtils {
 
     public static void persistStorageUri(Activity activity, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            Uri treeUri = data.getData();
-            activity.grantUriPermission(activity.getPackageName(), treeUri, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-            activity.getContentResolver().takePersistableUriPermission(treeUri, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-            MyApplication.getPreferencesProvider().setStorageUri(treeUri);
+            Uri storageUri = data.getData();
+            activity.grantUriPermission(activity.getPackageName(), storageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            activity.getContentResolver().takePersistableUriPermission(storageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            MyApplication.getPreferencesProvider().setStorageUri(storageUri);
         } else {
             Toast.makeText(activity, R.string.storage_access_denied, Toast.LENGTH_LONG).show();
         }
@@ -79,5 +88,21 @@ public class StorageUtils {
 
     public static boolean canWriteStorageUri(DocumentFile storageDirectory) {
         return storageDirectory != null && storageDirectory.canWrite();
+    }
+
+    private static boolean canMigrateLegacyStorage() {
+        // only if storage permission granted
+        boolean hasStoragePermission = PermissionUtils.hasPermissions(MyApplication.getApplication(), Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE);
+        if (hasStoragePermission) {
+            // only if storage available
+            boolean isLegacyStorageAvailable = Build.VERSION.SDK_INT < Build.VERSION_CODES.Q
+                    || Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && Environment.isExternalStorageLegacy();
+            if (isLegacyStorageAvailable) {
+                // only if the old folder exists and contains some files
+                File legacyFolder = new File(Environment.getExternalStorageDirectory(), "TowerCollector");
+                return (legacyFolder.exists() && legacyFolder.canRead() && legacyFolder.listFiles().length > 0);
+            }
+        }
+        return false;
     }
 }
