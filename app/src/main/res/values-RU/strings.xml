@@ -131,15 +131,25 @@
     <string name="error_reporting_notification_title">Произошла неизвестная ошибка</string>
     <string name="error_reporting_notification_text">Приложение вылетело. Пожалуйста отправьте отчёт, чтобы помочь исправить проблему.</string>
     <string name="error_reporting_notification_comment_prompt">Добавьте ваш комментарий</string>
-    <string name="export_toast_storage_read_only">Внешний накопитель доступен только для чтения.</string>
     <string name="export_toast_no_file_types_selected">Не выбраны файлы для экспорта.</string>
-    <string name="export_toast_no_storage">Внешний накопитель не обнаружен.</string>
     <string name="export_toast_no_handler_for_file_type">Нет приложения для обработки файла.</string>
     <string name="export_dialog_format_selection_title">Выберите форматы файлов</string>
     <string name="export_dialog_progress_title">Экспорт</string>
-    <string name="export_dialog_progress_message">Сохранение в папку \"TowerCollector\" на внешнюю SD-карту с текущей датой и временем в имени файла.</string>
+    <string name="export_dialog_progress_message">Сохранение в папку \"<xliff:g id="dir_name">%s</xliff:g>\" на внешнюю SD-карту с текущей датой и временем в имени файла.</string>
     <string name="export_dialog_finished_title">Экспорт успешен</string>
-    <string name="export_dialog_finished_message">Файлы были сохранены в dir_name <xliff:g id="dir_name">%s</xliff:g>.\n\n<i>Пожалуйста, внесите вклад в один из проектов, выгрузив ваши измерения!</i></string>
+    <string name="export_dialog_finished_message">Файлы были сохранены в \"<xliff:g id="dir_name">%s</xliff:g>\".\n\n<i>Пожалуйста, внесите вклад в один из проектов, выгрузив ваши измерения!</i></string>
+    <string name="storage_request_access_title">Выберите место хранения</string>
+    <string name="storage_request_access_message">Выберите место для хранения файлов с помощью средства выбора документов.</string>
+    <string name="storage_request_access_migrate_message">Существующие файлы из старого места НЕ будут перемещены в новое место!</string>
+    <string name="storage_directory_read_only">Хранилище доступно только для чтения.</string>
+    <string name="storage_storage_not_found">Хранилище не найдено.</string>
+    <string name="storage_file_not_found">Файл не найден.</string>
+    <string name="storage_file_read_only">Файл доступен только для чтения.</string>
+    <string name="storage_file_not_readable">Невозможно прочитать из файла.</string>
+    <string name="storage_file_not_writable">Невозможно записать в файл.</string>
+    <string name="storage_access_denied">Доступ к хранилищу запрещен.</string>
+    <string name="storage_read_failed">Не удалось прочитать из хранилища: <xliff:g id="error_message">%s</xliff:g>.</string>
+    <string name="storage_write_failed">Не удалось записать в хранилище: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="clear_dialog_title">Очистить все данные</string>
     <string name="clear_dialog_message">Вы уверены, что хотите удалить все сохраненные на устройстве данные безвозвратно?</string>
     <string name="delete_dialog_title">Удалить экспортированное</string>

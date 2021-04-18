@@ -5,13 +5,7 @@
 <resources>
     <string name="permission_required">Jogosultság szükséges</string>
     <string name="permission_denied">Jogosultság megtagadva</string>
-    <string name="permission_export_rationale_message">Tárolási jogosultságot kell adnod, hogy fájlba exportálhasd a méréseket</string>
-    <string name="permission_export_denied_message">Mérések exportálásának megszakítása a megtagadott jogosultság miatt</string>
-    <string name="permission_export_never_ask_again_message">A mérések exportálása nem érhető el a megtagadott tárolási jogosultság miatt</string>
-    <string name="permission_storage_rationale_message">Tárolási jogosultság kell adnod a funkció használatához</string>
-    <string name="permission_storage_denied_message">A művelet visszavonása a megtagadott jogosultság miatt</string>
-    <string name="permission_storage_never_ask_again_message">A funkció nem érhető el a megtagadott tárolási jogosultság miatt</string>
-    <string name="permission_logging_denied_temporarily_message">A fájlok naplózásának ideiglenes letiltása a megtagadott tárolási jogosultság miatt</string>
+    <string name="permission_logging_denied_temporarily_message">A fájlok naplózásának ideiglenes letiltása a megtagadott tárolási jogosultság miatt.</string>
     <string name="permission_collector_rationale_message">Meg kell adni a hely és a telefon jogosultságot a mérések begyűjtéséhez.</string>
     <string name="permission_collector_rationale_api29_message">Ha használni akarod ezt a funkciót, akkor válaszd a „mindig engedélyezze” lehetőséget a helyadatok engedély megadásakor!</string>
     <string name="permission_collector_rationale_api30_message">Ha használni akarja ezt a funkciót, akkor válassza az „engedélyezés a beállításokban”, majd az „engedélyezés mindig” lehetőséget az eszköz helye engedélynél. Különben egyes funkciók nem fognak megfelelően működni!</string>

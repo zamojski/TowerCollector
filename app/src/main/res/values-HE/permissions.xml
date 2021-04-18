@@ -5,13 +5,7 @@
 <resources>
     <string name="permission_required">נדרשת הרשאה</string>
     <string name="permission_denied">ההרשאה נדחתה</string>
-    <string name="permission_export_rationale_message">יש להעניק הרשאות לאחסון כדי לייצא מדידות לקובץ</string>
-    <string name="permission_export_denied_message">ייצוא המדידות מבוטל עקב העדר הרשאות</string>
-    <string name="permission_export_never_ask_again_message">ייצוא הרשאות אינו זמין עקב העדר הרשאות לאחסון</string>
-    <string name="permission_storage_rationale_message">יש להעניק הרשאות לאחסון כדי להשתמש בתכונה</string>
-    <string name="permission_storage_denied_message">הפעולה מבוטלת עקב העדר הרשאה</string>
-    <string name="permission_storage_never_ask_again_message">התכונה אינה זמינה עקב העדר הרשאה לאחסון</string>
-    <string name="permission_logging_denied_temporarily_message">התיעוד לקובץ יומן מושבת באופן זמני עקב הרשאת גישה לאחסון שנדחתה</string>
+    <string name="permission_logging_denied_temporarily_message">התיעוד לקובץ יומן מושבת באופן זמני עקב הרשאת גישה לאחסון שנדחתה.</string>
     <string name="permission_collector_rationale_message">יש להעניק הרשאות למיקום ולטלפון כדי לאסוף מדידות.</string>
     <string name="permission_collector_rationale_api29_message">כדי להשתמש ביישומון חשוב לבחור באפשרות ‚לאפשר כל הזמן’ כדי להרשות לגשת למיקום המכשיר!</string>
     <string name="permission_collector_rationale_api30_message">כדי להשתמש ביכולת הזאת כדאי לוודא שסימנת את ‚לאפשר בהגדרות’ ואז לבחור את האפשרות ‚לאפשר כל הזמן’ לטובת הרשאת הגישה למיקום המכשיר!</string>

@@ -131,15 +131,25 @@
     <string name="error_reporting_notification_title">Beklenmeyen bir hata ile karşılaşıldı</string>
     <string name="error_reporting_notification_text">Uygulama çöktü. Sorunun çözülmesine yardımcı olmak için lütfen hata raporu gönderin.</string>
     <string name="error_reporting_notification_comment_prompt">Yorum ekleyin</string>
-    <string name="export_toast_storage_read_only">Harici depolama sadece salt okunur.</string>
     <string name="export_toast_no_file_types_selected">Dışa aktarma için dosya türü seçilmedi.</string>
-    <string name="export_toast_no_storage">Harici depolama bulunamadı.</string>
     <string name="export_toast_no_handler_for_file_type">Dosyayı açacak uygulama bulunamadı.</string>
     <string name="export_dialog_format_selection_title">Dosya biçimini seçin</string>
     <string name="export_dialog_progress_title">Dışa aktarılıyor</string>
-    <string name="export_dialog_progress_message">Dosya ismi şu andaki tarih ve saat olacak şekilde dış bellekteki \"TowerCollector\" klasörüne kaydediliyor.</string>
+    <string name="export_dialog_progress_message">Dosya ismi şu andaki tarih ve saat olacak şekilde dış bellekteki \"<xliff:g id="dir_name">%s</xliff:g>\" klasörüne kaydediliyor.</string>
     <string name="export_dialog_finished_title">Dışa aktarma başarılı</string>
-    <string name="export_dialog_finished_message">Dosyalar <xliff:g id="dir_name">%s</xliff:g>  ya kaydedildi.\n\n<i>Lütfen ölçümlerinizi yükleyerek bu projelerden birine katkıda bulunun</i></string>
+    <string name="export_dialog_finished_message">Dosyalar \"<xliff:g id="dir_name">%s</xliff:g>\" ya kaydedildi.\n\n<i>Lütfen ölçümlerinizi yükleyerek bu projelerden birine katkıda bulunun</i></string>
+    <string name="storage_request_access_title">Depolama konumunu seçin</string>
+    <string name="storage_request_access_message">Belge seçiciyi kullanarak dosyaları depolamak için bir konum seçin.</string>
+    <string name="storage_request_access_migrate_message">Eski konumdaki mevcut dosyalar yeni bir konuma TAŞINMAYACAKTIR!</string>
+    <string name="storage_directory_read_only">Depolama salt okunurdur.</string>
+    <string name="storage_storage_not_found">Depolama bulunamadı.</string>
+    <string name="storage_file_not_found">Dosya bulunamadı.</string>
+    <string name="storage_file_read_only">Dosya salt okunur.</string>
+    <string name="storage_file_not_readable">Dosyadan okunamıyor.</string>
+    <string name="storage_file_not_writable">Dosyaya yazılamıyor.</string>
+    <string name="storage_access_denied">Depolamaya erişim reddedildi.</string>
+    <string name="storage_read_failed">Depodan okunamadı: <xliff:g id="error_message">%s</xliff:g>.</string>
+    <string name="storage_write_failed">Depoya yazılamadı: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="clear_dialog_title">Tüm veriyi temizleyin</string>
     <string name="clear_dialog_message">Cihazda depolanan bütün verileri kalıcı olarak silmek istediğinize emin misiniz ?</string>
     <string name="delete_dialog_title">Dışa aktarılan verileri sil</string>

@@ -131,15 +131,25 @@
     <string name="error_reporting_notification_title">Une erreur inconnue est survenue</string>
     <string name="error_reporting_notification_text">L\'application a planté. Veuillez envoyer un rapport d\'erreur pour aider à résoudre le problème.</string>
     <string name="error_reporting_notification_comment_prompt">Ajoutez votre commentaire</string>
-    <string name="export_toast_storage_read_only">Le stockage externe est en lecture seule.</string>
     <string name="export_toast_no_file_types_selected">Aucun type de fichier sélectionné pour l\'exportation.</string>
-    <string name="export_toast_no_storage">Stockage externe non trouvé.</string>
     <string name="export_toast_no_handler_for_file_type">Pas d\'application pour traiter le fichier.</string>
     <string name="export_dialog_format_selection_title">Sélectionnez le format du fichier :</string>
     <string name="export_dialog_progress_title">Exportation</string>
-    <string name="export_dialog_progress_message">Enregistrement dans le dossier \"TowerCollector\" de la mémoire externe avec la date et l\'heure actuelle comme nom de fichier.</string>
+    <string name="export_dialog_progress_message">Enregistrement dans le dossier \"<xliff:g id="dir_name">%s</xliff:g>\" de la mémoire externe avec la date et l\'heure actuelle comme nom de fichier.</string>
     <string name="export_dialog_finished_title">Exportation réussie</string>
-    <string name="export_dialog_finished_message">Les fichiers sauvegardé ici : <xliff:g id="dir_name">%s</xliff:g>.\n\n<i>Vous pouvez également contribuer à l\'un des projets en envoyant vos mesures !</i></string>
+    <string name="export_dialog_finished_message">Les fichiers sauvegardé ici : \"<xliff:g id="dir_name">%s</xliff:g>\".\n\n<i>Vous pouvez également contribuer à l\'un des projets en envoyant vos mesures !</i></string>
+    <string name="storage_request_access_title">Sélectionnez un emplacement de stockage</string>
+    <string name="storage_request_access_message">Sélectionnez un emplacement pour stocker les fichiers à l\'aide du sélecteur de documents.</string>
+    <string name="storage_request_access_migrate_message">Les fichiers existants dans l\'ancien emplacement ne seront PAS déplacés vers le nouvel emplacement !</string>
+    <string name="storage_directory_read_only">Le stockage est en lecture seule.</string>
+    <string name="storage_storage_not_found">Stockage introuvable.</string>
+    <string name="storage_file_not_found">Fichier non trouvé.</string>
+    <string name="storage_file_read_only">Le fichier est en lecture seule.</string>
+    <string name="storage_file_not_readable">Impossible de lire le fichier.</string>
+    <string name="storage_file_not_writable">Impossible d\'écrire dans le fichier.</string>
+    <string name="storage_access_denied">Accès au stockage refusé.</string>
+    <string name="storage_read_failed">Échec de la lecture à partir du stockage: <xliff:g id="error_message">%s</xliff:g>.</string>
+    <string name="storage_write_failed">Échec de l\'écriture dans le stockage: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="clear_dialog_title">Effacer toutes les données</string>
     <string name="clear_dialog_message">Etes-vous sûr(e) de vouloir effacer toutes les données stockée localement de façon permanente ?</string>
     <string name="delete_dialog_title">Supprimer l\'export</string>
@@ -167,7 +177,7 @@
     <string name="main_help_invalid_system_time_title">Heure système invalide.</string>
     <string name="main_help_invalid_system_time_description">La date et/ou l\'heure de votre système actuel ne sont pas valables par rapport à l\'heure GPS. Les mesures seront enregistrées avec l\'heure exacte, mais les statistiques présentées peuvent être inexactes. Veuillez régler la date et l\'heure sur votre appareil.</string>
     <string name="main_help_battery_optimizations_title">Optimisation de la batterie activée</string>
-    <string name="main_help_battery_optimizations_description">L\'optimisation de la batterie est activée pour cette application, ce qui pourrait entrainer une collecte de données imprécise et non-fiable. Merci de désactiver l\'optimisation de la batterie dans les paramêtres d\'Androîd : sélectionnez \"Applications\", puis \"Tower Collector\" et \"Pas d\'optimisation\"</string>
+    <string name="main_help_battery_optimizations_description">L\'optimisation de la batterie est activée pour cette application, ce qui pourrait entrainer une collecte de données imprécise et non-fiable. Merci de désactiver l\'optimisation de la batterie dans les paramêtres d\'Androîd : sélectionnez \"Applications\", puis \"Tower Collector\" et \"Pas d\'optimisation\".</string>
     <string name="main_help_power_save_mode_title">Economiseur de battery activé</string>
     <string name="main_help_power_save_mode_description">L\'économiseur de batterie est activé sur l\'appareil, ce qui pourrait entrainer une collecte de données imprécise et non-fiable. Merci de désactiver l\'économiseur de batterie dans les paramêtres d\'Androîd.</string>
     <string name="main_help_airplane_mode_title">Mode avion activé</string>

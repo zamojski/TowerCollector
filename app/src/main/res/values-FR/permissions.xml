@@ -5,13 +5,7 @@
 <resources>
     <string name="permission_required">Autorisation nécessaire</string>
     <string name="permission_denied">Permission refusée</string>
-    <string name="permission_export_rationale_message">Une autorisation de stockage doit être donnée pour exporter les mesures dans un fichier</string>
-    <string name="permission_export_denied_message">Annulation de l\'exportation des mesures en raison d\'une autorisation refusée</string>
-    <string name="permission_export_never_ask_again_message">L\'exportation des mesures est impossible en à cause  du refus d\'autorisation de stockage</string>
-    <string name="permission_storage_rationale_message">Une autorisation de stockage doit être donnée pour utiliser la fonction</string>
-    <string name="permission_storage_denied_message">L\'opération a été annulée en raison d\'un manque d\'autorisation</string>
-    <string name="permission_storage_never_ask_again_message">La fonction est indisponible en raison d\'un manque d\'autorisation de stockage</string>
-    <string name="permission_logging_denied_temporarily_message">Désactivation temporaire de la journalisation des fichiers en raison d\'un manque d\'autorisation de stockage</string>
+    <string name="permission_logging_denied_temporarily_message">Désactivation temporaire de la journalisation des fichiers en raison d\'un accès refusé au stockage.</string>
     <string name="permission_collector_rationale_message">Les autorisations de localisation et du téléphone doivent être accordées pour collecter les mesures.</string>
     <string name="permission_collector_rationale_api29_message">Si vous souhaitez utiliser cette fonction, assurez-vous de sélectionner l\'option \"Autoriser tout le temps\" pour accéder à l\'autorisation de localisation de l\'appareil!</string>
     <string name="permission_collector_rationale_api30_message">Si vous souhaitez utiliser cette fonction, assurez-vous de sélectionner \"autoriser dans les paramètres\" et sélectionnez \"autoriser tout le temps\' option pour le dispositif d\'accès à l\'emplacement de l\'autorisation!</string>

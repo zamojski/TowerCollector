@@ -5,13 +5,7 @@
 <resources>
     <string name="permission_required">Permesso richiesto</string>
     <string name="permission_denied">Permesso negato</string>
-    <string name="permission_export_rationale_message">È necessario concedere l\'autorizzazione di archiviazione per esportare le misurazioni in un file</string>
-    <string name="permission_export_denied_message">Annullamento dell\'esportazione delle misurazioni a causa del permesso negato</string>
-    <string name="permission_export_never_ask_again_message">L\'esportazione delle misure non è disponibile a causa del permesso di archiviazione negato</string>
-    <string name="permission_storage_rationale_message">È necessario concedere l\'autorizzazione di archiviazione per utilizzare la funzione</string>
-    <string name="permission_storage_denied_message">Annullamento dell\'operazione a causa del permesso negato</string>
-    <string name="permission_storage_never_ask_again_message">La funzione non è disponibile a causa del permesso di archiviazione negato</string>
-    <string name="permission_logging_denied_temporarily_message">Disattivazione temporanea della registrazione dei file a causa del permesso di archiviazione negato</string>
+    <string name="permission_logging_denied_temporarily_message">Disattivazione temporanea della registrazione dei file a causa di un accesso negato allo spazio di archiviazione.</string>
     <string name="permission_collector_rationale_message">Le autorizzazioni di posizione e telefoniche devono essere concesse per raccogliere le misurazioni.</string>
     <string name="permission_collector_rationale_api29_message">Se vuoi usare questa funzione, assicurati di selezionare l\'opzione \'consenti tutto il tempo\' per accedere all\'autorizzazione alla posizione del dispositivo!</string>
     <string name="permission_collector_rationale_api30_message">Se vuoi usare questa funzione assicurarsi di selezionare \'consenti nelle impostazioni\' e quindi selezionare \'consenti tutto il tempo\' per l\'autorizzazione di posizione del dispositivo di accesso!</string>

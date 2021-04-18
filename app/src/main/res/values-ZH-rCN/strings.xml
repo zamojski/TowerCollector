@@ -131,15 +131,25 @@
     <string name="error_reporting_notification_title">发生意外错误</string>
     <string name="error_reporting_notification_text">此应用崩溃了。请发送错误报告以帮助解决问题。</string>
     <string name="error_reporting_notification_comment_prompt">添加您的评论</string>
-    <string name="export_toast_storage_read_only">外部存储是只读的。</string>
     <string name="export_toast_no_file_types_selected">没有选择要导出的文件类型。</string>
-    <string name="export_toast_no_storage">未找到外部存储空间。</string>
     <string name="export_toast_no_handler_for_file_type">没有应用程序来处理文件类型。</string>
     <string name="export_dialog_format_selection_title">选择文件格式</string>
     <string name="export_dialog_progress_title">导出中</string>
-    <string name="export_dialog_progress_message">保存到外部存储器上的“TowerCollector”文件夹，以当前日期和时间作为文件名。</string>
+    <string name="export_dialog_progress_message">保存到外部存储器上的“<xliff:g id="dir_name">%s</xliff:g>”文件夹，以当前日期和时间作为文件名。</string>
     <string name="export_dialog_finished_title">导出成功</string>
-    <string name="export_dialog_finished_message">文件已保存到 <xliff:g id="dir_name">%s</xliff:g>。\n\n<i>请考虑通过上传您的测量数据来对其中一个项目做贡献！</i></string>
+    <string name="export_dialog_finished_message">文件已保存到 “<xliff:g id="dir_name">%s</xliff:g>”。\n\n<i>请考虑通过上传您的测量数据来对其中一个项目做贡献！</i></string>
+    <string name="storage_request_access_title">选择存放地点</string>
+    <string name="storage_request_access_message">使用文档选择器选择一个位置来存储文件。</string>
+    <string name="storage_request_access_migrate_message">旧位置中的现有文件将不会移动到新位置！</string>
+    <string name="storage_directory_read_only">存储是只读的。</string>
+    <string name="storage_storage_not_found">找不到存储。</string>
+    <string name="storage_file_not_found">文件未找到。</string>
+    <string name="storage_file_read_only">文件是只读的。</string>
+    <string name="storage_file_not_readable">无法读取文件。</string>
+    <string name="storage_file_not_writable">无法写入文件。</string>
+    <string name="storage_access_denied">存储访问被拒绝。</string>
+    <string name="storage_read_failed">无法从存储读取：<xliff:g id="error_message">%s</xliff:g>。</string>
+    <string name="storage_write_failed">无法写入存储：<xliff:g id="error_message">%s</xliff:g>。</string>
     <string name="clear_dialog_title">清除所有数据</string>
     <string name="clear_dialog_message">您确定要永久删除所有本地存储的数据吗？</string>
     <string name="delete_dialog_title">删除导出的数据</string>

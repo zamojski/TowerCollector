@@ -131,15 +131,25 @@
     <string name="error_reporting_notification_title">Váratlan hiba történt</string>
     <string name="error_reporting_notification_text">Az alkalmazás összeomlott. Küldj hibajelentést a probléma megoldásához.</string>
     <string name="error_reporting_notification_comment_prompt">Adj meg egy megjegyzést</string>
-    <string name="export_toast_storage_read_only">A külső tároló csak olvasható.</string>
     <string name="export_toast_no_file_types_selected">Nem választott ki fájltípust az exportáláshoz.</string>
-    <string name="export_toast_no_storage">A külső tároló nem található.</string>
     <string name="export_toast_no_handler_for_file_type">Egyetlen alkalmazás sem tudja kezelni a fájlt.</string>
     <string name="export_dialog_format_selection_title">Válassza ki a fájlformátumokat</string>
     <string name="export_dialog_progress_title">Exportálás</string>
-    <string name="export_dialog_progress_message">Mentés a külső tárhely „TowerCollector” mappájába a jelenlegi dátumot és időt használva fájlnévként.</string>
+    <string name="export_dialog_progress_message">Mentés a külső tárhely „<xliff:g id="dir_name">%s</xliff:g>” mappájába a jelenlegi dátumot és időt használva fájlnévként.</string>
     <string name="export_dialog_finished_title">Exportálás sikeres</string>
-    <string name="export_dialog_finished_message">A fájlokat a <xliff:g id="dir_name">%s</xliff:g> mentette.\n\n<i>Fontolja meg a közreműködést az egyik projektben a mérések feltöltésével!</i></string>
+    <string name="export_dialog_finished_message">A fájlokat a „<xliff:g id="dir_name">%s</xliff:g>” mentette.\n\n<i>Fontolja meg a közreműködést az egyik projektben a mérések feltöltésével!</i></string>
+    <string name="storage_request_access_title">Válassza ki a tárolási helyet</string>
+    <string name="storage_request_access_message">Válasszon egy helyet a fájlok tárolásához a dokumentumválasztóval.</string>
+    <string name="storage_request_access_migrate_message">A régi helyről származó fájlok NEM kerülnek új helyre!</string>
+    <string name="storage_directory_read_only">A tárolás csak olvasható.</string>
+    <string name="storage_storage_not_found">A tárhely nem található.</string>
+    <string name="storage_file_not_found">Fájl nem található.</string>
+    <string name="storage_file_read_only">A fájl csak olvasható.</string>
+    <string name="storage_file_not_readable">Nem olvasható a fájlból.</string>
+    <string name="storage_file_not_writable">Nem lehet fájlba írni.</string>
+    <string name="storage_access_denied">A tárhely-hozzáférés megtagadva.</string>
+    <string name="storage_read_failed">Nem sikerült olvasni a tárhelyről: <xliff:g id="error_message">%s</xliff:g>.</string>
+    <string name="storage_write_failed">Nem sikerült írni a tárhelyre: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="clear_dialog_title">Minden adat törlése</string>
     <string name="clear_dialog_message">Biztos, hogy véglegesen eltávolítod a helyben tárolt adatokat?</string>
     <string name="delete_dialog_title">Az exportált adatok törlése</string>

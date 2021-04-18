@@ -5,13 +5,7 @@
 <resources>
     <string name="permission_required">Не хватает прав доступа</string>
     <string name="permission_denied">Доступ запрещён</string>
-    <string name="permission_export_rationale_message">Необходимы права доступа к хранилищу для экспорта измерений в файл</string>
-    <string name="permission_export_denied_message">Отмена экспорта измерений до тех пор пока не будут даны необходимые права доступа</string>
-    <string name="permission_export_never_ask_again_message">Экспорт измерений недоступен пока нет прав доступа к хранилищу</string>
-    <string name="permission_storage_rationale_message">Должны быть предоставлены права на работу с файловой системой.</string>
-    <string name="permission_storage_denied_message">Отмена операции из-за ограничений настроек доступа</string>
-    <string name="permission_storage_never_ask_again_message">Эта функция недоступна из-за ограничений настроек доступа к месту сохранения</string>
-    <string name="permission_logging_denied_temporarily_message">Временное отключение журналирования пока нет прав доступа к хранилищу</string>
+    <string name="permission_logging_denied_temporarily_message">Временное отключение журналирования пока нет прав доступа к хранилищу.</string>
     <string name="permission_collector_rationale_message">Чтобы собирать измерения необходимо дать доступ к местоположению устройства.</string>
     <string name="permission_collector_rationale_api29_message">Если вы хотите использовать эту функцию, не забудьте выбрать опцию \"Разрешить все время\" для доступа к разрешению местоположения устройства!</string>
     <string name="permission_collector_rationale_api30_message">Если вы хотите использовать эту функцию, обязательно выберите \"Разрешить в настройках\", а затем выберите \"Разрешить все время\" для доступа к разрешению местоположения устройства!</string>

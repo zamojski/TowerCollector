@@ -131,15 +131,25 @@
     <string name="error_reporting_notification_title">Несподівана помилка</string>
     <string name="error_reporting_notification_text">Додаток заглючив. Будь ласка, відправте повідомлення про помилку, щоб допомогти у вирішенні проблеми.</string>
     <string name="error_reporting_notification_comment_prompt">Додати свій коментар</string>
-    <string name="export_toast_storage_read_only">Зовнішній пристрій призначений тільки для читання.</string>
     <string name="export_toast_no_file_types_selected">Для експорту не вибрано типів файлів.</string>
-    <string name="export_toast_no_storage">Зовнішній пристрій не знайдено.</string>
     <string name="export_toast_no_handler_for_file_type">Немає програми для обробки формату файлу.</string>
     <string name="export_dialog_format_selection_title">Виберіть формати файлів</string>
     <string name="export_dialog_progress_title">Експорт</string>
-    <string name="export_dialog_progress_message">Збереження в папку «TowerCollector» на зовнішній пам\'яті з поточною датою і часом в якості імені файлу.</string>
+    <string name="export_dialog_progress_message">Збереження в папку \"<xliff:g id="dir_name">%s</xliff:g>\" на зовнішній пам\'яті з поточною датою і часом в якості імені файлу.</string>
     <string name="export_dialog_finished_title">Експортовано успішно</string>
-    <string name="export_dialog_finished_message">Файли були збережені у <xliff:g id="dir_name">%s</xliff:g>.\n\n<i>Будь ласка, зверніть увагу на внесок у один з проектів завантажуючи свої вимірювання</i></string>
+    <string name="export_dialog_finished_message">Файли були збережені у \"<xliff:g id="dir_name">%s</xliff:g>\".\n\n<i>Будь ласка, зверніть увагу на внесок у один з проектів завантажуючи свої вимірювання</i></string>
+    <string name="storage_request_access_title">Виберіть місце зберігання</string>
+    <string name="storage_request_access_message">Виберіть місце для зберігання файлів за допомогою засобу вибору документів.</string>
+    <string name="storage_request_access_migrate_message">Наявні файли зі старого місця НЕ будуть переміщені в нове місце!</string>
+    <string name="storage_directory_read_only">Зберігання файлів доступне лише для читання.</string>
+    <string name="storage_storage_not_found">Зберігання файлів не знайдено.</string>
+    <string name="storage_file_not_found">Файл не знайдено.</string>
+    <string name="storage_file_read_only">Файл доступний лише для читання.</string>
+    <string name="storage_file_not_readable">Не вдається прочитати з файлу.</string>
+    <string name="storage_file_not_writable">Не вдається записати у файл.</string>
+    <string name="storage_access_denied">Доступ до сховища файлів відмовлено.</string>
+    <string name="storage_read_failed">Не вдалося прочитати з пам’яті: <xliff:g id="error_message">%s</xliff:g>.</string>
+    <string name="storage_write_failed">Не вдалося записати в пам’ять: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="clear_dialog_title">Очистити всі дані</string>
     <string name="clear_dialog_message">Ви дійсно бажаєте остаточно видалити всі локально збережені дані?</string>
     <string name="delete_dialog_title">Видалити експортовані</string>

@@ -131,15 +131,25 @@
     <string name="error_reporting_notification_title">Ha ocurrido un error inesperado</string>
     <string name="error_reporting_notification_text">La aplicación ha fallado. Por favor, envíe un informe de error para ayudar a solucionar el problema.</string>
     <string name="error_reporting_notification_comment_prompt">Añade tu comentario</string>
-    <string name="export_toast_storage_read_only">El almacenamiento externo es de solo lectura.</string>
     <string name="export_toast_no_file_types_selected">No hay tipos de archivo seleccionados para la exportación.</string>
-    <string name="export_toast_no_storage">No se encontró el almacenamiento externo.</string>
     <string name="export_toast_no_handler_for_file_type">Ninguna aplicación para manejar el archivo.</string>
     <string name="export_dialog_format_selection_title">Seleccionar formatos de archivo</string>
     <string name="export_dialog_progress_title">Exportando</string>
-    <string name="export_dialog_progress_message">Guardando en el directorio de \"TowerCollector\" situado en almacenamiento externo con la fecha y hora actual como nombres de archivo.</string>
+    <string name="export_dialog_progress_message">Guardando en el directorio de \"<xliff:g id="dir_name">%s</xliff:g>\" situado en almacenamiento externo con la fecha y hora actual como nombres de archivo.</string>
     <string name="export_dialog_finished_title">Exportación exitosa</string>
-    <string name="export_dialog_finished_message">Los archivos se han guardado en <xliff:g id="dir_name">%s</xliff:g>.\n\n<i>¡Por favor considere la contribución a uno de los proyectos al subir sus mediciones!</i></string>
+    <string name="export_dialog_finished_message">Los archivos se han guardado en \"<xliff:g id="dir_name">%s</xliff:g>\".\n\n<i>¡Por favor considere la contribución a uno de los proyectos al subir sus mediciones!</i></string>
+    <string name="storage_request_access_title">Seleccionar ubicación de almacenamiento</string>
+    <string name="storage_request_access_message">Seleccione una ubicación para almacenar los archivos usando el selector de documentos.</string>
+    <string name="storage_request_access_migrate_message">¡Los archivos existentes de la ubicación anterior NO se moverán a una nueva ubicación!</string>
+    <string name="storage_directory_read_only">El almacenamiento es de solo lectura.</string>
+    <string name="storage_storage_not_found">Almacenamiento no encontrado.</string>
+    <string name="storage_file_not_found">Archivo no encontrado.</string>
+    <string name="storage_file_read_only">El archivo es de solo lectura.</string>
+    <string name="storage_file_not_readable">No se puede leer del archivo.</string>
+    <string name="storage_file_not_writable">No se puede escribir en el archivo.</string>
+    <string name="storage_access_denied">Acceso denegado al almacenamiento.</string>
+    <string name="storage_read_failed">No se pudo leer del almacenamiento: <xliff:g id="error_message">%s</xliff:g>.</string>
+    <string name="storage_write_failed">No se pudo escribir en el almacenamiento: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="clear_dialog_title">Borrar todos los datos</string>
     <string name="clear_dialog_message">¿Está seguro de que desea eliminar permanentemente todos los datos almacenados localmente?</string>
     <string name="delete_dialog_title">Eliminar exportado</string>

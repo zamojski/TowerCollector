@@ -131,15 +131,25 @@
     <string name="error_reporting_notification_title">Wystąpił niespodziewany błąd</string>
     <string name="error_reporting_notification_text">Aplikacja przestała działać. Proszę prześlij raport błędu, aby pomóc w jego naprawie.</string>
     <string name="error_reporting_notification_comment_prompt">Dodaj swój komentarz</string>
-    <string name="export_toast_storage_read_only">Pamięć zewnętrzna jest dostępna tylko do odczytu.</string>
     <string name="export_toast_no_file_types_selected">Nie wybrano typów plików do wyeksportowania.</string>
-    <string name="export_toast_no_storage">Pamięć zewnętrzna nie jest dostępna.</string>
     <string name="export_toast_no_handler_for_file_type">Brak aplikacji obsługującej ten plik.</string>
     <string name="export_dialog_format_selection_title">Wybierz formaty plików</string>
     <string name="export_dialog_progress_title">Eksportowanie</string>
-    <string name="export_dialog_progress_message">Zapisywanie do folderu \"TowerCollector\" w pamięci zewnętrznej z aktualną datą i czasem jako nazwą pliku.</string>
+    <string name="export_dialog_progress_message">Zapisywanie do folderu \"<xliff:g id="dir_name">%s</xliff:g>\" w pamięci zewnętrznej z aktualną datą i czasem jako nazwą pliku.</string>
     <string name="export_dialog_finished_title">Eksport zakończony</string>
-    <string name="export_dialog_finished_message">Pliki zostały zapisane w <xliff:g id="dir_name">%s</xliff:g>.\n\n<i>Rozważ wsparcie jednego z projektów poprzez przesłanie swoich próbek!</i></string>
+    <string name="export_dialog_finished_message">Pliki zostały zapisane w \"<xliff:g id="dir_name">%s</xliff:g>\".\n\n<i>Rozważ wsparcie jednego z projektów poprzez przesłanie swoich próbek!</i></string>
+    <string name="storage_request_access_title">Wybierz miejsce w pamięci</string>
+    <string name="storage_request_access_message">Wybierz miejsce zapisu plików z użyciem przeglądarki dokumentów.</string>
+    <string name="storage_request_access_migrate_message">Istniejące pliki z poprzedniego miejsca NIE zostaną przeniesione do nowego miejsca!</string>
+    <string name="storage_directory_read_only">Pamięć jest tylko do odczytu.</string>
+    <string name="storage_storage_not_found">Pamięć nie odnaleziona.</string>
+    <string name="storage_file_not_found">Plik nie odnaleziony.</string>
+    <string name="storage_file_read_only">Plik jest tylko do odczytu.</string>
+    <string name="storage_file_not_readable">Nie można odczytać pliku.</string>
+    <string name="storage_file_not_writable">Nie można zapisać pliku.</string>
+    <string name="storage_access_denied">Dostęp do pamięci jest zabroniony.</string>
+    <string name="storage_read_failed">Błąd odczytu z pamięci: <xliff:g id="error_message">%s</xliff:g>.</string>
+    <string name="storage_write_failed">Błąd zapisu do pamięci: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="clear_dialog_title">Wyczyść wszystkie dane</string>
     <string name="clear_dialog_message">Czy jesteś pewien, że chcesz trwale usunąć wszystkie przechowywane lokalnie dane?</string>
     <string name="delete_dialog_title">Usuń wyeksportowane dane</string>
