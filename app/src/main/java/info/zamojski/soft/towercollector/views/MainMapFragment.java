@@ -327,7 +327,9 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
             if (GpsUtils.hasGpsPermissions(MyApplication.getApplication())) {
                 LocationManager locationManager = (LocationManager) MyApplication.getApplication().getSystemService(Context.LOCATION_SERVICE);
                 @SuppressLint("MissingPermission") Location lastKnownLocation = locationManager.getLastKnownLocation(locationManager.getBestProvider(new Criteria(), false));
-                moveToLocation(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
+                if (lastKnownLocation != null) {
+                    moveToLocation(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
+                }
             }
         }
     }
