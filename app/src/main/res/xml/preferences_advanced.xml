@@ -43,10 +43,6 @@
             app:key="@string/preferences_export_preferences_key"
             app:summary="@string/preferences_export_preferences_summary"
             app:title="@string/preferences_export_preferences_title" />
-        <PreferenceScreen
-            app:key="@string/preferences_change_storage_location_key"
-            app:summary="@string/preferences_change_storage_location_summary"
-            app:title="@string/preferences_change_storage_location_title" />
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/preferences_category_help_title">
         <PreferenceScreen

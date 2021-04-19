@@ -6,8 +6,10 @@ package info.zamojski.soft.towercollector.preferences;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceManager;
 import androidx.preference.PreferenceScreen;
@@ -16,21 +18,29 @@ import androidx.preference.SwitchPreferenceCompat;
 import info.zamojski.soft.towercollector.BuildConfig;
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
+import info.zamojski.soft.towercollector.utils.StorageUtils;
 import timber.log.Timber;
 
 public class GeneralPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
+
+    private PreferenceScreen changeStorageLocationPreference;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferences_general);
 
+        changeStorageLocationPreference = findPreference(getString(R.string.preferences_change_storage_location_key));
+
         setupUsageStatisticsAvailability();
+        setupChangeStorageLocation();
     }
 
     @Override
     public void onResume() {
         super.onResume();
         PreferenceManager.getDefaultSharedPreferences(getActivity()).registerOnSharedPreferenceChangeListener(this);
+        Uri storageUri = MyApplication.getPreferencesProvider().getStorageUri();
+        changeStorageLocationPreference.setSummary(formatValueStringPoor(R.string.preferences_change_storage_location_summary, (storageUri == null ? getString(R.string.preferences_value_undefined) : storageUri.getPath())));
     }
 
     @Override
@@ -67,5 +77,21 @@ public class GeneralPreferenceFragment extends DialogEnabledPreferenceFragment i
 
     private void setupUsageStatisticsDialog() {
         setupDialog(R.string.preferences_about_tracking_key, R.string.info_usage_statistics_title, R.raw.info_usage_statistics_content);
+    }
+
+    private void setupChangeStorageLocation() {
+        setupOnClick(R.string.preferences_change_storage_location_key, new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                StorageUtils.requestStorageUri(getActivity());
+                return true;
+            }
+        });
+    }
+
+    private String formatValueStringPoor(int textId, CharSequence value) {
+        String text = getString(textId);
+        String formattedValue = getString(R.string.preferences_current_value_summary_poor_format, value);
+        return text + formattedValue;
     }
 }

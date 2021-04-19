@@ -12,7 +12,8 @@
 
     <string name="map_copyright" translatable="false">© <a href="https://www.openstreetmap.org/copyright/">OpenStreetMap</a> contributors</string>
 
-    <string name="preferences_current_value_summary_format" translatable="false"><![CDATA[<br/><b>[%s]</b>]]></string>
+    <string name="preferences_current_value_summary_format" translatable="false"><![CDATA[\n<br/><b>[%s]</b>]]></string>
+    <string name="preferences_current_value_summary_poor_format" translatable="false"><![CDATA[\n[%s]]]></string>
 
     <string name="preferences_show_introduction_key" translatable="false">show_introduction</string>
     <bool name="preferences_show_introduction_default_value" translatable="false">true</bool>

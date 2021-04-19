@@ -18,6 +18,11 @@
             app:summaryOff="@string/preferences_update_check_enabled_off_summary"
             app:summaryOn="@string/preferences_update_check_enabled_on_summary"
             app:title="@string/preferences_update_check_enabled_title" />
+        <PreferenceScreen
+            app:key="@string/preferences_change_storage_location_key"
+            app:summary="@string/preferences_change_storage_location_summary"
+            app:singleLineTitle="false"
+            app:title="@string/preferences_change_storage_location_title" />
     </PreferenceCategory>
     <PreferenceCategory
         app:key="@string/preferences_general_category_help_key"

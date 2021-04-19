@@ -44,7 +44,6 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         setupDatabaseExport();
         setupPreferencesImport();
         setupPreferencesExport();
-        setupChangeStorageLocation();
     }
 
     private void setupDatabaseImport() {
@@ -82,16 +81,6 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 exportPreferences();
-                return true;
-            }
-        });
-    }
-
-    private void setupChangeStorageLocation() {
-        setupOnClick(R.string.preferences_change_storage_location_key, new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                StorageUtils.requestStorageUri(getActivity());
                 return true;
             }
         });
