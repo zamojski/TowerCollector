@@ -33,7 +33,7 @@ public class StorageUtils {
         alertDialog.setTitle(R.string.storage_request_access_title);
         String message = activity.getString(R.string.storage_request_access_message);
         Uri storageUri = MyApplication.getPreferencesProvider().getStorageUri();
-        if ((storageUri != null && storageUri != Uri.EMPTY) || canMigrateLegacyStorage()) {
+        if (storageUri != null || canMigrateLegacyStorage()) {
             message += "\n\n" + activity.getString(R.string.storage_request_access_migrate_message);
         }
         alertDialog.setMessage(message);
@@ -58,6 +58,10 @@ public class StorageUtils {
 
     public static void persistStorageUri(Activity activity, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
+            Uri oldStorageUri = MyApplication.getPreferencesProvider().getStorageUri();
+            if (oldStorageUri != null) {
+                activity.getContentResolver().releasePersistableUriPermission(oldStorageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            }
             Uri storageUri = data.getData();
             activity.grantUriPermission(activity.getPackageName(), storageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
             activity.getContentResolver().takePersistableUriPermission(storageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);

@@ -281,7 +281,10 @@ public class PreferencesProvider {
     }
 
     public Uri getStorageUri() {
-        return getStorageUriWithLogger(true);
+        Uri storageUri = getStorageUriWithLogger(true);
+        if (storageUri == Uri.EMPTY)
+            return null;
+        return storageUri;
     }
 
     public Uri getStorageUriWithLogger(boolean loggerEnabled) {
