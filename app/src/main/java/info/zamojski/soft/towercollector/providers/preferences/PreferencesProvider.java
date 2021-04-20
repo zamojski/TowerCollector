@@ -295,6 +295,6 @@ public class PreferencesProvider {
     }
 
     public void setStorageUri(Uri uri) {
-        stringPreferenceProvider.setPreference(R.string.preferences_storage_uri_key, uri.toString());
+        stringPreferenceProvider.setPreference(R.string.preferences_storage_uri_key, uri != null ? uri.toString() : null);
     }
 }

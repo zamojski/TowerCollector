@@ -24,6 +24,8 @@ import info.zamojski.soft.towercollector.R;
 public class StorageUtils {
 
     public static final int OPEN_DOCUMENT_ACTIVITY_RESULT = 'D';
+    private static final int URI_BASIC_FLAGS = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
+    private static final int URI_EXTENDED_FLAGS = URI_BASIC_FLAGS | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION;
 
     public static void requestStorageUri(Activity activity) {
         AlertDialog alertDialog = new AlertDialog.Builder(activity).create();
@@ -41,6 +43,7 @@ public class StorageUtils {
             intent.putExtra("android.content.extra.SHOW_ADVANCED", true);
             intent.putExtra("android.content.extra.FANCY", true);
             intent.putExtra("android.content.extra.SHOW_FILESIZE", true);
+            intent.addFlags(URI_EXTENDED_FLAGS);
             try {
                 activity.startActivityForResult(intent, OPEN_DOCUMENT_ACTIVITY_RESULT);
             } catch (Exception ex) {
@@ -57,16 +60,22 @@ public class StorageUtils {
 
     public static void persistStorageUri(Activity activity, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
-            Uri oldStorageUri = MyApplication.getPreferencesProvider().getStorageUri();
-            if (oldStorageUri != null) {
-                activity.getContentResolver().releasePersistableUriPermission(oldStorageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-            }
+            releaseStorageUri(activity);
             Uri storageUri = data.getData();
-            activity.grantUriPermission(activity.getPackageName(), storageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-            activity.getContentResolver().takePersistableUriPermission(storageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            int modeFlags = data.getFlags();
+            activity.grantUriPermission(activity.getPackageName(), storageUri, modeFlags);
+            activity.getContentResolver().takePersistableUriPermission(storageUri, URI_BASIC_FLAGS);
             MyApplication.getPreferencesProvider().setStorageUri(storageUri);
         } else {
             Toast.makeText(activity, R.string.storage_access_denied, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public static void releaseStorageUri(Activity activity) {
+        Uri oldStorageUri = MyApplication.getPreferencesProvider().getStorageUri();
+        if (oldStorageUri != null) {
+            activity.getContentResolver().releasePersistableUriPermission(oldStorageUri, URI_BASIC_FLAGS);
+            MyApplication.getPreferencesProvider().setStorageUri(null);
         }
     }
 
@@ -102,7 +111,7 @@ public class StorageUtils {
             if (isLegacyStorageAvailable) {
                 // only if the old folder exists and contains some files
                 File legacyFolder = new File(Environment.getExternalStorageDirectory(), "TowerCollector");
-                return (legacyFolder.exists() && legacyFolder.canRead() && legacyFolder.listFiles().length > 0);
+                return (legacyFolder.exists() && legacyFolder.isDirectory() && legacyFolder.canRead() && legacyFolder.listFiles().length > 0);
             }
         }
         return false;
