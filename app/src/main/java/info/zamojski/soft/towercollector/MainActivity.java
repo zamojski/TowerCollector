@@ -51,7 +51,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ShareCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -808,10 +807,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         String calculatedMimeType = getApplication().getContentResolver().getType(fileUri);
         openIntent.setDataAndType(fileUri, calculatedMimeType);
         openIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        if (openIntent.resolveActivity(getPackageManager()) != null) {
+        try {
             startActivity(openIntent);
-        } else {
-            Toast.makeText(getApplication(), R.string.export_toast_no_handler_for_file_type, Toast.LENGTH_LONG).show();
+        } catch (Exception ex) {
+            Toast.makeText(getApplication(), R.string.system_toast_no_handler_for_operation, Toast.LENGTH_LONG).show();
         }
     }
 

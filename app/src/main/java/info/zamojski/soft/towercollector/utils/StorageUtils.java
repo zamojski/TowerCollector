@@ -7,7 +7,6 @@ package info.zamojski.soft.towercollector.utils;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -42,12 +41,12 @@ public class StorageUtils {
             intent.putExtra("android.content.extra.SHOW_ADVANCED", true);
             intent.putExtra("android.content.extra.FANCY", true);
             intent.putExtra("android.content.extra.SHOW_FILESIZE", true);
-            ComponentName handler = intent.resolveActivity(activity.getPackageManager());
-            if (handler == null) {
-                Throwable ex = new RuntimeException("No handler to select storage folder");
-                MyApplication.handleSilentException(ex);
-            } else {
+            try {
                 activity.startActivityForResult(intent, OPEN_DOCUMENT_ACTIVITY_RESULT);
+            } catch (Exception ex) {
+                Toast.makeText(activity, R.string.system_toast_no_handler_for_operation, Toast.LENGTH_LONG).show();
+                Throwable wrappedEx = new RuntimeException("No handler to select storage folder", ex);
+                MyApplication.handleSilentException(wrappedEx);
             }
         });
         alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, activity.getString(R.string.dialog_cancel), (dialog, which) -> {
