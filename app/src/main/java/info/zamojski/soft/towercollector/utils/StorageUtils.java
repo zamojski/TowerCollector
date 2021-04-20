@@ -74,8 +74,13 @@ public class StorageUtils {
     public static void releaseStorageUri(Activity activity) {
         Uri oldStorageUri = MyApplication.getPreferencesProvider().getStorageUri();
         if (oldStorageUri != null) {
-            activity.getContentResolver().releasePersistableUriPermission(oldStorageUri, URI_BASIC_FLAGS);
-            MyApplication.getPreferencesProvider().setStorageUri(null);
+            try {
+                activity.getContentResolver().releasePersistableUriPermission(oldStorageUri, URI_BASIC_FLAGS);
+            } catch (SecurityException ex) {
+                // ignore, it means that the permissions for uri are already released
+            } finally {
+                MyApplication.getPreferencesProvider().setStorageUri(null);
+            }
         }
     }
 
