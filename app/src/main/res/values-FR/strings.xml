@@ -150,6 +150,7 @@
     <string name="storage_access_denied">Accès au stockage refusé.</string>
     <string name="storage_read_failed">Échec de la lecture à partir du stockage: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="storage_write_failed">Échec de l\'écriture dans le stockage: <xliff:g id="error_message">%s</xliff:g>.</string>
+    <string name="system_toast_no_handler_for_operation">Aucune application pour exécuter l\'opération.</string>
     <string name="clear_dialog_title">Effacer toutes les données</string>
     <string name="clear_dialog_message">Etes-vous sûr(e) de vouloir effacer toutes les données stockée localement de façon permanente ?</string>
     <string name="delete_dialog_title">Supprimer l\'export</string>

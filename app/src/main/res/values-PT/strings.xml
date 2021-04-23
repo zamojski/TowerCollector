@@ -150,6 +150,7 @@
     <string name="storage_access_denied">Acesso ao armazenamento negado.</string>
     <string name="storage_read_failed">Falha ao ler do armazenamento: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="storage_write_failed">Falha ao gravar no armazenamento: <xliff:g id="error_message">%s</xliff:g>.</string>
+    <string name="system_toast_no_handler_for_operation">Nenhum aplicativo para lidar com a operação.</string>
     <string name="clear_dialog_title">Limpar todos os dados</string>
     <string name="clear_dialog_message">Tem certeza de que deseja remover permanentemente todos os dados armazenados localmente?</string>
     <string name="delete_dialog_title">Excluir exportado</string>

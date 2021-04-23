@@ -150,6 +150,7 @@
     <string name="storage_access_denied">Acceso denegado al almacenamiento.</string>
     <string name="storage_read_failed">No se pudo leer del almacenamiento: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="storage_write_failed">No se pudo escribir en el almacenamiento: <xliff:g id="error_message">%s</xliff:g>.</string>
+    <string name="system_toast_no_handler_for_operation">Ninguna aplicación para manejar la operación.</string>
     <string name="clear_dialog_title">Borrar todos los datos</string>
     <string name="clear_dialog_message">¿Está seguro de que desea eliminar permanentemente todos los datos almacenados localmente?</string>
     <string name="delete_dialog_title">Eliminar exportado</string>

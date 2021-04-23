@@ -150,6 +150,7 @@
     <string name="storage_access_denied">A tárhely-hozzáférés megtagadva.</string>
     <string name="storage_read_failed">Nem sikerült olvasni a tárhelyről: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="storage_write_failed">Nem sikerült írni a tárhelyre: <xliff:g id="error_message">%s</xliff:g>.</string>
+    <string name="system_toast_no_handler_for_operation">Nincs alkalmazás a művelet kezelésére.</string>
     <string name="clear_dialog_title">Minden adat törlése</string>
     <string name="clear_dialog_message">Biztos, hogy véglegesen eltávolítod a helyben tárolt adatokat?</string>
     <string name="delete_dialog_title">Az exportált adatok törlése</string>

@@ -150,6 +150,7 @@
     <string name="storage_access_denied">存储访问被拒绝。</string>
     <string name="storage_read_failed">无法从存储读取：<xliff:g id="error_message">%s</xliff:g>。</string>
     <string name="storage_write_failed">无法写入存储：<xliff:g id="error_message">%s</xliff:g>。</string>
+    <string name="system_toast_no_handler_for_operation">没有应用程序可以处理该操作。</string>
     <string name="clear_dialog_title">清除所有数据</string>
     <string name="clear_dialog_message">您确定要永久删除所有本地存储的数据吗？</string>
     <string name="delete_dialog_title">删除导出的数据</string>

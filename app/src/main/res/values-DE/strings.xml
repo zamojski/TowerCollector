@@ -150,6 +150,7 @@
     <string name="storage_access_denied">Zugriff auf Speicher verweigert.</string>
     <string name="storage_read_failed">Fehler beim Lesen von Speicherort <xliff:g id="error_message">%s</xliff:g></string>
     <string name="storage_write_failed">Fehler beim Schreiben an Speicherort <xliff:g id="error_message">%s</xliff:g></string>
+    <string name="system_toast_no_handler_for_operation">Keine App für die Operation.</string>
     <string name="clear_dialog_title">Alle Daten löschen</string>
     <string name="clear_dialog_message">Sind Sie sicher, dass Sie alle lokal gespeicherten Daten löschen wollen?</string>
     <string name="delete_dialog_title">Exportierte Daten löschen</string>

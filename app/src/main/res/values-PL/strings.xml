@@ -150,6 +150,7 @@
     <string name="storage_access_denied">Dostęp do pamięci jest zabroniony.</string>
     <string name="storage_read_failed">Błąd odczytu z pamięci: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="storage_write_failed">Błąd zapisu do pamięci: <xliff:g id="error_message">%s</xliff:g>.</string>
+    <string name="system_toast_no_handler_for_operation">Brak aplikacji obsługującej tą operację.</string>
     <string name="clear_dialog_title">Wyczyść wszystkie dane</string>
     <string name="clear_dialog_message">Czy jesteś pewien, że chcesz trwale usunąć wszystkie przechowywane lokalnie dane?</string>
     <string name="delete_dialog_title">Usuń wyeksportowane dane</string>

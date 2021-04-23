@@ -80,7 +80,7 @@
     <string name="main_map_my_location_button">Sposta nella mia posizione</string>
     <string name="main_map_follow_me_button">Segui la mia posizione</string>
     <string name="main_map_enable">Abilitare</string>
-    <string name="main_map_disable">Inabilitare</string>
+    <string name="main_map_disable">Disabilitare</string>
     <string name="main_menu_start_button">Avvia la raccolta dati</string>
     <string name="main_menu_stop_button">Termina la raccolta dati</string>
     <string name="main_menu_upload_button">Caricare</string>
@@ -142,14 +142,15 @@
     <string name="storage_request_access_message">Selezionare una posizione in cui archiviare i file utilizzando il selettore di documenti.</string>
     <string name="storage_request_access_migrate_message">I file esistenti dalla vecchia posizione NON verranno spostati in una nuova posizione!</string>
     <string name="storage_directory_read_only">Lo spazio di archiviazione è di sola lettura.</string>
-    <string name="storage_storage_not_found">Lo spazio di archiviazione non è stata trovata.</string>
+    <string name="storage_storage_not_found">Spazio di archiviazione non trovato.</string>
     <string name="storage_file_not_found">File non trovato.</string>
     <string name="storage_file_read_only">Il file è di sola lettura.</string>
     <string name="storage_file_not_readable">Impossibile leggere dal file.</string>
-    <string name="storage_file_not_writable">Impossibile scrivere su file.</string>
+    <string name="storage_file_not_writable">Impossibile scrivere sul file.</string>
     <string name="storage_access_denied">Accesso allo spazio di archiviazione negato.</string>
-    <string name="storage_read_failed">Impossibile leggere dell\'archivio: <xliff:g id="error_message">%s</xliff:g>.</string>
+    <string name="storage_read_failed">Impossibile leggere dall\'archivio: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="storage_write_failed">Impossibile scrivere nell\'archivio: <xliff:g id="error_message">%s</xliff:g>.</string>
+    <string name="system_toast_no_handler_for_operation">Nessuna applicazione per eseguire l\'operazione.</string>
     <string name="clear_dialog_title">Cancella tutti i dati</string>
     <string name="clear_dialog_message">Si è sicuri di voler rimuovere definitivamente tutti i dati memorizzati localmente?</string>
     <string name="delete_dialog_title">Elimina esportati</string>

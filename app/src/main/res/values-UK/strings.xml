@@ -150,6 +150,7 @@
     <string name="storage_access_denied">Доступ до сховища файлів відмовлено.</string>
     <string name="storage_read_failed">Не вдалося прочитати з пам’яті: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="storage_write_failed">Не вдалося записати в пам’ять: <xliff:g id="error_message">%s</xliff:g>.</string>
+    <string name="system_toast_no_handler_for_operation">Немає програми для обробки операції.</string>
     <string name="clear_dialog_title">Очистити всі дані</string>
     <string name="clear_dialog_message">Ви дійсно бажаєте остаточно видалити всі локально збережені дані?</string>
     <string name="delete_dialog_title">Видалити експортовані</string>

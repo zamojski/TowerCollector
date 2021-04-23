@@ -150,6 +150,7 @@
     <string name="storage_access_denied">הגישה לאחסון נדחתה.</string>
     <string name="storage_read_failed">הקריאה מהאחסון נכשלה: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="storage_write_failed">הכתיבה לאחסון נכשלה: <xliff:g id="error_message">%s</xliff:g>.</string>
+    <string name="system_toast_no_handler_for_operation">אין יישומון לטיפול בפעולה הזאת.</string>
     <string name="clear_dialog_title">למחוק את כל הנתונים</string>
     <string name="clear_dialog_message">למחוק לצמיתות את כל הנתונים שנשמרו מקומית?</string>
     <string name="delete_dialog_title">מחיקת המיוצאים</string>

@@ -150,6 +150,7 @@
     <string name="storage_access_denied">Depolamaya erişim reddedildi.</string>
     <string name="storage_read_failed">Depodan okunamadı: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="storage_write_failed">Depoya yazılamadı: <xliff:g id="error_message">%s</xliff:g>.</string>
+    <string name="system_toast_no_handler_for_operation">İşlemi gerçekleştirecek uygulama yok.</string>
     <string name="clear_dialog_title">Tüm veriyi temizleyin</string>
     <string name="clear_dialog_message">Cihazda depolanan bütün verileri kalıcı olarak silmek istediğinize emin misiniz ?</string>
     <string name="delete_dialog_title">Dışa aktarılan verileri sil</string>

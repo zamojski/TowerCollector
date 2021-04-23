@@ -150,6 +150,7 @@
     <string name="storage_access_denied">Доступ к хранилищу запрещен.</string>
     <string name="storage_read_failed">Не удалось прочитать из хранилища: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="storage_write_failed">Не удалось записать в хранилище: <xliff:g id="error_message">%s</xliff:g>.</string>
+    <string name="system_toast_no_handler_for_operation">Нет приложения для обработки этого действия.</string>
     <string name="clear_dialog_title">Очистить все данные</string>
     <string name="clear_dialog_message">Вы уверены, что хотите удалить все сохраненные на устройстве данные безвозвратно?</string>
     <string name="delete_dialog_title">Удалить экспортированное</string>
