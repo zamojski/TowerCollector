@@ -1,6 +1,21 @@
 {
   "Entries": [
     {
+      "VersionCode": 2080081,
+      "Description": "This version introduces new way of interacting with file system and reduces number of requested permissions. The change is required to make the application running correctly on Android 11. I'm open to any feedback, feel free to contact me by email, Twitter, Facebook or GitHub - links in Preferences :)",
+      "Title": "Changes in version 2.8.0",
+      "Messages": [
+        "Fix export and import of files on Android 11 with help of document picker.",
+        "Improve compatibility with Android 11.",
+        "Improve default map location when no measurements locally.",
+        "Fix cannot open notification settings from Display Preferences.",
+        "Fix crash when trying to open app permission settings.",
+        "Update OpenCellID registration link.",
+        "Updated privacy statement with one missing feature.",
+        "Update translations."
+      ]
+    },
+    {
       "VersionCode": 2070476,
       "Title": "Changes in version 2.7.4",
       "Messages": [
@@ -37,7 +52,7 @@
     {
       "VersionCode": 2070071,
       "Title": "Changes in version 2.7.0",
-      "Description" : "This version introduces the new tab containing the map that presents measurements stored on your device. I'm open to any feedback, feel free to contact me by email, Twitter, Facebook or GitHub - links in Preferences :)",
+      "Description": "This version introduces the new tab containing the map that presents measurements stored on your device. I'm open to any feedback, feel free to contact me by email, Twitter, Facebook or GitHub - links in Preferences :)",
       "Messages": [
         "Add new map tab presenting locally stored measurements.",
         "Add short CID and RNC to CSV export and JSON notifications.",

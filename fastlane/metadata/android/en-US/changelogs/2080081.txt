@@ -1,0 +1,8 @@
+- Fix export and import of files on Android 11 with help of document picker.
+- Improve compatibility with Android 11.
+- Improve default map location when no measurements locally.
+- Fix cannot open notification settings from Display Preferences.
+- Fix crash when trying to open app permission settings.
+- Update OpenCellID registration link.
+- Updated privacy statement with one missing feature.
+- Update translations.
