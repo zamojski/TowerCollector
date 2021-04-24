@@ -229,7 +229,7 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
                 .setPositiveButton(R.string.dialog_settings, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        PermissionUtils.openAppSettings(getActivity());
+                        PermissionUtils.openAppSettings(MyApplication.getApplication());
                     }
                 })
                 .setNegativeButton(R.string.dialog_cancel, null)
