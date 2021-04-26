@@ -71,6 +71,7 @@ import info.zamojski.soft.towercollector.analytics.IntentSource;
 import info.zamojski.soft.towercollector.broadcast.AirplaneModeBroadcastReceiver;
 import info.zamojski.soft.towercollector.broadcast.BatterySaverBroadcastReceiver;
 import info.zamojski.soft.towercollector.controls.DialogManager;
+import info.zamojski.soft.towercollector.controls.NonSwipeableViewPager;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.ExportAction;
 import info.zamojski.soft.towercollector.enums.FileType;
@@ -148,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private BackgroundTaskHelper backgroundTaskHelper;
 
-    private ViewPager viewPager;
+    private NonSwipeableViewPager viewPager;
 
     private View activityView;
 

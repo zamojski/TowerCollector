@@ -6,6 +6,7 @@ package info.zamojski.soft.towercollector.views;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
+import info.zamojski.soft.towercollector.controls.ISwipingController;
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
 
 import android.Manifest;
@@ -18,11 +19,13 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
-public class MainActivityPagerAdapter extends FragmentStatePagerAdapter {
+public class MainActivityPagerAdapter extends FragmentStatePagerAdapter implements ISwipingController {
 
     private static final int MainLastFragmentIndex = 0;
     private static final int MainStatsFragmentIndex = 1;
     private static final int MainMapFragmentIndex = 2;
+
+    private boolean wasMapFullyConfiguredRecently = false;
 
     private final Context context;
 
@@ -40,13 +43,18 @@ public class MainActivityPagerAdapter extends FragmentStatePagerAdapter {
             case MainStatsFragmentIndex:
                 return new MainStatsFragment();
             case MainMapFragmentIndex:
-                if (MyApplication.getPreferencesProvider().isMainMapConfigured()
-                        && PermissionUtils.hasPermissions(MyApplication.getApplication(), Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION))
+                if (isMapFullyConfigured()) {
                     return new MainMapFragment();
+                }
                 return new MainMapConfigureFragment();
             default:
                 throw new UnsupportedOperationException("Cannot find view at position " + position);
         }
+    }
+
+    private boolean isMapFullyConfigured() {
+        return wasMapFullyConfiguredRecently = (MyApplication.getPreferencesProvider().isMainMapConfigured()
+                && PermissionUtils.hasPermissions(MyApplication.getApplication(), Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION));
     }
 
     @Override
@@ -72,5 +80,9 @@ public class MainActivityPagerAdapter extends FragmentStatePagerAdapter {
     public int getItemPosition(@NonNull Object object) {
         // reset position when invalidating
         return POSITION_NONE;
+    }
+
+    public boolean shouldEnableSwiping(int position) {
+        return !(position == MainMapFragmentIndex && wasMapFullyConfiguredRecently) || position >= getCount();
     }
 }

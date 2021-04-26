@@ -29,7 +29,7 @@
             app:tabIndicator="@drawable/background_tab_indicator_height" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.viewpager.widget.ViewPager
+    <info.zamojski.soft.towercollector.controls.NonSwipeableViewPager
         android:id="@+id/main_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
