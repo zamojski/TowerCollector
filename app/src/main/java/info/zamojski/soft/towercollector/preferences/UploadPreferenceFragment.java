@@ -6,7 +6,7 @@ package info.zamojski.soft.towercollector.preferences;
 
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.controls.TrimmedEditTextPreference;
-import info.zamojski.soft.towercollector.utils.ApiKeyValidator;
+import info.zamojski.soft.towercollector.utils.OpenCellIdUtils;
 import timber.log.Timber;
 
 import android.content.SharedPreferences;
@@ -26,7 +26,7 @@ public class UploadPreferenceFragment extends DialogEnabledPreferenceFragment im
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.preferences_upload, rootKey);
 
-        apiKeyPreference = findPreference(getString(R.string.preferences_api_key_key));
+        apiKeyPreference = findPreference(getString(R.string.preferences_opencellid_api_key_key));
         apiKeyPreference.setOnBindEditTextListener(editText -> {
             editText.setInputType(InputType.TYPE_CLASS_TEXT);
         });
@@ -43,7 +43,7 @@ public class UploadPreferenceFragment extends DialogEnabledPreferenceFragment im
         super.onResume();
         PreferenceManager.getDefaultSharedPreferences(getActivity()).registerOnSharedPreferenceChangeListener(this);
         // set summaries
-        apiKeyPreference.setSummary(formatValueString(R.string.preferences_api_key_summary, (apiKeyPreference.getText().length() > 0 ? apiKeyPreference.getText() : getString(R.string.preferences_value_undefined))));
+        apiKeyPreference.setSummary(formatValueString(R.string.preferences_opencellid_api_key_summary, (apiKeyPreference.getText().length() > 0 ? apiKeyPreference.getText() : getString(R.string.preferences_value_undefined))));
     }
 
     @Override
@@ -55,25 +55,25 @@ public class UploadPreferenceFragment extends DialogEnabledPreferenceFragment im
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Timber.d("onSharedPreferenceChanged(): Preference value changed: %s", key);
-        if (key.equals(getString(R.string.preferences_api_key_key))) {
+        if (key.equals(getString(R.string.preferences_opencellid_api_key_key))) {
             String apiKeyValue = apiKeyPreference.getText();
             Timber.d("onSharedPreferenceChanged(): User set API key = \"%s\"", apiKeyValue);
             boolean isApiKeyEmpty = TextUtils.isEmpty(apiKeyValue);
-            apiKeyPreference.setSummary(formatValueString(R.string.preferences_api_key_summary, (!isApiKeyEmpty ? apiKeyValue : getString(R.string.preferences_value_undefined))));
-            if (!isApiKeyEmpty && !ApiKeyValidator.isOpenCellIdApiKeyValid(apiKeyValue)) {
+            apiKeyPreference.setSummary(formatValueString(R.string.preferences_opencellid_api_key_summary, (!isApiKeyEmpty ? apiKeyValue : getString(R.string.preferences_value_undefined))));
+            if (!isApiKeyEmpty && !OpenCellIdUtils.isApiKeyValid(apiKeyValue)) {
                 Timber.d("onSharedPreferenceChanged(): User defined invalid API key = \"%s\"", apiKeyValue);
                 Timber.i("onSharedPreferenceChanged(): User defined invalid API key");
-                Toast.makeText(getActivity(), getString(R.string.preferences_api_key_invalid), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), getString(R.string.preferences_opencellid_api_key_invalid), Toast.LENGTH_LONG).show();
             }
         }
     }
 
     private void setupRegisterApiKeyLink() {
-        setupOpenInDefaultWebBrowser(R.string.preferences_api_key_link_key, R.string.preferences_opencellid_org_sign_up_link);
+        setupOpenInDefaultWebBrowser(R.string.preferences_opencellid_api_key_link_key, R.string.preferences_opencellid_org_sign_up_link);
     }
 
     private void setupApiKeyFormatDialog() {
-        setupDialog(R.string.preferences_about_api_key_key, R.string.info_about_api_key_title, R.raw.info_about_api_key_content);
+        setupDialog(R.string.preferences_about_opencellid_api_key_key, R.string.info_about_api_key_title, R.raw.info_about_api_key_content);
     }
 
     private void setupAboutOpenCellIdDialog() {

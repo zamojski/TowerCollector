@@ -36,7 +36,7 @@ public class PreferencesProvider {
     }
 
     public String getApiKey() {
-        String value = stringPreferenceProvider.getPreference(R.string.preferences_api_key_key, R.string.preferences_api_key_default_value);
+        String value = stringPreferenceProvider.getPreference(R.string.preferences_opencellid_api_key_key, R.string.preferences_opencellid_api_key_default_value);
         return value.trim();
     }
 

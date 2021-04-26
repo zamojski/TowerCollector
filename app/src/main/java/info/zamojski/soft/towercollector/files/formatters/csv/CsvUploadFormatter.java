@@ -12,7 +12,7 @@ import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.model.Cell;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.providers.ICellUtils;
-import info.zamojski.soft.towercollector.providers.OpencellidCellUtils;
+import info.zamojski.soft.towercollector.providers.OpenCellIdCellUtils;
 import info.zamojski.soft.towercollector.utils.StringUtils;
 
 public class CsvUploadFormatter extends CsvFormatter {
@@ -21,7 +21,7 @@ public class CsvUploadFormatter extends CsvFormatter {
     private static final SimpleDateFormat uploadDateFormatter;
 
     static {
-        cellUtils = new OpencellidCellUtils();
+        cellUtils = new OpenCellIdCellUtils();
         deviceName = StringUtils.substring(deviceName, 0, 50);
         uploadDateFormatter = new SimpleDateFormat("\"yyyy-MM-dd HH:mm:ss.SSS'Z'\"", LOCALE);
         uploadDateFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));

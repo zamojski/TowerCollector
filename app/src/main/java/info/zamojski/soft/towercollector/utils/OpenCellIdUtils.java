@@ -4,8 +4,8 @@
 
 package info.zamojski.soft.towercollector.utils;
 
-public class ApiKeyValidator {
-    public static boolean isOpenCellIdApiKeyValid(String apiKey) {
+public class OpenCellIdUtils {
+    public static boolean isApiKeyValid(String apiKey) {
         // old 8 motions - e.g. "9743a66f914cc249efca164485a19c5c"
         // new ENAiKOON - guid, e.g. "9743a66f-914c-c249-efca-164485a19c5c"
         // admin ENAiKOON - there are some custom keys defined by administrators

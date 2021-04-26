@@ -105,7 +105,7 @@ import info.zamojski.soft.towercollector.utils.PermissionUtils;
 import info.zamojski.soft.towercollector.utils.StorageUtils;
 import info.zamojski.soft.towercollector.utils.StringUtils;
 import info.zamojski.soft.towercollector.utils.UpdateDialogArrayAdapter;
-import info.zamojski.soft.towercollector.utils.ApiKeyValidator;
+import info.zamojski.soft.towercollector.utils.OpenCellIdUtils;
 import info.zamojski.soft.towercollector.views.MainActivityPagerAdapter;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
@@ -906,7 +906,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             Timber.d("startUploaderServiceWithCheck(): Showing upload configurator");
             // check API key
             String apiKey = preferencesProvider.getApiKey();
-            boolean isApiKeyValid = ApiKeyValidator.isOpenCellIdApiKeyValid(apiKey);
+            boolean isApiKeyValid = OpenCellIdUtils.isApiKeyValid(apiKey);
             LayoutInflater inflater = LayoutInflater.from(this);
             View dialogLayout = inflater.inflate(R.layout.configure_uploader_dialog, null);
             final CheckBox ocidUploadCheckbox = dialogLayout.findViewById(R.id.ocid_upload_dialog_checkbox);

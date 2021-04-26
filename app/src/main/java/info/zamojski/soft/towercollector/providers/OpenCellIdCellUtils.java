@@ -6,7 +6,7 @@ package info.zamojski.soft.towercollector.providers;
 
 import info.zamojski.soft.towercollector.enums.NetworkGroup;
 
-public class OpencellidCellUtils implements ICellUtils {
+public class OpenCellIdCellUtils implements ICellUtils {
 
     public String getSystemType(NetworkGroup networkType) {
         switch (networkType) {
