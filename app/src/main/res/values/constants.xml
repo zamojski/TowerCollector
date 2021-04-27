@@ -4,6 +4,9 @@
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
+    <string name="preferences_version_key" translatable="false">preferences_version</string>
+    <integer name="preferences_version_default_value" translatable="false">0</integer>
+
     <string name="app_name" translatable="false">Tower Collector</string>
     <string name="app_id" translatable="false">TowerCollector <xliff:g id="app_version">%s</xliff:g></string>
 

@@ -10,7 +10,7 @@ import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
 import androidx.annotation.StringRes;
 
-class StringPreferenceProvider extends PreferenceProviderBase<String> {
+public class StringPreferenceProvider extends PreferenceProviderBase<String> {
 
     public StringPreferenceProvider(Context context) {
         super(context);

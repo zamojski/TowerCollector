@@ -11,7 +11,7 @@ import android.content.res.Resources;
 import androidx.annotation.IntegerRes;
 import androidx.annotation.StringRes;
 
-class IntegerPreferenceProvider extends PreferenceProviderBase<Integer> {
+public class IntegerPreferenceProvider extends PreferenceProviderBase<Integer> {
 
     public IntegerPreferenceProvider(Context context) {
         super(context);

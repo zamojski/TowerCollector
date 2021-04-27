@@ -19,6 +19,8 @@ import java.util.List;
 
 public class PreferencesProvider {
 
+    public static final int PREFERENCES_VERSION = 1;
+
     private static final String ENUM_SERIALIZATION_DELIMITER = ";";
 
     private final BooleanPreferenceProvider booleanPreferenceProvider;
@@ -33,6 +35,15 @@ public class PreferencesProvider {
         this.integerPreferenceProvider = new IntegerPreferenceProvider(context);
         this.floatPreferenceProvider = new FloatPreferenceProvider(context);
         this.stringPreferenceProvider = new StringPreferenceProvider(context);
+    }
+
+    public int getPreferencesVersion() {
+        Integer value = integerPreferenceProvider.getPreference(R.string.preferences_version_key, R.integer.preferences_version_default_value);
+        return value;
+    }
+
+    public void setPreferencesVersion(int version) {
+        integerPreferenceProvider.setPreference(R.string.preferences_version_key, version);
     }
 
     public String getApiKey() {

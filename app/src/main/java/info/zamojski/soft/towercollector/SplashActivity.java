@@ -7,7 +7,9 @@ package info.zamojski.soft.towercollector;
 import info.zamojski.soft.towercollector.analytics.IntentSource;
 import info.zamojski.soft.towercollector.broadcast.ExternalBroadcastReceiver;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
+import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvider;
 import info.zamojski.soft.towercollector.tasks.DatabaseUpgradeTask;
+import info.zamojski.soft.towercollector.tasks.PreferencesUpgradeTask;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
 import timber.log.Timber;
 
@@ -92,6 +94,7 @@ public class SplashActivity extends Activity {
         getAsyncHandler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                ensurePreferencesUpToDate();
                 ensureDatabaseUpToDate();
                 startMainActivity();
                 Timber.d("startMainActivityAsync(): Closing splash screen window");
@@ -105,6 +108,7 @@ public class SplashActivity extends Activity {
         getAsyncHandler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                ensurePreferencesUpToDate();
                 ensureDatabaseUpToDate();
                 if (MyApplication.isBackgroundTaskRunning(CollectorService.class)) {
                     new ExternalBroadcastReceiver().stopCollectorService(MyApplication.getApplication());
@@ -122,6 +126,7 @@ public class SplashActivity extends Activity {
         getAsyncHandler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                ensurePreferencesUpToDate();
                 ensureDatabaseUpToDate();
                 if (MyApplication.isBackgroundTaskRunning(UploaderService.class)) {
                     new ExternalBroadcastReceiver().stopUploaderService(MyApplication.getApplication());
@@ -149,6 +154,20 @@ public class SplashActivity extends Activity {
         // Load last measurement and stats into cache
         MeasurementsDatabase.getInstance(MyApplication.getApplication()).getLastMeasurement();
         MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
+    }
+
+    private void ensurePreferencesUpToDate() {
+        int currentPreferencesVersion = MyApplication.getPreferencesProvider().getPreferencesVersion();
+        if (currentPreferencesVersion != PreferencesProvider.PREFERENCES_VERSION) {
+            Timber.d("ensurePreferencesUpToDate(): Upgrading preferences");
+            databaseUpgradeRunning = true; // reuse intentionally as it should be fast and is executed in series
+            showDetailsMessage();
+            // show progress dialog only when migrating preferences
+            PreferencesUpgradeTask preferencesUpgradeTask = new PreferencesUpgradeTask(MyApplication.getApplication(), currentPreferencesVersion);
+            preferencesUpgradeTask.upgrade();
+            hideDetailsMessage();
+            databaseUpgradeRunning = false;
+        }
     }
 
     private void startMainActivity() {

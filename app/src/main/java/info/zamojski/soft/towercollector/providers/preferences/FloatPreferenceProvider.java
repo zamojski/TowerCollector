@@ -12,7 +12,7 @@ import android.content.res.Resources;
 import androidx.annotation.IntegerRes;
 import androidx.annotation.StringRes;
 
-class FloatPreferenceProvider extends PreferenceProviderBase<Float> {
+public class FloatPreferenceProvider extends PreferenceProviderBase<Float> {
 
     public FloatPreferenceProvider(Context context) {
         super(context);

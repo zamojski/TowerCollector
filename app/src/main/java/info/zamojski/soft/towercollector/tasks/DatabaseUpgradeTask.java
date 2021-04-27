@@ -14,8 +14,8 @@ import timber.log.Timber;
 
 public class DatabaseUpgradeTask {
 
-    private Activity activity;
-    private int oldDbVersion;
+    private final Activity activity;
+    private final int oldDbVersion;
 
     public DatabaseUpgradeTask(Activity activity, int oldDbVersion) {
         this.activity = activity;

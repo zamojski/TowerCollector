@@ -22,7 +22,7 @@ abstract class PreferenceProviderBase<T> {
         this.context = context;
     }
 
-    T getPreference(@StringRes int valueKey, int defaultValueKey) {
+    public T getPreference(@StringRes int valueKey, int defaultValueKey) {
         return getPreference(valueKey, defaultValueKey, true);
     }
 
@@ -46,7 +46,7 @@ abstract class PreferenceProviderBase<T> {
         return value;
     }
 
-    void setPreference(@StringRes int valueKey, T value) {
+    public void setPreference(@StringRes int valueKey, T value) {
         Timber.d("setPreference(): Preference `%s` value set to `%s`", context.getString(valueKey), value);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();

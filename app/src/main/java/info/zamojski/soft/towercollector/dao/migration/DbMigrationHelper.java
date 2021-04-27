@@ -13,8 +13,8 @@ import timber.log.Timber;
 
 public class DbMigrationHelper {
 
-    private SQLiteDatabase database;
-    private List<IUpgradeScript> upgradeScripts;
+    private final SQLiteDatabase database;
+    private final List<IUpgradeScript> upgradeScripts;
 
     public DbMigrationHelper(SQLiteDatabase database) {
         this.database = database;

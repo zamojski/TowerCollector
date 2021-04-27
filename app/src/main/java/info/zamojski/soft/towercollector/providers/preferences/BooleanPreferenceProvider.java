@@ -11,7 +11,7 @@ import android.content.res.Resources;
 import androidx.annotation.BoolRes;
 import androidx.annotation.StringRes;
 
-class BooleanPreferenceProvider extends PreferenceProviderBase<Boolean> {
+public class BooleanPreferenceProvider extends PreferenceProviderBase<Boolean> {
 
     public BooleanPreferenceProvider(Context context) {
         super(context);
