@@ -31,7 +31,7 @@ public class FakeAnalyticsReportingService implements IAnalyticsReportingService
     }
 
     @Override
-    public void sendUploadFinished(IntentSource source, String networkType, long duration, AnalyticsStatistics stats, boolean ocid) {
+    public void sendUploadFinished(IntentSource source, String networkType, long duration, AnalyticsStatistics stats, String target) {
 
     }
 

@@ -905,7 +905,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         if (showConfigurator) {
             Timber.d("startUploaderServiceWithCheck(): Showing upload configurator");
             // check API key
-            String apiKey = preferencesProvider.getApiKey();
+            String apiKey = OpenCellIdUtils.getApiKey();
             boolean isApiKeyValid = OpenCellIdUtils.isApiKeyValid(apiKey);
             LayoutInflater inflater = LayoutInflater.from(this);
             View dialogLayout = inflater.inflate(R.layout.configure_uploader_dialog, null);

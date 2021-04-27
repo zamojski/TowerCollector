@@ -40,6 +40,8 @@ android {
         buildConfigField "boolean", "ANALYTICS_AVAILABLE", props['analytics_available']
         // MLS
         buildConfigField "String", "MLS_API_KEY", rotHex(props['mls_apiKey'])
+        // OCID
+        buildConfigField "String", "OCID_API_KEY", rotHex(props['ocid_apiKey'])
         // Other
         buildConfigField "String", "UPDATE_CHECK_FEED_URI", props['other_updateCheckFeedUri']
         buildConfigField "String", "CONTACT_EMAIL", rot135(props['other_contactEmail'])

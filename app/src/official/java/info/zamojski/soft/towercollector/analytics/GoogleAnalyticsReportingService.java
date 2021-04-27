@@ -21,7 +21,7 @@ import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
 
 public class GoogleAnalyticsReportingService implements IAnalyticsReportingService {
 
-    private FirebaseAnalytics analytics;
+    private final FirebaseAnalytics analytics;
 
     public GoogleAnalyticsReportingService(Application application, boolean trackingEnabled, boolean sendEvents) {
         this.analytics = FirebaseAnalytics.getInstance(application);
@@ -68,10 +68,10 @@ public class GoogleAnalyticsReportingService implements IAnalyticsReportingServi
     }
 
     @Override
-    public void sendUploadFinished(IntentSource source, String networkType, long duration, AnalyticsStatistics stats, boolean ocid) {
+    public void sendUploadFinished(IntentSource source, String networkType, long duration, AnalyticsStatistics stats, String target) {
         Bundle bundle = new Bundle();
         bundle.putString(Parameter.Source, convertToStartLabel(source));
-        bundle.putString(Parameter.Target, ocid ? Label.UploadOcid : Label.UploadMls);
+        bundle.putString(Parameter.Target, target);
         bundle.putString(Parameter.NetworkType, networkType);
         bundle.putInt(Parameter.Locations, stats.getLocations());
         bundle.putInt(Parameter.Cells, stats.getCells());

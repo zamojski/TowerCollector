@@ -297,4 +297,9 @@ public class PreferencesProvider {
     public void setStorageUri(Uri uri) {
         stringPreferenceProvider.setPreference(R.string.preferences_storage_uri_key, uri != null ? uri.toString() : null);
     }
+
+    public boolean isUseSharedOpenCellIdApiKeyEnabled() {
+        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_opencellid_use_shared_api_key_key, R.bool.preferences_opencellid_use_shared_api_key_default_value);
+        return value;
+    }
 }

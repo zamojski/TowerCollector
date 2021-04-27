@@ -37,6 +37,9 @@
     <string name="preferences_opencellid_enabled_title">Enable OCID upload</string>
     <string name="preferences_opencellid_enabled_on_summary">Measurements will be uploaded to OpenCellID.org.</string>
     <string name="preferences_opencellid_enabled_off_summary">Measurements will not be uploaded to OpenCellID.org.</string>
+    <string name="preferences_opencellid_use_shared_api_key_title">Anonymous contribution</string>
+    <string name="preferences_opencellid_use_shared_api_key_on_summary">The shared access token will be used.</string>
+    <string name="preferences_opencellid_use_shared_api_key_off_summary">The personal access token will be used.</string>
     <string name="preferences_opencellid_api_key_title">Personal access token</string>
     <string name="preferences_opencellid_api_key_summary">The token required to upload your measurements.</string>
     <string name="preferences_opencellid_api_key_invalid">Entered access token is invalid. The correct format is described in Help.</string>

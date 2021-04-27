@@ -19,7 +19,7 @@ public interface IAnalyticsReportingService {
 
     void sendCollectorFinished(IntentSource source, String meansOfTransport, int apiVersion, long duration, AnalyticsStatistics stats, Map<NetworkGroup,Integer> collectedCellTypes);
 
-    void sendUploadFinished(IntentSource source, String networkType, long duration, AnalyticsStatistics stats, boolean ocid);
+    void sendUploadFinished(IntentSource source, String networkType, long duration, AnalyticsStatistics stats, String target);
 
     void sendExportFinished(long duration, String fileType, AnalyticsStatistics stats);
 

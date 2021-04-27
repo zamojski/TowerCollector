@@ -39,7 +39,9 @@
     <string name="preferences_opencellid_enabled_key" translatable="false">opencellid_enabled</string>
     <bool name="preferences_opencellid_enabled_default_value" translatable="false">true</bool>
 
-    <string name="preferences_api_key_key" translatable="false">api_key</string>
+    <string name="preferences_opencellid_use_shared_api_key_key" translatable="false">opencellid_use_shared_api_key</string>
+    <bool name="preferences_opencellid_use_shared_api_key_default_value" translatable="false">true</bool>
+
     <string name="preferences_opencellid_api_key_key" translatable="false">api_key</string>
     <string name="preferences_opencellid_api_key_default_value" translatable="false" />
     <string name="preferences_opencellid_api_key_link_key" translatable="false">api_key_link</string>

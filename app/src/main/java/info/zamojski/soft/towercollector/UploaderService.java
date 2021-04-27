@@ -5,6 +5,7 @@
 package info.zamojski.soft.towercollector;
 
 import info.zamojski.soft.towercollector.analytics.IntentSource;
+import info.zamojski.soft.towercollector.analytics.internal.Label;
 import info.zamojski.soft.towercollector.enums.UploadResult;
 import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
 import info.zamojski.soft.towercollector.files.formatters.csv.CsvUploadFormatter;
@@ -23,6 +24,7 @@ import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvid
 import info.zamojski.soft.towercollector.uploader.UploaderNotificationHelper;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
 import info.zamojski.soft.towercollector.utils.NetworkUtils;
+import info.zamojski.soft.towercollector.utils.OpenCellIdUtils;
 import timber.log.Timber;
 
 import java.util.ArrayList;
@@ -72,7 +74,7 @@ public class UploaderService extends Service {
     private boolean isOpenCellIdUploadEnabled;
     private boolean isMlsUploadEnabled;
     private boolean isReuploadIfUploadFailsEnabled;
-    private AtomicBoolean isCancelled = new AtomicBoolean(false);
+    private final AtomicBoolean isCancelled = new AtomicBoolean(false);
 
     private UploadResult ocidUploadResult = UploadResult.NotStarted;
     private UploadResult mlsUploadResult = UploadResult.NotStarted;
@@ -110,7 +112,7 @@ public class UploaderService extends Service {
             startIntentSource = (IntentSource) intent.getSerializableExtra(INTENT_KEY_START_INTENT_SOURCE);
         }
         // we hope API key will be valid
-        ocidApiKey = preferencesProvider.getApiKey();
+        ocidApiKey = OpenCellIdUtils.getApiKey();
         mlsApiKey = BuildConfig.MLS_API_KEY;
         // start work on separate thread to eliminate lags
         getHandler().post(new UploaderThread());
@@ -322,9 +324,9 @@ public class UploaderService extends Service {
                 stats.setCells(startStats.getCells() - endStats.getCells());
                 stats.setDays(startStats.getDays() - endStats.getDays());
                 if (isOpenCellIdUploadEnabled)
-                    MyApplication.getAnalytics().sendUploadFinished(startIntentSource, networkType, duration, stats, true);
+                    MyApplication.getAnalytics().sendUploadFinished(startIntentSource, networkType, duration, stats, OpenCellIdUtils.isApiKeyShared(ocidApiKey) ? Label.UploadOcidShared : Label.UploadOcid);
                 if (isMlsUploadEnabled)
-                    MyApplication.getAnalytics().sendUploadFinished(startIntentSource, networkType, duration, stats, false);
+                    MyApplication.getAnalytics().sendUploadFinished(startIntentSource, networkType, duration, stats, Label.UploadMls);
             }
             // broadcast upload finished and stop service
             EventBus.getDefault().post(new PrintMainWindowEvent());
