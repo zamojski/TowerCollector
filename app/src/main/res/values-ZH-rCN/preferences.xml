@@ -145,7 +145,7 @@
     <string name="preferences_change_storage_location_title">变更储存位置</string>
     <string name="preferences_change_storage_location_summary">更改应用程序文件的存储位置。</string>
     <string name="preferences_main_map_enable_title">启用地图</string>
-    <string name="preferences_main_map_enable_on_summary">地图选项卡可见。 禁用将清除缓存。</string>
+    <string name="preferences_main_map_enable_on_summary">地图选项卡可见。</string>
     <string name="preferences_main_map_enable_off_summary">地图选项卡被隐藏。</string>
     <string name="preferences_main_map_force_light_theme_title">始终使用浅色主题</string>
     <string name="preferences_main_map_force_light_theme_on_summary">将始终使用地图的浅色主题。</string>

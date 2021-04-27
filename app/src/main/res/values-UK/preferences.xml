@@ -145,7 +145,7 @@
     <string name="preferences_change_storage_location_title">Змінити місце зберігання</string>
     <string name="preferences_change_storage_location_summary">Змінює місце, де зберігаються файли програм.</string>
     <string name="preferences_main_map_enable_title">Увімкнути карту</string>
-    <string name="preferences_main_map_enable_on_summary">Видно вкладку карта. Вимкнення очистить кэш.</string>
+    <string name="preferences_main_map_enable_on_summary">Видно вкладку карта.</string>
     <string name="preferences_main_map_enable_off_summary">Вкладка карта прихована.</string>
     <string name="preferences_main_map_force_light_theme_title">Примусити світлу тему</string>
     <string name="preferences_main_map_force_light_theme_on_summary">Завжди буде використана легка тема карти.</string>

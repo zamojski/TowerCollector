@@ -145,7 +145,7 @@
     <string name="preferences_change_storage_location_title">Depolama konumunu değiştir</string>
     <string name="preferences_change_storage_location_summary">Uygulama dosyalarının depolandığı konumu değiştirir.</string>
     <string name="preferences_main_map_enable_title">Haritayı etkinleştir</string>
-    <string name="preferences_main_map_enable_on_summary">Haritası sekmesi görünür. Devre dışı bırakmak ön belleği temizler.</string>
+    <string name="preferences_main_map_enable_on_summary">Haritası sekmesi görünür.</string>
     <string name="preferences_main_map_enable_off_summary">Harita sekmesi gizli.</string>
     <string name="preferences_main_map_force_light_theme_title">Açık temayı zorunlu kıl</string>
     <string name="preferences_main_map_force_light_theme_on_summary">Haritada her zaman açık tema kullanılacaktır.</string>

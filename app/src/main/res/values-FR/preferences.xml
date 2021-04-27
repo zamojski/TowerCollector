@@ -145,7 +145,7 @@
     <string name="preferences_change_storage_location_title">Modifier l\'emplacement de stockage</string>
     <string name="preferences_change_storage_location_summary">Modifie l\'emplacement de stockage des fichiers d\'application.</string>
     <string name="preferences_main_map_enable_title">Activer la carte</string>
-    <string name="preferences_main_map_enable_on_summary">L\'onglet Carte est visible. La désactivation effacera le cache.</string>
+    <string name="preferences_main_map_enable_on_summary">L\'onglet Carte est visible.</string>
     <string name="preferences_main_map_enable_off_summary">L\'onglet Carte est masqué.</string>
     <string name="preferences_main_map_force_light_theme_title">Forcer le thème clair</string>
     <string name="preferences_main_map_force_light_theme_on_summary">Le thème clair de la carte sera toujours utilisé.</string>

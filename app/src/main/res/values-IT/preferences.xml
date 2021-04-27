@@ -145,7 +145,7 @@
     <string name="preferences_change_storage_location_title">Modifica la posizione di archiviazione</string>
     <string name="preferences_change_storage_location_summary">Modifica la posizione in cui vengono archiviati i file dell\'applicazione.</string>
     <string name="preferences_main_map_enable_title">Abilita mappa</string>
-    <string name="preferences_main_map_enable_on_summary">La scheda della mappa è visibile. La disabilitazione cancellerà la cache.</string>
+    <string name="preferences_main_map_enable_on_summary">La scheda della mappa è visibile.</string>
     <string name="preferences_main_map_enable_off_summary">La scheda della mappa è nascosta.</string>
     <string name="preferences_main_map_force_light_theme_title">Forza il tema luminosa</string>
     <string name="preferences_main_map_force_light_theme_on_summary">Verrà sempre utilizzato il tema chiaro della mappa.</string>

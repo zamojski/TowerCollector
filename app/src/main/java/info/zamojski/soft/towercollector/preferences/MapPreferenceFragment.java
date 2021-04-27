@@ -59,10 +59,6 @@ public class MapPreferenceFragment extends DialogEnabledPreferenceFragment imple
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(getString(R.string.preferences_main_map_enable_key))) {
-            boolean mapEnabledValue = mapEnablePreference.isChecked();
-            if (!mapEnabledValue) {
-                MapUtils.clearMapCache(getActivity());
-            }
             MyApplication.getPreferencesProvider().invalidateMainMapEnabledCache();
             EventBus.getDefault().postSticky(new MapEnabledChanged());
         }

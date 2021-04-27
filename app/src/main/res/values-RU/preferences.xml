@@ -145,7 +145,7 @@
     <string name="preferences_change_storage_location_title">Изменить место хранения</string>
     <string name="preferences_change_storage_location_summary">Изменяет место хранения файлов приложения.</string>
     <string name="preferences_main_map_enable_title">Включить карту</string>
-    <string name="preferences_main_map_enable_on_summary">Вкладка карты видна. Отключение очистит кеш.</string>
+    <string name="preferences_main_map_enable_on_summary">Вкладка карты видна.</string>
     <string name="preferences_main_map_enable_off_summary">Вкладка карты скрыта.</string>
     <string name="preferences_main_map_force_light_theme_title">Всегда используйте светлую тему</string>
     <string name="preferences_main_map_force_light_theme_on_summary">Всегда будет использоваться светлая тема карты.</string>

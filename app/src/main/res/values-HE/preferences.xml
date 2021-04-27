@@ -145,7 +145,7 @@
     <string name="preferences_change_storage_location_title">החלפת מקום האחסון</string>
     <string name="preferences_change_storage_location_summary">מחליף את המקום בו קובצי היישומון מאוחסנים.</string>
     <string name="preferences_main_map_enable_title">הפעלת מפה</string>
-    <string name="preferences_main_map_enable_on_summary">לשונית המפה גלויה. ההשבתה תפנה את המטמון.</string>
+    <string name="preferences_main_map_enable_on_summary">לשונית המפה גלויה.</string>
     <string name="preferences_main_map_enable_off_summary">לשונית המפה מוסתרת.</string>
     <string name="preferences_main_map_force_light_theme_title">אילוץ ערכת עיצוב בהירה</string>
     <string name="preferences_main_map_force_light_theme_on_summary">תמיד יעשה שימוש במפה בהירה.</string>

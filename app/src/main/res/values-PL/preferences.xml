@@ -145,7 +145,7 @@
     <string name="preferences_change_storage_location_title">Zmień miejsce w pamięci</string>
     <string name="preferences_change_storage_location_summary">Zmienia miejsce w pamięci, gdzie zapisywane są są pliki aplikacji.</string>
     <string name="preferences_main_map_enable_title">Włącz mapę</string>
-    <string name="preferences_main_map_enable_on_summary">Mapa jest widoczna. Wyłączenie wyczyści pamięć podręczną.</string>
+    <string name="preferences_main_map_enable_on_summary">Mapa jest widoczna.</string>
     <string name="preferences_main_map_enable_off_summary">Mapa jest ukryta.</string>
     <string name="preferences_main_map_force_light_theme_title">Wymuś jasny motyw</string>
     <string name="preferences_main_map_force_light_theme_on_summary">Jasny motyw mapy zawsze będzie używany.</string>

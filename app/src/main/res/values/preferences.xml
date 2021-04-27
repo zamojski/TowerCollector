@@ -148,7 +148,7 @@
     <string name="preferences_change_storage_location_title">Change storage location</string>
     <string name="preferences_change_storage_location_summary">Changes the location where application files are stored.</string>
     <string name="preferences_main_map_enable_title">Enable map</string>
-    <string name="preferences_main_map_enable_on_summary">The map tab is visible. Disabling will clear the cache.</string>
+    <string name="preferences_main_map_enable_on_summary">The map tab is visible.</string>
     <string name="preferences_main_map_enable_off_summary">The map tab is hidden.</string>
     <string name="preferences_main_map_force_light_theme_title">Enforce the light theme</string>
     <string name="preferences_main_map_force_light_theme_on_summary">The light theme of the map will always be used.</string>
