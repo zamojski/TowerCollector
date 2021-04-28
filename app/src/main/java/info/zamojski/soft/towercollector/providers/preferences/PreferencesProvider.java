@@ -313,4 +313,9 @@ public class PreferencesProvider {
         boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_opencellid_use_shared_api_key_key, R.bool.preferences_opencellid_use_shared_api_key_default_value);
         return value;
     }
+
+    public int getMapCacheSizeLimit() {
+        int value = integerPreferenceProvider.getPreference(R.string.preferences_main_map_cache_size_key, R.integer.preferences_main_map_cache_size_default_value);
+        return value;
+    }
 }

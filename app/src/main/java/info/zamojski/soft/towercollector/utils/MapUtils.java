@@ -15,6 +15,7 @@ import org.osmdroid.tileprovider.modules.SqlTileWriter;
 
 import java.io.File;
 
+import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 
 public class MapUtils {
@@ -22,8 +23,14 @@ public class MapUtils {
         Configuration.getInstance().setOsmdroidBasePath(getMapBasePath(context));
         Configuration.getInstance().setOsmdroidTileCache(getMapCachePath(context));
         Configuration.getInstance().load(context, PreferenceManager.getDefaultSharedPreferences(context));
-        Configuration.getInstance().setTileFileSystemCacheMaxBytes(150 * 1024 * 1024);
-        Configuration.getInstance().setTileFileSystemCacheTrimBytes(100 * 1024 * 1024);
+        setMapCacheLimits();
+    }
+
+    public static void setMapCacheLimits() {
+        int cacheSizeLimit = MyApplication.getPreferencesProvider().getMapCacheSizeLimit() * 1024 * 1024;
+        int cacheSizeTrim = (int) Math.floor(0.6 * cacheSizeLimit);
+        Configuration.getInstance().setTileFileSystemCacheMaxBytes(cacheSizeLimit);
+        Configuration.getInstance().setTileFileSystemCacheTrimBytes(cacheSizeTrim);
     }
 
     public static void clearMapCache(Activity activity) {
