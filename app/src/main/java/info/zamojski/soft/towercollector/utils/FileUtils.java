@@ -55,7 +55,7 @@ public class FileUtils {
         // '/.htaccess' -> 'htaccess'
         // '/s/.htaccess' -> 'htaccess'
 
-        String extension = null;
+        String extension = "";
 
         int i = path.lastIndexOf('.');
         int p = Math.max(path.lastIndexOf('/'), path.lastIndexOf('\\'));
