@@ -1,0 +1,5 @@
+- Add option to contribute to OpenCellID anonymously.
+- Block navigation between tabs with swiping when map tab is active.
+- Allow setting maximum map cache size.
+- Disable clearing map cache when disabling map tab.
+- Improve error handling.
