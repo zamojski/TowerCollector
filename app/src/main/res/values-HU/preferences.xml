@@ -37,7 +37,10 @@
     <string name="preferences_opencellid_enabled_title">OCID feltöltés engedélyezése</string>
     <string name="preferences_opencellid_enabled_on_summary">A mérések feltöltésre kerülnek az OpenCellID.org-ra.</string>
     <string name="preferences_opencellid_enabled_off_summary">A mérések nem lesznek feltöltve az OpenCellID.org-ra.</string>
-    <string name="preferences_opencellid_api_key_title">Hozzáférési token</string>
+    <string name="preferences_opencellid_use_shared_api_key_title">Névtelen közreműködés</string>
+    <string name="preferences_opencellid_use_shared_api_key_on_summary">A megosztott hozzáférési token fogják használni.</string>
+    <string name="preferences_opencellid_use_shared_api_key_off_summary">A személyes hozzáférési token kerül felhasználásra.</string>
+    <string name="preferences_opencellid_api_key_title">Személyes hozzáférési token</string>
     <string name="preferences_opencellid_api_key_summary">Token szükséges a méréseid feltöltéséhez.</string>
     <string name="preferences_opencellid_api_key_invalid">A megadott hozzáférési token érvénytelen. A helyes formátum megtalálható a Segítség menüpontban.</string>
     <string name="preferences_opencellid_api_key_link_title">Szerezz saját hozzáférési tokent</string>
@@ -150,6 +153,8 @@
     <string name="preferences_main_map_force_light_theme_title">Kényszerítse a világos téma</string>
     <string name="preferences_main_map_force_light_theme_on_summary">A térkép világos témája mindig felhasználásra kerül.</string>
     <string name="preferences_main_map_force_light_theme_off_summary">A térkép témája követi a megjelenítési beállításokat.</string>
+    <string name="preferences_main_map_cache_size_title">Térkép gyorsítótár mérete</string>
+    <string name="preferences_main_map_cache_size_summary">Állítsa be a térkép gyorsítótárának méretét a készüléken rendelkezésre álló szabad memória szerint.</string>
     <string name="preferences_main_map_clear_cache_title">Gyorsítótár törlése</string>
     <string name="preferences_main_map_clear_cache_summary">Törli a térkép gyorsítótár-mappáját, hogy helyet szabadítson fel.</string>
 </resources>

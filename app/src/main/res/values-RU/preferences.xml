@@ -37,7 +37,10 @@
     <string name="preferences_opencellid_enabled_title">Включить выгрузку в OCID</string>
     <string name="preferences_opencellid_enabled_on_summary">Измерения будут выгружаться в OpenCellID.org.</string>
     <string name="preferences_opencellid_enabled_off_summary">Измерения не будут выгружаться в OpenCellID.org.</string>
-    <string name="preferences_opencellid_api_key_title">Токен доступа</string>
+    <string name="preferences_opencellid_use_shared_api_key_title">Анонимный вклад</string>
+    <string name="preferences_opencellid_use_shared_api_key_on_summary">Будет использован общий токен.</string>
+    <string name="preferences_opencellid_use_shared_api_key_off_summary">Будет использован персональный токен.</string>
+    <string name="preferences_opencellid_api_key_title">Персональный токен доступа</string>
     <string name="preferences_opencellid_api_key_summary">Для загрузки измерений требуется токен.</string>
     <string name="preferences_opencellid_api_key_invalid">Введённый токен доступа имеет неверный формат. Смотрите справочное руководство.</string>
     <string name="preferences_opencellid_api_key_link_title">Получить свой токен доступа</string>
@@ -150,6 +153,8 @@
     <string name="preferences_main_map_force_light_theme_title">Всегда используйте светлую тему</string>
     <string name="preferences_main_map_force_light_theme_on_summary">Всегда будет использоваться светлая тема карты.</string>
     <string name="preferences_main_map_force_light_theme_off_summary">Тема карты будет соответствовать настройкам Экрана.</string>
+    <string name="preferences_main_map_cache_size_title">Размер кэша карты</string>
+    <string name="preferences_main_map_cache_size_summary">Отрегулируйте размер кэша карты в соответствии с доступной свободной памятью на вашем устройстве.</string>
     <string name="preferences_main_map_clear_cache_title">Очистить кэш</string>
     <string name="preferences_main_map_clear_cache_summary">Очищает папку кэша карты, чтобы освободить место.</string>
 </resources>

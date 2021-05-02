@@ -37,7 +37,10 @@
     <string name="preferences_opencellid_enabled_title">Abilita il caricamento su OCID</string>
     <string name="preferences_opencellid_enabled_on_summary">Le misurazioni saranno caricate su OpenCellID.org.</string>
     <string name="preferences_opencellid_enabled_off_summary">Le misurazioni non saranno caricate su OpenCellID.org.</string>
-    <string name="preferences_opencellid_api_key_title">Token di accesso</string>
+    <string name="preferences_opencellid_use_shared_api_key_title">Contributo anonimo</string>
+    <string name="preferences_opencellid_use_shared_api_key_on_summary">Verrà utilizzato il token di accesso condiviso.</string>
+    <string name="preferences_opencellid_use_shared_api_key_off_summary">Verrà utilizzato il token di accesso personale.</string>
+    <string name="preferences_opencellid_api_key_title">Token di accesso personale</string>
     <string name="preferences_opencellid_api_key_summary">Il token richiesto per caricare le tue misurazioni.</string>
     <string name="preferences_opencellid_api_key_invalid">Il token di accesso immesso non è valido. Il formato corretto è descritto nella Guida.</string>
     <string name="preferences_opencellid_api_key_link_title">Ottieni il tuo token di accesso</string>
@@ -150,6 +153,8 @@
     <string name="preferences_main_map_force_light_theme_title">Forza il tema luminosa</string>
     <string name="preferences_main_map_force_light_theme_on_summary">Verrà sempre utilizzato il tema chiaro della mappa.</string>
     <string name="preferences_main_map_force_light_theme_off_summary">Il tema della mappa seguirà le preferenze di visualizzazione.</string>
+    <string name="preferences_main_map_cache_size_title">Dimensione della cache della mappa</string>
+    <string name="preferences_main_map_cache_size_summary">Regola la dimensione della cache della mappa in base alla memoria libera disponibile sul tuo dispositivo.</string>
     <string name="preferences_main_map_clear_cache_title">Cancella cache</string>
     <string name="preferences_main_map_clear_cache_summary">Cancella la cartella della cache della mappa per liberare spazio.</string>
 </resources>

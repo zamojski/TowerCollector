@@ -37,7 +37,10 @@
     <string name="preferences_opencellid_enabled_title">Włącz przesyłanie do OCID</string>
     <string name="preferences_opencellid_enabled_on_summary">Próbki zostaną przesłane do OpenCellID.org.</string>
     <string name="preferences_opencellid_enabled_off_summary">Próbki nie zostaną przesłane do OpenCellID.org.</string>
-    <string name="preferences_opencellid_api_key_title">Klucz dostępu</string>
+    <string name="preferences_opencellid_use_shared_api_key_title">Anonimowe przesyłanie</string>
+    <string name="preferences_opencellid_use_shared_api_key_on_summary">Współdzielony klucz dostępu będzie używany.</string>
+    <string name="preferences_opencellid_use_shared_api_key_off_summary">Osobisty klucz dostępu będzie używany.</string>
+    <string name="preferences_opencellid_api_key_title">Prywatny klucz dostępu</string>
     <string name="preferences_opencellid_api_key_summary">Klucz wymagany do przesłania zebranych próbek.</string>
     <string name="preferences_opencellid_api_key_invalid">Wprowadzony klucz dostępu jest nieprawidłowy. Poprawny format opisany jest w Pomocy.</string>
     <string name="preferences_opencellid_api_key_link_title">Wygeneruj własny klucz dostępu</string>
@@ -150,6 +153,8 @@
     <string name="preferences_main_map_force_light_theme_title">Wymuś jasny motyw</string>
     <string name="preferences_main_map_force_light_theme_on_summary">Jasny motyw mapy zawsze będzie używany.</string>
     <string name="preferences_main_map_force_light_theme_off_summary">Motyw mapy będzie zgodny z ustawieniami Wyświetlania.</string>
+    <string name="preferences_main_map_cache_size_title">Rozmiar pamięci podręcznej mapy</string>
+    <string name="preferences_main_map_cache_size_summary">Dopasuj rozmiar pamięci podręcznej may w zależności od dostępnej wolnej pamięci urządzenia.</string>
     <string name="preferences_main_map_clear_cache_title">Wyczyść pamięć podręczną</string>
     <string name="preferences_main_map_clear_cache_summary">Czyści pamięć podręczną mapy, aby zwolnić pamięć.</string>
 </resources>

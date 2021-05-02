@@ -37,7 +37,10 @@
     <string name="preferences_opencellid_enabled_title">Увімкнути завантаження OCID</string>
     <string name="preferences_opencellid_enabled_on_summary">Вимірювання будуть завантажені на OpenCellID.org.</string>
     <string name="preferences_opencellid_enabled_off_summary">Вимірювання не будуть завантажені в OpenCellID.org.</string>
-    <string name="preferences_opencellid_api_key_title">Маркер доступу</string>
+    <string name="preferences_opencellid_use_shared_api_key_title">Анонімний внесок</string>
+    <string name="preferences_opencellid_use_shared_api_key_on_summary">Буде використаний загальний маркер доступу.</string>
+    <string name="preferences_opencellid_use_shared_api_key_off_summary">Буде використаний персональний маркер доступу.</string>
+    <string name="preferences_opencellid_api_key_title">Токен особистого доступу</string>
     <string name="preferences_opencellid_api_key_summary">Ключ, необхідний для завантаження ваших даних.</string>
     <string name="preferences_opencellid_api_key_invalid">Введений маркер доступу недійсний. Правильний формат описано в довідці.</string>
     <string name="preferences_opencellid_api_key_link_title">Отримайте власний маркер доступу</string>
@@ -150,6 +153,8 @@
     <string name="preferences_main_map_force_light_theme_title">Примусити світлу тему</string>
     <string name="preferences_main_map_force_light_theme_on_summary">Завжди буде використана легка тема карти.</string>
     <string name="preferences_main_map_force_light_theme_off_summary">Тема карти буде відповідати налаштуванням відображення.</string>
+    <string name="preferences_main_map_cache_size_title">Розмір кешу карти</string>
+    <string name="preferences_main_map_cache_size_summary">Налаштуйте розмір кешу на карті відповідно до вільної пам\'яті на вашому пристрої.</string>
     <string name="preferences_main_map_clear_cache_title">Очистити кеш</string>
     <string name="preferences_main_map_clear_cache_summary">Очищает папку кэша карти, щоб звільнити місце.</string>
 </resources>

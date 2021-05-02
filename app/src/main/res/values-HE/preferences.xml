@@ -37,7 +37,10 @@
     <string name="preferences_opencellid_enabled_title">הפעלת העלאה ל־OCID</string>
     <string name="preferences_opencellid_enabled_on_summary">המדידות יועלו אל OpenCellID.org.</string>
     <string name="preferences_opencellid_enabled_off_summary">המדידות לא יועלו אל OpenCellID.org.</string>
-    <string name="preferences_opencellid_api_key_title">אסימון גישה</string>
+    <string name="preferences_opencellid_use_shared_api_key_title">תרומה אלמונית</string>
+    <string name="preferences_opencellid_use_shared_api_key_on_summary">ייעשה שימוש באסימון הגישה השיתופי.</string>
+    <string name="preferences_opencellid_use_shared_api_key_off_summary">ייעשה שימוש באסימון הגישה האישי.</string>
+    <string name="preferences_opencellid_api_key_title">אסימון גישה אישי</string>
     <string name="preferences_opencellid_api_key_summary">צריך אסימון כדי להעלות את המדידות שלך.</string>
     <string name="preferences_opencellid_api_key_invalid">אסימון הגישה שסופק שגוי. המבנה הנכון מתואר בעזרה.</string>
     <string name="preferences_opencellid_api_key_link_title">קבלת אסימון גישה משלך</string>
@@ -150,6 +153,8 @@
     <string name="preferences_main_map_force_light_theme_title">אילוץ ערכת עיצוב בהירה</string>
     <string name="preferences_main_map_force_light_theme_on_summary">תמיד יעשה שימוש במפה בהירה.</string>
     <string name="preferences_main_map_force_light_theme_off_summary">ערכת העיצוב של המפה תותאם להגדרות התצורה.</string>
+    <string name="preferences_main_map_cache_size_title">גודל מטמון המפה</string>
+    <string name="preferences_main_map_cache_size_summary">להתאים את גודל מטמון המפה בהתאם לזיכרון הפנוי במכשיר.</string>
     <string name="preferences_main_map_clear_cache_title">פינוי המטמון</string>
     <string name="preferences_main_map_clear_cache_summary">מפנה את תיקיית זיכרון המטמון כדי לפנות מקום.</string>
 </resources>

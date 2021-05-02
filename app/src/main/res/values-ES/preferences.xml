@@ -37,7 +37,10 @@
     <string name="preferences_opencellid_enabled_title">Habilitar subir a OCID</string>
     <string name="preferences_opencellid_enabled_on_summary">Las mediciones se cargarán a OpenCellID.org.</string>
     <string name="preferences_opencellid_enabled_off_summary">Las mediciones no se cargarán a OpenCellID.org.</string>
-    <string name="preferences_opencellid_api_key_title">Token de acceso</string>
+    <string name="preferences_opencellid_use_shared_api_key_title">Contribución anónima</string>
+    <string name="preferences_opencellid_use_shared_api_key_on_summary">Se utilizará el token de acceso compartido.</string>
+    <string name="preferences_opencellid_use_shared_api_key_off_summary">Se utilizará el token de acceso personal.</string>
+    <string name="preferences_opencellid_api_key_title">Token de acceso personal</string>
     <string name="preferences_opencellid_api_key_summary">El token necesario para subir las mediciones.</string>
     <string name="preferences_opencellid_api_key_invalid">El token de acceso introducido no es válido. El formato correcto se describe en la Ayuda.</string>
     <string name="preferences_opencellid_api_key_link_title">Obtenga su propio token de acceso</string>
@@ -150,6 +153,8 @@
     <string name="preferences_main_map_force_light_theme_title">Hacer cumplir el tema de la luz</string>
     <string name="preferences_main_map_force_light_theme_on_summary">Siempre se utilizará el tema claro del mapa.</string>
     <string name="preferences_main_map_force_light_theme_off_summary">El tema del mapa seguirá las preferencias de visualización.</string>
+    <string name="preferences_main_map_cache_size_title">Tamaño de la caché del mapa</string>
+    <string name="preferences_main_map_cache_size_summary">Ajuste el tamaño de la caché del mapa de acuerdo con la memoria libre disponible en su dispositivo.</string>
     <string name="preferences_main_map_clear_cache_title">Limpiar caché</string>
     <string name="preferences_main_map_clear_cache_summary">Borra la carpeta de caché del mapa para liberar espacio.</string>
 </resources>

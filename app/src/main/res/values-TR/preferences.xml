@@ -37,7 +37,10 @@
     <string name="preferences_opencellid_enabled_title">OCID\' e yüklemeyi etkinleştir</string>
     <string name="preferences_opencellid_enabled_on_summary">Ölçümler OpenCellID.org\' a yüklenecektir.</string>
     <string name="preferences_opencellid_enabled_off_summary">Ölçümler OpenCellID.org\' a yüklenmeyecektir.</string>
-    <string name="preferences_opencellid_api_key_title">Erişim Tokeni</string>
+    <string name="preferences_opencellid_use_shared_api_key_title">Anonim katkı</string>
+    <string name="preferences_opencellid_use_shared_api_key_on_summary">Paylaşılan erişim belirteci kullanılacaktır.</string>
+    <string name="preferences_opencellid_use_shared_api_key_off_summary">Kişisel erişim belirteci kullanılacaktır.</string>
+    <string name="preferences_opencellid_api_key_title">Kişisel erişim tokeni</string>
     <string name="preferences_opencellid_api_key_summary">Token, ölçümlerinizi yüklemek için gereklidir.</string>
     <string name="preferences_opencellid_api_key_invalid">Girilen erişim tokeni geçersiz. Doğru format yardım kısmında açıklanmıştır.</string>
     <string name="preferences_opencellid_api_key_link_title">Kendi erişim tokeninizi edinin.</string>
@@ -150,6 +153,8 @@
     <string name="preferences_main_map_force_light_theme_title">Açık temayı zorunlu kıl</string>
     <string name="preferences_main_map_force_light_theme_on_summary">Haritada her zaman açık tema kullanılacaktır.</string>
     <string name="preferences_main_map_force_light_theme_off_summary">Harita teması Ekran tercihlerine göre olacaktır.</string>
+    <string name="preferences_main_map_cache_size_title">Harita önbelleği boyutu</string>
+    <string name="preferences_main_map_cache_size_summary">Harita önbelleği boyutunu cihazınızdaki kullanılabilir boş belleğe göre ayarlayın.</string>
     <string name="preferences_main_map_clear_cache_title">Ön belleği temizle</string>
     <string name="preferences_main_map_clear_cache_summary">Telefonda biraz alan açmak için harita önbelleği dosyasını temizler.</string>
 </resources>

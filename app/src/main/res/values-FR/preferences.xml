@@ -37,7 +37,10 @@
     <string name="preferences_opencellid_enabled_title">Activer l\'envoi de l\'OCID</string>
     <string name="preferences_opencellid_enabled_on_summary">Les mesures seront envoyées vers OpenCellID.org.</string>
     <string name="preferences_opencellid_enabled_off_summary">Les mesures ne seront pas envoyées vers OpenCellID.org.</string>
-    <string name="preferences_opencellid_api_key_title">Le jeton d\'accès</string>
+    <string name="preferences_opencellid_use_shared_api_key_title">Contribution anonyme</string>
+    <string name="preferences_opencellid_use_shared_api_key_on_summary">Le jeton d\'accès partagé sera utilisé.</string>
+    <string name="preferences_opencellid_use_shared_api_key_off_summary">Le jeton d\'accès personnel sera utilisé.</string>
+    <string name="preferences_opencellid_api_key_title">Le jeton d\'accès personnel</string>
     <string name="preferences_opencellid_api_key_summary">Votre jeton est requise pour transmettre vos mesures</string>
     <string name="preferences_opencellid_api_key_invalid">Le jeton d\'accès entré est pas invalide. Le format correct est décrit dans l\'Aide.</string>
     <string name="preferences_opencellid_api_key_link_title">Obtenez votre propre jeton d\'accès</string>
@@ -150,6 +153,8 @@
     <string name="preferences_main_map_force_light_theme_title">Forcer le thème clair</string>
     <string name="preferences_main_map_force_light_theme_on_summary">Le thème clair de la carte sera toujours utilisé.</string>
     <string name="preferences_main_map_force_light_theme_off_summary">Le thème de la carte suivra les préférences d\'affichage.</string>
+    <string name="preferences_main_map_cache_size_title">Taille du cache de la carte</string>
+    <string name="preferences_main_map_cache_size_summary">Ajustez la taille du cache de la carte en fonction de la mémoire libre disponible sur votre appareil.</string>
     <string name="preferences_main_map_clear_cache_title">Vider le cache</string>
     <string name="preferences_main_map_clear_cache_summary">Efface le dossier de cache de la carte pour libérer de l\'espace.</string>
 </resources>

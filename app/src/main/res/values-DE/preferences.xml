@@ -37,7 +37,10 @@
     <string name="preferences_opencellid_enabled_title">OCID-Upload aktivieren</string>
     <string name="preferences_opencellid_enabled_on_summary">Messungen werden zu OpenCellID.org hochgeladen.</string>
     <string name="preferences_opencellid_enabled_off_summary">Messungen werden nicht zu OpenCellID.org hochgeladen.</string>
-    <string name="preferences_opencellid_api_key_title">Zugriffstoken</string>
+    <string name="preferences_opencellid_use_shared_api_key_title">Anonyme Unterstützung</string>
+    <string name="preferences_opencellid_use_shared_api_key_on_summary">Der gemeinsame Zugriffstoken wird verwendet.</string>
+    <string name="preferences_opencellid_use_shared_api_key_off_summary">Der persönliche Zugriffstoken wird verwendet.</string>
+    <string name="preferences_opencellid_api_key_title">Persönlicher Zugriffstoken</string>
     <string name="preferences_opencellid_api_key_summary">Notwendig für Upload der Messungen.</string>
     <string name="preferences_opencellid_api_key_invalid">Eingegebener Zugriffstoken ist ungültig. Wie das Zugriffstoken genau aussehen muss, ist in der Hilfe beschrieben.</string>
     <string name="preferences_opencellid_api_key_link_title">Eigenen Zugriffstoken beantragen</string>
@@ -150,6 +153,8 @@
     <string name="preferences_main_map_force_light_theme_title">Immer helles Farbschema</string>
     <string name="preferences_main_map_force_light_theme_on_summary">Verwende immer helles Farbschema für Karte.</string>
     <string name="preferences_main_map_force_light_theme_off_summary">Karte verwendet Farbschema der Anzeige-Einstellungen.</string>
+    <string name="preferences_main_map_cache_size_title">Die Größe des Kartendaten</string>
+    <string name="preferences_main_map_cache_size_summary">Passen Sie die Größe des Kartendates an den verfügbaren freien Speicher auf Ihrem Gerät an.</string>
     <string name="preferences_main_map_clear_cache_title">Cache leeren</string>
     <string name="preferences_main_map_clear_cache_summary">Leert Cache der Kartendaten um etwas Speicherplatz freizugeben.</string>
 </resources>

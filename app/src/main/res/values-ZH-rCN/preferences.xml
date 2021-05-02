@@ -37,7 +37,10 @@
     <string name="preferences_opencellid_enabled_title">启用OCID上传</string>
     <string name="preferences_opencellid_enabled_on_summary">测量数据将上传至OpenCellID.org。</string>
     <string name="preferences_opencellid_enabled_off_summary">测量数据将不会上传至OpenCellID.org。</string>
-    <string name="preferences_opencellid_api_key_title">访问令牌</string>
+    <string name="preferences_opencellid_use_shared_api_key_title">匿名贡献</string>
+    <string name="preferences_opencellid_use_shared_api_key_on_summary">将使用共享访问令牌。</string>
+    <string name="preferences_opencellid_use_shared_api_key_off_summary">将使用个人访问令牌。</string>
+    <string name="preferences_opencellid_api_key_title">个人访问令牌</string>
     <string name="preferences_opencellid_api_key_summary">上传测量值所需的令牌。</string>
     <string name="preferences_opencellid_api_key_invalid">输入的访问令牌无效。帮助中描述了正确的格式。</string>
     <string name="preferences_opencellid_api_key_link_title">获取您自己的访问令牌</string>
@@ -150,6 +153,8 @@
     <string name="preferences_main_map_force_light_theme_title">始终使用浅色主题</string>
     <string name="preferences_main_map_force_light_theme_on_summary">将始终使用地图的浅色主题。</string>
     <string name="preferences_main_map_force_light_theme_off_summary">地图主题将遵循显示首选项。</string>
+    <string name="preferences_main_map_cache_size_title">地图缓存大小</string>
+    <string name="preferences_main_map_cache_size_summary">根据设备上的可用可用内存调整地图缓存大小。</string>
     <string name="preferences_main_map_clear_cache_title">清除缓存</string>
     <string name="preferences_main_map_clear_cache_summary">清除地图缓存文件夹以释放一些空间。</string>
 </resources>
