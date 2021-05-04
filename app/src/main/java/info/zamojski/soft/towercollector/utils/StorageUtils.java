@@ -20,6 +20,7 @@ import java.io.File;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
+import timber.log.Timber;
 
 public class StorageUtils {
 
@@ -60,12 +61,17 @@ public class StorageUtils {
 
     public static void persistStorageUri(Activity activity, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
-            releaseStorageUri(activity);
-            Uri storageUri = data.getData();
-            int modeFlags = data.getFlags();
-            activity.grantUriPermission(activity.getPackageName(), storageUri, modeFlags);
-            activity.getContentResolver().takePersistableUriPermission(storageUri, URI_BASIC_FLAGS);
-            MyApplication.getPreferencesProvider().setStorageUri(storageUri);
+            try {
+                releaseStorageUri(activity);
+                Uri storageUri = data.getData();
+                int modeFlags = data.getFlags();
+                activity.grantUriPermission(activity.getPackageName(), storageUri, modeFlags);
+                activity.getContentResolver().takePersistableUriPermission(storageUri, URI_BASIC_FLAGS);
+                MyApplication.getPreferencesProvider().setStorageUri(storageUri);
+            } catch (Exception ex) {
+                Timber.e(ex, "persistStorageUri(): Failed to persist storage uri");
+                Toast.makeText(activity, R.string.storage_access_denied, Toast.LENGTH_LONG).show();
+            }
         } else {
             Toast.makeText(activity, R.string.storage_access_denied, Toast.LENGTH_LONG).show();
         }
