@@ -186,7 +186,6 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
 
         myLocationOverlay = new FollowMyLocationOverlay(mainMapView);
         myLocationOverlay.setFollowMyLocationChangeListener(this);
-        myLocationOverlay.enableMyLocation();
         myLocationOverlay.setDrawAccuracyEnabled(true);
         myLocationOverlay.setEnableAutoStop(true);
         setFollowMe(MyApplication.getPreferencesProvider().isMainMapFollowMeEnabled());
