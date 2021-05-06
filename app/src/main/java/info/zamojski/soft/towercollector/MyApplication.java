@@ -200,7 +200,6 @@ public class MyApplication extends Application {
 
     private void initACRA() {
         Timber.d("initACRA(): Initializing ACRA");
-
         CoreConfigurationBuilder configBuilder = new CoreConfigurationBuilder(this);
         // Configure connection
         configBuilder.setBuildConfigClass(BuildConfig.class);

@@ -11,7 +11,12 @@ import android.graphics.Bitmap;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkRequest;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.view.InputDevice;
@@ -28,6 +33,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.core.net.ConnectivityManagerCompat;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -86,6 +92,9 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
     private boolean isLightThemeForced;
     private Resources.Theme theme;
 
+    private ConnectivityManager connectivityManager;
+    private boolean isNetworkCallbackRegistered = false;
+
     private SimpleDateFormat dateTimeFormatStandard;
 
     @Override
@@ -93,6 +102,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         MapUtils.configureMap(MyApplication.getApplication());
         View rootView = inflater.inflate(R.layout.main_map_fragment, container, false);
         configureControls(rootView);
+        connectivityManager = (ConnectivityManager) MyApplication.getApplication().getSystemService(Context.CONNECTIVITY_SERVICE);
         return rootView;
     }
 
@@ -104,8 +114,10 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
             reloadMapTheme();
             reloadMarkers(true);
         }
-        if (mainMapView != null)
+        registerNetworkCallback();
+        if (mainMapView != null) {
             mainMapView.onResume();
+        }
         setFollowMe(MyApplication.getPreferencesProvider().isMainMapFollowMeEnabled());
         myLocationOverlay.enableMyLocation();
     }
@@ -117,6 +129,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
             mainMapView.onPause();
         myLocationOverlay.disableFollowLocation();
         myLocationOverlay.disableMyLocation();
+        unregisterNetworkCallback();
     }
 
     @Override
@@ -463,4 +476,53 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
             return true;
         }
     };
+
+    private void registerNetworkCallback() {
+        if (!MyApplication.getPreferencesProvider().isMapUpdatedOnlyOnWifi()) {
+            mainMapView.setUseDataConnection(true);
+            return;
+        }
+        // register for network connectivity changes
+        NetworkRequest.Builder networkRequestBuilder = new NetworkRequest.Builder()
+                .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+                .addCapability(NetworkCapabilities.NET_CAPABILITY_NOT_METERED);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            networkRequestBuilder.addCapability(NetworkCapabilities.NET_CAPABILITY_TEMPORARILY_NOT_METERED);
+        }
+        connectivityManager.registerNetworkCallback(networkRequestBuilder.build(), networkCallback);
+        isNetworkCallbackRegistered = true;
+        updateNetworkStatus();
+    }
+
+    private void unregisterNetworkCallback() {
+        if (isNetworkCallbackRegistered) {
+            connectivityManager.unregisterNetworkCallback(networkCallback);
+        }
+        isNetworkCallbackRegistered = false;
+    }
+
+    private final ConnectivityManager.NetworkCallback networkCallback = new ConnectivityManager.NetworkCallback() {
+        @Override
+        public void onAvailable(@NonNull Network network) {
+            super.onAvailable(network);
+            updateNetworkStatus();
+        }
+
+        @Override
+        public void onLost(@NonNull Network network) {
+            super.onLost(network);
+            updateNetworkStatus();
+        }
+
+        @Override
+        public void onCapabilitiesChanged(@NonNull Network network, @NonNull NetworkCapabilities networkCapabilities) {
+            super.onCapabilitiesChanged(network, networkCapabilities);
+            updateNetworkStatus();
+        }
+    };
+
+    private void updateNetworkStatus() {
+        boolean isNetworkMetered = ConnectivityManagerCompat.isActiveNetworkMetered(connectivityManager);
+        mainMapView.setUseDataConnection(!isNetworkMetered);
+    }
 }

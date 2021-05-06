@@ -318,4 +318,9 @@ public class PreferencesProvider {
         int value = integerPreferenceProvider.getPreference(R.string.preferences_main_map_cache_size_key, R.integer.preferences_main_map_cache_size_default_value);
         return value;
     }
+
+    public boolean isMapUpdatedOnlyOnWifi() {
+        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_main_map_wifi_only_key, R.bool.preferences_main_map_wifi_only_default_value);
+        return value;
+    }
 }

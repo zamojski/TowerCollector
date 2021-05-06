@@ -164,6 +164,9 @@
     <string name="preferences_main_map_force_light_theme_key" translatable="false">main_map_force_light_mode</string>
     <bool name="preferences_main_map_force_light_theme_default_value" translatable="false">false</bool>
 
+    <string name="preferences_main_map_wifi_only_key" translatable="false">main_map_wifi_only</string>
+    <bool name="preferences_main_map_wifi_only_default_value" translatable="false">false</bool>
+
     <string name="preferences_main_map_cache_size_key" translatable="false">main_map_cache_size</string>
     <integer name="preferences_main_map_cache_size_default_value" translatable="false">150</integer>
     <integer name="preferences_main_map_cache_size_min_value" translatable="false">25</integer>

@@ -153,6 +153,9 @@
     <string name="preferences_main_map_force_light_theme_title">Enforce the light theme</string>
     <string name="preferences_main_map_force_light_theme_on_summary">The light theme of the map will always be used.</string>
     <string name="preferences_main_map_force_light_theme_off_summary">The map theme will follow the Display preferences.</string>
+    <string name="preferences_main_map_wifi_only_title">Wi-Fi only</string>
+    <string name="preferences_main_map_wifi_only_on_summary">Map will work only in previously cached areas unless you\'re connected to Wi-Fi.</string>
+    <string name="preferences_main_map_wifi_only_off_summary">Map will work regardless of the Internet connection type.</string>
     <string name="preferences_main_map_cache_size_title">Map cache size</string>
     <string name="preferences_main_map_cache_size_summary">Adjust the map cache size according to available free memory on your device.</string>
     <string name="preferences_main_map_clear_cache_title">Clear cache</string>
