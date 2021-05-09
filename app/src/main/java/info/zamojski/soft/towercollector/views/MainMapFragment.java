@@ -326,6 +326,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         item.setTitle(dateTimeFormatStandard.format(new Date(m.getMeasuredAt())));
         item.setSnippet(String.valueOf(m.getDescription(MyApplication.getApplication())));
         item.setPosition(new GeoPoint(m.getLatitude(), m.getLongitude()));
+        item.setAnchor(0.5f, 0.5f);
         item.setOnMarkerClickListener(MARKER_CLICK_LISTENER);
         return item;
     }
