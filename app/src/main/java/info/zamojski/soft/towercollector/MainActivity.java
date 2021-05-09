@@ -680,7 +680,14 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 return;
             HtmlChangelogFormatter formatter = new HtmlChangelogFormatter();
             String message = formatter.formatChangelog(changelog);
-            DialogManager.createHtmlInfoDialog(this, R.string.dialog_what_is_new, message, false, false).show();
+            DialogInterface.OnClickListener remindLaterAction = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    // reset setting for next cold start
+                    MyApplication.getPreferencesProvider().setRecentDeveloperMessagesVersion(previousVersionCode);
+                }
+            };
+            DialogManager.createHtmlInfoDialog(this, R.string.dialog_what_is_new, message, false, false, R.string.dialog_remind_later, remindLaterAction).show();
         }
     }
 
