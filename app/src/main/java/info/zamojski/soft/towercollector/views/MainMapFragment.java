@@ -464,7 +464,11 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
     private static final Marker.OnMarkerClickListener MARKER_CLICK_LISTENER = new Marker.OnMarkerClickListener() {
         @Override
         public boolean onMarkerClick(Marker marker, MapView mapView) {
-            marker.showInfoWindow();
+            if (marker.isInfoWindowShown()) {
+                marker.closeInfoWindow();
+            } else {
+                marker.showInfoWindow();
+            }
             return true;
         }
     };
