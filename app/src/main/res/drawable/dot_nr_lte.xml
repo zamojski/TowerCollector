@@ -10,9 +10,9 @@
         android:startColor="#aa0000ff"
         android:type="sweep" />
     <stroke
-        android:width="0.7dp"
+        android:width="2.0dp"
         android:color="?attr/dot_color" />
     <size
-        android:width="6dp"
-        android:height="6dp" />
+        android:width="16dp"
+        android:height="16dp" />
 </shape>
