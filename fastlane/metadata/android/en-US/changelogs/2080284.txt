@@ -1,0 +1,8 @@
+- Fix crash when selecting a storage folder that cannot be used but can be selected.
+- Fix displacement of position icon comparing to accuracy circle on the map.
+- Fix swiping enabled on startup when the map was the last active tab.
+- Disable listening for location when the map tab is created but not active.
+- Add option to enable map updates only on wifi.
+- Add option to postpone developer's message for later.
+- Enlarge dot icons to make them easier to click.
+- Hide tooltip on second click on dot.
