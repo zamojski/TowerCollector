@@ -32,6 +32,7 @@ public class MainActivityPagerAdapter extends FragmentStatePagerAdapter implemen
     public MainActivityPagerAdapter(FragmentManager fm, Context context) {
         super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         this.context = context;
+        isMapFullyConfigured(); // initialize, otherwise swiping not applied on startup
     }
 
     @NotNull
