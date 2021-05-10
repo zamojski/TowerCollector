@@ -23,6 +23,7 @@
     <string name="dialog_no">לא</string>
     <string name="dialog_ok">אישור</string>
     <string name="dialog_cancel">ביטול</string>
+    <string name="dialog_remind_later">להזכיר לי בהמשך</string>
     <string name="dialog_register">רישום</string>
     <string name="dialog_enter_api_key">הקלדה</string>
     <string name="dialog_export">ייצוא</string>

@@ -23,6 +23,7 @@
     <string name="dialog_no">Nein</string>
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Abbrechen</string>
+    <string name="dialog_remind_later">Später anzeigen</string>
     <string name="dialog_register">Registrieren</string>
     <string name="dialog_enter_api_key">Eingeben</string>
     <string name="dialog_export">Exportieren</string>

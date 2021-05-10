@@ -153,6 +153,9 @@
     <string name="preferences_main_map_force_light_theme_title">Всегда используйте светлую тему</string>
     <string name="preferences_main_map_force_light_theme_on_summary">Всегда будет использоваться светлая тема карты.</string>
     <string name="preferences_main_map_force_light_theme_off_summary">Тема карты будет соответствовать настройкам Экрана.</string>
+    <string name="preferences_main_map_wifi_only_title">Только по Wi-Fi</string>
+    <string name="preferences_main_map_wifi_only_on_summary">Карта будет работать только в ранее кэшированных областях, если вы не подключены к Wi-Fi.</string>
+    <string name="preferences_main_map_wifi_only_off_summary">Карта будет обновляться независимо от типа подключения к Интернету.</string>
     <string name="preferences_main_map_cache_size_title">Размер кэша карты</string>
     <string name="preferences_main_map_cache_size_summary">Отрегулируйте размер кэша карты в соответствии с доступной свободной памятью на вашем устройстве.</string>
     <string name="preferences_main_map_clear_cache_title">Очистить кэш</string>

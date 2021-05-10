@@ -153,6 +153,9 @@
     <string name="preferences_main_map_force_light_theme_title">Immer helles Farbschema</string>
     <string name="preferences_main_map_force_light_theme_on_summary">Verwende immer helles Farbschema für Karte.</string>
     <string name="preferences_main_map_force_light_theme_off_summary">Karte verwendet Farbschema der Anzeige-Einstellungen.</string>
+    <string name="preferences_main_map_wifi_only_title">Nur über WLAN</string>
+    <string name="preferences_main_map_wifi_only_on_summary">Wenn Sie mit keinem WLAN verbunden sind, zeigt die Karte nur zwischengespeicherte Gebiete an.</string>
+    <string name="preferences_main_map_wifi_only_off_summary">Karte lädt immer, unabhängig von der Art Ihrer Internetverbindung.</string>
     <string name="preferences_main_map_cache_size_title">Die Größe des Kartendaten</string>
     <string name="preferences_main_map_cache_size_summary">Passen Sie die Größe des Kartendates an den verfügbaren freien Speicher auf Ihrem Gerät an.</string>
     <string name="preferences_main_map_clear_cache_title">Cache leeren</string>

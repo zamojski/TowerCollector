@@ -153,6 +153,9 @@
     <string name="preferences_main_map_force_light_theme_title">אילוץ ערכת עיצוב בהירה</string>
     <string name="preferences_main_map_force_light_theme_on_summary">תמיד יעשה שימוש במפה בהירה.</string>
     <string name="preferences_main_map_force_light_theme_off_summary">ערכת העיצוב של המפה תותאם להגדרות התצורה.</string>
+    <string name="preferences_main_map_wifi_only_title">רק ברשת Wi-Fi</string>
+    <string name="preferences_main_map_wifi_only_on_summary">המפה תעבוד רק על אזורים שנשמרו בעבר אלמלא יש לך חיבור לרשת אלחוטית.</string>
+    <string name="preferences_main_map_wifi_only_off_summary">המפה תעודכן ללא תלות בסוג החיבור לאינטרנט.</string>
     <string name="preferences_main_map_cache_size_title">גודל מטמון המפה</string>
     <string name="preferences_main_map_cache_size_summary">להתאים את גודל מטמון המפה בהתאם לזיכרון הפנוי במכשיר.</string>
     <string name="preferences_main_map_clear_cache_title">פינוי המטמון</string>

@@ -153,6 +153,9 @@
     <string name="preferences_main_map_force_light_theme_title">Wymuś jasny motyw</string>
     <string name="preferences_main_map_force_light_theme_on_summary">Jasny motyw mapy zawsze będzie używany.</string>
     <string name="preferences_main_map_force_light_theme_off_summary">Motyw mapy będzie zgodny z ustawieniami Wyświetlania.</string>
+    <string name="preferences_main_map_wifi_only_title">Tylko na Wi-Fi</string>
+    <string name="preferences_main_map_wifi_only_on_summary">Mapa będzie działać tylko w poprzednio odwiedzonych miejscach, chyba że dostępne będzie połączenie Wi-Fi.</string>
+    <string name="preferences_main_map_wifi_only_off_summary">Mapa będzie aktualizowana niezależnie od rodzaju połączenia internetowego.</string>
     <string name="preferences_main_map_cache_size_title">Rozmiar pamięci podręcznej mapy</string>
     <string name="preferences_main_map_cache_size_summary">Dopasuj rozmiar pamięci podręcznej may w zależności od dostępnej wolnej pamięci urządzenia.</string>
     <string name="preferences_main_map_clear_cache_title">Wyczyść pamięć podręczną</string>

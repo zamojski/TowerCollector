@@ -23,6 +23,7 @@
     <string name="dialog_no">Nem</string>
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Mégse</string>
+    <string name="dialog_remind_later">Emlékeztess később</string>
     <string name="dialog_register">Regisztráció</string>
     <string name="dialog_enter_api_key">Megadás</string>
     <string name="dialog_export">Exportálás</string>

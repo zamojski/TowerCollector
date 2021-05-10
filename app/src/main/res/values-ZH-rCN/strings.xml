@@ -23,6 +23,7 @@
     <string name="dialog_no">否</string>
     <string name="dialog_ok">确定</string>
     <string name="dialog_cancel">取消</string>
+    <string name="dialog_remind_later">稍后提醒</string>
     <string name="dialog_register">注册</string>
     <string name="dialog_enter_api_key">输入</string>
     <string name="dialog_export">导出</string>

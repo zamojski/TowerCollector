@@ -24,7 +24,7 @@
     <string name="preferences_category_information_title">Information</string>
     <string name="preferences_category_settings_title">Paramètres</string>
     <string name="preferences_category_help_title">Aide</string>
-    <string name="preferences_restoring_default">Valeur saisi invalide, remettre la valeur par défaut</string>
+    <string name="preferences_restoring_default">Valeur saisie invalide, retour à la valeur par défaut</string>
     <string name="preferences_value_undefined">non définie</string>
     <string name="preferences_restart_app">Redémarrez l\'application pour appliquer les changements.</string>
     <string name="preferences_restart_collector">Redémarrez le Collecteur pour appliquer les changements.</string>
@@ -59,7 +59,7 @@
     <string name="preferences_imperial_units_off_summary">Les valeurs seront affichées en utilisant le système métrique.</string>
     <string name="preferences_app_theme_title">Thème</string>
     <string name="preferences_app_theme_summary">Définit le thème de couleur de l\'application.</string>
-    <string name="preferences_collector_keep_screen_on_title">Garder l\'écran allumé lors de la collecte</string>
+    <string name="preferences_collector_keep_screen_on_title">Garde l\'écran allumé lors de la collecte</string>
     <string name="preferences_collector_keep_screen_on_summary">Définit si l\'écran restera constamment allumé pendant la collecte des mesures. L\'activation raccourcira considérablement la durée de vie de la batterie.</string>
     <string name="preferences_gps_optimizations_enabled_title">Optimisation du collecteur GPS</string>
     <string name="preferences_gps_optimizations_enabled_on_summary">L\'optimisation des paramètres GPS sera utilisée lors de la collecte des mesures.</string>
@@ -84,9 +84,9 @@
     <string name="preferences_best_practices_link_title">Meilleures pratiques</string>
     <string name="preferences_best_practices_link_summary">Affiche les bonnes pratiques pour la collecte de mesures précieuses.</string>
     <string name="preferences_website_link_title">Site Web</string>
-    <string name="preferences_website_link_summary">Ouvre le site web du développeur contenant la description de l\'appli et des liens de téléchargement vers des app stores.</string>
+    <string name="preferences_website_link_summary">Ouvre le site web du développeur contenant la description et les liens de téléchargement des des magasins d\'application.</string>
     <string name="preferences_contact_email_link_title">Contacter le développeur</string>
-    <string name="preferences_contact_email_link_summary">Écrire au developpeur pour tous questions, commentaire ou difficultés</string>
+    <string name="preferences_contact_email_link_summary">Écrire au développeur pour toute difficulté, question ou idée</string>
     <string name="preferences_github_link_title">Page GitHub</string>
     <string name="preferences_github_link_summary">Ouvir la page GitHub pour trouver le code source, contribuer à l\'application, signaler des problèmes et échanger des idées.</string>
     <string name="preferences_facebook_community_link_title">Communauté Facebook</string>
@@ -153,6 +153,9 @@
     <string name="preferences_main_map_force_light_theme_title">Forcer le thème clair</string>
     <string name="preferences_main_map_force_light_theme_on_summary">Le thème clair de la carte sera toujours utilisé.</string>
     <string name="preferences_main_map_force_light_theme_off_summary">Le thème de la carte suivra les préférences d\'affichage.</string>
+    <string name="preferences_main_map_wifi_only_title">Uniquement sur Wi-Fi</string>
+    <string name="preferences_main_map_wifi_only_on_summary">La carte ne fonctionnera que dans les zones précédemment mises en cache, sauf si vous êtes connecté au Wi-Fi.</string>
+    <string name="preferences_main_map_wifi_only_off_summary">La carte sera mise à jour quel que soit le type de connexion Internet.</string>
     <string name="preferences_main_map_cache_size_title">Taille du cache de la carte</string>
     <string name="preferences_main_map_cache_size_summary">Ajustez la taille du cache de la carte en fonction de la mémoire libre disponible sur votre appareil.</string>
     <string name="preferences_main_map_clear_cache_title">Vider le cache</string>

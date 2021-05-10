@@ -23,6 +23,7 @@
     <string name="dialog_no">Ні</string>
     <string name="dialog_ok">Добре</string>
     <string name="dialog_cancel">Скасувати</string>
+    <string name="dialog_remind_later">Нагадати пізніше</string>
     <string name="dialog_register">Реєстрація</string>
     <string name="dialog_enter_api_key">Ввести</string>
     <string name="dialog_export">Експорт</string>

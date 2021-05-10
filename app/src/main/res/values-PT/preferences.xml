@@ -153,6 +153,9 @@
     <string name="preferences_main_map_force_light_theme_title">Sempre use o tema claro</string>
     <string name="preferences_main_map_force_light_theme_on_summary">O tema claro do mapa sempre será usado.</string>
     <string name="preferences_main_map_force_light_theme_off_summary">O tema do mapa seguirá as preferências de exibição.</string>
+    <string name="preferences_main_map_wifi_only_title">Apenas em Wi-Fi</string>
+    <string name="preferences_main_map_wifi_only_on_summary">O mapa funcionará apenas em áreas previamente armazenadas em cache, a menos que você esteja conectado ao Wi-Fi.</string>
+    <string name="preferences_main_map_wifi_only_off_summary">O mapa será atualizado independentemente do tipo de conexão com a Internet.</string>
     <string name="preferences_main_map_cache_size_title">Tamanho do cache do mapa</string>
     <string name="preferences_main_map_cache_size_summary">Ajuste o tamanho do cache do mapa de acordo com a memória livre disponível no seu dispositivo.</string>
     <string name="preferences_main_map_clear_cache_title">Limpar cache</string>

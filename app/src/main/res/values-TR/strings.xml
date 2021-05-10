@@ -23,6 +23,7 @@
     <string name="dialog_no">Hayır</string>
     <string name="dialog_ok">Tamam</string>
     <string name="dialog_cancel">İptal</string>
+    <string name="dialog_remind_later">Daha sonra hatırlat</string>
     <string name="dialog_register">Kayıt ol</string>
     <string name="dialog_enter_api_key">Giriş yap</string>
     <string name="dialog_export">Dışa aktar</string>

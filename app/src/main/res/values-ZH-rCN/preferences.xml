@@ -153,6 +153,9 @@
     <string name="preferences_main_map_force_light_theme_title">始终使用浅色主题</string>
     <string name="preferences_main_map_force_light_theme_on_summary">将始终使用地图的浅色主题。</string>
     <string name="preferences_main_map_force_light_theme_off_summary">地图主题将遵循显示首选项。</string>
+    <string name="preferences_main_map_wifi_only_title">仅在Wi-Fi上</string>
+    <string name="preferences_main_map_wifi_only_on_summary">除非您已连接到Wi-Fi，否则地图将仅在以前缓存的区域中起作用。</string>
+    <string name="preferences_main_map_wifi_only_off_summary">无论Internet连接类型如何，地图都会被更新。</string>
     <string name="preferences_main_map_cache_size_title">地图缓存大小</string>
     <string name="preferences_main_map_cache_size_summary">根据设备上的可用可用内存调整地图缓存大小。</string>
     <string name="preferences_main_map_clear_cache_title">清除缓存</string>

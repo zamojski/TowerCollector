@@ -153,6 +153,9 @@
     <string name="preferences_main_map_force_light_theme_title">Kényszerítse a világos téma</string>
     <string name="preferences_main_map_force_light_theme_on_summary">A térkép világos témája mindig felhasználásra kerül.</string>
     <string name="preferences_main_map_force_light_theme_off_summary">A térkép témája követi a megjelenítési beállításokat.</string>
+    <string name="preferences_main_map_wifi_only_title">Csak Wi-Fi-n</string>
+    <string name="preferences_main_map_wifi_only_on_summary">A térkép csak a korábban gyorsítótárazott területeken működik, hacsak nem csatlakozik a Wi-Fi-hez.</string>
+    <string name="preferences_main_map_wifi_only_off_summary">A térkép az internetkapcsolat típusától függetlenül frissül.</string>
     <string name="preferences_main_map_cache_size_title">Térkép gyorsítótár mérete</string>
     <string name="preferences_main_map_cache_size_summary">Állítsa be a térkép gyorsítótárának méretét a készüléken rendelkezésre álló szabad memória szerint.</string>
     <string name="preferences_main_map_clear_cache_title">Gyorsítótár törlése</string>
