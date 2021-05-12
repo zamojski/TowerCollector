@@ -88,6 +88,7 @@
     <string name="main_last_date_time_label">Save time:</string>
     <string name="main_map_my_location_button">Move to my location</string>
     <string name="main_map_follow_me_button">Follow my location</string>
+    <string name="main_map_help_button">Show help</string>
     <string name="main_map_enable">Enable</string>
     <string name="main_map_disable">Disable</string>
     <string name="main_menu_start_button">Start collecting</string>
