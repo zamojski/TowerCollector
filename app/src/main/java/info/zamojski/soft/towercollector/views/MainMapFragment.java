@@ -82,8 +82,10 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
 
     private MapView mainMapView;
     private FollowMyLocationOverlay myLocationOverlay;
+    private static boolean shouldEnableMyLocation = true;
     private ImageButton followMeButton;
     private ImageButton myLocationButton;
+    private ImageButton toggleLocationButton;
     private ImageButton helpButton;
     private RadiusMarkerClusterer markersOverlay;
     private Bitmap clusterIcon;
@@ -121,7 +123,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
             mainMapView.onResume();
         }
         setFollowMe(MyApplication.getPreferencesProvider().isMainMapFollowMeEnabled());
-        myLocationOverlay.enableMyLocation();
+        setToggleMyLocation(shouldEnableMyLocation);
     }
 
     @Override
@@ -174,6 +176,8 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         followMeButton.setOnLongClickListener(IMAGE_BUTTON_LONG_CLICK_LISTENER);
         myLocationButton = view.findViewById(R.id.main_map_my_location_button);
         myLocationButton.setOnLongClickListener(IMAGE_BUTTON_LONG_CLICK_LISTENER);
+        toggleLocationButton = view.findViewById(R.id.main_map_location_toggle_button);
+        toggleLocationButton.setOnLongClickListener(IMAGE_BUTTON_LONG_CLICK_LISTENER);
         helpButton = view.findViewById(R.id.main_map_help_button);
         helpButton.setOnLongClickListener(IMAGE_BUTTON_LONG_CLICK_LISTENER);
 
@@ -236,6 +240,13 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
             @Override
             public void onClick(View v) {
                 setFollowMe(!myLocationOverlay.isFollowLocationEnabled());
+            }
+        });
+
+        toggleLocationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setToggleMyLocation(!myLocationOverlay.isMyLocationEnabled());
             }
         });
 
@@ -376,6 +387,18 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
             followMeButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.map_follow_me, theme));
         }
         MyApplication.getPreferencesProvider().setMainMapFollowMeEnabled(myLocationOverlay.isFollowLocationEnabled());
+    }
+
+    private void setToggleMyLocation(boolean enableMyLocation) {
+        Timber.d("toggleLocationButton.click(): %s location", enableMyLocation ? "Enabling" : "Disabling");
+        if (enableMyLocation) {
+            myLocationOverlay.enableMyLocation();
+        } else {
+            myLocationOverlay.disableMyLocation();
+        }
+        shouldEnableMyLocation = enableMyLocation;
+        toggleLocationButton.setContentDescription(getString(enableMyLocation ? R.string.main_map_location_disable_button : R.string.main_map_location_enable_button));
+        toggleLocationButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), enableMyLocation ? R.drawable.map_location_enabled : R.drawable.map_location_disabled, theme));
     }
 
     private Bitmap getClusterIcon() {
