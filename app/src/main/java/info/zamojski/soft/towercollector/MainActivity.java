@@ -152,6 +152,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private View activityView;
 
+    private boolean isFirstStart = true;
+
     // ========== ACTIVITY ========== //
 
     @Override
@@ -229,6 +231,11 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         String appThemeName = MyApplication.getPreferencesProvider().getAppTheme();
         MyApplication.getAnalytics().sendPrefsAppTheme(appThemeName);
+
+        if (isFirstStart && MyApplication.getPreferencesProvider().getStartCollectorAtStartup()) {
+            isFirstStart = false;
+            startCollectorServiceWithCheck();
+        }
     }
 
     @Override
@@ -247,7 +254,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         // restore recent tab
         int recentTabIndex = MyApplication.getPreferencesProvider().getMainWindowRecentTab();
         viewPager.setCurrentItem(recentTabIndex);
-        // if coming back from Android settings rerun the action
+        // if coming back from Android settings re-run the action
         if (showAskForLocationSettingsDialog) {
             startCollectorServiceWithCheck();
         }

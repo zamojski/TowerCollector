@@ -132,6 +132,9 @@
     <string name="preferences_hide_collector_notification_title">Hide notification</string>
     <string name="preferences_hide_collector_notification_on_summary">Notification will be hidden from lock screen and status bar unless expanded. Behavior may vary between devices.</string>
     <string name="preferences_hide_collector_notification_off_summary">Notification will be visible all the time.</string>
+    <string name="preferences_start_collector_at_startup_title">Start collecting at start-up</string>
+    <string name="preferences_start_collector_at_startup_on_summary">Collecting will be automatically started at app start-up.</string>
+    <string name="preferences_start_collector_at_startup_off_summary">The app will not start collecting at start-up.</string>
     <string name="preferences_start_collector_at_boot_title">Start collecting at device boot</string>
     <string name="preferences_start_collector_at_boot_on_summary">Collecting will be automatically started at device boot. The app must be installed on internal memory to make it working.</string>
     <string name="preferences_start_collector_at_boot_off_summary">The app will not start collecting at device boot. The app can be installed anywhere. The background location permission must be granted to use this function, otherwise the app will not be able to collect measurements.</string>

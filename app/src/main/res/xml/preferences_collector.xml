@@ -42,6 +42,13 @@
             app:title="@string/preferences_hide_collector_notification_title" />
 
         <SwitchPreferenceCompat
+            app:defaultValue="@bool/preferences_start_collector_at_startup_default_value"
+            app:key="@string/preferences_start_collector_at_startup_key"
+            app:summaryOff="@string/preferences_start_collector_at_startup_off_summary"
+            app:summaryOn="@string/preferences_start_collector_at_startup_on_summary"
+            app:title="@string/preferences_start_collector_at_startup_title" />
+
+        <SwitchPreferenceCompat
             app:defaultValue="@bool/preferences_start_collector_at_boot_default_value"
             app:key="@string/preferences_start_collector_at_boot_key"
             app:summaryOff="@string/preferences_start_collector_at_boot_off_summary"
