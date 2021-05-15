@@ -231,6 +231,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
                 Timber.i("onMyLocationClick(): Moving to %s", lastLocation);
                 if (lastLocation != null) {
                     GeoPoint myPosition = new GeoPoint(lastLocation.getLatitude(), lastLocation.getLongitude());
+                    mainMapView.getController().stopAnimation(false);
                     mainMapView.getController().animateTo(myPosition);
                 }
             }
