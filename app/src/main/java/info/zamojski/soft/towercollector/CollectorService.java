@@ -539,6 +539,8 @@ public class CollectorService extends Service {
                 } catch (SecurityException ex) {
                     Timber.tag(INNER_TAG).e(ex, "run(): coarse location or phone permission is denied");
                     stopSelf();
+                } catch (Exception ex) {
+                    Timber.tag(INNER_TAG).e(ex, "run(): failed to retrieve cell identifiers");
                 }
             }
         }, 0, CELL_UPDATE_INTERVAL);
