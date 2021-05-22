@@ -403,13 +403,15 @@ public class CollectorService extends Service {
                     if (cellInfo == null) {
                         Timber.tag(INNER_TAG).d("onCellInfoChanged(): Null reported");
                         return;
+                    } else {
+                        Timber.d("onCellInfoChanged(): Cell info changed: %s ", cellInfo);
                     }
                     try {
                         List<CellInfo> allCellInfo = telephonyManager.getAllCellInfo();
                         Timber.tag(INNER_TAG).d("onCellInfoChanged(): Number of cells changed: %s, ignoring result from this subscription only, passing %s cells instead", cellInfo.size(), allCellInfo == null ? "null" : allCellInfo.size());
                         processCellInfo(allCellInfo);
                     } catch (SecurityException ex) {
-                        Timber.tag(INNER_TAG).e(ex, "onCellInfoChanged(): coarse location or phone permission is denied");
+                        Timber.tag(INNER_TAG).e(ex, "onCellInfoChanged(): Coarse location or phone permission is denied");
                         stopSelf();
                     }
                 }
@@ -418,7 +420,7 @@ public class CollectorService extends Service {
                 telephonyTriple.setPhoneStateListener(phoneStateListener);
                 telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS | PhoneStateListener.LISTEN_CELL_INFO);
             } catch (SecurityException ex) {
-                Timber.e(ex, "registerApi17PhoneStateListener(): coarse location permission is denied");
+                Timber.e(ex, "registerApi17PhoneStateListener(): Coarse location permission is denied");
                 stopSelf();
             }
 
@@ -429,12 +431,18 @@ public class CollectorService extends Service {
 
                     @Override
                     public void onCellInfo(@NonNull List<CellInfo> cellInfo) {
+                        if (cellInfo == null) {
+                            Timber.tag(INNER_TAG).d("onCellInfo(): Null reported");
+                            return;
+                        } else {
+                            Timber.d("onCellInfo(): Cell info update result: %s ", cellInfo);
+                        }
                         try {
                             List<CellInfo> allCellInfo = telephonyManager.getAllCellInfo();
                             Timber.tag(INNER_TAG).d("onCellInfo(): Number of cells updated: %s, ignoring result from this subscription only, passing %s cells instead", cellInfo.size(), allCellInfo == null ? "null" : allCellInfo.size());
                             processCellInfo(allCellInfo);
                         } catch (SecurityException ex) {
-                            Timber.tag(INNER_TAG).e(ex, "onCellInfo(): coarse location or phone permission is denied");
+                            Timber.tag(INNER_TAG).e(ex, "onCellInfo(): Coarse location or phone permission is denied");
                             stopSelf();
                         }
                     }
