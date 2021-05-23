@@ -132,6 +132,9 @@
     <string name="preferences_hide_collector_notification_title">Bildirimleri gizle</string>
     <string name="preferences_hide_collector_notification_on_summary">Bildirim kilit ekranından ve genişletilmediği sürece durum çubuğunda görünmeyecektir. Cihazlar arasında farklılıklar olabilir.</string>
     <string name="preferences_hide_collector_notification_off_summary">Bildirimler her zaman görünür olacak.</string>
+    <string name="preferences_start_collector_at_startup_title">Başlarken toplamaya başla</string>
+    <string name="preferences_start_collector_at_startup_on_summary">Toplama, uygulama başlangıcında otomatik olarak başlayacaktır.</string>
+    <string name="preferences_start_collector_at_startup_off_summary">Uygulama, başlangıcında toplamaya başlamaz.</string>
     <string name="preferences_start_collector_at_boot_title">Cihaz açılışında toplama işlemine başla</string>
     <string name="preferences_start_collector_at_boot_on_summary">Toplama, cihaz açılışında otomatik olarak başlayacaktır. Uygulamanın çalışması için dahili belleğe yüklenmesi gerekir.</string>
     <string name="preferences_start_collector_at_boot_off_summary">Uygulama, cihaz açılışında toplamaya başlamaz. Uygulama herhangi bir yere kurulabilir. Bu işlevi kullanmak için arka plan konum izni verilmelidir, aksi takdirde uygulama ölçümleri toplayamaz.</string>

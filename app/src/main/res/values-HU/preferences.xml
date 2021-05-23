@@ -132,6 +132,9 @@
     <string name="preferences_hide_collector_notification_title">Értesítés elrejtése</string>
     <string name="preferences_hide_collector_notification_on_summary">Az értesítés el lesz rejtve a lezárási képernyőn és az állapotsoron, hacsak nem nyitja fel. A viselkedés változhat az egyes eszközök között.</string>
     <string name="preferences_hide_collector_notification_off_summary">Az értesítés mindig látható lesz.</string>
+    <string name="preferences_start_collector_at_startup_title">Induláskor kezdje el a gyűjtést</string>
+    <string name="preferences_start_collector_at_startup_on_summary">A gyűjtés automatikusan elindul az alkalmazás indításakor.</string>
+    <string name="preferences_start_collector_at_startup_off_summary">Az alkalmazás indításkor nem kezd gyűjteni.</string>
     <string name="preferences_start_collector_at_boot_title">Az adatgyűjtés elindítása az eszköz indulásakor</string>
     <string name="preferences_start_collector_at_boot_on_summary">Az adatgyűjtés automatikusan elindul az eszköz bekapcsolásakor. A funkció működéséhez az alkalmazást a belső tárhelyre kell telepíteni.</string>
     <string name="preferences_start_collector_at_boot_off_summary">Az alkalmazás nem fog bekapcsoláskor elindulni. Bármely tárhelyre telepíthető. A háttér használatához engedélyt kell adni ennek a funkciónak a használatához, különben az alkalmazás nem lesz képes méréseket gyűjteni.</string>

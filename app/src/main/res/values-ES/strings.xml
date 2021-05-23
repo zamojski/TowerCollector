@@ -80,6 +80,9 @@
     <string name="main_last_date_time_label">Hora de guardado:</string>
     <string name="main_map_my_location_button">Mover a mi ubicación</string>
     <string name="main_map_follow_me_button">Sigue mi ubicación</string>
+    <string name="main_map_location_enable_button">Habilitar mi ubicación</string>
+    <string name="main_map_location_disable_button">Inhabilitar mi ubicación</string>
+    <string name="main_map_help_button">Mostrar ayuda</string>
     <string name="main_map_enable">Habilitar</string>
     <string name="main_map_disable">Inhabilitar</string>
     <string name="main_menu_start_button">Comenzar localización</string>

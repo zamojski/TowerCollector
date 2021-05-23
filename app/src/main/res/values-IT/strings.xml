@@ -80,6 +80,9 @@
     <string name="main_last_date_time_label">Data di salvataggio:</string>
     <string name="main_map_my_location_button">Sposta nella mia posizione</string>
     <string name="main_map_follow_me_button">Segui la mia posizione</string>
+    <string name="main_map_location_enable_button">Abilita la mia posizione</string>
+    <string name="main_map_location_disable_button">Disabilita la mia posizione</string>
+    <string name="main_map_help_button">Mostra aiuto</string>
     <string name="main_map_enable">Abilitare</string>
     <string name="main_map_disable">Disabilitare</string>
     <string name="main_menu_start_button">Avvia la raccolta dati</string>

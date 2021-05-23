@@ -80,6 +80,9 @@
     <string name="main_last_date_time_label">מועד שמירה:</string>
     <string name="main_map_my_location_button">מעבר למיקום שלי</string>
     <string name="main_map_follow_me_button">מעקב אחר המיקום שלי</string>
+    <string name="main_map_location_enable_button">הפעלת המיקום שלי</string>
+    <string name="main_map_location_disable_button">השבתת המיקום שלי</string>
+    <string name="main_map_help_button">הצגת עזרה</string>
     <string name="main_map_enable">הפעלה</string>
     <string name="main_map_disable">השבתה</string>
     <string name="main_menu_start_button">להתחיל את האיסוף</string>

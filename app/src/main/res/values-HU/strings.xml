@@ -80,6 +80,9 @@
     <string name="main_last_date_time_label">Mentés ideje:</string>
     <string name="main_map_my_location_button">Ugrás a saját helyzethez</string>
     <string name="main_map_follow_me_button">Saját helyzet követése</string>
+    <string name="main_map_location_enable_button">Helymeghatározás engedélyezése</string>
+    <string name="main_map_location_disable_button">Tiltsa le a tartózkodási helyemet</string>
+    <string name="main_map_help_button">Mutasd meg a segítséget</string>
     <string name="main_map_enable">Bekapcsolás</string>
     <string name="main_map_disable">Kikapcsolás</string>
     <string name="main_menu_start_button">Adatgyűjtés elindítása</string>

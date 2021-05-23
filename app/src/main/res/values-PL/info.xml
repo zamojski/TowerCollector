@@ -18,4 +18,5 @@
     <string name="info_about_main_keep_screen_on_title">Utrzymuj ekran włączony gdy widoczny</string>
     <string name="info_about_collector_keep_screen_on_title">Utrzymuj ekran włączony podczas zbierania</string>
     <string name="info_about_notify_measurements_collected_title">Powiadamiaj o zebranych próbkach</string>
+    <string name="info_map_help_title">Legenda mapy</string>
 </resources>

@@ -132,6 +132,9 @@
     <string name="preferences_hide_collector_notification_title">Ocultar notificación</string>
     <string name="preferences_hide_collector_notification_on_summary">La notificación se ocultará desde la pantalla de bloqueo y la barra de estado a menos que se amplíe. El comportamiento puede variar entre dispositivos.</string>
     <string name="preferences_hide_collector_notification_off_summary">La notificación será visible todo el tiempo.</string>
+    <string name="preferences_start_collector_at_startup_title">Comience a recopilar al inicio</string>
+    <string name="preferences_start_collector_at_startup_on_summary">La recolección se iniciará automáticamente al inicio de la aplicación.</string>
+    <string name="preferences_start_collector_at_startup_off_summary">La aplicación no comenzará a recopilarse al iniciarse.</string>
     <string name="preferences_start_collector_at_boot_title">Empezar a recolectar cuando el equipo sea encendido</string>
     <string name="preferences_start_collector_at_boot_on_summary">La recolección se iniciará automaticamente cuando el equipo se encienda. La app debe de estar instalada en la memoria interna para que esto funcione.</string>
     <string name="preferences_start_collector_at_boot_off_summary">La app no iniciará automaticamente la recolección. La app puede ser instalada en cualquier ubicación. Se debe otorgar el permiso de ubicación de fondo para usar esta función; de lo contrario, la aplicación no podrá recopilar mediciones.</string>

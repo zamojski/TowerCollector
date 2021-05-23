@@ -132,6 +132,9 @@
     <string name="preferences_hide_collector_notification_title">Приховати повідомлення</string>
     <string name="preferences_hide_collector_notification_on_summary">Сповіщення не відображатимуться на екрані блокування та у рядку стану, якщо його не буде розгорнуто. Поведінка може відрізнятися між пристроями.</string>
     <string name="preferences_hide_collector_notification_off_summary">Повідомлення буде відображатися весь час.</string>
+    <string name="preferences_start_collector_at_startup_title">Почніть збирати при запуску</string>
+    <string name="preferences_start_collector_at_startup_on_summary">Збір буде автоматично розпочато під час запуску програми.</string>
+    <string name="preferences_start_collector_at_startup_off_summary">Додаток не почне збирати під час запуску.</string>
     <string name="preferences_start_collector_at_boot_title">Починати збір при увімкненні пристрою</string>
     <string name="preferences_start_collector_at_boot_on_summary">Збір буде запущено автоматично при завантаженні пристрою. Додаток має бути встановлений у внутрішню пам\'ять.</string>
     <string name="preferences_start_collector_at_boot_off_summary">Додаток не почне збір при завантаженні пристрою. Додаток може бути встановлено в будь-якому місці. Для використання цієї функції потрібно надати дозвіл на фонове розташування, інакше програма не зможе збирати вимірювання.</string>

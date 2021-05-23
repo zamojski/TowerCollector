@@ -80,6 +80,9 @@
     <string name="main_last_date_time_label">Son kayıt zamanı</string>
     <string name="main_map_my_location_button">Konumuma git</string>
     <string name="main_map_follow_me_button">Konumumu takip et</string>
+    <string name="main_map_location_enable_button">Konumumu etkinleştir</string>
+    <string name="main_map_location_disable_button">Konumumu devre dışı bırak</string>
+    <string name="main_map_help_button">Yardımı göster</string>
     <string name="main_map_enable">Etkinleştir</string>
     <string name="main_map_disable">Devredışı yap</string>
     <string name="main_menu_start_button">Toplamaya başla</string>

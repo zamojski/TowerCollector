@@ -18,4 +18,5 @@
     <string name="info_about_main_keep_screen_on_title">Зберігайте екран, коли він є видимим</string>
     <string name="info_about_collector_keep_screen_on_title">Збереження екрану під час збору</string>
     <string name="info_about_notify_measurements_collected_title">Повідомити про зібрані вимірювання</string>
+    <string name="info_map_help_title">Легенда карти</string>
 </resources>

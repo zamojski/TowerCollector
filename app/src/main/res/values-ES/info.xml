@@ -18,4 +18,5 @@
     <string name="info_about_main_keep_screen_on_title">Mantener la pantalla encendida cuando sea visible</string>
     <string name="info_about_collector_keep_screen_on_title">Mantener la pantalla encendida cuando se este recolectando</string>
     <string name="info_about_notify_measurements_collected_title">Notificar las mediciones recolectadas</string>
+    <string name="info_map_help_title">Leyenda del mapa</string>
 </resources>

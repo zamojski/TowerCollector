@@ -80,6 +80,9 @@
     <string name="main_last_date_time_label">Horário:</string>
     <string name="main_map_my_location_button">Mover para minha localização</string>
     <string name="main_map_follow_me_button">Siga minha localização</string>
+    <string name="main_map_location_enable_button">Habilitar minha localização</string>
+    <string name="main_map_location_disable_button">Inhabilitar minha localização</string>
+    <string name="main_map_help_button">Mostre ajuda</string>
     <string name="main_map_enable">Habilitar</string>
     <string name="main_map_disable">Desabilitar</string>
     <string name="main_menu_start_button">Iniciar a coleta</string>

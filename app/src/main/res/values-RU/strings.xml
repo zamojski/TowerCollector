@@ -80,6 +80,9 @@
     <string name="main_last_date_time_label">Время сохранения:</string>
     <string name="main_map_my_location_button">Перейти на мою позицию</string>
     <string name="main_map_follow_me_button">Следуй моей позиции</string>
+    <string name="main_map_location_enable_button">Включить мое местоположение</string>
+    <string name="main_map_location_disable_button">Отключить мое местоположение</string>
+    <string name="main_map_help_button">Показать помощь</string>
     <string name="main_map_enable">Включить</string>
     <string name="main_map_disable">Отключить</string>
     <string name="main_menu_start_button">Начать сбор</string>

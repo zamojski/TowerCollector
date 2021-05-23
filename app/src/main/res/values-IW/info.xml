@@ -18,4 +18,5 @@
     <string name="info_about_main_keep_screen_on_title">להשאיר את המסך פעיל כאשר גלוי</string>
     <string name="info_about_collector_keep_screen_on_title">להשאיר את המסך פעיל בזמן איסוף</string>
     <string name="info_about_notify_measurements_collected_title">להודיע על המדידות שנאספו</string>
+    <string name="info_map_help_title">מקרא מפה</string>
 </resources>

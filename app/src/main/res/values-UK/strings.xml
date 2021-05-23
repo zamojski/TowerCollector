@@ -80,6 +80,9 @@
     <string name="main_last_date_time_label">Зекономлений час:</string>
     <string name="main_map_my_location_button">Переїхати до мого місцезнаходження</string>
     <string name="main_map_follow_me_button">Слідкуйте за моїм місцезнаходженням</string>
+    <string name="main_map_location_enable_button">Увімкнути моє місцезнаходження</string>
+    <string name="main_map_location_disable_button">Вимкнути моє місцезнаходження</string>
+    <string name="main_map_help_button">Показати допомогу</string>
     <string name="main_map_enable">Увімкнути</string>
     <string name="main_map_disable">Вимкнути</string>
     <string name="main_menu_start_button">Починаймо збирати інформацію</string>

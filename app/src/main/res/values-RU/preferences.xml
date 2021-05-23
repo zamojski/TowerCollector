@@ -132,6 +132,9 @@
     <string name="preferences_hide_collector_notification_title">Спрятать информацию</string>
     <string name="preferences_hide_collector_notification_on_summary">Оповещения не будут показаны на экране блокировки и в шторке уведомлений. Поведение может различаться на разных устройствах.</string>
     <string name="preferences_hide_collector_notification_off_summary">Уведомления будут видимы всё время.</string>
+    <string name="preferences_start_collector_at_startup_title">Начать сбор при запуске</string>
+    <string name="preferences_start_collector_at_startup_on_summary">Сбор будет автоматически начать при запуске приложения.</string>
+    <string name="preferences_start_collector_at_startup_off_summary">Приложение не будет собирать данные при запуске.</string>
     <string name="preferences_start_collector_at_boot_title">Запускать сборщик во время включения устройства.</string>
     <string name="preferences_start_collector_at_boot_on_summary">Сбор сот начнётся автоматически сразу после запуска устройства. Для работы этого режима программа должна быть установлена на внутреннем устройстве памяти.</string>
     <string name="preferences_start_collector_at_boot_off_summary">Приложение не будет автоматически запускать Сборщик во время включения устройства. Приложение можно установить где угодно. Для использования этой функции необходимо предоставить разрешение на определение местоположения в фоновом режиме, иначе приложение не сможет собирать измерения.</string>

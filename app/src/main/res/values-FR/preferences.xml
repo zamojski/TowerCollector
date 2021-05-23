@@ -132,6 +132,9 @@
     <string name="preferences_hide_collector_notification_title">Masquer la notification</string>
     <string name="preferences_hide_collector_notification_on_summary">La notification ne sera pas affichée sur l\'écran de verrouillage ni dans la barre des notifications, sauf si celle-ci est développée. Le comportement peut varier selon l\'appareil.</string>
     <string name="preferences_hide_collector_notification_off_summary">La notification sera visible en permanence.</string>
+    <string name="preferences_start_collector_at_startup_title">Commencez à collecter au démarrage</string>
+    <string name="preferences_start_collector_at_startup_on_summary">La collecte sera automatiquement lancée au démarrage.</string>
+    <string name="preferences_start_collector_at_startup_off_summary">L\'application ne commencera pas à collecter au démarrage.</string>
     <string name="preferences_start_collector_at_boot_title">Commencer la collecte au démarrage de l\'appareil</string>
     <string name="preferences_start_collector_at_boot_on_summary">La collecte débutera automatiquement au démarrage de l\'appareil. L\'application doit être installée sur la mémoire interne pour que cela fonctionne.</string>
     <string name="preferences_start_collector_at_boot_off_summary">L\'application ne débutera pas la collecte au démarrage de l\'appareil. L\'application peut être installée n\'importe où. L\'autorisation de localisation en arrière-plan doit être accordée pour utiliser cette fonction, sinon l\'application ne pourra pas collecter de mesures.</string>

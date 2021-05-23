@@ -132,6 +132,9 @@
     <string name="preferences_hide_collector_notification_title">הסתרת התראה</string>
     <string name="preferences_hide_collector_notification_on_summary">ההתראה תוסתר ממסך הנעילה ומשורת המצב אלמלא הורחבה. ההתנהגות עשויה להשתנות ממכשיר למכשיר.</string>
     <string name="preferences_hide_collector_notification_off_summary">ההתראה תהיה גלויה תמיד.</string>
+    <string name="preferences_start_collector_at_startup_title">התחלת איסוף עם הפתיחה</string>
+    <string name="preferences_start_collector_at_startup_on_summary">האיסוף יתחיל אוטומטית עם הפעלת היישומון.</string>
+    <string name="preferences_start_collector_at_startup_off_summary">היישומון לא יתחיל לאסוף עם ההפעלה.</string>
     <string name="preferences_start_collector_at_boot_title">להתחיל לאסוף עם הפעלת המכשיר</string>
     <string name="preferences_start_collector_at_boot_on_summary">האיסוף יתחיל אוטומטית עם הפעלת המכשיר. יש להתקין את היישומון על זיכרון פנימי כדי שתכונה זו תוכל לפעול.</string>
     <string name="preferences_start_collector_at_boot_off_summary">היישומון לא יתחיל לאסוף עם הפעלת המכשיר. לא יכול להתקין את היישומון בכל מקום. יש להעניק הרשאת מיקום רקע לשימוש בפונקציה זו, אחרת האפליקציה לא תוכל לאסוף מדידות.</string>

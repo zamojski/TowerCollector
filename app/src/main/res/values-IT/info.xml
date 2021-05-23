@@ -18,4 +18,5 @@
     <string name="info_about_main_keep_screen_on_title">Mantieni acceso lo schermo quando visibile</string>
     <string name="info_about_collector_keep_screen_on_title">Mantieni acceso lo schermo durante la raccolta dati</string>
     <string name="info_about_notify_measurements_collected_title">Notifica sulle misurazioni raccolte</string>
+    <string name="info_map_help_title">Legenda della mappa</string>
 </resources>

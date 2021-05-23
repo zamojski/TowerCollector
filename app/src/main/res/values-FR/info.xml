@@ -18,4 +18,5 @@
     <string name="info_about_main_keep_screen_on_title">Gardez l\'écran allumé lorsqu\'il est visible</string>
     <string name="info_about_collector_keep_screen_on_title">Garder l\'écran allumé lors de la collecte</string>
     <string name="info_about_notify_measurements_collected_title">Notifier les mesures collectées</string>
+    <string name="info_map_help_title">Légende de carte</string>
 </resources>

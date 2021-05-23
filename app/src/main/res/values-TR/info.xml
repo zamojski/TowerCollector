@@ -18,4 +18,5 @@
     <string name="info_about_main_keep_screen_on_title">Uygulama açıkken ekranı açık tut</string>
     <string name="info_about_collector_keep_screen_on_title">Toplama yapılıyorken ekranı açık tut</string>
     <string name="info_about_notify_measurements_collected_title">Toplanan ölçümleri bildir</string>
+    <string name="info_map_help_title">Harita efsanesi</string>
 </resources>

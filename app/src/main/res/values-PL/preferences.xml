@@ -132,6 +132,9 @@
     <string name="preferences_hide_collector_notification_title">Ukryj powiadomienie</string>
     <string name="preferences_hide_collector_notification_on_summary">Powiadomienie będzie ukryte na ekranie blokady i pasku statusu, gdy jest zwinięty. Zachowanie może się różnić w zależności od urządzenia.</string>
     <string name="preferences_hide_collector_notification_off_summary">Powiadomienie będzie widoczne cały czas.</string>
+    <string name="preferences_start_collector_at_startup_title">Rozpocznij zbieranie przy starcie</string>
+    <string name="preferences_start_collector_at_startup_on_summary">Zbieranie będzie automatycznie uruchomione przy starcie aplikacji.</string>
+    <string name="preferences_start_collector_at_startup_off_summary">Aplikacja nie będzie zbierała próbek zaraz po uruchomieniu.</string>
     <string name="preferences_start_collector_at_boot_title">Zbieranie po uruchomieniu urządzenia</string>
     <string name="preferences_start_collector_at_boot_on_summary">Zbieranie zostanie automatycznie rozpoczęte po uruchomieniu urządzenia. Aplikacja musi być zainstalowana w pamięci wewnętrznej, aby opcja zadziałała.</string>
     <string name="preferences_start_collector_at_boot_off_summary">Aplikacja nie rozpocznie zbierania po uruchomieniu urządzenia. Aplikacja może być zainstalowana w dowolnym miejscu. Aby korzystać z tej funkcji wymagane jest przyznanie uprawnień do lokalizacji w tle, w przeciwnym razie aplikacja nie będzie mogła zbierać próbek.</string>

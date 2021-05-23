@@ -132,6 +132,9 @@
     <string name="preferences_hide_collector_notification_title">隐藏通知</string>
     <string name="preferences_hide_collector_notification_on_summary">除非展开，否则将从锁定屏幕和状态栏隐藏通知。设备之间的行为可能不同。</string>
     <string name="preferences_hide_collector_notification_off_summary">通知将始终可见。</string>
+    <string name="preferences_start_collector_at_startup_title">在启动时开始收集</string>
+    <string name="preferences_start_collector_at_startup_on_summary">收集将在应用启动时自动开始。</string>
+    <string name="preferences_start_collector_at_startup_off_summary">该应用程序在启动时将不会开始收集。</string>
     <string name="preferences_start_collector_at_boot_title">在设备启动时开始收集</string>
     <string name="preferences_start_collector_at_boot_on_summary">收集将在设备启动时自动启动。应用必须安装在内部存储器上才能使其正常工作。</string>
     <string name="preferences_start_collector_at_boot_off_summary">该应用不会在设备启动时开始收集。该应用可以安装在任何地方。必须授予背景位置权限才能使用此功能，否则该应用将无法收集测量值。</string>

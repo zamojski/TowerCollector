@@ -45,10 +45,10 @@
     <string name="preferences_opencellid_api_key_invalid">Il token di accesso immesso non è valido. Il formato corretto è descritto nella Guida.</string>
     <string name="preferences_opencellid_api_key_link_title">Ottieni il tuo token di accesso</string>
     <string name="preferences_opencellid_api_key_link_summary">Registrati gratuitamente sul sito Web OpenCellID.org.</string>
-    <string name="preferences_about_opencellid_api_key_title">Info sul token di accesso OpenCellID di OpenCellID</string>
+    <string name="preferences_about_opencellid_api_key_title">Info sul token di accesso OpenCellID</string>
     <string name="preferences_about_opencellid_api_key_summary">Informazioni sul token di accesso (chiave API) e sulla corretta formattazione.</string>
     <string name="preferences_about_opencellid_project_title">Info sul progetto OpenCellID</string>
-    <string name="preferences_about_opencellid_project_summary">Informazioni sul progetto OpenCellID.</string>
+    <string name="preferences_about_opencellid_project_summary">Informazioni sul progetto OpenCellID.org</string>
     <string name="preferences_mls_enabled_title">Abilita il caricamento su MLS</string>
     <string name="preferences_mls_enabled_on_summary">Le misurazioni saranno caricate su Mozilla Location Services.</string>
     <string name="preferences_mls_enabled_off_summary">Le misurazioni non saranno caricate su Mozilla Location Services.</string>
@@ -132,6 +132,9 @@
     <string name="preferences_hide_collector_notification_title">Nascondi notifica</string>
     <string name="preferences_hide_collector_notification_on_summary">La notifica verrà nascosta nella schermata di blocco e nella barra di stato, a meno che non venga espansa. Il comportamento può variare tra i dispositivi.</string>
     <string name="preferences_hide_collector_notification_off_summary">La notifica sarà sempre visibile.</string>
+    <string name="preferences_start_collector_at_startup_title">Inizia a raccogliere all\'avvio</string>
+    <string name="preferences_start_collector_at_startup_on_summary">La raccolta verrà avviata automaticamente all\'avvio dell\'app.</string>
+    <string name="preferences_start_collector_at_startup_off_summary">L\'app non inizierà a raccogliere all\'avvio.</string>
     <string name="preferences_start_collector_at_boot_title">Avvia la raccolta dati all\'avvio del dispositivo</string>
     <string name="preferences_start_collector_at_boot_on_summary">La raccolta dati sarà avviata automaticamente all\'avvio del dispositivo. L\'app deve essere installata nella memoria interna affinchè funzioni.</string>
     <string name="preferences_start_collector_at_boot_off_summary">L\'app non avvierà la raccolta dati all\'avvio del dispositivo. L\'app può essere installata ovunque. L\'autorizzazione alla posizione in background deve essere concessa per utilizzare questa funzione, altrimenti l\'app non sarà in grado di raccogliere misurazioni.</string>
@@ -150,7 +153,7 @@
     <string name="preferences_main_map_enable_title">Abilita mappa</string>
     <string name="preferences_main_map_enable_on_summary">La scheda della mappa è visibile.</string>
     <string name="preferences_main_map_enable_off_summary">La scheda della mappa è nascosta.</string>
-    <string name="preferences_main_map_force_light_theme_title">Forza il tema luminosa</string>
+    <string name="preferences_main_map_force_light_theme_title">Forza il tema chiaro</string>
     <string name="preferences_main_map_force_light_theme_on_summary">Verrà sempre utilizzato il tema chiaro della mappa.</string>
     <string name="preferences_main_map_force_light_theme_off_summary">Il tema della mappa seguirà le preferenze di visualizzazione.</string>
     <string name="preferences_main_map_wifi_only_title">Solo su Wi-Fi</string>

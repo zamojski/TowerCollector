@@ -80,6 +80,9 @@
     <string name="main_last_date_time_label">Heure d\'enregistrement :</string>
     <string name="main_map_my_location_button">Déplacer vers mon emplacement</string>
     <string name="main_map_follow_me_button">Suivez mon emplacement</string>
+    <string name="main_map_location_enable_button">Activer ma position</string>
+    <string name="main_map_location_disable_button">Désactiver ma position</string>
+    <string name="main_map_help_button">Afficher l\'aide</string>
     <string name="main_map_enable">Activer</string>
     <string name="main_map_disable">Désactiver</string>
     <string name="main_menu_start_button">Commencer la collecte</string>

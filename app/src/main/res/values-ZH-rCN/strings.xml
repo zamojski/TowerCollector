@@ -80,6 +80,9 @@
     <string name="main_last_date_time_label">保存时间：</string>
     <string name="main_map_my_location_button">移到我的位置</string>
     <string name="main_map_follow_me_button">跟随我的位置</string>
+    <string name="main_map_location_enable_button">启用我的位置</string>
+    <string name="main_map_location_disable_button">禁用我的位置</string>
+    <string name="main_map_help_button">显示帮助</string>
     <string name="main_map_enable">启用</string>
     <string name="main_map_disable">禁用</string>
     <string name="main_menu_start_button">开始收集</string>

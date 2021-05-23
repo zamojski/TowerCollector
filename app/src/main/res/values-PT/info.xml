@@ -18,4 +18,5 @@
     <string name="info_about_main_keep_screen_on_title">Manter tela ligada quando visível</string>
     <string name="info_about_collector_keep_screen_on_title">Manter tela ligada quando coletando</string>
     <string name="info_about_notify_measurements_collected_title">Notificar sobre medições coletadas</string>
+    <string name="info_map_help_title">Legenda do mapa</string>
 </resources>

@@ -132,6 +132,9 @@
     <string name="preferences_hide_collector_notification_title">Ocultar notificação</string>
     <string name="preferences_hide_collector_notification_on_summary">Notificações ficarão ocultas da tela de bloqueio e da barra de status a não ser que sejam expandidas. O comportamento pode variar entre dispositivos.</string>
     <string name="preferences_hide_collector_notification_off_summary">A notificação ficará visível todo o tempo.</string>
+    <string name="preferences_start_collector_at_startup_title">Comece a coletar na inicialização</string>
+    <string name="preferences_start_collector_at_startup_on_summary">A coleta será iniciada automaticamente na inicialização do aplicativo.</string>
+    <string name="preferences_start_collector_at_startup_off_summary">O aplicativo não começará a coletar na inicialização.</string>
     <string name="preferences_start_collector_at_boot_title">Inicia a coleta no boot do dispositivo.</string>
     <string name="preferences_start_collector_at_boot_on_summary">A coleta será iniciada automaticamente no boot do dispositivo. O aplicativo deve estar instalado na memória interna para que isso funcione.</string>
     <string name="preferences_start_collector_at_boot_off_summary">O aplicativo não iniciará a coleta no boot do dispositivo. O aplicativo pode estar instalado em qualquer lugar. A permissão de localização em segundo plano deve ser concedida para usar esta função, caso contrário, o aplicativo não será capaz de coletar medições.</string>
