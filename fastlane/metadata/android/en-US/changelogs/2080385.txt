@@ -1,0 +1,5 @@
+- Add option to disable listening for my location on the map.
+- Add option to start collecting on app start-up.
+- Add legend for the map.
+- Fix collector crashing when there's no signal (Android bug).
+- Fix animation to last measurement on the map if another animation is in progress.
