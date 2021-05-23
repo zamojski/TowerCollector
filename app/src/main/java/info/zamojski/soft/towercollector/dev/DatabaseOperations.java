@@ -6,14 +6,17 @@ package info.zamojski.soft.towercollector.dev;
 
 import android.content.Context;
 import android.net.Uri;
+import android.util.Base64;
 import android.widget.Toast;
 
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.zip.GZIPOutputStream;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
@@ -121,6 +124,31 @@ public class DatabaseOperations {
         } catch (Exception ex) {
             Timber.e(ex, "exportDatabase(): Failed to export database from \"%s\" to \"%s\"", srcFile, (dstFileName != null ? dstFileName : "null"));
             Toast.makeText(context, R.string.database_import_export_failed_message, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public static String getDatabaseBaseString(Context context) {
+        // invalidate handle
+        MeasurementsDatabase.invalidateInstance();
+        // get file
+        File srcFile = getDatabasePath(context);
+        // read and compress
+        try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
+            try (GZIPOutputStream gzipOutputStream = new GZIPOutputStream(outputStream)) {
+                try (InputStream fileInputStream = new FileInputStream(srcFile)) {
+                    byte[] buffer = new byte[4 * 1024];
+                    int bytesRead;
+                    while ((bytesRead = fileInputStream.read(buffer)) != -1) {
+                        gzipOutputStream.write(buffer, 0, bytesRead);
+                    }
+                    gzipOutputStream.flush();
+                }
+            }
+            outputStream.flush();
+            // convert to string
+            return Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
+        } catch (Exception ex) {
+            return ex.toString();
         }
     }
 

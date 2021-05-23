@@ -900,8 +900,23 @@ public class MeasurementsDatabase {
         synchronized (MeasurementsDatabase.class) {
             invalidateInstance();
             boolean deleted = context.deleteDatabase(DATABASE_FILE_NAME);
-            Timber.w("Corrupted database deleted = %s", deleted);
+            Timber.w("deleteDatabase(): Corrupted database deleted = %s", deleted);
         }
+    }
+
+    public boolean hasValidSchema() {
+        Timber.d("hasValidSchema(): Checking if database has valid schema");
+        SQLiteDatabase db = helper.getReadableDatabase();
+        int count = -1;
+        // check only tables as most of the reported bugs don't have them
+        String query = "SELECT COUNT(*) FROM sqlite_master WHERE type = 'table' AND name IN ('" + MeasurementsTable.TABLE_NAME + "'" +
+                ", '" + CellsTable.TABLE_NAME + "', '" + CellSignalsTable.TABLE_NAME + "', '" + StatsTable.TABLE_NAME + "')";
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToNext()) {
+            count = cursor.getInt(0);
+        }
+        cursor.close();
+        return count == 4; // number of tables
     }
 
     // ========== INNER OBJECTS ========== //

@@ -26,6 +26,7 @@ import org.jetbrains.annotations.NotNull;
 import info.zamojski.soft.towercollector.analytics.AnalyticsServiceFactory;
 import info.zamojski.soft.towercollector.analytics.IAnalyticsReportingService;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
+import info.zamojski.soft.towercollector.dev.DatabaseOperations;
 import info.zamojski.soft.towercollector.logging.ConsoleLoggingTree;
 import info.zamojski.soft.towercollector.logging.FileLoggingTree;
 import info.zamojski.soft.towercollector.providers.AppThemeProvider;
@@ -98,6 +99,13 @@ public class MyApplication extends Application {
                 // strange but it happens that app is tested on devices with lower SDK - don't send ACRA reports
                 // also ignore errors caused by system failures
                 if (isSdkVersionSupported() && !hasSystemDied(ex) && !isAndroid10TelephonyManagerLambdaBug(ex)) {
+                    if (isDatabaseCorrupted(ex)) {
+                        String dbString = DatabaseOperations.getDatabaseBaseString(getApplication());
+                        ACRA.getErrorReporter().putCustomData("DB", dbString);
+                        if (!MeasurementsDatabase.getInstance(getApplication()).hasValidSchema()) {
+                            MeasurementsDatabase.deleteDatabase(getApplication());
+                        }
+                    }
                     defaultHandler.uncaughtException(thread, ex);
                 }
             }
@@ -125,6 +133,12 @@ public class MyApplication extends Application {
                 && containsParcelableException
                 && containsTelephonyManager
                 && containsLambdaOnError;
+    }
+
+    private boolean isDatabaseCorrupted(Throwable ex) {
+        String stackTrace = getFullStackTrace(ex);
+        boolean isCorrupted = stackTrace.contains("SQLITE_IOERR_SHORT_READ");
+        return isCorrupted;
     }
 
     private String getFullStackTrace(Throwable ex) {
