@@ -4,5 +4,5 @@
 
 package info.zamojski.soft.towercollector.events;
 
-public class MapEnabledChanged {
+public class MapEnabledChangedEvent {
 }

@@ -15,7 +15,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
-import info.zamojski.soft.towercollector.events.MapEnabledChanged;
+import info.zamojski.soft.towercollector.events.MapEnabledChangedEvent;
 import info.zamojski.soft.towercollector.utils.MapUtils;
 
 public class MapPreferenceFragment extends DialogEnabledPreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -55,7 +55,7 @@ public class MapPreferenceFragment extends DialogEnabledPreferenceFragment imple
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(getString(R.string.preferences_main_map_enable_key))) {
             MyApplication.getPreferencesProvider().invalidateMainMapEnabledCache();
-            EventBus.getDefault().postSticky(new MapEnabledChanged());
+            EventBus.getDefault().postSticky(new MapEnabledChangedEvent());
         } else if (key.equals(getString(R.string.preferences_main_map_cache_size_key))) {
             MapUtils.setMapCacheLimits();
         }

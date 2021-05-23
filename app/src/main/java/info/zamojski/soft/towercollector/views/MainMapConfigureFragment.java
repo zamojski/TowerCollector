@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
-import info.zamojski.soft.towercollector.events.MapEnabledChanged;
+import info.zamojski.soft.towercollector.events.MapEnabledChangedEvent;
 import info.zamojski.soft.towercollector.utils.MapUtils;
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
 import permissions.dispatcher.NeedsPermission;
@@ -56,7 +56,7 @@ public class MainMapConfigureFragment extends MainFragmentBase {
     private void configureMap(boolean enabled) {
         MyApplication.getPreferencesProvider().setMainMapConfigured(true);
         MyApplication.getPreferencesProvider().setMainMapEnabled(enabled);
-        EventBus.getDefault().postSticky(new MapEnabledChanged());
+        EventBus.getDefault().postSticky(new MapEnabledChangedEvent());
     }
 
     @NeedsPermission({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION})
