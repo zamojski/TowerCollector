@@ -21,6 +21,7 @@
     <include layout="@layout/main_power_save_mode_fragment" />
 
     <ScrollView
+        android:id="@+id/main_last_cell_has_data"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -624,5 +625,19 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/main_last_cell_has_no_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_last_cell_no_data_message" />
+
+    </LinearLayout>
 
 </LinearLayout>
