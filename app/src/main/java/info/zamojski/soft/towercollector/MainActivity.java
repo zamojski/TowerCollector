@@ -435,28 +435,28 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         } else if (viewId == R.id.main_last_number_of_cells_tablerow) {
             titleId = R.string.mail_help_last_number_of_cells_title;
             messageId = R.string.mail_help_last_number_of_cells_description;
-        } else if (viewId == R.id.main_last_network_type_tablerow) {
+        } else if (viewId == R.id.main_last_network_type_tablerow1 || viewId == R.id.main_last_network_type_tablerow2) {
             titleId = R.string.main_help_last_network_type_title;
             messageId = R.string.main_help_last_network_type_description;
-        } else if (viewId == R.id.main_last_long_cell_id_tablerow) {
+        } else if (viewId == R.id.main_last_long_cell_id_tablerow1 || viewId == R.id.main_last_long_cell_id_tablerow2) {
             titleId = R.string.main_help_last_long_cell_id_title;
             messageId = R.string.main_help_last_long_cell_id_description;
-        } else if (viewId == R.id.main_last_cell_id_rnc_tablerow) {
+        } else if (viewId == R.id.main_last_cell_id_rnc_tablerow1 || viewId == R.id.main_last_cell_id_rnc_tablerow2) {
             titleId = R.string.main_help_last_cell_id_rnc_title;
             messageId = R.string.main_help_last_cell_id_rnc_description;
-        } else if (viewId == R.id.main_last_cell_id_tablerow) {
+        } else if (viewId == R.id.main_last_cell_id_tablerow1 || viewId == R.id.main_last_cell_id_tablerow2) {
             titleId = R.string.main_help_last_cell_id_title;
             messageId = R.string.main_help_last_cell_id_description;
-        } else if (viewId == R.id.main_last_lac_tablerow) {
+        } else if (viewId == R.id.main_last_lac_tablerow1 || viewId == R.id.main_last_lac_tablerow2) {
             titleId = R.string.main_help_last_lac_title;
             messageId = R.string.main_help_last_lac_description;
-        } else if (viewId == R.id.main_last_mcc_tablerow) {
+        } else if (viewId == R.id.main_last_mcc_tablerow1 || viewId == R.id.main_last_mcc_tablerow2) {
             titleId = R.string.main_help_last_mcc_title;
             messageId = R.string.main_help_last_mcc_description;
-        } else if (viewId == R.id.main_last_mnc_tablerow) {
+        } else if (viewId == R.id.main_last_mnc_tablerow1 || viewId == R.id.main_last_mnc_tablerow2) {
             titleId = R.string.main_help_last_mnc_title;
             messageId = R.string.main_help_last_mnc_description;
-        } else if (viewId == R.id.main_last_signal_strength_tablerow) {
+        } else if (viewId == R.id.main_last_signal_strength_tablerow1 || viewId == R.id.main_last_signal_strength_tablerow2) {
             titleId = R.string.main_help_last_signal_strength_title;
             messageId = R.string.main_help_last_signal_strength_description;
         } else if (viewId == R.id.main_last_latitude_tablerow) {
