@@ -4,11 +4,11 @@
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
-    <solid android:color="#aaffffff" />
+    <solid android:color="#99ffffff" />
     <stroke
-        android:width="2.0dp"
+        android:width="1.5dp"
         android:color="?attr/dot_color" />
     <size
-        android:width="16dp"
-        android:height="16dp" />
+        android:width="12dp"
+        android:height="12dp" />
 </shape>
