@@ -75,6 +75,7 @@ import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.ExportAction;
 import info.zamojski.soft.towercollector.enums.FileType;
 import info.zamojski.soft.towercollector.enums.MeansOfTransport;
+import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.enums.Validity;
 import info.zamojski.soft.towercollector.events.AirplaneModeChangedEvent;
 import info.zamojski.soft.towercollector.events.BatteryOptimizationsChangedEvent;
@@ -407,6 +408,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     public void displayHelpOnClick(View view) {
         int titleId = View.NO_ID;
         int messageId = View.NO_ID;
+        int additionalMessageId = View.NO_ID;
         int viewId = view.getId();
         if (viewId == R.id.main_gps_status_tablerow) {
             titleId = R.string.main_help_gps_status_title;
@@ -441,21 +443,43 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         } else if (viewId == R.id.main_last_long_cell_id_tablerow1 || viewId == R.id.main_last_long_cell_id_tablerow2) {
             titleId = R.string.main_help_last_long_cell_id_title;
             messageId = R.string.main_help_last_long_cell_id_description;
+            NetworkGroup tag = (NetworkGroup) view.getTag();
+            if (tag == NetworkGroup.Lte) {
+                additionalMessageId = R.string.main_help_last_long_cell_id_description_lte;
+            } else if (tag == NetworkGroup.Wcdma) {
+                additionalMessageId = R.string.main_help_last_long_cell_id_description_umts;
+            }
         } else if (viewId == R.id.main_last_cell_id_rnc_tablerow1 || viewId == R.id.main_last_cell_id_rnc_tablerow2) {
             titleId = R.string.main_help_last_cell_id_rnc_title;
             messageId = R.string.main_help_last_cell_id_rnc_description;
         } else if (viewId == R.id.main_last_cell_id_tablerow1 || viewId == R.id.main_last_cell_id_tablerow2) {
             titleId = R.string.main_help_last_cell_id_title;
             messageId = R.string.main_help_last_cell_id_description;
+            NetworkGroup tag = (NetworkGroup) view.getTag();
+            if (tag == NetworkGroup.Cdma) {
+                titleId = R.string.main_help_last_bid_title;
+            }
         } else if (viewId == R.id.main_last_lac_tablerow1 || viewId == R.id.main_last_lac_tablerow2) {
             titleId = R.string.main_help_last_lac_title;
             messageId = R.string.main_help_last_lac_description;
+            NetworkGroup tag = (NetworkGroup) view.getTag();
+            if (tag == NetworkGroup.Lte || tag == NetworkGroup.Nr) {
+                titleId = R.string.main_help_last_tac_title;
+            } else if (tag == NetworkGroup.Cdma) {
+                titleId = R.string.main_help_last_nid_title;
+                messageId = R.string.main_help_last_nid_description;
+            }
         } else if (viewId == R.id.main_last_mcc_tablerow1 || viewId == R.id.main_last_mcc_tablerow2) {
             titleId = R.string.main_help_last_mcc_title;
             messageId = R.string.main_help_last_mcc_description;
         } else if (viewId == R.id.main_last_mnc_tablerow1 || viewId == R.id.main_last_mnc_tablerow2) {
             titleId = R.string.main_help_last_mnc_title;
             messageId = R.string.main_help_last_mnc_description;
+            NetworkGroup tag = (NetworkGroup) view.getTag();
+            if (tag == NetworkGroup.Cdma) {
+                titleId = R.string.main_help_last_sid_title;
+                messageId = R.string.main_help_last_sid_description;
+            }
         } else if (viewId == R.id.main_last_signal_strength_tablerow1 || viewId == R.id.main_last_signal_strength_tablerow2) {
             titleId = R.string.main_help_last_signal_strength_title;
             messageId = R.string.main_help_last_signal_strength_description;
@@ -480,7 +504,11 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
         Timber.d("displayHelpOnClick(): Displaying help for title: %s", titleId);
         if (titleId != View.NO_ID && messageId != View.NO_ID) {
-            AlertDialog dialog = new AlertDialog.Builder(this).setTitle(titleId).setMessage(messageId).setPositiveButton(R.string.dialog_ok, null).create();
+            String message = getString(messageId);
+            if (additionalMessageId != View.NO_ID) {
+                message += "\n\n" + getString(additionalMessageId);
+            }
+            AlertDialog dialog = new AlertDialog.Builder(this).setTitle(titleId).setMessage(message).setPositiveButton(R.string.dialog_ok, null).create();
             dialog.setCanceledOnTouchOutside(true);
             dialog.setCancelable(true);
             dialog.show();

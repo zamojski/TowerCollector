@@ -75,8 +75,12 @@
     <string name="main_last_cell_id_rnc_value" translatable="false"><xliff:g id="short_cell_id">%1$d</xliff:g> / <xliff:g id="rnc">%2$d</xliff:g></string>
     <string name="main_last_cell_id_label">Cell ID:</string>
     <string name="main_last_lac_label">LAC:</string>
+    <string name="main_last_tac_label">TAC:</string>
     <string name="main_last_mcc_label">MCC:</string>
     <string name="main_last_mnc_label">MNC:</string>
+    <string name="main_last_sid_label">SID:</string>
+    <string name="main_last_nid_label">NID:</string>
+    <string name="main_last_bid_label">BID:</string>
     <string name="main_last_signal_strength_label">Signal strength:</string>
     <string name="main_last_signal_strength_value" translatable="false"><xliff:g id="signal_strength">%d</xliff:g> dBm</string>
     <string name="main_last_latitude_label">Latitude:</string>
@@ -216,17 +220,25 @@
     <string name="main_help_last_network_type_title">Network type</string>
     <string name="main_help_last_network_type_description">The type of mobile network to which the phone was connected.</string>
     <string name="main_help_last_long_cell_id_title">Long Cell Tower ID</string>
-    <string name="main_help_last_long_cell_id_description">The long unique cell tower identifier to which the phone was connected.\nFor UMTS networks the LCID, also called UTRAN CID, is a concatenation of RNC (ID of the Radio Network Controller) and Cell ID (unique ID of the Cell Tower).\nFor LTE networks the LCID, also called E-UTRAN CID, is a concatenation of eNodeB (ID of the Radio Network Controller) and Cell ID (unique ID of the Cell Tower).</string>
+    <string name="main_help_last_long_cell_id_description">The long unique cell tower identifier to which the phone was connected.</string>
+    <string name="main_help_last_long_cell_id_description_umts">For UMTS networks the LCID, also called UTRAN CID, is a concatenation of RNC (ID of the Radio Network Controller) and Cell ID (unique ID of the Cell Tower).</string>
+    <string name="main_help_last_long_cell_id_description_lte">For LTE networks the LCID, also called E-UTRAN CID, is a concatenation of eNodeB (ID of the Radio Network Controller) and Cell ID (unique ID of the Cell Tower).</string>
     <string name="main_help_last_cell_id_rnc_title">Cell Tower ID / RNC</string>
     <string name="main_help_last_cell_id_rnc_description">The unique cell tower identifier and RNC (ID of the Radio Network Controller) to which the phone was connected. This ID is defined only for UMTS and LTE networks.</string>
     <string name="main_help_last_cell_id_title">Cell Tower ID</string>
     <string name="main_help_last_cell_id_description">The unique cell tower identifier to which the phone was connected.</string>
+    <string name="main_help_last_bid_title">Base station ID</string>
     <string name="main_help_last_lac_title">Location Area Code</string>
     <string name="main_help_last_lac_description">The unique identifier assigned to group of cell towers to which the phone was connected.</string>
+    <string name="main_help_last_tac_title">Tracking Area Code</string>
+    <string name="main_help_last_nid_title">Network ID</string>
+    <string name="main_help_last_nid_description">The unique identifier of network to which the phone was connected. Together with SID it creates a worldwide unique network identifier.</string>
     <string name="main_help_last_mcc_title">Mobile Country Code</string>
     <string name="main_help_last_mcc_description">The unique country code of network operator to which the phone was connected.</string>
     <string name="main_help_last_mnc_title">Mobile Network Code</string>
     <string name="main_help_last_mnc_description">The unique identifier of network provider within country to which the phone was connected.</string>
+    <string name="main_help_last_sid_title">System ID</string>
+    <string name="main_help_last_sid_description">The unique identifier of network system to which the phone was connected. Together with NID it creates a worldwide unique network identifier.</string>
     <string name="main_help_last_signal_strength_title">Signal strength</string>
     <string name="main_help_last_signal_strength_description">Network signal strength measured while saving expressed in dBm (power ratio in decibels (dB) of the measured power referenced to 1 milliwatt (mW)). Doubling this value means a 10 times stronger signal strength. Values ​​closer to 0 indicate stronger signal.</string>
     <string name="main_help_last_latitude_title">Latitude</string>
