@@ -11,12 +11,10 @@ import java.io.Serializable;
 import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.utils.StringUtils;
 
-public class Cell implements Serializable {
+public class Cell extends CellBase implements Serializable {
 
     private static final long serialVersionUID = -1561237876324180202L;
 
-    public static final int UNKNOWN_CID = Integer.MAX_VALUE; // safe for all network types except 5G (NR), equals CellInfo.UNAVAILABLE which requires newer SDK
-    public static final long UNKNOWN_CID_LONG = Long.MAX_VALUE; // safe for 5G (NR), equals CellInfo.UNAVAILABLE_LONG which requires newer SDK
     public static final int UNKNOWN_SIGNAL = Integer.MAX_VALUE; // safe for all network types, equals CellInfo.UNAVAILABLE which requires newer SDK
 
     /**
@@ -28,33 +26,9 @@ public class Cell implements Serializable {
      */
     private int cellSignalId;
     /**
-     * Mobile Country Code.
-     */
-    private int mcc = UNKNOWN_CID;
-    /**
-     * Mobile Network Code.
-     */
-    private int mnc = UNKNOWN_CID;
-    /**
-     * Location Area Code.
-     */
-    private int lac = UNKNOWN_CID;
-    /**
-     * Cell Tower ID.
-     */
-    private long cid = UNKNOWN_CID_LONG;
-    /**
      * Primary Scrambling Code.
      */
     private int psc = UNKNOWN_CID;
-    /**
-     * Network Type.
-     */
-    private NetworkGroup networkType = NetworkGroup.Unknown;
-    /**
-     * Is cell neighboring.
-     */
-    private boolean neighboring = false;
     /**
      * Timing Advance.
      */
@@ -161,52 +135,12 @@ public class Cell implements Serializable {
         this.cellSignalId = cellSignalId;
     }
 
-    public int getMcc() {
-        return mcc;
-    }
-
-    public void setMcc(int mcc) {
-        this.mcc = mcc;
-    }
-
-    public int getMnc() {
-        return mnc;
-    }
-
-    public void setMnc(int mnc) {
-        this.mnc = mnc;
-    }
-
-    public int getLac() {
-        return lac;
-    }
-
-    public void setLac(int lac) {
-        this.lac = lac;
-    }
-
     public int getPsc() {
         return psc;
     }
 
     public void setPsc(int psc) {
         this.psc = psc;
-    }
-
-    public NetworkGroup getNetworkType() {
-        return networkType;
-    }
-
-    public void setNetworkType(NetworkGroup networkType) {
-        this.networkType = networkType;
-    }
-
-    public boolean isNeighboring() {
-        return neighboring;
-    }
-
-    public void setNeighboring(boolean neighboring) {
-        this.neighboring = neighboring;
     }
 
     public int getTa() {
@@ -231,48 +165,6 @@ public class Cell implements Serializable {
 
     public void setDbm(int dBm) {
         this.dbm = dBm;
-    }
-
-    // NOTE: keep synchronized with MapCell implementation
-    public boolean isCidLong() {
-        return ((getNetworkType() == NetworkGroup.Wcdma || getNetworkType() == NetworkGroup.Lte) && getLongCid() != Cell.UNKNOWN_CID_LONG);
-    }
-
-    // NOTE: keep synchronized with MapCell implementation
-    public long getLongCid() {
-        if (cid <= 65536)
-            return UNKNOWN_CID_LONG;
-        return cid;
-    }
-
-    // NOTE: keep synchronized with MapCell implementation
-    public long getShortCid() {
-        if (cid <= 65536)
-            return UNKNOWN_CID_LONG;
-        if (networkType == NetworkGroup.Wcdma)
-            return cid % 65536;
-        else if (networkType == NetworkGroup.Lte) // LTE (reversed order)
-            return cid / 256;
-        return UNKNOWN_CID_LONG;
-    }
-
-    // NOTE: keep synchronized with MapCell implementation
-    public long getRnc() {
-        if (cid <= 65536)
-            return UNKNOWN_CID_LONG;
-        if (networkType == NetworkGroup.Wcdma)
-            return cid / 65536;
-        else if (networkType == NetworkGroup.Lte) // LTE (reversed order)
-            return cid % 256;
-        return UNKNOWN_CID_LONG;
-    }
-
-    public long getCid() {
-        return cid;
-    }
-
-    public void setCid(long cid) {
-        this.cid = cid;
     }
 
     public int getRsrp() {

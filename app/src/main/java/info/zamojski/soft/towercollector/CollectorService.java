@@ -350,8 +350,8 @@ public class CollectorService extends Service {
 
     // ========== NOTIFICATION ========== //
 
-    private synchronized void updateNotification(Statistics statistics) {
-        Notification notification = notificationHelper.updateNotification(statistics);
+    private synchronized void updateNotification(Statistics statistics, Measurement measurement) {
+        Notification notification = notificationHelper.updateNotification(statistics, measurement);
         Timber.d("updateNotification(): Setting statistics: %s", statistics);
         notificationManager.notify(NOTIFICATION_ID, notification);
     }
@@ -656,7 +656,7 @@ public class CollectorService extends Service {
             MeasurementSavedEvent savedEvent = (MeasurementSavedEvent) event;
             Measurement measurement = savedEvent.getMeasurement();
             speed = measurement.getGpsSpeed();
-            updateNotification(savedEvent.getStatistics());
+            updateNotification(savedEvent.getStatistics(), measurement);
             // update analytics statistics
             for (Cell cell : measurement.getMainCells()) {
                 NetworkGroup networkType = cell.getNetworkType();
@@ -942,7 +942,7 @@ public class CollectorService extends Service {
         }
         // Optimization: it doesn't make sense to refresh if nothing changes (after save updated in a different way)
         else if (statusChanged) {
-            updateNotification(MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics());
+            updateNotification(MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics(), MeasurementsDatabase.getInstance(MyApplication.getApplication()).getLastMeasurement());
         }
     }
 

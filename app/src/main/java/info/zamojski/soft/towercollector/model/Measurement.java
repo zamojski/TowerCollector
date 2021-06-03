@@ -4,13 +4,16 @@
 
 package info.zamojski.soft.towercollector.model;
 
+import android.content.Context;
 import android.text.TextUtils;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Measurement implements Serializable {
+public class Measurement extends MeasurementBase implements Serializable {
 
     private static final long serialVersionUID = -1561708154666574202L;
 
@@ -20,14 +23,6 @@ public class Measurement implements Serializable {
      * Measurement ID.
      */
     private int measurementId;
-    /**
-     * Geographic Latitude.
-     */
-    private double latitude;
-    /**
-     * Geographic Longitude.
-     */
-    private double longitude;
     /**
      * GPS Accuracy in m.
      * 0 - not available.
@@ -49,10 +44,6 @@ public class Measurement implements Serializable {
      */
     private double gpsAltitude = GPS_VALUE_NOT_AVAILABLE;
     /**
-     * Measured at Unix Timestamp with milliseconds.
-     */
-    private long measuredAt;
-    /**
      * Uploaded to OCID Unix Timestamp with milliseconds.
      */
     private Long uploadedToOcidAt;
@@ -71,22 +62,6 @@ public class Measurement implements Serializable {
 
     public void setMeasurementId(int measurementId) {
         this.measurementId = measurementId;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
     }
 
     public float getGpsAccuracy() {
@@ -119,14 +94,6 @@ public class Measurement implements Serializable {
 
     public void setGpsAltitude(double gpsAltitude) {
         this.gpsAltitude = gpsAltitude;
-    }
-
-    public long getMeasuredAt() {
-        return measuredAt;
-    }
-
-    public void setMeasuredAt(long measuredAt) {
-        this.measuredAt = measuredAt;
     }
 
     public Long getUploadedToOcidAt() {
@@ -173,6 +140,11 @@ public class Measurement implements Serializable {
         return count;
     }
 
+    public String getDescription(Context context) {
+        return super.getDescription(context, getMainCells(), "\n");
+    }
+
+    @NotNull
     @Override
     public String toString() {
         return "Measurement{" +

@@ -110,6 +110,7 @@
     <string name="collector_notification_channel_name">Collector</string>
     <string name="collector_notification_title">Collecting</string>
     <string name="collector_notification_stats">Today <xliff:g id="number_of_measurements">%1$d</xliff:g> measurements of <xliff:g id="number_of_cells">%2$d</xliff:g> cells.</string>
+    <string name="collector_notification_last_measurement">Last:\n<xliff:g id="cell_identifier">%s</xliff:g></string>
     <string name="collector_notification_status">GPS status: <xliff:g id="status">%s</xliff:g>.</string>
     <string name="collector_gps_unavailable">Cannot start collecting because GPS is unavailable.</string>
     <string name="uploader_notification_channel_name">Uploader</string>

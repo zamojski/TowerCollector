@@ -7,6 +7,7 @@ package info.zamojski.soft.towercollector.collector;
 import info.zamojski.soft.towercollector.CollectorService;
 import info.zamojski.soft.towercollector.MainActivity;
 import info.zamojski.soft.towercollector.R;
+import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.model.Statistics;
 import info.zamojski.soft.towercollector.utils.NotificationHelperBase;
 
@@ -18,6 +19,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+
 import androidx.core.app.NotificationCompat;
 
 public class CollectorNotificationHelper extends NotificationHelperBase {
@@ -39,8 +41,11 @@ public class CollectorNotificationHelper extends NotificationHelperBase {
         return prepareNotification(notificationText);
     }
 
-    public Notification updateNotification(Statistics stats) {
+    public Notification updateNotification(Statistics stats, Measurement measurement) {
         String notificationText = createStatsText(stats);
+        if (measurement != null) {
+            notificationText += createLastMeasurementText(measurement);
+        }
         return updateNotification(notificationText);
     }
 
@@ -81,6 +86,11 @@ public class CollectorNotificationHelper extends NotificationHelperBase {
 
     private String createStatsText(Statistics stats) {
         return context.getString(R.string.collector_notification_stats, stats.getLocationsToday(), stats.getCellsToday());
+    }
+
+    private String createLastMeasurementText(Measurement measurement) {
+        String description = measurement.getDescription(context);
+        return " " + context.getString(R.string.collector_notification_last_measurement, description);
     }
 
     private PendingIntent createOpenMainActivityIntent() {
