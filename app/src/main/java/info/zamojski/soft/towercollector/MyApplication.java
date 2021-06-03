@@ -222,6 +222,7 @@ public class MyApplication extends Application {
         configBuilder.setReportFormat(StringFormat.valueOf(BuildConfig.ACRA_REPORT_TYPE));
         configBuilder.setExcludeMatchingSharedPreferencesKeys(getString(R.string.preferences_opencellid_api_key_key));
         configBuilder.setReportContent(getCustomAcraReportFields());
+        configBuilder.setLogcatArguments("-t", "250", "-v", "time");
         // Configure reported content
         HttpSenderConfigurationBuilder httpPluginConfigBuilder = configBuilder.getPluginConfigurationBuilder(HttpSenderConfigurationBuilder.class);
         httpPluginConfigBuilder.setUri(BuildConfig.ACRA_FORM_URI);
