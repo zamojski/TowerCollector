@@ -44,7 +44,7 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         } else if (collectorStopAction.equals(action)) {
             stopCollectorService(context);
         } else if (uploaderStartAction.equals(action)) {
-            startUploaderService(context);
+            startUploaderService(context, IntentSource.Application);
         } else if (uploaderStopAction.equals(action)) {
             stopUploaderService(context);
         } else if (Intent.ACTION_BOOT_COMPLETED.equals(action) || quickBootPowerOnAction.equals(action)) {
@@ -99,11 +99,11 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         return new Intent(context, CollectorService.class);
     }
 
-    public void startUploaderService(Context context) {
+    public void startUploaderService(Context context, IntentSource source) {
         if (!canStartBackgroundService(context))
             return;
         Timber.d("startCollectorService(): Starting service from broadcast");
-        ContextCompat.startForegroundService(context, getUploaderIntent(context));
+        ContextCompat.startForegroundService(context, getUploaderIntent(context, source));
         ApkUtils.reportShortcutUsage(context, R.string.shortcut_id_uploader_toggle);
     }
 
@@ -115,9 +115,9 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         ApkUtils.reportShortcutUsage(context, R.string.shortcut_id_uploader_toggle);
     }
 
-    private Intent getUploaderIntent(Context context) {
+    private Intent getUploaderIntent(Context context, IntentSource source) {
         Intent intent = new Intent(context, UploaderService.class);
-        intent.putExtra(UploaderService.INTENT_KEY_START_INTENT_SOURCE, IntentSource.Application);
+        intent.putExtra(UploaderService.INTENT_KEY_START_INTENT_SOURCE, source);
         return intent;
     }
 

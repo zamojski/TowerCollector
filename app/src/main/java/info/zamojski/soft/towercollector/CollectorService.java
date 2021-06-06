@@ -274,6 +274,10 @@ public class CollectorService extends Service {
 
         EventBus.getDefault().postSticky(new CollectorStateChangedEvent(true));
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            CollectorQuickSettingsTileService.requestTileUpdate(true);
+        }
+
         boolean notifyCollected = MyApplication.getPreferencesProvider().getNotifyMeasurementsCollected();
         if (notifyCollected) {
             externalBroadcastSender = new ExternalBroadcastSender();
@@ -338,6 +342,9 @@ public class CollectorService extends Service {
             measurementParserThread.quit();
         if (externalBroadcastSenderThread != null)
             externalBroadcastSenderThread.quit();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            CollectorQuickSettingsTileService.requestTileUpdate(false);
+        }
         long duration = (endTime - startTime);
         Statistics endStats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
         int numberOfCollectedLocations = endStats.getLocationsLocal() - startStats.getLocationsLocal();

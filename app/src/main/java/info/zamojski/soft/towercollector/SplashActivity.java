@@ -26,9 +26,10 @@ import android.widget.Toast;
 
 public class SplashActivity extends Activity {
 
-    static final String SHORTCUT_ACTION = "shortcut_action";
-    static final String COLLECTOR_TOGGLE_ACTION = "COLLECTOR_TOGGLE";
-    static final String UPLOADER_TOGGLE_ACTION = "UPLOADER_TOGGLE";
+    public static final String SHORTCUT_ACTION = "shortcut_action";
+    public static final String ACTION_SOURCE = "action_source";
+    public static final String COLLECTOR_TOGGLE_ACTION = "COLLECTOR_TOGGLE";
+    public static final String UPLOADER_TOGGLE_ACTION = "UPLOADER_TOGGLE";
 
     private boolean databaseUpgradeRunning = false;
 
@@ -59,18 +60,31 @@ public class SplashActivity extends Activity {
         if (startupIntent != null) {
             String action = startupIntent.getStringExtra(SHORTCUT_ACTION);
             if (action != null) {
+                IntentSource actionSource = getActionSourceOrDefault(startupIntent, IntentSource.Shortcut);
                 switch (action) {
                     case COLLECTOR_TOGGLE_ACTION:
-                        toggleCollectorAsync();
+                        toggleCollectorAsync(actionSource);
                         return;
                     case UPLOADER_TOGGLE_ACTION:
-                        toggleUploaderAsync();
+                        toggleUploaderAsync(actionSource);
                         return;
                 }
             }
         }
         // default
         startMainActivityAsync();
+    }
+
+    private IntentSource getActionSourceOrDefault(Intent intent, IntentSource source) {
+        if (intent.hasExtra(ACTION_SOURCE)) {
+            try {
+                String actionSourceName = intent.getStringExtra(ACTION_SOURCE);
+                return IntentSource.valueOf(actionSourceName);
+            } catch (Exception ex) {
+                Timber.w(ex, "onStart(): Failed to parse action source");
+            }
+        }
+        return source;
     }
 
     @Override
@@ -103,8 +117,8 @@ public class SplashActivity extends Activity {
         }, 0);
     }
 
-    private void toggleCollectorAsync() {
-        Timber.d("toggleCollectorAsync(): Toggle collector");
+    private void toggleCollectorAsync(IntentSource source) {
+        Timber.d("toggleCollectorAsync(): Toggle collector from %s", source);
         getAsyncHandler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -113,7 +127,7 @@ public class SplashActivity extends Activity {
                 if (MyApplication.isBackgroundTaskRunning(CollectorService.class)) {
                     new ExternalBroadcastReceiver().stopCollectorService(MyApplication.getApplication());
                 } else {
-                    new ExternalBroadcastReceiver().startCollectorServiceFromForeground(MyApplication.getApplication(), IntentSource.Shortcut);
+                    new ExternalBroadcastReceiver().startCollectorServiceFromForeground(MyApplication.getApplication(), source);
                 }
                 Timber.d("startCollectorAsync(): Closing splash screen window");
                 finish();
@@ -121,8 +135,8 @@ public class SplashActivity extends Activity {
         }, 0);
     }
 
-    private void toggleUploaderAsync() {
-        Timber.d("toggleUploaderAsync(): Toggle uploader");
+    private void toggleUploaderAsync(IntentSource source) {
+        Timber.d("toggleUploaderAsync(): Toggle uploader from %s", source);
         getAsyncHandler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -131,7 +145,7 @@ public class SplashActivity extends Activity {
                 if (MyApplication.isBackgroundTaskRunning(UploaderService.class)) {
                     new ExternalBroadcastReceiver().stopUploaderService(MyApplication.getApplication());
                 } else {
-                    new ExternalBroadcastReceiver().startUploaderService(MyApplication.getApplication());
+                    new ExternalBroadcastReceiver().startUploaderService(MyApplication.getApplication(), source);
                 }
                 Timber.d("toggleUploaderAsync(): Closing splash screen window");
                 finish();

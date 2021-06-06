@@ -8,5 +8,6 @@ public enum IntentSource {
     User,
     Application,
     System,
-    Shortcut
+    Shortcut,
+    QuickSettingsTile
 }

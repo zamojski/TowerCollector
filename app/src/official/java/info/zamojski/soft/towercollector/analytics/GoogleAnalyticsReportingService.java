@@ -173,6 +173,8 @@ public class GoogleAnalyticsReportingService implements IAnalyticsReportingServi
                 return Label.StartSystemIntent;
             case Shortcut:
                 return Label.ShortcutIntent;
+            case QuickSettingsTile:
+                return Label.QuickSettingsTileIntent;
             default:
                 throw new UnsupportedOperationException(String.format("Unsupported intent source '%s'", source));
         }

@@ -42,6 +42,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
@@ -114,6 +115,10 @@ public class UploaderService extends Service {
         // we hope API key will be valid
         ocidApiKey = OpenCellIdUtils.getApiKey();
         mlsApiKey = BuildConfig.MLS_API_KEY;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            UploaderQuickSettingsTileService.requestTileUpdate(true);
+        }
         // start work on separate thread to eliminate lags
         getHandler().post(new UploaderThread());
         return START_NOT_STICKY;
@@ -131,6 +136,10 @@ public class UploaderService extends Service {
         stopForeground(true);
         if (stopRequestBroadcastReceiver != null)
             unregisterReceiver(stopRequestBroadcastReceiver);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            UploaderQuickSettingsTileService.requestTileUpdate(false);
+        }
         // display stop reason
         Timber.d("onDestroy(): Upload result OCID: %s, MLS: %s", ocidUploadResult, mlsUploadResult);
         String ocidMessage = getString(getMessage(ocidUploadResult));

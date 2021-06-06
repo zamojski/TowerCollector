@@ -10,6 +10,7 @@ public class Label {
     public static final String StartIntent = "StartIntent";
     public static final String StartSystemIntent = "StartSystemIntent";
     public static final String ShortcutIntent = "ShortcutIntent";
+    public static final String QuickSettingsTileIntent = "QuickSettingsTileIntent";
     public static final String Keep = "Keep";
     public static final String Upload = "Upload";
     public static final String Delete = "Delete";
