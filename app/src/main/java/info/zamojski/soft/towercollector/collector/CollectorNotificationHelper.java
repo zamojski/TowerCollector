@@ -75,11 +75,7 @@ public class CollectorNotificationHelper extends NotificationHelperBase {
         // set action
         PendingIntent stopCollectorIntent = createStopCollectorIntent();
         NotificationCompat.Action stopAction;
-        if (isSupportingVectorDrawablesNatively()) {
-            stopAction = new NotificationCompat.Action.Builder(R.drawable.menu_stop, context.getString(R.string.main_menu_stop_button), stopCollectorIntent).build();
-        } else {
-            stopAction = new NotificationCompat.Action.Builder(R.drawable.menu_stop_dark, context.getString(R.string.main_menu_stop_button), stopCollectorIntent).build();
-        }
+        stopAction = new NotificationCompat.Action.Builder(R.drawable.menu_stop, context.getString(R.string.main_menu_stop_button), stopCollectorIntent).build();
         builder.addAction(stopAction);
         return builder.build();
     }

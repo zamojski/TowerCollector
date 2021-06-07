@@ -8,6 +8,5 @@
     <attr name="icon_background_color" format="reference"/>
     <attr name="dot_color" format="reference"/>
     <attr name="toolbar_background_color" format="reference"/>
-    <attr name="menu_stop_compat" format="reference"/>
 
 </resources>

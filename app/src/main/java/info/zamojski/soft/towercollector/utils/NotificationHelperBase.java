@@ -19,8 +19,4 @@ public class NotificationHelperBase {
     protected boolean isUsingNotificationPriority() {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.O;
     }
-
-    protected boolean isSupportingVectorDrawablesNatively() {
-        return (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP);
-    }
 }
