@@ -75,8 +75,12 @@
     <string name="main_last_cell_id_rnc_label">ID / RNC соти:</string>
     <string name="main_last_cell_id_label">Ідентифікатор соти:</string>
     <string name="main_last_lac_label">LAC:</string>
+    <string name="main_last_tac_label">TAC:</string>
     <string name="main_last_mcc_label">MCC:</string>
     <string name="main_last_mnc_label">MNC:</string>
+    <string name="main_last_sid_label">SID:</string>
+    <string name="main_last_nid_label">NID:</string>
+    <string name="main_last_bid_label">BID:</string>
     <string name="main_last_signal_strength_label">Сила сигналу:</string>
     <string name="main_last_latitude_label">Широта:</string>
     <string name="main_last_longitude_label">Довгота:</string>
