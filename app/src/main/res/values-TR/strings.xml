@@ -8,6 +8,10 @@
     <string name="shortcut_collecting_toggle_long">Toplamayı başlat</string>
     <string name="shortcut_upload_toggle_short">Yükle</string>
     <string name="shortcut_upload_toggle_long">Yüklemeyi başlat</string>
+    <string name="quicksettings_collecting_start">Toplamaya başla</string>
+    <string name="quicksettings_collecting_stop">Toplamayı durdur</string>
+    <string name="quicksettings_upload_start">Yüklemeye başla</string>
+    <string name="quicksettings_upload_stop">Yüklemeyi durdur</string>
     <string name="unit_length_metric">m</string>
     <string name="unit_length_imperial">ft</string>
     <string name="unit_speed_metric">km/s</string>
@@ -78,6 +82,7 @@
     <string name="main_last_longitude_label">Boylam</string>
     <string name="main_last_gps_accuracy_label">Doğruluk</string>
     <string name="main_last_date_time_label">Son kayıt zamanı</string>
+    <string name="main_last_cell_no_data_message">Şimdiye kadar ölçüm yok, dışarı çıkın ve biraz veri toplayın!</string>
     <string name="main_map_my_location_button">Konumuma git</string>
     <string name="main_map_follow_me_button">Konumumu takip et</string>
     <string name="main_map_location_enable_button">Konumumu etkinleştir</string>
@@ -97,6 +102,7 @@
     <string name="collector_notification_channel_name">Toplayıcı</string>
     <string name="collector_notification_title">Toplanıyor</string>
     <string name="collector_notification_stats">Bugün <xliff:g id="number_of_cells">%2$d</xliff:g> hücreden <xliff:g id="number_of_measurements">%1$d</xliff:g> ölçüm yapıldı.</string>
+    <string name="collector_notification_last_measurement">Son hücreler:\n<xliff:g id="cell_identifier">%s</xliff:g></string>
     <string name="collector_notification_status">GPS durumu <xliff:g id="status">%s</xliff:g></string>
     <string name="collector_gps_unavailable">Toplama başlatılamadı çünkü konum devre dışı.</string>
     <string name="uploader_notification_channel_name">Yükleyici</string>
@@ -155,6 +161,7 @@
     <string name="storage_read_failed">Depodan okunamadı: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="storage_write_failed">Depoya yazılamadı: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="system_toast_no_handler_for_operation">İşlemi gerçekleştirecek uygulama yok.</string>
+    <string name="system_toast_no_handler_for_document_picker">Orijinal dosya yöneticisinin sistemde kurulu ve etkinleştirilmiş olduğundan emin olun.</string>
     <string name="clear_dialog_title">Tüm veriyi temizleyin</string>
     <string name="clear_dialog_message">Cihazda depolanan bütün verileri kalıcı olarak silmek istediğinize emin misiniz ?</string>
     <string name="delete_dialog_title">Dışa aktarılan verileri sil</string>
@@ -204,17 +211,25 @@
     <string name="main_help_last_network_type_title">Ağ tipi</string>
     <string name="main_help_last_network_type_description">Telefonun bağlandığı mobil ağ türü.</string>
     <string name="main_help_last_long_cell_id_title">Uzun Baz İstasyonu Kulesi Kimliği</string>
-    <string name="main_help_last_long_cell_id_description">Telefonun bağlı olduğu uzun, benzersiz baz istasyonu tanımlayıcısı. UMTS ağları için UTRAN CID olarak da adlandırılan CID, RNC (Radyo Ağı Denetleyicisinin Kimliği) ve Cell ID nin (baz istasyonunun eşsiz kimliği)\nbirleşimidir.\nLTE ağları için E-UTRAN CID olarak da adlandırılan LCID, eNodeB ( Radyo ağı denetleyicisinin kimliği) ve Cell ID nin (Baz İstasyonunun eşsiz kimliği) birleşimidir.</string>
+    <string name="main_help_last_long_cell_id_description">Telefonun bağlı olduğu uzun, benzersiz baz istasyonu tanımlayıcısı.</string>
+    <string name="main_help_last_long_cell_id_description_umts">UMTS ağları için UTRAN CID olarak da adlandırılan CID, RNC (Radyo Ağı Denetleyicisinin Kimliği) ve Cell ID nin (baz istasyonunun eşsiz kimliği) birleşimidir.</string>
+    <string name="main_help_last_long_cell_id_description_lte">LTE ağları için E-UTRAN CID olarak da adlandırılan LCID, eNodeB ( Radyo ağı denetleyicisinin kimliği) ve Cell ID nin (Baz İstasyonunun eşsiz kimliği) birleşimidir.</string>
     <string name="main_help_last_cell_id_rnc_title">Baz İstasyonu  ID / RNC</string>
     <string name="main_help_last_cell_id_rnc_description">Telefonun bağlı olduğu eşsiz baz istasyonu tanımlayıcısı ve RNC (Radyo Ağı Denetleyicisi). Bu ID sadece UMTS ve LTE ağları için tanımlanır.</string>
     <string name="main_help_last_cell_id_title">Baz İstasyonu ID si</string>
     <string name="main_help_last_cell_id_description">Telefonun bağlandığı eşsiz baz istasyonu tanımlayıcısıdır.</string>
+    <string name="main_help_last_bid_title">Baz istasyonu kimliği</string>
     <string name="main_help_last_lac_title">Konum Alan Kodu</string>
     <string name="main_help_last_lac_description">Telefonun bağlı olduğu baz istasyonu grupları için atanan tan</string>
+    <string name="main_help_last_tac_title">İzleme Alan Kodu</string>
+    <string name="main_help_last_nid_title">Ağ kimliği</string>
+    <string name="main_help_last_nid_description">Telefonun bağlı olduğu ağın benzersiz tanımlayıcısı. SID ile birlikte dünya çapında benzersiz bir ağ tanımlayıcısı oluşturur.</string>
     <string name="main_help_last_mcc_title">Ülke telefon kodu</string>
     <string name="main_help_last_mcc_description">Telefonun bağlı olduğu ağ operatörünün eşsiz ülke kodu.</string>
     <string name="main_help_last_mnc_title">Mobil ağ kodu</string>
     <string name="main_help_last_mnc_description">Telefonun bağlı olduğu ülkedeki şebeke sağlayıcısının benzersiz tanımlayıcısı.</string>
+    <string name="main_help_last_sid_title">Sistem kimliği</string>
+    <string name="main_help_last_sid_description">Telefonun bağlı olduğu ağ sisteminin benzersiz tanımlayıcısı. NID ile birlikte dünya çapında benzersiz bir ağ tanımlayıcısı oluşturur.</string>
     <string name="main_help_last_signal_strength_title">Sinyal gücü</string>
     <string name="main_help_last_signal_strength_description">DBm cinsinden ifade edilirken ölçülen ağ sinyal gücü (1 miliwatt (mW) referanslı ölçülen gücün desibel (dB) cinsinden güç oranı). Bu değeri iki katına çıkarmak 10 kat daha güçlü bir sinyal gücü anlamına gelir. 0\'a yakın değerler daha güçlü sinyali gösterir.</string>
     <string name="main_help_last_latitude_title">Enlem</string>

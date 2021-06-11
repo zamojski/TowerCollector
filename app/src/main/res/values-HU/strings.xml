@@ -8,6 +8,10 @@
     <string name="shortcut_collecting_toggle_long">Begyűjtés be/ki</string>
     <string name="shortcut_upload_toggle_short">Feltöltés</string>
     <string name="shortcut_upload_toggle_long">Feltöltés be/ki</string>
+    <string name="quicksettings_collecting_start">Kezdje el gyűjteni</string>
+    <string name="quicksettings_collecting_stop">Álljon meg gyűjteni</string>
+    <string name="quicksettings_upload_start">Feltöltés elindítása</string>
+    <string name="quicksettings_upload_stop">Feltöltés leállítása</string>
     <string name="unit_length_metric">m</string>
     <string name="unit_length_imperial">láb</string>
     <string name="unit_speed_metric">km/h</string>
@@ -78,6 +82,7 @@
     <string name="main_last_longitude_label">Hosszúság:</string>
     <string name="main_last_gps_accuracy_label">Pontosság:</string>
     <string name="main_last_date_time_label">Mentés ideje:</string>
+    <string name="main_last_cell_no_data_message">Eddig nincs mérés, menj ki és gyűjts néhány adatot!</string>
     <string name="main_map_my_location_button">Ugrás a saját helyzethez</string>
     <string name="main_map_follow_me_button">Saját helyzet követése</string>
     <string name="main_map_location_enable_button">Helymeghatározás engedélyezése</string>
@@ -97,6 +102,7 @@
     <string name="collector_notification_channel_name">Adatgyűjtő</string>
     <string name="collector_notification_title">Adatgyűjtés</string>
     <string name="collector_notification_stats">Ma <xliff:g id="number_of_measurements">%1$d</xliff:g> méréssel <xliff:g id="number_of_cells">%2$d</xliff:g> cellát gyűjtöttél.</string>
+    <string name="collector_notification_last_measurement">Utolsó cellák:\n<xliff:g id="cell_identifier">%s</xliff:g></string>
     <string name="collector_notification_status">GPS állapota: <xliff:g id="status">%s</xliff:g>.</string>
     <string name="collector_gps_unavailable">Az adatgyűjtés nem kezdhető el, mert a GPS nem érhető el.</string>
     <string name="uploader_notification_channel_name">Feltöltő</string>
@@ -155,6 +161,7 @@
     <string name="storage_read_failed">Nem sikerült olvasni a tárhelyről: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="storage_write_failed">Nem sikerült írni a tárhelyre: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="system_toast_no_handler_for_operation">Nincs alkalmazás a művelet kezelésére.</string>
+    <string name="system_toast_no_handler_for_document_picker">Győződjön meg arról, hogy az eredeti fájlkezelő telepítve és engedélyezve van a rendszeren.</string>
     <string name="clear_dialog_title">Minden adat törlése</string>
     <string name="clear_dialog_message">Biztos, hogy véglegesen eltávolítod a helyben tárolt adatokat?</string>
     <string name="delete_dialog_title">Az exportált adatok törlése</string>
@@ -204,17 +211,25 @@
     <string name="main_help_last_network_type_title">Hálózattípus</string>
     <string name="main_help_last_network_type_description">A hálózat típusa, amelyhez a telefon jelenleg kapcsolódik.</string>
     <string name="main_help_last_long_cell_id_title">Hosszú cellatorony-azonosító</string>
-    <string name="main_help_last_long_cell_id_description">A hosszú egyedi cellatorony azonosító, amelyhez a telefon csatlakozott.\nUMTS hálózatok esetén az LCID, más néven az UTRAN CID, az RNC (a rádiós hálózati vezérlő azonosítója) és a cellaazonosító (egyedi cellatorony-azonosító) összefűzése.\nAz LTE hálózatok esetén az LCID, más néven az E-UTRAN CID, az eNodeB (a rádiós hálózatvezérlő azonosítója) és a cellaazonosító (a cellatorony egyedi azonosítója) összefűzése.</string>
+    <string name="main_help_last_long_cell_id_description">A hosszú egyedi cellatorony azonosító, amelyhez a telefon csatlakozott.</string>
+    <string name="main_help_last_long_cell_id_description_umts">UMTS hálózatok esetén az LCID, más néven az UTRAN CID, az RNC (a rádiós hálózati vezérlő azonosítója) és a cellaazonosító (egyedi cellatorony-azonosító) összefűzése.</string>
+    <string name="main_help_last_long_cell_id_description_lte">Az LTE hálózatok esetén az LCID, más néven az E-UTRAN CID, az eNodeB (a rádiós hálózatvezérlő azonosítója) és a cellaazonosító (a cellatorony egyedi azonosítója) összefűzése.</string>
     <string name="main_help_last_cell_id_rnc_title">Cellatorony azonosító / RNC</string>
     <string name="main_help_last_cell_id_rnc_description">Az egyedi cellatorony-azonosító és az RNC (a rádiós hálózati vezérlő azonosítója), amelyhez a telefon csatlakozott. Ez az azonosító csak az UMTS és LTE hálózatok esetében meghatározott.</string>
     <string name="main_help_last_cell_id_title">Cellatorony-azonosító</string>
     <string name="main_help_last_cell_id_description">A cellatorony egyedi azonosítója, amelyhez a telefon kapcsolódott.</string>
+    <string name="main_help_last_bid_title">Bázisállomás azonosítója</string>
     <string name="main_help_last_lac_title">Hely területkódja</string>
     <string name="main_help_last_lac_description">Cellatornyok csoportjának azonosítója, amelyhez a telefon kapcsolódott.</string>
+    <string name="main_help_last_tac_title">Körzetszám követése</string>
+    <string name="main_help_last_nid_title">Hálózati azonosító</string>
+    <string name="main_help_last_nid_description">A hálózat egyedi azonosítója, amelyhez a telefon csatlakozott. Az SID-del együtt világszerte egyedi hálózati azonosítót hoz létre.</string>
     <string name="main_help_last_mcc_title">Mobil országkód</string>
     <string name="main_help_last_mcc_description">Az ország mobilhálózatainak egyedi kódja, amelyhez a telefon kapcsolódott.</string>
     <string name="main_help_last_mnc_title">Mobilhálózati kód</string>
     <string name="main_help_last_mnc_description">A hálózatüzemeltető országon belüli egyedi kódja, amelyhez a telefon kapcsolódott.</string>
+    <string name="main_help_last_sid_title">Rendszerazonosító</string>
+    <string name="main_help_last_sid_description">A hálózati rendszer egyedi azonosítója, amelyhez a telefon csatlakozott. A NID-del együtt világszerte egyedi hálózati azonosítót hoz létre.</string>
     <string name="main_help_last_signal_strength_title">Jelerősség</string>
     <string name="main_help_last_signal_strength_description">A hálózat jelerőssége dBm-ben kifejezve (a decibelben (dB) kifejezett teljesítmény 1 milliwatt (mW) teljesítményhez viszonyítva). A érték duplázása azt jelenti, hogy a jelerősség tízszer erősebb. A nullához közelebbi érték az erősebb jelerősséget mutatja.</string>
     <string name="main_help_last_latitude_title">Szélesség</string>

@@ -8,7 +8,7 @@
     <string name="preferences_keep_screen_on_mode_full">Luminosité maximale</string>
     <string-array name="preferences_collector_low_battery_action_entries_labels">
         <item>Rien</item>
-        <item>Arrêtez de collecter</item>
+        <item>Arrêter le collecteur</item>
     </string-array>
     <string-array name="preferences_app_theme_mode_entries_labels">
         <item>Foncé</item>

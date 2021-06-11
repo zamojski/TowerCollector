@@ -8,6 +8,10 @@
     <string name="shortcut_collecting_toggle_long">收集开关</string>
     <string name="shortcut_upload_toggle_short">上传</string>
     <string name="shortcut_upload_toggle_long">上传开关</string>
+    <string name="quicksettings_collecting_start">开始收藏</string>
+    <string name="quicksettings_collecting_stop">停止收集</string>
+    <string name="quicksettings_upload_start">开始上传</string>
+    <string name="quicksettings_upload_stop">停止上传</string>
     <string name="unit_length_metric">米</string>
     <string name="unit_length_imperial">英尺</string>
     <string name="unit_speed_metric">千米/小时</string>
@@ -78,6 +82,7 @@
     <string name="main_last_longitude_label">经度：</string>
     <string name="main_last_gps_accuracy_label">准确度：</string>
     <string name="main_last_date_time_label">保存时间：</string>
+    <string name="main_last_cell_no_data_message">到目前为止没有测量，出去收集一些数据！</string>
     <string name="main_map_my_location_button">移到我的位置</string>
     <string name="main_map_follow_me_button">跟随我的位置</string>
     <string name="main_map_location_enable_button">启用我的位置</string>
@@ -97,6 +102,7 @@
     <string name="collector_notification_channel_name">收集器</string>
     <string name="collector_notification_title">收集中</string>
     <string name="collector_notification_stats">今天 <xliff:g id="number_of_cells">%2$d</xliff:g> 个基站 的 <xliff:g id="number_of_measurements">%1$d</xliff:g> 份测量数据。</string>
+    <string name="collector_notification_last_measurement">最后的蜂窝塔：\n<xliff:g id="cell_identifier">%s</xliff:g></string>
     <string name="collector_notification_status">GPS状态： <xliff:g id="status">%s</xliff:g>。</string>
     <string name="collector_gps_unavailable">由于GPS不可用，无法开始收集。</string>
     <string name="uploader_notification_channel_name">上传</string>
@@ -155,6 +161,7 @@
     <string name="storage_read_failed">无法从存储读取：<xliff:g id="error_message">%s</xliff:g>。</string>
     <string name="storage_write_failed">无法写入存储：<xliff:g id="error_message">%s</xliff:g>。</string>
     <string name="system_toast_no_handler_for_operation">没有应用程序可以处理该操作。</string>
+    <string name="system_toast_no_handler_for_document_picker">确保您在系统上安装并启用了原始文件管理器。</string>
     <string name="clear_dialog_title">清除所有数据</string>
     <string name="clear_dialog_message">您确定要永久删除所有本地存储的数据吗？</string>
     <string name="delete_dialog_title">删除导出的数据</string>
@@ -204,17 +211,25 @@
     <string name="main_help_last_network_type_title">网络类型</string>
     <string name="main_help_last_network_type_description">手机已连接的移动网络类型。</string>
     <string name="main_help_last_long_cell_id_title">Long Cell Tower ID</string>
-    <string name="main_help_last_long_cell_id_description">电话连接的长唯一蜂窝塔标识符。\n对于UMTS网络，LCID（也称为UTRAN CID）是RNC（无线电网络控制器的ID）和小区ID（小区塔的唯一ID）的串联。\n对于LTE网络，LCID（也称为E-UTRAN CID）是eNodeB（无线电网络控制器的ID）和小区ID（小区塔的唯一ID）的串联。</string>
+    <string name="main_help_last_long_cell_id_description">电话连接的长唯一蜂窝塔标识符。</string>
+    <string name="main_help_last_long_cell_id_description_umts">对于UMTS网络，LCID（也称为UTRAN CID）是RNC（无线电网络控制器的ID）和小区ID（小区塔的唯一ID）的串联。</string>
+    <string name="main_help_last_long_cell_id_description_lte">对于LTE网络，LCID（也称为E-UTRAN CID）是eNodeB（无线电网络控制器的ID）和小区ID（小区塔的唯一ID）的串联。</string>
     <string name="main_help_last_cell_id_rnc_title">Cell Tower ID / RNC</string>
     <string name="main_help_last_cell_id_rnc_description">独一无二的蜂窝塔标识符和电话所连接的RNC（无线网络控制器的ID）。该ID仅针对UMTS和LTE网络定义。</string>
     <string name="main_help_last_cell_id_title">Cell Tower ID</string>
     <string name="main_help_last_cell_id_description">手机已连接的唯一手机信号塔标识符。</string>
+    <string name="main_help_last_bid_title">基站标识</string>
     <string name="main_help_last_lac_title">位置区码(LAC)</string>
     <string name="main_help_last_lac_description">分配给手机所连接的手机信号塔组的唯一标识符。</string>
+    <string name="main_help_last_tac_title">跟踪区号</string>
+    <string name="main_help_last_nid_title">网络标识</string>
+    <string name="main_help_last_nid_description">电话连接的网络的唯一标识符。 它与 SID 一起创建了一个全球唯一的网络标识符。</string>
     <string name="main_help_last_mcc_title">移动国家码(MCC)</string>
     <string name="main_help_last_mcc_description">电话所连接的网络运营商的唯一国家/地区代码。</string>
     <string name="main_help_last_mnc_title">移动网络代码(MNC)</string>
     <string name="main_help_last_mnc_description">手机所连接的国家/地区内网络提供商的唯一标识符。</string>
+    <string name="main_help_last_sid_title">系统标识</string>
+    <string name="main_help_last_sid_description">电话所连接的网络系统的唯一标识符。 它与 NID 一起创建了一个全球唯一的网络标识符。</string>
     <string name="main_help_last_signal_strength_title">信号强度</string>
     <string name="main_help_last_signal_strength_description">测量的网络信号强度保存时以dBm表示（以1毫瓦（mW）为单位的测量功率的分贝（dB）功率比）。将该值加倍意味着信号强度增强10倍。接近0的值表示更强的信号。</string>
     <string name="main_help_last_latitude_title">纬度</string>

@@ -8,6 +8,10 @@
     <string name="shortcut_collecting_toggle_long">Przełącz zbieranie</string>
     <string name="shortcut_upload_toggle_short">Przesyłanie</string>
     <string name="shortcut_upload_toggle_long">Przełącz przesyłanie</string>
+    <string name="quicksettings_collecting_start">Zbieranie start</string>
+    <string name="quicksettings_collecting_stop">Zbieranie stop</string>
+    <string name="quicksettings_upload_start">Przesyłanie start</string>
+    <string name="quicksettings_upload_stop">Przesyłanie stop</string>
     <string name="unit_length_metric">m</string>
     <string name="unit_length_imperial">ft</string>
     <string name="unit_speed_metric">km/h</string>
@@ -78,6 +82,7 @@
     <string name="main_last_longitude_label">Długość geogr.:</string>
     <string name="main_last_gps_accuracy_label">Dokładność GPS:</string>
     <string name="main_last_date_time_label">Data zapisania:</string>
+    <string name="main_last_cell_no_data_message">Póki co brak próbek, wyjdź na zewnątrz i zbierz trochę danych!</string>
     <string name="main_map_my_location_button">Przejdź do mojego położenia</string>
     <string name="main_map_follow_me_button">Wyłącz</string>
     <string name="main_map_location_enable_button">Włącz pokazywanie położenia</string>
@@ -97,6 +102,7 @@
     <string name="collector_notification_channel_name">Zbieranie</string>
     <string name="collector_notification_title">Zbieranie</string>
     <string name="collector_notification_stats">Dzisiaj <xliff:g id="number_of_measurements">%1$d</xliff:g> próbek z <xliff:g id="number_of_cells">%2$d</xliff:g> przekaźników</string>
+    <string name="collector_notification_last_measurement">Ostatnie przekaźniki:\n<xliff:g id="cell_identifier">%s</xliff:g></string>
     <string name="collector_notification_status">Status GPS: <xliff:g id="status">%s</xliff:g>.</string>
     <string name="collector_gps_unavailable">Zbieranie nie może zostać uruchomione, ponieważ GPS jest niedostępny.</string>
     <string name="uploader_notification_channel_name">Przesyłanie</string>
@@ -155,6 +161,7 @@
     <string name="storage_read_failed">Błąd odczytu z pamięci: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="storage_write_failed">Błąd zapisu do pamięci: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="system_toast_no_handler_for_operation">Brak aplikacji obsługującej tą operację.</string>
+    <string name="system_toast_no_handler_for_document_picker">Upewnij się, że oryginalny menadżer plików jest zainstalowany i włączony w systemie.</string>
     <string name="clear_dialog_title">Wyczyść wszystkie dane</string>
     <string name="clear_dialog_message">Czy jesteś pewien, że chcesz trwale usunąć wszystkie przechowywane lokalnie dane?</string>
     <string name="delete_dialog_title">Usuń wyeksportowane dane</string>
@@ -204,17 +211,25 @@
     <string name="main_help_last_network_type_title">Typ sieci</string>
     <string name="main_help_last_network_type_description">Typ sieci komórkowej, do której telefon był podłączony.</string>
     <string name="main_help_last_long_cell_id_title">Długi Cell Tower ID</string>
-    <string name="main_help_last_long_cell_id_description">Długi unikatowy identyfikator przekaźnika, do którego telefon był podłączony.\nW sieciach UMTS LCID, zwany także UTRAN CID, jest złączeniem RNC (identyfikatora kontrolera sieci) oraz unikatowego identyfikatora przekaźnika.\nW sieciach LTE LCID, zwany także E-UTRAN CID, jest złączeniem eNodeB (identyfikatora kontrolera sieci) oraz unikatowego identyfikatora przekaźnika.</string>
+    <string name="main_help_last_long_cell_id_description">Długi unikatowy identyfikator przekaźnika, do którego telefon był podłączony.</string>
+    <string name="main_help_last_long_cell_id_description_umts">W sieciach UMTS LCID, zwany także UTRAN CID, jest złączeniem RNC (identyfikatora kontrolera sieci) oraz unikatowego identyfikatora przekaźnika.</string>
+    <string name="main_help_last_long_cell_id_description_lte">W sieciach LTE LCID, zwany także E-UTRAN CID, jest złączeniem eNodeB (identyfikatora kontrolera sieci) oraz unikatowego identyfikatora przekaźnika.</string>
     <string name="main_help_last_cell_id_rnc_title">Cell Tower ID / RNC</string>
     <string name="main_help_last_cell_id_rnc_description">Unikatowy identyfikator przekaźnika oraz RNC (identyfikator kontrolera sieci), do którego telefon był podłączony. Ten identyfikator jest dostępny wyłącznie w sieciach UMTS i LTE.</string>
     <string name="main_help_last_cell_id_title">Cell Tower ID</string>
     <string name="main_help_last_cell_id_description">Unikatowy identyfikator przekaźnika, do którego telefon był podłączony.</string>
+    <string name="main_help_last_bid_title">Identyfikator stacji bazowej</string>
     <string name="main_help_last_lac_title">Location Area Code</string>
     <string name="main_help_last_lac_description">Unikatowy identyfikator grupy przekaźników, do której telefon był podłączony.</string>
+    <string name="main_help_last_tac_title">Tracking Area Code</string>
+    <string name="main_help_last_nid_title">Identyfikator sieci</string>
+    <string name="main_help_last_nid_description">Unikatowy identyfikator sieci komórkowej, do której telefon był podłączony. Wraz z SID tworzy unikatowy w skali świata identyfikator sieci.</string>
     <string name="main_help_last_mcc_title">Mobile Country Code</string>
     <string name="main_help_last_mcc_description">Unikatowy identyfikator państwa, do którego operatora telefon był podłączony.</string>
     <string name="main_help_last_mnc_title">Mobile Network Code</string>
     <string name="main_help_last_mnc_description">Unikatowy wewnątrz państwa identyfikator operatora, do którego telefon był podłączony.</string>
+    <string name="main_help_last_sid_title">Identyfikator systemu</string>
+    <string name="main_help_last_sid_description">Unikatowy identyfikator systemu sieci komórkowej, do której telefon był podłączony. Wraz z NID tworzy unikatowy w skali świata identyfikator sieci.</string>
     <string name="main_help_last_signal_strength_title">Siła sygnały</string>
     <string name="main_help_last_signal_strength_description">Siła sygnały w chwili zapisu wyrażona w dBm (moc zmierzonego sygnału wyrażona w decybelach (dB) w odniesieniu do 1 miliwata (mW)). Dwukrotna zmiana wartości oznacza dziesięciokrotną zmianę siły sygnału. Wartości bliższe 0 oznaczają silniejszy sygnał.</string>
     <string name="main_help_last_latitude_title">Szerokość geograficzna</string>

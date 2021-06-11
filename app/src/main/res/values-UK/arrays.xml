@@ -8,7 +8,7 @@
     <string name="preferences_keep_screen_on_mode_full">Повна яскравість</string>
     <string-array name="preferences_collector_low_battery_action_entries_labels">
         <item>Нічого не робити</item>
-        <item>Зупиняємо збір інформації</item>
+        <item>Припиніть збирати</item>
     </string-array>
     <string-array name="preferences_app_theme_mode_entries_labels">
         <item>темний</item>

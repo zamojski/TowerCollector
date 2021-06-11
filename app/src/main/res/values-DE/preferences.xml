@@ -132,6 +132,9 @@
     <string name="preferences_hide_collector_notification_title">Benachrichtigungen verbergen</string>
     <string name="preferences_hide_collector_notification_on_summary">Benachrichtigungen werden nicht am Sperrbildschirm und in der Statusbar angezeigt wenn diese nicht aufgezogen ist. Das Verhalten kann sich zwischen Geräten unterscheiden.</string>
     <string name="preferences_hide_collector_notification_off_summary">Benachrichtigungen sind immer sichtbar.</string>
+    <string name="preferences_start_collector_at_startup_title">Sammeln beim App-Start beginnen</string>
+    <string name="preferences_start_collector_at_startup_on_summary">Erfassung wird automatisch beim App-Start beginnen.</string>
+    <string name="preferences_start_collector_at_startup_off_summary">Die App wird beim Start nicht automatisch mit der Erfassung beginnen.</string>
     <string name="preferences_start_collector_at_boot_title">Erfassung direkt nach Bootvorgang starten</string>
     <string name="preferences_start_collector_at_boot_on_summary">Die Erfassung wird direkt nach dem Hochfahren des Geräts gestartet. Dazu muss die App im internen Speicher installiert sein.</string>
     <string name="preferences_start_collector_at_boot_off_summary">Die App wird nach dem Hochfahren nicht automatisch mit der Erfassung starten. Deswegen kann sie überall installiert werden. Für die Verwendung dieser Funktion muss die Berechtigung zum Hintergrundstandort erteilt werden, da die App sonst keine Messungen erfassen kann.</string>

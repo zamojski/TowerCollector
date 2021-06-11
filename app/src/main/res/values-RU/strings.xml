@@ -8,6 +8,10 @@
     <string name="shortcut_collecting_toggle_long">Запустить сбор</string>
     <string name="shortcut_upload_toggle_short">Выгрузка</string>
     <string name="shortcut_upload_toggle_long">Запустить выгрузку</string>
+    <string name="quicksettings_collecting_start">Начать сбор</string>
+    <string name="quicksettings_collecting_stop">Остановить сбор</string>
+    <string name="quicksettings_upload_start">Запустить Выгрузку</string>
+    <string name="quicksettings_upload_stop">Остановить выгрузку</string>
     <string name="unit_length_metric">м</string>
     <string name="unit_length_imperial">фут</string>
     <string name="unit_speed_metric">км/ч</string>
@@ -78,6 +82,7 @@
     <string name="main_last_longitude_label">Долгота:</string>
     <string name="main_last_gps_accuracy_label">Точность:</string>
     <string name="main_last_date_time_label">Время сохранения:</string>
+    <string name="main_last_cell_no_data_message">Измерений пока нет, выйдите на улицу и соберите данные!</string>
     <string name="main_map_my_location_button">Перейти на мою позицию</string>
     <string name="main_map_follow_me_button">Следуй моей позиции</string>
     <string name="main_map_location_enable_button">Включить мое местоположение</string>
@@ -97,6 +102,7 @@
     <string name="collector_notification_channel_name">Сборщик</string>
     <string name="collector_notification_title">Сбор измерений</string>
     <string name="collector_notification_stats">Сегодня собрано <xliff:g id="number_of_measurements">%1$d</xliff:g> измерений и <xliff:g id="number_of_cells">%2$d</xliff:g> GSM-сот.</string>
+    <string name="collector_notification_last_measurement">Последние ячейки:\n<xliff:g id="cell_identifier">%s</xliff:g></string>
     <string name="collector_notification_status">Статус GPS: <xliff:g id="status">%s</xliff:g>.</string>
     <string name="collector_gps_unavailable">Невозможно начать сбор, т.к. GPS выключен</string>
     <string name="uploader_notification_channel_name">Загрузчик</string>
@@ -155,6 +161,7 @@
     <string name="storage_read_failed">Не удалось прочитать из хранилища: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="storage_write_failed">Не удалось записать в хранилище: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="system_toast_no_handler_for_operation">Нет приложения для обработки этого действия.</string>
+    <string name="system_toast_no_handler_for_document_picker">Убедитесь, что в системе установлен и включен исходный файловый менеджер.</string>
     <string name="clear_dialog_title">Очистить все данные</string>
     <string name="clear_dialog_message">Вы уверены, что хотите удалить все сохраненные на устройстве данные безвозвратно?</string>
     <string name="delete_dialog_title">Удалить экспортированное</string>
@@ -204,17 +211,25 @@
     <string name="main_help_last_network_type_title">Тип сети</string>
     <string name="main_help_last_network_type_description">Тип мобильной сети, к которой присоединён телефон.</string>
     <string name="main_help_last_long_cell_id_title">Полный идентификатор вышки</string>
-    <string name="main_help_last_long_cell_id_description">Длинный уникальный идентификатор вышки к которой подсоединён телефон.\nДля UMTS сетей LCID, также называемый UTRAN CID, это склееные RNC (идентификатор Radio Network Controller) и Cell ID (уникальный идентификатор вышки).\nДля LTE сетей LCID, также называемый E-UTRAN CID, это склееные eNodeB (идентификатор Radio Network Controller) и Cell ID (уникальный идентификатор вышки).</string>
+    <string name="main_help_last_long_cell_id_description">Длинный уникальный идентификатор вышки к которой подсоединён телефон.</string>
+    <string name="main_help_last_long_cell_id_description_umts">Для UMTS сетей LCID, также называемый UTRAN CID, это склееные RNC (идентификатор Radio Network Controller) и Cell ID (уникальный идентификатор вышки).</string>
+    <string name="main_help_last_long_cell_id_description_lte">Для LTE сетей LCID, также называемый E-UTRAN CID, это склееные eNodeB (идентификатор Radio Network Controller) и Cell ID (уникальный идентификатор вышки).</string>
     <string name="main_help_last_cell_id_rnc_title">Идентификатор вышки / RNC</string>
     <string name="main_help_last_cell_id_rnc_description">Уникальный идентификатор ячейки и RNC (идентификатор Radio Network Controller), к которому был подключен телефон. Этот идентификатор определяется только для сетей UMTS и LTE.</string>
     <string name="main_help_last_cell_id_title">Идентификатор GSM-соты</string>
     <string name="main_help_last_cell_id_description">Уникальный идентификатор GSM-соты, к которой присоединён телефон.</string>
+    <string name="main_help_last_bid_title">ID базовой станции</string>
     <string name="main_help_last_lac_title">Код места (LAC)</string>
     <string name="main_help_last_lac_description">Уникальный идентификатор LAC, присвоенный группе GSM-сот, к которой присоединён телефон.</string>
+    <string name="main_help_last_tac_title">Код зоны отслеживания</string>
+    <string name="main_help_last_nid_title">Идентификатор сети</string>
+    <string name="main_help_last_nid_description">Уникальный идентификатор сети, к которой был подключен телефон. Вместе с SID он создает всемирный уникальный сетевой идентификатор.</string>
     <string name="main_help_last_mcc_title">Код страны (MCC)</string>
     <string name="main_help_last_mcc_description">Уникальный код страны (MCC) сети оператора, к которой присоединён телефон.</string>
     <string name="main_help_last_mnc_title">Код сети (MNC)</string>
     <string name="main_help_last_mnc_description">Уникальный идентификатор сети (MNC), к которой присоединён телефон.</string>
+    <string name="main_help_last_sid_title">Системный идентификатор</string>
+    <string name="main_help_last_sid_description">Уникальный идентификатор сетевой системы, к которой был подключен телефон. Вместе с NID он создает всемирный уникальный сетевой идентификатор.</string>
     <string name="main_help_last_signal_strength_title">Сила сигнала</string>
     <string name="main_help_last_signal_strength_description">Сила сигнала сети измеряется в децибеллах на милливатт (дБ/мВт). Удвоение этого значения означает увеличение силы сигнала в 10 раз. Значения близкие к нулю означают более сильный сигнал.</string>
     <string name="main_help_last_latitude_title">Широта</string>

@@ -8,6 +8,10 @@
     <string name="shortcut_collecting_toggle_long">Переключити збір</string>
     <string name="shortcut_upload_toggle_short">закачати</string>
     <string name="shortcut_upload_toggle_long">Переключити завантаження</string>
+    <string name="quicksettings_collecting_start">Почніть збирати</string>
+    <string name="quicksettings_collecting_stop">Припиніть збирати</string>
+    <string name="quicksettings_upload_start">Почати передавання</string>
+    <string name="quicksettings_upload_stop">Зупинити передавання</string>
     <string name="unit_length_metric">м</string>
     <string name="unit_length_imperial">фут</string>
     <string name="unit_speed_metric">км/год</string>
@@ -78,6 +82,7 @@
     <string name="main_last_longitude_label">Довгота:</string>
     <string name="main_last_gps_accuracy_label">Точність:</string>
     <string name="main_last_date_time_label">Зекономлений час:</string>
+    <string name="main_last_cell_no_data_message">Поки що вимірювань немає, виходьте на вулицю та збирайте деякі дані!</string>
     <string name="main_map_my_location_button">Переїхати до мого місцезнаходження</string>
     <string name="main_map_follow_me_button">Слідкуйте за моїм місцезнаходженням</string>
     <string name="main_map_location_enable_button">Увімкнути моє місцезнаходження</string>
@@ -85,8 +90,8 @@
     <string name="main_map_help_button">Показати допомогу</string>
     <string name="main_map_enable">Увімкнути</string>
     <string name="main_map_disable">Вимкнути</string>
-    <string name="main_menu_start_button">Починаймо збирати інформацію</string>
-    <string name="main_menu_stop_button">Зупиняємо збір інформації</string>
+    <string name="main_menu_start_button">Почніть збирати</string>
+    <string name="main_menu_stop_button">Припиніть збирати</string>
     <string name="main_menu_upload_button">Вивантаження</string>
     <string name="main_menu_more_button">Більше</string>
     <string name="main_menu_export_button">Експорт</string>
@@ -97,6 +102,7 @@
     <string name="collector_notification_channel_name">Збирач</string>
     <string name="collector_notification_title">Збір</string>
     <string name="collector_notification_stats">Сьогодні <xliff:g id="number_of_measurements">%1$d</xliff:g> виміряно <xliff:g id="number_of_cells">%2$d</xliff:g> сот</string>
+    <string name="collector_notification_last_measurement">Останні комірки:\n<xliff:g id="cell_identifier">%s</xliff:g></string>
     <string name="collector_notification_status">GPS статус: <xliff:g id="status">%s</xliff:g></string>
     <string name="collector_gps_unavailable">Неможливо розпочати збирати, тому що GPS недоступний.</string>
     <string name="uploader_notification_channel_name">Вивантажувач</string>
@@ -155,6 +161,7 @@
     <string name="storage_read_failed">Не вдалося прочитати з пам’яті: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="storage_write_failed">Не вдалося записати в пам’ять: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="system_toast_no_handler_for_operation">Немає програми для обробки операції.</string>
+    <string name="system_toast_no_handler_for_document_picker">Переконайтеся, що в системі встановлено та ввімкнено оригінальний менеджер файлів.</string>
     <string name="clear_dialog_title">Очистити всі дані</string>
     <string name="clear_dialog_message">Ви дійсно бажаєте остаточно видалити всі локально збережені дані?</string>
     <string name="delete_dialog_title">Видалити експортовані</string>
@@ -204,17 +211,25 @@
     <string name="main_help_last_network_type_title">Тип мережі</string>
     <string name="main_help_last_network_type_description">Тип мобільної мережі, до якої підключився телефон</string>
     <string name="main_help_last_long_cell_id_title">Довгий ІД соти</string>
-    <string name="main_help_last_long_cell_id_description">Довгий унікальний ідентифікатор вежі соти, до якого телефон був підключений.\nДля мереж UMTS LCID, також званий UDRAN CID, являє собою об\'єднання RNC (ідентифікатор контролера радіостанції) та Cell ID (унікальний ідентифікатор Cell Tower).\nДля мереж LTE LCID, також називається E-UTRAN CID, являє собою об\'єднання eNodeB (ідентифікатор контролера радіостанції) та Cell ID (унікальний ідентифікатор Cell Tower).</string>
+    <string name="main_help_last_long_cell_id_description">Довгий унікальний ідентифікатор вежі соти, до якого телефон був підключений.</string>
+    <string name="main_help_last_long_cell_id_description_umts">Для мереж UMTS LCID, також званий UDRAN CID, являє собою об\'єднання RNC (ідентифікатор контролера радіостанції) та Cell ID (унікальний ідентифікатор Cell Tower).</string>
+    <string name="main_help_last_long_cell_id_description_lte">Для мереж LTE LCID, також називається E-UTRAN CID, являє собою об\'єднання eNodeB (ідентифікатор контролера радіостанції) та Cell ID (унікальний ідентифікатор Cell Tower).</string>
     <string name="main_help_last_cell_id_rnc_title">Мобільна вежа ID / RNC</string>
     <string name="main_help_last_cell_id_rnc_description">Унікальний ідентифікатор башти клітинки та RNC (ідентифікатор контролера радіостанції), до якого телефон був підключений. Цей ідентифікатор визначається тільки для мереж UMTS та LTE.</string>
     <string name="main_help_last_cell_id_title">ІД мобільної мережі</string>
     <string name="main_help_last_cell_id_description">Унікальний ідентифікатор башти соти, до якого підключено телефон.</string>
+    <string name="main_help_last_bid_title">Ідентифікатор базової станції</string>
     <string name="main_help_last_lac_title">Місцевий код міста</string>
     <string name="main_help_last_lac_description">Унікальний ідентифікатор призначений для групи стільникових стільникових телефонів, до яких був підключений телефон.</string>
+    <string name="main_help_last_tac_title">Код міста відстеження</string>
+    <string name="main_help_last_nid_title">Ідентифікатор мережі</string>
+    <string name="main_help_last_nid_description">Унікальний ідентифікатор мережі, до якої був підключений телефон. Разом з SID він створює унікальний ідентифікатор мережі у всьому світі.</string>
     <string name="main_help_last_mcc_title">Мобільний код країни</string>
     <string name="main_help_last_mcc_description">Унікальний код країни оператора мережі, до якого підключено телефон.</string>
     <string name="main_help_last_mnc_title">Код мобільної мережі</string>
     <string name="main_help_last_mnc_description">Унікальний ідентифікатор постачальника послуг у країні, до якої телефон був підключений.</string>
+    <string name="main_help_last_sid_title">Ідентифікатор системи</string>
+    <string name="main_help_last_sid_description">Унікальний ідентифікатор мережевої системи, до якої був підключений телефон. Разом з NID він створює унікальний ідентифікатор мережі у всьому світі.</string>
     <string name="main_help_last_signal_strength_title">Сила сигналу</string>
     <string name="main_help_last_signal_strength_description">Сила сигналу мережі, виміряна при збереженні, виражена в дБм (коефіцієнт потужності в децибелах (дБ) вимірюваної потужності з посиланням на 1 міліватт (мВт)). Подвоєння цієї величини означає потужність сигналу в 10 разів більше. Значення ближче до 0 вказують сильніший сигнал.</string>
     <string name="main_help_last_latitude_title">Широта</string>

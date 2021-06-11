@@ -7,7 +7,11 @@
     <string name="shortcut_collecting_toggle_short">Coletar</string>
     <string name="shortcut_collecting_toggle_long">Alternância de coleta</string>
     <string name="shortcut_upload_toggle_short">Carregar</string>
-    <string name="shortcut_upload_toggle_long">Alternar carregar</string>
+    <string name="shortcut_upload_toggle_long">Alternar upload</string>
+    <string name="quicksettings_collecting_start">Iniciar a coleta</string>
+    <string name="quicksettings_collecting_stop">Parar a coleta</string>
+    <string name="quicksettings_upload_start">Iniciar o upload</string>
+    <string name="quicksettings_upload_stop">Parar o upload</string>
     <string name="unit_length_metric">m</string>
     <string name="unit_length_imperial">pés</string>
     <string name="unit_speed_metric">km/h</string>
@@ -78,6 +82,7 @@
     <string name="main_last_longitude_label">Longitude:</string>
     <string name="main_last_gps_accuracy_label">Precisão:</string>
     <string name="main_last_date_time_label">Horário:</string>
+    <string name="main_last_cell_no_data_message">Nenhuma medição até agora, vá lá fora e colete alguns dados!</string>
     <string name="main_map_my_location_button">Mover para minha localização</string>
     <string name="main_map_follow_me_button">Siga minha localização</string>
     <string name="main_map_location_enable_button">Habilitar minha localização</string>
@@ -97,6 +102,7 @@
     <string name="collector_notification_channel_name">Coletor</string>
     <string name="collector_notification_title">Coletando</string>
     <string name="collector_notification_stats"><xliff:g id="number_of_measurements">%1$d</xliff:g> medições de <xliff:g id="number_of_cells">%2$d</xliff:g> células hoje</string>
+    <string name="collector_notification_last_measurement">Últimas células:\n<xliff:g id="cell_identifier">%s</xliff:g></string>
     <string name="collector_notification_status">Status do GPS: <xliff:g id="status">%s</xliff:g>.</string>
     <string name="collector_gps_unavailable">Não pôde iniciar a coleta porque o GPS está indisponível.</string>
     <string name="uploader_notification_channel_name">Uploader</string>
@@ -155,6 +161,7 @@
     <string name="storage_read_failed">Falha ao ler do armazenamento: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="storage_write_failed">Falha ao gravar no armazenamento: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="system_toast_no_handler_for_operation">Nenhum aplicativo para lidar com a operação.</string>
+    <string name="system_toast_no_handler_for_document_picker">Certifique-se de ter o gerenciador de arquivos original instalado e habilitado no sistema.</string>
     <string name="clear_dialog_title">Limpar todos os dados</string>
     <string name="clear_dialog_message">Tem certeza de que deseja remover permanentemente todos os dados armazenados localmente?</string>
     <string name="delete_dialog_title">Excluir exportado</string>
@@ -204,17 +211,25 @@
     <string name="main_help_last_network_type_title">Tipo de rede</string>
     <string name="main_help_last_network_type_description">O tipo de rede móvel celular ao qual o telefone está conectado.</string>
     <string name="main_help_last_long_cell_id_title">ID longo de torre celular</string>
-    <string name="main_help_last_long_cell_id_description">O identificador longo único de torre celular ao qual o telefone estava conectado.\nPara redes UMTS, o LCID, também chamado de UTRAN CID, é uma concatenação do RNC (ID do Radio Network Controller) e do Cell ID (ID único da Torre Celular).\nPara redes LTE, o LCID, também chamado de E-UTRAN CID, é uma concatenação do eNodeB (ID do Radio Network Controller) e do Cell ID (ID único da Torre Celular).</string>
+    <string name="main_help_last_long_cell_id_description">O identificador longo único de torre celular ao qual o telefone estava conectado.</string>
+    <string name="main_help_last_long_cell_id_description_umts">Para redes UMTS, o LCID, também chamado de UTRAN CID, é uma concatenação do RNC (ID do Radio Network Controller) e do Cell ID (ID único da Torre Celular).</string>
+    <string name="main_help_last_long_cell_id_description_lte">Para redes LTE, o LCID, também chamado de E-UTRAN CID, é uma concatenação do eNodeB (ID do Radio Network Controller) e do Cell ID (ID único da Torre Celular).</string>
     <string name="main_help_last_cell_id_rnc_title">ID de Torre Celular / RNC</string>
     <string name="main_help_last_cell_id_rnc_description">O identificador único de torre celular e RNC (ID do Radio Network Controller) ao qual o telefone estava conectado. Este ID é definido somente para redes UMTS e LTE.</string>
     <string name="main_help_last_cell_id_title">ID da Torre Celular</string>
     <string name="main_help_last_cell_id_description">O número único de identificação da torre celular com a qual o telefone estava conectado.</string>
+    <string name="main_help_last_bid_title">ID da estação base</string>
     <string name="main_help_last_lac_title">Location Area Code</string>
     <string name="main_help_last_lac_description">O identificador único atribuído ao grupo de torres celulares ao qual o telefone estava conectado.</string>
+    <string name="main_help_last_tac_title">Código de área de rastreamento</string>
+    <string name="main_help_last_nid_title">ID de rede</string>
+    <string name="main_help_last_nid_description">O identificador exclusivo da rede à qual o telefone foi conectado. Junto com o SID, ele cria um identificador de rede exclusivo em todo o mundo.</string>
     <string name="main_help_last_mcc_title">Mobile Country Code</string>
     <string name="main_help_last_mcc_description">O código de país único da operadora à qual o telefone estava conectado.</string>
     <string name="main_help_last_mnc_title">Mobile Network Code</string>
     <string name="main_help_last_mnc_description">O identificador único do provedor de rede do país ao qual o telefone estava conectado.</string>
+    <string name="main_help_last_sid_title">ID do sistema</string>
+    <string name="main_help_last_sid_description">O identificador exclusivo do sistema de rede ao qual o telefone foi conectado. Junto com o NID, ele cria um identificador de rede exclusivo em todo o mundo.</string>
     <string name="main_help_last_signal_strength_title">Nível de sinal</string>
     <string name="main_help_last_signal_strength_description">Nível de sinal de rede medidos enquanto estava salvando expresso em dBm (decibéis (dB) da potência medida em relação a 1 miliwatt (mW)). Dobrando este valor significa um sinal 10 vezes mais forte. Valores próximos a 0 indicam sinais mais fortes.</string>
     <string name="main_help_last_latitude_title">Latitude</string>

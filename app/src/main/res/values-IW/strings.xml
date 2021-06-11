@@ -8,6 +8,10 @@
     <string name="shortcut_collecting_toggle_long">שינוי מצב איסוף</string>
     <string name="shortcut_upload_toggle_short">העלאה</string>
     <string name="shortcut_upload_toggle_long">שינוי מצב העלאה</string>
+    <string name="quicksettings_collecting_start">התחלת איסוף</string>
+    <string name="quicksettings_collecting_stop">עצירת איסוף</string>
+    <string name="quicksettings_upload_start">התחלת העלאה</string>
+    <string name="quicksettings_upload_stop">עצירת העלאה</string>
     <string name="unit_length_metric">מ׳</string>
     <string name="unit_length_imperial">רגל</string>
     <string name="unit_speed_metric">קמ״ש</string>
@@ -78,6 +82,7 @@
     <string name="main_last_longitude_label">קו אורך:</string>
     <string name="main_last_gps_accuracy_label">דיוק:</string>
     <string name="main_last_date_time_label">מועד שמירה:</string>
+    <string name="main_last_cell_no_data_message">אין מדידות עדיין, נא לצאת החוצה ולאסוף נתונים!</string>
     <string name="main_map_my_location_button">מעבר למיקום שלי</string>
     <string name="main_map_follow_me_button">מעקב אחר המיקום שלי</string>
     <string name="main_map_location_enable_button">הפעלת המיקום שלי</string>
@@ -97,6 +102,7 @@
     <string name="collector_notification_channel_name">מנגנון איסוף</string>
     <string name="collector_notification_title">מתבצע איסוף</string>
     <string name="collector_notification_stats">היום <xliff:g id="number_of_measurements">%1$d</xliff:g> מדידות עבור <xliff:g id="number_of_cells">%2$d</xliff:g> תאים.</string>
+    <string name="collector_notification_last_measurement">אנטנות אחרונות:\n<xliff:g id="cell_identifier">%s</xliff:g></string>
     <string name="collector_notification_status">מצב GPS: <xliff:g id="status">%s</xliff:g>.</string>
     <string name="collector_gps_unavailable">לא ניתן להתחיל לאסוף כיוון שה־GPS לא זמין.</string>
     <string name="uploader_notification_channel_name">מנגנון העלאה</string>
@@ -155,6 +161,7 @@
     <string name="storage_read_failed">הקריאה מהאחסון נכשלה: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="storage_write_failed">הכתיבה לאחסון נכשלה: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="system_toast_no_handler_for_operation">אין יישומון לטיפול בפעולה הזאת.</string>
+    <string name="system_toast_no_handler_for_document_picker">נא לוודא שמנהל הקבצים המקורי מותקן ומופעל במערכת שלך.</string>
     <string name="clear_dialog_title">למחוק את כל הנתונים</string>
     <string name="clear_dialog_message">למחוק לצמיתות את כל הנתונים שנשמרו מקומית?</string>
     <string name="delete_dialog_title">מחיקת המיוצאים</string>
@@ -204,17 +211,25 @@
     <string name="main_help_last_network_type_title">סוג רשת</string>
     <string name="main_help_last_network_type_description">סוג הרשת הסלולרית אליה הטלפון היה מחובר.</string>
     <string name="main_help_last_long_cell_id_title">מזהה ארוך של מגדל תאים</string>
-    <string name="main_help_last_long_cell_id_description">מזהה האנטנה הארוך והייחודי שאליו הטלפון היה מחובר.\nלרשתות UMTS ה־LCID שנקרא גם UTRAN CID הוא בעצם חיבור של ה־RNC (מזהה בקר רשת הרדיו - Radio Network Controller) ושל מזהה האנטנה (המזהה הייחודי של אותה האנטנה).\nלרשתות LTE ה־LCID שנקרא גם E-UTRAN CID הוא בעצם חיבור של eNodeB (מזהה בקר רשת הרדיו - Radio Network Controller) ומזהה האנטנה (המזהה הייחדוי של אותה האנטנה).</string>
+    <string name="main_help_last_long_cell_id_description">מזהה האנטנה הארוך והייחודי שאליו הטלפון היה מחובר.</string>
+    <string name="main_help_last_long_cell_id_description_umts">לרשתות UMTS ה־LCID שנקרא גם UTRAN CID הוא בעצם חיבור של ה־RNC (מזהה בקר רשת הרדיו - Radio Network Controller) ושל מזהה האנטנה (המזהה הייחודי של אותה האנטנה).</string>
+    <string name="main_help_last_long_cell_id_description_lte">לרשתות LTE ה־LCID שנקרא גם E-UTRAN CID הוא בעצם חיבור של eNodeB (מזהה בקר רשת הרדיו - Radio Network Controller) ומזהה האנטנה (המזהה הייחדוי של אותה האנטנה).</string>
     <string name="main_help_last_cell_id_rnc_title">Cell Tower ID / RNC (מזהה אנטנה)</string>
     <string name="main_help_last_cell_id_rnc_description">המזהה הייחודי של האנטנה וה־RNC ‏(Radio Network Controller - בקר רשת רדיו) אליו הטלפון התחבר. מזהה זה מוגדר רק עבור רשתות UMTS ו־LTE.</string>
     <string name="main_help_last_cell_id_title">מזהה אנטנה סלולרית</string>
     <string name="main_help_last_cell_id_description">מזהה האנטנה הסלולרית הייחודי אליה הטלפון היה מחובר.</string>
+    <string name="main_help_last_bid_title">מזהה תחנת הבסיס</string>
     <string name="main_help_last_lac_title">קוד אזור מיקום (LAC)</string>
     <string name="main_help_last_lac_description">המזהה הייחודי שמוקצה לקבוצה של אנטנות סלולריות אליהן הטלפון היה מחובר.</string>
+    <string name="main_help_last_tac_title">קוד אזור מעקב</string>
+    <string name="main_help_last_nid_title">מזהה רשת</string>
+    <string name="main_help_last_nid_description">המזהה הייחודי של הרשת שאליה חובר הטלפון. יחד עם SID זה יוצר מזהה רשת ייחודי ברחבי העולם.</string>
     <string name="main_help_last_mcc_title">קוד מדינה סלולרי (MCC)</string>
     <string name="main_help_last_mcc_description">קוד המדינה הייחודי של ספק רשת אליו הטלפון היה מחובר.</string>
     <string name="main_help_last_mnc_title">קוד רשת סלולרית (MNC)</string>
     <string name="main_help_last_mnc_description">המזהה הייחודי של ספק הרשת במדינה אליו הטלפון היה מחובר.</string>
+    <string name="main_help_last_sid_title">מזהה מערכת</string>
+    <string name="main_help_last_sid_description">המזהה הייחודי של מערכת הרשת אליה חובר הטלפון. יחד עם NID זה יוצר מזהה רשת ייחודי ברחבי העולם.</string>
     <string name="main_help_last_signal_strength_title">עצמת קליטה</string>
     <string name="main_help_last_signal_strength_description">עצמת הקליטה הנמדדת בזמן החיסכון באנרגיה ב־dBm (יחס חשמל בדציבלים [dB] של הצריכה החשמלית הנמדדת לפי 1 מיליוואט [mW]). הכפלת הערך הזה מולידה קליטה חזקה פי 10. ערכים שקרובים ל־0 מייצגים קליטה טובה יותר.</string>
     <string name="main_help_last_latitude_title">קו רוחב</string>

@@ -8,6 +8,10 @@
     <string name="shortcut_collecting_toggle_long">Sammeln ein-/ausschalten</string>
     <string name="shortcut_upload_toggle_short">Hochladen</string>
     <string name="shortcut_upload_toggle_long">Hochladen ein/aus</string>
+    <string name="quicksettings_collecting_start">Erfassung starten</string>
+    <string name="quicksettings_collecting_stop">Erfassung stoppen</string>
+    <string name="quicksettings_upload_start">Starte Upload</string>
+    <string name="quicksettings_upload_stop">Upload stoppen</string>
     <string name="unit_length_metric">m</string>
     <string name="unit_length_imperial">ft</string>
     <string name="unit_speed_metric">km/h</string>
@@ -49,9 +53,9 @@
     <string name="enabled">aktiviert</string>
     <string name="disabled">deaktiviert</string>
     <string name="unknown_error">Unbekannter Fehler aufgetreten!</string>
-    <string name="main_tab_last_title">Zuletzt gespeichert</string>
+    <string name="main_tab_last_title">Letzte Messung</string>
     <string name="main_tab_stats_title">Statistik</string>
-    <string name="main_tab_map_title">Kart</string>
+    <string name="main_tab_map_title">Karte</string>
     <string name="main_gps_accuracy_not_available">Nicht verfügbar</string>
     <string name="main_signal_strength_not_available">Nicht verfügbar</string>
     <string name="date_time_format_standard">dd.MM.yyyy HH:mm:ss</string>
@@ -65,7 +69,7 @@
     <string name="main_stats_global_cells_label">Erfasste Zellen:</string>
     <string name="main_stats_to_upload_title">Noch hochzuladen</string>
     <string name="main_last_cell_title">Letzte abgespeicherte Messung</string>
-    <string name="main_last_number_of_cells_label">Haupt / Benachbarte</string>
+    <string name="main_last_number_of_cells_label">Anzahl Haupt- / Nachbarzellen:</string>
     <string name="main_last_network_type_label">Netzwerk-Typ:</string>
     <string name="main_last_long_cell_id_label">Long Cell ID:</string>
     <string name="main_last_cell_id_rnc_label">Cell ID / RNC:</string>
@@ -78,8 +82,12 @@
     <string name="main_last_longitude_label">Längengrad:</string>
     <string name="main_last_gps_accuracy_label">Genauigkeit:</string>
     <string name="main_last_date_time_label">Erfasst:</string>
+    <string name="main_last_cell_no_data_message">Noch keine Messungen, gehen Sie los und sammeln ein paar!</string>
     <string name="main_map_my_location_button">Zu meinem Standort springen</string>
     <string name="main_map_follow_me_button">Meinem Standort folgen</string>
+    <string name="main_map_location_enable_button">Meine Position verwenden</string>
+    <string name="main_map_location_disable_button">Meine Position nicht verwenden</string>
+    <string name="main_map_help_button">Hilfe anzeigen</string>
     <string name="main_map_enable">Aktivieren</string>
     <string name="main_map_disable">Deaktivieren</string>
     <string name="main_menu_start_button">Erfassung starten</string>
@@ -94,6 +102,7 @@
     <string name="collector_notification_channel_name">Erfassung</string>
     <string name="collector_notification_title">Erfassen</string>
     <string name="collector_notification_stats"><xliff:g id="number_of_measurements">%1$d</xliff:g> Messungen von <xliff:g id="number_of_cells">%2$d</xliff:g> Zellen heute</string>
+    <string name="collector_notification_last_measurement">Letzte Zelle:\n<xliff:g id="cell_identifier">%s</xliff:g></string>
     <string name="collector_notification_status">GPS Status: <xliff:g id="status">%s</xliff:g>.</string>
     <string name="collector_gps_unavailable">Kann Erfassung nicht starten weil GPS nicht verfügbar ist.</string>
     <string name="uploader_notification_channel_name">Hochladen</string>
@@ -152,6 +161,7 @@
     <string name="storage_read_failed">Fehler beim Lesen von Speicherort <xliff:g id="error_message">%s</xliff:g></string>
     <string name="storage_write_failed">Fehler beim Schreiben an Speicherort <xliff:g id="error_message">%s</xliff:g></string>
     <string name="system_toast_no_handler_for_operation">Keine App für die Operation.</string>
+    <string name="system_toast_no_handler_for_document_picker">Stellen Sie sicher, dass Sie den originalen Dateimanager installiert und aktiviert haben.</string>
     <string name="clear_dialog_title">Alle Daten löschen</string>
     <string name="clear_dialog_message">Sind Sie sicher, dass Sie alle lokal gespeicherten Daten löschen wollen?</string>
     <string name="delete_dialog_title">Exportierte Daten löschen</string>
@@ -197,21 +207,29 @@
     <string name="main_help_global_cells_title">Insgesamte Anzahl an erfassten Zellen</string>
     <string name="main_help_global_cells_description">Anzahl an Zellen (ohne Duplikate) die insgesamt erfasst wurden.</string>
     <string name="mail_help_last_number_of_cells_title">Anzahl Zellen</string>
-    <string name="mail_help_last_number_of_cells_description">Anzahl haupt- und benachbarter Zellen zu denen das Telefon Zugang hat.</string>
+    <string name="mail_help_last_number_of_cells_description">Anzahl an Haupt- und benachbarten Zellen, zu denen das Telefon Zugang hat.</string>
     <string name="main_help_last_network_type_title">Netzwerk-Typ</string>
     <string name="main_help_last_network_type_description">Der Typ von Mobilfunknetzwerk zu dem das Telefon verbunden war.</string>
     <string name="main_help_last_long_cell_id_title">Long Cell Tower ID</string>
-    <string name="main_help_last_long_cell_id_description">Die lange, eindeutige ID der Basisstation mit der das Telefon verbunden war.\nBei UMTS wird diese LCID auch UTRAN CID genannt und ist eine Kombination der RNC (ID des Radio Network Controller) und der Cell ID (eindeutige ID der Basisstation).\nBei LTE-Netzwerken wird heißt sie statt dessen E-UTRAN CID und ist eine Kombination der eNoteB (ID des Radio Network Controller) und der Cell ID (eindeutige ID der Basisstation).</string>
+    <string name="main_help_last_long_cell_id_description">Die lange, eindeutige ID der Basisstation mit der das Telefon verbunden war.</string>
+    <string name="main_help_last_long_cell_id_description_umts">Bei UMTS wird diese LCID auch UTRAN CID genannt und ist eine Kombination der RNC (ID des Radio Network Controller) und der Cell ID (eindeutige ID der Basisstation).</string>
+    <string name="main_help_last_long_cell_id_description_lte">Bei LTE-Netzwerken wird heißt sie statt dessen E-UTRAN CID und ist eine Kombination der eNoteB (ID des Radio Network Controller) und der Cell ID (eindeutige ID der Basisstation).</string>
     <string name="main_help_last_cell_id_rnc_title">Cell Tower ID / RNC</string>
     <string name="main_help_last_cell_id_rnc_description">Die eindeutige Basisstations-ID und RNC (ID des Radio Network Controllers) mit denen Telefon verbunden war. Diese ID ist nur für UMTS- und LTE-Netze definiert.</string>
     <string name="main_help_last_cell_id_title">Cell-ID</string>
     <string name="main_help_last_cell_id_description">Die eindeutige ID der Zelle (GSM-Basisstation) in der das Telefon zum Messzeitpunkt eingebucht war.</string>
+    <string name="main_help_last_bid_title">Base Station ID</string>
     <string name="main_help_last_lac_title">Location Area Code</string>
     <string name="main_help_last_lac_description">Eine \"Location Area\" fasst mehrere GSM-Basisstationen zusammen um die Signalisierung zu optimieren. Die angezeigte Nummer ist der Code der Location Area, in die das Telefon zum Messzeitpunkt eingebucht war.</string>
+    <string name="main_help_last_tac_title">Tracking Area Code</string>
+    <string name="main_help_last_nid_title">Network ID</string>
+    <string name="main_help_last_nid_description">Die eindeutige ID des Netzwerks mit dem das Telefon verbunden war. Zusammen mit der SID bildet sie eine weltweit eindeutige Netzwerk-ID.</string>
     <string name="main_help_last_mcc_title">Mobile Country Code</string>
     <string name="main_help_last_mcc_description">Der eindeutige Länder-Code des Netzbetreibers, in dessen Netz das Telefon zum Messzeitpunkt eingebucht war.</string>
     <string name="main_help_last_mnc_title">Mobile Network Code</string>
     <string name="main_help_last_mnc_description">Die eindeutige ID des Netzbetreibers innerhalb eines Landes (Mobile Country Code), in dessen Netz das Telefon zum Messzeitpunkt eingebucht war.</string>
+    <string name="main_help_last_sid_title">System ID</string>
+    <string name="main_help_last_sid_description">Die eindeutige ID des Netzsystems, mit dem das Telefon verbunden war. Zusammen mit der NID bildet sie eine weltweit eindeutige Netzwerk-ID.</string>
     <string name="main_help_last_signal_strength_title">Signalstärke</string>
     <string name="main_help_last_signal_strength_description">Signalstärke des Funksignals zum Messzeitpunkt in dBm (Verhältnis der Leistung zur Bezugsgröße 1mW). Ein doppelt so großer Wert entspricht einer 10 Mal höheren Signalstärke. Werte näher 0 bedeuten ein stärkeres Signal.</string>
     <string name="main_help_last_latitude_title">Breitengrad</string>

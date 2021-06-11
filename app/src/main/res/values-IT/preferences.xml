@@ -132,7 +132,7 @@
     <string name="preferences_hide_collector_notification_title">Nascondi notifica</string>
     <string name="preferences_hide_collector_notification_on_summary">La notifica verrà nascosta nella schermata di blocco e nella barra di stato, a meno che non venga espansa. Il comportamento può variare tra i dispositivi.</string>
     <string name="preferences_hide_collector_notification_off_summary">La notifica sarà sempre visibile.</string>
-    <string name="preferences_start_collector_at_startup_title">Inizia a raccogliere all\'avvio</string>
+    <string name="preferences_start_collector_at_startup_title">Avvia la raccolta dati all\'avvio</string>
     <string name="preferences_start_collector_at_startup_on_summary">La raccolta verrà avviata automaticamente all\'avvio dell\'app.</string>
     <string name="preferences_start_collector_at_startup_off_summary">L\'app non inizierà a raccogliere all\'avvio.</string>
     <string name="preferences_start_collector_at_boot_title">Avvia la raccolta dati all\'avvio del dispositivo</string>
