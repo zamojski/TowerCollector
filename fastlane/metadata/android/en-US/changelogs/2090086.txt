@@ -1,0 +1,8 @@
+- Add Quick Settings tiles for Collector and Uploader from notification bar.
+- Add cell information of last measurement to Collector notification.
+- Add message when there are no measurements locally.
+- Add dedicated names and descriptions for CDMA, LTE, NR (5G) network types on last measurement screen.
+- Improve readability of last measurement and statistics tabs.
+- Improve error message when document picker is missing in the system.
+- Make dot icons a bit smaller and more transparent so they don't cover the location cursor.
+- Update translations.

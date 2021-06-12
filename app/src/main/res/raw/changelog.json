@@ -1,6 +1,20 @@
 {
   "Entries": [
     {
+      "VersionCode": 2090086,
+      "Title": "Changes in version 2.9.0",
+      "Messages": [
+        "Add Quick Settings tiles for Collector and Uploader from notification bar.",
+        "Add cell information of last measurement to Collector notification.",
+        "Add message when there are no measurements locally.",
+        "Add dedicated names and descriptions for CDMA, LTE, NR (5G) network types on last measurement screen.",
+        "Improve readability of last measurement and statistics tabs.",
+        "Improve error message when document picker is missing in the system.",
+        "Make dot icons a bit smaller and more transparent so they don't cover the location cursor.",
+        "Update translations."
+      ]
+    },
+    {
       "VersionCode": 2080385,
       "Title": "Changes in version 2.8.3",
       "Messages": [
@@ -61,15 +75,6 @@
         "Fix log file not recreated after deletion until app gets killed.",
         "Fix Ukrainian translation.",
         "Small improvements."
-      ]
-    },
-    {
-      "VersionCode": 2070374,
-      "Title": "Changes in version 2.7.3",
-      "Messages": [
-        "Improve privacy statement according to updated Google Play policy.",
-        "Add scale bar to the map.",
-        "Add short CID and RNC to map maker description."
       ]
     }
   ]
