@@ -1,0 +1,2 @@
+- Fix crash when clicking on a link in a dialog window.
+- Fix crash after database upgrade.

@@ -1,6 +1,14 @@
 {
   "Entries": [
     {
+      "VersionCode": 2090187,
+      "Title": "Changes in version 2.9.1",
+      "Messages": [
+        "Fix crash when clicking on a link in a dialog window.",
+        "Fix crash after database upgrade."
+      ]
+    },
+    {
       "VersionCode": 2090086,
       "Title": "Changes in version 2.9.0",
       "Messages": [
@@ -64,17 +72,6 @@
         "Update OpenCellID registration link.",
         "Updated privacy statement with one missing feature.",
         "Update translations."
-      ]
-    },
-    {
-      "VersionCode": 2070476,
-      "Title": "Changes in version 2.7.4",
-      "Messages": [
-        "Fix RSRP value too high on Samsung phones.",
-        "Fix map not refreshed after upload.",
-        "Fix log file not recreated after deletion until app gets killed.",
-        "Fix Ukrainian translation.",
-        "Small improvements."
       ]
     }
   ]
