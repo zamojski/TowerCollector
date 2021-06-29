@@ -6,6 +6,7 @@ package info.zamojski.soft.towercollector.controls;
 
 import org.sufficientlysecure.htmltextview.HtmlResImageGetter;
 import org.sufficientlysecure.htmltextview.HtmlTextView;
+import org.sufficientlysecure.htmltextview.OnClickATagListener;
 
 import info.zamojski.soft.towercollector.R;
 
@@ -14,6 +15,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 public class DialogManager {
 
@@ -49,8 +52,14 @@ public class DialogManager {
         } else {
             messageView.setHtml(message, new HtmlResImageGetter(context));
         }
-        // don't move above settings content because it won't work
+        // don't move above setting the content because it won't work
         messageView.setTextIsSelectable(textIsSelectable);
+        messageView.setOnClickATagListener(new OnClickATagListener() {
+            @Override
+            public boolean onClick(View widget, String spannedText, @Nullable String href) {
+                return false;
+            }
+        });
 
         AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(true);
