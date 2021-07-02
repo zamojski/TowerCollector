@@ -105,7 +105,7 @@
     <string name="main_menu_network_type_button">Netzwerktyp</string>
     <string name="collector_notification_channel_name">Erfassung</string>
     <string name="collector_notification_title">Erfassen</string>
-    <string name="collector_notification_stats"><xliff:g id="number_of_measurements">%1$d</xliff:g> Messungen von <xliff:g id="number_of_cells">%2$d</xliff:g> Zellen heute</string>
+    <string name="collector_notification_stats"><xliff:g id="number_of_measurements">%1$d</xliff:g> Messungen von <xliff:g id="number_of_cells">%2$d</xliff:g> Zellen heute.</string>
     <string name="collector_notification_last_measurement">Letzte Zelle:\n<xliff:g id="cell_identifier">%s</xliff:g></string>
     <string name="collector_notification_status">GPS Status: <xliff:g id="status">%s</xliff:g>.</string>
     <string name="collector_gps_unavailable">Kann Erfassung nicht starten weil GPS nicht verfügbar ist.</string>

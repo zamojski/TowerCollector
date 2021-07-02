@@ -105,7 +105,7 @@
     <string name="main_menu_network_type_button">Tipo de rede</string>
     <string name="collector_notification_channel_name">Coletor</string>
     <string name="collector_notification_title">Coletando</string>
-    <string name="collector_notification_stats"><xliff:g id="number_of_measurements">%1$d</xliff:g> medições de <xliff:g id="number_of_cells">%2$d</xliff:g> células hoje</string>
+    <string name="collector_notification_stats"><xliff:g id="number_of_measurements">%1$d</xliff:g> medições de <xliff:g id="number_of_cells">%2$d</xliff:g> células hoje.</string>
     <string name="collector_notification_last_measurement">Últimas células:\n<xliff:g id="cell_identifier">%s</xliff:g></string>
     <string name="collector_notification_status">Status do GPS: <xliff:g id="status">%s</xliff:g>.</string>
     <string name="collector_gps_unavailable">Não pôde iniciar a coleta porque o GPS está indisponível.</string>

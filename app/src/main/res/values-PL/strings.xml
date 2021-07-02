@@ -105,7 +105,7 @@
     <string name="main_menu_network_type_button">Typ sieci</string>
     <string name="collector_notification_channel_name">Zbieranie</string>
     <string name="collector_notification_title">Zbieranie</string>
-    <string name="collector_notification_stats">Dzisiaj <xliff:g id="number_of_measurements">%1$d</xliff:g> próbek z <xliff:g id="number_of_cells">%2$d</xliff:g> przekaźników</string>
+    <string name="collector_notification_stats">Dzisiaj <xliff:g id="number_of_measurements">%1$d</xliff:g> próbek z <xliff:g id="number_of_cells">%2$d</xliff:g> przekaźników.</string>
     <string name="collector_notification_last_measurement">Ostatnie przekaźniki:\n<xliff:g id="cell_identifier">%s</xliff:g></string>
     <string name="collector_notification_status">Status GPS: <xliff:g id="status">%s</xliff:g>.</string>
     <string name="collector_gps_unavailable">Zbieranie nie może zostać uruchomione, ponieważ GPS jest niedostępny.</string>

@@ -105,7 +105,7 @@
     <string name="main_menu_network_type_button">Тип мережі</string>
     <string name="collector_notification_channel_name">Збирач</string>
     <string name="collector_notification_title">Збір</string>
-    <string name="collector_notification_stats">Сьогодні <xliff:g id="number_of_measurements">%1$d</xliff:g> виміряно <xliff:g id="number_of_cells">%2$d</xliff:g> сот</string>
+    <string name="collector_notification_stats">Сьогодні <xliff:g id="number_of_measurements">%1$d</xliff:g> виміряно <xliff:g id="number_of_cells">%2$d</xliff:g> сот.</string>
     <string name="collector_notification_last_measurement">Останні комірки:\n<xliff:g id="cell_identifier">%s</xliff:g></string>
     <string name="collector_notification_status">GPS статус: <xliff:g id="status">%s</xliff:g></string>
     <string name="collector_gps_unavailable">Неможливо розпочати збирати, тому що GPS недоступний.</string>
