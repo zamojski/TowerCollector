@@ -385,7 +385,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         } else {
             Timber.i("onFollowMeClick(): Disabling follow me");
             myLocationOverlay.disableFollowLocation();
-            followMeButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.map_follow_me, theme));
+            followMeButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.map_follow_me_disabled, theme));
         }
         MyApplication.getPreferencesProvider().setMainMapFollowMeEnabled(myLocationOverlay.isFollowLocationEnabled());
     }

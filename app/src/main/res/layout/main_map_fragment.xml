@@ -55,7 +55,7 @@
             android:cropToPadding="true"
             android:paddingHorizontal="10dp"
             android:paddingVertical="10dp"
-            android:src="@drawable/map_follow_me" />
+            android:src="@drawable/map_follow_me_disabled" />
 
         <ImageButton
             android:id="@+id/main_map_location_toggle_button"
