@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
 import info.zamojski.soft.towercollector.views.MainActivityPagerAdapter;
+import timber.log.Timber;
 
 public class NonSwipeableViewPager extends ViewPager {
 
@@ -35,7 +36,13 @@ public class NonSwipeableViewPager extends ViewPager {
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        return swipingEnabled && super.onTouchEvent(event);
+        try {
+            return swipingEnabled && super.onTouchEvent(event);
+        } catch (IllegalArgumentException ex) {
+            // it sometimes happens that ViewPager.onTouchEvent is unable to obtain MotionEvent.getX and MotionEvent.nativeGetAxisValue
+            Timber.w(ex, "onTouchEvent(): Failed to handle event on system level.");
+            return false;
+        }
     }
 
     @Override
