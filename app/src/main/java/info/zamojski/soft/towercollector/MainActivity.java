@@ -135,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private BroadcastReceiver airplaneModeBroadcastReceiver = new AirplaneModeBroadcastReceiver();
     private BroadcastReceiver batterySaverBroadcastReceiver = new BatterySaverBroadcastReceiver();;
 
+    private ProgressDialog exportProgressDialog;
     private String exportedDirAbsolutePath;
     private String[] exportedFilePaths;
     private boolean showExportFinishedDialog = false;
@@ -216,6 +217,11 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             unregisterReceiver(airplaneModeBroadcastReceiver);
         if (batterySaverBroadcastReceiver != null)
             unregisterReceiver(batterySaverBroadcastReceiver);
+
+        if (exportProgressDialog != null && exportProgressDialog.isShowing()) {
+            exportProgressDialog.dismiss();
+            exportProgressDialog = null;
+        }
     }
 
     @Override
@@ -1090,41 +1096,45 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                             .setInputData(new Data.Builder().putStringArray(ExportWorker.SELECTED_FILE_TYPES, FileType.toNames(selectedFileTypes).toArray(new String[0])).build())
                             .build();
 
-                    final ProgressDialog[] exportProgressDialog = {null};
                     WorkManager.getInstance(MyApplication.getApplication())
                             .getWorkInfoByIdLiveData(exportWorkRequest.getId())
                             .observe(this, new Observer<WorkInfo>() {
+                                private final String INNER_TAG = MainActivity.class.getSimpleName() + "." + ExportWorker.class.getSimpleName();
+
                                 @Override
                                 public void onChanged(WorkInfo workInfo) {
                                     int currentPercent = workInfo.getProgress().getInt(ExportWorker.PROGRESS, 0);
                                     int maxPercent = workInfo.getProgress().getInt(ExportWorker.PROGRESS_MAX, 100);
-                                    Timber.d("Updating progress: %s %s", currentPercent, maxPercent);
-                                    if (exportProgressDialog[0] == null) {
+                                    Timber.tag(INNER_TAG).d("onChanged(): Updating progress: %s %s", currentPercent, maxPercent);
+                                    if (exportProgressDialog == null) {
                                         // show loading indicator
-                                        exportProgressDialog[0] = new ProgressDialog(MainActivity.this);
-                                        exportProgressDialog[0].setTitle(R.string.export_dialog_progress_title);
-                                        exportProgressDialog[0].setMessage(getString(R.string.export_dialog_progress_message, storageUri.getPath()));
-                                        exportProgressDialog[0].setCancelable(false);
-                                        exportProgressDialog[0].setCanceledOnTouchOutside(false);
-                                        exportProgressDialog[0].setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_cancel), (dialog, which) -> {
+                                        exportProgressDialog = new ProgressDialog(MainActivity.this);
+                                        exportProgressDialog.setTitle(R.string.export_dialog_progress_title);
+                                        exportProgressDialog.setMessage(getString(R.string.export_dialog_progress_message, storageUri.getPath()));
+                                        exportProgressDialog.setCancelable(false);
+                                        exportProgressDialog.setCanceledOnTouchOutside(false);
+                                        exportProgressDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_cancel), (dialog, which) -> {
                                             // cancel generation and it will return that task should be cancelled (anyway we cleanup in onCancelled to be sure)
                                             WorkManager.getInstance(MyApplication.getApplication())
                                                     .cancelWorkById(exportWorkRequest.getId());
                                             // hide loading indicator
                                             if (dialog != null)
                                                 dialog.dismiss();
+                                            exportProgressDialog = null;
                                         });
-                                        exportProgressDialog[0].setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-                                        exportProgressDialog[0].setMax(maxPercent);
-                                        exportProgressDialog[0].show();
+                                        exportProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                                        exportProgressDialog.setProgress(currentPercent);
+                                        exportProgressDialog.setMax(maxPercent);
+                                        exportProgressDialog.show();
                                     } else {
                                         currentPercent = Math.min(currentPercent, maxPercent);
-                                        exportProgressDialog[0].setProgress(currentPercent);
+                                        exportProgressDialog.setProgress(currentPercent);
                                     }
 
                                     if (workInfo.getState().isFinished()) {
                                         // hide loading indicator
-                                        exportProgressDialog[0].dismiss();
+                                        exportProgressDialog.dismiss();
+                                        exportProgressDialog = null;
                                         // perform finish action
                                         if (workInfo.getState() == WorkInfo.State.SUCCEEDED) {
                                             exportedDirAbsolutePath = workInfo.getOutputData().getString(ExportWorker.DIR_PATH);
