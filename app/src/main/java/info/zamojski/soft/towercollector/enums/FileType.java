@@ -21,4 +21,12 @@ public enum FileType {
         }
         return fileTypes.toArray(new FileType[0]);
     }
+
+    public static List<String> toNames(List<FileType> values) {
+        List<String> fileTypes = new ArrayList<>();
+        for (FileType value : values) {
+            fileTypes.add(value.name());
+        }
+        return fileTypes;
+    }
 }

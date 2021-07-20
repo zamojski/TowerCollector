@@ -10,6 +10,9 @@ import java.util.List;
 import android.content.Context;
 import android.net.Uri;
 
+import androidx.annotation.StringRes;
+
+import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.files.generators.wrappers.interfaces.IProgressListener;
 import info.zamojski.soft.towercollector.files.generators.wrappers.interfaces.IProgressiveTextGeneratorWrapper;
 
@@ -18,8 +21,6 @@ public abstract class TextGeneratorWrapperBase implements IProgressiveTextGenera
     private final List<IProgressListener> progressListeners = new ArrayList<IProgressListener>();
 
     protected boolean cancel = false;
-
-    protected Context context;
 
     public void addProgressListener(IProgressListener listener) {
         progressListeners.add(listener);
@@ -43,4 +44,8 @@ public abstract class TextGeneratorWrapperBase implements IProgressiveTextGenera
     public abstract Uri getFullPath();
 
     public abstract String getFileType();
+
+    protected String getStringById(@StringRes int resId, Object... params) {
+        return MyApplication.getApplication().getString(resId, params);
+    }
 }

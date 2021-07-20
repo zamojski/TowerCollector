@@ -4,9 +4,7 @@
 
 package info.zamojski.soft.towercollector.files.generators.wrappers;
 
-import android.content.Context;
 import android.net.Uri;
-import android.widget.Toast;
 
 import java.io.BufferedWriter;
 import java.io.OutputStream;
@@ -37,8 +35,7 @@ public class JsonTextGeneratorWrapper extends TextGeneratorWrapperBase {
     private final CompressionFormat compressionFormat;
     private Uri filePath;
 
-    public JsonTextGeneratorWrapper(Context context, Uri storageUri, String fileName, String compressedExtension, CompressionFormat compressionFormat, IJsonFormatter formatter) {
-        this.context = context;
+    public JsonTextGeneratorWrapper(Uri storageUri, String fileName, String compressedExtension, CompressionFormat compressionFormat, IJsonFormatter formatter) {
         this.storageUri = storageUri;
         this.fileName = fileName;
         this.compressedExtension = compressedExtension;
@@ -74,7 +71,7 @@ public class JsonTextGeneratorWrapper extends TextGeneratorWrapperBase {
                             bufferedWriter.write(formatter.formatNewSegment());
                         }
                         // get from database
-                        List<Measurement> measurements = MeasurementsDatabase.getInstance(context).getMeasurementsPart(i * LOCATIONS_PER_PART, LOCATIONS_PER_PART);
+                        List<Measurement> measurements = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsPart(i * LOCATIONS_PER_PART, LOCATIONS_PER_PART);
                         // write to file
                         bufferedWriter.write(formatter.formatList(measurements));
                         notifyProgressListeners(i * LOCATIONS_PER_PART + measurements.size(), locationsCount);
@@ -100,15 +97,12 @@ public class JsonTextGeneratorWrapper extends TextGeneratorWrapperBase {
                     return new FileGeneratorResult(GeneratorResult.Succeeded, Reason.Unknown);
                 }
             case StorageNotFound:
-                Toast.makeText(context, R.string.storage_storage_not_found, Toast.LENGTH_LONG).show();
-                return new FileGeneratorResult(GeneratorResult.Failed, Reason.LocationNotExists);
+                return new FileGeneratorResult(GeneratorResult.Failed, Reason.LocationNotExists, getStringById(R.string.storage_storage_not_found));
             case FileNotWritable:
-                Toast.makeText(context, R.string.storage_file_not_writable, Toast.LENGTH_LONG).show();
-                return new FileGeneratorResult(GeneratorResult.Failed, Reason.DeviceNotWritable);
+                return new FileGeneratorResult(GeneratorResult.Failed, Reason.DeviceNotWritable, getStringById(R.string.storage_file_not_writable));
             case Failed:
             default:
-                Toast.makeText(context, context.getString(R.string.storage_write_failed, result.getErrorMessage()), Toast.LENGTH_LONG).show();
-                return new FileGeneratorResult(GeneratorResult.Failed, Reason.Unknown);
+                return new FileGeneratorResult(GeneratorResult.Failed, Reason.Unknown, getStringById(R.string.storage_write_failed, result.getErrorMessage()));
         }
     }
 

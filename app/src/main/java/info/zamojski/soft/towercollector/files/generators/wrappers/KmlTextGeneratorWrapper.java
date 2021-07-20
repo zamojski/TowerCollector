@@ -4,9 +4,7 @@
 
 package info.zamojski.soft.towercollector.files.generators.wrappers;
 
-import android.content.Context;
 import android.net.Uri;
-import android.widget.Toast;
 
 import java.io.BufferedWriter;
 import java.io.OutputStream;
@@ -37,8 +35,7 @@ public class KmlTextGeneratorWrapper extends TextGeneratorWrapperBase {
     private final CompressionFormat compressionFormat;
     private Uri filePath;
 
-    public KmlTextGeneratorWrapper(Context context, Uri storageUri, String fileName, String compressedExtension, CompressionFormat compressionFormat, IKmlFormatter formatter) {
-        this.context = context;
+    public KmlTextGeneratorWrapper(Uri storageUri, String fileName, String compressedExtension, CompressionFormat compressionFormat, IKmlFormatter formatter) {
         this.storageUri = storageUri;
         this.fileName = fileName;
         this.compressedExtension = compressedExtension;
@@ -117,15 +114,12 @@ public class KmlTextGeneratorWrapper extends TextGeneratorWrapperBase {
                     return new FileGeneratorResult(GeneratorResult.Succeeded, Reason.Unknown);
                 }
             case StorageNotFound:
-                Toast.makeText(context, R.string.storage_storage_not_found, Toast.LENGTH_LONG).show();
-                return new FileGeneratorResult(GeneratorResult.Failed, Reason.LocationNotExists);
+                return new FileGeneratorResult(GeneratorResult.Failed, Reason.LocationNotExists, getStringById(R.string.storage_storage_not_found));
             case FileNotWritable:
-                Toast.makeText(context, R.string.storage_file_not_writable, Toast.LENGTH_LONG).show();
-                return new FileGeneratorResult(GeneratorResult.Failed, Reason.DeviceNotWritable);
+                return new FileGeneratorResult(GeneratorResult.Failed, Reason.DeviceNotWritable, getStringById(R.string.storage_file_not_writable));
             case Failed:
             default:
-                Toast.makeText(context, context.getString(R.string.storage_write_failed, result.getErrorMessage()), Toast.LENGTH_LONG).show();
-                return new FileGeneratorResult(GeneratorResult.Failed, Reason.Unknown);
+                return new FileGeneratorResult(GeneratorResult.Failed, Reason.Unknown, getStringById(R.string.storage_write_failed, result.getErrorMessage()));
         }
     }
 

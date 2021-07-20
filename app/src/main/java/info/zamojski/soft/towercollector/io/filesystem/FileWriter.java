@@ -60,10 +60,10 @@ public abstract class FileWriter {
                     writeFileInternal(outputStream);
                     break;
             }
-            Timber.d("writeFile(): File %s read successfully", file.getUri().toString());
+            Timber.d("writeFile(): File %s wrote successfully", file.getUri().toString());
             return new WriteResult(WriteResultType.Success, file.getUri());
         } catch (Exception ex) {
-            Timber.w(ex, "writeFile(): Failed to read from file %s", file.getUri().toString());
+            Timber.w(ex, "writeFile(): Failed to write to file %s", file.getUri().toString());
             return new WriteResult(WriteResultType.Failed, file.getUri(), ex.getMessage());
         }
     }

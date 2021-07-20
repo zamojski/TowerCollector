@@ -7,6 +7,7 @@ package info.zamojski.soft.towercollector;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -22,9 +23,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
 import android.os.PowerManager;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
@@ -51,6 +50,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ShareCompat;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.Observer;
+import androidx.work.Data;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkInfo;
+import androidx.work.WorkManager;
+import androidx.work.WorkRequest;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
@@ -85,13 +90,13 @@ import info.zamojski.soft.towercollector.events.MapEnabledChangedEvent;
 import info.zamojski.soft.towercollector.events.PowerSaveModeChangedEvent;
 import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
 import info.zamojski.soft.towercollector.events.SystemTimeChangedEvent;
+import info.zamojski.soft.towercollector.export.ExportWorker;
 import info.zamojski.soft.towercollector.model.ChangelogInfo;
 import info.zamojski.soft.towercollector.model.UpdateInfo;
 import info.zamojski.soft.towercollector.model.UpdateInfo.DownloadLink;
 import info.zamojski.soft.towercollector.providers.ChangelogProvider;
 import info.zamojski.soft.towercollector.providers.HtmlChangelogFormatter;
 import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvider;
-import info.zamojski.soft.towercollector.tasks.ExportFileAsyncTask;
 import info.zamojski.soft.towercollector.tasks.UpdateCheckAsyncTask;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
 import info.zamojski.soft.towercollector.utils.BackgroundTaskHelper;
@@ -1081,8 +1086,64 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 if (selectedFileTypes.isEmpty()) {
                     Toast.makeText(getApplication(), R.string.export_toast_no_file_types_selected, Toast.LENGTH_LONG).show();
                 } else {
-                    ExportFileAsyncTask task = new ExportFileAsyncTask(MainActivity.this, new InternalMessageHandler(MainActivity.this), selectedFileTypes);
-                    task.execute();
+                    WorkRequest exportWorkRequest = new OneTimeWorkRequest.Builder(ExportWorker.class)
+                            .setInputData(new Data.Builder().putStringArray(ExportWorker.SELECTED_FILE_TYPES, FileType.toNames(selectedFileTypes).toArray(new String[0])).build())
+                            .build();
+
+                    final ProgressDialog[] exportProgressDialog = {null};
+                    WorkManager.getInstance(MyApplication.getApplication())
+                            .getWorkInfoByIdLiveData(exportWorkRequest.getId())
+                            .observe(this, new Observer<WorkInfo>() {
+                                @Override
+                                public void onChanged(WorkInfo workInfo) {
+                                    int currentPercent = workInfo.getProgress().getInt(ExportWorker.PROGRESS, 0);
+                                    int maxPercent = workInfo.getProgress().getInt(ExportWorker.PROGRESS_MAX, 100);
+                                    Timber.d("Updating progress: %s %s", currentPercent, maxPercent);
+                                    if (exportProgressDialog[0] == null) {
+                                        // show loading indicator
+                                        exportProgressDialog[0] = new ProgressDialog(MainActivity.this);
+                                        exportProgressDialog[0].setTitle(R.string.export_dialog_progress_title);
+                                        exportProgressDialog[0].setMessage(getString(R.string.export_dialog_progress_message, storageUri.getPath()));
+                                        exportProgressDialog[0].setCancelable(false);
+                                        exportProgressDialog[0].setCanceledOnTouchOutside(false);
+                                        exportProgressDialog[0].setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_cancel), (dialog, which) -> {
+                                            // cancel generation and it will return that task should be cancelled (anyway we cleanup in onCancelled to be sure)
+                                            WorkManager.getInstance(MyApplication.getApplication())
+                                                    .cancelWorkById(exportWorkRequest.getId());
+                                            // hide loading indicator
+                                            if (dialog != null)
+                                                dialog.dismiss();
+                                        });
+                                        exportProgressDialog[0].setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                                        exportProgressDialog[0].setMax(maxPercent);
+                                        exportProgressDialog[0].show();
+                                    } else {
+                                        currentPercent = Math.min(currentPercent, maxPercent);
+                                        exportProgressDialog[0].setProgress(currentPercent);
+                                    }
+
+                                    if (workInfo.getState().isFinished()) {
+                                        // hide loading indicator
+                                        exportProgressDialog[0].dismiss();
+                                        // perform finish action
+                                        if (workInfo.getState() == WorkInfo.State.SUCCEEDED) {
+                                            exportedDirAbsolutePath = workInfo.getOutputData().getString(ExportWorker.DIR_PATH);
+                                            exportedFilePaths = workInfo.getOutputData().getStringArray(ExportWorker.FILE_PATHS);
+                                            if (!isMinimized)
+                                                displayExportFinishedDialog();
+                                            else
+                                                showExportFinishedDialog = true;
+                                        } else if (workInfo.getState() == WorkInfo.State.CANCELLED) {
+                                            Toast.makeText(MainActivity.this, R.string.export_toast_cancelled, Toast.LENGTH_LONG).show();
+                                        } else {
+                                            Toast.makeText(MainActivity.this, workInfo.getOutputData().getString(ExportWorker.MESSAGE), Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                                }
+                            });
+
+                    WorkManager.getInstance(MyApplication.getApplication())
+                            .enqueue(exportWorkRequest);
                 }
             });
             alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.dialog_cancel), (dialog, which) -> {
@@ -1388,31 +1449,5 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onEvent(MapEnabledChangedEvent event) {
         refreshTabs();
-    }
-
-// ========== INNER OBJECTS ========== //
-
-    public static class InternalMessageHandler extends Handler {
-        public static final int EXPORT_FINISHED_UI_REFRESH = 0;
-
-        private MainActivity mainActivity;
-
-        public InternalMessageHandler(MainActivity mainActivity) {
-            this.mainActivity = mainActivity;
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case EXPORT_FINISHED_UI_REFRESH:
-                    mainActivity.exportedDirAbsolutePath = msg.getData().getString(ExportFileAsyncTask.DIR_PATH);
-                    mainActivity.exportedFilePaths = msg.getData().getStringArray(ExportFileAsyncTask.FILE_PATHS);
-                    if (!mainActivity.isMinimized)
-                        mainActivity.displayExportFinishedDialog();
-                    else
-                        mainActivity.showExportFinishedDialog = true;
-                    break;
-            }
-        }
     }
 }
