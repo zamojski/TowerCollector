@@ -10,6 +10,7 @@ public class NotificationHelperBase {
 
     protected static final String COLLECTOR_NOTIFICATION_CHANNEL_ID = "collector_notification_channel";
     protected static final String UPLOADER_NOTIFICATION_CHANNEL_ID = "uploader_notification_channel";
+    protected static final String EXPORT_NOTIFICATION_CHANNEL_ID = "export_notification_channel";
     protected static final String OTHER_NOTIFICATION_CHANNEL_ID = "other_notification_channel";
 
     protected boolean isUsingNotificationChannel() {

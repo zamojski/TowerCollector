@@ -4,6 +4,8 @@
 
 package info.zamojski.soft.towercollector.export;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.net.Uri;
 
@@ -11,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.documentfile.provider.DocumentFile;
 import androidx.work.Data;
+import androidx.work.ForegroundInfo;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
@@ -44,6 +47,10 @@ import timber.log.Timber;
 
 public class ExportWorker extends Worker implements IProgressListener {
 
+    public static final String SERVICE_FULL_NAME = ExportWorker.class.getCanonicalName();
+    public static final String BROADCAST_INTENT_STOP_SERVICE = SERVICE_FULL_NAME + ".ExportCancel";
+    public static final int NOTIFICATION_ID = 'E';
+
     public static final String PROGRESS = "PROGRESS";
     public static final String PROGRESS_MAX = "PROGRESS_MAX";
     public static final String SELECTED_FILE_TYPES = "SELECTED_FILE_TYPES";
@@ -54,14 +61,24 @@ public class ExportWorker extends Worker implements IProgressListener {
     private Uri storageUri;
     private CompositeTextGeneratorWrapper generator;
 
+    private NotificationManager notificationManager;
+    private ExportNotificationHelper notificationHelper;
+
     public ExportWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
+
+        notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationHelper = new ExportNotificationHelper(MyApplication.getApplication());
     }
 
     @NonNull
     @Override
     public Result doWork() {
         try {
+            Notification notification = notificationHelper.createNotification(notificationManager);
+            ForegroundInfo foregroundInfo = new ForegroundInfo(NOTIFICATION_ID, notification);
+            setForegroundAsync(foregroundInfo);
+
             List<FileType> fileTypes = Arrays.asList(FileType.valuesOf(getInputData().getStringArray(SELECTED_FILE_TYPES)));
             storageUri = MyApplication.getPreferencesProvider().getStorageUri();
             CreateGenerators(fileTypes);
@@ -134,6 +151,8 @@ public class ExportWorker extends Worker implements IProgressListener {
     @Override
     public void onStopped() {
         Timber.d("onStopped(): Export cancelled");
+        Notification notification = notificationHelper.updateNotificationCancelling();
+        notificationManager.notify(NOTIFICATION_ID, notification);
         generator.cancel();
         super.onStopped();
     }
@@ -144,6 +163,8 @@ public class ExportWorker extends Worker implements IProgressListener {
                 .putInt(PROGRESS, value)
                 .putInt(PROGRESS_MAX, max)
                 .build());
+        Notification notification = notificationHelper.updateNotificationProgress(value, max);
+        notificationManager.notify(NOTIFICATION_ID, notification);
     }
 
     private void CreateGenerators(List<FileType> fileTypes) {

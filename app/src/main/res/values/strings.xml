@@ -155,6 +155,11 @@
     <string name="error_reporting_notification_title">Unexpected error occurred</string>
     <string name="error_reporting_notification_text">The app crashed. Please send error report to help fixing the problem.</string>
     <string name="error_reporting_notification_comment_prompt">Add your comment</string>
+    <string name="export_notification_channel_name">Export</string>
+    <string name="export_notification_title">Exporting</string>
+    <string name="export_notification_progress_info">Exported <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
+    <string name="export_starting">Starting export&#8230;</string>
+    <string name="export_aborting">Aborting export&#8230;</string>
     <string name="export_toast_no_file_types_selected">No file types selected for export.</string>
     <string name="export_toast_no_handler_for_file_type">No application to handle the file.</string>
     <string name="export_dialog_format_selection_title">Select file formats</string>
