@@ -21,7 +21,7 @@ public interface IAnalyticsReportingService {
 
     void sendUploadFinished(IntentSource source, String networkType, long duration, AnalyticsStatistics stats, String target);
 
-    void sendExportFinished(long duration, String fileType, AnalyticsStatistics stats);
+    void sendExportFinished(IntentSource source, long duration, String fileType, AnalyticsStatistics stats);
 
     void sendExportFinishedTotal(long duration, int numberOfFiles, AnalyticsStatistics stats);
 

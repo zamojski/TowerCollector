@@ -36,7 +36,7 @@ public class FakeAnalyticsReportingService implements IAnalyticsReportingService
     }
 
     @Override
-    public void sendExportFinished(long duration, String fileType, AnalyticsStatistics stats) {
+    public void sendExportFinished(IntentSource source, long duration, String fileType, AnalyticsStatistics stats) {
 
     }
 

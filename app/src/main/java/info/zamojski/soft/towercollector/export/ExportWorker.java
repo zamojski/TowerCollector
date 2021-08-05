@@ -24,6 +24,7 @@ import java.util.List;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
+import info.zamojski.soft.towercollector.analytics.IntentSource;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.FileType;
 import info.zamojski.soft.towercollector.files.FileGeneratorResult;
@@ -56,6 +57,7 @@ public class ExportWorker extends Worker implements IProgressListener {
     public static final int PROGRESS_MIN_VALUE = 0;
     public static final int PROGRESS_MAX_VALUE = 100;
     public static final String SELECTED_FILE_TYPES = "SELECTED_FILE_TYPES";
+    public static final String INTENT_SOURCE = "INTENT_SOURCE";
     public static final String MESSAGE = "MESSAGE";
     public static final String DIR_PATH = "EXPORTED_DIR_PATH";
     public static final String FILE_PATHS = "EXPORTED_FILE_PATHS";
@@ -63,13 +65,13 @@ public class ExportWorker extends Worker implements IProgressListener {
 
     private Uri storageUri;
     private CompositeTextGeneratorWrapper generator;
+    private IntentSource intentSource;
 
     private final NotificationManager notificationManager;
     private final ExportNotificationHelper notificationHelper;
 
     public ExportWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
-
         notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationHelper = new ExportNotificationHelper(MyApplication.getApplication());
     }
@@ -84,6 +86,7 @@ public class ExportWorker extends Worker implements IProgressListener {
 
             List<FileType> fileTypes = Arrays.asList(FileType.valuesOf(getInputData().getStringArray(SELECTED_FILE_TYPES)));
             storageUri = MyApplication.getPreferencesProvider().getStorageUri();
+            intentSource = IntentSource.valueOf(getInputData().getString(INTENT_SOURCE));
             CreateGenerators(fileTypes);
 
             Timber.d("doWork(): Starting export");
@@ -213,7 +216,7 @@ public class ExportWorker extends Worker implements IProgressListener {
                     throw new UnsupportedOperationException("This file type " + fileType + " is not supported");
             }
         }
-        generator = new CompositeTextGeneratorWrapper(subGenerators);
+        generator = new CompositeTextGeneratorWrapper(subGenerators, intentSource);
     }
 
     private CompressionFormat getCompressionFormat(boolean compressFiles) {

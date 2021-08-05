@@ -9,6 +9,7 @@ import android.net.Uri;
 import java.util.List;
 
 import info.zamojski.soft.towercollector.MyApplication;
+import info.zamojski.soft.towercollector.analytics.IntentSource;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.GeneratorResult;
 import info.zamojski.soft.towercollector.files.DeviceOperationException.Reason;
@@ -21,11 +22,13 @@ import timber.log.Timber;
 public class CompositeTextGeneratorWrapper extends TextGeneratorWrapperBase {
 
     private List<IProgressiveTextGeneratorWrapper> subGenerators;
+    private final IntentSource intentSource;
     private int alreadyGenerated = 0;
     private final int maxProgressPercent = 100;
 
-    public CompositeTextGeneratorWrapper(List<IProgressiveTextGeneratorWrapper> subGenerators) {
+    public CompositeTextGeneratorWrapper(List<IProgressiveTextGeneratorWrapper> subGenerators, IntentSource intentSource) {
         this.subGenerators = subGenerators;
+        this.intentSource = intentSource;
     }
 
     public FileGeneratorResult generate() {
@@ -43,7 +46,7 @@ public class CompositeTextGeneratorWrapper extends TextGeneratorWrapperBase {
                     AnalyticsStatistics stats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getAnalyticsStatistics();
                     String fileType = generator.getFileType();
                     long duration = (endTime - startTime);
-                    MyApplication.getAnalytics().sendExportFinished(duration, fileType, stats);
+                    MyApplication.getAnalytics().sendExportFinished(intentSource, duration, fileType, stats);
                     if (lastResult.getResult() != GeneratorResult.Succeeded) {
                         return lastResult;
                     }

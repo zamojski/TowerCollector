@@ -81,8 +81,9 @@ public class GoogleAnalyticsReportingService implements IAnalyticsReportingServi
     }
 
     @Override
-    public void sendExportFinished(long duration, String fileType, AnalyticsStatistics stats) {
+    public void sendExportFinished(IntentSource source, long duration, String fileType, AnalyticsStatistics stats) {
         Bundle bundle = new Bundle();
+        bundle.putString(Parameter.Source, convertToStartLabel(source));
         bundle.putString(Parameter.FileType, fileType);
         bundle.putInt(Parameter.Locations, stats.getLocations());
         bundle.putInt(Parameter.Cells, stats.getCells());

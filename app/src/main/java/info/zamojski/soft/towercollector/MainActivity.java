@@ -1090,6 +1090,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                     WorkRequest exportWorkRequest = new OneTimeWorkRequest.Builder(ExportWorker.class)
                             .setInputData(new Data.Builder()
                                     .putStringArray(ExportWorker.SELECTED_FILE_TYPES, FileType.toNames(selectedFileTypes).toArray(new String[0]))
+                                    .putString(ExportWorker.INTENT_SOURCE, IntentSource.User.name())
                                     .build())
                             .addTag(ExportWorker.WORKER_TAG)
                             .build();
