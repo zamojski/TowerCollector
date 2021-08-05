@@ -67,6 +67,8 @@ public class Api17PlusMeasurementParser extends MeasurementParser {
         fixMeasurementTimestamp(measurement, location);
         // remove duplicated cells
         removeDuplicatedCells(cells);
+        // remove invalid cells
+        removeInvalidCells(cells);
         // if the same cell check distance condition, otherwise accept
         if (lastSavedMeasurement != null && lastSavedLocation != null && !conditionsValidator.isMinDistanceSatisfied(lastSavedLocation, location, minDistance)) {
             List<String> lastMeasurementsCellKeys = new ArrayList<>();
@@ -96,11 +98,6 @@ public class Api17PlusMeasurementParser extends MeasurementParser {
         updateMeasurementWithLocation(measurement, location);
         // loop through all cells
         for (CellInfo cellInfo : cells) {
-            if (!cellValidator.isValid(cellInfo)) {
-                // don't try to create neighboring cells because this may be even more unreliable than on older API
-                Timber.d("parse(): Cell invalid: %s", cellInfo);
-                continue;
-            }
             if (!collectNeighboringCells && !cellInfo.isRegistered()) {
                 // skip neighboring cells
                 Timber.d("parse(): Neighboring cell skipped: %s", cellInfo);
@@ -150,6 +147,22 @@ public class Api17PlusMeasurementParser extends MeasurementParser {
                 cellsToRemove.add(cell);
             } else {
                 uniqueCellKeys.add(key);
+            }
+        }
+
+        cells.removeAll(cellsToRemove);
+    }
+
+    private void removeInvalidCells(List<CellInfo> cells) {
+        List<CellInfo> cellsToRemove = new ArrayList<CellInfo>();
+
+        for (CellInfo cell : cells) {
+            if (cell == null)
+                continue;
+            if (!cellValidator.isValid(cell)) {
+                // don't try to create neighboring cells because this may be even more unreliable than on older API
+                Timber.d("removeInvalidCells(): Cell invalid: %s", cell);
+                cellsToRemove.add(cell);
             }
         }
 
