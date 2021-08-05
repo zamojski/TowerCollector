@@ -53,16 +53,19 @@ public class ExportWorker extends Worker implements IProgressListener {
 
     public static final String PROGRESS = "PROGRESS";
     public static final String PROGRESS_MAX = "PROGRESS_MAX";
+    public static final int PROGRESS_MIN_VALUE = 0;
+    public static final int PROGRESS_MAX_VALUE = 100;
     public static final String SELECTED_FILE_TYPES = "SELECTED_FILE_TYPES";
     public static final String MESSAGE = "MESSAGE";
     public static final String DIR_PATH = "EXPORTED_DIR_PATH";
     public static final String FILE_PATHS = "EXPORTED_FILE_PATHS";
+    public static final String WORKER_TAG = "EXPORT_WORKER";
 
     private Uri storageUri;
     private CompositeTextGeneratorWrapper generator;
 
-    private NotificationManager notificationManager;
-    private ExportNotificationHelper notificationHelper;
+    private final NotificationManager notificationManager;
+    private final ExportNotificationHelper notificationHelper;
 
     public ExportWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);

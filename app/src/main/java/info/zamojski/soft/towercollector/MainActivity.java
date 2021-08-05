@@ -7,7 +7,6 @@ package info.zamojski.soft.towercollector;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -60,6 +59,7 @@ import androidx.work.WorkRequest;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayout.Tab;
+import com.google.common.util.concurrent.ListenableFuture;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -69,6 +69,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import info.zamojski.soft.towercollector.analytics.IntentSource;
@@ -90,6 +92,7 @@ import info.zamojski.soft.towercollector.events.MapEnabledChangedEvent;
 import info.zamojski.soft.towercollector.events.PowerSaveModeChangedEvent;
 import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
 import info.zamojski.soft.towercollector.events.SystemTimeChangedEvent;
+import info.zamojski.soft.towercollector.export.ExportProgressDialogFragment;
 import info.zamojski.soft.towercollector.export.ExportWorker;
 import info.zamojski.soft.towercollector.model.ChangelogInfo;
 import info.zamojski.soft.towercollector.model.UpdateInfo;
@@ -121,7 +124,7 @@ import permissions.dispatcher.RuntimePermissions;
 import timber.log.Timber;
 
 @RuntimePermissions
-public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
+public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener, ExportProgressDialogFragment.OnExportCancelledListener {
 
     private static final int BATTERY_OPTIMIZATIONS_ACTIVITY_RESULT = 'B';
     private static final int BATTERY_SAVER_ACTIVITY_RESULT = 'S';
@@ -135,10 +138,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private BroadcastReceiver airplaneModeBroadcastReceiver = new AirplaneModeBroadcastReceiver();
     private BroadcastReceiver batterySaverBroadcastReceiver = new BatterySaverBroadcastReceiver();;
 
-    private ProgressDialog exportProgressDialog;
+    private ExportProgressDialogFragment exportProgressDialog;
     private String exportedDirAbsolutePath;
     private String[] exportedFilePaths;
-    private boolean showExportFinishedDialog = false;
 
     private Boolean canStartNetworkTypeSystemActivityResult = null;
 
@@ -148,8 +150,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private MenuItem networkTypeMenu;
 
     private TabLayout tabLayout;
-
-    private boolean isMinimized = false;
 
     public ICollectorService collectorServiceBinder;
 
@@ -218,7 +218,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         if (batterySaverBroadcastReceiver != null)
             unregisterReceiver(batterySaverBroadcastReceiver);
 
-        if (exportProgressDialog != null && exportProgressDialog.isShowing()) {
+        if (exportProgressDialog != null && exportProgressDialog.isVisible()) {
             exportProgressDialog.dismiss();
             exportProgressDialog = null;
         }
@@ -232,10 +232,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         if (isCollectorServiceRunning.get()) {
             bindService(new Intent(this, CollectorService.class), collectorServiceConnection, 0);
         }
-        if (isMinimized && showExportFinishedDialog) {
-            displayExportFinishedDialog();
-        }
-        isMinimized = false;
         EventBus.getDefault().register(this);
 
         String appThemeName = MyApplication.getPreferencesProvider().getAppTheme();
@@ -245,12 +241,13 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             isFirstStart = false;
             startCollectorServiceWithCheck();
         }
+
+        restoreExportProgress();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        isMinimized = true;
         EventBus.getDefault().unregister(this);
     }
 
@@ -735,8 +732,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     }
 
     public void displayExportFinishedDialog() {
-        showExportFinishedDialog = false;
-
         LayoutInflater inflater = LayoutInflater.from(this);
         View dialogLayout = inflater.inflate(R.layout.export_finished_dialog, null);
         TextView messageTextView = dialogLayout.findViewById(R.id.export_finished_dialog_textview);
@@ -1093,65 +1088,12 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                     Toast.makeText(getApplication(), R.string.export_toast_no_file_types_selected, Toast.LENGTH_LONG).show();
                 } else {
                     WorkRequest exportWorkRequest = new OneTimeWorkRequest.Builder(ExportWorker.class)
-                            .setInputData(new Data.Builder().putStringArray(ExportWorker.SELECTED_FILE_TYPES, FileType.toNames(selectedFileTypes).toArray(new String[0])).build())
+                            .setInputData(new Data.Builder()
+                                    .putStringArray(ExportWorker.SELECTED_FILE_TYPES, FileType.toNames(selectedFileTypes).toArray(new String[0]))
+                                    .build())
+                            .addTag(ExportWorker.WORKER_TAG)
                             .build();
-
-                    WorkManager.getInstance(MyApplication.getApplication())
-                            .getWorkInfoByIdLiveData(exportWorkRequest.getId())
-                            .observe(this, new Observer<WorkInfo>() {
-                                private final String INNER_TAG = MainActivity.class.getSimpleName() + "." + ExportWorker.class.getSimpleName();
-
-                                @Override
-                                public void onChanged(WorkInfo workInfo) {
-                                    int currentPercent = workInfo.getProgress().getInt(ExportWorker.PROGRESS, 0);
-                                    int maxPercent = workInfo.getProgress().getInt(ExportWorker.PROGRESS_MAX, 100);
-                                    Timber.tag(INNER_TAG).d("onChanged(): Updating progress: %s %s", currentPercent, maxPercent);
-                                    if (exportProgressDialog == null) {
-                                        // show loading indicator
-                                        exportProgressDialog = new ProgressDialog(MainActivity.this);
-                                        exportProgressDialog.setTitle(R.string.export_dialog_progress_title);
-                                        exportProgressDialog.setMessage(getString(R.string.export_dialog_progress_message, storageUri.getPath()));
-                                        exportProgressDialog.setCancelable(false);
-                                        exportProgressDialog.setCanceledOnTouchOutside(false);
-                                        exportProgressDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_cancel), (dialog, which) -> {
-                                            // cancel generation and it will return that task should be cancelled (anyway we cleanup in onCancelled to be sure)
-                                            WorkManager.getInstance(MyApplication.getApplication())
-                                                    .cancelWorkById(exportWorkRequest.getId());
-                                            // hide loading indicator
-                                            if (dialog != null)
-                                                dialog.dismiss();
-                                            exportProgressDialog = null;
-                                        });
-                                        exportProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-                                        exportProgressDialog.setProgress(currentPercent);
-                                        exportProgressDialog.setMax(maxPercent);
-                                        exportProgressDialog.show();
-                                    } else {
-                                        currentPercent = Math.min(currentPercent, maxPercent);
-                                        exportProgressDialog.setProgress(currentPercent);
-                                    }
-
-                                    if (workInfo.getState().isFinished()) {
-                                        // hide loading indicator
-                                        exportProgressDialog.dismiss();
-                                        exportProgressDialog = null;
-                                        // perform finish action
-                                        if (workInfo.getState() == WorkInfo.State.SUCCEEDED) {
-                                            exportedDirAbsolutePath = workInfo.getOutputData().getString(ExportWorker.DIR_PATH);
-                                            exportedFilePaths = workInfo.getOutputData().getStringArray(ExportWorker.FILE_PATHS);
-                                            if (!isMinimized)
-                                                displayExportFinishedDialog();
-                                            else
-                                                showExportFinishedDialog = true;
-                                        } else if (workInfo.getState() == WorkInfo.State.CANCELLED) {
-                                            Toast.makeText(MainActivity.this, R.string.export_toast_cancelled, Toast.LENGTH_LONG).show();
-                                        } else {
-                                            Toast.makeText(MainActivity.this, workInfo.getOutputData().getString(ExportWorker.MESSAGE), Toast.LENGTH_LONG).show();
-                                        }
-                                    }
-                                }
-                            });
-
+                    showExportProgress(storageUri, exportWorkRequest.getId());
                     WorkManager.getInstance(MyApplication.getApplication())
                             .enqueue(exportWorkRequest);
                 }
@@ -1163,6 +1105,84 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         } else {
             StorageUtils.requestStorageUri(this);
         }
+    }
+
+    private void restoreExportProgress() {
+        ListenableFuture<List<WorkInfo>> statuses = WorkManager.getInstance(MyApplication.getApplication())
+                .getWorkInfosByTag(ExportWorker.WORKER_TAG);
+        Uri storageUri = MyApplication.getPreferencesProvider().getStorageUri();
+        try {
+            List<WorkInfo> workInfoList = statuses.get();
+            for (WorkInfo workInfo : workInfoList) {
+                WorkInfo.State state = workInfo.getState();
+                if (state == WorkInfo.State.RUNNING || state == WorkInfo.State.ENQUEUED) {
+                    showExportProgress(storageUri, workInfo.getId());
+                    break;
+                } else if (state == WorkInfo.State.SUCCEEDED || state == WorkInfo.State.FAILED) {
+                    showExportFinished(workInfo);
+                    WorkManager.getInstance(MyApplication.getApplication()).pruneWork();
+                    break;
+                }
+            }
+
+        } catch (ExecutionException | InterruptedException ex) {
+            Timber.e(ex, "restoreExportProgress(): Failed to show export progress");
+            Toast.makeText(MainActivity.this, R.string.export_toast_failed, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void showExportProgress(Uri storageUri, UUID workId) {
+        WorkManager.getInstance(MyApplication.getApplication())
+                .getWorkInfoByIdLiveData(workId)
+                .observe(this, new Observer<WorkInfo>() {
+                    private final String INNER_TAG = MainActivity.class.getSimpleName() + "." + ExportWorker.class.getSimpleName();
+
+                    @Override
+                    public void onChanged(WorkInfo workInfo) {
+                        int currentPercent = workInfo.getProgress().getInt(ExportWorker.PROGRESS, ExportWorker.PROGRESS_MIN_VALUE);
+                        int maxPercent = workInfo.getProgress().getInt(ExportWorker.PROGRESS_MAX, ExportWorker.PROGRESS_MAX_VALUE);
+                        Timber.tag(INNER_TAG).d("onChanged(): Updating progress: %s %s", currentPercent, maxPercent);
+                        if (exportProgressDialog == null) {
+                            // show loading indicator
+                            exportProgressDialog = new ExportProgressDialogFragment(MainActivity.this, storageUri, currentPercent, maxPercent);
+                            exportProgressDialog.show(getSupportFragmentManager(), ExportProgressDialogFragment.FRAGMENT_TAG);
+                        } else {
+                            currentPercent = Math.min(currentPercent, maxPercent);
+                            exportProgressDialog.setProgress(currentPercent);
+                        }
+                        if (workInfo.getState().isFinished()) {
+                            // hide loading indicator
+                            exportProgressDialog.dismiss();
+                            exportProgressDialog = null;
+                            // perform finish action
+                            showExportFinished(workInfo);
+                        }
+                    }
+                });
+    }
+
+    private void showExportFinished(WorkInfo workInfo) {
+        if (workInfo.getState() == WorkInfo.State.SUCCEEDED) {
+            exportedDirAbsolutePath = workInfo.getOutputData().getString(ExportWorker.DIR_PATH);
+            exportedFilePaths = workInfo.getOutputData().getStringArray(ExportWorker.FILE_PATHS);
+            displayExportFinishedDialog();
+        } else if (workInfo.getState() == WorkInfo.State.CANCELLED) {
+            Toast.makeText(MainActivity.this, R.string.export_toast_cancelled, Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(MainActivity.this, workInfo.getOutputData().getString(ExportWorker.MESSAGE), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void cancelExport() {
+        // cancel generation and it will return that task should be cancelled
+        WorkManager.getInstance(MyApplication.getApplication())
+                .cancelAllWorkByTag(ExportWorker.WORKER_TAG);
+    }
+
+    @Override
+    public void onExportCancelled() {
+        cancelExport();
+        exportProgressDialog = null;
     }
 
     private void startCleanup() {
