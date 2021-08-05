@@ -14,6 +14,8 @@
     <string name="quicksettings_collecting_stop">Stop collecting</string>
     <string name="quicksettings_upload_start">Start upload</string>
     <string name="quicksettings_upload_stop">Stop upload</string>
+    <string name="quicksettings_export_start">Start export</string>
+    <string name="quicksettings_export_stop">Stop export</string>
     <string name="unit_length_metric">m</string>
     <string name="unit_length_imperial">ft</string>
     <string name="unit_speed_metric">km/h</string>

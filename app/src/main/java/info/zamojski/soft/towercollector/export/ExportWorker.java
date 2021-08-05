@@ -8,6 +8,7 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
@@ -22,6 +23,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import info.zamojski.soft.towercollector.ExportQuickSettingsTileService;
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.analytics.IntentSource;
@@ -48,8 +50,6 @@ import timber.log.Timber;
 
 public class ExportWorker extends Worker implements IProgressListener {
 
-    public static final String SERVICE_FULL_NAME = ExportWorker.class.getCanonicalName();
-    public static final String BROADCAST_INTENT_STOP_SERVICE = SERVICE_FULL_NAME + ".ExportCancel";
     public static final int NOTIFICATION_ID = 'E';
 
     public static final String PROGRESS = "PROGRESS";
@@ -83,6 +83,10 @@ public class ExportWorker extends Worker implements IProgressListener {
             Notification notification = notificationHelper.createNotification(notificationManager);
             ForegroundInfo foregroundInfo = new ForegroundInfo(NOTIFICATION_ID, notification);
             setForegroundAsync(foregroundInfo);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                ExportQuickSettingsTileService.requestTileUpdate(true);
+            }
 
             List<FileType> fileTypes = Arrays.asList(FileType.valuesOf(getInputData().getStringArray(SELECTED_FILE_TYPES)));
             storageUri = MyApplication.getPreferencesProvider().getStorageUri();
@@ -151,6 +155,9 @@ public class ExportWorker extends Worker implements IProgressListener {
         } finally {
             MyApplication.stopBackgroundTask();
             generator.removeProgressListener(this);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                ExportQuickSettingsTileService.requestTileUpdate(false);
+            }
         }
     }
 

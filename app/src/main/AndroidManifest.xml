@@ -113,6 +113,19 @@
                 android:name="android.service.quicksettings.ACTIVE_TILE"
                 android:value="true" />
         </service>
+        <service
+            android:name=".ExportQuickSettingsTileService"
+            android:enabled="true"
+            android:icon="@drawable/ic_quicksettings_export_start"
+            android:label="@string/quicksettings_export_start"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.service.quicksettings.ACTIVE_TILE"
+                android:value="true" />
+        </service>
 
         <receiver
             android:name=".broadcast.ExternalBroadcastReceiver"
