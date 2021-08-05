@@ -210,5 +210,6 @@
 
     <string name="shortcut_id_collector_toggle" translatable="false">collector_toggle</string>
     <string name="shortcut_id_uploader_toggle" translatable="false">uploader_toggle</string>
+    <string name="shortcut_id_export_toggle" translatable="false">export_toggle</string>
 
 </resources>

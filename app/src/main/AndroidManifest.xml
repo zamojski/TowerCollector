@@ -123,6 +123,9 @@
                 <action android:name="info.zamojski.soft.towercollector.COLLECTOR_START" />
                 <action android:name="info.zamojski.soft.towercollector.COLLECTOR_STOP" />
                 <action android:name="info.zamojski.soft.towercollector.UPLOADER_START" />
+                <action android:name="info.zamojski.soft.towercollector.UPLOADER_STOP" />
+                <action android:name="info.zamojski.soft.towercollector.EXPORT_START" />
+                <action android:name="info.zamojski.soft.towercollector.EXPORT_START" />
             </intent-filter>
         </receiver>
 

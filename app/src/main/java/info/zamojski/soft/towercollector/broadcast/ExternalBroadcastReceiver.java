@@ -11,15 +11,23 @@ import android.content.Intent;
 import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
+import androidx.work.Data;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
+import androidx.work.WorkRequest;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.List;
 
 import info.zamojski.soft.towercollector.CollectorService;
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.UploaderService;
 import info.zamojski.soft.towercollector.analytics.IntentSource;
+import info.zamojski.soft.towercollector.enums.FileType;
 import info.zamojski.soft.towercollector.events.CollectorStartedEvent;
+import info.zamojski.soft.towercollector.export.ExportWorker;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
 import info.zamojski.soft.towercollector.utils.BackgroundTaskHelper;
 import info.zamojski.soft.towercollector.utils.GpsUtils;
@@ -36,6 +44,9 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
     private static final String uploaderStartAction = "info.zamojski.soft.towercollector.UPLOADER_START";
     private static final String uploaderStopAction = "info.zamojski.soft.towercollector.UPLOADER_STOP";
 
+    private static final String exportStartAction = "info.zamojski.soft.towercollector.EXPORT_START";
+    public static final String ExportStopAction = "info.zamojski.soft.towercollector.EXPORT_STOP";
+
     @Override
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
@@ -47,6 +58,10 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
             startUploaderService(context, IntentSource.Application);
         } else if (uploaderStopAction.equals(action)) {
             stopUploaderService(context);
+        } else if (exportStartAction.equals(action)) {
+            startExportWorker(context, IntentSource.Application);
+        } else if (ExportStopAction.equals(action)) {
+            stopExportWorker(context);
         } else if (Intent.ACTION_BOOT_COMPLETED.equals(action) || quickBootPowerOnAction.equals(action)) {
             boolean startAtBootEnabled = MyApplication.getPreferencesProvider().getStartCollectorAtBoot();
             if (startAtBootEnabled) {
@@ -119,6 +134,31 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         Intent intent = new Intent(context, UploaderService.class);
         intent.putExtra(UploaderService.INTENT_KEY_START_INTENT_SOURCE, source);
         return intent;
+    }
+
+    public void startExportWorker(Context context, IntentSource source) {
+        if (!canStartBackgroundService(context))
+            return;
+        Timber.d("startExportWorker(): Starting worker from broadcast");
+        List<FileType> recentFileTypes = MyApplication.getPreferencesProvider().getEnabledExportFileTypes();
+        WorkRequest exportWorkRequest = new OneTimeWorkRequest.Builder(ExportWorker.class)
+                .setInputData(new Data.Builder()
+                        .putStringArray(ExportWorker.SELECTED_FILE_TYPES, FileType.toNames(recentFileTypes).toArray(new String[0]))
+                        .putString(ExportWorker.INTENT_SOURCE, source.name())
+                        .build())
+                .addTag(ExportWorker.WORKER_TAG)
+                .build();
+//        showExportProgress(storageUri, exportWorkRequest.getId());//TODO check what happens when you start from QS when app is open
+        WorkManager.getInstance(MyApplication.getApplication())
+                .enqueue(exportWorkRequest);
+        ApkUtils.reportShortcutUsage(context, R.string.shortcut_id_export_toggle);
+    }
+
+    public void stopExportWorker(Context context) {
+        Timber.d("stopExportWorker(): Stopping worker from broadcast");
+        WorkManager.getInstance(MyApplication.getApplication())
+                .cancelAllWorkByTag(ExportWorker.WORKER_TAG);
+        ApkUtils.reportShortcutUsage(context, R.string.shortcut_id_export_toggle);
     }
 
     private boolean canStartBackgroundService(Context context) {
