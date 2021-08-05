@@ -38,4 +38,22 @@
                 android:value="Shortcut" />
         </intent>
     </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_shortcut_export"
+        android:shortcutId="export_toggle"
+        android:shortcutLongLabel="@string/shortcut_export_toggle_long"
+        android:shortcutShortLabel="@string/shortcut_export_toggle_short">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="info.zamojski.soft.towercollector.SplashActivity"
+            android:targetPackage="info.zamojski.soft.towercollector">
+            <extra
+                android:name="shortcut_action"
+                android:value="EXPORT_TOGGLE" />
+            <extra
+                android:name="action_source"
+                android:value="Shortcut" />
+        </intent>
+    </shortcut>
 </shortcuts>

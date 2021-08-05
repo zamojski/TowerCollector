@@ -7,6 +7,7 @@ package info.zamojski.soft.towercollector;
 import info.zamojski.soft.towercollector.analytics.IntentSource;
 import info.zamojski.soft.towercollector.broadcast.ExternalBroadcastReceiver;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
+import info.zamojski.soft.towercollector.export.ExportWorker;
 import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvider;
 import info.zamojski.soft.towercollector.tasks.DatabaseUpgradeTask;
 import info.zamojski.soft.towercollector.tasks.PreferencesUpgradeTask;
@@ -30,6 +31,7 @@ public class SplashActivity extends Activity {
     public static final String ACTION_SOURCE = "action_source";
     public static final String COLLECTOR_TOGGLE_ACTION = "COLLECTOR_TOGGLE";
     public static final String UPLOADER_TOGGLE_ACTION = "UPLOADER_TOGGLE";
+    public static final String EXPORT_TOGGLE_ACTION = "EXPORT_TOGGLE";
 
     private boolean databaseUpgradeRunning = false;
 
@@ -67,6 +69,9 @@ public class SplashActivity extends Activity {
                         return;
                     case UPLOADER_TOGGLE_ACTION:
                         toggleUploaderAsync(actionSource);
+                        return;
+                    case EXPORT_TOGGLE_ACTION:
+                        toggleExportAsync(actionSource);
                         return;
                 }
             }
@@ -148,6 +153,24 @@ public class SplashActivity extends Activity {
                     new ExternalBroadcastReceiver().startUploaderService(MyApplication.getApplication(), source);
                 }
                 Timber.d("toggleUploaderAsync(): Closing splash screen window");
+                finish();
+            }
+        }, 0);
+    }
+
+    private void toggleExportAsync(IntentSource source) {
+        Timber.d("toggleExportAsync(): Toggle export from %s", source);
+        getAsyncHandler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ensurePreferencesUpToDate();
+                ensureDatabaseUpToDate();
+                if (MyApplication.isBackgroundTaskRunning(ExportWorker.class)) {
+                    new ExternalBroadcastReceiver().stopExportWorker(MyApplication.getApplication());
+                } else {
+                    new ExternalBroadcastReceiver().startExportWorker(MyApplication.getApplication(), source);
+                }
+                Timber.d("toggleExportAsync(): Closing splash screen window");
                 finish();
             }
         }, 0);
