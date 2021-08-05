@@ -94,7 +94,7 @@ android {
     }
 }
 
-def acraVersion = '5.7.0'
+def acraVersion = '5.8.4'
 def permissionsdispatcherVersion = '4.8.0'
 
 dependencies {

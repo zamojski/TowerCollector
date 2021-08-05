@@ -216,36 +216,36 @@ public class MyApplication extends Application {
         Timber.d("initACRA(): Initializing ACRA");
         CoreConfigurationBuilder configBuilder = new CoreConfigurationBuilder(this);
         // Configure connection
-        configBuilder.setBuildConfigClass(BuildConfig.class);
-        configBuilder.setEnabled(BuildConfig.ACRA_SEND_REPORTS_IN_DEV_MODE);
-        configBuilder.setSendReportsInDevMode(BuildConfig.ACRA_SEND_REPORTS_IN_DEV_MODE);
-        configBuilder.setReportFormat(StringFormat.valueOf(BuildConfig.ACRA_REPORT_TYPE));
-        configBuilder.setExcludeMatchingSharedPreferencesKeys(getString(R.string.preferences_opencellid_api_key_key));
-        configBuilder.setReportContent(getCustomAcraReportFields());
-        configBuilder.setLogcatArguments("-t", "250", "-v", "time");
+        configBuilder.withBuildConfigClass(BuildConfig.class);
+        configBuilder.withEnabled(BuildConfig.ACRA_SEND_REPORTS_IN_DEV_MODE);
+        configBuilder.withSendReportsInDevMode(BuildConfig.ACRA_SEND_REPORTS_IN_DEV_MODE);
+        configBuilder.withReportFormat(StringFormat.valueOf(BuildConfig.ACRA_REPORT_TYPE));
+        configBuilder.withExcludeMatchingSharedPreferencesKeys(getString(R.string.preferences_opencellid_api_key_key));
+        configBuilder.withReportContent(getCustomAcraReportFields());
+        configBuilder.withLogcatArguments("-t", "250", "-v", "time");
         // Configure reported content
         HttpSenderConfigurationBuilder httpPluginConfigBuilder = configBuilder.getPluginConfigurationBuilder(HttpSenderConfigurationBuilder.class);
-        httpPluginConfigBuilder.setUri(BuildConfig.ACRA_FORM_URI);
-        httpPluginConfigBuilder.setBasicAuthLogin(BuildConfig.ACRA_FORM_URI_BASIC_AUTH_LOGIN);
-        httpPluginConfigBuilder.setBasicAuthPassword(BuildConfig.ACRA_FORM_URI_BASIC_AUTH_PASSWORD);
-        httpPluginConfigBuilder.setHttpMethod(HttpSender.Method.valueOf(BuildConfig.ACRA_HTTP_METHOD));
-        httpPluginConfigBuilder.setEnabled(true);
+        httpPluginConfigBuilder.withUri(BuildConfig.ACRA_FORM_URI);
+        httpPluginConfigBuilder.withBasicAuthLogin(BuildConfig.ACRA_FORM_URI_BASIC_AUTH_LOGIN);
+        httpPluginConfigBuilder.withBasicAuthPassword(BuildConfig.ACRA_FORM_URI_BASIC_AUTH_PASSWORD);
+        httpPluginConfigBuilder.withHttpMethod(HttpSender.Method.valueOf(BuildConfig.ACRA_HTTP_METHOD));
+        httpPluginConfigBuilder.withEnabled(true);
         // Configure interaction method
         NotificationConfigurationBuilder notificationConfigBuilder = configBuilder.getPluginConfigurationBuilder(NotificationConfigurationBuilder.class);
-        notificationConfigBuilder.setResChannelName(R.string.error_reporting_notification_channel_name);
+        notificationConfigBuilder.withResChannelName(R.string.error_reporting_notification_channel_name);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             notificationConfigBuilder.setResChannelImportance(NotificationManager.IMPORTANCE_DEFAULT);
         }
-        notificationConfigBuilder.setResIcon(R.drawable.ic_notification);
-        notificationConfigBuilder.setResTitle(R.string.error_reporting_notification_title);
-        notificationConfigBuilder.setResText(R.string.error_reporting_notification_text);
-        notificationConfigBuilder.setResTickerText(R.string.error_reporting_notification_title);
-        notificationConfigBuilder.setResSendButtonText(R.string.dialog_send);
-        notificationConfigBuilder.setResDiscardButtonText(R.string.dialog_cancel);
-        notificationConfigBuilder.setSendOnClick(true);
-        notificationConfigBuilder.setResSendWithCommentButtonText(R.string.dialog_send_comment);
-        notificationConfigBuilder.setResCommentPrompt(R.string.error_reporting_notification_comment_prompt);
-        notificationConfigBuilder.setEnabled(!getPreferencesProvider().getReportErrorsSilently());
+        notificationConfigBuilder.withResIcon(R.drawable.ic_notification);
+        notificationConfigBuilder.withResTitle(R.string.error_reporting_notification_title);
+        notificationConfigBuilder.withResText(R.string.error_reporting_notification_text);
+        notificationConfigBuilder.withResTickerText(R.string.error_reporting_notification_title);
+        notificationConfigBuilder.withResSendButtonText(R.string.dialog_send);
+        notificationConfigBuilder.withResDiscardButtonText(R.string.dialog_cancel);
+        notificationConfigBuilder.withSendOnClick(true);
+        notificationConfigBuilder.withResSendWithCommentButtonText(R.string.dialog_send_comment);
+        notificationConfigBuilder.withResCommentPrompt(R.string.error_reporting_notification_comment_prompt);
+        notificationConfigBuilder.withEnabled(!getPreferencesProvider().getReportErrorsSilently());
 
         ACRA.init(this, configBuilder);
         ACRA.getErrorReporter().putCustomData("APP_MARKET_NAME", BuildConfig.MARKET_NAME);
