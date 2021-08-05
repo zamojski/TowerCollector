@@ -8,18 +8,21 @@ import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
 import info.zamojski.soft.towercollector.R;
+import info.zamojski.soft.towercollector.broadcast.ExternalBroadcastReceiver;
 import info.zamojski.soft.towercollector.utils.NotificationHelperBase;
 
 public class ExportNotificationHelper extends NotificationHelperBase {
 
-    private Context context;
-    private NotificationCompat.Builder builder;
+    private final Context context;
+    private final NotificationCompat.Builder builder;
 
     public ExportNotificationHelper(Context context) {
         this.context = context;
@@ -56,11 +59,22 @@ public class ExportNotificationHelper extends NotificationHelperBase {
         builder.setColor(context.getResources().getColor(R.color.ic_notification_background_color));
         builder.setWhen(System.currentTimeMillis());
         builder.setOnlyAlertOnce(true);
+        // set action
+        PendingIntent cancelExportIntent = createCancelExportIntent();
+        NotificationCompat.Action stopAction;
+        stopAction = new NotificationCompat.Action.Builder(R.drawable.menu_stop, context.getString(R.string.dialog_cancel), cancelExportIntent).build();
+        builder.addAction(stopAction);
         // set message
         builder.setContentTitle(context.getString(R.string.export_notification_title));
         builder.setContentText(notificationText);
         builder.setTicker(notificationText);
         return builder.build();
+    }
+
+    private PendingIntent createCancelExportIntent() {
+        Intent intent = new Intent(ExternalBroadcastReceiver.ExportStopAction);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        return pendingIntent;
     }
 
     @TargetApi(Build.VERSION_CODES.O)
