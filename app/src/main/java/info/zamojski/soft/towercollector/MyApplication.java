@@ -11,12 +11,14 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.acra.ACRA;
 import org.acra.ACRAConstants;
 import org.acra.ReportField;
 import org.acra.config.CoreConfigurationBuilder;
 import org.acra.config.HttpSenderConfigurationBuilder;
+import org.acra.config.LimiterConfigurationBuilder;
 import org.acra.config.NotificationConfigurationBuilder;
 import org.acra.data.StringFormat;
 import org.acra.sender.HttpSender;
@@ -246,6 +248,15 @@ public class MyApplication extends Application {
         notificationConfigBuilder.withResSendWithCommentButtonText(R.string.dialog_send_comment);
         notificationConfigBuilder.withResCommentPrompt(R.string.error_reporting_notification_comment_prompt);
         notificationConfigBuilder.withEnabled(!getPreferencesProvider().getReportErrorsSilently());
+        // Configure limits for one device
+        LimiterConfigurationBuilder limiterConfigBuilder = configBuilder.getPluginConfigurationBuilder(LimiterConfigurationBuilder.class);
+        limiterConfigBuilder.withStacktraceLimit(2);
+        limiterConfigBuilder.withExceptionClassLimit(3);
+        limiterConfigBuilder.withOverallLimit(5);
+        limiterConfigBuilder.withPeriod(2);
+        limiterConfigBuilder.withPeriodUnit(TimeUnit.DAYS);
+        limiterConfigBuilder.withResetLimitsOnAppUpdate(true);
+        limiterConfigBuilder.withEnabled(true);
 
         ACRA.init(this, configBuilder);
         ACRA.getErrorReporter().putCustomData("APP_MARKET_NAME", BuildConfig.MARKET_NAME);

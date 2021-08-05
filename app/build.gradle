@@ -109,6 +109,7 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.2.0'
     implementation "ch.acra:acra-http:$acraVersion"
     implementation "ch.acra:acra-notification:$acraVersion"
+    implementation "ch.acra:acra-limiter:$acraVersion"
     implementation 'org.sufficientlysecure:html-textview:4.0'
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
     implementation "org.permissionsdispatcher:permissionsdispatcher:$permissionsdispatcherVersion"
