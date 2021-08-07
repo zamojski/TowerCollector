@@ -22,9 +22,10 @@ public class OcidUploadClient extends ClientBase implements IUploadClient {
 
     private static final MediaType CSV = MediaType.parse("text/csv");
 
-    private String url;
-    private String appId;
-    private String apiKey;
+    private final String url;
+    private final String appId;
+    private final String apiKey;
+    private long fileSize;
 
     public OcidUploadClient(String url, String appId, String apiKey) {
         this.url = url;
@@ -49,11 +50,14 @@ public class OcidUploadClient extends ClientBase implements IUploadClient {
                     .readTimeout(READ_TIMEOUT, TimeUnit.MILLISECONDS)
                     .build();
 
+            RequestBody dataFile = RequestBody.create(content, CSV);
+            this.fileSize = dataFile.contentLength();
+
             RequestBody requestBody = new MultipartBody.Builder()
                     .setType(MultipartBody.FORM)
                     .addFormDataPart("key", apiKey)
                     .addFormDataPart("appId", appId)
-                    .addFormDataPart("datafile", "TowerCollector_measurements_" + System.currentTimeMillis() + ".csv", RequestBody.create(CSV, content))
+                    .addFormDataPart("datafile", "TowerCollector_measurements_" + System.currentTimeMillis() + ".csv", dataFile)
                     .build();
             Request request = new Request.Builder()
                     .url(url)
@@ -92,6 +96,8 @@ public class OcidUploadClient extends ClientBase implements IUploadClient {
         // don't report captive portals
         if (code != 302) {
             RuntimeException ex = new RequestException(body);
+            if (body.equalsIgnoreCase("Exceeded filesize limit"))
+                body += ". Actual size=" + fileSize + " bytes.";
             reportException(ex);
         }
         return RequestResult.ConnectionError;
