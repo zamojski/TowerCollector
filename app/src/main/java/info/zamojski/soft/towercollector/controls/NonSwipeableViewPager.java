@@ -41,7 +41,7 @@ public class NonSwipeableViewPager extends ViewPager {
         } catch (IllegalArgumentException ex) {
             // it sometimes happens that ViewPager.onTouchEvent is unable to obtain MotionEvent.getX and MotionEvent.nativeGetAxisValue
             Timber.w(ex, "onTouchEvent(): Failed to handle event on system level.");
-            return false;
+            return true;
         }
     }
 
