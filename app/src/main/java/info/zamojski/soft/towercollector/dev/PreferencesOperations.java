@@ -4,21 +4,6 @@
 
 package info.zamojski.soft.towercollector.dev;
 
-import info.zamojski.soft.towercollector.MyApplication;
-import info.zamojski.soft.towercollector.R;
-import info.zamojski.soft.towercollector.io.filesystem.FileReader;
-import info.zamojski.soft.towercollector.io.filesystem.FileWriter;
-import info.zamojski.soft.towercollector.io.filesystem.ReadResult;
-import info.zamojski.soft.towercollector.io.filesystem.WriteResult;
-import timber.log.Timber;
-
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -27,6 +12,19 @@ import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import com.example.android.internal.util.XmlUtils;
+
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import info.zamojski.soft.towercollector.MyApplication;
+import info.zamojski.soft.towercollector.R;
+import info.zamojski.soft.towercollector.io.filesystem.FileReader;
+import info.zamojski.soft.towercollector.io.filesystem.FileWriter;
+import info.zamojski.soft.towercollector.io.filesystem.ReadResult;
+import info.zamojski.soft.towercollector.io.filesystem.WriteResult;
+import timber.log.Timber;
 
 public class PreferencesOperations {
 
@@ -72,8 +70,7 @@ public class PreferencesOperations {
                 FileWriter fileWriter = new FileWriter() {
                     @Override
                     protected void writeFileInternal(OutputStream outputStream) throws Exception {
-                        ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-                        XmlUtils.writeMapXml(prefs.getAll(), objectOutputStream);
+                        XmlUtils.writeMapXml(prefs.getAll(), outputStream);
                     }
                 };
                 WriteResult result = fileWriter.writeFile(MyApplication.getApplication(), storageUri, fileName);
@@ -110,9 +107,8 @@ public class PreferencesOperations {
                 FileReader<Map<String, ?>> fileReader = new FileReader<Map<String, ?>>() {
                     @Override
                     protected Map<String, ?> readFileInternal(InputStream inputStream) throws Exception {
-                        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
                         @SuppressWarnings("unchecked")
-                        Map<String, ?> entries = XmlUtils.readMapXml(objectInputStream);
+                        Map<String, ?> entries = XmlUtils.readMapXml(inputStream);
                         return entries;
                     }
                 };
