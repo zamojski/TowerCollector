@@ -48,7 +48,7 @@ public abstract class FileWriter {
             return new WriteResult(WriteResultType.FileNotWritable, file == null ? null : file.getUri());
         }
 
-        try (OutputStream outputStream = context.getContentResolver().openOutputStream(file.getUri())) {
+        try (OutputStream outputStream = context.getContentResolver().openOutputStream(file.getUri(), "wt")) {
             switch (compressionFormat) {
                 case Zip:
                     writeZipFileInternal(outputStream, fileName);
