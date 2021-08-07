@@ -69,7 +69,7 @@ public abstract class FileWriter {
     }
 
     public WriteResult writeFile(Context context, Uri storageDirectoryUri, String fileName) {
-        return writeFile(context, storageDirectoryUri, fileName, "", CompressionFormat.None);
+        return writeFile(context, storageDirectoryUri, fileName, null, CompressionFormat.None);
     }
 
     protected abstract void writeFileInternal(OutputStream outputStream) throws Exception;
