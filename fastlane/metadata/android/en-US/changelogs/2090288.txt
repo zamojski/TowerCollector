@@ -1,0 +1,7 @@
+- Add unit of measure to map cache size preference.
+- Change follow me icon on the map tab.
+- Fix infinitely collecting data while stationary when on multi-SIM device one of reported main cells is invalid.
+- Fix export of database and preferences not overwriting existing file.
+- Fix export of database and preferences incorrectly overwriting existing file content.
+- Fix export of preferences created file that couldn't be edited in text editor.
+- Update translation.

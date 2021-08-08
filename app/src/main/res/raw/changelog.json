@@ -1,6 +1,19 @@
 {
   "Entries": [
     {
+      "VersionCode": 2090288,
+      "Title": "Changes in version 2.9.2",
+      "Messages": [
+        "Add unit of measure to map cache size preference.",
+        "Change follow me icon on the map tab.",
+        "Fix infinitely collecting data while stationary when on multi-SIM device one of reported main cells is invalid.",
+        "Fix export of database and preferences not overwriting existing file.",
+        "Fix export of database and preferences incorrectly overwriting existing file content.",
+        "Fix export of preferences created file that couldn't be edited in text editor.",
+        "Update translation."
+      ]
+    },
+    {
       "VersionCode": 2090187,
       "Title": "Changes in version 2.9.1",
       "Messages": [
@@ -57,21 +70,6 @@
         "Allow setting maximum map cache size.",
         "Disable clearing map cache when disabling map tab.",
         "Improve error handling."
-      ]
-    },
-    {
-      "VersionCode": 2080081,
-      "Description": "This version introduces new way of interacting with file system and reduces number of requested permissions. The change is required to make the application running correctly on Android 11. I'm open to any feedback, feel free to contact me by email, Twitter, Facebook or GitHub - links in Preferences :)",
-      "Title": "Changes in version 2.8.0",
-      "Messages": [
-        "Fix export and import of files on Android 11 with help of document picker.",
-        "Improve compatibility with Android 11.",
-        "Improve default map location when no measurements locally.",
-        "Fix cannot open notification settings from Display Preferences.",
-        "Fix crash when trying to open app permission settings.",
-        "Update OpenCellID registration link.",
-        "Updated privacy statement with one missing feature.",
-        "Update translations."
       ]
     }
   ]
