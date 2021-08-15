@@ -176,7 +176,7 @@ public abstract class MainFragmentBase extends Fragment {
         int backgroundColorResId;
         switch (status) {
             case Ok:
-                statusString = getString(R.string.status_ok);
+                statusString = getString(R.string.status_ok, (useImperialUnits ? UnitConverter.convertMetersToFeet(lastAccuracy) : lastAccuracy), preferredLengthUnit);
                 textColorResId = R.color.text_dark;
                 backgroundColorResId = R.color.background_valid;
                 break;

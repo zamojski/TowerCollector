@@ -250,8 +250,8 @@
     <string name="collector_status_active">Raccolta misurazioni</string>
     <string name="collector_status_inactive">La raccolta delle misurazioni è stata fermata</string>
     <string name="status_initializing">in attesa di posizione</string>
-    <string name="status_ok">OK</string>
-    <string name="status_low_gps_accuracy">bassa accuratezza <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="status_ok">OK - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="status_low_gps_accuracy">bassa accuratezza - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">nessuna posizione</string>
     <string name="status_disabled">disabilitato</string>
     <string name="invalid_system_time">La data/ora di sistema non è valida</string>

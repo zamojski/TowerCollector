@@ -250,8 +250,8 @@
     <string name="collector_status_active">Збір вимірювань</string>
     <string name="collector_status_inactive">Збір вимірювань припинено</string>
     <string name="status_initializing">чекаючи позиції</string>
-    <string name="status_ok">добре</string>
-    <string name="status_low_gps_accuracy">низька точність <xliff:g id="accuracy_value">%1$.0f</xliff:g><xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="status_ok">добре - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="status_low_gps_accuracy">низька точність - <xliff:g id="accuracy_value">%1$.0f</xliff:g><xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">Позиція невизначена</string>
     <string name="status_disabled">вимкнено</string>
     <string name="invalid_system_time">Дата / час системи недійсний</string>

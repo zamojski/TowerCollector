@@ -250,8 +250,8 @@
     <string name="collector_status_active">Recogiendo medidas</string>
     <string name="collector_status_inactive">El colector de medidas está parado</string>
     <string name="status_initializing">esperando la ubicación</string>
-    <string name="status_ok">OK</string>
-    <string name="status_low_gps_accuracy">baja precisión <xliff:g id="accuracy_value">%1$.0f</xliff:g> de <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="status_ok">OK - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="status_low_gps_accuracy">baja precisión - <xliff:g id="accuracy_value">%1$.0f</xliff:g> de <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">sin localización</string>
     <string name="status_disabled">deshabilitado</string>
     <string name="invalid_system_time">Hora/Fecha de sistema inválida</string>

@@ -250,8 +250,8 @@
     <string name="collector_status_active">A méréseket összegyűjtik</string>
     <string name="collector_status_inactive">A mérések gyűjtése leállt</string>
     <string name="status_initializing">várakozás a pozícióra</string>
-    <string name="status_ok">OK</string>
-    <string name="status_low_gps_accuracy">alacsony pontosság: <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="status_ok">OK - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="status_low_gps_accuracy">alacsony pontosság - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">nincs helyzet</string>
     <string name="status_disabled">kikapcsolva</string>
     <string name="invalid_system_time">A rendszeridő érvénytelen</string>

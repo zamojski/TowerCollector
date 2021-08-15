@@ -250,8 +250,8 @@
     <string name="collector_status_active">Сбор измерений</string>
     <string name="collector_status_inactive">Сбор измерений остановлен</string>
     <string name="status_initializing">в ожидании позиции</string>
-    <string name="status_ok">подключён</string>
-    <string name="status_low_gps_accuracy">низкая точность <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="status_ok">подключён - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="status_low_gps_accuracy">низкая точность - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">местоположение не найдено</string>
     <string name="status_disabled">отключено</string>
     <string name="invalid_system_time">Неверная системная дата/время</string>

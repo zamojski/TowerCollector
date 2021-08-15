@@ -250,8 +250,8 @@
     <string name="collector_status_active">正在收集测量</string>
     <string name="collector_status_inactive">测量收集已停止</string>
     <string name="status_initializing">等待位置</string>
-    <string name="status_ok">好</string>
-    <string name="status_low_gps_accuracy">精确度低 <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="status_ok">好 - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="status_low_gps_accuracy">精确度低 - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">没有位置</string>
     <string name="status_disabled">已禁用</string>
     <string name="invalid_system_time">系统日期/时间无效</string>

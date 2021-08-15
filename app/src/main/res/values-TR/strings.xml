@@ -250,8 +250,8 @@
     <string name="collector_status_active">Ölçümler toplanıyor</string>
     <string name="collector_status_inactive">Ölçümlerin toplanması durduruldu.</string>
     <string name="status_initializing">Konum bekleniyor</string>
-    <string name="status_ok">İyi</string>
-    <string name="status_low_gps_accuracy">Düşük doğruluk <xliff:g id="accuracy_value">%1$.0f</xliff:g><xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="status_ok">İyi - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="status_low_gps_accuracy">Düşük doğruluk - <xliff:g id="accuracy_value">%1$.0f</xliff:g><xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">konum yok</string>
     <string name="status_disabled">kapalı</string>
     <string name="invalid_system_time">Sistem saati/tarihi geçersiz</string>

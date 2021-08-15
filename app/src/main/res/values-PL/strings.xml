@@ -250,8 +250,8 @@
     <string name="collector_status_active">Próbki są zbierane</string>
     <string name="collector_status_inactive">Zbieranie próbek jest zatrzymane</string>
     <string name="status_initializing">oczekiwanie na pozycję</string>
-    <string name="status_ok">OK</string>
-    <string name="status_low_gps_accuracy">niska dokładność <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="status_ok">OK - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="status_low_gps_accuracy">niska dokładność - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">brak lokacji</string>
     <string name="status_disabled">wyłączony</string>
     <string name="invalid_system_time">Data/czas w systemie jest nieprawidłowy</string>

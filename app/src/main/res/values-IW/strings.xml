@@ -250,8 +250,8 @@
     <string name="collector_status_active">מדידות נאספות</string>
     <string name="collector_status_inactive">איסוף המדידות נעצר</string>
     <string name="status_initializing">בהמתנה למיקום</string>
-    <string name="status_ok">תקין</string>
-    <string name="status_low_gps_accuracy">דיוק נמוך <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="status_ok">תקין - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="status_low_gps_accuracy">דיוק נמוך - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">אין מיקום</string>
     <string name="status_disabled">מושבת</string>
     <string name="invalid_system_time">תאריך/שעה של המערכת שגויים</string>
