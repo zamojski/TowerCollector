@@ -15,6 +15,8 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
+import info.zamojski.soft.towercollector.MainActivity;
+import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.broadcast.ExternalBroadcastReceiver;
 import info.zamojski.soft.towercollector.utils.NotificationHelperBase;
@@ -59,20 +61,31 @@ public class ExportNotificationHelper extends NotificationHelperBase {
         builder.setColor(context.getResources().getColor(R.color.ic_notification_background_color));
         builder.setWhen(System.currentTimeMillis());
         builder.setOnlyAlertOnce(true);
-        // set action
-        PendingIntent cancelExportIntent = createCancelExportIntent();
-        NotificationCompat.Action stopAction;
-        stopAction = new NotificationCompat.Action.Builder(R.drawable.menu_stop, context.getString(R.string.dialog_cancel), cancelExportIntent).build();
-        builder.addAction(stopAction);
+        // set intent
+        PendingIntent mainActivityIntent = createOpenMainActivityIntent();
+        builder.setContentIntent(mainActivityIntent);
         // set message
         builder.setContentTitle(context.getString(R.string.export_notification_title));
         builder.setContentText(notificationText);
         builder.setTicker(notificationText);
+        // set action
+        PendingIntent cancelExportIntent = createCancelExportIntent();
+        NotificationCompat.Action stopAction = new NotificationCompat.Action.Builder(R.drawable.menu_stop, context.getString(R.string.dialog_cancel), cancelExportIntent).build();
+        builder.addAction(stopAction);
         return builder.build();
+    }
+
+    private PendingIntent createOpenMainActivityIntent() {
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.setAction(ExportWorker.SERVICE_FULL_NAME + "_NID_" + ExportWorker.NOTIFICATION_ID);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        return pendingIntent;
     }
 
     private PendingIntent createCancelExportIntent() {
         Intent intent = new Intent(ExternalBroadcastReceiver.ExportStopAction);
+        intent.setPackage(MyApplication.getApplication().getPackageName());
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
         return pendingIntent;
     }

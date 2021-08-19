@@ -26,6 +26,7 @@ public class ExportProgressDialogFragment extends DialogFragment {
     private final int maxPercent;
 
     public ExportProgressDialogFragment(OnExportCancelledListener cancelListener, Uri storageUri, int currentPercent, int maxPercent) {
+        super();
         this.cancelListener = cancelListener;
         this.storageUri = storageUri;
         this.currentPercent = currentPercent;

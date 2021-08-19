@@ -50,6 +50,8 @@ import timber.log.Timber;
 
 public class ExportWorker extends Worker implements IProgressListener {
 
+    public static final String SERVICE_FULL_NAME = ExportWorker.class.getCanonicalName();
+    public static final String BROADCAST_INTENT_STOP_SERVICE = SERVICE_FULL_NAME + ".ExportStop";
     public static final int NOTIFICATION_ID = 'E';
 
     public static final String PROGRESS = "PROGRESS";
