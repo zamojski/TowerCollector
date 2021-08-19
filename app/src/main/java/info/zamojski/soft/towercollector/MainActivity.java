@@ -1364,8 +1364,12 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 // display upload result
                 displayUploadResultDialog(intent.getStringExtra(UploaderService.INTENT_KEY_RESULT_DESCRIPTION));
             } else if (intent.hasExtra(UpdateCheckAsyncTask.INTENT_KEY_UPDATE_INFO)) {
-                // display dialog with download options
-                displayNewVersionDownloadOptions((UpdateInfo) intent.getSerializableExtra(UpdateCheckAsyncTask.INTENT_KEY_UPDATE_INFO));
+                try {
+                    // display dialog with download options
+                    displayNewVersionDownloadOptions((UpdateInfo) intent.getSerializableExtra(UpdateCheckAsyncTask.INTENT_KEY_UPDATE_INFO));
+                } catch (Exception ex) {
+                    Timber.e(ex, "processOnStartIntent(): Failed to deserialize new version extra, possibly after app upgrade");
+                }
             }
         }
     }

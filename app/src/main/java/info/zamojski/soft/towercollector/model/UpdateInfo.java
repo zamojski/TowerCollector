@@ -6,20 +6,21 @@ package info.zamojski.soft.towercollector.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class UpdateInfo implements Serializable {
 
     private static final long serialVersionUID = 2374016653367388314L;
 
-    private int versionCode;
-    private String versionName;
-    private List<DownloadLink> downloadLinks;
+    private final int versionCode;
+    private final String versionName;
+    private final List<DownloadLink> downloadLinks;
 
     public UpdateInfo(int versionCode, String versionName) {
         this.versionCode = versionCode;
         this.versionName = versionName;
-        this.downloadLinks = new ArrayList<DownloadLink>();
+        this.downloadLinks = new ArrayList<>();
     }
 
     public int getVersionCode() {
@@ -35,17 +36,15 @@ public class UpdateInfo implements Serializable {
     }
 
     public void addDownloadLinks(DownloadLink... links) {
-        for (DownloadLink link : links) {
-            downloadLinks.add(link);
-        }
+        downloadLinks.addAll(Arrays.asList(links));
     }
 
     public static class DownloadLink implements Serializable {
 
         private static final long serialVersionUID = 2834764366113140232L;
 
-        private String label;
-        private String[] links;
+        private final String label;
+        private final String[] links;
 
         public DownloadLink(String label, String[] links) {
             this.label = label;
