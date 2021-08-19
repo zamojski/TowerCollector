@@ -51,7 +51,6 @@ public class ExportNotificationHelper extends NotificationHelperBase {
         String notificationText = context.getString(R.string.export_aborting);
         builder.setContentText(notificationText);
         builder.setTicker(notificationText);
-        builder.setStyle(new NotificationCompat.BigTextStyle().bigText(notificationText));
         return builder.build();
     }
 

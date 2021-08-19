@@ -8,8 +8,8 @@
     <string name="shortcut_collecting_toggle_long">Toggle collecting</string>
     <string name="shortcut_upload_toggle_short">Upload</string>
     <string name="shortcut_upload_toggle_long">Toggle upload</string>
-    <string name="shortcut_export_toggle_long">Toggle export</string>
     <string name="shortcut_export_toggle_short">Export</string>
+    <string name="shortcut_export_toggle_long">Toggle export</string>
     <string name="quicksettings_collecting_start">Start collecting</string>
     <string name="quicksettings_collecting_stop">Stop collecting</string>
     <string name="quicksettings_upload_start">Start upload</string>

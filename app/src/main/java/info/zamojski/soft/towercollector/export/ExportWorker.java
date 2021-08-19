@@ -169,11 +169,14 @@ public class ExportWorker extends Worker implements IProgressListener {
         Notification notification = notificationHelper.updateNotificationCancelling();
         notificationManager.notify(NOTIFICATION_ID, notification);
         generator.cancel();
+        notificationManager.cancel(NOTIFICATION_ID);
         super.onStopped();
     }
 
     @Override
     public void reportProgress(int value, int max) {
+        if (isStopped())
+            return;
         setProgressAsync(new Data.Builder()
                 .putInt(PROGRESS, value)
                 .putInt(PROGRESS_MAX, max)
