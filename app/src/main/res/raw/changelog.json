@@ -1,6 +1,14 @@
 {
   "Entries": [
     {
+      "VersionCode": 2090389,
+      "Title": "Changes in version 2.9.3",
+      "Messages": [
+        "Fix crash when displaying new version dialog in case the notification was created before application was updated.",
+        "Always show location accuracy if available."
+      ]
+    },
+    {
       "VersionCode": 2090288,
       "Title": "Changes in version 2.9.2",
       "Messages": [
@@ -58,18 +66,6 @@
         "Add option to postpone developer's message (this message) for later.",
         "Enlarge dot icons to make them easier to click.",
         "Hide tooltip on second click on dot."
-      ]
-    },
-    {
-      "VersionCode": 2080182,
-      "Title": "Changes in version 2.8.1",
-      "Description": "The 2.8.0 version introduced new way of interacting with file system and reduces number of requested permissions. The change is required to make the application running correctly on Android 11. I'm open to any feedback, feel free to contact me by email, Twitter, Facebook or GitHub - links in Preferences :)",
-      "Messages": [
-        "Add option to contribute to OpenCellID anonymously.",
-        "Block navigation between tabs with swiping when map tab is active.",
-        "Allow setting maximum map cache size.",
-        "Disable clearing map cache when disabling map tab.",
-        "Improve error handling."
       ]
     }
   ]

@@ -1,0 +1,2 @@
+- Fix crash when displaying new version dialog in case the notification was created before application was updated.
+- Always show location accuracy if available.
