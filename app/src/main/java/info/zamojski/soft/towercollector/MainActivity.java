@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private boolean showNotCompatibleDialog = true;
 
     private BroadcastReceiver airplaneModeBroadcastReceiver = new AirplaneModeBroadcastReceiver();
-    private BroadcastReceiver batterySaverBroadcastReceiver = null;
+    private BroadcastReceiver batterySaverBroadcastReceiver = new BatterySaverBroadcastReceiver();;
 
     private String exportedDirAbsolutePath;
     private String[] exportedFilePaths;
@@ -196,10 +196,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         checkForNewVersionAvailability();
 
         registerReceiver(airplaneModeBroadcastReceiver, new IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            batterySaverBroadcastReceiver = new BatterySaverBroadcastReceiver();
-            registerReceiver(batterySaverBroadcastReceiver, new IntentFilter(PowerManager.ACTION_POWER_SAVE_MODE_CHANGED));
-        }
+        registerReceiver(batterySaverBroadcastReceiver, new IntentFilter(PowerManager.ACTION_POWER_SAVE_MODE_CHANGED));
     }
 
     @Override
