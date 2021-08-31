@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private boolean showNotCompatibleDialog = true;
 
     private BroadcastReceiver airplaneModeBroadcastReceiver = new AirplaneModeBroadcastReceiver();
-    private BroadcastReceiver batterySaverBroadcastReceiver = new BatterySaverBroadcastReceiver();;
+    private BroadcastReceiver batterySaverBroadcastReceiver = new BatterySaverBroadcastReceiver();
 
     private ExportProgressDialogFragment exportProgressDialog;
     private String exportedDirAbsolutePath;
@@ -1140,6 +1140,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
                     @Override
                     public void onChanged(WorkInfo workInfo) {
+                        if (workInfo == null) {
+                            Timber.tag(INNER_TAG).w("onChanged(): WorkInfo is null");
+                            return;
+                        }
                         int currentPercent = workInfo.getProgress().getInt(ExportWorker.PROGRESS, ExportWorker.PROGRESS_MIN_VALUE);
                         int maxPercent = workInfo.getProgress().getInt(ExportWorker.PROGRESS_MAX, ExportWorker.PROGRESS_MAX_VALUE);
                         Timber.tag(INNER_TAG).d("onChanged(): Updating progress: %s %s", currentPercent, maxPercent);
