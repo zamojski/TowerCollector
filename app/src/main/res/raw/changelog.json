@@ -1,7 +1,7 @@
 {
   "Entries": [
     {
-      "VersionCode": 2100092,
+      "VersionCode": 2100093,
       "Title": "Changes in version 2.10.0",
       "Description" : "This is brings the significantly changed Export function. Please report any issues or suggestions via email, link in the Preferences inside Help section.",
       "Messages": [
