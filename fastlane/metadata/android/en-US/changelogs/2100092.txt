@@ -1,0 +1,5 @@
+- Add notification showing progress of Export operation.
+- Add option to start and stop Export using Quick Settings toggles.
+- Add option to start and stop Export using shortcuts.
+- Add option to start and stop Export with Intents.
+- Fix crash when starting other action while Export is in progress.

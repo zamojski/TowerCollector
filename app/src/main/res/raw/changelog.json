@@ -1,6 +1,18 @@
 {
   "Entries": [
     {
+      "VersionCode": 2100092,
+      "Title": "Changes in version 2.10.0",
+      "Description" : "This is brings the significantly changed Export function. Please report any issues or suggestions via email, link in the Preferences inside Help section.",
+      "Messages": [
+        "Add notification showing progress of Export operation.",
+        "Add option to start and stop Export using Quick Settings toggles.",
+        "Add option to start and stop Export using shortcuts.",
+        "Add option to start and stop Export with Intents.",
+        "Fix crash when starting other action while Export is in progress."
+      ]
+    },
+    {
       "VersionCode": 2090389,
       "Title": "Changes in version 2.9.3",
       "Messages": [
@@ -52,20 +64,6 @@
         "Add legend for the map.",
         "Fix collector crashing when there's no signal (Android bug).",
         "Fix animation to last measurement on the map if another animation is in progress."
-      ]
-    },
-    {
-      "VersionCode": 2080284,
-      "Title": "Changes in version 2.8.2",
-      "Messages": [
-        "Fix crash when selecting a storage folder that cannot be used but can be selected.",
-        "Fix displacement of position icon comparing to accuracy circle on the map.",
-        "Fix swiping enabled on startup when the map was the last active tab.",
-        "Disable listening for location when the map tab is created but not active.",
-        "Add option to enable map updates only on wifi.",
-        "Add option to postpone developer's message (this message) for later.",
-        "Enlarge dot icons to make them easier to click.",
-        "Hide tooltip on second click on dot."
       ]
     }
   ]
