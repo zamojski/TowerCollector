@@ -8,10 +8,14 @@
     <string name="shortcut_collecting_toggle_long">Alternância de coleta</string>
     <string name="shortcut_upload_toggle_short">Carregar</string>
     <string name="shortcut_upload_toggle_long">Alternar upload</string>
+    <string name="shortcut_export_toggle_short">Exportar</string>
+    <string name="shortcut_export_toggle_long">Alternar exportação</string>
     <string name="quicksettings_collecting_start">Iniciar a coleta</string>
     <string name="quicksettings_collecting_stop">Parar a coleta</string>
     <string name="quicksettings_upload_start">Iniciar o upload</string>
     <string name="quicksettings_upload_stop">Parar o upload</string>
+    <string name="quicksettings_export_start">Comece a exportar</string>
+    <string name="quicksettings_export_stop">Parar de exportar</string>
     <string name="unit_length_metric">m</string>
     <string name="unit_length_imperial">pés</string>
     <string name="unit_speed_metric">km/h</string>
@@ -145,6 +149,11 @@
     <string name="error_reporting_notification_title">Ocorreu um erro inexperado</string>
     <string name="error_reporting_notification_text">O app travou. Favor enviar um relatório de erros para ajudar a resolver o problema.</string>
     <string name="error_reporting_notification_comment_prompt">Adicione seu comentário</string>
+    <string name="export_notification_channel_name">Exportar</string>
+    <string name="export_notification_title">Exportar</string>
+    <string name="export_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% exportado.</string>
+    <string name="export_starting">Iniciando exportação&#8230;</string>
+    <string name="export_aborting">Abortando exportação&#8230;</string>
     <string name="export_toast_no_file_types_selected">Nenhum tipo de arquivo selecionado para exportação.</string>
     <string name="export_toast_no_handler_for_file_type">Nenhum aplicativo para lidar com o arquivo.</string>
     <string name="export_dialog_format_selection_title">Selecione formatos de arquivo:</string>

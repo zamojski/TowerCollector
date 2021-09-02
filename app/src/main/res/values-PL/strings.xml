@@ -8,10 +8,14 @@
     <string name="shortcut_collecting_toggle_long">Przełącz zbieranie</string>
     <string name="shortcut_upload_toggle_short">Przesyłanie</string>
     <string name="shortcut_upload_toggle_long">Przełącz przesyłanie</string>
+    <string name="shortcut_export_toggle_short">Eksport</string>
+    <string name="shortcut_export_toggle_long">Przełącz eksport</string>
     <string name="quicksettings_collecting_start">Zbieranie start</string>
     <string name="quicksettings_collecting_stop">Zbieranie stop</string>
     <string name="quicksettings_upload_start">Przesyłanie start</string>
     <string name="quicksettings_upload_stop">Przesyłanie stop</string>
+    <string name="quicksettings_export_start">Eksport start</string>
+    <string name="quicksettings_export_stop">Eksport stop</string>
     <string name="unit_length_metric">m</string>
     <string name="unit_length_imperial">ft</string>
     <string name="unit_speed_metric">km/h</string>
@@ -145,6 +149,11 @@
     <string name="error_reporting_notification_title">Wystąpił niespodziewany błąd</string>
     <string name="error_reporting_notification_text">Aplikacja przestała działać. Proszę prześlij raport błędu, aby pomóc w jego naprawie.</string>
     <string name="error_reporting_notification_comment_prompt">Dodaj swój komentarz</string>
+    <string name="export_notification_channel_name">Eksport</string>
+    <string name="export_notification_title">Eksportowanie</string>
+    <string name="export_notification_progress_info">Wyeksportowano <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
+    <string name="export_starting">Rozpoczynanie eksportu&#8230;</string>
+    <string name="export_aborting">Przerywanie eksportu&#8230;</string>
     <string name="export_toast_no_file_types_selected">Nie wybrano typów plików do wyeksportowania.</string>
     <string name="export_toast_no_handler_for_file_type">Brak aplikacji obsługującej ten plik.</string>
     <string name="export_dialog_format_selection_title">Wybierz formaty plików</string>

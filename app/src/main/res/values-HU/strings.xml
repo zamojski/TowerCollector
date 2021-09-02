@@ -8,10 +8,14 @@
     <string name="shortcut_collecting_toggle_long">Begyűjtés be/ki</string>
     <string name="shortcut_upload_toggle_short">Feltöltés</string>
     <string name="shortcut_upload_toggle_long">Feltöltés be/ki</string>
+    <string name="shortcut_export_toggle_short">Exportálás</string>
+    <string name="shortcut_export_toggle_long">Exportálás be/ki</string>
     <string name="quicksettings_collecting_start">Kezdje el gyűjteni</string>
     <string name="quicksettings_collecting_stop">Álljon meg gyűjteni</string>
     <string name="quicksettings_upload_start">Feltöltés elindítása</string>
     <string name="quicksettings_upload_stop">Feltöltés leállítása</string>
+    <string name="quicksettings_export_start">Exportálás elkezdése</string>
+    <string name="quicksettings_export_stop">Exportálás leállítása</string>
     <string name="unit_length_metric">m</string>
     <string name="unit_length_imperial">láb</string>
     <string name="unit_speed_metric">km/h</string>
@@ -145,6 +149,11 @@
     <string name="error_reporting_notification_title">Váratlan hiba történt</string>
     <string name="error_reporting_notification_text">Az alkalmazás összeomlott. Küldj hibajelentést a probléma megoldásához.</string>
     <string name="error_reporting_notification_comment_prompt">Adj meg egy megjegyzést</string>
+    <string name="export_notification_channel_name">Exportálás</string>
+    <string name="export_notification_title">Exportálás</string>
+    <string name="export_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% exportálva.</string>
+    <string name="export_starting">Exportálás elkezdése&#8230;</string>
+    <string name="export_aborting">Exportálás megszakítása&#8230;</string>
     <string name="export_toast_no_file_types_selected">Nem választott ki fájltípust az exportáláshoz.</string>
     <string name="export_toast_no_handler_for_file_type">Egyetlen alkalmazás sem tudja kezelni a fájlt.</string>
     <string name="export_dialog_format_selection_title">Válassza ki a fájlformátumokat</string>

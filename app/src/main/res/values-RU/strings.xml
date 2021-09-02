@@ -5,13 +5,17 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="locale">ru</string>
     <string name="shortcut_collecting_toggle_short">Сборщик</string>
-    <string name="shortcut_collecting_toggle_long">Запустить сбор</string>
+    <string name="shortcut_collecting_toggle_long">Переключить сбор</string>
     <string name="shortcut_upload_toggle_short">Выгрузка</string>
-    <string name="shortcut_upload_toggle_long">Запустить выгрузку</string>
+    <string name="shortcut_upload_toggle_long">Переключить выгрузку</string>
+    <string name="shortcut_export_toggle_short">Экспорт</string>
+    <string name="shortcut_export_toggle_long">Переключить экспорт</string>
     <string name="quicksettings_collecting_start">Начать сбор</string>
     <string name="quicksettings_collecting_stop">Остановить сбор</string>
     <string name="quicksettings_upload_start">Запустить Выгрузку</string>
     <string name="quicksettings_upload_stop">Остановить выгрузку</string>
+    <string name="quicksettings_export_start">Начать экспорт</string>
+    <string name="quicksettings_export_stop">Остановить экспорт</string>
     <string name="unit_length_metric">м</string>
     <string name="unit_length_imperial">фут</string>
     <string name="unit_speed_metric">км/ч</string>
@@ -145,6 +149,11 @@
     <string name="error_reporting_notification_title">Произошла неизвестная ошибка</string>
     <string name="error_reporting_notification_text">Приложение вылетело. Пожалуйста отправьте отчёт, чтобы помочь исправить проблему.</string>
     <string name="error_reporting_notification_comment_prompt">Добавьте ваш комментарий</string>
+    <string name="export_notification_channel_name">Экспорт</string>
+    <string name="export_notification_title">Экспортирующий</string>
+    <string name="export_notification_progress_info">Экспортировано <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
+    <string name="export_starting">Запуск экспорта&#8230;</string>
+    <string name="export_aborting">Прерывание экспорта&#8230;</string>
     <string name="export_toast_no_file_types_selected">Не выбраны файлы для экспорта.</string>
     <string name="export_toast_no_handler_for_file_type">Нет приложения для обработки файла.</string>
     <string name="export_dialog_format_selection_title">Выберите форматы файлов</string>

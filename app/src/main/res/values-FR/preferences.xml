@@ -160,7 +160,7 @@
     <string name="preferences_main_map_wifi_only_on_summary">La carte ne fonctionnera que dans les zones précédemment mises en cache, sauf si vous êtes connecté au Wi-Fi.</string>
     <string name="preferences_main_map_wifi_only_off_summary">La carte sera mise à jour quel que soit le type de connexion Internet.</string>
     <string name="preferences_main_map_cache_size_title">Taille du cache de la carte</string>
-    <string name="preferences_main_map_cache_size_summary">Ajustez la taille du cache de la carte en fonction de la mémoire libre disponible sur votre appareil.</string>
+    <string name="preferences_main_map_cache_size_summary">Ajustez la taille du cache de la carte en fonction de la mémoire libre disponible sur votre appareil.\n<b>[MB]</b></string>
     <string name="preferences_main_map_clear_cache_title">Vider le cache</string>
     <string name="preferences_main_map_clear_cache_summary">Efface le dossier de cache de la carte pour libérer de l\'espace.</string>
 </resources>

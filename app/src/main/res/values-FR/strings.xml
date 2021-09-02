@@ -8,10 +8,14 @@
     <string name="shortcut_collecting_toggle_long">Basculer la collecte</string>
     <string name="shortcut_upload_toggle_short">Transmettre</string>
     <string name="shortcut_upload_toggle_long">Basculer l\'envoi</string>
+    <string name="shortcut_export_toggle_short">Exportation</string>
+    <string name="shortcut_export_toggle_long">Basculer l\'exportation</string>
     <string name="quicksettings_collecting_start">Commencer la collecte</string>
     <string name="quicksettings_collecting_stop">Arrêter la collecte</string>
     <string name="quicksettings_upload_start">Commencer l\'envoi</string>
     <string name="quicksettings_upload_stop">Arrêter l’envoi</string>
+    <string name="quicksettings_export_start">Lancer l\'exportation</string>
+    <string name="quicksettings_export_stop">Arrêter l\'exportation</string>
     <string name="unit_length_metric">m</string>
     <string name="unit_length_imperial">ft</string>
     <string name="unit_speed_metric">km/h</string>
@@ -145,6 +149,11 @@
     <string name="error_reporting_notification_title">Une erreur inconnue est survenue</string>
     <string name="error_reporting_notification_text">L\'application a planté. Veuillez envoyer un rapport d\'erreur pour aider à résoudre le problème.</string>
     <string name="error_reporting_notification_comment_prompt">Ajoutez votre commentaire</string>
+    <string name="export_notification_channel_name">Exportation</string>
+    <string name="export_notification_title">Exportation</string>
+    <string name="export_notification_progress_info">Exporté <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
+    <string name="export_starting">Démarrage de l\'exportation&#8230;</string>
+    <string name="export_aborting">Abandon de l\'exportation&#8230;</string>
     <string name="export_toast_no_file_types_selected">Aucun type de fichier sélectionné pour l\'exportation.</string>
     <string name="export_toast_no_handler_for_file_type">Pas d\'application pour traiter le fichier.</string>
     <string name="export_dialog_format_selection_title">Sélectionnez le format du fichier :</string>

@@ -160,7 +160,7 @@
     <string name="preferences_main_map_wifi_only_on_summary">El mapa solo funcionará en áreas previamente almacenadas en caché a menos que esté conectado a una red Wi-Fi.</string>
     <string name="preferences_main_map_wifi_only_off_summary">El mapa se actualizará independientemente del tipo de conexión a Internet.</string>
     <string name="preferences_main_map_cache_size_title">Tamaño de la caché del mapa</string>
-    <string name="preferences_main_map_cache_size_summary">Ajuste el tamaño de la caché del mapa de acuerdo con la memoria libre disponible en su dispositivo.</string>
+    <string name="preferences_main_map_cache_size_summary">Ajuste el tamaño de la caché del mapa de acuerdo con la memoria libre disponible en su dispositivo.\n<b>[MB]</b></string>
     <string name="preferences_main_map_clear_cache_title">Limpiar caché</string>
     <string name="preferences_main_map_clear_cache_summary">Borra la carpeta de caché del mapa para liberar espacio.</string>
 </resources>

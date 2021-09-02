@@ -45,7 +45,7 @@
     <string name="preferences_opencellid_api_key_invalid">输入的访问令牌无效。帮助中描述了正确的格式。</string>
     <string name="preferences_opencellid_api_key_link_title">获取您自己的访问令牌</string>
     <string name="preferences_opencellid_api_key_link_summary">在OpenCellID.org网站上免费注册。</string>
-    <string name="preferences_about_opencellid_api_key_title">关于OpenCellID访问令牌</string>
+    <string name="preferences_about_opencellid_api_key_title">关于 OpenCellID 访问令牌</string>
     <string name="preferences_about_opencellid_api_key_summary">有关访问令牌（API密钥）和正确格式的信息。</string>
     <string name="preferences_about_opencellid_project_title">关于OpenCelllID项目</string>
     <string name="preferences_about_opencellid_project_summary">有关OpenCelllD.org项目的信息。</string>
@@ -60,7 +60,7 @@
     <string name="preferences_app_theme_title">主题</string>
     <string name="preferences_app_theme_summary">定义应用的颜色主题。</string>
     <string name="preferences_collector_keep_screen_on_title">收集时保持屏幕开启</string>
-    <string name="preferences_collector_keep_screen_on_summary">定义在收集测量值时屏幕是否会持续亮起。启用将显着缩短电池寿命。</string>
+    <string name="preferences_collector_keep_screen_on_summary">定义在收集测量值时屏幕是否持续亮起。启用将显着缩短电池续航。</string>
     <string name="preferences_gps_optimizations_enabled_title">收集器GPS优化</string>
     <string name="preferences_gps_optimizations_enabled_on_summary">收集测量数据时将使用GPS参数优化。</string>
     <string name="preferences_gps_optimizations_enabled_off_summary">禁用GPS参数优化。</string>
@@ -144,7 +144,7 @@
     <string name="preferences_import_database_summary">从位于选定文件夹中的measures.db文件导入应用程序的内部数据库。</string>
     <string name="preferences_export_database_title">导出数据库</string>
     <string name="preferences_export_database_summary">将应用程序的内部数据库导出到位于所选文件夹中的measures.db文件。</string>
-    <string name="preferences_import_preferences_title">导入数据库</string>
+    <string name="preferences_import_preferences_title">导入配置</string>
     <string name="preferences_import_preferences_summary">从位于选定文件夹中的preferences.xml文件导入应用程序的内部首选项。</string>
     <string name="preferences_export_preferences_title">导出配置</string>
     <string name="preferences_export_preferences_summary">将应用程序的内部首选项导出到位于选定文件夹中的preferences.xml文件。</string>
@@ -160,7 +160,7 @@
     <string name="preferences_main_map_wifi_only_on_summary">除非您已连接到Wi-Fi，否则地图将仅在以前缓存的区域中起作用。</string>
     <string name="preferences_main_map_wifi_only_off_summary">无论Internet连接类型如何，地图都会被更新。</string>
     <string name="preferences_main_map_cache_size_title">地图缓存大小</string>
-    <string name="preferences_main_map_cache_size_summary">根据设备上的可用可用内存调整地图缓存大小。</string>
+    <string name="preferences_main_map_cache_size_summary">根据设备上的可用可用内存调整地图缓存大小。\n<b>[MB]</b></string>
     <string name="preferences_main_map_clear_cache_title">清除缓存</string>
     <string name="preferences_main_map_clear_cache_summary">清除地图缓存文件夹以释放一些空间。</string>
 </resources>

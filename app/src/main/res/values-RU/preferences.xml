@@ -160,7 +160,7 @@
     <string name="preferences_main_map_wifi_only_on_summary">Карта будет работать только в ранее кэшированных областях, если вы не подключены к Wi-Fi.</string>
     <string name="preferences_main_map_wifi_only_off_summary">Карта будет обновляться независимо от типа подключения к Интернету.</string>
     <string name="preferences_main_map_cache_size_title">Размер кэша карты</string>
-    <string name="preferences_main_map_cache_size_summary">Отрегулируйте размер кэша карты в соответствии с доступной свободной памятью на вашем устройстве.</string>
+    <string name="preferences_main_map_cache_size_summary">Отрегулируйте размер кэша карты в соответствии с доступной свободной памятью на вашем устройстве.\n<b>[MB]</b></string>
     <string name="preferences_main_map_clear_cache_title">Очистить кэш</string>
     <string name="preferences_main_map_clear_cache_summary">Очищает папку кэша карты, чтобы освободить место.</string>
 </resources>

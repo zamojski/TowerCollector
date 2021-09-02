@@ -8,10 +8,14 @@
     <string name="shortcut_collecting_toggle_long">שינוי מצב איסוף</string>
     <string name="shortcut_upload_toggle_short">העלאה</string>
     <string name="shortcut_upload_toggle_long">שינוי מצב העלאה</string>
+    <string name="shortcut_export_toggle_short">ייצוא</string>
+    <string name="shortcut_export_toggle_long">שנה את מצב הייצוא</string>
     <string name="quicksettings_collecting_start">התחלת איסוף</string>
     <string name="quicksettings_collecting_stop">עצירת איסוף</string>
     <string name="quicksettings_upload_start">התחלת העלאה</string>
     <string name="quicksettings_upload_stop">עצירת העלאה</string>
+    <string name="quicksettings_export_start">התחלת ייצוא</string>
+    <string name="quicksettings_export_stop">עצירת ייצוא</string>
     <string name="unit_length_metric">מ׳</string>
     <string name="unit_length_imperial">רגל</string>
     <string name="unit_speed_metric">קמ״ש</string>
@@ -145,6 +149,11 @@
     <string name="error_reporting_notification_title">אירעה שגיאה בלתי ידועה</string>
     <string name="error_reporting_notification_text">היישומון קרס. נא לשלוח דוח שגיאה כדי לסייע בתיקון התקלה.</string>
     <string name="error_reporting_notification_comment_prompt">הוספת הערה משלך</string>
+    <string name="export_notification_channel_name">ייצוא</string>
+    <string name="export_notification_title">מתבצע ייצוא</string>
+    <string name="export_notification_progress_info">ייוצאו <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
+    <string name="export_starting">הייצוא מתחיל&#8230;</string>
+    <string name="export_aborting">הייצוא מבוטל&#8230;</string>
     <string name="export_toast_no_file_types_selected">לא נבחרו סוגי קבצים לייצוא.</string>
     <string name="export_toast_no_handler_for_file_type">אין יישומון לטיפול בקובץ.</string>
     <string name="export_dialog_format_selection_title">בחירת סוגי קבצים</string>

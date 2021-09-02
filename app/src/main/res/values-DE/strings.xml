@@ -5,13 +5,17 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="locale">de</string>
     <string name="shortcut_collecting_toggle_short">Sammeln</string>
-    <string name="shortcut_collecting_toggle_long">Sammeln ein-/ausschalten</string>
+    <string name="shortcut_collecting_toggle_long">Sammeln ein/aus</string>
     <string name="shortcut_upload_toggle_short">Hochladen</string>
     <string name="shortcut_upload_toggle_long">Hochladen ein/aus</string>
+    <string name="shortcut_export_toggle_short">Export</string>
+    <string name="shortcut_export_toggle_long">Export ein/aus</string>
     <string name="quicksettings_collecting_start">Erfassung starten</string>
     <string name="quicksettings_collecting_stop">Erfassung stoppen</string>
     <string name="quicksettings_upload_start">Starte Upload</string>
     <string name="quicksettings_upload_stop">Upload stoppen</string>
+    <string name="quicksettings_export_start">Export starten</string>
+    <string name="quicksettings_export_stop">Export stoppen</string>
     <string name="unit_length_metric">m</string>
     <string name="unit_length_imperial">ft</string>
     <string name="unit_speed_metric">km/h</string>
@@ -145,6 +149,11 @@
     <string name="error_reporting_notification_title">Unerwarteter Fehler aufgetreten</string>
     <string name="error_reporting_notification_text">Die App ist abgestürzt. Bitte senden Sie einen Fehlerbericht um bei der Behebung zu helfen.</string>
     <string name="error_reporting_notification_comment_prompt">Kommentar hinzufügen</string>
+    <string name="export_notification_channel_name">Export</string>
+    <string name="export_notification_title">Exportieren</string>
+    <string name="export_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% exportiert.</string>
+    <string name="export_starting">Export starten&#8230;</string>
+    <string name="export_aborting">Abbruch des Exports&#8230;</string>
     <string name="export_toast_no_file_types_selected">Kein Dateityp für Export ausgewählt</string>
     <string name="export_toast_no_handler_for_file_type">Keine App für dieses Dateiformat gefunden.</string>
     <string name="export_dialog_format_selection_title">Gewünschtes Dateiformat</string>
@@ -251,7 +260,7 @@
     <string name="collector_status_inactive">Erfassung ist gestoppt</string>
     <string name="status_initializing">warte auf Koordinaten</string>
     <string name="status_ok">OK - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
-    <string name="status_low_gps_accuracy">geringe Genauigkeit - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="status_low_gps_accuracy">geringe Genauigkeit: - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="status_no_gps_location">keine GPS-Position</string>
     <string name="status_disabled">deaktiviert</string>
     <string name="invalid_system_time">Systemzeit ist ungültig</string>

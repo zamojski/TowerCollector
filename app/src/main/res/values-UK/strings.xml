@@ -8,10 +8,14 @@
     <string name="shortcut_collecting_toggle_long">Переключити збір</string>
     <string name="shortcut_upload_toggle_short">закачати</string>
     <string name="shortcut_upload_toggle_long">Переключити завантаження</string>
+    <string name="shortcut_export_toggle_short">Експорт</string>
+    <string name="shortcut_export_toggle_long">Переключити експорт</string>
     <string name="quicksettings_collecting_start">Почніть збирати</string>
     <string name="quicksettings_collecting_stop">Припиніть збирати</string>
     <string name="quicksettings_upload_start">Почати передавання</string>
     <string name="quicksettings_upload_stop">Зупинити передавання</string>
+    <string name="quicksettings_export_start">Почати експорт</string>
+    <string name="quicksettings_export_stop">Зупинити експорт</string>
     <string name="unit_length_metric">м</string>
     <string name="unit_length_imperial">фут</string>
     <string name="unit_speed_metric">км/год</string>
@@ -145,6 +149,11 @@
     <string name="error_reporting_notification_title">Несподівана помилка</string>
     <string name="error_reporting_notification_text">Додаток заглючив. Будь ласка, відправте повідомлення про помилку, щоб допомогти у вирішенні проблеми.</string>
     <string name="error_reporting_notification_comment_prompt">Додати свій коментар</string>
+    <string name="export_notification_channel_name">Експорт</string>
+    <string name="export_notification_title">Експорт</string>
+    <string name="export_notification_progress_info">Експортується <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
+    <string name="export_starting">Початок експорту&#8230;</string>
+    <string name="export_aborting">Скасування експорту&#8230;</string>
     <string name="export_toast_no_file_types_selected">Для експорту не вибрано типів файлів.</string>
     <string name="export_toast_no_handler_for_file_type">Немає програми для обробки формату файлу.</string>
     <string name="export_dialog_format_selection_title">Виберіть формати файлів</string>

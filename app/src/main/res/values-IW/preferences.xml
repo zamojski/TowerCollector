@@ -160,7 +160,7 @@
     <string name="preferences_main_map_wifi_only_on_summary">המפה תעבוד רק על אזורים שנשמרו בעבר אלמלא יש לך חיבור לרשת אלחוטית.</string>
     <string name="preferences_main_map_wifi_only_off_summary">המפה תעודכן ללא תלות בסוג החיבור לאינטרנט.</string>
     <string name="preferences_main_map_cache_size_title">גודל מטמון המפה</string>
-    <string name="preferences_main_map_cache_size_summary">להתאים את גודל מטמון המפה בהתאם לזיכרון הפנוי במכשיר.</string>
+    <string name="preferences_main_map_cache_size_summary">להתאים את גודל מטמון המפה בהתאם לזיכרון הפנוי במכשיר.\n<b>[MB]</b></string>
     <string name="preferences_main_map_clear_cache_title">פינוי המטמון</string>
     <string name="preferences_main_map_clear_cache_summary">מפנה את תיקיית זיכרון המטמון כדי לפנות מקום.</string>
 </resources>

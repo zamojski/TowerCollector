@@ -8,10 +8,14 @@
     <string name="shortcut_collecting_toggle_long">Attivare raccolta dati</string>
     <string name="shortcut_upload_toggle_short">Carica</string>
     <string name="shortcut_upload_toggle_long">Attivare caricamento</string>
+    <string name="shortcut_export_toggle_short">Esporta</string>
+    <string name="shortcut_export_toggle_long">Seleziona esportazione</string>
     <string name="quicksettings_collecting_start">Avvia la raccolta</string>
     <string name="quicksettings_collecting_stop">Termina la raccolta</string>
     <string name="quicksettings_upload_start">Avvia Caricamento</string>
     <string name="quicksettings_upload_stop">Termina caricamento</string>
+    <string name="quicksettings_export_start">Inizia a esportare</string>
+    <string name="quicksettings_export_stop">Ferma esportazione</string>
     <string name="unit_length_metric">m</string>
     <string name="unit_length_imperial">ft</string>
     <string name="unit_speed_metric">km/h</string>
@@ -145,6 +149,11 @@
     <string name="error_reporting_notification_title">Errore inaspettato</string>
     <string name="error_reporting_notification_text">L\'app si è bloccata. Si prega di inviare una segnalazione di errore per aiutare a risolvere il problema.</string>
     <string name="error_reporting_notification_comment_prompt">Aggiungi il tuo commento</string>
+    <string name="export_notification_channel_name">Esporta</string>
+    <string name="export_notification_title">Sto esportando</string>
+    <string name="export_notification_progress_info">Esportato <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
+    <string name="export_starting">Inizio esportazione&#8230;</string>
+    <string name="export_aborting">Interruzione dell\'esportazione&#8230;</string>
     <string name="export_toast_no_file_types_selected">Nessun tipo di file selezionato per l\'esportazione.</string>
     <string name="export_toast_no_handler_for_file_type">Nessuna applicazione per gestire il file.</string>
     <string name="export_dialog_format_selection_title">Seleziona i formati di file</string>

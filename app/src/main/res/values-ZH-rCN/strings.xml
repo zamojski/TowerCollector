@@ -8,10 +8,14 @@
     <string name="shortcut_collecting_toggle_long">收集开关</string>
     <string name="shortcut_upload_toggle_short">上传</string>
     <string name="shortcut_upload_toggle_long">上传开关</string>
+    <string name="shortcut_export_toggle_short">导出数据</string>
+    <string name="shortcut_export_toggle_long">切换导出</string>
     <string name="quicksettings_collecting_start">开始收藏</string>
     <string name="quicksettings_collecting_stop">停止收集</string>
     <string name="quicksettings_upload_start">开始上传</string>
     <string name="quicksettings_upload_stop">停止上传</string>
+    <string name="quicksettings_export_start">开始数据导出</string>
+    <string name="quicksettings_export_stop">停止数据导出</string>
     <string name="unit_length_metric">米</string>
     <string name="unit_length_imperial">英尺</string>
     <string name="unit_speed_metric">千米/小时</string>
@@ -106,7 +110,7 @@
     <string name="collector_notification_channel_name">收集器</string>
     <string name="collector_notification_title">收集中</string>
     <string name="collector_notification_stats">今天 <xliff:g id="number_of_cells">%2$d</xliff:g> 个基站 的 <xliff:g id="number_of_measurements">%1$d</xliff:g> 份测量数据。</string>
-    <string name="collector_notification_last_measurement">最后的蜂窝塔：\n<xliff:g id="cell_identifier">%s</xliff:g></string>
+    <string name="collector_notification_last_measurement">最后的基站：\n<xliff:g id="cell_identifier">%s</xliff:g></string>
     <string name="collector_notification_status">GPS状态： <xliff:g id="status">%s</xliff:g>。</string>
     <string name="collector_gps_unavailable">由于GPS不可用，无法开始收集。</string>
     <string name="uploader_notification_channel_name">上传</string>
@@ -145,6 +149,11 @@
     <string name="error_reporting_notification_title">发生意外错误</string>
     <string name="error_reporting_notification_text">此应用崩溃了。请发送错误报告以帮助解决问题。</string>
     <string name="error_reporting_notification_comment_prompt">添加您的评论</string>
+    <string name="export_notification_channel_name">导出数据</string>
+    <string name="export_notification_title">导出数据</string>
+    <string name="export_notification_progress_info">导出了 <xliff:g id="progress_in_percent">%d</xliff:g>%% 的数据。</string>
+    <string name="export_starting">开始数据导出&#8230;</string>
+    <string name="export_aborting">中止数据导出&#8230;</string>
     <string name="export_toast_no_file_types_selected">没有选择要导出的文件类型。</string>
     <string name="export_toast_no_handler_for_file_type">没有应用程序来处理文件类型。</string>
     <string name="export_dialog_format_selection_title">选择文件格式</string>
@@ -214,13 +223,13 @@
     <string name="mail_help_last_number_of_cells_description">手机可以访问的主要和相邻小区基站的数量。</string>
     <string name="main_help_last_network_type_title">网络类型</string>
     <string name="main_help_last_network_type_description">手机已连接的移动网络类型。</string>
-    <string name="main_help_last_long_cell_id_title">Long Cell Tower ID</string>
-    <string name="main_help_last_long_cell_id_description">电话连接的长唯一蜂窝塔标识符。</string>
+    <string name="main_help_last_long_cell_id_title">基站 ID（长）</string>
+    <string name="main_help_last_long_cell_id_description">手机连接的基站唯一标识符（长）。</string>
     <string name="main_help_last_long_cell_id_description_umts">对于UMTS网络，LCID（也称为UTRAN CID）是RNC（无线电网络控制器的ID）和小区ID（小区塔的唯一ID）的串联。</string>
     <string name="main_help_last_long_cell_id_description_lte">对于LTE网络，LCID（也称为E-UTRAN CID）是eNodeB（无线电网络控制器的ID）和小区ID（小区塔的唯一ID）的串联。</string>
-    <string name="main_help_last_cell_id_rnc_title">Cell Tower ID / RNC</string>
-    <string name="main_help_last_cell_id_rnc_description">独一无二的蜂窝塔标识符和电话所连接的RNC（无线网络控制器的ID）。该ID仅针对UMTS和LTE网络定义。</string>
-    <string name="main_help_last_cell_id_title">Cell Tower ID</string>
+    <string name="main_help_last_cell_id_rnc_title">基站 ID / RNC</string>
+    <string name="main_help_last_cell_id_rnc_description">手机连接的基站标识符和 RNC（无线网络控制器 ID）。该 ID 仅为 UMTS 和 LTE 网络定义。</string>
+    <string name="main_help_last_cell_id_title">基站 ID</string>
     <string name="main_help_last_cell_id_description">手机已连接的唯一手机信号塔标识符。</string>
     <string name="main_help_last_bid_title">基站标识</string>
     <string name="main_help_last_lac_title">位置区码(LAC)</string>

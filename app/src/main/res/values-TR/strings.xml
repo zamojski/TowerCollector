@@ -5,13 +5,17 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="locale">tr</string>
     <string name="shortcut_collecting_toggle_short">Topla</string>
-    <string name="shortcut_collecting_toggle_long">Toplamayı başlat</string>
+    <string name="shortcut_collecting_toggle_long">Toplamayı aç/kapat</string>
     <string name="shortcut_upload_toggle_short">Yükle</string>
-    <string name="shortcut_upload_toggle_long">Yüklemeyi başlat</string>
+    <string name="shortcut_upload_toggle_long">Yüklemeyi aç/kapat</string>
+    <string name="shortcut_export_toggle_short">İhracat</string>
+    <string name="shortcut_export_toggle_long">Dışa aktarmayı aç/kapat</string>
     <string name="quicksettings_collecting_start">Toplamaya başla</string>
     <string name="quicksettings_collecting_stop">Toplamayı durdur</string>
     <string name="quicksettings_upload_start">Yüklemeye başla</string>
     <string name="quicksettings_upload_stop">Yüklemeyi durdur</string>
+    <string name="quicksettings_export_start">Başlangıç ihracat</string>
+    <string name="quicksettings_export_stop">Dur ihracat</string>
     <string name="unit_length_metric">m</string>
     <string name="unit_length_imperial">ft</string>
     <string name="unit_speed_metric">km/s</string>
@@ -145,6 +149,11 @@
     <string name="error_reporting_notification_title">Beklenmeyen bir hata ile karşılaşıldı</string>
     <string name="error_reporting_notification_text">Uygulama çöktü. Sorunun çözülmesine yardımcı olmak için lütfen hata raporu gönderin.</string>
     <string name="error_reporting_notification_comment_prompt">Yorum ekleyin</string>
+    <string name="export_notification_channel_name">Ihracat</string>
+    <string name="export_notification_title">Ihracat</string>
+    <string name="export_notification_progress_info">İhraç edilen %%<xliff:g id="progress_in_percent">%d</xliff:g>.</string>
+    <string name="export_starting">Dışa aktarma başlatılıyor&#8230;</string>
+    <string name="export_aborting">İhracatı iptal etme&#8230;</string>
     <string name="export_toast_no_file_types_selected">Dışa aktarma için dosya türü seçilmedi.</string>
     <string name="export_toast_no_handler_for_file_type">Dosyayı açacak uygulama bulunamadı.</string>
     <string name="export_dialog_format_selection_title">Dosya biçimini seçin</string>
