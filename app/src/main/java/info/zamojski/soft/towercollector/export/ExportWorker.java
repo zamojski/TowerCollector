@@ -90,7 +90,7 @@ public class ExportWorker extends Worker implements IProgressListener {
                 ExportQuickSettingsTileService.requestTileUpdate(true);
             }
 
-            List<FileType> fileTypes = Arrays.asList(FileType.valuesOf(getInputData().getStringArray(SELECTED_FILE_TYPES)));
+            List<FileType> fileTypes = new ArrayList<>(Arrays.asList(FileType.valuesOf(getInputData().getStringArray(SELECTED_FILE_TYPES))));
             storageUri = MyApplication.getPreferencesProvider().getStorageUri();
             intentSource = IntentSource.valueOf(getInputData().getString(INTENT_SOURCE));
             CreateGenerators(fileTypes);
@@ -156,7 +156,8 @@ public class ExportWorker extends Worker implements IProgressListener {
             return Result.failure();
         } finally {
             MyApplication.stopBackgroundTask();
-            generator.removeProgressListener(this);
+            if (generator != null)
+                generator.removeProgressListener(this);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 ExportQuickSettingsTileService.requestTileUpdate(false);
             }
