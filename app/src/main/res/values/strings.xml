@@ -220,7 +220,7 @@
     <string name="main_help_today_locations_title">Measurements today</string>
     <string name="main_help_today_locations_description">Number of measurements collected by the application today.</string>
     <string name="main_help_today_cells_title">Cells today</string>
-    <string name="main_help_today_cells_description">Number of cells collected (newly discovered) by the application today.</string>
+    <string name="main_help_today_cells_description">Number of cells collected by the application today. In the parentheses is the number of cells that were collected for the first time on this device, never recorded before.</string>
     <string name="main_help_local_locations_title">Measurements stored locally</string>
     <string name="main_help_local_locations_description">Number of measurements collected by the application since last upload / deletion.</string>
     <string name="main_help_local_cells_title">Cells stored locally</string>
