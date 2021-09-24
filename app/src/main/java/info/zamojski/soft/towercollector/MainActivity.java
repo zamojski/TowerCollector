@@ -968,19 +968,19 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_upload), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    boolean isOcidUploadEnabledTemp = ocidUploadCheckbox.isChecked();
-                    boolean isMlsUploadEnabledTemp = mlsUploadCheckbox.isChecked();
-                    boolean isReuploadIfUploadFailsEnabledTemp = reuploadCheckbox.isChecked();
+                    boolean isOcidUploadCheckedTemp = ocidUploadCheckbox.isChecked();
+                    boolean isMlsUploadCheckedTemp = mlsUploadCheckbox.isChecked();
+                    boolean isReuploadIfUploadFailsCheckedTemp = reuploadCheckbox.isChecked();
                     if (dontShowAgainCheckbox.isChecked()) {
-                        preferencesProvider.setOpenCellIdUploadEnabled(isOcidUploadEnabled);
-                        preferencesProvider.setMlsUploadEnabled(isMlsUploadEnabled);
-                        preferencesProvider.setReuploadIfUploadFailsEnabled(isReuploadIfUploadFailsEnabledTemp);
+                        preferencesProvider.setOpenCellIdUploadEnabled(isOcidUploadCheckedTemp);
+                        preferencesProvider.setMlsUploadEnabled(isMlsUploadCheckedTemp);
+                        preferencesProvider.setReuploadIfUploadFailsEnabled(isReuploadIfUploadFailsCheckedTemp);
                         preferencesProvider.setShowConfiguratorBeforeUpload(false);
                     }
-                    if (!isOcidUploadEnabledTemp && !isMlsUploadEnabledTemp) {
+                    if (!isOcidUploadCheckedTemp && !isMlsUploadCheckedTemp) {
                         showAllProjectsDisabledMessage();
                     } else {
-                        startUploaderService(isOcidUploadEnabledTemp, isMlsUploadEnabledTemp, isReuploadIfUploadFailsEnabledTemp);
+                        startUploaderService(isOcidUploadCheckedTemp, isMlsUploadCheckedTemp, isReuploadIfUploadFailsCheckedTemp);
                     }
                 }
             });
