@@ -6,7 +6,6 @@ package info.zamojski.soft.towercollector.utils;
 
 import info.zamojski.soft.towercollector.BuildConfig;
 import info.zamojski.soft.towercollector.MyApplication;
-import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvider;
 
 public class OpenCellIdUtils {
     public static boolean isApiKeyValid(String apiKey) {
@@ -19,11 +18,11 @@ public class OpenCellIdUtils {
     }
 
     public static String getApiKey() {
-        PreferencesProvider preferencesProvider = MyApplication.getPreferencesProvider();
-        if (preferencesProvider.isUseSharedOpenCellIdApiKeyEnabled()) {
-            return BuildConfig.OCID_API_KEY;
-        }
-        return preferencesProvider.getApiKey();
+        return MyApplication.getPreferencesProvider().getApiKey();
+    }
+
+    public static String getSharedApiKey() {
+        return BuildConfig.OCID_API_KEY;
     }
 
     public static boolean isApiKeyShared(String apiKey) {

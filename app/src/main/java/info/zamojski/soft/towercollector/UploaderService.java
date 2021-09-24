@@ -54,6 +54,7 @@ public class UploaderService extends Service {
     public static final String SERVICE_FULL_NAME = UploaderService.class.getCanonicalName();
     public static final String BROADCAST_INTENT_STOP_SERVICE = SERVICE_FULL_NAME + ".UploaderCancel";
     public static final String INTENT_KEY_UPLOAD_TO_OCID = "upload_to_ocid";
+    public static final String INTENT_KEY_UPLOAD_TO_OCID_SHARED = "upload_to_ocid_shared";
     public static final String INTENT_KEY_UPLOAD_TO_MLS = "upload_to_mls";
     public static final String INTENT_KEY_UPLOAD_TRY_REUPLOAD = "try_reupload";
     public static final String INTENT_KEY_RESULT_DESCRIPTION = "result_description";
@@ -73,6 +74,7 @@ public class UploaderService extends Service {
     private String ocidApiKey;
     private String mlsApiKey;
     private boolean isOpenCellIdUploadEnabled;
+    private boolean isUseSharedOpenCellIdApiKeyEnabled;
     private boolean isMlsUploadEnabled;
     private boolean isReuploadIfUploadFailsEnabled;
     private final AtomicBoolean isCancelled = new AtomicBoolean(false);
@@ -104,16 +106,18 @@ public class UploaderService extends Service {
         // get passed configuration (intent or extras may be null if the service is being restarted)
         PreferencesProvider preferencesProvider = MyApplication.getPreferencesProvider();
         isOpenCellIdUploadEnabled = preferencesProvider.isOpenCellIdUploadEnabled();
+        isUseSharedOpenCellIdApiKeyEnabled = preferencesProvider.isUseSharedOpenCellIdApiKeyEnabled();
         isMlsUploadEnabled = preferencesProvider.isMlsUploadEnabled();
         isReuploadIfUploadFailsEnabled = preferencesProvider.isReuploadIfUploadFailsEnabled();
         if (intent != null) {
             isOpenCellIdUploadEnabled = intent.getBooleanExtra(INTENT_KEY_UPLOAD_TO_OCID, isOpenCellIdUploadEnabled);
+            isUseSharedOpenCellIdApiKeyEnabled = intent.getBooleanExtra(INTENT_KEY_UPLOAD_TO_OCID_SHARED, isUseSharedOpenCellIdApiKeyEnabled);
             isMlsUploadEnabled = intent.getBooleanExtra(INTENT_KEY_UPLOAD_TO_MLS, isMlsUploadEnabled);
             isReuploadIfUploadFailsEnabled = intent.getBooleanExtra(INTENT_KEY_UPLOAD_TRY_REUPLOAD, isReuploadIfUploadFailsEnabled);
             startIntentSource = (IntentSource) intent.getSerializableExtra(INTENT_KEY_START_INTENT_SOURCE);
         }
         // we hope API key will be valid
-        ocidApiKey = OpenCellIdUtils.getApiKey();
+        ocidApiKey = isUseSharedOpenCellIdApiKeyEnabled ? OpenCellIdUtils.getSharedApiKey() : OpenCellIdUtils.getApiKey();
         mlsApiKey = BuildConfig.MLS_API_KEY;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

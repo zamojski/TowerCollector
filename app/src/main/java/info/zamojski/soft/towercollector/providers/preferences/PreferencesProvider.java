@@ -319,6 +319,10 @@ public class PreferencesProvider {
         return value;
     }
 
+    public void setUseSharedOpenCellIdApiKeyEnabled(boolean enabled) {
+        booleanPreferenceProvider.setPreference(R.string.preferences_opencellid_use_shared_api_key_key, enabled);
+    }
+
     public int getMapCacheSizeLimit() {
         int value = integerPreferenceProvider.getPreference(R.string.preferences_main_map_cache_size_key, R.integer.preferences_main_map_cache_size_default_value);
         return value;

@@ -942,6 +942,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         final PreferencesProvider preferencesProvider = MyApplication.getPreferencesProvider();
         final boolean isOcidUploadEnabled = preferencesProvider.isOpenCellIdUploadEnabled();
+        final boolean isUseSharedOpenCellIdApiKeyEnabled = preferencesProvider.isUseSharedOpenCellIdApiKeyEnabled();
         final boolean isMlsUploadEnabled = preferencesProvider.isMlsUploadEnabled();
         final boolean isReuploadIfUploadFailsEnabled = preferencesProvider.isReuploadIfUploadFailsEnabled();
         Timber.i("startUploaderServiceWithCheck(): Upload for OCID = " + isOcidUploadEnabled + ", MLS = " + isMlsUploadEnabled);
@@ -949,13 +950,27 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         if (showConfigurator) {
             Timber.d("startUploaderServiceWithCheck(): Showing upload configurator");
             // check API key
-            String apiKey = OpenCellIdUtils.getApiKey();
-            boolean isApiKeyValid = OpenCellIdUtils.isApiKeyValid(apiKey);
+            boolean isApiKeyValid = OpenCellIdUtils.isApiKeyValid(OpenCellIdUtils.getApiKey());
             LayoutInflater inflater = LayoutInflater.from(this);
             View dialogLayout = inflater.inflate(R.layout.configure_uploader_dialog, null);
             final CheckBox ocidUploadCheckbox = dialogLayout.findViewById(R.id.ocid_upload_dialog_checkbox);
+            final CheckBox ocidAnonymousUploadCheckbox = dialogLayout.findViewById(R.id.ocid_anonymous_upload_dialog_checkbox);
+            final TextView invalidApiKeyTextView = dialogLayout.findViewById(R.id.ocid_invalid_api_key_upload_dialog_textview);
             ocidUploadCheckbox.setChecked(isOcidUploadEnabled);
-            dialogLayout.findViewById(R.id.ocid_invalid_api_key_upload_dialog_textview).setVisibility(isApiKeyValid ? View.GONE : View.VISIBLE);
+            ocidUploadCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    ocidAnonymousUploadCheckbox.setEnabled(isChecked);
+                }
+            });
+            ocidAnonymousUploadCheckbox.setChecked(isUseSharedOpenCellIdApiKeyEnabled);
+            ocidAnonymousUploadCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    invalidApiKeyTextView.setVisibility(isChecked || isApiKeyValid ? View.GONE : View.VISIBLE);
+                }
+            });
+            invalidApiKeyTextView.setVisibility(isUseSharedOpenCellIdApiKeyEnabled || isApiKeyValid ? View.GONE : View.VISIBLE);
             final CheckBox mlsUploadCheckbox = dialogLayout.findViewById(R.id.mls_upload_dialog_checkbox);
             mlsUploadCheckbox.setChecked(isMlsUploadEnabled);
             final CheckBox reuploadCheckbox = dialogLayout.findViewById(R.id.reupload_if_upload_fails_upload_dialog_checkbox);
@@ -969,10 +984,12 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     boolean isOcidUploadCheckedTemp = ocidUploadCheckbox.isChecked();
+                    boolean isOcidAnonymousUploadCheckedTemp = ocidAnonymousUploadCheckbox.isChecked();
                     boolean isMlsUploadCheckedTemp = mlsUploadCheckbox.isChecked();
                     boolean isReuploadIfUploadFailsCheckedTemp = reuploadCheckbox.isChecked();
                     if (dontShowAgainCheckbox.isChecked()) {
                         preferencesProvider.setOpenCellIdUploadEnabled(isOcidUploadCheckedTemp);
+                        preferencesProvider.setUseSharedOpenCellIdApiKeyEnabled(isOcidAnonymousUploadCheckedTemp);
                         preferencesProvider.setMlsUploadEnabled(isMlsUploadCheckedTemp);
                         preferencesProvider.setReuploadIfUploadFailsEnabled(isReuploadIfUploadFailsCheckedTemp);
                         preferencesProvider.setShowConfiguratorBeforeUpload(false);
@@ -980,7 +997,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                     if (!isOcidUploadCheckedTemp && !isMlsUploadCheckedTemp) {
                         showAllProjectsDisabledMessage();
                     } else {
-                        startUploaderService(isOcidUploadCheckedTemp, isMlsUploadCheckedTemp, isReuploadIfUploadFailsCheckedTemp);
+                        startUploaderService(isOcidUploadCheckedTemp, isOcidAnonymousUploadCheckedTemp, isMlsUploadCheckedTemp, isReuploadIfUploadFailsCheckedTemp);
                     }
                 }
             });
@@ -1001,7 +1018,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             if (!isOcidUploadEnabled && !isMlsUploadEnabled) {
                 showAllProjectsDisabledMessage();
             } else {
-                startUploaderService(isOcidUploadEnabled, isMlsUploadEnabled, isReuploadIfUploadFailsEnabled);
+                startUploaderService(isOcidUploadEnabled, isUseSharedOpenCellIdApiKeyEnabled, isMlsUploadEnabled, isReuploadIfUploadFailsEnabled);
             }
         }
     }
@@ -1021,11 +1038,12 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         snackbar.show();
     }
 
-    private void startUploaderService(boolean isOcidUploadEnabled, boolean isMlsUploadEnabled, boolean isReuploadIfUploadFailsEnabled) {
+    private void startUploaderService(boolean isOcidUploadEnabled, boolean isOcidAnonymousUploadEnabled, boolean isMlsUploadEnabled, boolean isReuploadIfUploadFailsEnabled) {
         // start task
         if (!MyApplication.isBackgroundTaskRunning(UploaderService.class)) {
             Intent intent = new Intent(MainActivity.this, UploaderService.class);
             intent.putExtra(UploaderService.INTENT_KEY_UPLOAD_TO_OCID, isOcidUploadEnabled);
+            intent.putExtra(UploaderService.INTENT_KEY_UPLOAD_TO_OCID_SHARED, isOcidAnonymousUploadEnabled);
             intent.putExtra(UploaderService.INTENT_KEY_UPLOAD_TO_MLS, isMlsUploadEnabled);
             intent.putExtra(UploaderService.INTENT_KEY_UPLOAD_TRY_REUPLOAD, isReuploadIfUploadFailsEnabled);
             intent.putExtra(UploaderService.INTENT_KEY_START_INTENT_SOURCE, IntentSource.User);
