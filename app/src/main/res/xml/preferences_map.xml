@@ -22,11 +22,11 @@
             app:title="@string/preferences_main_map_force_light_theme_title" />
 
         <SwitchPreferenceCompat
-            app:defaultValue="@bool/preferences_main_map_wifi_only_default_value"
-            app:key="@string/preferences_main_map_wifi_only_key"
-            app:summaryOff="@string/preferences_main_map_wifi_only_off_summary"
-            app:summaryOn="@string/preferences_main_map_wifi_only_on_summary"
-            app:title="@string/preferences_main_map_wifi_only_title" />
+            app:defaultValue="@bool/preferences_main_map_unmetered_only_default_value"
+            app:key="@string/preferences_main_map_unmetered_only_key"
+            app:summaryOff="@string/preferences_main_map_unmetered_only_off_summary"
+            app:summaryOn="@string/preferences_main_map_unmetered_only_on_summary"
+            app:title="@string/preferences_main_map_unmetered_only_title" />
 
         <SeekBarPreference
             android:max="@integer/preferences_main_map_cache_size_max_value"

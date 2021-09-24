@@ -328,8 +328,8 @@ public class PreferencesProvider {
         return value;
     }
 
-    public boolean isMapUpdatedOnlyOnWifi() {
-        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_main_map_wifi_only_key, R.bool.preferences_main_map_wifi_only_default_value);
+    public boolean isMapUpdatedOnlyOnUnmetered() {
+        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_main_map_unmetered_only_key, R.bool.preferences_main_map_unmetered_only_default_value);
         return value;
     }
 }

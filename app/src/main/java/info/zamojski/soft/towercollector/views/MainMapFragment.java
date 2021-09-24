@@ -517,7 +517,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
     };
 
     private void registerNetworkCallback() {
-        if (!MyApplication.getPreferencesProvider().isMapUpdatedOnlyOnWifi()) {
+        if (!MyApplication.getPreferencesProvider().isMapUpdatedOnlyOnUnmetered()) {
             mainMapView.setUseDataConnection(true);
             return;
         }
