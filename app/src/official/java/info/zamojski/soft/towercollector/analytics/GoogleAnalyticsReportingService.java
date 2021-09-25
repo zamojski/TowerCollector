@@ -114,6 +114,11 @@ public class GoogleAnalyticsReportingService implements IAnalyticsReportingServi
     }
 
     @Override
+    public void sendExportOpenAction() {
+        sendExportAction(Label.Open);
+    }
+
+    @Override
     public void sendExportShareAction() {
         sendExportAction(Label.Share);
     }

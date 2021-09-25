@@ -14,6 +14,7 @@ public class Label {
     public static final String Keep = "Keep";
     public static final String Upload = "Upload";
     public static final String Delete = "Delete";
+    public static final String Open = "Open";
     public static final String Share = "Share";
     public static final String UploadOcid = "UploadOCID";
     public static final String UploadOcidShared = "UploadOCIDShared";

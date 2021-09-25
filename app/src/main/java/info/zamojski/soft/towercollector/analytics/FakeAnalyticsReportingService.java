@@ -56,6 +56,11 @@ public class FakeAnalyticsReportingService implements IAnalyticsReportingService
     }
 
     @Override
+    public void sendExportOpenAction() {
+
+    }
+
+    @Override
     public void sendExportShareAction() {
 
     }

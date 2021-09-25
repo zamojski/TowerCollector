@@ -847,6 +847,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     }
 
     private void exportOpenAction() {
+        MyApplication.getAnalytics().sendExportOpenAction();
         Intent openIntent = new Intent(Intent.ACTION_VIEW);
         Uri fileUri = Uri.parse(exportedFilePaths[0]);
         String calculatedMimeType = getApplication().getContentResolver().getType(fileUri);
