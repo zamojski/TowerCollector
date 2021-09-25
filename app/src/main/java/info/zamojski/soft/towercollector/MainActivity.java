@@ -848,6 +848,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private void exportOpenAction() {
         MyApplication.getAnalytics().sendExportOpenAction();
+        if (exportedFilePaths == null)
+            return;
         Intent openIntent = new Intent(Intent.ACTION_VIEW);
         Uri fileUri = Uri.parse(exportedFilePaths[0]);
         String calculatedMimeType = getApplication().getContentResolver().getType(fileUri);
@@ -862,6 +864,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private void exportShareAction() {
         MyApplication.getAnalytics().sendExportShareAction();
+        if (exportedFilePaths == null)
+            return;
         ShareCompat.IntentBuilder shareIntent = new ShareCompat.IntentBuilder(this);
         for (String filePath : exportedFilePaths) {
             Uri fileUri = Uri.parse(filePath);
