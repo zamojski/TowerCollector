@@ -113,8 +113,8 @@ dependencies {
     implementation "ch.acra:acra-limiter:$acraVersion"
     implementation 'org.sufficientlysecure:html-textview:4.0'
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
-    implementation "org.permissionsdispatcher:permissionsdispatcher:$permissionsdispatcherVersion"
-    annotationProcessor "org.permissionsdispatcher:permissionsdispatcher-processor:$permissionsdispatcherVersion"
+    implementation "com.github.permissions-dispatcher:permissionsdispatcher:$permissionsdispatcherVersion"
+    annotationProcessor "com.github.permissions-dispatcher:permissionsdispatcher-processor:$permissionsdispatcherVersion"
     implementation 'com.jakewharton.timber:timber:4.7.1'
     implementation 'org.osmdroid:osmdroid-android:6.1.11'
     implementation 'com.github.MKergall:osmbonuspack:6.8.0'
