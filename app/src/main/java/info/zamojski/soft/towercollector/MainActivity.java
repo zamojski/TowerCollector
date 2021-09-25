@@ -861,7 +861,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private void exportShareAction() {
         MyApplication.getAnalytics().sendExportShareAction();
-        ShareCompat.IntentBuilder shareIntent = ShareCompat.IntentBuilder.from(this);
+        ShareCompat.IntentBuilder shareIntent = new ShareCompat.IntentBuilder(this);
         for (String filePath : exportedFilePaths) {
             Uri fileUri = Uri.parse(filePath);
             shareIntent.addStream(fileUri);
