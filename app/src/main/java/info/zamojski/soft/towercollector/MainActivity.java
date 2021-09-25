@@ -1139,7 +1139,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                     break;
                 } else if (state == WorkInfo.State.SUCCEEDED || state == WorkInfo.State.FAILED) {
                     showExportFinished(workInfo);
-                    WorkManager.getInstance(MyApplication.getApplication()).pruneWork();
                     break;
                 }
             }
@@ -1194,6 +1193,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         } else {
             Toast.makeText(MainActivity.this, workInfo.getOutputData().getString(ExportWorker.MESSAGE), Toast.LENGTH_LONG).show();
         }
+        WorkManager.getInstance(MyApplication.getApplication()).pruneWork();
     }
 
     private void cancelExport() {
