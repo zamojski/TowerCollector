@@ -30,7 +30,13 @@ public class NonSwipeableViewPager extends ViewPager {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
-        return swipingEnabled && super.onInterceptTouchEvent(event);
+        try {
+            return swipingEnabled && super.onInterceptTouchEvent(event);
+        } catch (IllegalArgumentException ex) {
+            // it sometimes happens that ViewPager.onInterceptTouchEvent is unable to obtain MotionEvent.getX and MotionEvent.nativeGetAxisValue
+            Timber.w(ex, "onInterceptTouchEvent(): Failed to handle event on system level.");
+            return true;
+        }
     }
 
     @SuppressLint("ClickableViewAccessibility")
