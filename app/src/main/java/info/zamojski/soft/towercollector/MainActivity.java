@@ -1159,6 +1159,11 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                     public void onChanged(WorkInfo workInfo) {
                         if (workInfo == null) {
                             Timber.tag(INNER_TAG).w("onChanged(): WorkInfo is null");
+                            // hide loading indicator
+                            if (exportProgressDialog != null) {
+                                exportProgressDialog.dismiss();
+                            }
+                            exportProgressDialog = null;
                             return;
                         }
                         int currentPercent = workInfo.getProgress().getInt(ExportWorker.PROGRESS, ExportWorker.PROGRESS_MIN_VALUE);
