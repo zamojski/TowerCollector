@@ -46,7 +46,7 @@ public class ExportProgressDialogFragment extends DialogFragment {
 
         ProgressDialog exportProgressDialog = new ProgressDialog(getContext());
         exportProgressDialog.setTitle(R.string.export_dialog_progress_title);
-        exportProgressDialog.setMessage(getString(R.string.export_dialog_progress_message, storageUri.getPath()));
+        exportProgressDialog.setMessage(getString(R.string.export_dialog_progress_message, storageUri == null ? "" : storageUri.getPath()));
         exportProgressDialog.setCancelable(false);
         exportProgressDialog.setCanceledOnTouchOutside(false);
         exportProgressDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_cancel), (dialog, which) -> {
