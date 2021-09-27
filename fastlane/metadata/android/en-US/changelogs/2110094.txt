@@ -1,0 +1,8 @@
+- Fix number of discovered local cells higher than number of local cells.
+- Fix upload configuration not saved when don't show again is checked.
+- Fix export progress window sometimes stays open after export is finished.
+- Fix export result window appears one more time after restoring minimized application.
+- Fix crash when exporting data when storage folder is undefined.
+- Add option to contribute anonymously on upload configurator.
+- Improved descriptions and translations.
+- Small bug fixes.
