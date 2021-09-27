@@ -178,7 +178,7 @@
     <string name="clear_dialog_title">Wyczyść wszystkie dane</string>
     <string name="clear_dialog_message">Czy jesteś pewien, że chcesz trwale usunąć wszystkie przechowywane lokalnie dane?</string>
     <string name="delete_dialog_title">Usuń wyeksportowane dane</string>
-    <string name="delete_dialog_message">Czy jesteś pewien, że chcesz usunąć wyeksportowane dane?</string>
+    <string name="delete_dialog_message">Czy jesteś pewien, że chcesz usunąć lokalnie przechowywane próbki?</string>
     <string name="clear_toast_finished">Baza danych została wyczyszczona</string>
     <string name="clear_map_cache_finished">Pamięć podręczna mapy została wyczyszczona</string>
     <string name="clear_map_cache_failed">Wystąpił błąd podczas czyszczenia pamięci podręcznej mapy</string>
@@ -210,7 +210,7 @@
     <string name="main_help_today_locations_title">Liczba próbek dzisiaj</string>
     <string name="main_help_today_locations_description">Liczba próbek zebranych przez aplikację dzisiaj.</string>
     <string name="main_help_today_cells_title">Liczba przekaźników dzisiaj</string>
-    <string name="main_help_today_cells_description">Liczba przekaźników zebranych (nowo odkrytych) przez aplikację dzisiaj.</string>
+    <string name="main_help_today_cells_description">Liczba przekaźników zebranych przez aplikację dzisiaj. W nawiasie znajduje się liczba przekaźników zebranych po raz pierwszy na tym urządzeniu, nigdy wcześniej nie zapisane.</string>
     <string name="main_help_local_locations_title">Liczba próbek lokalnie</string>
     <string name="main_help_local_locations_description">Liczba próbek zebranych przez aplikację od czasu ostatniego przesłania / skasowania.</string>
     <string name="main_help_local_cells_title">Liczba przekaźników lokalnie</string>
@@ -259,8 +259,8 @@
     <string name="collector_status_active">Próbki są zbierane</string>
     <string name="collector_status_inactive">Zbieranie próbek jest zatrzymane</string>
     <string name="status_initializing">oczekiwanie na pozycję</string>
-    <string name="status_ok">OK - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
-    <string name="status_low_gps_accuracy">niska dokładność - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="status_ok">OK (<xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g>)</string>
+    <string name="status_low_gps_accuracy">niska dokładność (<xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g>)</string>
     <string name="status_no_gps_location">brak lokacji</string>
     <string name="status_disabled">wyłączony</string>
     <string name="invalid_system_time">Data/czas w systemie jest nieprawidłowy</string>
@@ -273,6 +273,7 @@
     <string name="export_format_json_mls">JSON dla Mozilla Location Services</string>
     <string name="export_format_zip">Kompresuj każdy plik</string>
     <string name="upload_configurator_dialog_title">Wybierz cel przesyłania</string>
+    <string name="upload_anonymously">Anonimowo</string>
     <string name="enter_valid_api_key">Wprowadź poprawny klucz dostępu w ustawieniach</string>
     <string name="reupload_measurements_if_upload_fails_for_one_of_projects">Ponów próbę jeżeli przesyłanie do jednego z projektów zawiedzie</string>
     <string name="unsafe_operation_warning_title">Niebezpieczna operacja</string>

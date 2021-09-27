@@ -178,7 +178,7 @@
     <string name="clear_dialog_title">למחוק את כל הנתונים</string>
     <string name="clear_dialog_message">למחוק לצמיתות את כל הנתונים שנשמרו מקומית?</string>
     <string name="delete_dialog_title">מחיקת המיוצאים</string>
-    <string name="delete_dialog_message">למחוק לצמיתות את הנתונים שיוצאו?</string>
+    <string name="delete_dialog_message">למחוק לצמיתות את המדדים שמאוחסנים מקומית?</string>
     <string name="clear_toast_finished">תוכן מסד הנתונים נמחק</string>
     <string name="clear_map_cache_finished">מטמון המפה התנקה</string>
     <string name="clear_map_cache_failed">ניקוי מטמון המפה נכשל</string>
@@ -210,7 +210,7 @@
     <string name="main_help_today_locations_title">מדידות היום</string>
     <string name="main_help_today_locations_description">מספר המדידות שנאספו היום על ידי היישומון.</string>
     <string name="main_help_today_cells_title">תאים היום</string>
-    <string name="main_help_today_cells_description">מספר התאים שנאספו (התגלו לראשונה) על ידי היישומון היום.</string>
+    <string name="main_help_today_cells_description">מספר התאים שנאספו על ידי היישומון היום. בסוגריים זה מספר התאים שנאספו לראשונה במכשיר הזה ולא הוקלטו בעבר.</string>
     <string name="main_help_local_locations_title">מדידות שמאוחסנות מקומית</string>
     <string name="main_help_local_locations_description">מספר המדידות שנאספו על ידי היישומון מאז ההעלאה / מחיקה האחרונה.</string>
     <string name="main_help_local_cells_title">תאים שמאוחסנים מקומית</string>
@@ -259,8 +259,8 @@
     <string name="collector_status_active">מדידות נאספות</string>
     <string name="collector_status_inactive">איסוף המדידות נעצר</string>
     <string name="status_initializing">בהמתנה למיקום</string>
-    <string name="status_ok">תקין - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
-    <string name="status_low_gps_accuracy">דיוק נמוך - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="status_ok">תקין - (<xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g>)</string>
+    <string name="status_low_gps_accuracy">דיוק נמוך (<xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g>)</string>
     <string name="status_no_gps_location">אין מיקום</string>
     <string name="status_disabled">מושבת</string>
     <string name="invalid_system_time">תאריך/שעה של המערכת שגויים</string>
@@ -273,6 +273,7 @@
     <string name="export_format_json_mls">JSON לשירותי המיקום של Mozilla</string>
     <string name="export_format_zip">לדחוס כל קובץ שעבר ייצוא</string>
     <string name="upload_configurator_dialog_title">הגדרת יעד להעלאה</string>
+    <string name="upload_anonymously">באופן אלמוני</string>
     <string name="enter_valid_api_key">עליך להקליד אסימון גישה תקני בהגדרות</string>
     <string name="reupload_measurements_if_upload_fails_for_one_of_projects">יש לנסות להעלות את המדידות שוב אם ההעלאה נכשלת עבור אחד מהמיזמים.</string>
     <string name="unsafe_operation_warning_title">פעולה בלתי בטוחה</string>

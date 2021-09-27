@@ -178,7 +178,7 @@
     <string name="clear_dialog_title">Alle Daten löschen</string>
     <string name="clear_dialog_message">Sind Sie sicher, dass Sie alle lokal gespeicherten Daten löschen wollen?</string>
     <string name="delete_dialog_title">Exportierte Daten löschen</string>
-    <string name="delete_dialog_message">Sind Sie sicher dass Sie exportierte Daten permanent löschen wollen?</string>
+    <string name="delete_dialog_message">Sind Sie sicher, dass Sie die lokal gespeicherten Messungen löschen wollen?</string>
     <string name="clear_toast_finished">Daten gelöscht</string>
     <string name="clear_map_cache_finished">Cache der Kartendaten geleert</string>
     <string name="clear_map_cache_failed">Fehler beim Leeren des Karten-Cache</string>
@@ -210,7 +210,7 @@
     <string name="main_help_today_locations_title">Messungen heute</string>
     <string name="main_help_today_locations_description">Anzahl Messungen die heute gesammelt wurden.</string>
     <string name="main_help_today_cells_title">Zellen heute</string>
-    <string name="main_help_today_cells_description">Anzahl der Zellen die heute erfasst (neu hinzugekommen) wurden.</string>
+    <string name="main_help_today_cells_description">Anzahl der Zellen die heute erfasst wurden. In der Klammer steht wie viele davon zum ersten Mal auf diesem Gerät erfasst wurden.</string>
     <string name="main_help_local_locations_title">Messungen im lokalen Speicher</string>
     <string name="main_help_local_locations_description">Anzahl der Messungen die seit dem letzten Hochladen/Löschen gesammelt worden sind.</string>
     <string name="main_help_local_cells_title">Zellen lokal gespeichert</string>
@@ -259,8 +259,8 @@
     <string name="collector_status_active">Sammle Messungen</string>
     <string name="collector_status_inactive">Erfassung ist gestoppt</string>
     <string name="status_initializing">warte auf Koordinaten</string>
-    <string name="status_ok">OK - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
-    <string name="status_low_gps_accuracy">geringe Genauigkeit: - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="status_ok">OK (<xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g>)</string>
+    <string name="status_low_gps_accuracy">geringe Genauigkeit (<xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g>)</string>
     <string name="status_no_gps_location">keine GPS-Position</string>
     <string name="status_disabled">deaktiviert</string>
     <string name="invalid_system_time">Systemzeit ist ungültig</string>
@@ -273,6 +273,7 @@
     <string name="export_format_json_mls">JSON für den Mozilla Location Service</string>
     <string name="export_format_zip">Exportierte Dateien komprimieren</string>
     <string name="upload_configurator_dialog_title">Upload-Ziel konfigurieren</string>
+    <string name="upload_anonymously">anonym</string>
     <string name="enter_valid_api_key">Sie müssen einen gültigen Zugriffstoken in den Einstellungen setzen</string>
     <string name="reupload_measurements_if_upload_fails_for_one_of_projects">Upload zu einem Projekt erneut versuchen wenn ein Fehler passiert ist</string>
     <string name="unsafe_operation_warning_title">Unsicherer Vorgang</string>

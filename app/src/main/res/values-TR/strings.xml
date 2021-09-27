@@ -178,7 +178,7 @@
     <string name="clear_dialog_title">Tüm veriyi temizleyin</string>
     <string name="clear_dialog_message">Cihazda depolanan bütün verileri kalıcı olarak silmek istediğinize emin misiniz ?</string>
     <string name="delete_dialog_title">Dışa aktarılan verileri sil</string>
-    <string name="delete_dialog_message">Dışa aktarılan verileri tamamen silmek istediğinize emin misiniz ?</string>
+    <string name="delete_dialog_message">Dışa olarak saklanan ölçümleri kalıcı olarak silmek istediğinize emin misiniz ?</string>
     <string name="clear_toast_finished">Veri tabanı temizlendi</string>
     <string name="clear_map_cache_finished">Harita önbelleği temizlendi</string>
     <string name="clear_map_cache_failed">Harita önbelleği temizlenemedi</string>
@@ -210,7 +210,7 @@
     <string name="main_help_today_locations_title">Bugünkü ölçümler</string>
     <string name="main_help_today_locations_description">Bugün uygulama tarafından toplanan ölçümlerin sayısı</string>
     <string name="main_help_today_cells_title">Bugünkü hücreler</string>
-    <string name="main_help_today_cells_description">Bugün uygulama tarafından bulunan hücrelerin sayısı</string>
+    <string name="main_help_today_cells_description">Bugün uygulama tarafından toplanan hücre sayısı. Parantez içinde, bu cihazda ilk kez toplanan ve daha önce hiç kaydedilmemiş hücre sayısı yer almaktadır.</string>
     <string name="main_help_local_locations_title">Cihaza depolanan ölçümler</string>
     <string name="main_help_local_locations_description">Son yüklemeden/silmeden beri toplanan ölçümlerin sayısı</string>
     <string name="main_help_local_cells_title">Cihazda depolanan hücreler</string>
@@ -259,8 +259,8 @@
     <string name="collector_status_active">Ölçümler toplanıyor</string>
     <string name="collector_status_inactive">Ölçümlerin toplanması durduruldu.</string>
     <string name="status_initializing">Konum bekleniyor</string>
-    <string name="status_ok">İyi - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
-    <string name="status_low_gps_accuracy">Düşük doğruluk - <xliff:g id="accuracy_value">%1$.0f</xliff:g><xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="status_ok">İyi (<xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g>)</string>
+    <string name="status_low_gps_accuracy">Düşük doğruluk (<xliff:g id="accuracy_value">%1$.0f</xliff:g><xliff:g id="accuracy_unit">%2$s</xliff:g>)</string>
     <string name="status_no_gps_location">konum yok</string>
     <string name="status_disabled">kapalı</string>
     <string name="invalid_system_time">Sistem saati/tarihi geçersiz</string>
@@ -273,6 +273,7 @@
     <string name="export_format_json_mls">Mozilla Konum Hizmetleri için JSON</string>
     <string name="export_format_zip">Dışarı aktarılan her bir dosyayı sıkıştır.</string>
     <string name="upload_configurator_dialog_title">Yükleme hedefini yapılandırın</string>
+    <string name="upload_anonymously">Anonim olarak</string>
     <string name="enter_valid_api_key">Ayarlardan geçerli bir Erişim tokeni girmeniz gerekiyor</string>
     <string name="reupload_measurements_if_upload_fails_for_one_of_projects">Eğer projelerden birine yükleme başarısız olursa ölçümleri tekrar yüklemeyi dene</string>
     <string name="unsafe_operation_warning_title">Güvenilmeyen eylem</string>

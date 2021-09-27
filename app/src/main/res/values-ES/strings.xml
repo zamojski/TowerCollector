@@ -178,7 +178,7 @@
     <string name="clear_dialog_title">Borrar todos los datos</string>
     <string name="clear_dialog_message">¿Está seguro de que desea eliminar permanentemente todos los datos almacenados localmente?</string>
     <string name="delete_dialog_title">Eliminar exportado</string>
-    <string name="delete_dialog_message">¿Está seguro de que desea eliminar permanentemente los datos exportados?</string>
+    <string name="delete_dialog_message">¿Está seguro de que desea eliminar permanentemente las mediciones almacenadas localmente?</string>
     <string name="clear_toast_finished">Base de datos borrada</string>
     <string name="clear_map_cache_finished">Se borró la caché del mapa</string>
     <string name="clear_map_cache_failed">Could not clear map cache</string>
@@ -210,7 +210,7 @@
     <string name="main_help_today_locations_title">Mediciones hoy</string>
     <string name="main_help_today_locations_description">Numeró de mediciones recolectadas hoy por la aplicación.</string>
     <string name="main_help_today_cells_title">Celdas hoy</string>
-    <string name="main_help_today_cells_description">Número de celdas recolectadas hoy (nuevos descubrimientos) por la aplicación.</string>
+    <string name="main_help_today_cells_description">Número de celdas recolectadas hoy por la aplicación. Entre paréntesis está la cantidad de celdas que se recopilaron por primera vez en este dispositivo, nunca antes registradas.</string>
     <string name="main_help_local_locations_title">Mediciones guardadas localmente</string>
     <string name="main_help_local_locations_description">Número de mediciones recolectadas por la aplicación desde la última subida / borrado.</string>
     <string name="main_help_local_cells_title">Celdas guardadas localmente</string>
@@ -259,8 +259,8 @@
     <string name="collector_status_active">Recogiendo medidas</string>
     <string name="collector_status_inactive">El colector de medidas está parado</string>
     <string name="status_initializing">esperando la ubicación</string>
-    <string name="status_ok">OK - <xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
-    <string name="status_low_gps_accuracy">baja precisión - <xliff:g id="accuracy_value">%1$.0f</xliff:g> de <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="status_ok">OK (<xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g>)</string>
+    <string name="status_low_gps_accuracy">baja precisión (<xliff:g id="accuracy_value">%1$.0f</xliff:g> de <xliff:g id="accuracy_unit">%2$s</xliff:g>)</string>
     <string name="status_no_gps_location">sin localización</string>
     <string name="status_disabled">deshabilitado</string>
     <string name="invalid_system_time">Hora/Fecha de sistema inválida</string>
@@ -273,6 +273,7 @@
     <string name="export_format_json_mls">JSON para Mozilla Location Services</string>
     <string name="export_format_zip">Comprime cada archivo exportado</string>
     <string name="upload_configurator_dialog_title">Configurar destino de carga</string>
+    <string name="upload_anonymously">Anónimamente</string>
     <string name="enter_valid_api_key">Debe ingresar un token de acceso válido en Preferencias</string>
     <string name="reupload_measurements_if_upload_fails_for_one_of_projects">Intente subir las mediciones de nuevo si la carga falla para uno de los proyectos</string>
     <string name="unsafe_operation_warning_title">Operación insegura</string>
