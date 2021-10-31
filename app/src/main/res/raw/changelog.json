@@ -1,6 +1,13 @@
 {
   "Entries": [
     {
+      "VersionCode": 2001045,
+      "Title": "Changes in version 2.0.10",
+      "Messages": [
+        "Fix GPS Week Number Rollover on devices manufactured between 2006 and 2016."
+      ]
+    },
+    {
       "VersionCode": 2000944,
       "Title": "Changes in version 2.0.9",
       "Description": "<b>!Important!</b> Mozilla decided to <a href=\"https://blog.mozilla.org/services/2019/09/03/a-new-policy-for-mozilla-location-service/\">limit API usage</a> of their location service. The older versions of Tower Collector will not be able to contribute to MLS project from March 1, 2020.<br /><i>The OpenCellID API keys are remain valid and don't need to be changed.</i>",
@@ -39,17 +46,6 @@
         "Fix data inconsistency for measurements collected when GPS signal temporarily lost.",
         "Fix upload and export to file skipping some measurements.",
         "Fix statistics calculated incorrectly."
-      ]
-    },
-    {
-      "VersionCode": 2000540,
-      "Title": "Changes in version 2.0.5",
-      "Description": "Do you want stay updated? Follow one of the app communities <a href=\"https://www.facebook.com/towercollector/\">Facebook</a> or <a href=\"https://twitter.com/towercollector/\">Twitter</a>!",
-      "Messages": [
-        "Fixed asking to enable GPS before obtaining necessary permissions.",
-        "Fixed crash when checking for updates on Samsung Galaxy S9+.",
-        "Fixed failing export to GPX.",
-        "Changed upload result notification to be single line."
       ]
     }
   ]

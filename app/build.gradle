@@ -12,14 +12,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "info.zamojski.soft.towercollector"
         minSdkVersion 14
         targetSdkVersion 20
-        versionCode 2000944
-        versionName "2.0.9"
+        versionCode 2001045
+        versionName "2.0.10"
 
         vectorDrawables.useSupportLibrary = true
 
