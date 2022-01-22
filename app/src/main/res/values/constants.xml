@@ -119,6 +119,7 @@
     <string name="preferences_collector_api_version_entries_value_auto" translatable="false">auto</string>
     <string name="preferences_collector_api_version_entries_value_api_17" translatable="false">api_17</string>
     <string name="preferences_collector_api_version_entries_value_api_1" translatable="false">api_1</string>
+    <string name="preferences_collector_api_version_entries_value_api_netmonster" translatable="false">api_netmonster</string>
     <string name="preferences_about_collector_api_version_key" translatable="false">about_collector_api_version</string>
 
     <string name="preferences_file_logging_level_entries_value_disabled" translatable="false">disabled</string>

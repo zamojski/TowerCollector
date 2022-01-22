@@ -12,6 +12,9 @@ import android.text.TextUtils;
 
 import java.util.List;
 
+import cz.mroczis.netmonster.core.INetMonster;
+import cz.mroczis.netmonster.core.factory.NetMonsterFactory;
+import cz.mroczis.netmonster.core.model.cell.ICell;
 import info.zamojski.soft.towercollector.collector.validators.CellIdentityValidator;
 import timber.log.Timber;
 
@@ -41,7 +44,7 @@ public class MobileUtils {
         try {
             cells = telephonyManager.getAllCellInfo();
         } catch (SecurityException ex) {
-            Timber.d(ex, "isApi17CellInfoAvailable(): Result = coarse location permission is denied");
+            Timber.d(ex, "isApi17CellInfoAvailable(): Result = location permission is denied");
             return false;
         }
         if (cells == null || cells.size() == 0) {
@@ -65,5 +68,16 @@ public class MobileUtils {
 
     public static boolean isApi24MultiSimCompatible() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N;
+    }
+
+    public static boolean isNetMonsterCoreApiCompatible(Context context) {
+        INetMonster netMonster = NetMonsterFactory.INSTANCE.get(context);
+        try {
+            List<ICell> cells = netMonster.getCells();
+            return !cells.isEmpty();
+        } catch (SecurityException ex) {
+            Timber.d(ex, "isNetMonsterCoreApiCompatible(): Result = location permission is denied");
+            return false;
+        }
     }
 }

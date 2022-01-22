@@ -14,21 +14,7 @@ import android.telephony.CellInfoNr;
 import android.telephony.CellInfoTdscdma;
 import android.telephony.CellInfoWcdma;
 
-import info.zamojski.soft.towercollector.collector.validators.specific.CdmaCellIdentityValidator;
-import info.zamojski.soft.towercollector.collector.validators.specific.GsmCellIdentityValidator;
-import info.zamojski.soft.towercollector.collector.validators.specific.LteCellIdentityValidator;
-import info.zamojski.soft.towercollector.collector.validators.specific.NrCellIdentityValidator;
-import info.zamojski.soft.towercollector.collector.validators.specific.TdscdmaCellIdentityValidator;
-import info.zamojski.soft.towercollector.collector.validators.specific.WcdmaCellIdentityValidator;
-
-public class CellIdentityValidator {
-
-    private GsmCellIdentityValidator gsmValidator;
-    private WcdmaCellIdentityValidator wcdmaValidator;
-    private LteCellIdentityValidator lteValidator;
-    private CdmaCellIdentityValidator cdmaValidator;
-    private NrCellIdentityValidator nrValidator;
-    private TdscdmaCellIdentityValidator tdscdmaValidator;
+public class CellIdentityValidator extends CellValidatorBase {
 
     public boolean isValid(CellInfo cellInfo) {
         if (cellInfo instanceof CellInfoGsm) {
@@ -60,47 +46,5 @@ public class CellIdentityValidator {
             return getTdscdmaValidator().isValid(tdscdmaCellInfo.getCellIdentity());
         }
         throw new UnsupportedOperationException("Cell identity type not supported `" + cellInfo.getClass().getName() + "`");
-    }
-
-    private GsmCellIdentityValidator getGsmValidator() {
-        if (gsmValidator == null) {
-            gsmValidator = new GsmCellIdentityValidator();
-        }
-        return gsmValidator;
-    }
-
-    private WcdmaCellIdentityValidator getWcdmaValidator() {
-        if (wcdmaValidator == null) {
-            wcdmaValidator = new WcdmaCellIdentityValidator();
-        }
-        return wcdmaValidator;
-    }
-
-    private LteCellIdentityValidator getLteValidator() {
-        if (lteValidator == null) {
-            lteValidator = new LteCellIdentityValidator();
-        }
-        return lteValidator;
-    }
-
-    private CdmaCellIdentityValidator getCdmaValidator() {
-        if (cdmaValidator == null) {
-            cdmaValidator = new CdmaCellIdentityValidator();
-        }
-        return cdmaValidator;
-    }
-
-    private NrCellIdentityValidator getNrValidator() {
-        if (nrValidator == null) {
-            nrValidator = new NrCellIdentityValidator();
-        }
-        return nrValidator;
-    }
-
-    private TdscdmaCellIdentityValidator getTdscdmaValidator() {
-        if (tdscdmaValidator == null) {
-            tdscdmaValidator = new TdscdmaCellIdentityValidator();
-        }
-        return tdscdmaValidator;
     }
 }

@@ -460,6 +460,121 @@ public class Cell extends CellBase implements Serializable {
         this.dbm = signalStrength;
     }
 
+    public void setNetMonsterGsmCell(String mccString, String mncString, int lac, long cid) {
+        this.mcc = StringUtils.toInteger(mccString, Cell.UNKNOWN_CID);
+        this.mnc = StringUtils.toInteger(mncString, Cell.UNKNOWN_CID);
+        this.lac = lac;
+        this.cid = cid;
+        this.networkType = NetworkGroup.Gsm;
+    }
+
+    public void setNetMonsterGsmSignal(int asu, int signalStrength, int timingAdvance, int rssi, int arfcn) {
+        this.asu = asu;
+        this.dbm = signalStrength;
+        this.ta = timingAdvance;
+        this.rssi = rssi;
+        this.arfcn = arfcn;
+        // TODO extend with more properties from signal, band and cell
+    }
+
+    public void setNetMonsterWcdmaCell(String mccString, String mncString, int lac, long ci, int shortCid, int rnc, int psc) {
+        this.mcc = StringUtils.toInteger(mccString, Cell.UNKNOWN_CID);
+        this.mnc = StringUtils.toInteger(mncString, Cell.UNKNOWN_CID);
+        this.lac = lac;
+        this.cid = ci;
+        // TODO: use provided instead of calculated short cid and rnc
+        this.psc = psc;
+        this.networkType = NetworkGroup.Wcdma;
+    }
+
+    public void setNetMonsterWcdmaSignal(int asu, int signalStrength, int ecNo, int arfcn) {
+        this.asu = asu;
+        this.dbm = signalStrength;
+        this.ecNo = ecNo;
+        this.arfcn = arfcn;
+        // TODO extend with more properties from signal, band and cell
+    }
+
+    public void setNetMonsterCdmaCell(int systemId, int networkId, long baseStationId) {
+        this.mnc = systemId;
+        this.lac = networkId;
+        this.cid = baseStationId;
+        this.networkType = NetworkGroup.Cdma;
+        //TODO extend with mnc and mcc
+    }
+
+    public void setNetMonsterCdmaSignal(int asu, int signalStrength, int cdmaDbm, int cdmaEcio, int evdoDbm, int evdoEcio, int evdoSnr) {
+        this.asu = asu;
+        this.dbm = signalStrength;
+        this.cdmaDbm = cdmaDbm;
+        this.cdmaEcio = cdmaEcio;
+        this.evdoDbm = evdoDbm;
+        this.evdoEcio = evdoEcio;
+        this.evdoSnr = evdoSnr;
+        // TODO extend with more properties from signal, band and cell
+    }
+
+    public void setNetMonsterLteCell(String mccString, String mncString, int tac, long cid, int pci) {
+        this.mcc = StringUtils.toInteger(mccString, Cell.UNKNOWN_CID);
+        this.mnc = StringUtils.toInteger(mncString, Cell.UNKNOWN_CID);
+        this.lac = tac;
+        this.cid = cid;
+        this.psc = pci;
+        this.networkType = NetworkGroup.Lte;
+    }
+
+    public void setNetMonsterLteSignal(int asu, int signalStrength, int timingAdvance, int rsrp, int rsrq, int rssi, int rssnr, int cqi, int arfcn) {
+        this.asu = asu;
+        this.dbm = signalStrength;
+        this.ta = timingAdvance;
+        this.rsrp = rsrp;
+        this.rsrq = rsrq;
+        this.rssi = rssi;
+        this.rssnr = rssnr;
+        this.cqi = cqi;
+        this.arfcn = arfcn;
+        // TODO extend with more properties from signal, band and cell
+    }
+
+    public void setNetMonsterNrCell(String mccString, String mncString, int tac, long nci, int pci) {
+        this.mcc = StringUtils.toInteger(mccString, Cell.UNKNOWN_CID);
+        this.mnc = StringUtils.toInteger(mncString, Cell.UNKNOWN_CID);
+        this.lac = tac;
+        this.cid = nci;
+        this.psc = pci;
+        this.networkType = NetworkGroup.Nr;
+    }
+
+    public void setNetMonsterNrSignal(int asu, int signalStrength, int csiRsrp, int csiRsrq, int csiSinr, int ssRsrp, int ssRsrq, int ssSinr, int arfcn) {
+        this.asu = asu;
+        this.dbm = signalStrength;
+        this.csiRsrp = csiRsrp;
+        this.csiRsrq = csiRsrq;
+        this.csiSinr = csiSinr;
+        this.ssRsrp = ssRsrp;
+        this.ssRsrq = ssRsrq;
+        this.ssSinr = ssSinr;
+        this.arfcn = arfcn;
+        // TODO extend with more properties from signal, band and cell
+    }
+
+    public void setNetMonsterTdscdmaCell(String mccString, String mncString, int lac, long cid, int cpid) {
+        this.mcc = StringUtils.toInteger(mccString, Cell.UNKNOWN_CID);
+        this.mnc = StringUtils.toInteger(mncString, Cell.UNKNOWN_CID);
+        this.lac = lac;
+        this.cid = cid;
+        this.psc = cpid;
+        this.networkType = NetworkGroup.Tdscdma;
+    }
+
+    public void setNetMonsterTdscdmaSignal(int asu, int signalStrength, int rscp, int arfcn) {
+        this.asu = asu;
+        this.dbm = signalStrength;
+        this.rscp = rscp;
+        this.arfcn = arfcn;
+        // TODO extend with more properties from signal, band and cell
+    }
+
     @NotNull
     @Override
     public String toString() {

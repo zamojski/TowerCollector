@@ -8,20 +8,41 @@ import android.annotation.TargetApi;
 import android.os.Build;
 import android.telephony.CellIdentityTdscdma;
 
+import cz.mroczis.netmonster.core.model.cell.CellTdscdma;
 import info.zamojski.soft.towercollector.model.Cell;
 import info.zamojski.soft.towercollector.utils.StringUtils;
 import timber.log.Timber;
 
-public class TdscdmaCellIdentityValidator {
+public class TdscdmaCellValidator {
 
     @TargetApi(Build.VERSION_CODES.Q)
     public boolean isValid(CellIdentityTdscdma cell) {
-        boolean valid = (isCidInRange(cell.getCid()) && isLacInRange(cell.getLac())
-                && isMncInRange(cell.getMncString()) && isMccInRange(cell.getMccString())
-                && isCpidInRange(cell.getCpid()));
+        boolean valid = isValid(cell.getMccString(), cell.getMncString(), cell.getLac(), cell.getCid(), cell.getCpid());
         if (!valid) {
-            Timber.w("isValid(): Invalid CellIdentityTdscdma [mcc=%s, mnc=%s, lac=%s, cid=%s, cpid=%s]", cell.getMccString(), cell.getMncString(), cell.getLac(), cell.getCid(), cell.getCpid());
             Timber.w("isValid(): Invalid CellIdentityTdscdma %s", cell);
+        }
+        return valid;
+    }
+
+    public boolean isValid(CellTdscdma cell) {
+        String mccString = cell.getNetwork() != null ? cell.getNetwork().getMcc() : null;
+        String mncString = cell.getNetwork() != null ? cell.getNetwork().getMnc() : null;
+        int lac = cell.getLac() != null ? cell.getLac() : Cell.UNKNOWN_CID;
+        int ci = cell.getCi() != null ? cell.getCi() : Cell.UNKNOWN_CID;
+        int cpid = cell.getCpid() != null ? cell.getCpid() : Cell.UNKNOWN_CID;
+        boolean valid = isValid(mccString, mncString, lac, ci, cpid);
+        if (!valid) {
+            Timber.w("isValid(): Invalid CellTdscdma %s", cell);
+        }
+        return valid;
+    }
+
+    private boolean isValid(String mccString, String mncString, int lac, int cid, int cpid) {
+        boolean valid = (isCidInRange(cid) && isLacInRange(lac)
+                && isMncInRange(mncString) && isMccInRange(mccString)
+                && isCpidInRange(cpid));
+        if (!valid) {
+            Timber.w("isValid(): Invalid TD-SCDMA Cell [mcc=%s, mnc=%s, lac=%s, cid=%s, cpid=%s]", mccString, mncString, lac, cid, cpid);
         }
         return valid;
     }

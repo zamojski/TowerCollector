@@ -33,15 +33,18 @@
         <item>@string/preferences_app_theme_mode_entries_value_light</item>
     </string-array>
     <string name="preferences_collector_api_version_auto">Auto detect</string>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false">NetMonster Core API</string>
     <string name="preferences_collector_api_version_api_17" translatable="false">Android 4.2 API</string>
     <string name="preferences_collector_api_version_api_1" translatable="false">Android 1.0 API</string>
     <string-array name="preferences_collector_api_version_entries_labels" translatable="false">
         <item>@string/preferences_collector_api_version_auto</item>
+        <item>@string/preferences_collector_api_version_api_netmonster</item>
         <item>@string/preferences_collector_api_version_api_17</item>
         <item>@string/preferences_collector_api_version_api_1</item>
     </string-array>
     <string-array name="preferences_collector_api_version_entries_values" translatable="false">
         <item>@string/preferences_collector_api_version_entries_value_auto</item>
+        <item>@string/preferences_collector_api_version_entries_value_api_netmonster</item>
         <item>@string/preferences_collector_api_version_entries_value_api_17</item>
         <item>@string/preferences_collector_api_version_entries_value_api_1</item>
     </string-array>

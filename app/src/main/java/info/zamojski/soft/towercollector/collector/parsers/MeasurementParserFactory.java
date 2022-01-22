@@ -8,12 +8,15 @@ import info.zamojski.soft.towercollector.collector.converters.CellIdentityConver
 import info.zamojski.soft.towercollector.collector.converters.CellLocationConverter;
 import info.zamojski.soft.towercollector.collector.converters.CellLocationSignalConverter;
 import info.zamojski.soft.towercollector.collector.converters.CellSignalConverter;
+import info.zamojski.soft.towercollector.collector.converters.NetMonsterCellConverter;
+import info.zamojski.soft.towercollector.collector.converters.NetMonsterSignalConverter;
 import info.zamojski.soft.towercollector.collector.validators.CellIdentityValidator;
 import info.zamojski.soft.towercollector.collector.validators.CellLocationValidator;
 import info.zamojski.soft.towercollector.collector.validators.ConditionsValidator;
 import info.zamojski.soft.towercollector.collector.validators.LocationValidator;
+import info.zamojski.soft.towercollector.collector.validators.NetMonsterCellValidator;
 import info.zamojski.soft.towercollector.collector.validators.SystemTimeValidator;
-import info.zamojski.soft.towercollector.collector.validators.specific.WcdmaCellIdentityValidator;
+import info.zamojski.soft.towercollector.collector.validators.specific.WcdmaCellValidator;
 
 public class MeasurementParserFactory {
 
@@ -22,7 +25,7 @@ public class MeasurementParserFactory {
         CellIdentityValidator cellValidator = new CellIdentityValidator();
         ConditionsValidator conditionsValidator = new ConditionsValidator();
         SystemTimeValidator systemTimeValidator = new SystemTimeValidator();
-        CellIdentityConverter cellIdentityConverter = new CellIdentityConverter(new WcdmaCellIdentityValidator());
+        CellIdentityConverter cellIdentityConverter = new CellIdentityConverter(new WcdmaCellValidator());
         CellSignalConverter cellSignalConverter = new CellSignalConverter();
         return new Api17PlusMeasurementParser(locationValidator, cellValidator, conditionsValidator,
                 systemTimeValidator, cellIdentityConverter, cellSignalConverter, collectNeighboringCells);
@@ -37,5 +40,16 @@ public class MeasurementParserFactory {
         CellLocationSignalConverter cellSignalConverter = new CellLocationSignalConverter();
         return new LegacyMeasurementParser(locationValidator, cellLocationValidator, conditionsValidator,
                 systemTimeValidator, cellLocationConverter, cellSignalConverter, collectNeighboringCells);
+    }
+
+    public MeasurementParser CreateNetMonsterParser(float requiredAccuracy, boolean collectNeighboringCells) {
+        LocationValidator locationValidator = new LocationValidator(requiredAccuracy);
+        NetMonsterCellValidator cellValidator = new NetMonsterCellValidator();
+        ConditionsValidator conditionsValidator = new ConditionsValidator();
+        SystemTimeValidator systemTimeValidator = new SystemTimeValidator();
+        NetMonsterCellConverter cellConverter = new NetMonsterCellConverter();
+        NetMonsterSignalConverter signalConverter = new NetMonsterSignalConverter();
+        return new NetMonsterMeasurementParser(locationValidator, cellValidator, conditionsValidator,
+                systemTimeValidator, cellConverter, signalConverter, collectNeighboringCells);
     }
 }

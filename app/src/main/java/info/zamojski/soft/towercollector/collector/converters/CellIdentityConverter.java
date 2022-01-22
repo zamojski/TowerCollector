@@ -20,15 +20,15 @@ import android.telephony.CellInfoTdscdma;
 import android.telephony.CellInfoWcdma;
 
 import info.zamojski.soft.towercollector.MyApplication;
-import info.zamojski.soft.towercollector.collector.validators.specific.WcdmaCellIdentityValidator;
+import info.zamojski.soft.towercollector.collector.validators.specific.WcdmaCellValidator;
 import info.zamojski.soft.towercollector.model.Cell;
 import timber.log.Timber;
 
 public class CellIdentityConverter {
 
-    private final WcdmaCellIdentityValidator wcdmaValidator;
+    private final WcdmaCellValidator wcdmaValidator;
 
-    public CellIdentityConverter(WcdmaCellIdentityValidator wcdmaValidator) {
+    public CellIdentityConverter(WcdmaCellValidator wcdmaValidator) {
         this.wcdmaValidator = wcdmaValidator;
     }
 

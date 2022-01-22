@@ -102,7 +102,7 @@ public abstract class CellBase {
             return Cell.UNKNOWN_CID_LONG;
         if (networkType == NetworkGroup.Wcdma)
             return cid % 65536;
-        else if(networkType== NetworkGroup.Lte) // LTE (reversed order)
+        else if(networkType == NetworkGroup.Lte) // LTE (reversed order)
             return cid / 256;
         return Cell.UNKNOWN_CID_LONG;
     }
@@ -113,7 +113,7 @@ public abstract class CellBase {
             return Cell.UNKNOWN_CID_LONG;
         if (networkType == NetworkGroup.Wcdma)
             return cid / 65536;
-        else if(networkType== NetworkGroup.Lte) // LTE (reversed order)
+        else if(networkType == NetworkGroup.Lte) // LTE (reversed order)
             return cid % 256;
         return Cell.UNKNOWN_CID_LONG;
     }

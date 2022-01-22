@@ -49,6 +49,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import cz.mroczis.netmonster.core.INetMonster;
+import cz.mroczis.netmonster.core.factory.NetMonsterFactory;
+import cz.mroczis.netmonster.core.model.cell.ICell;
 import info.zamojski.soft.towercollector.analytics.IntentSource;
 import info.zamojski.soft.towercollector.broadcast.BatteryStatusBroadcastReceiver;
 import info.zamojski.soft.towercollector.broadcast.ExternalBroadcastSender;
@@ -376,11 +379,17 @@ public class CollectorService extends Service {
         if (getString(R.string.preferences_collector_api_version_entries_value_auto).equals(collectorApiVersion)) {
             // auto detection
             MyApplication.getAnalytics().sendPrefsCollectorApiVersion(0);
-            if (MobileUtils.isApi17FullyCompatible(MyApplication.getApplication())) {
+            if (MobileUtils.isNetMonsterCoreApiCompatible(MyApplication.getApplication())) {
+                registerNetMonsterListener();
+            } else if (MobileUtils.isApi17FullyCompatible(MyApplication.getApplication())) {
                 registerApi17PhoneStateListener();
             } else {
                 registerApi1PhoneStateListener();
             }
+        } else if (getString(R.string.preferences_collector_api_version_entries_value_api_netmonster).equals(collectorApiVersion)) {
+            // API NetMonster Core forced
+            MyApplication.getAnalytics().sendPrefsCollectorApiVersion(100);
+            registerNetMonsterListener();
         } else if (getString(R.string.preferences_collector_api_version_entries_value_api_17).equals(collectorApiVersion)) {
             // API 17 forced
             MyApplication.getAnalytics().sendPrefsCollectorApiVersion(17);
@@ -393,7 +402,7 @@ public class CollectorService extends Service {
     }
 
     private void registerApi17PhoneStateListener() {
-        Timber.d("Registering API 17 phone state listener");
+        Timber.d("registerApi17PhoneStateListener(): Registering API 17 phone state listener");
         boolean collectNeighboringCells = MyApplication.getPreferencesProvider().getCollectNeighboringCells();
         measurementParser = new MeasurementParserFactory().CreateApi17Parser(transportMode.getAccuracy(), collectNeighboringCells);
         getMeasurementParserHandler().post(measurementParser);
@@ -411,7 +420,7 @@ public class CollectorService extends Service {
                         Timber.tag(INNER_TAG).d("onCellInfoChanged(): Null reported");
                         return;
                     } else {
-                        Timber.d("onCellInfoChanged(): Cell info changed: %s ", cellInfo);
+                        Timber.tag(INNER_TAG).d("onCellInfoChanged(): Cell info changed: %s ", cellInfo);
                     }
                     try {
                         List<CellInfo> allCellInfo = telephonyManager.getAllCellInfo();
@@ -442,7 +451,7 @@ public class CollectorService extends Service {
                             Timber.tag(INNER_TAG).d("onCellInfo(): Null reported");
                             return;
                         } else {
-                            Timber.d("onCellInfo(): Cell info update result: %s ", cellInfo);
+                            Timber.tag(INNER_TAG).d("onCellInfo(): Cell info update result: %s ", cellInfo);
                         }
                         try {
                             List<CellInfo> allCellInfo = telephonyManager.getAllCellInfo();
@@ -499,7 +508,7 @@ public class CollectorService extends Service {
     }
 
     private void registerApi1PhoneStateListener() {
-        Timber.d("Registering API 1 phone state listener");
+        Timber.d("registerApi1PhoneStateListener(): Registering API 1 phone state listener");
         boolean collectNeighboringCells = MyApplication.getPreferencesProvider().getCollectNeighboringCells();
         measurementParser = new MeasurementParserFactory().CreateApi1Parser(transportMode.getAccuracy(), collectNeighboringCells);
         getMeasurementParserHandler().post(measurementParser);
@@ -562,11 +571,46 @@ public class CollectorService extends Service {
         apiVersionUsed = 1;
     }
 
+    private void registerNetMonsterListener() {
+        Timber.d("registerNetMonsterListener(): Registering NetMonster Core listener");
+        INetMonster netMonster = NetMonsterFactory.INSTANCE.get(MyApplication.getApplication());
+        boolean collectNeighboringCells = MyApplication.getPreferencesProvider().getCollectNeighboringCells();
+        measurementParser = new MeasurementParserFactory().CreateNetMonsterParser(transportMode.getAccuracy(), collectNeighboringCells);
+        getMeasurementParserHandler().post(measurementParser);
+
+        // run scheduled cell listener
+        periodicalPhoneStateListener.schedule(new TimerTask() {
+            private final String INNER_TAG = CollectorService.class.getSimpleName() + ".Periodical" + PhoneStateListener.class.getSimpleName();
+
+            @Override
+            public void run() {
+                try {
+                    List<ICell> cells = netMonster.getCells();
+                    if (cells == null) {
+                        Timber.tag(INNER_TAG).d("run(): Null reported");
+                        return;
+                    }
+                    Timber.tag(INNER_TAG).d("run(): Number of cells: %s", cells.size());
+                    processNetMonsterCell(cells);
+                } catch (SecurityException ex) {
+                    Timber.tag(INNER_TAG).e(ex, "run(): coarse location or phone permission is denied");
+                    stopSelf();
+                }
+            }
+        }, 0, CELL_UPDATE_INTERVAL);
+        apiVersionUsed = 100;
+    }
+
     private void processCellInfo(List<CellInfo> cellInfo) {
         measurementUpdater.setLastCellInfo(cellInfo);
     }
 
-    private void processCellLocation(TelephonyManager telephonyManager, CellLocation cellLocation, List<NeighboringCellInfo> neighboringCells) {
+    private void processNetMonsterCell(List<ICell> cells) {
+        measurementUpdater.setLastNetMonsterCell(cells);
+    }
+
+    private void processCellLocation(TelephonyManager telephonyManager, CellLocation
+            cellLocation, List<NeighboringCellInfo> neighboringCells) {
         // get network type
         int networkTypeInt = telephonyManager.getNetworkType();
         NetworkGroup networkType = NetworkTypeUtils.getNetworkGroup(networkTypeInt);
