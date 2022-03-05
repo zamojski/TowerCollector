@@ -106,7 +106,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.work:work-runtime:2.6.0'
     officialImplementation 'com.google.firebase:firebase-analytics:19.0.1'
-    implementation 'org.greenrobot:eventbus:3.2.0'
+    implementation 'org.greenrobot:eventbus:3.3.1'
     implementation "ch.acra:acra-http:$acraVersion"
     implementation "ch.acra:acra-notification:$acraVersion"
     implementation "ch.acra:acra-limiter:$acraVersion"
