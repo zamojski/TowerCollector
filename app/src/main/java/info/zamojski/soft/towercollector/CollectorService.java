@@ -171,14 +171,17 @@ public class CollectorService extends Service {
                 List<SubscriptionInfo> activeSubscriptions = subscriptionManager.getActiveSubscriptionInfoList();
                 if (activeSubscriptions == null || activeSubscriptions.isEmpty()) {
                     // fallback in case subscriptions state is unknown or inactive
+                    Timber.d("onCreate(): Multi SIM - no active subscriptions found - adding default");
                     telephonyTriples.add(new TelephonyTriple(defaultTelephonyManager));
                 } else {
+                    Timber.d("onCreate(): Multi SIM - %s active subscriptions found", activeSubscriptions.size());
                     for (SubscriptionInfo subscription : activeSubscriptions) {
                         TelephonyManager telephonyManager = defaultTelephonyManager.createForSubscriptionId(subscription.getSubscriptionId());
                         telephonyTriples.add(new TelephonyTriple(telephonyManager));
                     }
                     // if due to some stupid bug active subscription don't have telephony manager
                     if (telephonyTriples.isEmpty()) {
+                        Timber.d("onCreate(): Multi SIM - Active  subscriptions found but not added - adding default");
                         telephonyTriples.add(new TelephonyTriple(defaultTelephonyManager));
                     }
                 }
@@ -188,6 +191,7 @@ public class CollectorService extends Service {
                 return;
             }
         } else { // single-sim, single listener
+            Timber.d("onCreate(): Single SIM - adding default subscription");
             telephonyTriples.add(new TelephonyTriple(defaultTelephonyManager));
         }
         boolean hideNotification = MyApplication.getPreferencesProvider().getHideCollectorNotification();

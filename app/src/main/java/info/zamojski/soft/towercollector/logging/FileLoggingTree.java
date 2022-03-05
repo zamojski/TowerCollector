@@ -78,7 +78,7 @@ public class FileLoggingTree extends Timber.DebugTree {
                     reinitialize();
                 }
             }
-            osw.write(String.format(Locale.ENGLISH, "%s %s/%s(% 5d): %s\r\n", shortDateFormat.format(new Date()), LEVELS[priority], tag, Process.myPid(), message));
+            osw.write(String.format(Locale.ENGLISH, "%s %s/%s(%5d:%5d): %s\r\n", shortDateFormat.format(new Date()), LEVELS[priority], tag, Process.myPid(), Process.myTid(), message));
             osw.flush();
         } catch (Exception ex) {
             Log.e(TAG, "log(): Failed to write log file", ex);
