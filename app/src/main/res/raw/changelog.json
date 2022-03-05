@@ -1,6 +1,14 @@
 {
   "Entries": [
     {
+      "VersionCode": 2120097,
+      "Title": "Changes in version 2.12.0",
+      "Messages": [
+        "Improve support for 5G networks by utilizing NetMonster logic.",
+        "Improve error handling."
+      ]
+    },
+    {
       "VersionCode": 2110094,
       "Title": "Changes in version 2.11.0",
       "Messages": [
@@ -45,14 +53,6 @@
         "Fix export of database and preferences incorrectly overwriting existing file content.",
         "Fix export of preferences created file that couldn't be edited in text editor.",
         "Update translation."
-      ]
-    },
-    {
-      "VersionCode": 2090187,
-      "Title": "Changes in version 2.9.1",
-      "Messages": [
-        "Fix crash when clicking on a link in a dialog window.",
-        "Fix crash after database upgrade."
       ]
     }
   ]
