@@ -20,23 +20,34 @@ public class ExportProgressDialogFragment extends DialogFragment {
 
     public static final String FRAGMENT_TAG = "EXPORT_DIALOG_FRAGMENT";
 
-    private final OnExportCancelledListener cancelListener;
-    private final Uri storageUri;
-    private final int currentPercent;
-    private final int maxPercent;
+    private static final String ARGS_STORAGE_URI = "STORAGE_URI";
+    private static final String ARGS_CURRENT_PERCENT = "CURRENT_PERCENT";
+    private static final String ARGS_MAX_PERCENT = "MAX_PERCENT";
 
-    public ExportProgressDialogFragment(OnExportCancelledListener cancelListener, Uri storageUri, int currentPercent, int maxPercent) {
-        super();
-        this.cancelListener = cancelListener;
-        this.storageUri = storageUri;
-        this.currentPercent = currentPercent;
-        this.maxPercent = maxPercent;
+    private OnExportCancelledListener cancelListener;
+    private Uri storageUri;
+    private int currentPercent;
+    private int maxPercent;
+
+    public static ExportProgressDialogFragment createInstance(Uri storageUri, int currentPercent, int maxPercent) {
+        ExportProgressDialogFragment fragment = new ExportProgressDialogFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(ARGS_STORAGE_URI, storageUri);
+        bundle.putInt(ARGS_CURRENT_PERCENT, currentPercent);
+        bundle.putInt(ARGS_MAX_PERCENT, maxPercent);
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     @Override
     public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setCancelable(false);
+        if (getArguments() == null)
+            throw new IllegalArgumentException("Fragment creation requires arguments");
+        this.storageUri = getArguments().getParcelable(ARGS_STORAGE_URI);
+        this.currentPercent = getArguments().getInt(ARGS_CURRENT_PERCENT);
+        this.maxPercent = getArguments().getInt(ARGS_MAX_PERCENT);
     }
 
     @NonNull
@@ -66,6 +77,10 @@ public class ExportProgressDialogFragment extends DialogFragment {
         if (dialog != null) {
             dialog.setProgress(value);
         }
+    }
+
+    public void setCancelListener(OnExportCancelledListener cancelListener) {
+        this.cancelListener = cancelListener;
     }
 
     public interface OnExportCancelledListener {

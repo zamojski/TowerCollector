@@ -1176,7 +1176,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                         Timber.tag(INNER_TAG).d("onChanged(): Updating progress: %s %s", currentPercent, maxPercent);
                         if (exportProgressDialog == null) {
                             // show loading indicator
-                            exportProgressDialog = new ExportProgressDialogFragment(MainActivity.this, storageUri, currentPercent, maxPercent);
+                            exportProgressDialog = ExportProgressDialogFragment.createInstance(storageUri, currentPercent, maxPercent);
+                            exportProgressDialog.setCancelListener(MainActivity.this);
                             exportProgressDialog.show(getSupportFragmentManager(), ExportProgressDialogFragment.FRAGMENT_TAG);
                         } else {
                             currentPercent = Math.min(currentPercent, maxPercent);
