@@ -43,6 +43,15 @@ public class MapMeasurement extends MeasurementBase implements Serializable {
         return mainCells;
     }
 
+    public boolean containsDiscoveredCells(long minMeasuredAt) {
+        for (MapCell cell : getMainCells()) {
+            if (cell.getDiscoveredAt() >= minMeasuredAt)
+                return true;
+        }
+
+        return false;
+    }
+
     public String getDescription(Context context) {
         return super.getDescription(context, getMainCells(), "<br/>");
     }

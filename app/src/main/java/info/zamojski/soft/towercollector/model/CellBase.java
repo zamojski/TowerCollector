@@ -32,6 +32,10 @@ public abstract class CellBase {
      */
     protected NetworkGroup networkType = NetworkGroup.Unknown;
     /**
+     * Discovered at Unix Timestamp with milliseconds.
+     */
+    protected long discoveredAt;
+    /**
      * Is cell neighboring.
      */
     protected boolean neighboring = false;
@@ -66,6 +70,14 @@ public abstract class CellBase {
 
     public void setNetworkType(NetworkGroup networkType) {
         this.networkType = networkType;
+    }
+
+    public long getDiscoveredAt() {
+        return discoveredAt;
+    }
+
+    public void setDiscoveredAt(long discoveredAt) {
+        this.discoveredAt = discoveredAt;
     }
 
     public boolean isNeighboring() {

@@ -432,7 +432,8 @@ public class MeasurementsDatabase {
                 CellsTable.COLUMN_LAC,
                 CellsTable.COLUMN_MNC,
                 CellsTable.COLUMN_MCC,
-                CellsTable.COLUMN_NET_TYPE
+                CellsTable.COLUMN_NET_TYPE,
+                CellsTable.COLUMN_DISCOVERED_AT
         };
         // Timber.d(queryBuilder.buildQuery(returnedColumns, selection, selectionArgs, groupBy, having, sortOrder, limit));
         Cursor cursor = queryBuilder.query(db, returnedColumns, selection, selectionArgs, groupBy, having, sortOrder, limit);
@@ -444,6 +445,7 @@ public class MeasurementsDatabase {
         int lacColumnIndex = cursor.getColumnIndex(CellsTable.COLUMN_LAC);
         int cidColumnIndex = cursor.getColumnIndex(CellsTable.COLUMN_CID);
         int netTypeColumnIndex = cursor.getColumnIndex(CellsTable.COLUMN_NET_TYPE);
+        int discoveredAtColumnIndex = cursor.getColumnIndex(CellsTable.COLUMN_DISCOVERED_AT);
         int pscColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_PSC);
         int neighboringColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_NEIGHBORING);
         int taColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_TA);
@@ -474,7 +476,7 @@ public class MeasurementsDatabase {
         int gpsSpeedColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_GPS_SPEED);
         int gpsBearingColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_GPS_BEARING);
         int gpsAltitudeColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_GPS_ALTITUDE);
-        int timestampColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_MEASURED_AT);
+        int measuredAtColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_MEASURED_AT);
         int uploadedToOcidAtColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT);
         int uploadedToMlsAtColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT);
         while (cursor.moveToNext()) {
@@ -491,7 +493,7 @@ public class MeasurementsDatabase {
                 measurement.setGpsSpeed(cursor.getFloat(gpsSpeedColumnIndex));
                 measurement.setGpsBearing(cursor.getFloat(gpsBearingColumnIndex));
                 measurement.setGpsAltitude(cursor.getDouble(gpsAltitudeColumnIndex));
-                measurement.setMeasuredAt(cursor.getLong(timestampColumnIndex));
+                measurement.setMeasuredAt(cursor.getLong(measuredAtColumnIndex));
                 if (!cursor.isNull(uploadedToOcidAtColumnIndex))
                     measurement.setUploadedToOcidAt(cursor.getLong(uploadedToOcidAtColumnIndex));
                 if (!cursor.isNull(uploadedToMlsAtColumnIndex))
@@ -508,6 +510,7 @@ public class MeasurementsDatabase {
             cell.setLac(cursor.getInt(lacColumnIndex));
             cell.setCid(cursor.getLong(cidColumnIndex));
             cell.setNetworkType(NetworkGroup.fromValue(cursor.getInt(netTypeColumnIndex)));
+            cell.setDiscoveredAt(cursor.getLong(discoveredAtColumnIndex));
             cell.setNeighboring(cursor.getInt(neighboringColumnIndex) == 1);
             cell.setPsc(cursor.getInt(pscColumnIndex));
             cell.setTa(cursor.getInt(taColumnIndex));
@@ -558,7 +561,8 @@ public class MeasurementsDatabase {
                 CellsTable.COLUMN_LAC,
                 CellsTable.COLUMN_MNC,
                 CellsTable.COLUMN_MCC,
-                CellsTable.COLUMN_NET_TYPE
+                CellsTable.COLUMN_NET_TYPE,
+                CellsTable.COLUMN_DISCOVERED_AT
         };
         // latitude / latitude can pass north or south pole / date line and between would fail
         String selection = MeasurementsTable.COLUMN_LATITUDE + " > ?"
@@ -575,6 +579,7 @@ public class MeasurementsDatabase {
         int lacColumnIndex = cursor.getColumnIndex(CellsTable.COLUMN_LAC);
         int cidColumnIndex = cursor.getColumnIndex(CellsTable.COLUMN_CID);
         int netTypeColumnIndex = cursor.getColumnIndex(CellsTable.COLUMN_NET_TYPE);
+        int discoveredAtColumnIndex = cursor.getColumnIndex(CellsTable.COLUMN_DISCOVERED_AT);
         int neighboringColumnIndex = cursor.getColumnIndex(CellSignalsTable.COLUMN_NEIGHBORING);
         int latitudeColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_LATITUDE);
         int longitudeColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_LONGITUDE);
@@ -599,6 +604,7 @@ public class MeasurementsDatabase {
             cell.setLac(cursor.getInt(lacColumnIndex));
             cell.setCid(cursor.getLong(cidColumnIndex));
             cell.setNetworkType(NetworkGroup.fromValue(cursor.getInt(netTypeColumnIndex)));
+            cell.setDiscoveredAt(cursor.getLong(discoveredAtColumnIndex));
             cell.setNeighboring(cursor.getInt(neighboringColumnIndex) == 1);
             measurement.addCell(cell);
         }

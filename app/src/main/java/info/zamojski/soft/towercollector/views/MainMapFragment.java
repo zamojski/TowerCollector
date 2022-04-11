@@ -8,6 +8,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BlendMode;
+import android.graphics.BlendModeColorFilter;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -67,6 +72,7 @@ import info.zamojski.soft.towercollector.model.Boundaries;
 import info.zamojski.soft.towercollector.model.MapCell;
 import info.zamojski.soft.towercollector.model.MapMeasurement;
 import info.zamojski.soft.towercollector.model.Measurement;
+import info.zamojski.soft.towercollector.model.Statistics;
 import info.zamojski.soft.towercollector.model.Tuple;
 import info.zamojski.soft.towercollector.utils.GpsUtils;
 import info.zamojski.soft.towercollector.utils.MapUtils;
@@ -337,18 +343,29 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         return new Tuple<Boundaries, BoundingBox>(new Boundaries(minLat, minLon, maxLat, maxLon), boundingBoxWithReserve);
     }
 
-    private Marker createMarker(MapMeasurement m) {
+    private Marker createMarker(MapMeasurement m, long localSinceTimestamp) {
         List<MapCell> mainCells = m.getMainCells();
+        boolean isBright = m.containsDiscoveredCells(localSinceTimestamp);
         @DrawableRes int iconId;
         if (mainCells.size() == 1) {
-            iconId = NetworkTypeUtils.getNetworkGroupIcon(mainCells.get(0).getNetworkType());
+            iconId = NetworkTypeUtils.getNetworkGroupIcon(mainCells.get(0).getNetworkType(), isBright);
         } else {
-            iconId = NetworkTypeUtils.getNetworkGroupIcon(mainCells.get(0).getNetworkType(), mainCells.get(1).getNetworkType());
+            iconId = NetworkTypeUtils.getNetworkGroupIcon(mainCells.get(0).getNetworkType(), mainCells.get(1).getNetworkType(), isBright);
         }
         Marker item = new Marker(mainMapView);
-        item.setIcon(ResourcesCompat.getDrawable(getResources(), iconId, theme));
+
+        Drawable icon = ResourcesCompat.getDrawable(getResources(), iconId, theme);
+        if (!isBright) {
+            int color = Color.argb(160, 64, 64, 64);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                icon.setColorFilter(new BlendModeColorFilter(color, BlendMode.SRC_ATOP));
+            } else {
+                icon.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+            }
+        }
+        item.setIcon(icon);
         item.setTitle(dateTimeFormatStandard.format(new Date(m.getMeasuredAt())));
-        item.setSnippet(String.valueOf(m.getDescription(MyApplication.getApplication())));
+        item.setSnippet(m.getDescription(MyApplication.getApplication()));
         item.setPosition(new GeoPoint(m.getLatitude(), m.getLongitude()));
         item.setAnchor(0.5f, 0.5f);
         item.setOnMarkerClickListener(MARKER_CLICK_LISTENER);
@@ -430,7 +447,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         if (++markersAddedIndividually <= MAX_MARKERS_ADDED_INDIVIDUALLY) {
             Timber.d("onEvent(): Adding single measurement to the map, added %s of %s", markersAddedIndividually, MAX_MARKERS_ADDED_INDIVIDUALLY);
             MapMeasurement m = MapMeasurement.fromMeasurement(event.getMeasurement());
-            markersOverlay.add(createMarker(m));
+            markersOverlay.add(createMarker(m, event.getStatistics().getSinceLocal()));
             markersOverlay.invalidate();
         } else {
             reloadMarkers(true);
@@ -461,11 +478,12 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
             RadiusMarkerClusterer result = createMarkersOverlay();
             try {
                 Boundaries boundaries = boundariesParams[0];
+                Statistics stats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
                 List<MapMeasurement> measurements = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsInArea(boundaries);
                 for (MapMeasurement m : measurements) {
                     if (isCancelled())
                         return null;
-                    result.add(createMarker(m));
+                    result.add(createMarker(m, stats.getSinceLocal()));
                 }
             } catch (Exception ex) {
                 Timber.tag(INNER_TAG).e(ex, "doInBackground(): Failed to load markers");
