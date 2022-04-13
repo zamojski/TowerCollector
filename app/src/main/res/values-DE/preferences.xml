@@ -145,7 +145,7 @@
     <string name="preferences_export_database_title">Datenbank exportieren</string>
     <string name="preferences_export_database_summary">Exportiert die app-interne Datenbank in die Datei measurements.db im eingstellten Speicherort.</string>
     <string name="preferences_import_preferences_title">Einstellungen importieren</string>
-    <string name="preferences_import_preferences_summary">Importiert die internen Einstellungen aus der Datei preferences.xml aus dem ausgewählten Verzeichnis.</string>
+    <string name="preferences_import_preferences_summary">Importiert die internen Einstellungen aus der Datei preferences.xml, die sich im Speicherordner befindet, der in den Einstellungen festgelegt wurde.</string>
     <string name="preferences_export_preferences_title">Einstellungen exportieren</string>
     <string name="preferences_export_preferences_summary">Exportiert die internen Einstellungen in die Datei preferences.xml im eingestellten Speicherort.</string>
     <string name="preferences_change_storage_location_title">Speicherort ändern</string>

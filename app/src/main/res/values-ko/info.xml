@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+    <string name="info_about_api_key_title">액세스 토큰(API Key)</string>
+    <string name="info_about_opencellid_project_title">OpenCellID 프로젝트</string>
+    <string name="info_about_mls_project_title">Mozilla Location Services 프로젝트</string>
+    <string name="info_usage_statistics_title">사용 통계</string>
+    <string name="info_about_application_title">정보</string>
+    <string name="info_introduction_title">소개</string>
+    <string name="info_best_practices_title">모범 사례</string>
+    <string name="info_external_integration_title">외부 연동</string>
+    <string name="info_privacy_statement_title">개인 정보 보호 정책</string>
+    <string name="info_open_source_licenses_title">Open Source 라이선스</string>
+    <string name="info_about_neighboring_cells_title">주변 기지국</string>
+    <string name="info_about_collector_api_version_title">수집 API 버전</string>
+    <string name="info_about_main_keep_screen_on_title">화면이 표시될 때 화면 유지</string>
+    <string name="info_about_collector_keep_screen_on_title">수집할 때 화면 켜짐 유지</string>
+    <string name="info_about_notify_measurements_collected_title">수집한 데이터 전송</string>
+    <string name="info_map_help_title">지도 범례</string>
+</resources>

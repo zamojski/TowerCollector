@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+    <string name="preferences_keep_screen_on_mode_disabled">비활성화</string>
+    <string name="preferences_keep_screen_on_mode_dim">어둡게</string>
+    <string name="preferences_keep_screen_on_mode_full">최대 밝기</string>
+    <string-array name="preferences_collector_low_battery_action_entries_labels">
+        <item>아무것도 안함</item>
+        <item>수집 중단</item>
+    </string-array>
+    <string-array name="preferences_app_theme_mode_entries_labels">
+        <item>다크 모드</item>
+        <item>라이트 모드</item>
+    </string-array>
+    <string name="preferences_collector_api_version_auto">자동 감지</string>
+    <string name="preferences_file_logging_level_disabled">비활성화</string>
+    <string name="preferences_file_logging_level_debug">Debug</string>
+    <string name="preferences_file_logging_level_info">Info</string>
+    <string name="preferences_file_logging_level_warning">Warning</string>
+    <string name="preferences_file_logging_level_error">Error</string>
+</resources>

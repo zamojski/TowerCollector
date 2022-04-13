@@ -1,0 +1,26 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+
+<p>Tower Collector은 Tasker, Automate, MacroDroid 또는 Llama와 같은 <i>Intent</i>를 보내는 외부 앱과 연동할 수 있습니다. 아래에 정의된 모든 활동에 대해 <i>Broadcast</i> 유형을 이용합니다. 연동을 하기 위해서 해당 앱의 도움말을 참조하세요.<br/><i>앱과 마찬가지로 동시에 두 개 이상의 작업을 시작할 수 없습니다.</i></p>
+<h3>수집 시작</h3>
+<p>설정에 정의된 대로 데이터 수집을 시작합니다. Action: </p>
+<code>info.zamojski.soft.towercollector.COLLECTOR_START</code>
+<h3>수집 중단</h3>
+<p>데이터 수집을 즉시 중단합니다. Action:</p>
+<code>info.zamojski.soft.towercollector.COLLECTOR_STOP</code>
+<h3>업로드 시작</h3>
+<p>설정에 정의된대로 업로드를 시작합니다. Action:</p>
+<code>info.zamojski.soft.towercollector.UPLOADER_START</code>
+<h3>업로드 중단</h3>
+<p>업로드가 중단됩니다. Action:</p>
+<code>info.zamojski.soft.towercollector.UPLOADER_STOP</code>
+<h3>내보내기</h3>
+<p>마지막에 설정한 설정으로 데이터 내보내기를 시작합니다. 측정값은 유지됩니다. Action:</p>
+<code>info.zamojski.soft.towercollector.EXPORT_START</code>
+<h3>내보내기 중단</h3>
+<p>내보내기를 중단합니다. Action:</p>
+<code>info.zamojski.soft.towercollector.EXPORT_STOP</code>
+<h3>Android 8+</h3>
+<p>Android Oreo 이상에서는 패키지 이름을 추가로 입력해야합니다.</p>
+<code>info.zamojski.soft.towercollector</code>
