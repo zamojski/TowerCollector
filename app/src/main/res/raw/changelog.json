@@ -1,6 +1,15 @@
 {
   "Entries": [
     {
+      "VersionCode": 2130098,
+      "Title": "Changes in version 2.13.0",
+      "Messages": [
+        "Distinguish newly discovered from old cells on the map.",
+        "Add Korean translation. Thank you zipi!",
+        "Update translation."
+      ]
+    },
+    {
       "VersionCode": 2120097,
       "Title": "Changes in version 2.12.0",
       "Messages": [
@@ -40,19 +49,6 @@
       "Messages": [
         "Fix crash when displaying new version dialog in case the notification was created before application was updated.",
         "Always show location accuracy if available."
-      ]
-    },
-    {
-      "VersionCode": 2090288,
-      "Title": "Changes in version 2.9.2",
-      "Messages": [
-        "Add unit of measure to map cache size preference.",
-        "Change follow me icon on the map tab.",
-        "Fix infinitely collecting data while stationary when on multi-SIM device one of reported main cells is invalid.",
-        "Fix export of database and preferences not overwriting existing file.",
-        "Fix export of database and preferences incorrectly overwriting existing file content.",
-        "Fix export of preferences created file that couldn't be edited in text editor.",
-        "Update translation."
       ]
     }
   ]

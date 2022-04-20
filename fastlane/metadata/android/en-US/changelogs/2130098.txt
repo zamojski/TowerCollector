@@ -1,0 +1,3 @@
+- Distinguish newly discovered from old cells on the map.
+- Add Korean translation.
+- Update translation.

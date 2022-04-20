@@ -1,0 +1,2 @@
+- Improve support for 5G networks by utilizing NetMonster logic.
+- Improve error handling.
