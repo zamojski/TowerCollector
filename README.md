@@ -14,7 +14,7 @@ and on official F-Droid catalog:
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/packages/info.zamojski.soft.towercollector/)
 
 ## Building
-This project is build using Android Studio Arctic Fox (7.0.2).
+This project is build using Android Studio and Gradle (7.2).
 
 To build your own signed apk go to "[app/properties](app/properties)" and:
 
@@ -30,4 +30,4 @@ Please report any bugs or submit feature requests through the *Issues* tab on th
 If you would like to help out with translation, please visit http://i18n.zamojski.info/
 
 ## License
-Tower Collector is licensed under the Mozilla Public License 2.0.  A copy of this license is included in [LICENSE.txt](LICENSE.txt).
+Tower Collector is licensed under the Mozilla Public License 2.0. A copy of this license is included in [LICENSE.txt](LICENSE.txt).

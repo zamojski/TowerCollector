@@ -4,9 +4,6 @@
 
 ext.rotEnabled = false
 
-import java.util.regex.Matcher
-import java.util.regex.Pattern
-
 apply plugin: 'com.android.application'
 
 android {
@@ -22,54 +19,23 @@ android {
 
         vectorDrawables.useSupportLibrary = true
 
-        Properties props = getCustomProperties()
-        println 'Defining custom build config fields'
-        assert props
         // Build
         buildConfigField "long", "BUILD_DATE_TIME", "${new Date().getTime()}"
         buildConfigField "int", "MIN_SDK_VERSION", "${minSdkVersion.apiLevel}"
-        // ACRA
-        buildConfigField "boolean", "ACRA_SEND_REPORTS_IN_DEV_MODE", props['acra_sendReportsInDevMode']
-        buildConfigField "boolean", "ACRA_SETTINGS_AVAILABLE", props['acra_settings_available']
-        buildConfigField "String", "ACRA_FORM_URI", props['acra_formUri']
-        buildConfigField "String", "ACRA_HTTP_METHOD", props['acra_httpMethod']
-        buildConfigField "String", "ACRA_REPORT_TYPE", props['acra_reportType']
-        buildConfigField "String", "ACRA_FORM_URI_BASIC_AUTH_LOGIN", rot135(props['acra_formUriBasicAuthLogin'])
-        buildConfigField "String", "ACRA_FORM_URI_BASIC_AUTH_PASSWORD", rotHex(props['acra_formUriBasicAuthPassword'])
-        // Analytics
-        buildConfigField "boolean", "ANALYTICS_AVAILABLE", props['analytics_available']
-        // MLS
-        buildConfigField "String", "MLS_API_KEY", rotHex(props['mls_apiKey'])
-        // OCID
-        buildConfigField "String", "OCID_API_KEY", rotHex(props['ocid_apiKey'])
-        // Other
-        buildConfigField "String", "UPDATE_CHECK_FEED_URI", props['other_updateCheckFeedUri']
-        buildConfigField "String", "CONTACT_EMAIL", rot135(props['other_contactEmail'])
     }
     signingConfigs {
-        release {
+        official {
             keyAlias ''
             storeFile null
             storePassword ''
             keyPassword ''
         }
-    }
-    buildTypes {
-        debug {
-            versionNameSuffix "-debug"
+        fdroid {
+            keyAlias ''
+            storeFile null
+            storePassword ''
+            keyPassword ''
         }
-        release {
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            minifyEnabled true
-            shrinkResources true
-            debuggable false
-            zipAlignEnabled true
-            signingConfig signingConfigs.release
-        }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
     flavorDimensions "environment", "market"
     productFlavors {
@@ -83,13 +49,53 @@ android {
         official {
             dimension "market"
             buildConfigField "String", "MARKET_NAME", '"Official"'
+
+            def props = getCustomProperties("official")
+            def signFile = file(props['sign_storeFile'])
+            assert signFile.exists()
+
+            signingConfigs.official.storeFile signFile
+            signingConfigs.official.storePassword props['sign_storePassword']
+            signingConfigs.official.keyAlias props['sign_keyAlias']
+            signingConfigs.official.keyPassword props['sign_keyPassword']
+
+            setBuildConfigFieldsFromProps(props)
         }
         fdroid {
             dimension "market"
             buildConfigField "String", "MARKET_NAME", '"F-Droid"'
+
+            def props = getCustomProperties("fdroid")
+            def signFile = file(props['sign_storeFile'])
+            assert signFile.exists()
+
+            signingConfigs.fdroid.storeFile signFile
+            signingConfigs.fdroid.storePassword props['sign_storePassword']
+            signingConfigs.fdroid.keyAlias props['sign_keyAlias']
+            signingConfigs.fdroid.keyPassword props['sign_keyPassword']
+
+            setBuildConfigFieldsFromProps(props)
         }
     }
-    lintOptions {
+    buildTypes {
+        debug {
+            versionNameSuffix "-debug"
+        }
+        release {
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+            shrinkResources true
+            debuggable false
+            zipAlignEnabled true
+            productFlavors.official.signingConfig signingConfigs.official
+            productFlavors.fdroid.signingConfig signingConfigs.fdroid
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    lint {
         disable 'MissingTranslation'
     }
 }
@@ -120,33 +126,12 @@ dependencies {
     implementation 'app.netmonster:core:1.0.0'
 }
 
-allprojects {
-    afterEvaluate { project ->
-        def configName = 'release'
-
-        def props = getCustomProperties()
-        assert props
-        // Signing
-        if (android.signingConfigs.hasProperty(configName)) {
-            println 'Defining custom signing configuration'
-            def signFile = file(props['sign_storeFile'])
-            assert signFile.exists()
-            android.signingConfigs[configName].storeFile = signFile
-            android.signingConfigs[configName].storePassword = props['sign_storePassword']
-            android.signingConfigs[configName].keyAlias = props['sign_keyAlias']
-            android.signingConfigs[configName].keyPassword = props['sign_keyPassword']
-        }
-    }
-}
-
-Properties getCustomProperties() {
-    def currentFlavor = getCurrentFlavor(2)
-    // Existing file is required to generate flavors
-    def propsFile = rootProject.file("app/properties/example.properties")
-    if (currentFlavor) {
-        propsFile = rootProject.file("app/properties/private-${currentFlavor}.properties")
+Properties getCustomProperties(String currentFlavor) {
+    def propsFile = rootProject.file("app/properties/private-${currentFlavor}.properties")
+    if (!propsFile.exists()) {
+        propsFile = rootProject.file("app/properties/private.properties")
         if (!propsFile.exists()) {
-            propsFile = rootProject.file("app/properties/private.properties")
+            propsFile = rootProject.file("app/properties/example.properties")
         }
     }
     if (propsFile.exists()) {
@@ -154,25 +139,29 @@ Properties getCustomProperties() {
         def props = new Properties()
         props.load(new FileInputStream(propsFile))
         rotEnabled = props['other_decode']
-        //println props
         return props
     }
     return null
 }
 
-String getCurrentFlavor(int dimensionIndex) {
-    def gradle = getGradle()
-    def taskRequest = gradle.getStartParameter().getTaskRequests().toString()
-
-    def taskName = taskRequest.contains('assemble') ? 'assemble' : 'generate'
-    def regex = "$taskName([A-Z]\\w*)([A-Z]\\w*)(Release|Debug)"
-    Pattern pattern = Pattern.compile(regex)
-
-    Matcher matcher = pattern.matcher(taskRequest)
-    if (matcher.find())
-        return matcher.group(dimensionIndex).toLowerCase()
-    println "Gradle flavor name not found, probed task name: ${taskName}"
-    return null
+def setBuildConfigFieldsFromProps(Properties props) {
+    // ACRA
+    android.defaultConfig.buildConfigField "boolean", "ACRA_SEND_REPORTS_IN_DEV_MODE", props['acra_sendReportsInDevMode']
+    android.defaultConfig.buildConfigField "boolean", "ACRA_SETTINGS_AVAILABLE", props['acra_settings_available']
+    android.defaultConfig.buildConfigField "String", "ACRA_FORM_URI", props['acra_formUri']
+    android.defaultConfig.buildConfigField "String", "ACRA_HTTP_METHOD", props['acra_httpMethod']
+    android.defaultConfig.buildConfigField "String", "ACRA_REPORT_TYPE", props['acra_reportType']
+    android.defaultConfig.buildConfigField "String", "ACRA_FORM_URI_BASIC_AUTH_LOGIN", rot135(props['acra_formUriBasicAuthLogin'])
+    android.defaultConfig.buildConfigField "String", "ACRA_FORM_URI_BASIC_AUTH_PASSWORD", rotHex(props['acra_formUriBasicAuthPassword'])
+    // Analytics
+    android.defaultConfig.buildConfigField "boolean", "ANALYTICS_AVAILABLE", props['analytics_available']
+    // MLS
+    android.defaultConfig.buildConfigField "String", "MLS_API_KEY", rotHex(props['mls_apiKey'])
+    // OCID
+    android.defaultConfig.buildConfigField "String", "OCID_API_KEY", rotHex(props['ocid_apiKey'])
+    // Other
+    android.defaultConfig.buildConfigField "String", "UPDATE_CHECK_FEED_URI", props['other_updateCheckFeedUri']
+    android.defaultConfig.buildConfigField "String", "CONTACT_EMAIL", rot135(props['other_contactEmail'])
 }
 
 String rot135(String s) {
@@ -219,46 +208,9 @@ String rotHex(String s) {
     return sb.toString()
 }
 
-// Custom tasks
-List<String> getSourceFiles() {
-    def files = []
-    getProjectDir().eachFileRecurse(FileType.FILES) { file ->
-        if (file.name.endsWith('.java')) {
-            files << file
-        }
-    }
-    return files
-}
+apply plugin: 'com.google.gms.google-services'
 
-def commentLoggingOne(path) {
-    def content = new File(path).getText('UTF-8').replaceAll(/(?m)^(\s*)(Log\.[vd].+)/, '$1;//$2')
-    new File(path).write(content, 'UTF-8')
-}
-
-def uncommentLoggingOne(path) {
-    def content = new File(path).getText('UTF-8').replaceAll(/(?m)^(\s*);\/\/\s?(Log\.[vd].+)/, '$1$2')
-    new File(path).write(content, 'UTF-8')
-}
-
-task commentLoggingAll {
-    doLast {
-        description = 'Comments all verbose and debug calls to Log class'
-        getSourceFiles().each {
-            commentLoggingOne(it.path)
-        }
-    }
-}
-
-task uncommentLoggingAll {
-    doLast {
-        description = 'Uncomments all verbose and debug calls to Log class'
-        getSourceFiles().each {
-            uncommentLoggingOne(it.path)
-        }
-    }
-}
-
-if (getCurrentFlavor(2) == 'official') {
-    println 'Applying Google Services plugin'
-    apply plugin: 'com.google.gms.google-services'
+afterEvaluate {
+    tasks.matching { it.name.contains("GoogleServices") && !it.name.contains("Official") }*.enabled = false
+    println "Google Services plugin enabled for: " + tasks.matching { it.name.contains("GoogleServices") && it.enabled }*.name
 }
