@@ -348,9 +348,9 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         boolean isBright = m.containsDiscoveredCells(localSinceTimestamp);
         @DrawableRes int iconId;
         if (mainCells.size() == 1) {
-            iconId = NetworkTypeUtils.getNetworkGroupIcon(mainCells.get(0).getNetworkType(), isBright);
+            iconId = NetworkTypeUtils.getNetworkGroupIcon(mainCells.get(0).getNetworkType());
         } else {
-            iconId = NetworkTypeUtils.getNetworkGroupIcon(mainCells.get(0).getNetworkType(), mainCells.get(1).getNetworkType(), isBright);
+            iconId = NetworkTypeUtils.getNetworkGroupIcon(mainCells.get(0).getNetworkType(), mainCells.get(1).getNetworkType());
         }
         Marker item = new Marker(mainMapView);
 
