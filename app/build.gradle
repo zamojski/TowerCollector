@@ -10,6 +10,8 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
+    namespace 'info.zamojski.soft.towercollector'
+
     defaultConfig {
         applicationId "info.zamojski.soft.towercollector"
         minSdkVersion 21
