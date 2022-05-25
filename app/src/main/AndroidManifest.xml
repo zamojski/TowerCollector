@@ -79,10 +79,6 @@
             android:exported="false"
             android:foregroundServiceType="location" />
         <service
-            android:name=".UploaderService"
-            android:enabled="true"
-            android:exported="false" />
-        <service
             android:name=".CollectorQuickSettingsTileService"
             android:enabled="true"
             android:icon="@drawable/ic_quicksettings_collector_start"

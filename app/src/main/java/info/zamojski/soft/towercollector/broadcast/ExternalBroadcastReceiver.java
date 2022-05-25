@@ -23,7 +23,8 @@ import java.util.List;
 import info.zamojski.soft.towercollector.CollectorService;
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
-import info.zamojski.soft.towercollector.UploaderService;
+import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvider;
+import info.zamojski.soft.towercollector.uploader.UploaderWorker;
 import info.zamojski.soft.towercollector.analytics.IntentSource;
 import info.zamojski.soft.towercollector.enums.FileType;
 import info.zamojski.soft.towercollector.events.CollectorStartedEvent;
@@ -42,7 +43,7 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
     private static final String collectorStopAction = "info.zamojski.soft.towercollector.COLLECTOR_STOP";
 
     private static final String uploaderStartAction = "info.zamojski.soft.towercollector.UPLOADER_START";
-    private static final String uploaderStopAction = "info.zamojski.soft.towercollector.UPLOADER_STOP";
+    public static final String UploaderStopAction = "info.zamojski.soft.towercollector.UPLOADER_STOP";
 
     private static final String exportStartAction = "info.zamojski.soft.towercollector.EXPORT_START";
     public static final String ExportStopAction = "info.zamojski.soft.towercollector.EXPORT_STOP";
@@ -55,9 +56,9 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         } else if (collectorStopAction.equals(action)) {
             stopCollectorService(context);
         } else if (uploaderStartAction.equals(action)) {
-            startUploaderService(context, IntentSource.Application);
-        } else if (uploaderStopAction.equals(action)) {
-            stopUploaderService(context);
+            startUploaderWorker(context, IntentSource.Application);
+        } else if (UploaderStopAction.equals(action)) {
+            stopUploaderWorker(context);
         } else if (exportStartAction.equals(action)) {
             startExportWorker(context, IntentSource.Application);
         } else if (ExportStopAction.equals(action)) {
@@ -114,26 +115,36 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         return new Intent(context, CollectorService.class);
     }
 
-    public void startUploaderService(Context context, IntentSource source) {
+    public void startUploaderWorker(Context context, IntentSource source) {
         if (!canStartBackgroundService(context))
             return;
-        Timber.d("startCollectorService(): Starting service from broadcast");
-        ContextCompat.startForegroundService(context, getUploaderIntent(context, source));
+        Timber.d("startUploaderWorker(): Starting worker from broadcast");
+        PreferencesProvider preferencesProvider = MyApplication.getPreferencesProvider();
+        boolean isOpenCellIdUploadEnabled = preferencesProvider.isOpenCellIdUploadEnabled();
+        boolean isUseSharedOpenCellIdApiKeyEnabled = preferencesProvider.isUseSharedOpenCellIdApiKeyEnabled();
+        boolean isMlsUploadEnabled = preferencesProvider.isMlsUploadEnabled();
+        boolean isReuploadIfUploadFailsEnabled = preferencesProvider.isReuploadIfUploadFailsEnabled();
+        WorkRequest uploaderWorkRequest = new OneTimeWorkRequest.Builder(UploaderWorker.class)
+                .setInputData(new Data.Builder()
+                        .putBoolean(UploaderWorker.INTENT_KEY_UPLOAD_TO_OCID, isOpenCellIdUploadEnabled)
+                        .putBoolean(UploaderWorker.INTENT_KEY_UPLOAD_TO_OCID_SHARED, isUseSharedOpenCellIdApiKeyEnabled)
+                        .putBoolean(UploaderWorker.INTENT_KEY_UPLOAD_TO_MLS, isMlsUploadEnabled)
+                        .putBoolean(UploaderWorker.INTENT_KEY_UPLOAD_TRY_REUPLOAD, isReuploadIfUploadFailsEnabled)
+                        .putString(UploaderWorker.INTENT_KEY_START_INTENT_SOURCE, source.name())
+                        .build())
+                .addTag(UploaderWorker.WORKER_TAG)
+                .build();
+//        showUploaderProgress(storageUri, exportWorkRequest.getId());//TODO check what happens when you start from QS when app is open
+        WorkManager.getInstance(MyApplication.getApplication())
+                .enqueue(uploaderWorkRequest);
         ApkUtils.reportShortcutUsage(context, R.string.shortcut_id_uploader_toggle);
     }
 
-    public void stopUploaderService(Context context) {
-        Timber.d("stopUploaderService(): Stopping service from broadcast");
-        // don't use stopService because the worker needs to be stopped first
-        Intent stopIntent = new Intent(UploaderService.BROADCAST_INTENT_STOP_SERVICE);
-        context.sendBroadcast(stopIntent);
+    public void stopUploaderWorker(Context context) {
+        Timber.d("stopUploaderWorker(): Stopping worker from broadcast");
+        WorkManager.getInstance(MyApplication.getApplication())
+                .cancelAllWorkByTag(UploaderWorker.WORKER_TAG);
         ApkUtils.reportShortcutUsage(context, R.string.shortcut_id_uploader_toggle);
-    }
-
-    private Intent getUploaderIntent(Context context, IntentSource source) {
-        Intent intent = new Intent(context, UploaderService.class);
-        intent.putExtra(UploaderService.INTENT_KEY_START_INTENT_SOURCE, source);
-        return intent;
     }
 
     public void startExportWorker(Context context, IntentSource source) {

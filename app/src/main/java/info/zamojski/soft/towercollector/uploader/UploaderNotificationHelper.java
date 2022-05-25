@@ -5,8 +5,9 @@
 package info.zamojski.soft.towercollector.uploader;
 
 import info.zamojski.soft.towercollector.MainActivity;
+import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
-import info.zamojski.soft.towercollector.UploaderService;
+import info.zamojski.soft.towercollector.broadcast.ExternalBroadcastReceiver;
 import info.zamojski.soft.towercollector.utils.NotificationHelperBase;
 
 import android.annotation.TargetApi;
@@ -21,8 +22,8 @@ import androidx.core.app.NotificationCompat;
 
 public class UploaderNotificationHelper extends NotificationHelperBase {
 
-    private Context context;
-    private NotificationCompat.Builder builder;
+    private final Context context;
+    private final NotificationCompat.Builder builder;
 
     public UploaderNotificationHelper(Context context) {
         this.context = context;
@@ -37,30 +38,10 @@ public class UploaderNotificationHelper extends NotificationHelperBase {
         return prepareNotification(notificationText);
     }
 
-    public Notification updateNotificationProgress(int progress) {
+    public Notification updateNotificationProgress(int progress, int max) {
         String notificationText = context.getString(R.string.uploader_notification_progress_info, progress);
         builder.setContentText(notificationText);
-        builder.setStyle(new NotificationCompat.BigTextStyle().bigText(notificationText));
-        return builder.build();
-    }
-
-    public Notification updateNotificationCancelling() {
-        builder.setWhen(System.currentTimeMillis());
-        String notificationText = context.getString(R.string.uploader_aborting);
-        builder.setContentText(notificationText);
-        builder.setTicker(notificationText);
-        builder.setStyle(new NotificationCompat.BigTextStyle().bigText(notificationText));
-        return builder.build();
-    }
-
-    public Notification updateNotificationFinished(String message, String description) {
-        builder.setAutoCancel(true);
-        builder.setWhen(System.currentTimeMillis());
-        builder.setContentText(message);
-        builder.setTicker(message);
-        builder.setStyle(new NotificationCompat.BigTextStyle().bigText(message));
-        PendingIntent mainActivityIntent = createMainActivityResultIntent(description);
-        builder.setContentIntent(mainActivityIntent);
+        builder.setProgress(max, progress, false);
         return builder.build();
     }
 
@@ -71,27 +52,30 @@ public class UploaderNotificationHelper extends NotificationHelperBase {
         builder.setWhen(System.currentTimeMillis());
         builder.setOnlyAlertOnce(true);
         // set intent
-        PendingIntent cancelUploaderIntent = createCancelUploaderIntent();
-        builder.setContentIntent(cancelUploaderIntent);
+        PendingIntent mainActivityIntent = createOpenMainActivityIntent();
+        builder.setContentIntent(mainActivityIntent);
         // set message
         builder.setContentTitle(context.getString(R.string.uploader_notification_title));
         builder.setContentText(notificationText);
         builder.setTicker(notificationText);
-        builder.setStyle(new NotificationCompat.BigTextStyle().bigText(notificationText));
+        // set action
+        PendingIntent cancelUploaderIntent = createCancelUploaderIntent();
+        NotificationCompat.Action stopAction = new NotificationCompat.Action.Builder(R.drawable.menu_stop, context.getString(R.string.dialog_cancel), cancelUploaderIntent).build();
+        builder.addAction(stopAction);
         return builder.build();
     }
 
-    private PendingIntent createMainActivityResultIntent(String description) {
+    private PendingIntent createOpenMainActivityIntent() {
         Intent intent = new Intent(context, MainActivity.class);
-        intent.setAction(UploaderService.SERVICE_FULL_NAME + "_NID_" + UploaderService.NOTIFICATION_ID);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        intent.putExtra(UploaderService.INTENT_KEY_RESULT_DESCRIPTION, description);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        intent.setAction(UploaderWorker.SERVICE_FULL_NAME + "_NID_" + UploaderWorker.NOTIFICATION_ID);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
         return pendingIntent;
     }
 
     private PendingIntent createCancelUploaderIntent() {
-        Intent intent = new Intent(UploaderService.BROADCAST_INTENT_STOP_SERVICE);
+        Intent intent = new Intent(ExternalBroadcastReceiver.UploaderStopAction);
+        intent.setPackage(MyApplication.getApplication().getPackageName());
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
         return pendingIntent;
     }

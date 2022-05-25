@@ -6,8 +6,8 @@ package info.zamojski.soft.towercollector.utils;
 
 import info.zamojski.soft.towercollector.CollectorService;
 import info.zamojski.soft.towercollector.R;
-import info.zamojski.soft.towercollector.UploaderService;
 import info.zamojski.soft.towercollector.export.ExportWorker;
+import info.zamojski.soft.towercollector.uploader.UploaderWorker;
 
 import android.content.Context;
 import android.view.View;
@@ -25,7 +25,7 @@ public class BackgroundTaskHelper {
         int messageId = View.NO_ID;
         if (taskClassName.equals(CollectorService.class.getName())) {
             messageId = R.string.main_toast_background_task_already_running_collector;
-        } else if (taskClassName.equals(UploaderService.class.getName())) {
+        } else if (taskClassName.equals(UploaderWorker.class.getName())) {
             messageId = R.string.main_toast_background_task_already_running_uploader;
         } else if (taskClassName.equals(ExportWorker.class.getName())) {
             messageId = R.string.main_toast_background_task_already_running_export;

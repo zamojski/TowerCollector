@@ -17,7 +17,6 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-import android.content.res.Resources.NotFoundException;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -101,6 +100,8 @@ import info.zamojski.soft.towercollector.providers.ChangelogProvider;
 import info.zamojski.soft.towercollector.providers.HtmlChangelogFormatter;
 import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvider;
 import info.zamojski.soft.towercollector.tasks.UpdateCheckAsyncTask;
+import info.zamojski.soft.towercollector.uploader.UploaderProgressDialogFragment;
+import info.zamojski.soft.towercollector.uploader.UploaderWorker;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
 import info.zamojski.soft.towercollector.utils.BackgroundTaskHelper;
 import info.zamojski.soft.towercollector.utils.BatteryUtils;
@@ -124,7 +125,8 @@ import permissions.dispatcher.RuntimePermissions;
 import timber.log.Timber;
 
 @RuntimePermissions
-public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener, ExportProgressDialogFragment.OnExportCancelledListener {
+public class MainActivity extends AppCompatActivity
+        implements TabLayout.OnTabSelectedListener, ExportProgressDialogFragment.OnExportCancelledListener, UploaderProgressDialogFragment.OnUploaderCancelledListener {
 
     private static final int BATTERY_OPTIMIZATIONS_ACTIVITY_RESULT = 'B';
     private static final int BATTERY_SAVER_ACTIVITY_RESULT = 'S';
@@ -141,6 +143,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private ExportProgressDialogFragment exportProgressDialog;
     private String exportedDirAbsolutePath;
     private String[] exportedFilePaths;
+
+    private UploaderProgressDialogFragment uploaderProgressDialog;
 
     private Boolean canStartNetworkTypeSystemActivityResult = null;
 
@@ -222,6 +226,11 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             exportProgressDialog.dismiss();
             exportProgressDialog = null;
         }
+
+        if (uploaderProgressDialog != null && uploaderProgressDialog.isVisible()) {
+            uploaderProgressDialog.dismiss();
+            uploaderProgressDialog = null;
+        }
     }
 
     @Override
@@ -243,6 +252,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
 
         restoreExportProgress();
+        restoreUploaderProgress();
     }
 
     @Override
@@ -318,10 +328,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             stopCollectorService();
             return true;
         } else if (itemId == R.id.main_menu_upload) {
-            startUploaderServiceWithCheck();
+            startUploaderTaskWithCheck();
             return true;
         } else if (itemId == R.id.main_menu_export) {
-            startExportAsyncTask();
+            startExportTask();
             return true;
         } else if (itemId == R.id.main_menu_clear) {
             startCleanup();
@@ -574,26 +584,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         dialog.show();
     }
 
-    private void displayUploadResultDialog(String descriptionContent) {
-        try {
-            Timber.d("displayUploadResultDialog(): Received extras: %s", descriptionContent);
-            // display dialog
-            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-            alertDialog.setCanceledOnTouchOutside(true);
-            alertDialog.setCancelable(true);
-            alertDialog.setTitle(R.string.uploader_result_dialog_title);
-            alertDialog.setMessage(descriptionContent);
-            alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_ok), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                }
-            });
-            alertDialog.show();
-        } catch (NotFoundException ex) {
-            Timber.w("displayUploadResultDialog(): Invalid string id received with intent extras: %s", descriptionContent);
-            MyApplication.handleSilentException(ex);
-        }
-    }
-
     private void displayNewVersionDownloadOptions(UpdateInfo updateInfo) {
         // display dialog
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
@@ -767,7 +757,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
         builder.setNeutralButton(R.string.dialog_upload, (dialog, which) -> {
             MyApplication.getAnalytics().sendExportUploadAction();
-            startUploaderServiceWithCheck();
+            startUploaderTaskWithCheck();
         });
         builder.setNegativeButton(R.string.dialog_delete, (dialog, which) -> {
             // show dialog that runs async task
@@ -937,10 +927,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         ApkUtils.reportShortcutUsage(MyApplication.getApplication(), R.string.shortcut_id_collector_toggle);
     }
 
-    private void startUploaderServiceWithCheck() {
+    private void startUploaderTaskWithCheck() {
         String runningTaskClassName = MyApplication.getBackgroundTaskName();
         if (runningTaskClassName != null) {
-            Timber.d("startUploaderServiceWithCheck(): Another task is running in background: %s", runningTaskClassName);
+            Timber.d("startUploaderTaskWithCheck(): Another task is running in background: %s", runningTaskClassName);
             backgroundTaskHelper.showTaskRunningMessage(runningTaskClassName);
             return;
         }
@@ -950,10 +940,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         final boolean isUseSharedOpenCellIdApiKeyEnabled = preferencesProvider.isUseSharedOpenCellIdApiKeyEnabled();
         final boolean isMlsUploadEnabled = preferencesProvider.isMlsUploadEnabled();
         final boolean isReuploadIfUploadFailsEnabled = preferencesProvider.isReuploadIfUploadFailsEnabled();
-        Timber.i("startUploaderServiceWithCheck(): Upload for OCID = " + isOcidUploadEnabled + ", MLS = " + isMlsUploadEnabled);
+        Timber.i("startUploaderTaskWithCheck(): Upload for OCID = " + isOcidUploadEnabled + ", MLS = " + isMlsUploadEnabled);
         boolean showConfigurator = preferencesProvider.getShowConfiguratorBeforeUpload();
         if (showConfigurator) {
-            Timber.d("startUploaderServiceWithCheck(): Showing upload configurator");
+            Timber.d("startUploaderTaskWithCheck(): Showing upload configurator");
             // check API key
             boolean isApiKeyValid = OpenCellIdUtils.isApiKeyValid(OpenCellIdUtils.getApiKey());
             LayoutInflater inflater = LayoutInflater.from(this);
@@ -1002,7 +992,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                     if (!isOcidUploadCheckedTemp && !isMlsUploadCheckedTemp) {
                         showAllProjectsDisabledMessage();
                     } else {
-                        startUploaderService(isOcidUploadCheckedTemp, isOcidAnonymousUploadCheckedTemp, isMlsUploadCheckedTemp, isReuploadIfUploadFailsCheckedTemp);
+                        startUploaderTask(isOcidUploadCheckedTemp, isOcidAnonymousUploadCheckedTemp, isMlsUploadCheckedTemp, isReuploadIfUploadFailsCheckedTemp);
                     }
                 }
             });
@@ -1019,11 +1009,11 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             });
             alertDialog.show();
         } else {
-            Timber.d("startUploaderServiceWithCheck(): Using upload configuration from preferences");
+            Timber.d("startUploaderTaskWithCheck(): Using upload configuration from preferences");
             if (!isOcidUploadEnabled && !isMlsUploadEnabled) {
                 showAllProjectsDisabledMessage();
             } else {
-                startUploaderService(isOcidUploadEnabled, isUseSharedOpenCellIdApiKeyEnabled, isMlsUploadEnabled, isReuploadIfUploadFailsEnabled);
+                startUploaderTask(isOcidUploadEnabled, isUseSharedOpenCellIdApiKeyEnabled, isMlsUploadEnabled, isReuploadIfUploadFailsEnabled);
             }
         }
     }
@@ -1043,25 +1033,31 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         snackbar.show();
     }
 
-    private void startUploaderService(boolean isOcidUploadEnabled, boolean isOcidAnonymousUploadEnabled, boolean isMlsUploadEnabled, boolean isReuploadIfUploadFailsEnabled) {
+    private void startUploaderTask(boolean isOcidUploadEnabled, boolean isOcidAnonymousUploadEnabled, boolean isMlsUploadEnabled, boolean isReuploadIfUploadFailsEnabled) {
         // start task
-        if (!MyApplication.isBackgroundTaskRunning(UploaderService.class)) {
-            Intent intent = new Intent(MainActivity.this, UploaderService.class);
-            intent.putExtra(UploaderService.INTENT_KEY_UPLOAD_TO_OCID, isOcidUploadEnabled);
-            intent.putExtra(UploaderService.INTENT_KEY_UPLOAD_TO_OCID_SHARED, isOcidAnonymousUploadEnabled);
-            intent.putExtra(UploaderService.INTENT_KEY_UPLOAD_TO_MLS, isMlsUploadEnabled);
-            intent.putExtra(UploaderService.INTENT_KEY_UPLOAD_TRY_REUPLOAD, isReuploadIfUploadFailsEnabled);
-            intent.putExtra(UploaderService.INTENT_KEY_START_INTENT_SOURCE, IntentSource.User);
-            ContextCompat.startForegroundService(this, intent);
+        if (!MyApplication.isBackgroundTaskRunning(UploaderWorker.class)) {
+            WorkRequest uploaderWorkRequest = new OneTimeWorkRequest.Builder(UploaderWorker.class)
+                    .setInputData(new Data.Builder()
+                            .putBoolean(UploaderWorker.INTENT_KEY_UPLOAD_TO_OCID, isOcidUploadEnabled)
+                            .putBoolean(UploaderWorker.INTENT_KEY_UPLOAD_TO_OCID_SHARED, isOcidAnonymousUploadEnabled)
+                            .putBoolean(UploaderWorker.INTENT_KEY_UPLOAD_TO_MLS, isMlsUploadEnabled)
+                            .putBoolean(UploaderWorker.INTENT_KEY_UPLOAD_TRY_REUPLOAD, isReuploadIfUploadFailsEnabled)
+                            .putString(UploaderWorker.INTENT_KEY_START_INTENT_SOURCE, IntentSource.User.name())
+                            .build())
+                    .addTag(UploaderWorker.WORKER_TAG)
+                    .build();
+            showUploaderProgress(uploaderWorkRequest.getId());
+            WorkManager.getInstance(MyApplication.getApplication())
+                    .enqueue(uploaderWorkRequest);
             ApkUtils.reportShortcutUsage(MyApplication.getApplication(), R.string.shortcut_id_uploader_toggle);
         } else
             Toast.makeText(getApplication(), R.string.uploader_already_running, Toast.LENGTH_LONG).show();
     }
 
-    void startExportAsyncTask() {
+    void startExportTask() {
         String runningTaskClassName = MyApplication.getBackgroundTaskName();
         if (runningTaskClassName != null) {
-            Timber.d("startExportAsyncTask(): Another task is running in background: %s", runningTaskClassName);
+            Timber.d("startExportTask(): Another task is running in background: %s", runningTaskClassName);
             backgroundTaskHelper.showTaskRunningMessage(runningTaskClassName);
             return;
         }
@@ -1106,7 +1102,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 if (compressExportCheckbox.isChecked())
                     selectedFileTypes.add(FileType.Compress);
                 preferencesProvider.setEnabledExportFileTypes(selectedFileTypes);
-                Timber.d("startExportAsyncTask(): User selected positions: %s", TextUtils.join(",", selectedFileTypes));
+                Timber.d("startExportTask(): User selected positions: %s", TextUtils.join(",", selectedFileTypes));
                 if (selectedFileTypes.isEmpty()) {
                     Toast.makeText(getApplication(), R.string.export_toast_no_file_types_selected, Toast.LENGTH_LONG).show();
                 } else {
@@ -1150,7 +1146,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         } catch (ExecutionException | InterruptedException ex) {
             Timber.e(ex, "restoreExportProgress(): Failed to show export progress");
-            Toast.makeText(MainActivity.this, R.string.export_toast_failed, Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, getString(R.string.export_toast_failed, ex.getMessage()), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -1213,10 +1209,102 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 .cancelAllWorkByTag(ExportWorker.WORKER_TAG);
     }
 
+    private void restoreUploaderProgress() {
+        ListenableFuture<List<WorkInfo>> statuses = WorkManager.getInstance(MyApplication.getApplication())
+                .getWorkInfosByTag(UploaderWorker.WORKER_TAG);
+        try {
+            List<WorkInfo> workInfoList = statuses.get();
+            for (WorkInfo workInfo : workInfoList) {
+                WorkInfo.State state = workInfo.getState();
+                if (state == WorkInfo.State.RUNNING || state == WorkInfo.State.ENQUEUED) {
+                    showUploaderProgress(workInfo.getId());
+                    break;
+                } else if (state == WorkInfo.State.SUCCEEDED || state == WorkInfo.State.FAILED) {
+                    showUploaderFinished(workInfo);
+                    break;
+                }
+            }
+
+        } catch (ExecutionException | InterruptedException ex) {
+            Timber.e(ex, "restoreUploaderProgress(): Failed to show uploader progress");
+            Toast.makeText(MainActivity.this, getString(R.string.uploader_toast_failed, ex.getMessage()), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void showUploaderProgress(UUID workId) {
+        WorkManager.getInstance(MyApplication.getApplication())
+                .getWorkInfoByIdLiveData(workId)
+                .observe(this, new Observer<WorkInfo>() {
+                    private final String INNER_TAG = MainActivity.class.getSimpleName() + "." + UploaderWorker.class.getSimpleName();
+
+                    @Override
+                    public void onChanged(WorkInfo workInfo) {
+                        if (workInfo == null) {
+                            Timber.tag(INNER_TAG).w("onChanged(): WorkInfo is null");
+                            // hide loading indicator
+                            if (uploaderProgressDialog != null) {
+                                uploaderProgressDialog.dismiss();
+                            }
+                            uploaderProgressDialog = null;
+                            return;
+                        }
+                        int currentPercent = workInfo.getProgress().getInt(UploaderWorker.PROGRESS, UploaderWorker.PROGRESS_MIN_VALUE);
+                        int maxPercent = workInfo.getProgress().getInt(UploaderWorker.PROGRESS_MAX, UploaderWorker.PROGRESS_MAX_VALUE);
+                        Timber.tag(INNER_TAG).d("onChanged(): Updating progress: %s %s", currentPercent, maxPercent);
+                        if (uploaderProgressDialog == null) {
+                            // show loading indicator
+                            uploaderProgressDialog = UploaderProgressDialogFragment.createInstance(currentPercent, maxPercent);
+                            uploaderProgressDialog.setCancelListener(MainActivity.this);
+                            uploaderProgressDialog.show(getSupportFragmentManager(), UploaderProgressDialogFragment.FRAGMENT_TAG);
+                        } else {
+                            currentPercent = Math.min(currentPercent, maxPercent);
+                            uploaderProgressDialog.setProgress(currentPercent);
+                        }
+                        if (workInfo.getState().isFinished()) {
+                            // hide loading indicator
+                            uploaderProgressDialog.dismiss();
+                            uploaderProgressDialog = null;
+                            // perform finish action
+                            showUploaderFinished(workInfo);
+                        }
+                    }
+                });
+    }
+
+    private void showUploaderFinished(WorkInfo workInfo) {
+        if (workInfo.getState() == WorkInfo.State.CANCELLED) {
+            Toast.makeText(MainActivity.this, R.string.uploader_toast_cancelled, Toast.LENGTH_LONG).show();
+        } else {
+            displayUploaderFinishedDialog(workInfo.getOutputData().getString(UploaderWorker.MESSAGE));
+        }
+        WorkManager.getInstance(MyApplication.getApplication()).pruneWork();
+    }
+
+    private void cancelUploader() {
+        // cancel generation and it will return that task should be cancelled
+        WorkManager.getInstance(MyApplication.getApplication())
+                .cancelAllWorkByTag(UploaderWorker.WORKER_TAG);
+    }
+
+    public void displayUploaderFinishedDialog(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle(R.string.uploader_result_dialog_title);
+        builder.setMessage(message);
+        builder.setCancelable(true);
+        builder.setPositiveButton(R.string.dialog_ok, null);
+        builder.show();
+    }
+
     @Override
     public void onExportCancelled() {
         cancelExport();
         exportProgressDialog = null;
+    }
+
+    @Override
+    public void onUploadCancelled() {
+        cancelUploader();
+        uploaderProgressDialog = null;
     }
 
     private void startCleanup() {
@@ -1482,10 +1570,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private void processOnStartIntent(Intent intent) {
         if (intent != null) {
-            if (intent.hasExtra(UploaderService.INTENT_KEY_RESULT_DESCRIPTION)) {
-                // display upload result
-                displayUploadResultDialog(intent.getStringExtra(UploaderService.INTENT_KEY_RESULT_DESCRIPTION));
-            } else if (intent.hasExtra(UpdateCheckAsyncTask.INTENT_KEY_UPDATE_INFO)) {
+            if (intent.hasExtra(UpdateCheckAsyncTask.INTENT_KEY_UPDATE_INFO)) {
                 try {
                     // display dialog with download options
                     displayNewVersionDownloadOptions((UpdateInfo) intent.getSerializableExtra(UpdateCheckAsyncTask.INTENT_KEY_UPDATE_INFO));

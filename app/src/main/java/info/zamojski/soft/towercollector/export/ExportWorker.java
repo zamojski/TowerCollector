@@ -51,7 +51,6 @@ import timber.log.Timber;
 public class ExportWorker extends Worker implements IProgressListener {
 
     public static final String SERVICE_FULL_NAME = ExportWorker.class.getCanonicalName();
-    public static final String BROADCAST_INTENT_STOP_SERVICE = SERVICE_FULL_NAME + ".ExportStop";
     public static final int NOTIFICATION_ID = 'E';
 
     public static final String PROGRESS = "PROGRESS";
@@ -110,8 +109,6 @@ public class ExportWorker extends Worker implements IProgressListener {
             MyApplication.getAnalytics().sendExportFinishedTotal(duration, generator.getSubGenerators().size(), stats);
 
             Timber.d("doWork(): Showing result: %s", result);
-            MyApplication.stopBackgroundTask();
-            generator.removeProgressListener(this);
 
             // check result
             switch (result.getResult()) {
@@ -153,7 +150,7 @@ public class ExportWorker extends Worker implements IProgressListener {
             }
         } catch (Exception ex) {
             Timber.e(ex, "doWork(): Export failed");
-            return Result.failure();
+            return Result.failure(getMessageData(ex.getMessage()));
         } finally {
             MyApplication.stopBackgroundTask();
             if (generator != null)

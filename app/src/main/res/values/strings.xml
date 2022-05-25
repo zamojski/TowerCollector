@@ -50,7 +50,7 @@
     <string name="main_dialog_not_compatible_begin">The app may not work because:\n</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Mobile network hardware not detected.\n</string>
     <string name="main_toast_background_task_already_running_collector">Collector service is running.</string>
-    <string name="main_toast_background_task_already_running_uploader">Uploader service is running.</string>
+    <string name="main_toast_background_task_already_running_uploader">Uploader task is running.</string>
     <string name="main_toast_background_task_already_running_export">Export task is running.</string>
     <string name="main_toast_background_task_already_running_unknown">Background task is running.</string>
     <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> Please stop it before starting another task.</string>
@@ -123,8 +123,9 @@
     <string name="collector_gps_unavailable">Cannot start collecting because GPS is unavailable.</string>
     <string name="uploader_notification_channel_name">Uploader</string>
     <string name="uploader_notification_title">Uploading</string>
-    <string name="uploader_notification_progress_info">Uploaded <xliff:g id="progress_in_percent">%d</xliff:g>%%. Select to abort.</string>
+    <string name="uploader_notification_progress_info">Uploaded <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
     <string name="uploader_result_dialog_title">Upload result</string>
+    <string name="uploader_dialog_progress_title">Uploading</string>
     <string name="uploader_starting">Starting upload&#8230;</string>
     <string name="uploader_aborting">Aborting upload&#8230;</string>
     <string name="uploader_already_running">Upload is already running.</string>
@@ -152,8 +153,8 @@
     <string name="uploader_server_error_description">The server returned internal error which may mean that it is overloaded, temporarily unavailable or down for maintenance. Please try again later. If you encounter this problem for a long time, please let me know.</string>
     <string name="uploader_limit_exceeded">Usage limit exceeded</string>
     <string name="uploader_limit_exceeded_description">The daily usage limit for the app has been exceeded. Please try again tomorrow.</string>
-    <string name="uploader_result_message" translatable="false">OCID: <xliff:g id="message_for_ocid">%1$s</xliff:g> | MLS: <xliff:g id="message_for_mls">%2$s</xliff:g></string>
-    <string name="uploader_result_description" translatable="false">OCID: <xliff:g id="message_for_ocid">%1$s</xliff:g>\n\nMLS: <xliff:g id="message_for_mls">%2$s</xliff:g></string>
+    <string name="uploader_result_message" translatable="false"><xliff:g id="message">%1$s</xliff:g>\n<xliff:g id="description">%2$s</xliff:g></string>
+    <string name="uploader_result_message_summary" translatable="false">OCID: <xliff:g id="result_for_ocid">%1$s</xliff:g>\n\nMLS: <xliff:g id="result_for_mls">%2$s</xliff:g></string>
     <string name="other_notification_channel_name">Other</string>
     <string name="error_reporting_notification_channel_name">Error reporting</string>
     <string name="error_reporting_notification_title">Unexpected error occurred</string>
@@ -199,6 +200,8 @@
     <string name="export_toast_failed_cause_file_not_writable">file is read-only</string>
     <string name="export_toast_no_data">No data to export.</string>
     <string name="export_toast_cancelled">Export cancelled.</string>
+    <string name="uploader_toast_failed">Upload failed: <xliff:g id="failure_reason">%s</xliff:g>.</string>
+    <string name="uploader_toast_cancelled">Upload cancelled.</string>
     <string name="updater_notification_ticker">New version of Tower Collector is available</string>
     <string name="updater_notification_title">New version is available</string>
     <string name="updater_notification_download_options">Select to view download options</string>
@@ -254,9 +257,9 @@
     <string name="main_help_last_sid_title">System ID</string>
     <string name="main_help_last_sid_description">The unique identifier of network system to which the phone was connected. Together with NID it creates a worldwide unique network identifier.</string>
     <string name="main_help_last_signal_strength_title">Signal strength</string>
-    <string name="main_help_last_signal_strength_description">Network signal strength measured while saving expressed in dBm (power ratio in decibels (dB) of the measured power referenced to 1 milliwatt (mW)). Doubling this value means a 10 times stronger signal strength. Values ​​closer to 0 indicate stronger signal.</string>
+    <string name="main_help_last_signal_strength_description">Network signal strength measured while saving expressed in dBm (power ratio in decibels (dB) of the measured power referenced to 1 milliwatt (mW)). Doubling this value means a 10 times stronger signal strength. Values closer to 0 indicate stronger signal.</string>
     <string name="main_help_last_latitude_title">Latitude</string>
-    <string name="main_help_last_latitude_description">The geographical latitude of saved position. Positive value ​​represents the northern hemisphere, negative southern. The higher is absolute value the more far it is away from the equator.</string>
+    <string name="main_help_last_latitude_description">The geographical latitude of saved position. Positive value represents the northern hemisphere, negative southern. The higher is absolute value the more far it is away from the equator.</string>
     <string name="main_help_last_longitude_title">Longitude</string>
     <string name="main_help_last_longitude_description">The geographical longitude of saved position. Positive value represents a position east of the Prime Meridian, negative west. The higher is absolute value the more far it is away from the Prime Meridian.</string>
     <string name="main_help_last_gps_accuracy_title">GPS accuracy</string>
