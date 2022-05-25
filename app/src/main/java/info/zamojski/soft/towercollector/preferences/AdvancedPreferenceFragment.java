@@ -139,7 +139,9 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         if (StorageUtils.canWriteStorageUri(storageUri)) {
             MyApplication.getApplication().initLogger();
         } else {
-            StorageUtils.requestStorageUri(getActivity());
+            if (!MyApplication.getPreferencesProvider().getFileLoggingLevel().equals(getString(R.string.preferences_file_logging_level_default_value))) {
+                StorageUtils.requestStorageUri(getActivity());
+            }
         }
     }
 
