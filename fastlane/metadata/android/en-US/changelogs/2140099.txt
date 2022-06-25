@@ -1,0 +1,4 @@
+- Change Uploader to show progress in dialog and notification to unify behavior with Export function.
+- Remove unnecessary prompt to select storage when disabling file logging.
+- Fixes related to data collection with NetMonster API.
+- Small bug fixes.
