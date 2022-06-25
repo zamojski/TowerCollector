@@ -125,7 +125,7 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:5.0.1'
     implementation 'org.osmdroid:osmdroid-android:6.1.11'
     implementation 'com.github.MKergall:osmbonuspack:6.8.0'
-    implementation 'app.netmonster:core:1.0.0'
+    implementation 'app.netmonster:core:1.1.0'
 }
 
 Properties getCustomProperties(String currentFlavor) {
