@@ -103,7 +103,7 @@ android {
 }
 
 def acraVersion = '5.8.4'
-def permissionsDispatcherVersion = '4.9.1'
+def permissionsDispatcherVersion = '4.9.2'
 
 dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
