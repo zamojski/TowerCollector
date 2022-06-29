@@ -50,7 +50,6 @@ import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import cz.mroczis.netmonster.core.INetMonster;
-import cz.mroczis.netmonster.core.factory.NetMonsterFactory;
 import cz.mroczis.netmonster.core.model.cell.ICell;
 import info.zamojski.soft.towercollector.analytics.IntentSource;
 import info.zamojski.soft.towercollector.broadcast.BatteryStatusBroadcastReceiver;
@@ -612,7 +611,7 @@ public class CollectorService extends Service {
 
     private void registerNetMonsterListener() {
         Timber.d("registerNetMonsterListener(): Registering NetMonster Core listener");
-        INetMonster netMonster = NetMonsterFactory.INSTANCE.get(MyApplication.getApplication());
+        INetMonster netMonster = MobileUtils.getNetMonsterCore(MyApplication.getApplication());
         boolean collectNeighboringCells = MyApplication.getPreferencesProvider().getCollectNeighboringCells();
         measurementParser = new MeasurementParserFactory().CreateNetMonsterParser(transportMode.getAccuracy(), collectNeighboringCells);
         getMeasurementParserHandler().post(measurementParser);

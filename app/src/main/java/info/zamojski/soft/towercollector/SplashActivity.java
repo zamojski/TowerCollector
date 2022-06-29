@@ -11,6 +11,7 @@ import info.zamojski.soft.towercollector.export.ExportWorker;
 import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvider;
 import info.zamojski.soft.towercollector.tasks.DatabaseUpgradeTask;
 import info.zamojski.soft.towercollector.tasks.PreferencesUpgradeTask;
+import info.zamojski.soft.towercollector.uploader.UploaderWorker;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
 import timber.log.Timber;
 
@@ -147,10 +148,10 @@ public class SplashActivity extends Activity {
             public void run() {
                 ensurePreferencesUpToDate();
                 ensureDatabaseUpToDate();
-                if (MyApplication.isBackgroundTaskRunning(UploaderService.class)) {
-                    new ExternalBroadcastReceiver().stopUploaderService(MyApplication.getApplication());
+                if (MyApplication.isBackgroundTaskRunning(UploaderWorker.class)) {
+                    new ExternalBroadcastReceiver().stopUploaderWorker(MyApplication.getApplication());
                 } else {
-                    new ExternalBroadcastReceiver().startUploaderService(MyApplication.getApplication(), source);
+                    new ExternalBroadcastReceiver().startUploaderWorker(MyApplication.getApplication(), source);
                 }
                 Timber.d("toggleUploaderAsync(): Closing splash screen window");
                 finish();

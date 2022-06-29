@@ -1,6 +1,16 @@
 {
   "Entries": [
     {
+      "VersionCode": 2140099,
+      "Title": "Changes in version 2.14.0",
+      "Messages": [
+        "Change Uploader to show progress in dialog and notification to unify behavior with Export function.",
+        "Remove unnecessary prompt to select storage when disabling file logging.",
+        "Fixes related to data collection with NetMonster API.",
+        "Small bug fixes."
+      ]
+    },
+    {
       "VersionCode": 2130098,
       "Title": "Changes in version 2.13.0",
       "Messages": [
@@ -41,14 +51,6 @@
         "Add option to start and stop Export using shortcuts.",
         "Add option to start and stop Export with Intents.",
         "Fix crash when starting other action while Export is in progress."
-      ]
-    },
-    {
-      "VersionCode": 2090389,
-      "Title": "Changes in version 2.9.3",
-      "Messages": [
-        "Fix crash when displaying new version dialog in case the notification was created before application was updated.",
-        "Always show location accuracy if available."
       ]
     }
   ]
