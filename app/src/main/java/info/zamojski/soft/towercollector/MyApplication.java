@@ -100,7 +100,7 @@ public class MyApplication extends Application {
                 }
                 // strange but it happens that app is tested on devices with lower SDK - don't send ACRA reports
                 // also ignore errors caused by system failures
-                if (isSdkVersionSupported() && !hasSystemDied(ex) && !isAndroid10TelephonyManagerLambdaBug(ex)) {
+                if (isSdkVersionSupported() && !hasSystemDied(ex) && !isAndroid10TelephonyManagerLambdaBug(ex) && !hasFileSystemInBadStage(ex)) {
                     if (isDatabaseCorrupted(ex)) {
                         String dbString = DatabaseOperations.getDatabaseBaseString(getApplication());
                         ACRA.getErrorReporter().putCustomData("DB", dbString);
@@ -141,6 +141,12 @@ public class MyApplication extends Application {
         String stackTrace = getFullStackTrace(ex);
         boolean isCorrupted = stackTrace.contains("SQLITE_IOERR_SHORT_READ");
         return isCorrupted;
+    }
+
+    private boolean hasFileSystemInBadStage(Throwable ex) {
+        boolean isType = ex instanceof IllegalStateException;
+        boolean isInBadState = ex.getMessage() != null && ex.getMessage().contains("The file system on the device is in a bad state.");
+        return isType && isInBadState;
     }
 
     private String getFullStackTrace(Throwable ex) {
