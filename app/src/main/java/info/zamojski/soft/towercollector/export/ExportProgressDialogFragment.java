@@ -61,7 +61,8 @@ public class ExportProgressDialogFragment extends DialogFragment {
         exportProgressDialog.setCancelable(false);
         exportProgressDialog.setCanceledOnTouchOutside(false);
         exportProgressDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_cancel), (dialog, which) -> {
-            cancelListener.onExportCancelled();
+            if (cancelListener != null)
+                cancelListener.onExportCancelled();
             // hide loading indicator
             if (dialog != null)
                 dialog.dismiss();

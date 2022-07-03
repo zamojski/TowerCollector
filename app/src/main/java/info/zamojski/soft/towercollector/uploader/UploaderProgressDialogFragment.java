@@ -55,7 +55,8 @@ public class UploaderProgressDialogFragment extends DialogFragment {
         uploaderProgressDialog.setCancelable(false);
         uploaderProgressDialog.setCanceledOnTouchOutside(false);
         uploaderProgressDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_cancel), (dialog, which) -> {
-            cancelListener.onUploadCancelled();
+            if (cancelListener != null)
+                cancelListener.onUploadCancelled();
             // hide loading indicator
             if (dialog != null)
                 dialog.dismiss();
