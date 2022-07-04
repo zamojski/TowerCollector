@@ -1,0 +1,2 @@
+- Try to fix exception when button cancelling export or upload.
+- Improve error handling.

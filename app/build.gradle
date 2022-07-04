@@ -16,8 +16,8 @@ android {
         applicationId "info.zamojski.soft.towercollector"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 2140099
-        versionName "2.14.0"
+        versionCode 2140100
+        versionName "2.14.1"
 
         vectorDrawables.useSupportLibrary = true
 

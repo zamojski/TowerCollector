@@ -1,6 +1,14 @@
 {
   "Entries": [
     {
+      "VersionCode": 2140100,
+      "Title": "Changes in version 2.14.1",
+      "Messages": [
+        "Try to fix exception when button cancelling export or upload.",
+        "Improve error handling."
+      ]
+    },
+    {
       "VersionCode": 2140099,
       "Title": "Changes in version 2.14.0",
       "Messages": [
@@ -39,18 +47,6 @@
         "Add option to contribute anonymously on upload configurator.",
         "Improved descriptions and translations.",
         "Small bug fixes."
-      ]
-    },
-    {
-      "VersionCode": 2100093,
-      "Title": "Changes in version 2.10.0",
-      "Description": "This is brings the significantly changed Export function. Please report any issues or suggestions via email, link in the Preferences inside Help section.",
-      "Messages": [
-        "Add notification showing progress of Export operation.",
-        "Add option to start and stop Export using Quick Settings toggles.",
-        "Add option to start and stop Export using shortcuts.",
-        "Add option to start and stop Export with Intents.",
-        "Fix crash when starting other action while Export is in progress."
       ]
     }
   ]
