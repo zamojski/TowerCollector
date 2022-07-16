@@ -86,6 +86,7 @@ public class JsonBroadcastFormatter extends JsonFormatterBase implements IJsonFo
                 cell.put("arfcn", formatNullable(c.getArfcn(), Cell.UNKNOWN_CID));
                 cell.put("neighboring", c.isNeighboring());
                 cell.put("net_type", cellUtils.getSystemType(c.getNetworkType()));
+                cell.put("discovered_at", formatDate(c.getDiscoveredAt()));
                 cells.put(cell);
             }
             root.put("cells", cells);

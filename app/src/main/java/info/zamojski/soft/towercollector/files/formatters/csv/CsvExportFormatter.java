@@ -33,7 +33,7 @@ public class CsvExportFormatter extends CsvFormatter {
 
     @Override
     public String formatHeader() {
-        return "mcc,mnc,lac,cell_id,short_cell_id,rnc,psc,asu,dbm,ta,lat,lon,accuracy,speed,bearing,altitude,measured_at,net_type,neighboring,device,rsrp,rsrq,rssi,rssnr,cqi,rscp,csi_rsrp,csi_rsrq,csi_sinr,ss_rsrp,ss_rsrq,ss_sinr,cdma_dbm,cdma_ecio,evdo_dbm,evdo_ecio,evdo_snr,ec_no,arfcn\r\n";
+        return "mcc,mnc,lac,cell_id,short_cell_id,rnc,psc,asu,dbm,ta,lat,lon,accuracy,speed,bearing,altitude,measured_at,net_type,neighboring,discovered_at,device,rsrp,rsrq,rssi,rssnr,cqi,rscp,csi_rsrp,csi_rsrq,csi_sinr,ss_rsrp,ss_rsrq,ss_sinr,cdma_dbm,cdma_ecio,evdo_dbm,evdo_ecio,evdo_snr,ec_no,arfcn\r\n";
     }
 
     @Override
@@ -95,6 +95,9 @@ public class CsvExportFormatter extends CsvFormatter {
             sb.append(',');
 
             sb.append(c.isNeighboring());
+            sb.append(',');
+
+            sb.append(formatDate(c.getDiscoveredAt()));
             sb.append(',');
 
             sb.append("\"");
