@@ -153,8 +153,8 @@
     <string name="uploader_server_error_description">The server returned internal error which may mean that it is overloaded, temporarily unavailable or down for maintenance. Please try again later. If you encounter this problem for a long time, please let me know.</string>
     <string name="uploader_limit_exceeded">Usage limit exceeded</string>
     <string name="uploader_limit_exceeded_description">The daily usage limit for the app has been exceeded. Please try again tomorrow.</string>
-    <string name="uploader_result_message" translatable="false"><xliff:g id="message">%1$s</xliff:g>\n<xliff:g id="description">%2$s</xliff:g></string>
-    <string name="uploader_result_message_summary" translatable="false">OCID: <xliff:g id="result_for_ocid">%1$s</xliff:g>\n\nMLS: <xliff:g id="result_for_mls">%2$s</xliff:g></string>
+    <string name="uploader_result_message" translatable="false">OCID: <xliff:g id="message_for_ocid">%1$s</xliff:g> | MLS: <xliff:g id="message_for_mls">%2$s</xliff:g></string>
+    <string name="uploader_result_description" translatable="false">OCID: <xliff:g id="message_for_ocid">%1$s</xliff:g>\n\nMLS: <xliff:g id="message_for_mls">%2$s</xliff:g></string>
     <string name="other_notification_channel_name">Other</string>
     <string name="error_reporting_notification_channel_name">Error reporting</string>
     <string name="error_reporting_notification_title">Unexpected error occurred</string>
@@ -257,9 +257,9 @@
     <string name="main_help_last_sid_title">System ID</string>
     <string name="main_help_last_sid_description">The unique identifier of network system to which the phone was connected. Together with NID it creates a worldwide unique network identifier.</string>
     <string name="main_help_last_signal_strength_title">Signal strength</string>
-    <string name="main_help_last_signal_strength_description">Network signal strength measured while saving expressed in dBm (power ratio in decibels (dB) of the measured power referenced to 1 milliwatt (mW)). Doubling this value means a 10 times stronger signal strength. Values closer to 0 indicate stronger signal.</string>
+    <string name="main_help_last_signal_strength_description">Network signal strength measured while saving expressed in dBm (power ratio in decibels (dB) of the measured power referenced to 1 milliwatt (mW)). Doubling this value means a 10 times stronger signal strength. Values ​​closer to 0 indicate stronger signal.</string>
     <string name="main_help_last_latitude_title">Latitude</string>
-    <string name="main_help_last_latitude_description">The geographical latitude of saved position. Positive value represents the northern hemisphere, negative southern. The higher is absolute value the more far it is away from the equator.</string>
+    <string name="main_help_last_latitude_description">The geographical latitude of saved position. Positive value ​​represents the northern hemisphere, negative southern. The higher is absolute value the more far it is away from the equator.</string>
     <string name="main_help_last_longitude_title">Longitude</string>
     <string name="main_help_last_longitude_description">The geographical longitude of saved position. Positive value represents a position east of the Prime Meridian, negative west. The higher is absolute value the more far it is away from the Prime Meridian.</string>
     <string name="main_help_last_gps_accuracy_title">GPS accuracy</string>

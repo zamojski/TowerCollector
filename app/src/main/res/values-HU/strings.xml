@@ -115,8 +115,9 @@
     <string name="collector_gps_unavailable">Az adatgyűjtés nem kezdhető el, mert a GPS nem érhető el.</string>
     <string name="uploader_notification_channel_name">Feltöltő</string>
     <string name="uploader_notification_title">Feltöltés</string>
-    <string name="uploader_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% feltöltve. Válaszd ki a megszakításhoz.</string>
+    <string name="uploader_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% feltöltve.</string>
     <string name="uploader_result_dialog_title">Feltöltés eredménye</string>
+    <string name="uploader_dialog_progress_title">Feltöltés</string>
     <string name="uploader_starting">Feltöltés elkezdése&#8230;</string>
     <string name="uploader_aborting">Feltöltés megszakítása&#8230;</string>
     <string name="uploader_already_running">A feltöltés már folyamatban van.</string>
@@ -189,6 +190,8 @@
     <string name="export_toast_failed_cause_file_not_writable">a fájl csak olvasható</string>
     <string name="export_toast_no_data">Nincsenek exportált adatok.</string>
     <string name="export_toast_cancelled">Exportálás megszakítva.</string>
+    <string name="uploader_toast_failed">Feltöltés sikertelen: <xliff:g id="failure_reason">%s</xliff:g>.</string>
+    <string name="uploader_toast_cancelled">Feltöltés megszakítva.</string>
     <string name="updater_notification_ticker">A Tower Collector egy újabb verziója érhető el</string>
     <string name="updater_notification_title">Új verzió érhető el</string>
     <string name="updater_notification_download_options">Válaszd ki a letöltési beállítások megjelenítéséhez</string>

@@ -30,7 +30,7 @@
     <string name="preferences_restart_collector">重启收集器任务以应用更改。</string>
     <string name="preferences_upload_show_configurator_title">显示配置器</string>
     <string name="preferences_upload_show_configurator_on_summary">每次上传前都会显示配置窗口。</string>
-    <string name="preferences_upload_show_configurator_off_summary">上传将使用以下设置。</string>
+    <string name="preferences_upload_show_configurator_off_summary">上传将使用以下配置。</string>
     <string name="preferences_reupload_if_upload_fails_title">如果失败再次尝试上传</string>
     <string name="preferences_reupload_if_upload_fails_on_summary">如果其中一个项目的上传失败，应用将保留最多30天的测量数据并尝试再次上传。</string>
     <string name="preferences_reupload_if_upload_fails_off_summary">如果至少一个项目上传成功，该应用将删除已上传的测量数据。</string>
@@ -58,14 +58,14 @@
     <string name="preferences_imperial_units_on_summary">数值将使用英制单位表示。</string>
     <string name="preferences_imperial_units_off_summary">数值将使用公制单位表示。</string>
     <string name="preferences_app_theme_title">主题</string>
-    <string name="preferences_app_theme_summary">定义应用的颜色主题。</string>
+    <string name="preferences_app_theme_summary">设置应用的主题颜色。</string>
     <string name="preferences_collector_keep_screen_on_title">收集时保持屏幕开启</string>
-    <string name="preferences_collector_keep_screen_on_summary">定义在收集测量值时屏幕是否持续亮起。启用将显着缩短电池续航。</string>
+    <string name="preferences_collector_keep_screen_on_summary">设置在收集测量值时屏幕是否持续亮起。启用将显着缩短电池续航。</string>
     <string name="preferences_gps_optimizations_enabled_title">收集器GPS优化</string>
     <string name="preferences_gps_optimizations_enabled_on_summary">收集测量数据时将使用GPS参数优化。</string>
     <string name="preferences_gps_optimizations_enabled_off_summary">禁用GPS参数优化。</string>
     <string name="preferences_export_compression_format_title">压缩格式</string>
-    <string name="preferences_export_compression_format_summary">定义导出文件的压缩格式。</string>
+    <string name="preferences_export_compression_format_summary">设置导出文件的压缩格式。</string>
     <string name="preferences_tracking_enabled_title">发送使用情况统计</string>
     <string name="preferences_tracking_enabled_on_summary">将发送匿名使用情况统计信息以帮助我改进应用。更多信息如下。</string>
     <string name="preferences_tracking_enabled_off_summary">匿名使用统计信息已禁用。请查看下面启用时可能发送的内容。</string>
@@ -106,7 +106,7 @@
     <string name="preferences_about_collector_api_version_title">关于Collector API版本</string>
     <string name="preferences_about_collector_api_version_summary">有关API版本之间差异的信息。</string>
     <string name="preferences_file_logging_level_title">文件日志记录级别</string>
-    <string name="preferences_file_logging_level_summary">定义诊断消息到文件的日志记录级别。请注意，高度详细的日志记录可能会降低应用速度并创建大型日志文件。必须存在外部存储器。</string>
+    <string name="preferences_file_logging_level_summary">设置诊断消息到文件的日志记录级别。请注意，高度详细的日志记录可能会降低应用速度并创建大型日志文件。必须存在外部存储器。</string>
     <string name="preferences_collect_neighboring_cells_title">收集相邻的基站</string>
     <string name="preferences_collect_neighboring_cells_on_summary">如果可用，将收集相邻的基站</string>
     <string name="preferences_collect_neighboring_cells_off_summary">相邻的小区将被丢弃。</string>
@@ -137,9 +137,9 @@
     <string name="preferences_start_collector_at_startup_off_summary">该应用程序在启动时将不会开始收集。</string>
     <string name="preferences_start_collector_at_boot_title">在设备启动时开始收集</string>
     <string name="preferences_start_collector_at_boot_on_summary">收集将在设备启动时自动启动。应用必须安装在内部存储器上才能使其正常工作。</string>
-    <string name="preferences_start_collector_at_boot_off_summary">该应用不会在设备启动时开始收集。该应用可以安装在任何地方。必须授予背景位置权限才能使用此功能，否则该应用将无法收集测量值。</string>
+    <string name="preferences_start_collector_at_boot_off_summary">该应用不会在设备启动时开始收集。该应用可以安装在任何地方。必须授予后台位置权限才能使用此功能，否则该应用将无法收集测量值。</string>
     <string name="preferences_collector_low_battery_action_title">低电量时操作</string>
-    <string name="preferences_collector_low_battery_action_summary">定义当电池电量变低且收集器正在运行时会发生什么。</string>
+    <string name="preferences_collector_low_battery_action_summary">设置当电池电量变低且收集器正在运行时的操作。</string>
     <string name="preferences_import_database_title">导入数据库</string>
     <string name="preferences_import_database_summary">从位于首选项中设置的存储文件夹中的measurements.db文件导入应用程序的内部数据库。</string>
     <string name="preferences_export_database_title">导出数据库</string>
@@ -148,7 +148,7 @@
     <string name="preferences_import_preferences_summary">从位于首选项中设置的存储文件夹中的preferences.xml文件导入应用程序的内部首选项。</string>
     <string name="preferences_export_preferences_title">导出配置</string>
     <string name="preferences_export_preferences_summary">将应用程序的内部首选项导出到首选项中设置的存储文件夹中的preferences.xml文件。</string>
-    <string name="preferences_change_storage_location_title">变更储存位置</string>
+    <string name="preferences_change_storage_location_title">变更存储位置</string>
     <string name="preferences_change_storage_location_summary">更改应用程序文件的存储位置。</string>
     <string name="preferences_main_map_enable_title">启用地图</string>
     <string name="preferences_main_map_enable_on_summary">地图选项卡可见。</string>
@@ -160,7 +160,7 @@
     <string name="preferences_main_map_unmetered_only_on_summary">除非您连接到未计量的网络（通常是 Wi-Fi），否则地图将仅在以前缓存的区域中工作。</string>
     <string name="preferences_main_map_unmetered_only_off_summary">无论Internet连接类型如何，地图都会被更新。</string>
     <string name="preferences_main_map_cache_size_title">地图缓存大小</string>
-    <string name="preferences_main_map_cache_size_summary">根据设备上的可用可用内存调整地图缓存大小。\n<b>[MB]</b></string>
+    <string name="preferences_main_map_cache_size_summary">根据设备上的可用存储调整地图缓存大小。\n<b>[MB]</b></string>
     <string name="preferences_main_map_clear_cache_title">清除缓存</string>
     <string name="preferences_main_map_clear_cache_summary">清除地图缓存文件夹以释放一些空间。</string>
 </resources>

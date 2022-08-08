@@ -50,7 +50,7 @@
     <string name="main_dialog_not_compatible_begin">ייתכן שהיישומון לא יעבוד כיוון:\n</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; לא זוהתה חומרת רשת סלולרית.\n</string>
     <string name="main_toast_background_task_already_running_collector">שירות האיסוף אינו פעיל.</string>
-    <string name="main_toast_background_task_already_running_uploader">שירות ההעלאה אינו פעיל.</string>
+    <string name="main_toast_background_task_already_running_uploader">משימת ההעלאה פועלת.</string>
     <string name="main_toast_background_task_already_running_export">משימת הייצוא פעילה.</string>
     <string name="main_toast_background_task_already_running_unknown">משימת רקע פעילה.</string>
     <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> נא לעצור אותה בטרם הפעלת משימה אחרת.</string>
@@ -115,8 +115,9 @@
     <string name="collector_gps_unavailable">לא ניתן להתחיל לאסוף כיוון שה־GPS לא זמין.</string>
     <string name="uploader_notification_channel_name">מנגנון העלאה</string>
     <string name="uploader_notification_title">מתבצעת העלאה</string>
-    <string name="uploader_notification_progress_info">הועלו <xliff:g id="progress_in_percent">%d</xliff:g>%%. יש לבחור כדי לבטל.</string>
+    <string name="uploader_notification_progress_info">הועלו <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
     <string name="uploader_result_dialog_title">תוצאות ההעלאה</string>
+    <string name="uploader_dialog_progress_title">מתבצעת העלאה</string>
     <string name="uploader_starting">ההעלאה מתחילה&#8230;</string>
     <string name="uploader_aborting">ההעלאה מבוטלת&#8230;</string>
     <string name="uploader_already_running">כבר מתבצעת העלאה ברקע.</string>
@@ -189,6 +190,8 @@
     <string name="export_toast_failed_cause_file_not_writable">הקובץ לקריאה בלבד</string>
     <string name="export_toast_no_data">אין נתונים לייצוא.</string>
     <string name="export_toast_cancelled">הייצוא בוטל.</string>
+    <string name="uploader_toast_failed">ההעלאה נכשלה: <xliff:g id="failure_reason">%s</xliff:g>.</string>
+    <string name="uploader_toast_cancelled">ההעלאה בוטלה.</string>
     <string name="updater_notification_ticker">קיימת גרסה חדשה של Tower Collector</string>
     <string name="updater_notification_title">גרסה חדשה זמינה</string>
     <string name="updater_notification_download_options">יש לבחור כדי לצפות באפשרויות ההורדה</string>

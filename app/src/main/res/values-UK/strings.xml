@@ -50,7 +50,7 @@
     <string name="main_dialog_not_compatible_begin">Додаток може не працювати, оскільки:</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Мобільна мережеве обладнання не виявлено.</string>
     <string name="main_toast_background_task_already_running_collector">Служба збору інформації працює.</string>
-    <string name="main_toast_background_task_already_running_uploader">Служба завантажувача запущена.</string>
+    <string name="main_toast_background_task_already_running_uploader">Виконується завантаження.</string>
     <string name="main_toast_background_task_already_running_export">Виконується експорт.</string>
     <string name="main_toast_background_task_already_running_unknown">Фоновий процес запущено.</string>
     <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> Будь ласка, зупиніть це, перш ніж розпочати нове завдання.</string>
@@ -115,8 +115,9 @@
     <string name="collector_gps_unavailable">Неможливо розпочати збирати, тому що GPS недоступний.</string>
     <string name="uploader_notification_channel_name">Вивантажувач</string>
     <string name="uploader_notification_title">Вивантаження</string>
-    <string name="uploader_notification_progress_info">Завантажено <xliff:g id="progress_in_percent">%d</xliff:g>%%. Виберіть для скасування.</string>
+    <string name="uploader_notification_progress_info">Завантажено <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
     <string name="uploader_result_dialog_title">Результат вивантаження</string>
+    <string name="uploader_dialog_progress_title">Вивантаження</string>
     <string name="uploader_starting">Початок вивантаження&#8230;</string>
     <string name="uploader_aborting">Зупиняємо вивантаження&#8230;</string>
     <string name="uploader_already_running">Вивантаження вже працює.</string>
@@ -189,6 +190,8 @@
     <string name="export_toast_failed_cause_file_not_writable">Файл доступний тільки для читання</string>
     <string name="export_toast_no_data">Немає даних для експорту.</string>
     <string name="export_toast_cancelled">Експорт скасований.</string>
+    <string name="uploader_toast_failed">Завантаження не виконано: <xliff:g id="failure_reason">%s</xliff:g></string>
+    <string name="uploader_toast_cancelled">Завантаження скасовано.</string>
     <string name="updater_notification_ticker">Зверніть увагу: доступна нова версія програми</string>
     <string name="updater_notification_title">Нова версія доступна</string>
     <string name="updater_notification_download_options">Виберіть для перегляду параметрів завантаження</string>

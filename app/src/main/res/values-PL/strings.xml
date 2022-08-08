@@ -115,8 +115,9 @@
     <string name="collector_gps_unavailable">Zbieranie nie może zostać uruchomione, ponieważ GPS jest niedostępny.</string>
     <string name="uploader_notification_channel_name">Przesyłanie</string>
     <string name="uploader_notification_title">Przesyłanie</string>
-    <string name="uploader_notification_progress_info">Przesłano <xliff:g id="progress_in_percent">%d</xliff:g>%%. Stuknij, aby przerwać.</string>
+    <string name="uploader_notification_progress_info">Przesłano <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
     <string name="uploader_result_dialog_title">Rezultat przesyłania</string>
+    <string name="uploader_dialog_progress_title">Przesyłanie</string>
     <string name="uploader_starting">Rozpoczynanie przesyłania&#8230;</string>
     <string name="uploader_aborting">Przerywanie przesyłania&#8230;</string>
     <string name="uploader_already_running">Przesyłanie jest już uruchomione.</string>
@@ -189,6 +190,8 @@
     <string name="export_toast_failed_cause_file_not_writable">plik jest tylko do odczytu</string>
     <string name="export_toast_no_data">Brak danych do wyeksportowania.</string>
     <string name="export_toast_cancelled">Eksport anulowany.</string>
+    <string name="uploader_toast_failed">Przesyłanie nie powiodło się: <xliff:g id="failure_reason">%s</xliff:g>.</string>
+    <string name="uploader_toast_cancelled">Przesyłanie anulowane.</string>
     <string name="updater_notification_ticker">Nowa wersja Tower Collectora jest dostępna</string>
     <string name="updater_notification_title">Nowa wersja jest dostępna</string>
     <string name="updater_notification_download_options">Wybierz, aby zobaczyć opcje pobierania</string>

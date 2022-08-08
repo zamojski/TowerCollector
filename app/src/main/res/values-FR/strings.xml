@@ -115,8 +115,9 @@
     <string name="collector_gps_unavailable">Impossible de commencer à collecter car le GPS est indisponible.</string>
     <string name="uploader_notification_channel_name">Envoyer</string>
     <string name="uploader_notification_title">Envoi en cours</string>
-    <string name="uploader_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% envoyés. Appuyez pour annuler.</string>
+    <string name="uploader_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% envoyés.</string>
     <string name="uploader_result_dialog_title">Résultat de l\'envoi</string>
+    <string name="uploader_dialog_progress_title">Envoi en cours</string>
     <string name="uploader_starting">Début de l\'envoi&#8230;</string>
     <string name="uploader_aborting">Annulation de l\'envoi&#8230;</string>
     <string name="uploader_already_running">L\'envoi est déjà en cours.</string>
@@ -189,6 +190,8 @@
     <string name="export_toast_failed_cause_file_not_writable">le fichier est en lecture seule</string>
     <string name="export_toast_no_data">Aucune donnée à exporter.</string>
     <string name="export_toast_cancelled">Exportation annulée.</string>
+    <string name="uploader_toast_failed">Envoi a échoué: <xliff:g id="failure_reason">%s</xliff:g>.</string>
+    <string name="uploader_toast_cancelled">Envoi annulée.</string>
     <string name="updater_notification_ticker">Une nouvelle version de Tower Colector est disponible</string>
     <string name="updater_notification_title">Une nouvelle version est disponible</string>
     <string name="updater_notification_download_options">Voir les options de téléchargement</string>

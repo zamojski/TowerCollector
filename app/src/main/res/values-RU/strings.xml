@@ -50,7 +50,7 @@
     <string name="main_dialog_not_compatible_begin">Приложение может не работать потому, что:</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Не найдено оборудование для работы с мобильными сетями.\n</string>
     <string name="main_toast_background_task_already_running_collector">Сборщик запущен.</string>
-    <string name="main_toast_background_task_already_running_uploader">Модуль выгрузки данных запущен.</string>
+    <string name="main_toast_background_task_already_running_uploader">Выполняется задача загрузки.</string>
     <string name="main_toast_background_task_already_running_export">Выполняется экспорт данных.</string>
     <string name="main_toast_background_task_already_running_unknown">Фоновая задача запущена.</string>
     <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> Пожалуйста остановите задачу перед запуском новой.</string>
@@ -115,8 +115,9 @@
     <string name="collector_gps_unavailable">Невозможно начать сбор, т.к. GPS выключен</string>
     <string name="uploader_notification_channel_name">Загрузчик</string>
     <string name="uploader_notification_title">Выгрузка</string>
-    <string name="uploader_notification_progress_info">Загружено <xliff:g id="progress_in_percent">%d</xliff:g>%%. Нажмите, чтобы прервать.</string>
+    <string name="uploader_notification_progress_info">Загружено <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
     <string name="uploader_result_dialog_title">Выгрузить результаты</string>
+    <string name="uploader_dialog_progress_title">Выгрузка</string>
     <string name="uploader_starting">Начинается выгрузка&#8230;</string>
     <string name="uploader_aborting">Прерывание выгрузки&#8230;</string>
     <string name="uploader_already_running">Выгрузка в процессе.</string>
@@ -189,6 +190,8 @@
     <string name="export_toast_failed_cause_file_not_writable">файл только для чтения</string>
     <string name="export_toast_no_data">Нет данных для экспорта.</string>
     <string name="export_toast_cancelled">Экспорт отменён.</string>
+    <string name="uploader_toast_failed">Ошибка загрузки: <xliff:g id="failure_reason">%s</xliff:g>.</string>
+    <string name="uploader_toast_cancelled">Загрузка отменена.</string>
     <string name="updater_notification_ticker">Доступна новая версия Tower Colector</string>
     <string name="updater_notification_title">Доступна новая версия</string>
     <string name="updater_notification_download_options">Выберите, чтобы увидеть настройки для закачки</string>

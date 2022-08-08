@@ -50,7 +50,7 @@
     <string name="main_dialog_not_compatible_begin">La aplicación puede no funcionar por:</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Hardware de red móvil no detectado.</string>
     <string name="main_toast_background_task_already_running_collector">El servicio Collector está ejecutándose</string>
-    <string name="main_toast_background_task_already_running_uploader">El servicio Uploader está ejecutándose</string>
+    <string name="main_toast_background_task_already_running_uploader">El Uploader está ejecutándose.</string>
     <string name="main_toast_background_task_already_running_export">La Exportación está encendida.</string>
     <string name="main_toast_background_task_already_running_unknown">Tarea en segundo plano encendida.</string>
     <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> Por favor deténgala antes de iniciar otra tarea.</string>
@@ -115,8 +115,9 @@
     <string name="collector_gps_unavailable">No se puede comenzar a recolectar porque el GPS no está disponible.</string>
     <string name="uploader_notification_channel_name">Cargador</string>
     <string name="uploader_notification_title">Subiendo info</string>
-    <string name="uploader_notification_progress_info">Subido el <xliff:g id="progress_in_percent">%d</xliff:g>%%. Seleccione para cancelar.</string>
+    <string name="uploader_notification_progress_info">Subido el <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
     <string name="uploader_result_dialog_title">Subir resultado</string>
+    <string name="uploader_dialog_progress_title">Subiendo info</string>
     <string name="uploader_starting">Iniciando subida&#8230;</string>
     <string name="uploader_aborting">Cancelando subida&#8230;</string>
     <string name="uploader_already_running">La subida ya está en progreso.</string>
@@ -189,6 +190,8 @@
     <string name="export_toast_failed_cause_file_not_writable">el archivo es de solo lectura</string>
     <string name="export_toast_no_data">No hay datos para exportar.</string>
     <string name="export_toast_cancelled">Exportación cancelada.</string>
+    <string name="uploader_toast_failed">Subida fallida: <xliff:g id="failure_reason">%s</xliff:g>.</string>
+    <string name="uploader_toast_cancelled">Subida cancelada.</string>
     <string name="updater_notification_ticker">Está disponible una nueva versión de Tower Collector</string>
     <string name="updater_notification_title">Nueva versión disponible</string>
     <string name="updater_notification_download_options">Seleccione para ver las opciones de descarga</string>

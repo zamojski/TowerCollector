@@ -50,7 +50,7 @@
     <string name="main_dialog_not_compatible_begin">다음과 같은 이유로 앱이 동작하지 않을 수 있습니다.\n</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; 셀롤러 모듈이 없습니다.\n</string>
     <string name="main_toast_background_task_already_running_collector">수집 서비스가 동작중입니다.</string>
-    <string name="main_toast_background_task_already_running_uploader">업로드 서비스가 동작중입니다.</string>
+    <string name="main_toast_background_task_already_running_uploader">업로드가 진행 중입니다.</string>
     <string name="main_toast_background_task_already_running_export">내보내기가 작업이 진행중입니다.</string>
     <string name="main_toast_background_task_already_running_unknown">백그라운드 작업이 진행중입니다.</string>
     <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> 다른 작업을 시작하기 전에 수집을 중단해야합니다.</string>
@@ -115,8 +115,9 @@
     <string name="collector_gps_unavailable">GPS를 사용할 수 없기 때문에 수집을 시작할 수 없습니다.</string>
     <string name="uploader_notification_channel_name">업로드</string>
     <string name="uploader_notification_title">업로드 진행중</string>
-    <string name="uploader_notification_progress_info">업로드 진행중 <xliff:g id="progress_in_percent">%d</xliff:g>%%. 선택하여 취소</string>
+    <string name="uploader_notification_progress_info">업로드 진행중 <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
     <string name="uploader_result_dialog_title">업로드 결과</string>
+    <string name="uploader_dialog_progress_title">업로드 진행중</string>
     <string name="uploader_starting">업로드 시작중&#8230;</string>
     <string name="uploader_aborting">업로드 취소중&#8230;</string>
     <string name="uploader_already_running">업로드가 이미 진행중입니다.</string>
@@ -189,6 +190,8 @@
     <string name="export_toast_failed_cause_file_not_writable">파일이 읽기 전용입니다.</string>
     <string name="export_toast_no_data">내보낼 데이터가 없습니다.</string>
     <string name="export_toast_cancelled">내보내기가 중단되었습니다.</string>
+    <string name="uploader_toast_failed">업로드 실패: <xliff:g id="failure_reason">%s</xliff:g>.</string>
+    <string name="uploader_toast_cancelled">업로드가 취소되었습니다.</string>
     <string name="updater_notification_ticker">새로운 버전의 Tower Collector이 있습니다.</string>
     <string name="updater_notification_title">새로운 버전이 있습니다.</string>
     <string name="updater_notification_download_options">다운로드 옵션을 보려면 선택하세요.</string>

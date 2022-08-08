@@ -50,7 +50,7 @@
     <string name="main_dialog_not_compatible_begin">Uygulama çalışmayabilir çünkü:</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Mobil ağ donanımı algılanamadı.</string>
     <string name="main_toast_background_task_already_running_collector">Toplama servisi çalışıyor.</string>
-    <string name="main_toast_background_task_already_running_uploader">Yükleme servisi çalışıyor.</string>
+    <string name="main_toast_background_task_already_running_uploader">Yükleme görevi çalışıyor.</string>
     <string name="main_toast_background_task_already_running_export">Dışa aktarma işlemi çalışıyor.</string>
     <string name="main_toast_background_task_already_running_unknown">Arkaplan işlemi çalışıyor.</string>
     <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> Başka bir görev başlatmadan önce lütfen onu durdurun.</string>
@@ -115,8 +115,9 @@
     <string name="collector_gps_unavailable">Toplama başlatılamadı çünkü konum devre dışı.</string>
     <string name="uploader_notification_channel_name">Yükleyici</string>
     <string name="uploader_notification_title">Yükleniyor</string>
-    <string name="uploader_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% yüklendi. İptal etmek için seç.</string>
+    <string name="uploader_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% yüklendi.</string>
     <string name="uploader_result_dialog_title">Yükleme sonucu</string>
+    <string name="uploader_dialog_progress_title">Yükleniyor</string>
     <string name="uploader_starting">Yükleme başlatılıyor.</string>
     <string name="uploader_aborting">Yükleme iptal ediliyor.</string>
     <string name="uploader_already_running">Yükleme zaten çalışıyor.</string>
@@ -189,6 +190,8 @@
     <string name="export_toast_failed_cause_file_not_writable">Dosya sadece salt okunur</string>
     <string name="export_toast_no_data">Dışa aktarılacak veri yok.</string>
     <string name="export_toast_cancelled">Dışa aktarma iptal edildi.</string>
+    <string name="uploader_toast_failed">Yükleme başarısız: <xliff:g id="failure_reason">%s</xliff:g></string>
+    <string name="uploader_toast_cancelled">Yükleme iptal edildi.</string>
     <string name="updater_notification_ticker">Tower Collector uygulamasının yeni sürümü mevcut</string>
     <string name="updater_notification_title">Yeni sürüm mevcut</string>
     <string name="updater_notification_download_options">İndirme seçeneklerini görüntüle</string>

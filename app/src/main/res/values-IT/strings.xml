@@ -115,8 +115,9 @@
     <string name="collector_gps_unavailable">Impossibile avviare la raccolta dati perché il GPS non è disponibile.</string>
     <string name="uploader_notification_channel_name">Caricatore</string>
     <string name="uploader_notification_title">Caricamento</string>
-    <string name="uploader_notification_progress_info">Caricato <xliff:g id="progress_in_percent">%d</xliff:g>%%. Seleziona per annullare.</string>
+    <string name="uploader_notification_progress_info">Caricato <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
     <string name="uploader_result_dialog_title">Risultato del caricamento</string>
+    <string name="uploader_dialog_progress_title">Caricamento</string>
     <string name="uploader_starting">Avvio caricamento&#8230;</string>
     <string name="uploader_aborting">Annullamento del caricamento&#8230;</string>
     <string name="uploader_already_running">Il caricamento è già in corso</string>
@@ -189,6 +190,8 @@
     <string name="export_toast_failed_cause_file_not_writable">file di sola lettura</string>
     <string name="export_toast_no_data">Nessun dato da esportare.</string>
     <string name="export_toast_cancelled">Esportazione cancellata.</string>
+    <string name="uploader_toast_failed">Caricamento fallita: <xliff:g id="failure_reason">%s</xliff:g>.</string>
+    <string name="uploader_toast_cancelled">Caricamento interrotto.</string>
     <string name="updater_notification_ticker">Una nuova versione di Tower Colector è disponibile</string>
     <string name="updater_notification_title">Nuova versione disponibile</string>
     <string name="updater_notification_download_options">Selezionare per visualizzare le opzioni di download</string>

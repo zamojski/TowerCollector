@@ -115,8 +115,9 @@
     <string name="collector_gps_unavailable">Kann Erfassung nicht starten weil GPS nicht verfügbar ist.</string>
     <string name="uploader_notification_channel_name">Hochladen</string>
     <string name="uploader_notification_title">hochladen</string>
-    <string name="uploader_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% hochgeladen. Tippen um abzubrechen.</string>
+    <string name="uploader_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% hochgeladen.</string>
     <string name="uploader_result_dialog_title">Upload Ergebnis</string>
+    <string name="uploader_dialog_progress_title">hochladen</string>
     <string name="uploader_starting">Starte Upload&#8230;</string>
     <string name="uploader_aborting">Upload abbrechen&#8230;</string>
     <string name="uploader_already_running">Upload läuft bereits.</string>
@@ -189,6 +190,8 @@
     <string name="export_toast_failed_cause_file_not_writable">Datei ist schreibgeschützt</string>
     <string name="export_toast_no_data">Keine Daten zum Exportieren vorhanden.</string>
     <string name="export_toast_cancelled">Export abgebrochen.</string>
+    <string name="uploader_toast_failed">Hochladen fehlgeschlagen: <xliff:g id="failure_reason">%s</xliff:g>.</string>
+    <string name="uploader_toast_cancelled">Hochladen abgebrochen.</string>
     <string name="updater_notification_ticker">Neue Version von Tower Collector verfügbar</string>
     <string name="updater_notification_title">Neue Version verfügbar</string>
     <string name="updater_notification_download_options">Auswählen um Download-Möglichkeiten zu sehen</string>

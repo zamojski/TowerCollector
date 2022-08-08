@@ -4,14 +4,14 @@
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources>
     <string name="permission_required">需要授予必要的权限</string>
-    <string name="permission_denied">没有权限</string>
+    <string name="permission_denied">权限被拒绝</string>
     <string name="permission_logging_denied_temporarily_message">由于拒绝存储权限，暂时禁用文件日志记录。</string>
     <string name="permission_collector_rationale_message">必须授予位置和电话权限才能收集测量数据。</string>
-    <string name="permission_collector_rationale_api29_message">如果要使用此功能，请确保选择“允许所有时间”选项以访问设备的位置许可！</string>
-    <string name="permission_collector_rationale_api30_message">如果要使用此功能，请确保选择“允许设置”，然后选择“允许所有时间”选项以访问设备的位置许可！</string>
+    <string name="permission_collector_rationale_api29_message">如果要使用此功能，请确保选择“始终允许”选项以获取设备的位置权限！</string>
+    <string name="permission_collector_rationale_api30_message">如果要使用此功能，请确保选择“允许设置”，然后选择“始终允许”选项以获取设备的位置权限！</string>
     <string name="permission_collector_denied_message">由于拒绝权限而取消收集测量数据</string>
     <string name="permission_collector_never_ask_again_message">由于拒绝位置和/或电话权限，收集测量数据不可用</string>
-    <string name="permission_collector_never_ask_again_api29_message">由于背景位置和/或电话权限被拒绝，无法进行测量收集</string>
+    <string name="permission_collector_never_ask_again_api29_message">由于后台位置和/或电话权限被拒绝，无法进行测量收集</string>
     <string name="permission_collector_denied_intent_message">由于拒绝权限而取消收集测量数据，请先打开应用以授予必要的权限</string>
     <string name="permission_collector_denied_background_location_message">由于拒绝了后台位置权限，因此在设备启动时禁用了启动。</string>
     <string name="permission_map_rationale_message">必须授予位置权限才能在地图上显示您的位置。</string>
