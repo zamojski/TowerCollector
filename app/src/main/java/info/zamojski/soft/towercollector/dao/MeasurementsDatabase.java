@@ -196,6 +196,7 @@ public class MeasurementsDatabase {
         } finally {
             invalidateCache();
             db.endTransaction();
+            db.close();
         }
         return result;
     }
@@ -263,7 +264,7 @@ public class MeasurementsDatabase {
             return lastStatisticsCacheCopy;
         }
         Statistics stats = new Statistics();
-        SQLiteDatabase db = helper.getReadableDatabase();
+
         // calculate midnight date (beginning of day)
         Calendar todayCalendar = Calendar.getInstance();
         todayCalendar.set(Calendar.HOUR_OF_DAY, 0);
@@ -304,6 +305,7 @@ public class MeasurementsDatabase {
                 + "JOIN (" + todayDiscoveredCellsQuery + ") "
                 + "JOIN (" + uploadToOcidAndMlsQuery + "))";
         // Timber.d(query);
+        SQLiteDatabase db = helper.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, selectionArgs);
         if (cursor.moveToNext()) {
             stats.setCellsToday(cursor.getInt(cursor.getColumnIndex(todayCellsCount)));
@@ -625,6 +627,7 @@ public class MeasurementsDatabase {
         } finally {
             invalidateCache();
             db.endTransaction();
+            db.close();
         }
         return deletedCellSignals;
     }
