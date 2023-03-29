@@ -57,7 +57,7 @@ public class UpdaterNotificationHelper extends NotificationHelperBase {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.setAction(UpdateCheckAsyncTask.TASK_FULL_NAME + "_NID_" + UpdateCheckAsyncTask.NOTIFICATION_ID);
         intent.putExtra(UpdateCheckAsyncTask.INTENT_KEY_UPDATE_INFO, updateInfo);
-        PendingIntent pendingIntent = PendingIntent.getActivity(MyApplication.getApplication(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(MyApplication.getApplication(), 0, intent, getImmutablePendingIntentFlags(PendingIntent.FLAG_UPDATE_CURRENT));
         return pendingIntent;
     }
 

@@ -188,7 +188,7 @@ public class UploaderWorker extends Worker implements IProgressListener {
             String mlsMessage = getStringById(getMessage(mlsUploadResult));
             String mlsDescription = getStringById(getDescription(mlsUploadResult));
             String mlsSummary = getStringById(R.string.uploader_result_message, mlsMessage, mlsDescription);
-            String message = getStringById(R.string.uploader_result_message_summary, ocidSummary, mlsSummary);
+            String message = getStringById(R.string.uploader_result_description, ocidSummary, mlsSummary);
             return Result.success(getMessageData(message));
         } catch (Exception ex) {
             Timber.e(ex, "doWork(): Uploader failed");

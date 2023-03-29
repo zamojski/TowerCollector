@@ -7,15 +7,15 @@ ext.rotEnabled = false
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion 31
+    buildToolsVersion "31.0.0"
 
     namespace 'info.zamojski.soft.towercollector'
 
     defaultConfig {
         applicationId "info.zamojski.soft.towercollector"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 2140100
         versionName "2.14.1"
 

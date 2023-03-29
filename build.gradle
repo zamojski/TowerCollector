@@ -20,7 +20,7 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
+        jcenter() // required by sufficientlysecure/html-textview/4.0/html-textview-4.0.pom
         google()
         mavenCentral()
         maven { url "https://jitpack.io" }

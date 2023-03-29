@@ -18,6 +18,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+
 import androidx.core.app.NotificationCompat;
 
 public class UploaderNotificationHelper extends NotificationHelperBase {
@@ -69,14 +70,14 @@ public class UploaderNotificationHelper extends NotificationHelperBase {
         Intent intent = new Intent(context, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.setAction(UploaderWorker.SERVICE_FULL_NAME + "_NID_" + UploaderWorker.NOTIFICATION_ID);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, getImmutablePendingIntentFlags(0));
         return pendingIntent;
     }
 
     private PendingIntent createCancelUploaderIntent() {
         Intent intent = new Intent(ExternalBroadcastReceiver.UploaderStopAction);
         intent.setPackage(MyApplication.getApplication().getPackageName());
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, getImmutablePendingIntentFlags(0));
         return pendingIntent;
     }
 

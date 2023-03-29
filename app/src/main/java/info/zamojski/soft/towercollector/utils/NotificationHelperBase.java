@@ -4,6 +4,7 @@
 
 package info.zamojski.soft.towercollector.utils;
 
+import android.app.PendingIntent;
 import android.os.Build;
 
 public class NotificationHelperBase {
@@ -19,5 +20,13 @@ public class NotificationHelperBase {
 
     protected boolean isUsingNotificationPriority() {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.O;
+    }
+
+    protected int getImmutablePendingIntentFlags(int flags) {
+        return isUsingPendingIntentMutabilityFlag() ? flags | PendingIntent.FLAG_IMMUTABLE : flags;
+    }
+
+    private boolean isUsingPendingIntentMutabilityFlag() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
     }
 }

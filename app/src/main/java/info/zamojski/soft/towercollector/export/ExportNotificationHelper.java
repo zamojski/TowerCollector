@@ -78,14 +78,14 @@ public class ExportNotificationHelper extends NotificationHelperBase {
         Intent intent = new Intent(context, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.setAction(ExportWorker.SERVICE_FULL_NAME + "_NID_" + ExportWorker.NOTIFICATION_ID);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, getImmutablePendingIntentFlags(0));
         return pendingIntent;
     }
 
     private PendingIntent createCancelExportIntent() {
         Intent intent = new Intent(ExternalBroadcastReceiver.ExportStopAction);
         intent.setPackage(MyApplication.getApplication().getPackageName());
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, getImmutablePendingIntentFlags(0));
         return pendingIntent;
     }
 

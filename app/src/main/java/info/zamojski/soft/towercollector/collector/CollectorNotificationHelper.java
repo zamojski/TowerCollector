@@ -92,13 +92,13 @@ public class CollectorNotificationHelper extends NotificationHelperBase {
         Intent intent = new Intent(context, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.setAction(CollectorService.SERVICE_FULL_NAME + "_NID_" + CollectorService.NOTIFICATION_ID);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, getImmutablePendingIntentFlags(0));
         return pendingIntent;
     }
 
     private PendingIntent createStopCollectorIntent() {
         Intent intent = new Intent(CollectorService.BROADCAST_INTENT_STOP_SERVICE);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, getImmutablePendingIntentFlags(0));
         return pendingIntent;
     }
 
