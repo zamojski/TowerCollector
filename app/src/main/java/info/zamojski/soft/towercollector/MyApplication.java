@@ -222,54 +222,55 @@ public class MyApplication extends Application {
 
     private void initACRA() {
         Timber.d("initACRA(): Initializing ACRA");
-        CoreConfigurationBuilder configBuilder = new CoreConfigurationBuilder(this);
-        // Configure connection
-        configBuilder.withBuildConfigClass(BuildConfig.class);
-        configBuilder.withEnabled(BuildConfig.ACRA_SEND_REPORTS_IN_DEV_MODE);
-        configBuilder.withSendReportsInDevMode(BuildConfig.ACRA_SEND_REPORTS_IN_DEV_MODE);
-        configBuilder.withReportFormat(StringFormat.valueOf(BuildConfig.ACRA_REPORT_TYPE));
-        configBuilder.withExcludeMatchingSharedPreferencesKeys(getString(R.string.preferences_opencellid_api_key_key));
-        configBuilder.withReportContent(getCustomAcraReportFields());
-        configBuilder.withLogcatArguments("-t", "250", "-v", "time");
-        // Configure reported content
-        HttpSenderConfigurationBuilder httpPluginConfigBuilder = configBuilder.getPluginConfigurationBuilder(HttpSenderConfigurationBuilder.class);
-        httpPluginConfigBuilder.withUri(BuildConfig.ACRA_FORM_URI);
-        httpPluginConfigBuilder.withBasicAuthLogin(BuildConfig.ACRA_FORM_URI_BASIC_AUTH_LOGIN);
-        httpPluginConfigBuilder.withBasicAuthPassword(BuildConfig.ACRA_FORM_URI_BASIC_AUTH_PASSWORD);
-        httpPluginConfigBuilder.withHttpMethod(HttpSender.Method.valueOf(BuildConfig.ACRA_HTTP_METHOD));
-        httpPluginConfigBuilder.withEnabled(true);
-        // Configure interaction method
-        NotificationConfigurationBuilder notificationConfigBuilder = configBuilder.getPluginConfigurationBuilder(NotificationConfigurationBuilder.class);
-        notificationConfigBuilder.withResChannelName(R.string.error_reporting_notification_channel_name);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            notificationConfigBuilder.setResChannelImportance(NotificationManager.IMPORTANCE_DEFAULT);
-        }
-        notificationConfigBuilder.withResIcon(R.drawable.ic_notification);
-        notificationConfigBuilder.withResTitle(R.string.error_reporting_notification_title);
-        notificationConfigBuilder.withResText(R.string.error_reporting_notification_text);
-        notificationConfigBuilder.withResTickerText(R.string.error_reporting_notification_title);
-        notificationConfigBuilder.withResSendButtonText(R.string.dialog_send);
-        notificationConfigBuilder.withResDiscardButtonText(R.string.dialog_cancel);
-        notificationConfigBuilder.withSendOnClick(true);
-        notificationConfigBuilder.withResSendWithCommentButtonText(R.string.dialog_send_comment);
-        notificationConfigBuilder.withResCommentPrompt(R.string.error_reporting_notification_comment_prompt);
-        notificationConfigBuilder.withEnabled(!getPreferencesProvider().getReportErrorsSilently());
-        // Configure limits for one device
-        LimiterConfigurationBuilder limiterConfigBuilder = configBuilder.getPluginConfigurationBuilder(LimiterConfigurationBuilder.class);
-        limiterConfigBuilder.withStacktraceLimit(2);
-        limiterConfigBuilder.withExceptionClassLimit(3);
-        limiterConfigBuilder.withOverallLimit(5);
-        limiterConfigBuilder.withPeriod(2);
-        limiterConfigBuilder.withPeriodUnit(TimeUnit.DAYS);
-        limiterConfigBuilder.withResetLimitsOnAppUpdate(true);
-        limiterConfigBuilder.withEnabled(true);
-
-        ACRA.init(this, configBuilder);
+        ACRA.init(this, new CoreConfigurationBuilder()
+                // Configure connection
+                .withBuildConfigClass(BuildConfig.class)
+                .withSendReportsInDevMode(BuildConfig.ACRA_SEND_REPORTS_IN_DEV_MODE)
+                .withReportFormat(StringFormat.valueOf(BuildConfig.ACRA_REPORT_TYPE))
+                .withExcludeMatchingSharedPreferencesKeys(getString(R.string.preferences_opencellid_api_key_key))
+                .withReportContent(getCustomAcraReportFields())
+                .withLogcatArguments("-t", "250", "-v", "time")
+                .withPluginConfigurations(
+                    // Configure reported content
+                    new HttpSenderConfigurationBuilder()
+                        .withUri(BuildConfig.ACRA_FORM_URI)
+                        .withBasicAuthLogin(BuildConfig.ACRA_FORM_URI_BASIC_AUTH_LOGIN)
+                        .withBasicAuthPassword(BuildConfig.ACRA_FORM_URI_BASIC_AUTH_PASSWORD)
+                        .withHttpMethod(HttpSender.Method.valueOf(BuildConfig.ACRA_HTTP_METHOD))
+                        .withEnabled(true)
+                        .build(),
+                    // Configure interaction method
+                    new NotificationConfigurationBuilder()
+                        .withChannelName(getString(R.string.error_reporting_notification_channel_name))
+                        .withChannelImportance(NotificationManager.IMPORTANCE_DEFAULT)
+                        .withResIcon(R.drawable.ic_notification)
+                        .withTitle(getString(R.string.error_reporting_notification_title))
+                        .withText(getString(R.string.error_reporting_notification_text))
+                        .withTickerText(getString(R.string.error_reporting_notification_title))
+                        .withSendButtonText(getString(R.string.dialog_send))
+                        .withDiscardButtonText(getString(R.string.dialog_cancel))
+                        .withSendOnClick(true)
+                        .withSendWithCommentButtonText(getString(R.string.dialog_send_comment))
+                        .withCommentPrompt(getString(R.string.error_reporting_notification_comment_prompt))
+                        .withEnabled(!getPreferencesProvider().getReportErrorsSilently())
+                        .build(),
+                    // Configure limits for one device
+                    new LimiterConfigurationBuilder()
+                        .withStacktraceLimit(2)
+                        .withExceptionClassLimit(3)
+                        .withOverallLimit(5)
+                        .withPeriod(2)
+                        .withPeriodUnit(TimeUnit.DAYS)
+                        .withResetLimitsOnAppUpdate(true)
+                        .withEnabled(true)
+                        .build()
+                )
+        );
         ACRA.getErrorReporter().putCustomData("APP_MARKET_NAME", BuildConfig.MARKET_NAME);
     }
 
     private ReportField[] getCustomAcraReportFields() {
-        List<ReportField> customizedFields = new ArrayList<ReportField>(Arrays.asList(ACRAConstants.DEFAULT_REPORT_FIELDS));
+        List<ReportField> customizedFields = new ArrayList<>(ACRAConstants.DEFAULT_REPORT_FIELDS);
         // remove Device ID to make sure it will not be included in report
         customizedFields.remove(ReportField.DEVICE_ID);
         // remove BuildConfig to avoid leakage of configuration data in report
