@@ -27,7 +27,7 @@ To build your own signed apk go to "[app/properties](app/properties)" and:
 Please report any bugs or submit feature requests through the *Issues* tab on this page or email me directly.
 
 ## Translations
-If you would like to help out with translation, please visit http://i18n.zamojski.info/
+If you would like to help out with translation, please visit https://i18n.zamojski.feedback/
 
 ## License
 Tower Collector is licensed under the Mozilla Public License 2.0. A copy of this license is included in [LICENSE.txt](LICENSE.txt).

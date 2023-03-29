@@ -10,7 +10,7 @@ The OpenCellID.org project goal is to create a worldwide open source database of
 
 Mozilla Location Services (MLS) is an open source project, aiming to create a worldwide database of wireless network infrastructure identifiers (cell towers, WiFi access points, Bluetooth beacons) correlated with GPS locations. Aggregated cell location set is available under the public domain "Creative Commons (CC-0)" license.
 
-Please help me translate it to other languages, visit http://i18n.zamojski.info/
+Please help me translate it to other languages, visit https://i18n.zamojski.feedback/
 
 This application does not collect, store or send any information which can be used to directly identify user, device which is being used or any other personal information.
 
