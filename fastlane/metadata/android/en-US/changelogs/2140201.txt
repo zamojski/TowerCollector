@@ -1,0 +1,4 @@
+- Update compatibility with Android 12 and 13.
+- Add cell discovery date to CSV export and JSON broadcast.
+- Update website address.
+- Update translations.

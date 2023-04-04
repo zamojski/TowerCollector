@@ -1,6 +1,16 @@
 {
   "Entries": [
     {
+      "VersionCode": 2140201,
+      "Title": "Changes in version 2.14.2",
+      "Messages": [
+        "Update compatibility with Android 12 and 13.",
+        "Add cell discovery date to CSV export and JSON broadcast.",
+        "Update website address.",
+        "Update translations."
+      ]
+    },
+    {
       "VersionCode": 2140100,
       "Title": "Changes in version 2.14.1",
       "Messages": [
@@ -33,20 +43,6 @@
       "Messages": [
         "Improve support for 5G networks by utilizing NetMonster logic.",
         "Improve error handling."
-      ]
-    },
-    {
-      "VersionCode": 2110094,
-      "Title": "Changes in version 2.11.0",
-      "Messages": [
-        "Fix number of discovered local cells higher than number of local cells.",
-        "Fix upload configuration not saved when don't show again is checked.",
-        "Fix export progress window sometimes stays open after export is finished.",
-        "Fix export result window appears one more time after restoring minimized application.",
-        "Fix crash when exporting data when storage folder is undefined.",
-        "Add option to contribute anonymously on upload configurator.",
-        "Improved descriptions and translations.",
-        "Small bug fixes."
       ]
     }
   ]
