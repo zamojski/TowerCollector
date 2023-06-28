@@ -42,7 +42,6 @@
     <string name="dialog_open">Відкрити</string>
     <string name="dialog_open_single">Відкрити (лише для одного файлу)</string>
     <string name="dialog_send">Відправити</string>
-    <string name="dialog_send_comment">Надіслати коментар</string>
     <string name="dialog_dont_show_again">Не показувати це знову</string>
     <string name="dialog_proceed">Продовжуй</string>
     <string name="dialog_settings">Налаштування</string>
@@ -146,10 +145,10 @@
     <string name="uploader_limit_exceeded">Ліміт використання перевищено</string>
     <string name="uploader_limit_exceeded_description">Щоденний ліміт використання для додатка перевищено. Повторіть спробу завтра.</string>
     <string name="other_notification_channel_name">Інший</string>
-    <string name="error_reporting_notification_channel_name">Повідомлення про помилки</string>
-    <string name="error_reporting_notification_title">Несподівана помилка</string>
-    <string name="error_reporting_notification_text">Додаток заглючив. Будь ласка, відправте повідомлення про помилку, щоб допомогти у вирішенні проблеми.</string>
-    <string name="error_reporting_notification_comment_prompt">Додати свій коментар</string>
+    <string name="error_reporting_notification_title">У Tower Collector стався збій</string>
+    <string name="error_reporting_notification_text">Несподівана помилка. Будь ласка, відправте повідомлення про помилку, щоб допомогти у вирішенні проблеми.</string>
+    <string name="error_reporting_notification_comment_prompt">Коментар (необов\'язково)</string>
+    <string name="error_reporting_notification_email_prompt">Електронна адреса (необов\'язково)</string>
     <string name="export_notification_channel_name">Експорт</string>
     <string name="export_notification_title">Експорт</string>
     <string name="export_notification_progress_info">Експортується <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>

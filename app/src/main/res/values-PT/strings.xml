@@ -42,7 +42,6 @@
     <string name="dialog_open">Abrir</string>
     <string name="dialog_open_single">Abrir (somente arquivo único)</string>
     <string name="dialog_send">Enviar</string>
-    <string name="dialog_send_comment">Enviar comentário</string>
     <string name="dialog_dont_show_again">Não exiba isto novamente</string>
     <string name="dialog_proceed">Continuar</string>
     <string name="dialog_settings">Configurações</string>
@@ -146,10 +145,10 @@
     <string name="uploader_limit_exceeded">Excedeu o limite de uso</string>
     <string name="uploader_limit_exceeded_description">O limite diário de uso do app foi excedido. Favor tentar novamente amanhã.</string>
     <string name="other_notification_channel_name">Outro</string>
-    <string name="error_reporting_notification_channel_name">Reportar erro</string>
     <string name="error_reporting_notification_title">Ocorreu um erro inexperado</string>
-    <string name="error_reporting_notification_text">O app travou. Favor enviar um relatório de erros para ajudar a resolver o problema.</string>
-    <string name="error_reporting_notification_comment_prompt">Adicione seu comentário</string>
+    <string name="error_reporting_notification_text">Ocorreu um erro inexperado. Favor enviar um relatório de erros para ajudar a resolver o problema.</string>
+    <string name="error_reporting_notification_comment_prompt">Comente (opcional)</string>
+    <string name="error_reporting_notification_email_prompt">E-mail (opcional)</string>
     <string name="export_notification_channel_name">Exportar</string>
     <string name="export_notification_title">Exportar</string>
     <string name="export_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% exportado.</string>

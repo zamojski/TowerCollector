@@ -42,7 +42,6 @@
     <string name="dialog_open">פתיחה</string>
     <string name="dialog_open_single">פתיחה (קובץ בודד בלבד)</string>
     <string name="dialog_send">לשלוח</string>
-    <string name="dialog_send_comment">שליחת הערה</string>
     <string name="dialog_dont_show_again">לא להציג את זה שוב</string>
     <string name="dialog_proceed">להמשיך</string>
     <string name="dialog_settings">הגדרות</string>
@@ -146,10 +145,10 @@
     <string name="uploader_limit_exceeded">חרגת ממגבלת השימוש</string>
     <string name="uploader_limit_exceeded_description">חרגת ממגבלת השימוש היומית ביישומון. נא לנסות שוב מחר.</string>
     <string name="other_notification_channel_name">אחר</string>
-    <string name="error_reporting_notification_channel_name">הדיווח נכשל</string>
-    <string name="error_reporting_notification_title">אירעה שגיאה בלתי ידועה</string>
-    <string name="error_reporting_notification_text">היישומון קרס. נא לשלוח דוח שגיאה כדי לסייע בתיקון התקלה.</string>
-    <string name="error_reporting_notification_comment_prompt">הוספת הערה משלך</string>
+    <string name="error_reporting_notification_title">Tower Collector התרסק</string>
+    <string name="error_reporting_notification_text">אירעה שגיאה בלתי ידועה. נא לשלוח דוח שגיאה כדי לסייע בתיקון התקלה.</string>
+    <string name="error_reporting_notification_comment_prompt">הוספת הערה משלךהערה (אופציונלי)</string>
+    <string name="error_reporting_notification_email_prompt">אימייל (אופציונלי)</string>
     <string name="export_notification_channel_name">ייצוא</string>
     <string name="export_notification_title">מתבצע ייצוא</string>
     <string name="export_notification_progress_info">ייוצאו <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>

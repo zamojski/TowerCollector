@@ -42,7 +42,6 @@
     <string name="dialog_open">Otwórz</string>
     <string name="dialog_open_single">Otwórz (tylko pojedynczy plik)</string>
     <string name="dialog_send">Wyślij</string>
-    <string name="dialog_send_comment">Wyślij komentarz</string>
     <string name="dialog_dont_show_again">Nie pokazuj tego ponownie</string>
     <string name="dialog_proceed">Kontynuuj</string>
     <string name="dialog_settings">Ustawienia</string>
@@ -146,10 +145,10 @@
     <string name="uploader_limit_exceeded">Dzienny limit przekroczony</string>
     <string name="uploader_limit_exceeded_description">Aplikacja przekroczyła dzienny limit użyć. Proszę spróbować ponownie jutro.</string>
     <string name="other_notification_channel_name">Pozostałe</string>
-    <string name="error_reporting_notification_channel_name">Raportowanie błędów</string>
-    <string name="error_reporting_notification_title">Wystąpił niespodziewany błąd</string>
-    <string name="error_reporting_notification_text">Aplikacja przestała działać. Proszę prześlij raport błędu, aby pomóc w jego naprawie.</string>
-    <string name="error_reporting_notification_comment_prompt">Dodaj swój komentarz</string>
+    <string name="error_reporting_notification_title">Tower Collector uległ awarii</string>
+    <string name="error_reporting_notification_text">Wystąpił niespodziewany błąd. Proszę prześlij raport błędu, aby pomóc w jego naprawie.</string>
+    <string name="error_reporting_notification_comment_prompt">Komentarz (opcjonalny)</string>
+    <string name="error_reporting_notification_email_prompt">Email (opcjonalny)</string>
     <string name="export_notification_channel_name">Eksport</string>
     <string name="export_notification_title">Eksportowanie</string>
     <string name="export_notification_progress_info">Wyeksportowano <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>

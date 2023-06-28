@@ -42,7 +42,6 @@
     <string name="dialog_open">열기</string>
     <string name="dialog_open_single">해당 파일 열기</string>
     <string name="dialog_send">전송</string>
-    <string name="dialog_send_comment">코멘트 전송</string>
     <string name="dialog_dont_show_again">다시 보지 않기</string>
     <string name="dialog_proceed">진행</string>
     <string name="dialog_settings">설정</string>
@@ -146,10 +145,10 @@
     <string name="uploader_limit_exceeded">사용 한도 초과</string>
     <string name="uploader_limit_exceeded_description">일일 사용 한도를 초과했습니다. 내일 다시 시도해주세요.</string>
     <string name="other_notification_channel_name">기타</string>
-    <string name="error_reporting_notification_channel_name">오류 보고</string>
-    <string name="error_reporting_notification_title">예상치 못한 오류가 발생했습니다.</string>
-    <string name="error_reporting_notification_text">앱 충돌이 발생했습니다. 문제 해결에 도움이 되도록 오류 보고서를 전송해주세요.</string>
-    <string name="error_reporting_notification_comment_prompt">코멘트 추가</string>
+    <string name="error_reporting_notification_title">Tower Collector 앱이 충돌했습니다.</string>
+    <string name="error_reporting_notification_text">예상치 못한 오류가 발생했습니다. 문제 해결에 도움이 되도록 오류 보고서를 전송해주세요.</string>
+    <string name="error_reporting_notification_comment_prompt">댓글(선택사항)</string>
+    <string name="error_reporting_notification_email_prompt">이메일(선택사항)</string>
     <string name="export_notification_channel_name">내보내기</string>
     <string name="export_notification_title">내보내는중</string>
     <string name="export_notification_progress_info">내보내는중 <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>

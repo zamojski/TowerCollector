@@ -42,7 +42,6 @@
     <string name="dialog_open">Apri</string>
     <string name="dialog_open_single">Apri (solo un file singolo)</string>
     <string name="dialog_send">Invia</string>
-    <string name="dialog_send_comment">Invia commento</string>
     <string name="dialog_dont_show_again">Non mostrare più</string>
     <string name="dialog_proceed">Procedi</string>
     <string name="dialog_settings">Impostazioni</string>
@@ -146,10 +145,10 @@
     <string name="uploader_limit_exceeded">Limite di utilizzo superato</string>
     <string name="uploader_limit_exceeded_description">È stato superato il limite di utilizzo giornaliero per l\'app. Per favore, riprova domani.</string>
     <string name="other_notification_channel_name">Altro</string>
-    <string name="error_reporting_notification_channel_name">Segnalazione degli errori</string>
-    <string name="error_reporting_notification_title">Errore inaspettato</string>
-    <string name="error_reporting_notification_text">L\'app si è bloccata. Si prega di inviare una segnalazione di errore per aiutare a risolvere il problema.</string>
-    <string name="error_reporting_notification_comment_prompt">Aggiungi il tuo commento</string>
+    <string name="error_reporting_notification_title">Tower Collector è andato in crash</string>
+    <string name="error_reporting_notification_text">Errore inaspettato. Si prega di inviare una segnalazione di errore per aiutare a risolvere il problema.</string>
+    <string name="error_reporting_notification_comment_prompt">Commento (opzionale)</string>
+    <string name="error_reporting_notification_email_prompt">E-mail (opzionale)</string>
     <string name="export_notification_channel_name">Esporta</string>
     <string name="export_notification_title">Sto esportando</string>
     <string name="export_notification_progress_info">Esportato <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>

@@ -7,7 +7,6 @@ package info.zamojski.soft.towercollector;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,9 +16,9 @@ import org.acra.ACRA;
 import org.acra.ACRAConstants;
 import org.acra.ReportField;
 import org.acra.config.CoreConfigurationBuilder;
+import org.acra.config.DialogConfigurationBuilder;
 import org.acra.config.HttpSenderConfigurationBuilder;
 import org.acra.config.LimiterConfigurationBuilder;
-import org.acra.config.NotificationConfigurationBuilder;
 import org.acra.data.StringFormat;
 import org.acra.sender.HttpSender;
 import org.greenrobot.eventbus.EventBus;
@@ -37,7 +36,6 @@ import info.zamojski.soft.towercollector.utils.ExceptionUtils;
 import info.zamojski.soft.towercollector.utils.HashUtils;
 
 import android.app.Application;
-import android.app.NotificationManager;
 import android.database.sqlite.SQLiteDatabaseCorruptException;
 import android.net.Uri;
 import android.os.Build;
@@ -222,6 +220,7 @@ public class MyApplication extends Application {
 
     private void initACRA() {
         Timber.d("initACRA(): Initializing ACRA");
+        // enable for diagnostics only ACRA.DEV_LOGGING = true;
         ACRA.init(this, new CoreConfigurationBuilder()
                 // Configure connection
                 .withBuildConfigClass(BuildConfig.class)
@@ -240,18 +239,15 @@ public class MyApplication extends Application {
                         .withEnabled(true)
                         .build(),
                     // Configure interaction method
-                    new NotificationConfigurationBuilder()
-                        .withChannelName(getString(R.string.error_reporting_notification_channel_name))
-                        .withChannelImportance(NotificationManager.IMPORTANCE_DEFAULT)
-                        .withResIcon(R.drawable.ic_notification)
-                        .withTitle(getString(R.string.error_reporting_notification_title))
+                    new DialogConfigurationBuilder()
                         .withText(getString(R.string.error_reporting_notification_text))
-                        .withTickerText(getString(R.string.error_reporting_notification_title))
-                        .withSendButtonText(getString(R.string.dialog_send))
-                        .withDiscardButtonText(getString(R.string.dialog_cancel))
-                        .withSendOnClick(true)
-                        .withSendWithCommentButtonText(getString(R.string.dialog_send_comment))
+                        .withTitle(getString(R.string.error_reporting_notification_title))
+                        .withPositiveButtonText(getString(R.string.dialog_send))
+                        .withNegativeButtonText(getString(R.string.dialog_cancel))
                         .withCommentPrompt(getString(R.string.error_reporting_notification_comment_prompt))
+                        .withEmailPrompt(getString(R.string.error_reporting_notification_email_prompt))
+                        .withResIcon(R.drawable.ic_notification)
+                        .withResTheme(R.style.LightAppTheme)
                         .withEnabled(!getPreferencesProvider().getReportErrorsSilently())
                         .build(),
                     // Configure limits for one device

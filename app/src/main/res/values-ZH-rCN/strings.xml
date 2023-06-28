@@ -42,7 +42,6 @@
     <string name="dialog_open">打开</string>
     <string name="dialog_open_single">打开（仅单个文件）</string>
     <string name="dialog_send">发送</string>
-    <string name="dialog_send_comment">发送评论</string>
     <string name="dialog_dont_show_again">不再询问</string>
     <string name="dialog_proceed">授权</string>
     <string name="dialog_settings">设置</string>
@@ -146,10 +145,10 @@
     <string name="uploader_limit_exceeded">超出使用限制</string>
     <string name="uploader_limit_exceeded_description">已超出该应用程序的每日使用限制。 请明天再试。</string>
     <string name="other_notification_channel_name">其它</string>
-    <string name="error_reporting_notification_channel_name">错误报告</string>
-    <string name="error_reporting_notification_title">发生意外错误</string>
-    <string name="error_reporting_notification_text">此应用崩溃了。请发送错误报告以帮助解决问题。</string>
-    <string name="error_reporting_notification_comment_prompt">添加您的评论</string>
+    <string name="error_reporting_notification_title">Tower Collector应用程序崩溃了</string>
+    <string name="error_reporting_notification_text">发生意外错误。请发送错误报告以帮助解决问题。</string>
+    <string name="error_reporting_notification_comment_prompt">评论（可选）</string>
+    <string name="error_reporting_notification_email_prompt">电子邮件（可选）</string>
     <string name="export_notification_channel_name">导出数据</string>
     <string name="export_notification_title">导出数据中</string>
     <string name="export_notification_progress_info">导出了 <xliff:g id="progress_in_percent">%d</xliff:g>%% 的数据。</string>

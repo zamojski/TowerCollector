@@ -42,7 +42,6 @@
     <string name="dialog_open">Ouvrir</string>
     <string name="dialog_open_single">Ouvrir (un seul fichier)</string>
     <string name="dialog_send">Envoyer</string>
-    <string name="dialog_send_comment">Envoyer un commentaire</string>
     <string name="dialog_dont_show_again">Ne plus afficher ce message</string>
     <string name="dialog_proceed">Procéder</string>
     <string name="dialog_settings">Réglages</string>
@@ -146,10 +145,10 @@
     <string name="uploader_limit_exceeded">Limite d\'utilisation dépassée</string>
     <string name="uploader_limit_exceeded_description">L\'usage journalier de l\'application a été dépassée. Veuillez réessayer demain.</string>
     <string name="other_notification_channel_name">Autre</string>
-    <string name="error_reporting_notification_channel_name">Rapport de l\'erreur</string>
-    <string name="error_reporting_notification_title">Une erreur inconnue est survenue</string>
-    <string name="error_reporting_notification_text">L\'application a planté. Veuillez envoyer un rapport d\'erreur pour aider à résoudre le problème.</string>
-    <string name="error_reporting_notification_comment_prompt">Ajoutez votre commentaire</string>
+    <string name="error_reporting_notification_title">Tower Collector s\'est écrasé</string>
+    <string name="error_reporting_notification_text">Une erreur inconnue est survenue. Veuillez envoyer un rapport d\'erreur pour aider à résoudre le problème.</string>
+    <string name="error_reporting_notification_comment_prompt">Commentaire (facultatif)</string>
+    <string name="error_reporting_notification_email_prompt">E-mail (facultatif)</string>
     <string name="export_notification_channel_name">Exportation</string>
     <string name="export_notification_title">Exportation</string>
     <string name="export_notification_progress_info">Exporté <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>

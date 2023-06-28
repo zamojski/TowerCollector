@@ -42,7 +42,6 @@
     <string name="dialog_open">Aç</string>
     <string name="dialog_open_single">Aç (sadece bir dosya)</string>
     <string name="dialog_send">Gönder</string>
-    <string name="dialog_send_comment">Yorum gönder</string>
     <string name="dialog_dont_show_again">Bunu tekrar gösterme</string>
     <string name="dialog_proceed">Onayla</string>
     <string name="dialog_settings">Ayarlar</string>
@@ -146,10 +145,10 @@
     <string name="uploader_limit_exceeded">Kullanım limiti aşıldı.</string>
     <string name="uploader_limit_exceeded_description">Uygulama için günlük kullanım limiti aşıldı.</string>
     <string name="other_notification_channel_name">Diğer</string>
-    <string name="error_reporting_notification_channel_name">Hata raporlama</string>
-    <string name="error_reporting_notification_title">Beklenmeyen bir hata ile karşılaşıldı</string>
-    <string name="error_reporting_notification_text">Uygulama çöktü. Sorunun çözülmesine yardımcı olmak için lütfen hata raporu gönderin.</string>
-    <string name="error_reporting_notification_comment_prompt">Yorum ekleyin</string>
+    <string name="error_reporting_notification_title">Tower Collector çöktü</string>
+    <string name="error_reporting_notification_text">Beklenmeyen bir hata ile karşılaşıldı. Sorunun çözülmesine yardımcı olmak için lütfen hata raporu gönderin.</string>
+    <string name="error_reporting_notification_comment_prompt">Yorum (isteğe bağlı)</string>
+    <string name="error_reporting_notification_email_prompt">E-posta (isteğe bağlı)</string>
     <string name="export_notification_channel_name">Ihracat</string>
     <string name="export_notification_title">Ihracat</string>
     <string name="export_notification_progress_info">İhraç edilen %%<xliff:g id="progress_in_percent">%d</xliff:g>.</string>

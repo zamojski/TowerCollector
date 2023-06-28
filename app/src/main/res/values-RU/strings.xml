@@ -42,7 +42,6 @@
     <string name="dialog_open">Открыть</string>
     <string name="dialog_open_single">Открыть (только один файл)</string>
     <string name="dialog_send">Отправка</string>
-    <string name="dialog_send_comment">Отправить комментарий</string>
     <string name="dialog_dont_show_again">Больше не показывать</string>
     <string name="dialog_proceed">Продолжить</string>
     <string name="dialog_settings">Настройки</string>
@@ -146,10 +145,10 @@
     <string name="uploader_limit_exceeded">Превышен лимит использования</string>
     <string name="uploader_limit_exceeded_description">Превышен ежедневный лимит использования приложения. Пожалуйста, попробуйте еще раз завтра.</string>
     <string name="other_notification_channel_name">Другое</string>
-    <string name="error_reporting_notification_channel_name">Отчёт об ошибке</string>
-    <string name="error_reporting_notification_title">Произошла неизвестная ошибка</string>
-    <string name="error_reporting_notification_text">Приложение вылетело. Пожалуйста отправьте отчёт, чтобы помочь исправить проблему.</string>
-    <string name="error_reporting_notification_comment_prompt">Добавьте ваш комментарий</string>
+    <string name="error_reporting_notification_title">Tower Collector разбился</string>
+    <string name="error_reporting_notification_text">Произошла неизвестная ошибка. Пожалуйста отправьте отчёт, чтобы помочь исправить проблему.</string>
+    <string name="error_reporting_notification_comment_prompt">Комментарий (необязательно)</string>
+    <string name="error_reporting_notification_email_prompt">Email (optional)</string>
     <string name="export_notification_channel_name">Экспорт</string>
     <string name="export_notification_title">Экспортирующий</string>
     <string name="export_notification_progress_info">Экспортировано <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>

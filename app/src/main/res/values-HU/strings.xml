@@ -42,7 +42,6 @@
     <string name="dialog_open">Megnyitás</string>
     <string name="dialog_open_single">Megnyitás (csak egy fájl)</string>
     <string name="dialog_send">Küldés</string>
-    <string name="dialog_send_comment">Megjegyzés küldése</string>
     <string name="dialog_dont_show_again">Ne mutassa újra</string>
     <string name="dialog_proceed">Tovább</string>
     <string name="dialog_settings">Beállítások</string>
@@ -146,10 +145,10 @@
     <string name="uploader_limit_exceeded">A használati határ túllépve</string>
     <string name="uploader_limit_exceeded_description">Az alkalmazás napi felhasználási korlátját túllépte. Kérjük, holnap próbálkozzon újra.</string>
     <string name="other_notification_channel_name">Egyéb</string>
-    <string name="error_reporting_notification_channel_name">Hibajelentés</string>
-    <string name="error_reporting_notification_title">Váratlan hiba történt</string>
-    <string name="error_reporting_notification_text">Az alkalmazás összeomlott. Küldj hibajelentést a probléma megoldásához.</string>
-    <string name="error_reporting_notification_comment_prompt">Adj meg egy megjegyzést</string>
+    <string name="error_reporting_notification_title">A Tower Collector lezuhant</string>
+    <string name="error_reporting_notification_text">Váratlan hiba történt. Küldj hibajelentést a probléma megoldásához.</string>
+    <string name="error_reporting_notification_comment_prompt">Megjegyzés (nem kötelező)</string>
+    <string name="error_reporting_notification_email_prompt">E-mail (nem kötelező)</string>
     <string name="export_notification_channel_name">Exportálás</string>
     <string name="export_notification_title">Exportálás</string>
     <string name="export_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% exportálva.</string>
