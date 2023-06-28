@@ -16,7 +16,7 @@
     <string name="info_about_neighboring_cells_title">Szomszédos cellák</string>
     <string name="info_about_collector_api_version_title">Adatgyűjtő API verziója</string>
     <string name="info_about_main_keep_screen_on_title">Képernyő ébren tartása, amikor látható</string>
-    <string name="info_about_collector_keep_screen_on_title">Képernyő ébren tartása begyűjtés közben</string>
+    <string name="info_about_collector_keep_screen_on_title">Képernyő ébren tartása gyűjtés közben</string>
     <string name="info_about_notify_measurements_collected_title">Értesítés a begyűjtött mérésekről</string>
-    <string name="info_map_help_title">Térkép-legenda</string>
+    <string name="info_map_help_title">Térkép jelölések</string>
 </resources>

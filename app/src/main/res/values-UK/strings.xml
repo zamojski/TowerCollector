@@ -61,7 +61,7 @@
     <string name="main_tab_map_title">Карта</string>
     <string name="main_gps_accuracy_not_available">Недоступно</string>
     <string name="main_signal_strength_not_available">Недоступно</string>
-    <string name="date_time_format_standard">yyyy-ММ-dd HH:mm:ss</string>
+    <string name="date_time_format_standard">dd.MM.yyyy HH:mm:ss</string>
     <string name="main_gps_status_label">Стан GPS:</string>
     <string name="main_stats_today_title">Сьогодні</string>
     <string name="main_stats_local_title">Починаючи з <xliff:g id="date_time">%s</xliff:g></string>

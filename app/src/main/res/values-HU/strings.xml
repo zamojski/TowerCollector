@@ -11,8 +11,8 @@
     <string name="shortcut_export_toggle_short">Exportálás</string>
     <string name="shortcut_export_toggle_long">Exportálás be/ki</string>
     <string name="quicksettings_collecting_start">Kezdje el gyűjteni</string>
-    <string name="quicksettings_collecting_stop">Álljon meg gyűjteni</string>
-    <string name="quicksettings_upload_start">Feltöltés elindítása</string>
+    <string name="quicksettings_collecting_stop">Gyűjtés állj</string>
+    <string name="quicksettings_upload_start">Feltöltés indítása</string>
     <string name="quicksettings_upload_stop">Feltöltés leállítása</string>
     <string name="quicksettings_export_start">Exportálás elkezdése</string>
     <string name="quicksettings_export_stop">Exportálás leállítása</string>
@@ -24,7 +24,7 @@
     <string name="network_group_unknown">Ismeretlen</string>
     <string name="app_title_preferences">Beállítások</string>
     <string name="dialog_want_enable_gps">Be szeretnéd kapcsolni a GPS-t a beállításokban?</string>
-    <string name="dialog_could_not_open_android_settings">Az Android beállítások nem nyithatóak meg. Nyisd meg kézzel a módosításhoz.</string>
+    <string name="dialog_could_not_open_android_settings">Az Android beállítások nem nyithatók meg. Nyisd meg kézzel a módosításhoz.</string>
     <string name="dialog_select_email_app">E-mail alkalmazás kiválasztása</string>
     <string name="dialog_what_is_new">A fejlesztő üzenete!</string>
     <string name="dialog_yes">Igen</string>
@@ -52,7 +52,7 @@
     <string name="main_toast_background_task_already_running_uploader">Feltöltés folyamatban.</string>
     <string name="main_toast_background_task_already_running_export">Exportálás folyamatban.</string>
     <string name="main_toast_background_task_already_running_unknown">A háttérfolyamat fut.</string>
-    <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> Állítsd le mielőtt egy újabb feladatot indítasz.</string>
+    <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> Állítsd le, mielőtt egy újabb feladatot indítasz.</string>
     <string name="enabled">engedélyezve</string>
     <string name="disabled">letiltva</string>
     <string name="unknown_error">Ismeretlen hiba történt!</string>
@@ -94,7 +94,7 @@
     <string name="main_map_follow_me_button">Saját helyzet követése</string>
     <string name="main_map_location_enable_button">Helymeghatározás engedélyezése</string>
     <string name="main_map_location_disable_button">Tiltsa le a tartózkodási helyemet</string>
-    <string name="main_map_help_button">Mutasd meg a segítséget</string>
+    <string name="main_map_help_button">Mutasd a súgót</string>
     <string name="main_map_enable">Bekapcsolás</string>
     <string name="main_map_disable">Kikapcsolás</string>
     <string name="main_menu_start_button">Adatgyűjtés elindítása</string>
@@ -129,11 +129,11 @@
     <string name="uploader_partially_succeeded">Részben feltöltve</string>
     <string name="uploader_partially_succeeded_description">Az adatok egy részét sikerült feltölteni, mielőtt a feltöltés kérésedre vagy hiba miatt megszakadt.</string>
     <string name="uploader_failure">Feltöltés sikertelen</string>
-    <string name="uploader_failure_description">Nem sikerült feltölteni ismeretlen ok miatt. Győződj meg róla, hogy az alkalmazás legújabb verziót használod. Ha hosszú ideig találkozol ezzel a problémával, akkor tudasd velem.</string>
+    <string name="uploader_failure_description">Nem sikerült feltölteni ismeretlen ok miatt. Győződj meg róla, hogy az alkalmazás legújabb verzióját használod. Ha hosszú ideig találkozol ezzel a problémával, akkor tudasd a fejlesztővel.</string>
     <string name="uploader_invalid_api_key">Érvénytelen hozzáférési token</string>
     <string name="uploader_invalid_api_key_description">A beállításokban megadott hozzáférési tokennel rendelkező felhasználó nem található. Ellenőrizd, hogy a megadott hozzáférési token helyes-e.</string>
     <string name="uploader_invalid_input_data">Érvénytelen adat</string>
-    <string name="uploader_invalid_input_data_description">A kiszolgáló elutasította az alkalmazás által küldött adatokat. Ellenőrizd, hogy az alkalmazás legújabb verziójával rendelkezel-e. Ha hosszú ideig találkozol ezzel a problémával, akkor tudasd velem.</string>
+    <string name="uploader_invalid_input_data_description">A kiszolgáló elutasította az alkalmazás által küldött adatokat. Ellenőrizd, hogy az alkalmazás legújabb verziójával rendelkezel-e. Ha hosszú ideig találkozol ezzel a problémával, akkor tudasd a fejlesztővel.</string>
     <string name="uploader_no_data">Nincs mit feltölteni</string>
     <string name="uploader_no_data_description">Nincs feltölthető adat. Indítsd el az adatgyűjtést, hogy legyen mit feltöltened.</string>
     <string name="uploader_delete_failed">Hiba a mérések törlésekor</string>
@@ -143,7 +143,7 @@
     <string name="uploader_server_error">Kiszolgálóhiba</string>
     <string name="uploader_server_error_description">A kiszolgáló belső hibát adott vissza, ami azt jelenti, hogy túlterhelt, átmenetileg nem érhető el, vagy karbantartás miatt nem működik. Próbáld újra később. Ha hosszú ideig találkozol ezzel a problémával, tudasd velem.</string>
     <string name="uploader_limit_exceeded">A használati határ túllépve</string>
-    <string name="uploader_limit_exceeded_description">Az alkalmazás napi felhasználási korlátját túllépte. Kérjük, holnap próbálkozzon újra.</string>
+    <string name="uploader_limit_exceeded_description">Az alkalmazás a napi felhasználási korlátját túllépte. Kérjük, holnap próbálkozz újra.</string>
     <string name="other_notification_channel_name">Egyéb</string>
     <string name="error_reporting_notification_title">A Tower Collector lezuhant</string>
     <string name="error_reporting_notification_text">Váratlan hiba történt. Küldj hibajelentést a probléma megoldásához.</string>
@@ -154,33 +154,33 @@
     <string name="export_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% exportálva.</string>
     <string name="export_starting">Exportálás elkezdése&#8230;</string>
     <string name="export_aborting">Exportálás megszakítása&#8230;</string>
-    <string name="export_toast_no_file_types_selected">Nem választott ki fájltípust az exportáláshoz.</string>
+    <string name="export_toast_no_file_types_selected">Nem választottál ki fájltípust az exportáláshoz.</string>
     <string name="export_toast_no_handler_for_file_type">Egyetlen alkalmazás sem tudja kezelni a fájlt.</string>
-    <string name="export_dialog_format_selection_title">Válassza ki a fájlformátumokat</string>
+    <string name="export_dialog_format_selection_title">Válaszd ki a fájlformátumokat</string>
     <string name="export_dialog_progress_title">Exportálás</string>
     <string name="export_dialog_progress_message">Mentés a külső tárhely „<xliff:g id="dir_name">%s</xliff:g>” mappájába a jelenlegi dátumot és időt használva fájlnévként.</string>
     <string name="export_dialog_finished_title">Exportálás sikeres</string>
-    <string name="export_dialog_finished_message">A fájlokat a „<xliff:g id="dir_name">%s</xliff:g>” mentette.\n\n<i>Fontolja meg a közreműködést az egyik projektben a mérések feltöltésével!</i></string>
-    <string name="storage_request_access_title">Válassza ki a tárolási helyet</string>
-    <string name="storage_request_access_message">Válasszon egy helyet a fájlok tárolásához a dokumentumválasztóval.</string>
+    <string name="export_dialog_finished_message">A fájlokat ide mentette: „<xliff:g id="dir_name">%s</xliff:g>”.\n\n<i>Fontold meg a közreműködést az egyik projektben a mérések feltöltésével!</i></string>
+    <string name="storage_request_access_title">Válaszd ki a tárolási helyet</string>
+    <string name="storage_request_access_message">Válassz egy helyet a fájlok tárolásához a dokumentumválasztóval.</string>
     <string name="storage_request_access_migrate_message">A régi helyről származó fájlok NEM kerülnek új helyre!</string>
-    <string name="storage_directory_read_only">A tárolás csak olvasható.</string>
+    <string name="storage_directory_read_only">A tároló csak olvasható.</string>
     <string name="storage_storage_not_found">A tárhely nem található.</string>
     <string name="storage_file_not_found">Fájl nem található.</string>
     <string name="storage_file_read_only">A fájl csak olvasható.</string>
-    <string name="storage_file_not_readable">Nem olvasható a fájlból.</string>
+    <string name="storage_file_not_readable">Nem olvasható a fájl.</string>
     <string name="storage_file_not_writable">Nem lehet fájlba írni.</string>
     <string name="storage_access_denied">A tárhely-hozzáférés megtagadva.</string>
     <string name="storage_read_failed">Nem sikerült olvasni a tárhelyről: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="storage_write_failed">Nem sikerült írni a tárhelyre: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="system_toast_no_handler_for_operation">Nincs alkalmazás a művelet kezelésére.</string>
-    <string name="system_toast_no_handler_for_document_picker">Győződjön meg arról, hogy az eredeti fájlkezelő telepítve és engedélyezve van a rendszeren.</string>
+    <string name="system_toast_no_handler_for_document_picker">Győződj meg arról, hogy az eredeti fájlkezelő telepítve és engedélyezve van a rendszeren.</string>
     <string name="clear_dialog_title">Minden adat törlése</string>
     <string name="clear_dialog_message">Biztos, hogy véglegesen eltávolítod a helyben tárolt adatokat?</string>
     <string name="delete_dialog_title">Az exportált adatok törlése</string>
-    <string name="delete_dialog_message">Biztosan véglegesen törölni szeretné a helyben tárolt méréseket?</string>
+    <string name="delete_dialog_message">Véglegesen törölni szeretnéd a helyben tárolt méréseket?</string>
     <string name="clear_toast_finished">Adatbázis törölve</string>
-    <string name="clear_map_cache_finished">Térkép gyorsítótára törölve</string>
+    <string name="clear_map_cache_finished">Térkép gyorsítótár törölve</string>
     <string name="clear_map_cache_failed">A térkép gyorsítótárának törlése sikertelen</string>
     <string name="export_toast_failed">Exportálás sikertelen: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">ismeretlen hiba</string>
@@ -193,7 +193,7 @@
     <string name="uploader_toast_cancelled">Feltöltés megszakítva.</string>
     <string name="updater_notification_ticker">A Tower Collector egy újabb verziója érhető el</string>
     <string name="updater_notification_title">Új verzió érhető el</string>
-    <string name="updater_notification_download_options">Válaszd ki a letöltési beállítások megjelenítéséhez</string>
+    <string name="updater_notification_download_options">Válaszd ki a letöltési beállítások megjelenítését</string>
     <string name="updater_dialog_new_version_available">Válaszd ki a letöltés forrását</string>
     <string name="updater_dialog_direct_download_label">Közvetlen letöltés</string>
     <string name="updater_dialog_disable_auto_update">A frissítések ellenőrzésének letiltása</string>
@@ -206,9 +206,9 @@
     <string name="main_help_battery_optimizations_title">Akkumulátor optimalizációk engedélyezve</string>
     <string name="main_help_battery_optimizations_description">Az akkumulátor optimalizációk be vannak kapcsolva az alkalmazásnál, amely pontatlan és nem megbízható méréseket eredményezhet. Tiltsd le az akkumulátor optimalizációkat az Android beállításokban az „Összes alkalmazás”, majd a Tower Collector kiválasztásával. Végül pedig válaszd a „Ne optimalizálja” lehetőséget.</string>
     <string name="main_help_power_save_mode_title">Az akkumulátor kímélő aktív</string>
-    <string name="main_help_power_save_mode_description">Az akkumulátor kímélő engedélyezve van az eszközön, ami pontatlan és megbízhatatlan méréseket eredményezhet. Kérjük, tiltsa le az akkumulátor-kímélőt az Android akkumulátor-beállításain.</string>
-    <string name="main_help_airplane_mode_title">Repülőgép üzemmód engedélyezve</string>
-    <string name="main_help_airplane_mode_description">A repülőgép / repülési mód engedélyezve van a készüléken, amely megakadályozza az alkalmazásnak a mérések összegyűjtését. Kérjük, tiltsa le a repülőgép üzemmódot az Android beállításokban.</string>
+    <string name="main_help_power_save_mode_description">Az akkumulátor kímélő engedélyezve van az eszközön, ami pontatlan és megbízhatatlan méréseket eredményezhet. Kérjük, tiltsd le az akkumulátor-kímélőt az Android akkumulátor-beállításainál.</string>
+    <string name="main_help_airplane_mode_title">Repülőgépes üzemmód engedélyezve</string>
+    <string name="main_help_airplane_mode_description">A repülési mód be van kapcsolva a készüléken, amely megakadályozza az alkalmazásnak a mérések összegyűjtését. Kérjük, tiltsd le a repülési üzemmódot az Android beállításokban.</string>
     <string name="main_help_today_locations_title">Mai mérések</string>
     <string name="main_help_today_locations_description">Az alkalmazás mai méréseinek száma.</string>
     <string name="main_help_today_cells_title">Mai cellák</string>
@@ -224,7 +224,7 @@
     <string name="mail_help_last_number_of_cells_title">Cellák száma</string>
     <string name="mail_help_last_number_of_cells_description">A fő és szomszédos cellák száma, amelyhez a telefon hozzáfér.</string>
     <string name="main_help_last_network_type_title">Hálózattípus</string>
-    <string name="main_help_last_network_type_description">A hálózat típusa, amelyhez a telefon jelenleg kapcsolódik.</string>
+    <string name="main_help_last_network_type_description">A hálózat típusa, amelyhez a telefon kapcsolódott.</string>
     <string name="main_help_last_long_cell_id_title">Hosszú cellatorony-azonosító</string>
     <string name="main_help_last_long_cell_id_description">A hosszú egyedi cellatorony azonosító, amelyhez a telefon csatlakozott.</string>
     <string name="main_help_last_long_cell_id_description_umts">UMTS hálózatok esetén az LCID, más néven az UTRAN CID, az RNC (a rádiós hálózati vezérlő azonosítója) és a cellaazonosító (egyedi cellatorony-azonosító) összefűzése.</string>
@@ -238,13 +238,13 @@
     <string name="main_help_last_lac_description">Cellatornyok csoportjának azonosítója, amelyhez a telefon kapcsolódott.</string>
     <string name="main_help_last_tac_title">Körzetszám követése</string>
     <string name="main_help_last_nid_title">Hálózati azonosító</string>
-    <string name="main_help_last_nid_description">A hálózat egyedi azonosítója, amelyhez a telefon csatlakozott. Az SID-del együtt világszerte egyedi hálózati azonosítót hoz létre.</string>
+    <string name="main_help_last_nid_description">A hálózat egyedi azonosítója, amelyhez a telefon csatlakozott. Az SID-vel együtt világszerte egyedi hálózati azonosítót hoz létre.</string>
     <string name="main_help_last_mcc_title">Mobil országkód</string>
     <string name="main_help_last_mcc_description">Az ország mobilhálózatainak egyedi kódja, amelyhez a telefon kapcsolódott.</string>
     <string name="main_help_last_mnc_title">Mobilhálózati kód</string>
     <string name="main_help_last_mnc_description">A hálózatüzemeltető országon belüli egyedi kódja, amelyhez a telefon kapcsolódott.</string>
     <string name="main_help_last_sid_title">Rendszerazonosító</string>
-    <string name="main_help_last_sid_description">A hálózati rendszer egyedi azonosítója, amelyhez a telefon csatlakozott. A NID-del együtt világszerte egyedi hálózati azonosítót hoz létre.</string>
+    <string name="main_help_last_sid_description">A hálózati rendszer egyedi azonosítója, amelyhez a telefon csatlakozott. A NID-vel együtt világszerte egyedi hálózati azonosítót hoz létre.</string>
     <string name="main_help_last_signal_strength_title">Jelerősség</string>
     <string name="main_help_last_signal_strength_description">A hálózat jelerőssége dBm-ben kifejezve (a decibelben (dB) kifejezett teljesítmény 1 milliwatt (mW) teljesítményhez viszonyítva). A érték duplázása azt jelenti, hogy a jelerősség tízszer erősebb. A nullához közelebbi érték az erősebb jelerősséget mutatja.</string>
     <string name="main_help_last_latitude_title">Szélesség</string>
@@ -258,7 +258,7 @@
     <string name="main_help_to_upload_common_locations_title">Feltöltendő mérések</string>
     <string name="main_help_to_upload_ocid_locations_description">Az OpenCellID.org-ra feltöltésre váró mérések száma.</string>
     <string name="main_help_to_upload_mls_locations_description">A Mozilla Location Servicesre feltöltésre váró mérések száma.</string>
-    <string name="collector_status_active">A méréseket összegyűjtik</string>
+    <string name="collector_status_active">A mérések összegyűjtése</string>
     <string name="collector_status_inactive">A mérések gyűjtése leállt</string>
     <string name="status_initializing">várakozás a pozícióra</string>
     <string name="status_ok">OK (<xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g>)</string>
@@ -266,20 +266,20 @@
     <string name="status_no_gps_location">nincs helyzet</string>
     <string name="status_disabled">kikapcsolva</string>
     <string name="invalid_system_time">A rendszeridő érvénytelen</string>
-    <string name="airplane_mode">Repülőgép üzemmód engedélyezve</string>
+    <string name="airplane_mode">Repülési üzemmód engedélyezve</string>
     <string name="battery_optimizations">Akkumulátor optimalizációk engedélyezve</string>
     <string name="battery_saver">Az akkumulátor kímélő aktív</string>
     <string name="web_browser_missing">Telepíts egy webböngészőt az oldal megnyitásához</string>
     <string name="uploader_all_projects_disabled">A feltöltés az összes projekt esetén le van tiltva</string>
     <string name="export_format_csv_ocid">CSV az OpenCellID.org-hoz</string>
-    <string name="export_format_json_mls">JSON az Mozilla Location Serviceshez</string>
+    <string name="export_format_json_mls">JSON a Mozilla Location Services-hez</string>
     <string name="export_format_zip">Tömörítse az összes exportált fájlt</string>
     <string name="upload_configurator_dialog_title">Feltöltési cél beállítása</string>
     <string name="upload_anonymously">Névtelenül</string>
-    <string name="enter_valid_api_key">Meg kell adnod egy érvényes hozzáférési token a beállításokban</string>
+    <string name="enter_valid_api_key">Meg kell adnod egy érvényes hozzáférési tokent a beállításokban</string>
     <string name="reupload_measurements_if_upload_fails_for_one_of_projects">Próbáld újra feltölteni a méréseket, ha a feltöltés nem sikerül az egyik projektnél</string>
     <string name="unsafe_operation_warning_title">Nem biztonságos művelet</string>
-    <string name="unsafe_operation_warning_message">Ez a lehetőség elronthatja az alkalmazás konfigurációját, és összeomlást eredményezhetsz. Ebben az esetben törölni kell az alkalmazások adatait az Android beállításokban. Be kell zárnod és újra kell indítanod az alkalmazást, hogy lásd a változtatásokat!\n\nEzt csak saját felelősségre használd!</string>
+    <string name="unsafe_operation_warning_message">Ez a lehetőség elronthatja az alkalmazás konfigurációját, és összeomlást eredményezhet. Ebben az esetben törölni kell az alkalmazás adatait az Android beállításokban. Be kell zárnod és újra kell indítanod az alkalmazást, hogy lásd a változtatásokat!\n\nEzt csak saját felelősségre használd!</string>
     <string name="database_import_message">Adatbázis importálva</string>
     <string name="database_export_message">Adatbázis exportálva</string>
     <string name="database_import_export_failed_message">Adatbázis-művelet sikertelen</string>

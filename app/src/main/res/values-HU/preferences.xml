@@ -38,8 +38,8 @@
     <string name="preferences_opencellid_enabled_on_summary">A mérések feltöltésre kerülnek az OpenCellID.org-ra.</string>
     <string name="preferences_opencellid_enabled_off_summary">A mérések nem lesznek feltöltve az OpenCellID.org-ra.</string>
     <string name="preferences_opencellid_use_shared_api_key_title">Névtelen közreműködés</string>
-    <string name="preferences_opencellid_use_shared_api_key_on_summary">A megosztott hozzáférési token fogják használni.</string>
-    <string name="preferences_opencellid_use_shared_api_key_off_summary">A személyes hozzáférési token kerül felhasználásra.</string>
+    <string name="preferences_opencellid_use_shared_api_key_on_summary">A közös hozzáférési tokent fogjuk használni.</string>
+    <string name="preferences_opencellid_use_shared_api_key_off_summary">A személyes hozzáférési token lesz használva.</string>
     <string name="preferences_opencellid_api_key_title">Személyes hozzáférési token</string>
     <string name="preferences_opencellid_api_key_summary">Token szükséges a méréseid feltöltéséhez.</string>
     <string name="preferences_opencellid_api_key_invalid">A megadott hozzáférési token érvénytelen. A helyes formátum megtalálható a Segítség menüpontban.</string>
@@ -50,8 +50,8 @@
     <string name="preferences_about_opencellid_project_title">Az OpenCellID projektről</string>
     <string name="preferences_about_opencellid_project_summary">Információk az OpenCellID.org projektről.</string>
     <string name="preferences_mls_enabled_title">MLS feltöltés engedélyezése</string>
-    <string name="preferences_mls_enabled_on_summary">A mérések feltöltésre kerülnek a Mozilla Location Servicesre.</string>
-    <string name="preferences_mls_enabled_off_summary">A mérések nem lesznek feltöltve a Mozilla Location Servicesre.</string>
+    <string name="preferences_mls_enabled_on_summary">A mérések feltöltésre kerülnek a Mozilla Location Services-re.</string>
+    <string name="preferences_mls_enabled_off_summary">A mérések nem lesznek feltöltve a Mozilla Location Services-re.</string>
     <string name="preferences_about_mls_project_title">A MLS szolgáltatásról</string>
     <string name="preferences_about_mls_project_summary">Információk a Mozilla Location Services projektről.</string>
     <string name="preferences_imperial_units_title">Angolszász mértékegységek használata</string>
@@ -82,13 +82,13 @@
     <string name="preferences_introduction_link_title">Bevezető</string>
     <string name="preferences_introduction_link_summary">Megmutatja hogyan használd, és hogyan működik az alkalmazás.</string>
     <string name="preferences_best_practices_link_title">Legjobb gyakorlatok</string>
-    <string name="preferences_best_practices_link_summary">Tippeket ad a jobb mérések begyűjtéséhez.</string>
+    <string name="preferences_best_practices_link_summary">Tippeket ad a mérések jobb begyűjtéséhez.</string>
     <string name="preferences_website_link_title">Weblap</string>
     <string name="preferences_website_link_summary">Megnyitja a fejlesztő weboldalát, ahol linket találsz a leíráshoz és az alkalmazás letöltéséhez.</string>
     <string name="preferences_contact_email_link_title">Kapcsolatfelvétel a fejlesztővel</string>
-    <string name="preferences_contact_email_link_summary">E-mailt küldhetsz a fejlesztőnek amelyben kifejtheted problémáidat, kérdéseidet és ötleteidet.</string>
+    <string name="preferences_contact_email_link_summary">E-mailt küldhetsz a fejlesztőnek, amelyben kifejtheted problémáidat, kérdéseidet és ötleteidet.</string>
     <string name="preferences_github_link_title">GitHub oldal</string>
-    <string name="preferences_github_link_summary">Megnyitja a GitHub oldalt, ahol megtalálhatja a forráskódot, hozzájárulhat az alkalmazáshoz, jelenthet problémákat és megoszthatja ötleteit.</string>
+    <string name="preferences_github_link_summary">Megnyitja a GitHub oldalt, ahol megtalálhatod a forráskódot, hozzájárulhatsz az alkalmazáshoz, jelenthetsz problémákat és megoszthatod ötleteidet.</string>
     <string name="preferences_facebook_community_link_title">Facebook közösség</string>
     <string name="preferences_facebook_community_link_summary">Megnyitja a Facebook közösség oldalát, ahol hasznos információkat, hivatkozásokat találhatsz, megoszthatod az ötleteidet és kérdéseket tehetsz fel.</string>
     <string name="preferences_twitter_community_link_title">Twitter közösség</string>
@@ -109,7 +109,7 @@
     <string name="preferences_file_logging_level_summary">Meghatározza a diagnosztikai üzenetek naplózási szintjét a fájlban. Figyelj arra, hogy a részletes naplózás lelassíthatja az alkalmazást, és nagy naplófájlokat eredményezhet. A külső tárolónak jelen kell lennie.</string>
     <string name="preferences_collect_neighboring_cells_title">Szomszédos cellák gyűjtése</string>
     <string name="preferences_collect_neighboring_cells_on_summary">A szomszédos cellák mentve lesznek, ha elérhetőek.</string>
-    <string name="preferences_collect_neighboring_cells_off_summary">A szomszédos cellák nem lesznek mentve.</string>
+    <string name="preferences_collect_neighboring_cells_off_summary">A szomszédos cellák figyelmen kívül lesznek hagyva.</string>
     <string name="preferences_about_neighboring_cells_title">A szomszédos cellákról</string>
     <string name="preferences_about_neighboring_cells_summary">Információk a szomszédos cellákról.</string>
     <string name="preferences_notify_measurements_collected_title">Értesítés a begyűjtött mérésekről</string>
@@ -122,7 +122,7 @@
     <string name="preferences_main_keep_screen_on_off_summary">A képernyőt az operációs rendszer vezérli, ha az alkalmazás fő képernyője megjelenik.</string>
     <string name="preferences_show_collector_status_bar_title">Adatgyűjtés állapotsorának megjelenítése</string>
     <string name="preferences_show_collector_status_bar_on_summary">A gyűjtő állapotsor látható lesz.</string>
-    <string name="preferences_show_collector_status_bar_off_summary">A gyűjtő állapotsor rejtett lesz.</string>
+    <string name="preferences_show_collector_status_bar_off_summary">A gyűjtő állapotsora rejtve lesz.</string>
     <string name="preferences_notification_settings_title">Értesítési beállítások</string>
     <string name="preferences_notification_settings_summary">Megnyitja az alkalmazás értesítési beállításait.</string>
     <string name="preferences_about_main_keep_screen_on_title">A képernyő bekapcsolva tartásáról, ha látható</string>
@@ -130,7 +130,7 @@
     <string name="preferences_about_collector_keep_screen_on_title">A képernyő bekapcsolva tartásáról adatgyűjtés közben</string>
     <string name="preferences_about_collector_keep_screen_on_summary">Információk ezen beállítás működéséről, és hogy mikor használd.</string>
     <string name="preferences_hide_collector_notification_title">Értesítés elrejtése</string>
-    <string name="preferences_hide_collector_notification_on_summary">Az értesítés el lesz rejtve a lezárási képernyőn és az állapotsoron, hacsak nem nyitja fel. A viselkedés változhat az egyes eszközök között.</string>
+    <string name="preferences_hide_collector_notification_on_summary">Az értesítés el lesz rejtve a lezárási képernyőn és az állapotsoron, hacsak nem nyitod ki. A viselkedés változhat az egyes eszközök között.</string>
     <string name="preferences_hide_collector_notification_off_summary">Az értesítés mindig látható lesz.</string>
     <string name="preferences_start_collector_at_startup_title">Induláskor kezdje el a gyűjtést</string>
     <string name="preferences_start_collector_at_startup_on_summary">A gyűjtés automatikusan elindul az alkalmazás indításakor.</string>
@@ -153,14 +153,14 @@
     <string name="preferences_main_map_enable_title">Térkép bekapcsolása</string>
     <string name="preferences_main_map_enable_on_summary">A térkép lap látható.</string>
     <string name="preferences_main_map_enable_off_summary">A térkép lap rejtett.</string>
-    <string name="preferences_main_map_force_light_theme_title">Kényszerítse a világos téma</string>
-    <string name="preferences_main_map_force_light_theme_on_summary">A térkép világos témája mindig felhasználásra kerül.</string>
+    <string name="preferences_main_map_force_light_theme_title">Világos téma kényszerítése</string>
+    <string name="preferences_main_map_force_light_theme_on_summary">A térképhez mindig világos téma lesz használva.</string>
     <string name="preferences_main_map_force_light_theme_off_summary">A térkép témája követi a megjelenítési beállításokat.</string>
     <string name="preferences_main_map_unmetered_only_title">Csak korlátlan hálózatokon</string>
-    <string name="preferences_main_map_unmetered_only_on_summary">A térkép csak a korábban gyorsítótárazott területeken fog működni, hacsak nem csatlakozik mérés nélküli hálózathoz, általában Wi-Fi-hez.</string>
-    <string name="preferences_main_map_unmetered_only_off_summary">A térkép az internetkapcsolat típusától függetlenül frissül.</string>
+    <string name="preferences_main_map_unmetered_only_on_summary">A térkép csak a korábban gyorsítótárazott területeken fog működni, hacsak nem csatlakozol mérés nélküli hálózathoz, általában Wi-Fi-hez.</string>
+    <string name="preferences_main_map_unmetered_only_off_summary">A térkép frissül az internetkapcsolat típusától függetlenül.</string>
     <string name="preferences_main_map_cache_size_title">Térkép gyorsítótár mérete</string>
-    <string name="preferences_main_map_cache_size_summary">Állítsa be a térkép gyorsítótárának méretét a készüléken rendelkezésre álló szabad memória szerint.\n<b>[MB]</b></string>
+    <string name="preferences_main_map_cache_size_summary">Állítsd be a térkép gyorsítótárának méretét a készüléken rendelkezésre álló szabad memória szerint.\n<b>[MB]</b></string>
     <string name="preferences_main_map_clear_cache_title">Gyorsítótár törlése</string>
     <string name="preferences_main_map_clear_cache_summary">Törli a térkép gyorsítótár-mappáját, hogy helyet szabadítson fel.</string>
 </resources>
