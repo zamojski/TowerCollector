@@ -1,0 +1,4 @@
+- Fix 5G (NR) cell Tracking Area Code accepted values range.
+- Use dialog instead of notification for error reporting in F-Droid builds.
+- Add Finish translation.
+- Update Hungarian translation.
