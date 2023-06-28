@@ -52,7 +52,7 @@ public class NrCellValidator {
     }
 
     private boolean isTacInRange(int tac) {
-        return (tac >= 1 && tac <= 65535);
+        return (tac >= 1 && tac <= 16777215);
     }
 
     private boolean isMncInRange(String mncString) {
