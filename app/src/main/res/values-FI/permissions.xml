@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+    <string name="permission_required">Lupa vaaditaan</string>
+    <string name="permission_denied">Lupa evätty</string>
+    <string name="permission_logging_denied_temporarily_message">Tiedostojen kirjaaminen poistetaan väliaikaisesti käytöstä, koska tallennustilan käyttö on estetty.</string>
+    <string name="permission_collector_rationale_message">Sijainti- ja puhelinluvat on myönnettävä mittausten keräämistä varten.</string>
+    <string name="permission_collector_rationale_api29_message">Jos haluat käyttää tätä toimintoa, muista valita \'Salli koko ajan\' -vaihtoehto laitteen sijaintioikeutta varten!</string>
+    <string name="permission_collector_rationale_api30_message">Jos haluat käyttää tätä toimintoa, muista valita \'Salli asetuksissa\' ja sitten \'Salli koko ajan\' -vaihtoehto, jotta voit käyttää laitteen sijaintioikeutta!</string>
+    <string name="permission_collector_denied_message">Mittausten kerääminen perutaan evättyjen käyttöoikeuksien vuoksi</string>
+    <string name="permission_collector_never_ask_again_message">Mittausten kerääminen ei ole mahdollista kielletyn sijainnin ja/tai puhelimen käyttöoikeuksien vuoksi.</string>
+    <string name="permission_collector_never_ask_again_api29_message">Mittausten kerääminen ei ole mahdollista, koska taustasijainti ja/tai puhelimen käyttöoikeudet on evätty.</string>
+    <string name="permission_collector_denied_intent_message">Mittausten keräämisen peruuttaminen evättyjen käyttöoikeuksien vuoksi, avaa sovellus ja myönnä ensin tarvittavat käyttöoikeudet.</string>
+    <string name="permission_collector_denied_background_location_message">Käynnistyksen estäminen laitteen käynnistyessä, koska taustapaikan käyttöoikeus on evätty.</string>
+    <string name="permission_map_rationale_message">Sijaintilupa on myönnettävä, jotta sijaintisi voidaan näyttää kartalla.</string>
+    <string name="permission_map_denied_message">Karttaa ei voi ottaa käyttöön, koska sijaintilupa on evätty.</string>
+    <string name="permission_map_never_ask_again_message">Kartta ei ole käytettävissä, koska sijaintilupa on evätty.</string>
+    <string name="permission_uploader_denied_message">Lähetys peruutettu evätyn internet-luvan vuoksi.</string>
+</resources>

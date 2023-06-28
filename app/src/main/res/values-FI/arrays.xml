@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+    <string name="preferences_keep_screen_on_mode_disabled">Pois käytöstä</string>
+    <string name="preferences_keep_screen_on_mode_dim">Himmennetty</string>
+    <string name="preferences_keep_screen_on_mode_full">Täysi kirkkaus</string>
+    <string-array name="preferences_collector_low_battery_action_entries_labels">
+        <item>Ei mitään</item>
+        <item>Lopeta kerääminen</item>
+    </string-array>
+    <string-array name="preferences_app_theme_mode_entries_labels">
+        <item>Tumma</item>
+        <item>Vaalea</item>
+    </string-array>
+    <string name="preferences_collector_api_version_auto">Automaattinen tunnistus</string>
+    <string name="preferences_file_logging_level_disabled">Pois käytöstä</string>
+    <string name="preferences_file_logging_level_debug">Debug</string>
+    <string name="preferences_file_logging_level_info">Tietoja</string>
+    <string name="preferences_file_logging_level_warning">Varoitus</string>
+    <string name="preferences_file_logging_level_error">Virhe</string>
+</resources>
