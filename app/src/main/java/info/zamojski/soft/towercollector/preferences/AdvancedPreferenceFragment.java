@@ -26,6 +26,8 @@ import info.zamojski.soft.towercollector.dev.PreferencesOperations;
 import info.zamojski.soft.towercollector.utils.StorageUtils;
 import timber.log.Timber;
 
+import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
+
 public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
 
     private ListPreference collectorApiVersionPreference;
@@ -57,13 +59,25 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
     }
 
     private void setupDatabaseExport() {
-        setupOnClick(R.string.preferences_export_database_key, new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                exportDatabase();
-                return true;
-            }
-        });
+        // get number of locations to upload
+        int locationsCount = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getAllLocationsCount(true);
+        if (locationsCount == 0) {
+            showConfirmationDialog(R.string.preferences_export_database_key, R.string.database_export_warning_title,
+                    R.string.database_export_warning_message, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            exportDatabase();
+                        }
+                    });
+        } else {
+            setupOnClick(R.string.preferences_export_database_key, new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                 exportDatabase();
+                 return true;
+                }
+            });
+        }
     }
 
     private void setupPreferencesImport() {

@@ -296,6 +296,8 @@
     <string name="reupload_measurements_if_upload_fails_for_one_of_projects">Try to upload measurements again if upload fails for one of the projects</string>
     <string name="unsafe_operation_warning_title">Unsafe operation</string>
     <string name="unsafe_operation_warning_message">This option can break the app\'s configuration and result in crash. In such case you have to clear the app data in Android settings. You need to fully close and reopen the app to see the changes!\n\nYou use it on your own risk!</string>
+    <string name="database_export_warning_title">Export empty database</string>
+    <string name="database_export_warning_message">Proceeding with this operation will overwrite the measurements.db file with an empty state.\n\nAre you sure you want to export?</string>
     <string name="database_import_message">Database imported</string>
     <string name="database_export_message">Database exported</string>
     <string name="database_import_export_failed_message">Database operation failed</string>
