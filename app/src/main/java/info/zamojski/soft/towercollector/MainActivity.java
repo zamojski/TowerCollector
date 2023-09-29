@@ -1402,7 +1402,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     private Intent createDataRoamingSettingsIntent() {
-        return new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS);
+        Intent intent = new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        return intent;
     }
 
     // ========== SERVICE CONNECTIONS ========== //
