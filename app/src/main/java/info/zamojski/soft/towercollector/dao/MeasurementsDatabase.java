@@ -76,7 +76,7 @@ public class MeasurementsDatabase {
                 long rowId = db.insert(MeasurementsTable.TABLE_NAME, null, values);
                 boolean localResult = (rowId != -1);
                 Timber.d("insertMeasurement(): Measurement inserted = %s", localResult);
-                resultSb.append("\tmeasurement inserted=").append(localResult);
+                resultSb.append("measurement inserted=").append(localResult);
             }
             // don't use value returned by insert, because it sometimes returns wrong value -> query always
             int measurementId = -1;
@@ -96,7 +96,7 @@ public class MeasurementsDatabase {
                 cursorTotal.close();
                 result = localResult;
                 Timber.d("insertMeasurement(): Measurement found = %s", localResult);
-                resultSb.append("\tmeasurement found=").append(localResult);
+                resultSb.append("; measurement found=").append(localResult);
             }
             for (Cell cell : measurement.getCells()) {
                 // insert cell
@@ -111,7 +111,7 @@ public class MeasurementsDatabase {
                     long rowId = db.insert(CellsTable.TABLE_NAME, null, values);
                     boolean localResult = (rowId != -1);
                     Timber.d("insertMeasurement(): Cell inserted = %s", localResult);
-                    resultSb.append("\tcell inserted=").append(localResult);
+                    resultSb.append("; cell inserted=").append(localResult);
                 }
                 // don't use value returned by insert, because it sometimes returns wrong value -> query always
                 int cellId = -1;
@@ -131,7 +131,7 @@ public class MeasurementsDatabase {
                     cursorTotal.close();
                     result &= localResult;
                     Timber.d("insertMeasurement(): Cell found = %s", localResult);
-                    resultSb.append("\tcell found=").append(localResult);
+                    resultSb.append("; cell found=").append(localResult);
                 }
                 // insert cell signal (if previous queries returned correct result)
                 if (result) {
@@ -170,21 +170,22 @@ public class MeasurementsDatabase {
                     }
                     result = localResult;
                     Timber.d("insertMeasurement(): Cell signal inserted = %s", localResult);
-                    resultSb.append("\tcell signal inserted=").append(localResult);
+                    resultSb.append("; cell signal inserted=").append(localResult);
                 }
                 resultSb.append(";\r\n");
             }
             // commit
+            String resultString = resultSb.toString();
             if (result) {
                 db.setTransactionSuccessful();
                 Timber.d("insertMeasurement(): Measurement inserted successfully");
-                Timber.d("insertMeasurement(): Insertion report: %s", resultSb.toString());
+                Timber.d("insertMeasurement(): Insertion report: %s", resultString);
             } else {
                 Timber.d("insertMeasurement(): Measurement not inserted");
-                Timber.d("insertMeasurement(): Insertion report: %s", resultSb.toString());
+                Timber.d("insertMeasurement(): Insertion report: %s", resultString);
                 // report exception because it shouldn't occur (one time per app run)
                 if (!insertionFailureReported) {
-                    Throwable ex = new MeasurementInsertionFailedException("Measurements not inserted", resultSb.toString());
+                    Throwable ex = new MeasurementInsertionFailedException("Measurements not inserted", resultString);
                     MyApplication.handleSilentException(ex);
                     insertionFailureReported = true;
                 }
