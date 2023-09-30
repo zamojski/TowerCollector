@@ -134,7 +134,7 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
                         .build())
                 .addTag(UploaderWorker.WORKER_TAG)
                 .build();
-//        showUploaderProgress(storageUri, exportWorkRequest.getId());//TODO check what happens when you start from QS when app is open
+        // TODO attach to main window and start from there to block the screen when you starting from QS when app is open
         WorkManager.getInstance(MyApplication.getApplication())
                 .enqueue(uploaderWorkRequest);
         ApkUtils.reportShortcutUsage(context, R.string.shortcut_id_uploader_toggle);
@@ -159,7 +159,7 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
                         .build())
                 .addTag(ExportWorker.WORKER_TAG)
                 .build();
-//        showExportProgress(storageUri, exportWorkRequest.getId());//TODO check what happens when you start from QS when app is open
+        // TODO attach to main window and start from there to block the screen when you starting from QS when app is open
         WorkManager.getInstance(MyApplication.getApplication())
                 .enqueue(exportWorkRequest);
         ApkUtils.reportShortcutUsage(context, R.string.shortcut_id_export_toggle);

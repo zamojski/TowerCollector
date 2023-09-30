@@ -110,11 +110,11 @@ import info.zamojski.soft.towercollector.utils.FileUtils;
 import info.zamojski.soft.towercollector.utils.GpsUtils;
 import info.zamojski.soft.towercollector.utils.MapUtils;
 import info.zamojski.soft.towercollector.utils.NetworkUtils;
+import info.zamojski.soft.towercollector.utils.OpenCellIdUtils;
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
 import info.zamojski.soft.towercollector.utils.StorageUtils;
 import info.zamojski.soft.towercollector.utils.StringUtils;
 import info.zamojski.soft.towercollector.utils.UpdateDialogArrayAdapter;
-import info.zamojski.soft.towercollector.utils.OpenCellIdUtils;
 import info.zamojski.soft.towercollector.views.MainActivityPagerAdapter;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
@@ -331,7 +331,7 @@ public class MainActivity extends AppCompatActivity
             startUploaderTaskWithCheck();
             return true;
         } else if (itemId == R.id.main_menu_export) {
-            startExportTask();
+            startExportTaskWithCheck();
             return true;
         } else if (itemId == R.id.main_menu_clear) {
             startCleanup();
@@ -877,11 +877,25 @@ public class MainActivity extends AppCompatActivity
             backgroundTaskHelper.showTaskRunningMessage(runningTaskClassName);
             return;
         }
-        MainActivityPermissionsDispatcher.startCollectorServiceWithPermissionCheck(MainActivity.this);
+        if (PermissionUtils.isNotificationPermissionRequired()) {
+            MainActivityPermissionsDispatcher.startCollectorServiceApi33WithPermissionCheck(MainActivity.this);
+        } else {
+            MainActivityPermissionsDispatcher.startCollectorServiceWithPermissionCheck(MainActivity.this);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @NeedsPermission({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void startCollectorServiceApi33() {
+        startCollectorServiceInternal();
     }
 
     @NeedsPermission({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void startCollectorService() {
+        startCollectorServiceInternal();
+    }
+
+    private void startCollectorServiceInternal() {
         askAndSetGpsEnabled();
         if (isGpsEnabled) {
             Timber.d("startCollectorService(): Air plane mode off, starting service");
@@ -903,9 +917,25 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @OnShowRationale({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void onStartCollectorShowRationaleApi33(PermissionRequest request) {
+        onStartCollectorShowRationaleInternal(request);
+    }
+
     @OnShowRationale({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorShowRationale(PermissionRequest request) {
-        onShowRationale(request, R.string.permission_collector_rationale_message);
+        onStartCollectorShowRationaleInternal(request);
+    }
+
+    private void onStartCollectorShowRationaleInternal(PermissionRequest request) {
+        onShowRationale(request, GpsUtils.isPreciseLocationAware() ? R.string.permission_collector_rationale_api31_message : R.string.permission_collector_rationale_message);
+    }
+
+    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @OnPermissionDenied({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void onStartCollectorPermissionDeniedApi33() {
+        onStartCollectorPermissionDeniedInternal();
     }
 
     @OnPermissionDenied({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
@@ -913,12 +943,22 @@ public class MainActivity extends AppCompatActivity
         onStartCollectorPermissionDeniedInternal();
     }
 
-    void onStartCollectorPermissionDeniedInternal() {
+    private void onStartCollectorPermissionDeniedInternal() {
         onPermissionDenied(R.string.permission_collector_denied_message);
+    }
+
+    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @OnNeverAskAgain({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void onStartCollectorNeverAskAgainApi33() {
+        onStartCollectorNeverAskAgainInternal();
     }
 
     @OnNeverAskAgain({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorNeverAskAgain() {
+        onStartCollectorNeverAskAgainInternal();
+    }
+
+    private void onStartCollectorNeverAskAgainInternal() {
         onNeverAskAgain(R.string.permission_collector_never_ask_again_message);
     }
 
@@ -935,6 +975,38 @@ public class MainActivity extends AppCompatActivity
             return;
         }
 
+        if (PermissionUtils.isNotificationPermissionRequired()) {
+            MainActivityPermissionsDispatcher.startUploaderTaskInternalApi33WithPermissionCheck(MainActivity.this);
+        } else {
+            startUploaderTaskInternal();
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @NeedsPermission({Manifest.permission.POST_NOTIFICATIONS})
+    void startUploaderTaskInternalApi33() {
+        startUploaderTaskInternal();
+    }
+
+    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @OnShowRationale({Manifest.permission.POST_NOTIFICATIONS})
+    void onNotificationRationaleApi33(final PermissionRequest request) {
+        onNotificationRationaleInternal(request);
+    }
+
+    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @OnPermissionDenied({Manifest.permission.POST_NOTIFICATIONS})
+    void onNotificationPermissionDeniedApi33() {
+        onNotificationPermissionDeniedInternal();
+    }
+
+    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @OnNeverAskAgain({Manifest.permission.POST_NOTIFICATIONS})
+    void onNotificationNeverAskAgainApi33() {
+        onNotificationNeverAskAgainInternal();
+    }
+
+    private void startUploaderTaskInternal() {
         final PreferencesProvider preferencesProvider = MyApplication.getPreferencesProvider();
         final boolean isOcidUploadEnabled = preferencesProvider.isOpenCellIdUploadEnabled();
         final boolean isUseSharedOpenCellIdApiKeyEnabled = preferencesProvider.isUseSharedOpenCellIdApiKeyEnabled();
@@ -1018,6 +1090,45 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    private void onNotificationRationaleInternal(PermissionRequest request) {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.permission_required)
+                .setMessage(R.string.permission_notification_rationale_message)
+                .setCancelable(true)
+                .setPositiveButton(R.string.dialog_proceed, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        request.proceed();
+                    }
+                })
+                .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        request.cancel();
+                    }
+                })
+                .show();
+    }
+
+    private void onNotificationPermissionDeniedInternal() {
+        Toast.makeText(this, R.string.permission_notification_denied_message, Toast.LENGTH_LONG).show();
+    }
+
+    private void onNotificationNeverAskAgainInternal() {
+        new AlertDialog.Builder(this)
+            .setTitle(R.string.permission_denied)
+            .setMessage(R.string.permission_notification_never_ask_again_message)
+            .setCancelable(true)
+            .setPositiveButton(R.string.dialog_settings, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    PermissionUtils.openAppSettings(MyApplication.getApplication());
+                }
+            })
+            .setNegativeButton(R.string.dialog_cancel, null)
+            .show();
+    }
+
     private void showAllProjectsDisabledMessage() {
         Snackbar snackbar = Snackbar.make(activityView, R.string.uploader_all_projects_disabled, Snackbar.LENGTH_LONG)
                 .setAction(R.string.main_menu_preferences_button, new View.OnClickListener() {
@@ -1054,13 +1165,32 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(getApplication(), R.string.uploader_already_running, Toast.LENGTH_LONG).show();
     }
 
-    void startExportTask() {
+    private void startExportTaskWithCheck() {
         String runningTaskClassName = MyApplication.getBackgroundTaskName();
         if (runningTaskClassName != null) {
             Timber.d("startExportTask(): Another task is running in background: %s", runningTaskClassName);
             backgroundTaskHelper.showTaskRunningMessage(runningTaskClassName);
             return;
         }
+
+        if (PermissionUtils.isNotificationPermissionRequired()) {
+            MainActivityPermissionsDispatcher.startExportTaskInternalApi33WithPermissionCheck(MainActivity.this);
+        } else {
+            startExportTaskInternal();
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @NeedsPermission({Manifest.permission.POST_NOTIFICATIONS})
+    void startExportTaskInternalApi33() {
+        startExportTaskInternal();
+    }
+
+    private void startExportTaskInternal() {
+        startExportTask();
+    }
+
+    private void startExportTask() {
         Uri storageUri = MyApplication.getPreferencesProvider().getStorageUri();
         if (StorageUtils.canWriteStorageUri(storageUri)) {
             final PreferencesProvider preferencesProvider = MyApplication.getPreferencesProvider();

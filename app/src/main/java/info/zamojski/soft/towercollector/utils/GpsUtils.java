@@ -11,6 +11,10 @@ import android.os.Build;
 
 public class GpsUtils {
 
+    public static boolean isPreciseLocationAware() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.S;
+    }
+
     public static boolean isBackgroundLocationAware() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q;
     }
