@@ -1,0 +1,4 @@
+- Fix missing notifications on Android 13.
+- Fix issue with requesting background location permission if no location permission was granted before.
+- Improve readability of message when there are no measurements on the device.
+- Improve opening Network type settings.

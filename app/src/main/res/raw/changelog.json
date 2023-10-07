@@ -1,6 +1,16 @@
 {
   "Entries": [
     {
+      "VersionCode": 2140403,
+      "Title": "Changes in version 2.14.4",
+      "Messages": [
+        "Fix missing notifications on Android 13.",
+        "Fix issue with requesting background location permission if no location permission was granted before.",
+        "Improve readability of message when there are no measurements on the device.",
+        "Improve opening Network type settings."
+      ]
+    },
+    {
       "VersionCode": 2140302,
       "Title": "Changes in version 2.14.3",
       "Messages": [
@@ -36,15 +46,6 @@
         "Remove unnecessary prompt to select storage when disabling file logging.",
         "Fixes related to data collection with NetMonster API.",
         "Small bug fixes."
-      ]
-    },
-    {
-      "VersionCode": 2130098,
-      "Title": "Changes in version 2.13.0",
-      "Messages": [
-        "Distinguish newly discovered from old cells on the map.",
-        "Add Korean translation. Thank you zipi!",
-        "Update translation."
       ]
     }
   ]
