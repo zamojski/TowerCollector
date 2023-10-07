@@ -145,7 +145,7 @@
     <string name="uploader_limit_exceeded">Excedeu o limite de uso</string>
     <string name="uploader_limit_exceeded_description">O limite diário de uso do app foi excedido. Favor tentar novamente amanhã.</string>
     <string name="other_notification_channel_name">Outro</string>
-    <string name="error_reporting_notification_title">Ocorreu um erro inexperado</string>
+    <string name="error_reporting_notification_title">O aplicativo Tower Collector travou</string>
     <string name="error_reporting_notification_text">Ocorreu um erro inexperado. Favor enviar um relatório de erros para ajudar a resolver o problema.</string>
     <string name="error_reporting_notification_comment_prompt">Comente (opcional)</string>
     <string name="error_reporting_notification_email_prompt">E-mail (opcional)</string>
