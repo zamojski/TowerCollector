@@ -18,6 +18,13 @@
 
 **Solution:** You can manually disable sound and vibration if you want by long pressing on posted notification and going to settings.
 
+### "Invalid system time" warning is presented despite date and time set correctly
+**Problem:** A warning stating "Your current system date and/or time is invalid comparing to GPS time. Measurements will be saved with correct time but presented statistics may be inaccurate." is presented within application during measurement collection.
+
+**Cause:** Starting on November 3, 2019, mobile devices manufactured between 2006 and 2016 may have their GPS accuracy impacted due to [GPS Rollover issue](https://en.wikipedia.org/wiki/GPS_week_number_rollover). 
+
+**Solution:** The message is presented when there's 2 days (!) difference between system time and GPS time. If both values are incorrect then the app will refuse to collect any measurements. That means if the app collects measurements they will be saved with correct date and time. The contribution is not affected in that case.
+
 ## Frequent questions
 
 ### Is there support for multi-SIM phones?
