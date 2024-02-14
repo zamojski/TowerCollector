@@ -1139,7 +1139,7 @@ public class MainActivity extends AppCompatActivity
                 });
         // hack for black text on dark grey background
         View view = snackbar.getView();
-        TextView tv = view.findViewById(R.id.snackbar_text);
+        TextView tv = view.findViewById(com.google.android.material.R.id.snackbar_text);
         tv.setTextColor(Color.WHITE);
         snackbar.show();
     }

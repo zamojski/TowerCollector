@@ -7,15 +7,13 @@ ext.rotEnabled = false
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 33
-    buildToolsVersion "33.0.2"
-
     namespace 'info.zamojski.soft.towercollector'
 
     defaultConfig {
         applicationId "info.zamojski.soft.towercollector"
         minSdkVersion 21
         targetSdkVersion 33
+        compileSdk 33
         versionCode 2140403
         versionName "2.14.4"
 
@@ -39,7 +37,7 @@ android {
             keyPassword ''
         }
     }
-    flavorDimensions "environment", "market"
+    flavorDimensions = ["environment", "market"]
     productFlavors {
         develop {
             versionNameSuffix '-dev'
@@ -88,7 +86,6 @@ android {
             minifyEnabled true
             shrinkResources true
             debuggable false
-            zipAlignEnabled true
             productFlavors.official.signingConfig signingConfigs.official
             productFlavors.fdroid.signingConfig signingConfigs.fdroid
         }
