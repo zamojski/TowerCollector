@@ -124,7 +124,7 @@ dependencies {
     implementation "com.github.permissions-dispatcher:permissionsdispatcher:$permissionsDispatcherVersion"
     annotationProcessor "com.github.permissions-dispatcher:permissionsdispatcher-processor:$permissionsDispatcherVersion"
     implementation 'com.jakewharton.timber:timber:5.0.1'
-    implementation 'org.osmdroid:osmdroid-android:6.1.13'
+    implementation 'org.osmdroid:osmdroid-android:6.1.18'
     implementation 'com.github.MKergall:osmbonuspack:6.9.0'
     implementation 'app.netmonster:core:1.2.0'
 }
