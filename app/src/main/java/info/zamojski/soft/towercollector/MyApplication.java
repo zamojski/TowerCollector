@@ -46,6 +46,7 @@ import android.os.DeadObjectException;
 import android.util.Log;
 import android.widget.Toast;
 
+import info.zamojski.soft.towercollector.utils.PermissionUtils;
 import info.zamojski.soft.towercollector.utils.StorageUtils;
 import timber.log.Timber;
 
@@ -106,6 +107,8 @@ public class MyApplication extends Application {
                             MeasurementsDatabase.deleteDatabase(getApplication());
                         }
                     }
+                    // include list of permissions at the moment of crash
+                    ACRA.getErrorReporter().putCustomData("CRASH_PERMISSIONS", PermissionUtils.getAppPermissions());
                     defaultHandler.uncaughtException(thread, ex);
                 }
             }
@@ -263,6 +266,8 @@ public class MyApplication extends Application {
                 )
         );
         ACRA.getErrorReporter().putCustomData("APP_MARKET_NAME", BuildConfig.MARKET_NAME);
+        // include list of permissions at startup
+        ACRA.getErrorReporter().putCustomData("STARTUP_PERMISSIONS", PermissionUtils.getAppPermissions());
     }
 
     private ReportField[] getCustomAcraReportFields() {
@@ -314,6 +319,8 @@ public class MyApplication extends Application {
         String throwableHash = HashUtils.toSha1(throwable.toString());
         if (!handledSilentExceptionHashes.contains(throwableHash)) {
             handledSilentExceptionHashes.add(throwableHash);
+            // include list of permissions at the moment of crash
+            ACRA.getErrorReporter().putCustomData("CRASH_PERMISSIONS", PermissionUtils.getAppPermissions());
             ACRA.getErrorReporter().handleSilentException(throwable);
         }
     }

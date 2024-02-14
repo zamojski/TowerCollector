@@ -6,11 +6,19 @@ package info.zamojski.soft.towercollector.utils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+
 import androidx.core.content.ContextCompat;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import info.zamojski.soft.towercollector.MyApplication;
+import timber.log.Timber;
 
 public class PermissionUtils {
     public static boolean hasPermission(Context context, String permission) {
@@ -35,5 +43,32 @@ public class PermissionUtils {
 
     public static boolean isNotificationPermissionRequired() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU;
+    }
+
+    public static String getAppPermissions() {
+        Map<String, Boolean> permissions = getAppPermissionsInternal();
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<String, Boolean> permission : permissions.entrySet()) {
+            sb.append(permission.getKey()).append("=").append(permission.getValue()).append("; ");
+        }
+        return sb.toString();
+    }
+
+    private static Map<String, Boolean> getAppPermissionsInternal() {
+        Map<String, Boolean> permissions = new HashMap<>();
+        try {
+            String packageName = MyApplication.getApplication().getPackageName();
+            PackageInfo packageInfo = MyApplication.getApplication().getPackageManager().getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
+            for (int i = 0; i < packageInfo.requestedPermissions.length; i++) {
+                permissions.put(packageInfo.requestedPermissions[i], isPermissionGranted(packageInfo.requestedPermissionsFlags[i]));
+            }
+        } catch (Exception ex) {
+            Timber.w(ex, "getAppPermissions(): Failed to get app permissions");
+        }
+        return permissions;
+    }
+
+    private static boolean isPermissionGranted(int requestedPermissionsFlags) {
+        return (requestedPermissionsFlags & PackageInfo.REQUESTED_PERMISSION_GRANTED) != 0;
     }
 }
