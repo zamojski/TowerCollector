@@ -102,7 +102,7 @@ android {
     }
 }
 
-def acraVersion = '5.9.7'
+def acraVersion = '5.9.7' // newer require API 34
 def permissionsDispatcherVersion = '4.9.2'
 
 dependencies {
@@ -114,7 +114,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.work:work-runtime:2.8.1'
     implementation 'com.google.guava:guava:31.1-android'
-    officialImplementation 'com.google.firebase:firebase-analytics:21.3.0'
+    officialImplementation 'com.google.firebase:firebase-analytics:21.5.1'
     implementation 'org.greenrobot:eventbus:3.3.1'
     implementation "ch.acra:acra-http:$acraVersion"
     implementation "ch.acra:acra-dialog:$acraVersion"
