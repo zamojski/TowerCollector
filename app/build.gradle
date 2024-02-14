@@ -97,6 +97,9 @@ android {
     lint {
         disable 'MissingTranslation'
     }
+    buildFeatures {
+        buildConfig true
+    }
 }
 
 def acraVersion = '5.9.7'
