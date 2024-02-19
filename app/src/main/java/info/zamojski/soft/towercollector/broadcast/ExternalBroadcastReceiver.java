@@ -23,15 +23,16 @@ import java.util.List;
 import info.zamojski.soft.towercollector.CollectorService;
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
-import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvider;
-import info.zamojski.soft.towercollector.uploader.UploaderWorker;
 import info.zamojski.soft.towercollector.analytics.IntentSource;
 import info.zamojski.soft.towercollector.enums.FileType;
 import info.zamojski.soft.towercollector.events.CollectorStartedEvent;
 import info.zamojski.soft.towercollector.export.ExportWorker;
+import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvider;
+import info.zamojski.soft.towercollector.uploader.UploaderWorker;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
 import info.zamojski.soft.towercollector.utils.BackgroundTaskHelper;
 import info.zamojski.soft.towercollector.utils.GpsUtils;
+import info.zamojski.soft.towercollector.utils.NetworkUtils;
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
 import timber.log.Timber;
 
@@ -116,8 +117,13 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
     }
 
     public void startUploaderWorker(Context context, IntentSource source) {
-        if (!canStartBackgroundService(context))
+        if (!canStartBackgroundService(context)) {
             return;
+        }
+        if (!NetworkUtils.isNetworkAvailable(MyApplication.getApplication())) {
+            Toast.makeText(MyApplication.getApplication(), R.string.uploader_no_internet_message, Toast.LENGTH_SHORT).show();
+            return;
+        }
         Timber.d("startUploaderWorker(): Starting worker from broadcast");
         PreferencesProvider preferencesProvider = MyApplication.getPreferencesProvider();
         boolean isOpenCellIdUploadEnabled = preferencesProvider.isOpenCellIdUploadEnabled();

@@ -7,11 +7,12 @@ package info.zamojski.soft.towercollector.utils;
 import android.Manifest;
 import android.content.Context;
 import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.provider.Settings;
 import android.util.Patterns;
-
-import java.net.URL;
 
 public class NetworkUtils {
     public static String getNetworkType(Context context) {
@@ -26,11 +27,24 @@ public class NetworkUtils {
 
     public static boolean isNetworkAvailable(Context context) {
         if (PermissionUtils.hasPermissions(context, Manifest.permission.ACCESS_NETWORK_STATE)) {
-            ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo activeNetworkInfo = manager.getActiveNetworkInfo();
-            return (activeNetworkInfo != null && activeNetworkInfo.isConnected());
+            ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                Network activeNetwork = connectivityManager.getActiveNetwork();
+                NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(activeNetwork);
+                if (capabilities != null) {
+                    if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI))
+                        return true;
+                    if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR))
+                        return true;
+                    if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET))
+                        return true;
+                }
+            } else {
+                NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+                return (activeNetworkInfo != null && activeNetworkInfo.isConnected());
+            }
         }
-        return true; // assume there's one
+        return false;
     }
 
     public static boolean isInAirplaneMode(Context context) {

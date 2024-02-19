@@ -1007,6 +1007,15 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void startUploaderTaskInternal() {
+        if (!NetworkUtils.isNetworkAvailable(MyApplication.getApplication())) {
+            new AlertDialog.Builder(this)
+                    .setTitle(R.string.uploader_no_internet_title)
+                    .setMessage(R.string.uploader_no_internet_message)
+                    .setCancelable(true)
+                    .setPositiveButton(R.string.dialog_ok, null)
+                    .show();
+            return;
+        }
         final PreferencesProvider preferencesProvider = MyApplication.getPreferencesProvider();
         final boolean isOcidUploadEnabled = preferencesProvider.isOpenCellIdUploadEnabled();
         final boolean isUseSharedOpenCellIdApiKeyEnabled = preferencesProvider.isUseSharedOpenCellIdApiKeyEnabled();
@@ -1117,17 +1126,17 @@ public class MainActivity extends AppCompatActivity
 
     private void onNotificationNeverAskAgainInternal() {
         new AlertDialog.Builder(this)
-            .setTitle(R.string.permission_denied)
-            .setMessage(R.string.permission_notification_never_ask_again_message)
-            .setCancelable(true)
-            .setPositiveButton(R.string.dialog_settings, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    PermissionUtils.openAppSettings(MyApplication.getApplication());
-                }
-            })
-            .setNegativeButton(R.string.dialog_cancel, null)
-            .show();
+                .setTitle(R.string.permission_denied)
+                .setMessage(R.string.permission_notification_never_ask_again_message)
+                .setCancelable(true)
+                .setPositiveButton(R.string.dialog_settings, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        PermissionUtils.openAppSettings(MyApplication.getApplication());
+                    }
+                })
+                .setNegativeButton(R.string.dialog_cancel, null)
+                .show();
     }
 
     private void showAllProjectsDisabledMessage() {
