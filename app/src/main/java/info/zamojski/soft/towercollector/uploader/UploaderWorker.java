@@ -57,6 +57,7 @@ public class UploaderWorker extends Worker implements IProgressListener {
     public static final String INTENT_KEY_UPLOAD_TO_OCID = "upload_to_ocid";
     public static final String INTENT_KEY_UPLOAD_TO_OCID_SHARED = "upload_to_ocid_shared";
     public static final String INTENT_KEY_UPLOAD_TO_MLS = "upload_to_mls";
+    public static final String INTENT_KEY_UPLOAD_TO_CUSTOM_MLS = "upload_to_custom_mls";
     public static final String INTENT_KEY_UPLOAD_TRY_REUPLOAD = "try_reupload";
     public static final String INTENT_KEY_START_INTENT_SOURCE = "start_intent_source";
     public static final String PROGRESS = "PROGRESS";
@@ -73,11 +74,13 @@ public class UploaderWorker extends Worker implements IProgressListener {
     private final String appId;
     private final String ocidUploadUrl;
     private final String mlsUploadUrl;
+    private final String customMlsUploadUrl;
     private String ocidApiKey;
     private String mlsApiKey;
     private boolean isOpenCellIdUploadEnabled;
     private boolean isUseSharedOpenCellIdApiKeyEnabled;
     private boolean isMlsUploadEnabled;
+    private boolean isCustomMlsUploadEnabled;
     private boolean isReuploadIfUploadFailsEnabled;
 
     private UploadResult ocidUploadResult = UploadResult.NotStarted;
@@ -93,6 +96,7 @@ public class UploaderWorker extends Worker implements IProgressListener {
         // set upload url
         ocidUploadUrl = getStringById(R.string.upload_url_opencellid_org);
         mlsUploadUrl = getStringById(R.string.upload_url_mls);
+        customMlsUploadUrl = MyApplication.getPreferencesProvider().getCustomMlsUploadUrl();
         // set app code
         appId = ApkUtils.getAppId(MyApplication.getApplication());
     }
@@ -116,6 +120,7 @@ public class UploaderWorker extends Worker implements IProgressListener {
             isOpenCellIdUploadEnabled = getInputData().getBoolean(INTENT_KEY_UPLOAD_TO_OCID, MyApplication.getPreferencesProvider().isOpenCellIdUploadEnabled());
             isUseSharedOpenCellIdApiKeyEnabled = getInputData().getBoolean(INTENT_KEY_UPLOAD_TO_OCID_SHARED, MyApplication.getPreferencesProvider().isUseSharedOpenCellIdApiKeyEnabled());
             isMlsUploadEnabled = getInputData().getBoolean(INTENT_KEY_UPLOAD_TO_MLS, MyApplication.getPreferencesProvider().isMlsUploadEnabled());
+            isCustomMlsUploadEnabled = getInputData().getBoolean(INTENT_KEY_UPLOAD_TO_CUSTOM_MLS, MyApplication.getPreferencesProvider().isCustomMlsUploadEnabled());
             isReuploadIfUploadFailsEnabled = getInputData().getBoolean(INTENT_KEY_UPLOAD_TRY_REUPLOAD, MyApplication.getPreferencesProvider().isReuploadIfUploadFailsEnabled());
             startIntentSource = IntentSource.valueOf(getInputData().getString(INTENT_KEY_START_INTENT_SOURCE));
             // we hope API key will be valid
@@ -180,7 +185,7 @@ public class UploaderWorker extends Worker implements IProgressListener {
                 if (isOpenCellIdUploadEnabled)
                     MyApplication.getAnalytics().sendUploadFinished(startIntentSource, networkType, duration, stats, OpenCellIdUtils.isApiKeyShared(ocidApiKey) ? Label.UploadOcidShared : Label.UploadOcid);
                 if (isMlsUploadEnabled)
-                    MyApplication.getAnalytics().sendUploadFinished(startIntentSource, networkType, duration, stats, Label.UploadMls);
+                    MyApplication.getAnalytics().sendUploadFinished(startIntentSource, networkType, duration, stats, isCustomMlsUploadEnabled ? Label.UploadCustomMls : Label.UploadMls);
             }
             String ocidMessage = getStringById(getMessage(ocidUploadResult));
             String ocidDescription = getStringById(getDescription(ocidUploadResult));
@@ -496,7 +501,11 @@ public class UploaderWorker extends Worker implements IProgressListener {
         String jsonContent = memoryFile.toString();
         // send request
         try {
-            IUploadClient client = new MozillaUploadClient(mlsUploadUrl, mlsApiKey);
+            IUploadClient client;
+            if (isCustomMlsUploadEnabled)
+                client = new MozillaUploadClient(customMlsUploadUrl);
+            else
+                client = new MozillaUploadClient(mlsUploadUrl, mlsApiKey);
             RequestResult response = client.uploadMeasurements(jsonContent);
             Timber.d("uploadToMls(): Server response: %s", response);
             // check whether it makes sense to continue

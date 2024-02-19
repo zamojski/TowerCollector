@@ -203,6 +203,16 @@ public class PreferencesProvider {
         return value;
     }
 
+    public boolean isCustomMlsUploadEnabled() {
+        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_custom_mls_enabled_key, R.bool.preferences_custom_mls_enabled_default_value);
+        return value;
+    }
+
+    public String getCustomMlsUploadUrl() {
+        String value = stringPreferenceProvider.getPreference(R.string.preferences_custom_mls_url_key, R.string.preferences_custom_mls_url_default_value);
+        return value;
+    }
+
     public void setMlsUploadEnabled(boolean value) {
         booleanPreferenceProvider.setPreference(R.string.preferences_mls_enabled_key, value);
     }

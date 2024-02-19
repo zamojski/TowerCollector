@@ -123,12 +123,14 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         boolean isOpenCellIdUploadEnabled = preferencesProvider.isOpenCellIdUploadEnabled();
         boolean isUseSharedOpenCellIdApiKeyEnabled = preferencesProvider.isUseSharedOpenCellIdApiKeyEnabled();
         boolean isMlsUploadEnabled = preferencesProvider.isMlsUploadEnabled();
+        boolean isCustomMlsUploadEnabled = preferencesProvider.isCustomMlsUploadEnabled();
         boolean isReuploadIfUploadFailsEnabled = preferencesProvider.isReuploadIfUploadFailsEnabled();
         WorkRequest uploaderWorkRequest = new OneTimeWorkRequest.Builder(UploaderWorker.class)
                 .setInputData(new Data.Builder()
                         .putBoolean(UploaderWorker.INTENT_KEY_UPLOAD_TO_OCID, isOpenCellIdUploadEnabled)
                         .putBoolean(UploaderWorker.INTENT_KEY_UPLOAD_TO_OCID_SHARED, isUseSharedOpenCellIdApiKeyEnabled)
                         .putBoolean(UploaderWorker.INTENT_KEY_UPLOAD_TO_MLS, isMlsUploadEnabled)
+                        .putBoolean(UploaderWorker.INTENT_KEY_UPLOAD_TO_CUSTOM_MLS, isCustomMlsUploadEnabled)
                         .putBoolean(UploaderWorker.INTENT_KEY_UPLOAD_TRY_REUPLOAD, isReuploadIfUploadFailsEnabled)
                         .putString(UploaderWorker.INTENT_KEY_START_INTENT_SOURCE, source.name())
                         .build())

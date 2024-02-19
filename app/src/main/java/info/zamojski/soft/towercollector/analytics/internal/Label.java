@@ -19,4 +19,5 @@ public class Label {
     public static final String UploadOcid = "UploadOCID";
     public static final String UploadOcidShared = "UploadOCIDShared";
     public static final String UploadMls = "UploadMLS";
+    public static final String UploadCustomMls = "UploadCustomMLS";
 }

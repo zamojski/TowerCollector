@@ -54,7 +54,13 @@
 
     <string name="preferences_mls_enabled_key" translatable="false">mls_enabled</string>
     <bool name="preferences_mls_enabled_default_value" translatable="false">true</bool>
-    <string name="preferences_about_mls_project_key">about_mls_project</string>
+    <string name="preferences_about_mls_project_key" translatable="false">about_mls_project</string>
+    
+    <string name="preferences_custom_mls_enabled_key" translatable="false">custom_mls_enabled</string>
+    <bool name="preferences_custom_mls_enabled_default_value">false</bool>
+
+    <string name="preferences_custom_mls_url_key" translatable="false">custom_mls_url</string>
+    <string name="preferences_custom_mls_url_default_value" translatable="false"></string>
 
     <string name="preferences_imperial_units_key" translatable="false">imperial_units_key</string>
     <bool name="preferences_imperial_units_default_value" translatable="false">false</bool>

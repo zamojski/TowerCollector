@@ -47,6 +47,17 @@
             app:summaryOff="@string/preferences_mls_enabled_off_summary"
             app:summaryOn="@string/preferences_mls_enabled_on_summary"
             app:title="@string/preferences_mls_enabled_title" />
+        <SwitchPreferenceCompat
+            app:defaultValue="@bool/preferences_custom_mls_enabled_default_value"
+            app:key="@string/preferences_custom_mls_enabled_key"
+            app:summaryOff="@string/preferences_custom_mls_enabled_off_summary"
+            app:summaryOn="@string/preferences_custom_mls_enabled_on_summary"
+            app:title="@string/preferences_custom_mls_enabled_title" />
+        <info.zamojski.soft.towercollector.controls.TrimmedEditTextPreference
+            app:defaultValue="@string/preferences_custom_mls_url_default_value"
+            app:key="@string/preferences_custom_mls_url_key"
+            app:summary="@string/preferences_custom_mls_url_summary"
+            app:title="@string/preferences_custom_mls_url_title" />
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/preferences_category_help_title">
         <PreferenceScreen

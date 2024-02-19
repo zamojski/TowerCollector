@@ -24,7 +24,11 @@ public class MozillaUploadClient extends ClientBase implements IUploadClient {
     private final String uploadUrl;
 
     public MozillaUploadClient(String url, String apiKey) {
-        this.uploadUrl = String.format(url, apiKey);
+        this(String.format(url, apiKey));
+    }
+
+    public MozillaUploadClient(String url) {
+        this.uploadUrl = url;
     }
 
     @Override

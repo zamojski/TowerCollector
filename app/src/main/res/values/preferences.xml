@@ -52,6 +52,12 @@
     <string name="preferences_mls_enabled_title">Enable MLS upload</string>
     <string name="preferences_mls_enabled_on_summary">Measurements will be uploaded to Mozilla Location Services.</string>
     <string name="preferences_mls_enabled_off_summary">Measurements will not be uploaded to Mozilla Location Services.</string>
+    <string name="preferences_custom_mls_enabled_title">Use custom MLS service</string>
+    <string name="preferences_custom_mls_enabled_on_summary">Measurements will be uploaded to MLS-compatible service defined below.</string>
+    <string name="preferences_custom_mls_enabled_off_summary">Measurements will uploaded to official MLS service.</string>
+    <string name="preferences_custom_mls_url_title">Custom MLS service address</string>
+    <string name="preferences_custom_mls_url_summary">Provide the address to geosubmit method including your own access token, like: "https://location.services.mozilla.com/v2/geosubmit?key=API_KEY"</string>
+    <string name="preferences_custom_mls_url_invalid">Entered custom MLS address is invalid.</string>
     <string name="preferences_about_mls_project_title">About MLS</string>
     <string name="preferences_about_mls_project_summary">Information about Mozilla Location Services.</string>
     <string name="preferences_imperial_units_title">Use imperial units</string>

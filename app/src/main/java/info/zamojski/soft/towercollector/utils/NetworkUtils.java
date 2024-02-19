@@ -9,6 +9,9 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.provider.Settings;
+import android.util.Patterns;
+
+import java.net.URL;
 
 public class NetworkUtils {
     public static String getNetworkType(Context context) {
@@ -32,5 +35,9 @@ public class NetworkUtils {
 
     public static boolean isInAirplaneMode(Context context) {
         return Settings.Global.getInt(context.getContentResolver(), Settings.Global.AIRPLANE_MODE_ON, 0) != 0;
+    }
+
+    public static boolean isValidUrl(String url) {
+        return Patterns.WEB_URL.matcher(url).matches();
     }
 }

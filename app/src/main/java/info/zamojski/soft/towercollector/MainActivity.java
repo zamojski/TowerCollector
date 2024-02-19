@@ -1011,6 +1011,7 @@ public class MainActivity extends AppCompatActivity
         final boolean isOcidUploadEnabled = preferencesProvider.isOpenCellIdUploadEnabled();
         final boolean isUseSharedOpenCellIdApiKeyEnabled = preferencesProvider.isUseSharedOpenCellIdApiKeyEnabled();
         final boolean isMlsUploadEnabled = preferencesProvider.isMlsUploadEnabled();
+        final boolean isCustomMlsUploadEnabled = preferencesProvider.isCustomMlsUploadEnabled();
         final boolean isReuploadIfUploadFailsEnabled = preferencesProvider.isReuploadIfUploadFailsEnabled();
         Timber.i("startUploaderTaskWithCheck(): Upload for OCID = " + isOcidUploadEnabled + ", MLS = " + isMlsUploadEnabled);
         boolean showConfigurator = preferencesProvider.getShowConfiguratorBeforeUpload();
@@ -1064,7 +1065,7 @@ public class MainActivity extends AppCompatActivity
                     if (!isOcidUploadCheckedTemp && !isMlsUploadCheckedTemp) {
                         showAllProjectsDisabledMessage();
                     } else {
-                        startUploaderTask(isOcidUploadCheckedTemp, isOcidAnonymousUploadCheckedTemp, isMlsUploadCheckedTemp, isReuploadIfUploadFailsCheckedTemp);
+                        startUploaderTask(isOcidUploadCheckedTemp, isOcidAnonymousUploadCheckedTemp, isMlsUploadCheckedTemp, isCustomMlsUploadEnabled, isReuploadIfUploadFailsCheckedTemp);
                     }
                 }
             });
@@ -1085,7 +1086,7 @@ public class MainActivity extends AppCompatActivity
             if (!isOcidUploadEnabled && !isMlsUploadEnabled) {
                 showAllProjectsDisabledMessage();
             } else {
-                startUploaderTask(isOcidUploadEnabled, isUseSharedOpenCellIdApiKeyEnabled, isMlsUploadEnabled, isReuploadIfUploadFailsEnabled);
+                startUploaderTask(isOcidUploadEnabled, isUseSharedOpenCellIdApiKeyEnabled, isMlsUploadEnabled, isCustomMlsUploadEnabled, isReuploadIfUploadFailsEnabled);
             }
         }
     }
@@ -1144,7 +1145,7 @@ public class MainActivity extends AppCompatActivity
         snackbar.show();
     }
 
-    private void startUploaderTask(boolean isOcidUploadEnabled, boolean isOcidAnonymousUploadEnabled, boolean isMlsUploadEnabled, boolean isReuploadIfUploadFailsEnabled) {
+    private void startUploaderTask(boolean isOcidUploadEnabled, boolean isOcidAnonymousUploadEnabled, boolean isMlsUploadEnabled, boolean isCustomMlsUploadEnabled, boolean isReuploadIfUploadFailsEnabled) {
         // start task
         if (!MyApplication.isBackgroundTaskRunning(UploaderWorker.class)) {
             WorkRequest uploaderWorkRequest = new OneTimeWorkRequest.Builder(UploaderWorker.class)
@@ -1152,6 +1153,7 @@ public class MainActivity extends AppCompatActivity
                             .putBoolean(UploaderWorker.INTENT_KEY_UPLOAD_TO_OCID, isOcidUploadEnabled)
                             .putBoolean(UploaderWorker.INTENT_KEY_UPLOAD_TO_OCID_SHARED, isOcidAnonymousUploadEnabled)
                             .putBoolean(UploaderWorker.INTENT_KEY_UPLOAD_TO_MLS, isMlsUploadEnabled)
+                            .putBoolean(UploaderWorker.INTENT_KEY_UPLOAD_TO_CUSTOM_MLS, isCustomMlsUploadEnabled)
                             .putBoolean(UploaderWorker.INTENT_KEY_UPLOAD_TRY_REUPLOAD, isReuploadIfUploadFailsEnabled)
                             .putString(UploaderWorker.INTENT_KEY_START_INTENT_SOURCE, IntentSource.User.name())
                             .build())
