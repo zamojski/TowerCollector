@@ -144,6 +144,8 @@
     <string name="uploader_server_error_description">A kiszolgáló belső hibát adott vissza, ami azt jelenti, hogy túlterhelt, átmenetileg nem érhető el, vagy karbantartás miatt nem működik. Próbáld újra később. Ha hosszú ideig találkozol ezzel a problémával, tudasd velem.</string>
     <string name="uploader_limit_exceeded">A használati határ túllépve</string>
     <string name="uploader_limit_exceeded_description">Az alkalmazás a napi felhasználási korlátját túllépte. Kérjük, holnap próbálkozz újra.</string>
+    <string name="uploader_no_internet_title">Internet nem elérhető</string>
+    <string name="uploader_no_internet_message">Internet kapcsolat hiánya miatt nem lehet feltölteni.</string>
     <string name="other_notification_channel_name">Egyéb</string>
     <string name="error_reporting_notification_title">A Tower Collector lezuhant</string>
     <string name="error_reporting_notification_text">Váratlan hiba történt. Küldj hibajelentést a probléma megoldásához.</string>

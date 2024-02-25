@@ -52,6 +52,12 @@
     <string name="preferences_mls_enabled_title">Включить выгрузку в MLS</string>
     <string name="preferences_mls_enabled_on_summary">Измерения будут выгружаться в Mozilla Location Services.</string>
     <string name="preferences_mls_enabled_off_summary">Измерения не будут выгружаться в Mozilla Location Services.</string>
+    <string name="preferences_custom_mls_enabled_title">Используйте индивидуальный сервис MLS</string>
+    <string name="preferences_custom_mls_enabled_on_summary">Измерения будут загружены в службу, совместимую с MLS, определенную ниже.</string>
+    <string name="preferences_custom_mls_enabled_off_summary">Измерения будут загружены на официальный сервис MLS.</string>
+    <string name="preferences_custom_mls_url_title">Персонализированный адрес службы MLS</string>
+    <string name="preferences_custom_mls_url_summary">Укажите адрес для метода geosubmit, включая ваш собственный токен доступа, например: \"https://location.services.mozilla.com/v2/geosubmit?key=API_KEY\"</string>
+    <string name="preferences_custom_mls_url_invalid">Введенный пользовательский адрес MLS недействителен.</string>
     <string name="preferences_about_mls_project_title">О проекте MLS</string>
     <string name="preferences_about_mls_project_summary">Информация о проекте Mozilla Location Services.</string>
     <string name="preferences_imperial_units_title">Английская система мер</string>
@@ -144,6 +150,8 @@
     <string name="preferences_import_database_summary">Загрузка внутренней базы данных из файла measurements.db, расположенного в папке хранения, заданной в настройках.</string>
     <string name="preferences_export_database_title">Выгрузка базы данных</string>
     <string name="preferences_export_database_summary">Сохранение внутренней базы данных в файл measurements.db, расположенный в папке хранения, заданной в настройках.</string>
+    <string name="preferences_export_database_overwrite_warning_title">Возможна потеря данных</string>
+    <string name="preferences_export_database_overwrite_warning_message">Продолжение этой операции может перезаписать существующий файл measurements.db текущей копией, которая не содержит никаких измерений.\n\nВы уверены, что хотите экспортировать?</string>
     <string name="preferences_import_preferences_title">Загрузка настроек</string>
     <string name="preferences_import_preferences_summary">Загрузка настроек из файла preferences.xml, расположенного в папке хранения, заданной в настройках.</string>
     <string name="preferences_export_preferences_title">Выгрузка настроек</string>

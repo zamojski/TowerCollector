@@ -52,6 +52,12 @@
     <string name="preferences_mls_enabled_title">MLS\' ye yüklemeyi etkinleştir</string>
     <string name="preferences_mls_enabled_on_summary">Ölçümler MLS\' ye (Mozilla Konum Hizmetleri) yüklenecektir.</string>
     <string name="preferences_mls_enabled_off_summary">Ölçümler Mozilla Konum Hizmetlerine yüklenmeyecektir.</string>
+    <string name="preferences_custom_mls_enabled_title">Özel MLS hizmetini kullanın</string>
+    <string name="preferences_custom_mls_enabled_on_summary">Ölçümler aşağıda tanımlanan MLS uyumlu hizmete yüklenecektir.</string>
+    <string name="preferences_custom_mls_enabled_off_summary">Ölçümler resmi MLS hizmetine yüklenecektir.</string>
+    <string name="preferences_custom_mls_url_title">Özel MLS hizmet adresi</string>
+    <string name="preferences_custom_mls_url_summary">Kendi erişim belirtecinizi de içeren \"geosubmit\" yönteminin adresini sağlayın; örneğin: \"https://location.services.mozilla.com/v2/geosubmit?key=API_KEY\"</string>
+    <string name="preferences_custom_mls_url_invalid">Girilen özel MLS adresi geçersiz.</string>
     <string name="preferences_about_mls_project_title">MLS hakkında</string>
     <string name="preferences_about_mls_project_summary">Mozilla Konum Hizmetleri hakkında bilgi.</string>
     <string name="preferences_imperial_units_title">İngiliz ölçü birimi kullan</string>
@@ -144,6 +150,8 @@
     <string name="preferences_import_database_summary">Uygulamanın dahili veritabanını Tercihler\'de ayarlanan depolama klasöründe bulunan measurement.db dosyasından içe aktarır.</string>
     <string name="preferences_export_database_title">Veri tabanını dışa aktar</string>
     <string name="preferences_export_database_summary">Uygulamanın dahili veritabanını Tercihler\'de ayarlanan depolama klasöründe bulunan measurements.db dosyasına aktarır.</string>
+    <string name="preferences_export_database_overwrite_warning_title">Olası veri kaybı</string>
+    <string name="preferences_export_database_overwrite_warning_message">Bu işleme devam etmek, mevcut measurements.db dosyasının üzerine herhangi bir ölçüm içermeyen geçerli kopyanın yazılmasına neden olabilir.\n\nİhracat yapmak istediğinizden emin misiniz?</string>
     <string name="preferences_import_preferences_title">Tercihleri içe aktar.</string>
     <string name="preferences_import_preferences_summary">Uygulamanın dahili tercihlerini Tercihler\'de ayarlanan depolama klasöründe bulunan preferences.xml dosyasından uygulamanın dahili tercihlerini içe aktarır.</string>
     <string name="preferences_export_preferences_title">Tercihleri dışa aktar</string>

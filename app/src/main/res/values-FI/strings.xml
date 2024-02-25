@@ -144,6 +144,8 @@
     <string name="uploader_server_error_description">Palvelin palautti sisäisen virheen, mikä voi tarkoittaa, että se on ylikuormitettu, tilapäisesti poissa käytöstä tai poissa käytöstä huoltotöiden vuoksi. Yritä myöhemmin uudelleen. Jos ongelma jatkuu pitkään, ilmoita siitä minulle.</string>
     <string name="uploader_limit_exceeded">Käyttöraja ylitetty</string>
     <string name="uploader_limit_exceeded_description">Sovelluksen päivittäinen käyttöraja on ylitetty. Yritä huomenna uudelleen.</string>
+    <string name="uploader_no_internet_title">Internet ei ole käytettävissä</string>
+    <string name="uploader_no_internet_message">Ei voi ladata Internet-yhteyden puuttumisen vuoksi.</string>
     <string name="other_notification_channel_name">Muut</string>
     <string name="error_reporting_notification_title">Tower Collector on kaatunut</string>
     <string name="error_reporting_notification_text">Tapahtui odottamaton virhe. Lähetä virheraportti auttaaksesi ongelman korjaamisessa.</string>

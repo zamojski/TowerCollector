@@ -144,6 +144,8 @@
     <string name="uploader_server_error_description">服务器返回内部错误，这可能意味着它过载、暂时不可用或停机以进行维护。请稍后再试。如果您长时间遇到此问题，请告诉我。</string>
     <string name="uploader_limit_exceeded">超出使用限制</string>
     <string name="uploader_limit_exceeded_description">已超出该应用程序的每日使用限制。 请明天再试。</string>
+    <string name="uploader_no_internet_title">无法上网</string>
+    <string name="uploader_no_internet_message">由于缺乏互联网连接，无法上传。</string>
     <string name="other_notification_channel_name">其它</string>
     <string name="error_reporting_notification_title">Tower Collector应用程序崩溃了</string>
     <string name="error_reporting_notification_text">发生意外错误。请发送错误报告以帮助解决问题。</string>

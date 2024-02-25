@@ -144,6 +144,8 @@
     <string name="uploader_server_error_description">השרת החזיר שגיאה פנימית שכנראה מרמזת שהוא עמוס מאוד, לא זמין לבינתיים או מושבת לצורך תחזוקה. נא לנסות שוב מאוחר יותר. אם תקלה זו נמשכת זמן רב, נא לעדכן אותי.</string>
     <string name="uploader_limit_exceeded">חרגת ממגבלת השימוש</string>
     <string name="uploader_limit_exceeded_description">חרגת ממגבלת השימוש היומית ביישומון. נא לנסות שוב מחר.</string>
+    <string name="uploader_no_internet_title">אינטרנט לא זמין</string>
+    <string name="uploader_no_internet_message">לא ניתן להעלות עקב חוסר חיבור לאינטרנט.</string>
     <string name="other_notification_channel_name">אחר</string>
     <string name="error_reporting_notification_title">Tower Collector התרסק</string>
     <string name="error_reporting_notification_text">אירעה שגיאה בלתי ידועה. נא לשלוח דוח שגיאה כדי לסייע בתיקון התקלה.</string>

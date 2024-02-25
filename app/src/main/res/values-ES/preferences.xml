@@ -52,6 +52,12 @@
     <string name="preferences_mls_enabled_title">Habilitar subir a MLS</string>
     <string name="preferences_mls_enabled_on_summary">Las mediciones se cargarán a Mozzilla Location Services.</string>
     <string name="preferences_mls_enabled_off_summary">Las mediciones no se cargarán a Mozilla Location Services.</string>
+    <string name="preferences_custom_mls_enabled_title">Utilice el servicio MLS personalizado</string>
+    <string name="preferences_custom_mls_enabled_on_summary">Las mediciones se cargarán en el servicio compatible con MLS que se define a continuación.</string>
+    <string name="preferences_custom_mls_enabled_off_summary">Las medidas se subirán al servicio oficial de la MLS.</string>
+    <string name="preferences_custom_mls_url_title">Dirección de servicio MLS personalizada</string>
+    <string name="preferences_custom_mls_url_summary">Proporcione la dirección al método \"geosubmit\", incluido su propio token de acceso, como: \"https://location.services.mozilla.com/v2/geosubmit?key=API_KEY\"</string>
+    <string name="preferences_custom_mls_url_invalid">La dirección MLS personalizada ingresada no es válida.</string>
     <string name="preferences_about_mls_project_title">Acerca de MLS</string>
     <string name="preferences_about_mls_project_summary">Información sobre Mozilla Location Services.</string>
     <string name="preferences_imperial_units_title">Use unidades inglesas</string>
@@ -144,6 +150,8 @@
     <string name="preferences_import_database_summary">Importa la base de datos interna de la App desde el archivo measurements.db ubicado en la carpeta de almacenamiento configurada en Preferencias.</string>
     <string name="preferences_export_database_title">Exportar base de datos</string>
     <string name="preferences_export_database_summary">Exporta la base de datos interna de App al archivo measurements.db ubicado en la carpeta de almacenamiento configurada en Preferences.</string>
+    <string name="preferences_export_database_overwrite_warning_title">Posible pérdida de datos</string>
+    <string name="preferences_export_database_overwrite_warning_message">Continuar con esta operación puede sobrescribir el archivo de measurements.db existente con la copia actual que no contiene ninguna medición.\n\n¿Estás seguro de que quieres exportar?</string>
     <string name="preferences_import_preferences_title">Importar preferencias</string>
     <string name="preferences_import_preferences_summary">Importa las preferencias internas de App desde el archivo preferences.xml ubicado en la carpeta de almacenamiento configurada en Preferencias.</string>
     <string name="preferences_export_preferences_title">Exportar preferencias</string>

@@ -144,6 +144,8 @@
     <string name="uploader_server_error_description">Сервер сообщил о внутренней ошибке, что может значить, что он перегружен, временно недоступен или отключён для обслуживания. Пожалуйста, повторите попытку позже. Если эта проблема будет повторяться долгое время, пожалуйста, дайте мне знать.</string>
     <string name="uploader_limit_exceeded">Превышен лимит использования</string>
     <string name="uploader_limit_exceeded_description">Превышен ежедневный лимит использования приложения. Пожалуйста, попробуйте еще раз завтра.</string>
+    <string name="uploader_no_internet_title">Интернет недоступен</string>
+    <string name="uploader_no_internet_message">Загрузить невозможно из-за отсутствия подключения к интернету.</string>
     <string name="other_notification_channel_name">Другое</string>
     <string name="error_reporting_notification_title">Tower Collector разбился</string>
     <string name="error_reporting_notification_text">Произошла неизвестная ошибка. Пожалуйста отправьте отчёт, чтобы помочь исправить проблему.</string>

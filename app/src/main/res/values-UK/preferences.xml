@@ -52,6 +52,12 @@
     <string name="preferences_mls_enabled_title">Увімкнути завантаження MLS</string>
     <string name="preferences_mls_enabled_on_summary">Вимірювання будуть завантажені на Mozilla Location Services.</string>
     <string name="preferences_mls_enabled_off_summary">Вимірювання не будуть завантажені в Mozilla Location Services.</string>
+    <string name="preferences_custom_mls_enabled_title">Використовуйте спеціальну послугу MLS</string>
+    <string name="preferences_custom_mls_enabled_on_summary">Вимірювання буде завантажено в службу, сумісну з MLS, визначену нижче.</string>
+    <string name="preferences_custom_mls_enabled_off_summary">Вимірювання будуть завантажені в офіційний сервіс MLS.</string>
+    <string name="preferences_custom_mls_url_title">Спеціальна адреса служби MLS</string>
+    <string name="preferences_custom_mls_url_summary">Укажіть адресу методу geosubmit, включаючи ваш власний маркер доступу, наприклад: \"https://location.services.mozilla.com/v2/geosubmit?key=API_KEY\"</string>
+    <string name="preferences_custom_mls_url_invalid">Введена спеціальна адреса MLS недійсна.</string>
     <string name="preferences_about_mls_project_title">Про MLS</string>
     <string name="preferences_about_mls_project_summary">Інформація про послуги Mozilla Location Services.</string>
     <string name="preferences_imperial_units_title">Використовувати імперські одиниці</string>
@@ -144,6 +150,8 @@
     <string name="preferences_import_database_summary">Програма імпортує дані з файлу measurements.db, розташованому у папці зберігання, встановленій у налаштуваннях.</string>
     <string name="preferences_export_database_title">Експорт бази даних</string>
     <string name="preferences_export_database_summary">Експорт даних до файлу measurements.db, що розташований у папці для зберігання, встановленій у налаштуваннях.</string>
+    <string name="preferences_export_database_overwrite_warning_title">Можлива втрата даних</string>
+    <string name="preferences_export_database_overwrite_warning_message">Продовження цієї операції може перезаписати наявний файл measurements.db поточною копією, яка не містить жодних вимірювань.\n\nВи впевнені, що хочете експортувати?</string>
     <string name="preferences_import_preferences_title">Імпорт налаштувань</string>
     <string name="preferences_import_preferences_summary">Імпортує налаштування з файлу preferences.xml, що розташований у папці зберігання, встановленій у налаштуваннях.</string>
     <string name="preferences_export_preferences_title">Експорт налаштувань</string>

@@ -144,6 +144,8 @@
     <string name="uploader_server_error_description">El servidor devolvió el error interno que puede significar que está sobrecargado, temporalmente no disponible o abajo para el mantenimiento. Por favor Inténtalo más tarde. Si usted encuentra este problema por un tiempo largo, déjeme por favor saber.</string>
     <string name="uploader_limit_exceeded">Límite de uso excedido</string>
     <string name="uploader_limit_exceeded_description">Se ha excedido el límite de uso diario de la aplicación. Por favor intente de nuevo mañana.</string>
+    <string name="uploader_no_internet_title">Internet no disponible</string>
+    <string name="uploader_no_internet_message">No es posible subirlo por falta de conexión a Internet.</string>
     <string name="other_notification_channel_name">Otros</string>
     <string name="error_reporting_notification_title">Tower Collector se ha estrellado</string>
     <string name="error_reporting_notification_text">Ha ocurrido un error inesperado. Por favor, envíe un informe de error para ayudar a solucionar el problema.</string>

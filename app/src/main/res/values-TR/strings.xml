@@ -144,6 +144,8 @@
     <string name="uploader_server_error_description">Sunucu yüklemesinde hata ile karşılaşıldı. Bunun sebebi fazla yükleme, sunucunun geçici olarak kapalı olması yada bakım için kapalı olması olabilir. Lütfen daha sonra tekrar deneyiniz. Uzun süre bu sorunla karşılaşırsanız, geliştiriciye bildirin.</string>
     <string name="uploader_limit_exceeded">Kullanım limiti aşıldı.</string>
     <string name="uploader_limit_exceeded_description">Uygulama için günlük kullanım limiti aşıldı.</string>
+    <string name="uploader_no_internet_title">İnternet kullanılamıyor</string>
+    <string name="uploader_no_internet_message">İnternet bağlantısı olmadığı için yükleme yapılamıyor.</string>
     <string name="other_notification_channel_name">Diğer</string>
     <string name="error_reporting_notification_title">Tower Collector çöktü</string>
     <string name="error_reporting_notification_text">Beklenmeyen bir hata ile karşılaşıldı. Sorunun çözülmesine yardımcı olmak için lütfen hata raporu gönderin.</string>

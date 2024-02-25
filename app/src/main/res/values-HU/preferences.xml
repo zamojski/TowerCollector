@@ -52,6 +52,12 @@
     <string name="preferences_mls_enabled_title">MLS feltöltés engedélyezése</string>
     <string name="preferences_mls_enabled_on_summary">A mérések feltöltésre kerülnek a Mozilla Location Services-re.</string>
     <string name="preferences_mls_enabled_off_summary">A mérések nem lesznek feltöltve a Mozilla Location Services-re.</string>
+    <string name="preferences_custom_mls_enabled_title">Használjon egyéni MLS szolgáltatást</string>
+    <string name="preferences_custom_mls_enabled_on_summary">A mérések az alábbiakban meghatározott MLS-kompatibilis szolgáltatásba kerülnek feltöltésre.</string>
+    <string name="preferences_custom_mls_enabled_off_summary">A mérések feltöltésre kerülnek a hivatalos MLS szolgáltatásba.</string>
+    <string name="preferences_custom_mls_url_title">Egyéni MLS szolgáltatási cím</string>
+    <string name="preferences_custom_mls_url_summary">Adja meg a címet a geosubmit módszerhez, beleértve a saját hozzáférési tokent, például: \"https://location.services.mozilla.com/v2/geosubmit?key=API_KEY\"</string>
+    <string name="preferences_custom_mls_url_invalid">A megadott egyéni MLS-cím érvénytelen.</string>
     <string name="preferences_about_mls_project_title">A MLS szolgáltatásról</string>
     <string name="preferences_about_mls_project_summary">Információk a Mozilla Location Services projektről.</string>
     <string name="preferences_imperial_units_title">Angolszász mértékegységek használata</string>
@@ -144,6 +150,8 @@
     <string name="preferences_import_database_summary">Importálja az alkalmazás belső adatbázisát a measurements.db fájlból, amely a Beállítások menüben beállított tárolómappában található.</string>
     <string name="preferences_export_database_title">Adatbázis exportálása</string>
     <string name="preferences_export_database_summary">Exportálja az alkalmazás belső adatbázisát a measurements.db fájlba, amely a Beállítások menüben beállított tárolómappában található.</string>
+    <string name="preferences_export_database_overwrite_warning_title">Lehetséges adatvesztés</string>
+    <string name="preferences_export_database_overwrite_warning_message">Ezzel a művelettel felülírhatja a meglévő measurements.db fájlt az aktuális másolattal, amely nem tartalmaz méréseket.\n\nBiztos, hogy exportálni akar?</string>
     <string name="preferences_import_preferences_title">Beállítások importálása</string>
     <string name="preferences_import_preferences_summary">Importálja az alkalmazás belső preferenciáit a preferences.xml fájlból, amely a Beállítások menüben beállított tárolómappában található.</string>
     <string name="preferences_export_preferences_title">Beállítások exportálása</string>

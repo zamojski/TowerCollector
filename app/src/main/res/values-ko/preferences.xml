@@ -52,6 +52,12 @@
     <string name="preferences_mls_enabled_title">MLS 업로드 활성화</string>
     <string name="preferences_mls_enabled_on_summary">측정값은 Mozilla Location Services에 업로드됩니다.</string>
     <string name="preferences_mls_enabled_off_summary">측정값은 Mozilla Location Services에 업로드하지 않습니다.</string>
+    <string name="preferences_custom_mls_enabled_title">맞춤형 MLS 서비스 사용</string>
+    <string name="preferences_custom_mls_enabled_on_summary">측정값은 아래 정의된 MLS 호환 서비스에 업로드됩니다.</string>
+    <string name="preferences_custom_mls_enabled_off_summary">측정값은 공식 MLS 서비스에 업로드됩니다.</string>
+    <string name="preferences_custom_mls_url_title">맞춤형 MLS 서비스 주소</string>
+    <string name="preferences_custom_mls_url_summary">다음과 같이 자신의 액세스 토큰을 포함하여 geosubmit 방법에 주소를 제공하세요. \"https://location.services.mozilla.com/v2/geosubmit?key=API_KEY\"</string>
+    <string name="preferences_custom_mls_url_invalid">입력한 맞춤 MLS 주소가 잘못되었습니다.</string>
     <string name="preferences_about_mls_project_title">MLS에 대한 정보</string>
     <string name="preferences_about_mls_project_summary">Mozilla Location Services에 대한 정보</string>
     <string name="preferences_imperial_units_title">야드/파운드법 사용</string>
@@ -144,6 +150,8 @@
     <string name="preferences_import_database_summary">설정에서 입력한 위치에 있는 measurements.db 파일을 이용해서 앱의 내부 데이터베이스로 복원합니다.</string>
     <string name="preferences_export_database_title">데이터베이스 내보내기</string>
     <string name="preferences_export_database_summary">내부 데이터베이스를 설정에서 입력한 위치에 measurements.db 파일로 내보냅니다.</string>
+    <string name="preferences_export_database_overwrite_warning_title">데이터 손실 가능성</string>
+    <string name="preferences_export_database_overwrite_warning_message">이 작업을 진행하면 기존 measurements.db 파일을 측정값이 포함되지 않은 현재 복사본으로 덮어쓸 수 있습니다.\n\n내보내시겠습니까?</string>
     <string name="preferences_import_preferences_title">설정 복원</string>
     <string name="preferences_import_preferences_summary">설정에서 입력한 위치에 있는 preference.xml 파일을 이용해서 앱의 설정을 복원합니다.</string>
     <string name="preferences_export_preferences_title">설정 내보내기</string>

@@ -52,6 +52,12 @@
     <string name="preferences_mls_enabled_title">Activer l\'envoi vers MLS</string>
     <string name="preferences_mls_enabled_on_summary">Les mesures seront envoyées vers Mozilla Location Services.</string>
     <string name="preferences_mls_enabled_off_summary">Les mesures ne seront pas envoyées vers Mozilla Location Services.</string>
+    <string name="preferences_custom_mls_enabled_title">Utiliser le service MLS personnalisé</string>
+    <string name="preferences_custom_mls_enabled_on_summary">Les mesures seront téléchargées sur le service compatible MLS défini ci-dessous.</string>
+    <string name="preferences_custom_mls_enabled_off_summary">Les mesures seront téléchargées sur le service MLS officiel.</string>
+    <string name="preferences_custom_mls_url_title">Adresse de service MLS personnalisée</string>
+    <string name="preferences_custom_mls_url_summary">Fournissez l\'adresse à la méthode de soumission géographique, y compris votre propre jeton d\'accès, par exemple: \"https://location.services.mozilla.com/v2/geosubmit?key=API_KEY\"</string>
+    <string name="preferences_custom_mls_url_invalid">L\'adresse MLS personnalisée saisie n\'est pas valide.</string>
     <string name="preferences_about_mls_project_title">À propos de MLS</string>
     <string name="preferences_about_mls_project_summary">Information sur Mozilla Location Services.</string>
     <string name="preferences_imperial_units_title">Utiliser les unités impériales</string>
@@ -144,6 +150,8 @@
     <string name="preferences_import_database_summary">Importe la base de données interne de l\'application à partir du fichier measurements.db situé dans le dossier de stockage défini dans les préférences.</string>
     <string name="preferences_export_database_title">Exporter la base de données</string>
     <string name="preferences_export_database_summary">Exporte la base de données interne de l\'application vers le fichier mesurements.db situé dans le dossier de stockage défini dans les préférences.</string>
+    <string name="preferences_export_database_overwrite_warning_title">Perte de données possible</string>
+    <string name="preferences_export_database_overwrite_warning_message">Poursuivre cette opération peut écraser le fichier mesurements.db existant avec la copie actuelle qui ne contient aucune mesure.\n\nÊtes-vous sûr de vouloir exporter ?</string>
     <string name="preferences_import_preferences_title">Importer les paramètres</string>
     <string name="preferences_import_preferences_summary">Importe les préférences internes de l\'application à partir du fichier preferences.xml situé dans le dossier de stockage défini dans les préférences.</string>
     <string name="preferences_export_preferences_title">Exporter les paramètres</string>

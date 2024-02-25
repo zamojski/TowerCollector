@@ -144,6 +144,8 @@
     <string name="uploader_server_error_description">Der Server hat einen internen Fehler gemeldet, das kann bedeuten dass er überlastet, kurzzeitig außer Betrieb ist oder gewartet wird. Bitte versuchen Sie es später erneut. Wenn dieses Problem über längere Zeit auftritt, informieren Sie mich bitte.</string>
     <string name="uploader_limit_exceeded">Nutzungslimit überschritten</string>
     <string name="uploader_limit_exceeded_description">Das tägliche Nutzlungslimit der App wurde überschritten. Bitten versuchen Sie es morgen erneut.</string>
+    <string name="uploader_no_internet_title">Internet nicht verfügbar</string>
+    <string name="uploader_no_internet_message">Das Hochladen ist aufgrund fehlender Internetverbindung nicht möglich.</string>
     <string name="other_notification_channel_name">Sonstiges</string>
     <string name="error_reporting_notification_title">Tower Collector ist abgestürzt</string>
     <string name="error_reporting_notification_text">Unerwarteter Fehler aufgetreten. Bitte senden Sie einen Fehlerbericht um bei der Behebung zu helfen.</string>

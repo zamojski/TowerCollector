@@ -144,6 +144,8 @@
     <string name="uploader_server_error_description">서버에서 과부하 또는 일시적으로 사용할 수 없는 오류가 반환되었습니다. 나중에 다시 시도해주십시오. 이 문제가 지속적으로 발생하면 개발자에게 알려주세요.</string>
     <string name="uploader_limit_exceeded">사용 한도 초과</string>
     <string name="uploader_limit_exceeded_description">일일 사용 한도를 초과했습니다. 내일 다시 시도해주세요.</string>
+    <string name="uploader_no_internet_title">인터넷을 사용할 수 없음</string>
+    <string name="uploader_no_internet_message">인터넷 연결이 원활하지 않아 업로드가 불가능합니다.</string>
     <string name="other_notification_channel_name">기타</string>
     <string name="error_reporting_notification_title">Tower Collector 앱이 충돌했습니다.</string>
     <string name="error_reporting_notification_text">예상치 못한 오류가 발생했습니다. 문제 해결에 도움이 되도록 오류 보고서를 전송해주세요.</string>

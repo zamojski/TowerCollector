@@ -144,6 +144,8 @@
     <string name="uploader_server_error_description">Le serveur a renvoyé une erreur interne, ce qui peut signifier qu\'il est surchargé, temporairement indisponible ou indisponible pour maintenance. Veuillez réessayer plus tard. Si vous rencontrez ce problème depuis longtemps, veuillez me le faire savoir.</string>
     <string name="uploader_limit_exceeded">Limite d\'utilisation dépassée</string>
     <string name="uploader_limit_exceeded_description">L\'usage journalier de l\'application a été dépassée. Veuillez réessayer demain.</string>
+    <string name="uploader_no_internet_title">Internet indisponible</string>
+    <string name="uploader_no_internet_message">Il n\'est pas possible de télécharger en raison du manque de connexion Internet.</string>
     <string name="other_notification_channel_name">Autre</string>
     <string name="error_reporting_notification_title">Tower Collector s\'est écrasé</string>
     <string name="error_reporting_notification_text">Une erreur inconnue est survenue. Veuillez envoyer un rapport d\'erreur pour aider à résoudre le problème.</string>

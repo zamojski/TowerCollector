@@ -144,6 +144,8 @@
     <string name="uploader_server_error_description">Сервер повернув внутрішню помилку, що може означати, що він перевантажений, тимчасово недоступний або зупинений для технічного обслуговування. Будь-ласка спробуйте пізніше. Якщо проблема виникає постійно, дайте мені знати.</string>
     <string name="uploader_limit_exceeded">Ліміт використання перевищено</string>
     <string name="uploader_limit_exceeded_description">Щоденний ліміт використання для додатка перевищено. Повторіть спробу завтра.</string>
+    <string name="uploader_no_internet_title">Інтернет недоступний</string>
+    <string name="uploader_no_internet_message">Неможливо завантажити через відсутність підключення до Інтернету.</string>
     <string name="other_notification_channel_name">Інший</string>
     <string name="error_reporting_notification_title">У Tower Collector стався збій</string>
     <string name="error_reporting_notification_text">Несподівана помилка. Будь ласка, відправте повідомлення про помилку, щоб допомогти у вирішенні проблеми.</string>
