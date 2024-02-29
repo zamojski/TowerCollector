@@ -66,7 +66,7 @@
     <bool name="preferences_imperial_units_default_value" translatable="false">false</bool>
 
     <string name="preferences_gps_optimizations_enabled_key" translatable="false">gps_optimizations_enabled_key</string>
-    <bool name="preferences_gps_optimizations_enabled_default_value" translatable="false">true</bool>
+    <bool name="preferences_gps_optimizations_enabled_default_value" translatable="false">false</bool>
 
     <string name="preferences_general_category_settings_key" translatable="false">general_category_settings_key</string>
     <string name="preferences_general_category_help_key" translatable="false">general_category_help_key</string>
