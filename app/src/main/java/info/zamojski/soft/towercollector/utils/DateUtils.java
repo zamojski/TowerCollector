@@ -23,6 +23,11 @@ public class DateUtils {
         return new Date(System.currentTimeMillis());
     }
 
+    public static int getCurrentYear() {
+        Calendar cal = Calendar.getInstance();
+        return cal.get(Calendar.YEAR);
+    }
+
     public static long getTimeDiff(long start, long end) {
         long diffInMillis = start - end;
         long diffInDays = TimeUnit.MILLISECONDS.toDays(diffInMillis);
@@ -48,5 +53,4 @@ public class DateUtils {
         calendar.setTimeZone(TimeZone.getTimeZone("UTC"));
         return calendar.getTime();
     }
-
 }
