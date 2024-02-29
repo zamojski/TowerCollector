@@ -1,0 +1,5 @@
+- Fix upload result presentation.
+- Add check for Internet connection before starting upload.
+- Add option to use custom MLS-compatible server for uploads.
+- Display a warning when attempting to export database when there is no data to upload.
+- Improve error handling.

@@ -1,6 +1,17 @@
 {
   "Entries": [
     {
+      "VersionCode": 2140505,
+      "Title": "Changes in version 2.14.5",
+      "Messages": [
+        "Fix upload result presentation.",
+        "Add check for Internet connection before starting upload.",
+        "Add option to use custom MLS-compatible server for uploads.",
+        "Display a warning when attempting to export database when there is no data to upload.",
+        "Improve error handling."
+      ]
+    },
+    {
       "VersionCode": 2140403,
       "Title": "Changes in version 2.14.4",
       "Messages": [
@@ -36,16 +47,6 @@
       "Messages": [
         "Try to fix exception when button cancelling export or upload.",
         "Improve error handling."
-      ]
-    },
-    {
-      "VersionCode": 2140099,
-      "Title": "Changes in version 2.14.0",
-      "Messages": [
-        "Change Uploader to show progress in dialog and notification to unify behavior with Export function.",
-        "Remove unnecessary prompt to select storage when disabling file logging.",
-        "Fixes related to data collection with NetMonster API.",
-        "Small bug fixes."
       ]
     }
   ]
