@@ -1,0 +1,4 @@
+IMPORTANT!
+Mozilla have made the decision to retire the service and new measurements are no longer accepted. Read more: https://discourse.mozilla.org/t/retiring-the-mozilla-location-service/128693
+
+The option to upload to Mozilla Location Services temporarily remains available, but I will only try to upload the measurements if custom MLS-compatible address is provided in Preferences.

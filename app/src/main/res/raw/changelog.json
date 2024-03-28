@@ -1,6 +1,12 @@
 {
   "Entries": [
     {
+      "VersionCode": 2140610,
+      "Title": "Changes in version 2.14.6",
+      "Description": "<h1>IMPORTANT!</h1>Mozilla have made the decision to retire the service and new measurements are no longer accepted. <a href='https://discourse.mozilla.org/t/retiring-the-mozilla-location-service/128693'>Read more</a>.<br/><br/>The option to upload to Mozilla Location Services temporarily remains available, but I will only try to upload the measurements if custom MLS-compatible address is provided in Preferences.",
+      "Messages": []
+    },
+    {
       "VersionCode": 2140505,
       "Title": "Changes in version 2.14.5",
       "Messages": [
@@ -39,14 +45,6 @@
         "Add cell discovery date to CSV export and JSON broadcast.",
         "Update website address.",
         "Update translations."
-      ]
-    },
-    {
-      "VersionCode": 2140100,
-      "Title": "Changes in version 2.14.1",
-      "Messages": [
-        "Try to fix exception when button cancelling export or upload.",
-        "Improve error handling."
       ]
     }
   ]
