@@ -9,6 +9,7 @@ import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.util.concurrent.TimeUnit;
 
+import info.zamojski.soft.towercollector.BuildConfig;
 import info.zamojski.soft.towercollector.io.network.compatibility.ExtendedOkHttpClientBuilder;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -45,6 +46,7 @@ public class MozillaUploadClient extends ClientBase implements IUploadClient {
             RequestBody requestBody = RequestBody.create(content, JSON);
             Request request = new Request.Builder()
                     .url(uploadUrl)
+                    .header("user-agent", "TowerCollector/" + BuildConfig.VERSION_NAME)
                     .post(requestBody)
                     .build();
 
@@ -61,7 +63,7 @@ public class MozillaUploadClient extends ClientBase implements IUploadClient {
     }
 
     private RequestResult handleResponse(int code, String body) {
-        if (code == 200) {
+        if (code >= 200 && code <= 299) {
             return RequestResult.Success;
         }
         if (code >= 500 && code <= 599) {
