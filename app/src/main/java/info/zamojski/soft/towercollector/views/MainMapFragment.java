@@ -194,6 +194,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         mainMapView.setMultiTouchControls(true);
         mainMapView.setMinZoomLevel(5.0);
         mainMapView.setMaxZoomLevel(20.0);
+        mainMapView.getZoomController().getDisplay().setAdditionalPixelMargins(0,0,0,32);
 
         IMapController mapController = mainMapView.getController();
         mapController.setZoom(MyApplication.getPreferencesProvider().getMainMapZoomLevel());
