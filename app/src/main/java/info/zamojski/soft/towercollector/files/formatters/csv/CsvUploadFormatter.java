@@ -29,7 +29,7 @@ public class CsvUploadFormatter extends CsvFormatter {
 
     @Override
     public String formatHeader() {
-        return "lat,lon,mcc,mnc,sid,lac,tac,nid,cellid,bid,psc,pci,signal,ta,measured_at,rating,speed,direction,act,devn\n";
+        return "lat,lon,mcc,mnc,sid,lac,tac,nid,cellid,bid,psc,pci,signal,ta,measured_at,rating,speed,direction,act,devn";
     }
 
     @Override
@@ -37,6 +37,8 @@ public class CsvUploadFormatter extends CsvFormatter {
         StringBuilder sb = new StringBuilder(140);
 
         for (Cell c : m.getCells()) {
+            sb.append('\n');
+
             sb.append(formatCoordinate(m.getLatitude()));
             sb.append(',');
             sb.append(formatCoordinate(m.getLongitude()));
@@ -122,8 +124,6 @@ public class CsvUploadFormatter extends CsvFormatter {
             sb.append("\"");
             sb.append(deviceName);
             sb.append("\"");
-
-            sb.append('\n');
         }
 
         return sb.toString();
