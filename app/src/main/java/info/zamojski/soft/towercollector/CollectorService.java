@@ -35,6 +35,7 @@ import android.telephony.TelephonyManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -200,7 +201,7 @@ public class CollectorService extends Service {
         startTime = lastLocationObtainedTime = System.currentTimeMillis();
         EventBus.getDefault().register(this);
         // register receiver
-        registerReceiver(stopRequestBroadcastReceiver, new IntentFilter(BROADCAST_INTENT_STOP_SERVICE));
+        ContextCompat.registerReceiver(MyApplication.getApplication(), stopRequestBroadcastReceiver, new IntentFilter(BROADCAST_INTENT_STOP_SERVICE), ContextCompat.RECEIVER_NOT_EXPORTED);
         registerReceiver(batteryStatusBroadcastReceiver, new IntentFilter(Intent.ACTION_BATTERY_LOW));
         registerReceiver(locationModeOrProvidersChanged, new IntentFilter(LocationManager.MODE_CHANGED_ACTION));
         registerReceiver(locationModeOrProvidersChanged, new IntentFilter(LocationManager.PROVIDERS_CHANGED_ACTION));
