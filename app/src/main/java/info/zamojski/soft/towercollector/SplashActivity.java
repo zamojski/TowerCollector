@@ -26,6 +26,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.acra.ACRA;
+
 public class SplashActivity extends Activity {
 
     public static final String SHORTCUT_ACTION = "shortcut_action";
@@ -66,6 +68,7 @@ public class SplashActivity extends Activity {
                 IntentSource actionSource = getActionSourceOrDefault(startupIntent, IntentSource.Shortcut);
                 switch (action) {
                     case COLLECTOR_TOGGLE_ACTION:
+                        ACRA.getErrorReporter().putCustomData("STARTUP_INTENT", startupIntent.toString());
                         toggleCollectorAsync(actionSource);
                         return;
                     case UPLOADER_TOGGLE_ACTION:

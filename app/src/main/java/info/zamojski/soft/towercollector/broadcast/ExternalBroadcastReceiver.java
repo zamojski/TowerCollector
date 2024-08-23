@@ -16,6 +16,7 @@ import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkRequest;
 
+import org.acra.ACRA;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
@@ -84,6 +85,9 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         if (!canStartBackgroundService(context)) {
             return;
         }
+        ACRA.getErrorReporter().putCustomData("STARTUP_INTENT", source.toString());
+        ACRA.getErrorReporter().putCustomData("STARTUP_INTENT_IS_BACKGROUND", String.valueOf(isBackground));
+        ACRA.getErrorReporter().putCustomData("STARTUP_INTENT_HAS_PERMISSION", String.valueOf((isBackground ? hasAllCollectorBackgroundPermissions(context) : hasAllCollectorForegroundPermissions(context))));
         if (!(isBackground ? hasAllCollectorBackgroundPermissions(context) : hasAllCollectorForegroundPermissions(context))) {
             showCollectorPermissionsDenied(context);
             return;

@@ -6,8 +6,8 @@ package info.zamojski.soft.towercollector.enums;
 
 public enum MeansOfTransport {
 
-    Fixed(50, 40, 1000, 1000),
-    Universal(50, 40, 600, 10000);
+    Fixed(50, 40, 1000, 1000), // 180 km/h
+    Universal(50, 40, 600, 10000); // 18-300 km/h
 
     private final int distance;
     private final float accuracy;
