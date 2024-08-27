@@ -75,7 +75,8 @@ public class NetMonsterSignalConverter {
             int ssRsrq = fixIntNull(signal.getSsRsrq());
             int ssSinr = fixIntNull(signal.getSsSinr());
             int arfcn = fixIntNull(nrCell.getBand() != null ? nrCell.getBand().getDownlinkArfcn() : null, Cell.UNKNOWN_CID);
-            cell.setNetMonsterNrSignal(asu, dbm, csiRsrp, csiRsrq, csiSinr, ssRsrp, ssRsrq, ssSinr, arfcn);
+            int ta = fixIntNull(signal.getTimingAdvance());
+            cell.setNetMonsterNrSignal(asu, dbm, csiRsrp, csiRsrq, csiSinr, ssRsrp, ssRsrq, ssSinr, arfcn, ta);
         } else if (netMonsterCell instanceof CellTdscdma) {
             CellTdscdma tdscdmaCell = (CellTdscdma) netMonsterCell;
             SignalTdscdma signal = tdscdmaCell.getSignal();

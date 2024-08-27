@@ -545,7 +545,7 @@ public class Cell extends CellBase implements Serializable {
         this.networkType = NetworkGroup.Nr;
     }
 
-    public void setNetMonsterNrSignal(int asu, int signalStrength, int csiRsrp, int csiRsrq, int csiSinr, int ssRsrp, int ssRsrq, int ssSinr, int arfcn) {
+    public void setNetMonsterNrSignal(int asu, int signalStrength, int csiRsrp, int csiRsrq, int csiSinr, int ssRsrp, int ssRsrq, int ssSinr, int arfcn, int timingAdvance) {
         this.asu = asu;
         this.dbm = signalStrength;
         this.csiRsrp = csiRsrp;
@@ -555,6 +555,7 @@ public class Cell extends CellBase implements Serializable {
         this.ssRsrq = ssRsrq;
         this.ssSinr = ssSinr;
         this.arfcn = arfcn;
+        this.ta = timingAdvance;
         // TODO extend with more properties from signal, band and cell
     }
 
