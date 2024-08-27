@@ -196,6 +196,8 @@
     <string name="preferences_website_link_key" translatable="false">website_link</string>
     <string name="preferences_website_link" translatable="false">https://towercollector.zamojski.feedback/</string>
     <string name="preferences_contact_email_link_key" translatable="false">contact_email_link</string>
+    <string name="preferences_donate_link_key" translatable="false">donate_link</string>
+    <string name="preferences_donate_link" translatable="false">https://www.buymeacoffee.com/zamojski</string>
     <string name="preferences_github_link_key" translatable="false">github_link</string>
     <string name="preferences_github_link" translatable="false">https://github.com/zamojski/TowerCollector/</string>
     <string name="preferences_facebook_community_link_key" translatable="false">facebook_community_link</string>

@@ -93,6 +93,8 @@
     <string name="preferences_website_link_summary">Opens developer\'s website containing description and app stores download links.</string>
     <string name="preferences_contact_email_link_title">Contact developer</string>
     <string name="preferences_contact_email_link_summary">Sends an email with your problems, questions and ideas to the developer.</string>
+    <string name="preferences_donate_link_title">Donate</string>
+    <string name="preferences_donate_link_summary">Say thanks and show your support for the app.</string>
     <string name="preferences_github_link_title">GitHub page</string>
     <string name="preferences_github_link_summary">Opens GitHub page where you can find the source code, contribute to the app, report issues and share ideas.</string>
     <string name="preferences_facebook_community_link_title">Facebook Community</string>

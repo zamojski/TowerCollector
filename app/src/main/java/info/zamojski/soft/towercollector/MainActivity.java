@@ -342,6 +342,9 @@ public class MainActivity extends AppCompatActivity
         } else if (itemId == R.id.main_menu_network_type) {
             startNetworkTypeSystemActivity();
             return true;
+        } else if (itemId == R.id.main_menu_donate) {
+            startDonateWebBrowserActivity();
+            return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
@@ -1492,6 +1495,16 @@ public class MainActivity extends AppCompatActivity
             Timber.w(ex, "startNetworkTypeSystemActivity(): Could not open Settings to change network type");
             MyApplication.handleSilentException(ex);
             showCannotOpenAndroidSettingsDialog();
+        }
+    }
+
+    private void startDonateWebBrowserActivity() {
+        try {
+            Intent open = new Intent(Intent.ACTION_VIEW);
+            open.setData(Uri.parse(getString(R.string.preferences_donate_link)));
+            startActivity(open);
+        } catch (ActivityNotFoundException ex) {
+            Toast.makeText(getApplication(), R.string.web_browser_missing, Toast.LENGTH_LONG).show();
         }
     }
 

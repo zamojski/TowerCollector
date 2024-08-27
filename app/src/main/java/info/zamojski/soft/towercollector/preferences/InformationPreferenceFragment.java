@@ -24,6 +24,7 @@ public class InformationPreferenceFragment extends DialogEnabledPreferenceFragme
         addPreferencesFromResource(R.xml.preferences_information);
 
         setupWebsiteLink();
+        setupDonateLink();
         setupGitHubLink();
         setupFacebookCommunityLink();
         setupTwitterCommunityLink();
@@ -61,6 +62,10 @@ public class InformationPreferenceFragment extends DialogEnabledPreferenceFragme
 
     private void setupWebsiteLink() {
         setupOpenInDefaultWebBrowser(R.string.preferences_website_link_key, R.string.preferences_website_link);
+    }
+
+    private void setupDonateLink() {
+        setupOpenInDefaultWebBrowser(R.string.preferences_donate_link_key, R.string.preferences_donate_link);
     }
 
     private void setupGitHubLink() {

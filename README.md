@@ -13,6 +13,11 @@ and on official F-Droid catalog:
 
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/packages/info.zamojski.soft.towercollector/)
 
+# Give thanks!
+Consider supporting the project:
+
+[<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="60" padding="10">](https://www.buymeacoffee.com/zamojski)
+
 ## Building
 This project is build using Android Studio and Gradle.
 
