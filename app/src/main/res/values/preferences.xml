@@ -99,8 +99,8 @@
     <string name="preferences_github_link_summary">Opens GitHub page where you can find the source code, contribute to the app, report issues and share ideas.</string>
     <string name="preferences_facebook_community_link_title">Facebook Community</string>
     <string name="preferences_facebook_community_link_summary">Opens Facebook Community page where you can find useful information, links, post ideas and ask questions.</string>
-    <string name="preferences_twitter_community_link_title">Twitter Community</string>
-    <string name="preferences_twitter_community_link_summary">Opens Twitter Community page where you can find useful information, links, post ideas and ask questions.</string>
+    <string name="preferences_twitter_community_link_title">X (Twitter) Community</string>
+    <string name="preferences_twitter_community_link_summary">Opens X Community page where you can find useful information, links, post ideas and ask questions.</string>
     <string name="preferences_translate_link_title">Translate</string>
     <string name="preferences_translate_link_summary">Opens online tool which allows you to collaborate in translating the app.</string>
     <string name="preferences_privacy_statement_link_title">Privacy statement</string>
