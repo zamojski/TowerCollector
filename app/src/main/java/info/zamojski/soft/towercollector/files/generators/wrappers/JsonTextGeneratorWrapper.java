@@ -53,7 +53,7 @@ public class JsonTextGeneratorWrapper extends TextGeneratorWrapperBase {
             return new FileGeneratorResult(GeneratorResult.NoData, DeviceOperationException.Reason.Unknown);
         }
         // calculate number of parts
-        final int LOCATIONS_PER_PART = 80;
+        final int LOCATIONS_PER_PART = 1024;
         int partsCount = 1;
         if (locationsCount > LOCATIONS_PER_PART) {
             partsCount = (int) Math.ceil(1.0 * locationsCount / LOCATIONS_PER_PART);
