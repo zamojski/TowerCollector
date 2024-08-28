@@ -60,6 +60,7 @@
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:focusable="true"
+                        android:longClickable="true"
                         android:onClick="displayHelpOnClick">
 
                         <TextView
@@ -85,6 +86,7 @@
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:focusable="true"
+                        android:longClickable="true"
                         android:onClick="displayHelpOnClick">
 
                         <TextView
@@ -110,6 +112,7 @@
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:focusable="true"
+                        android:longClickable="true"
                         android:onClick="displayHelpOnClick">
 
                         <TextView
@@ -135,6 +138,7 @@
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:focusable="true"
+                        android:longClickable="true"
                         android:onClick="displayHelpOnClick">
 
                         <TextView
@@ -160,6 +164,7 @@
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:focusable="true"
+                        android:longClickable="true"
                         android:onClick="displayHelpOnClick">
 
                         <TextView
@@ -185,6 +190,7 @@
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:focusable="true"
+                        android:longClickable="true"
                         android:onClick="displayHelpOnClick">
 
                         <TextView
@@ -210,6 +216,7 @@
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:focusable="true"
+                        android:longClickable="true"
                         android:onClick="displayHelpOnClick">
 
                         <TextView
@@ -235,6 +242,7 @@
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:focusable="true"
+                        android:longClickable="true"
                         android:onClick="displayHelpOnClick">
 
                         <TextView
@@ -280,6 +288,7 @@
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:focusable="true"
+                        android:longClickable="true"
                         android:onClick="displayHelpOnClick">
 
                         <TextView
@@ -305,6 +314,7 @@
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:focusable="true"
+                        android:longClickable="true"
                         android:onClick="displayHelpOnClick">
 
                         <TextView
@@ -330,6 +340,7 @@
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:focusable="true"
+                        android:longClickable="true"
                         android:onClick="displayHelpOnClick">
 
                         <TextView
@@ -355,6 +366,7 @@
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:focusable="true"
+                        android:longClickable="true"
                         android:onClick="displayHelpOnClick">
 
                         <TextView
@@ -380,6 +392,7 @@
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:focusable="true"
+                        android:longClickable="true"
                         android:onClick="displayHelpOnClick">
 
                         <TextView
@@ -405,6 +418,7 @@
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:focusable="true"
+                        android:longClickable="true"
                         android:onClick="displayHelpOnClick">
 
                         <TextView
@@ -430,6 +444,7 @@
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:focusable="true"
+                        android:longClickable="true"
                         android:onClick="displayHelpOnClick">
 
                         <TextView
@@ -455,6 +470,7 @@
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:focusable="true"
+                        android:longClickable="true"
                         android:onClick="displayHelpOnClick">
 
                         <TextView
@@ -499,6 +515,7 @@
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:focusable="true"
+                        android:longClickable="true"
                         android:onClick="displayHelpOnClick">
 
                         <TextView
@@ -524,6 +541,7 @@
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:focusable="true"
+                        android:longClickable="true"
                         android:onClick="displayHelpOnClick">
 
                         <TextView
@@ -549,6 +567,7 @@
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:focusable="true"
+                        android:longClickable="true"
                         android:onClick="displayHelpOnClick">
 
                         <TextView
@@ -574,6 +593,7 @@
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:focusable="true"
+                        android:longClickable="true"
                         android:onClick="displayHelpOnClick">
 
                         <TextView
@@ -599,6 +619,7 @@
                         android:layout_height="wrap_content"
                         android:clickable="true"
                         android:focusable="true"
+                        android:longClickable="true"
                         android:onClick="displayHelpOnClick">
 
                         <TextView

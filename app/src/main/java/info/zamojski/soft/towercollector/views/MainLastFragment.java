@@ -4,6 +4,23 @@
 
 package info.zamojski.soft.towercollector.views;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TableRow;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.Date;
 
 import info.zamojski.soft.towercollector.MyApplication;
@@ -18,21 +35,7 @@ import info.zamojski.soft.towercollector.utils.NetworkTypeUtils;
 import info.zamojski.soft.towercollector.utils.UnitConverter;
 import timber.log.Timber;
 
-import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TableRow;
-import android.widget.TextView;
-
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
-public class MainLastFragment extends MainFragmentBase {
+public class MainLastFragment extends MainFragmentBase implements View.OnLongClickListener {
 
     private ViewGroup lastCellHasDataViewGroup;
     private ViewGroup lastCellHasNoDataViewGroup;
@@ -85,6 +88,8 @@ public class MainLastFragment extends MainFragmentBase {
     private TextView lastGpsAccuracyValueTextView;
     private TextView lastDateTimeValueTextView;
 
+    private ClipboardManager clipboardManager;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.main_last_fragment, container, false);
@@ -114,16 +119,27 @@ public class MainLastFragment extends MainFragmentBase {
         lastCellIdTableRow1 = view.findViewById(R.id.main_last_cell_id_tablerow1);
 
         lastNetworkTypeValueTextView1 = view.findViewById(R.id.main_last_network_type_value_textview1);
+        lastNetworkTypeValueTextView1.setOnLongClickListener(this);
         lastLongCellIdValueTextView1 = view.findViewById(R.id.main_last_long_cell_id_value_textview1);
+        lastLongCellIdValueTextView1.setOnLongClickListener(this);
         lastCellIdRncValueTextView1 = view.findViewById(R.id.main_last_cell_id_rnc_value_textview1);
+        lastCellIdRncValueTextView1.setOnLongClickListener(this);
         lastCellIdLabelTextView1 = view.findViewById(R.id.main_last_cell_id_label_textview1);
+        lastCellIdLabelTextView1.setOnLongClickListener(this);
         lastCellIdValueTextView1 = view.findViewById(R.id.main_last_cell_id_value_textview1);
+        lastCellIdValueTextView1.setOnLongClickListener(this);
         lastLacLabelTextView1 = view.findViewById(R.id.main_last_lac_label_textview1);
+        lastLacLabelTextView1.setOnLongClickListener(this);
         lastLacValueTextView1 = view.findViewById(R.id.main_last_lac_value_textview1);
+        lastLacValueTextView1.setOnLongClickListener(this);
         lastMccValueTextView1 = view.findViewById(R.id.main_last_mcc_value_textview1);
+        lastMccValueTextView1.setOnLongClickListener(this);
         lastMncLabelTextView1 = view.findViewById(R.id.main_last_mnc_label_textview1);
+        lastMncLabelTextView1.setOnLongClickListener(this);
         lastMncValueTextView1 = view.findViewById(R.id.main_last_mnc_value_textview1);
+        lastMncValueTextView1.setOnLongClickListener(this);
         lastSignalStrengthValueTextView1 = view.findViewById(R.id.main_last_signal_strength_value_textview1);
+        lastSignalStrengthValueTextView1.setOnLongClickListener(this);
 
         lastMccTableRow2 = view.findViewById(R.id.main_last_mcc_tablerow2);
         lastMncTableRow2 = view.findViewById(R.id.main_last_mnc_tablerow2);
@@ -133,22 +149,38 @@ public class MainLastFragment extends MainFragmentBase {
         lastCellIdTableRow2 = view.findViewById(R.id.main_last_cell_id_tablerow2);
 
         lastNetworkTypeValueTextView2 = view.findViewById(R.id.main_last_network_type_value_textview2);
+        lastNetworkTypeValueTextView2.setOnLongClickListener(this);
         lastLongCellIdValueTextView2 = view.findViewById(R.id.main_last_long_cell_id_value_textview2);
+        lastLongCellIdValueTextView2.setOnLongClickListener(this);
         lastCellIdRncValueTextView2 = view.findViewById(R.id.main_last_cell_id_rnc_value_textview2);
+        lastCellIdRncValueTextView2.setOnLongClickListener(this);
         lastCellIdLabelTextView2 = view.findViewById(R.id.main_last_cell_id_label_textview2);
+        lastCellIdLabelTextView2.setOnLongClickListener(this);
         lastCellIdValueTextView2 = view.findViewById(R.id.main_last_cell_id_value_textview2);
+        lastCellIdValueTextView2.setOnLongClickListener(this);
         lastLacLabelTextView2 = view.findViewById(R.id.main_last_lac_label_textview2);
+        lastLacLabelTextView2.setOnLongClickListener(this);
         lastLacValueTextView2 = view.findViewById(R.id.main_last_lac_value_textview2);
+        lastLacValueTextView2.setOnLongClickListener(this);
         lastMncLabelTextView2 = view.findViewById(R.id.main_last_mnc_label_textview2);
+        lastMncLabelTextView2.setOnLongClickListener(this);
         lastMccValueTextView2 = view.findViewById(R.id.main_last_mcc_value_textview2);
+        lastMccValueTextView2.setOnLongClickListener(this);
         lastMncValueTextView2 = view.findViewById(R.id.main_last_mnc_value_textview2);
+        lastMncValueTextView2.setOnLongClickListener(this);
         lastSignalStrengthValueTextView2 = view.findViewById(R.id.main_last_signal_strength_value_textview2);
+        lastSignalStrengthValueTextView2.setOnLongClickListener(this);
 
         lastNumberOfCellsValueTextView = view.findViewById(R.id.main_last_number_of_cells_value_textview);
+        lastNumberOfCellsValueTextView.setOnLongClickListener(this);
         lastLatitudeValueTextView = view.findViewById(R.id.main_last_latitude_value_textview);
+        lastLatitudeValueTextView.setOnLongClickListener(this);
         lastLongitudeValueTextView = view.findViewById(R.id.main_last_longitude_value_textview);
+        lastLongitudeValueTextView.setOnLongClickListener(this);
         lastGpsAccuracyValueTextView = view.findViewById(R.id.main_last_gps_accuracy_value_textview);
+        lastGpsAccuracyValueTextView.setOnLongClickListener(this);
         lastDateTimeValueTextView = view.findViewById(R.id.main_last_date_time_value_textview);
+        lastDateTimeValueTextView.setOnLongClickListener(this);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -299,5 +331,23 @@ public class MainLastFragment extends MainFragmentBase {
         lastMccValueTextView.setText("");
         lastMncValueTextView.setText("");
         lastSignalStrengthValueTextView.setText("");
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        if (!(v instanceof TextView))
+            return false;
+        CharSequence value = ((TextView) v).getText();
+        copyToClipboard(value);
+        Toast.makeText(getActivity(), getString(R.string.main_last_toast_copy_message, value), Toast.LENGTH_SHORT).show();
+        return true;
+    }
+
+    private void copyToClipboard(CharSequence value) {
+        if (clipboardManager == null) {
+            clipboardManager = (ClipboardManager) MyApplication.getApplication().getSystemService(Context.CLIPBOARD_SERVICE);
+        }
+        ClipData clip = ClipData.newPlainText(value, value);
+        clipboardManager.setPrimaryClip(clip);
     }
 }
