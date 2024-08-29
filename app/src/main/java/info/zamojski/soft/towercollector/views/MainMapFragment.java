@@ -194,8 +194,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         mainMapView.setMultiTouchControls(true);
         mainMapView.setMinZoomLevel(5.0);
         mainMapView.setMaxZoomLevel(20.0);
-        mainMapView.getZoomController().getDisplay().setAdditionalPixelMargins(0,0,0,32);
-
+        mainMapView.getZoomController().getDisplay().setAdditionalPixelMargins(0, 0, 0, 32);
         IMapController mapController = mainMapView.getController();
         mapController.setZoom(MyApplication.getPreferencesProvider().getMainMapZoomLevel());
 
@@ -273,7 +272,10 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
             public boolean onScroll(ScrollEvent scrollEvent) {
                 Timber.tag(INNER_TAG).d("onScroll(): Scrolling to x=%1$s, y=%2$s", scrollEvent.getX(), scrollEvent.getY());
                 reloadMarkers(false);
-                return false;
+                double zoomLevel = mainMapView.getZoomLevelDouble();
+                Timber.tag(INNER_TAG).d("onScroll(): Changing zoom level to %s", zoomLevel);
+                MyApplication.getPreferencesProvider().setMainMapZoomLevel((float) zoomLevel);
+                return true;
             }
 
             @Override
@@ -281,7 +283,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
                 Timber.tag(INNER_TAG).d("onZoom(): Changing zoom level to %s", zoomEvent.getZoomLevel());
                 MyApplication.getPreferencesProvider().setMainMapZoomLevel((float) zoomEvent.getZoomLevel());
                 reloadMarkers(true);
-                return false;
+                return true;
             }
         }, MAP_DATA_LOAD_DELAY_IN_MILLIS));
 
