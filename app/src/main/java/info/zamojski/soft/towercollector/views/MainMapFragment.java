@@ -318,8 +318,13 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
     }
 
     private void displayMarkers(RadiusMarkerClusterer newMarkersOverlay) {
+        // cleanup InfoWindows and remove overlay
+        for (Marker marker : markersOverlay.getItems()) {
+            marker.closeInfoWindow();
+        }
         mainMapView.getOverlays().remove(markersOverlay);
         markersOverlay.onDetach(mainMapView);
+        // add new overlay
         markersOverlay = newMarkersOverlay;
         mainMapView.getOverlays().add(markersOverlay);
         if (mainMapView.isAnimating()) {
