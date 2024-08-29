@@ -48,11 +48,11 @@
     <string name="main_dialog_not_compatible_title">Compatibility problems</string>
     <string name="main_dialog_not_compatible_begin">The app may not work because:\n</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Mobile network hardware not detected.\n</string>
-    <string name="main_toast_background_task_already_running_collector">Collector service is running.</string>
-    <string name="main_toast_background_task_already_running_uploader">Uploader task is running.</string>
-    <string name="main_toast_background_task_already_running_export">Export task is running.</string>
-    <string name="main_toast_background_task_already_running_unknown">Background task is running.</string>
-    <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> Please stop it before starting another task.</string>
+    <string name="main_toast_background_task_already_running_collector">Collector service</string>
+    <string name="main_toast_background_task_already_running_uploader">Uploader task</string>
+    <string name="main_toast_background_task_already_running_export">Export task</string>
+    <string name="main_toast_background_task_already_running_unknown">Background task</string>
+    <string name="main_toast_background_task_already_running_common">Stop \'<xliff:g id="task_name">%s</xliff:g>\' first.</string>
     <string name="enabled">enabled</string>
     <string name="disabled">disabled</string>
     <string name="unknown_error">Unknown error occurred!</string>
