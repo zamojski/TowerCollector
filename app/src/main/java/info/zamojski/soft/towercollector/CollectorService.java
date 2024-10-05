@@ -70,6 +70,7 @@ import info.zamojski.soft.towercollector.enums.KeepScreenOnMode;
 import info.zamojski.soft.towercollector.enums.MeansOfTransport;
 import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.enums.Validity;
+import info.zamojski.soft.towercollector.events.AirplaneModeChangedEvent;
 import info.zamojski.soft.towercollector.events.CollectorStateChangedEvent;
 import info.zamojski.soft.towercollector.events.GpsStatusChangedEvent;
 import info.zamojski.soft.towercollector.events.MeasurementProcessedEvent;
@@ -83,6 +84,7 @@ import info.zamojski.soft.towercollector.model.Tuple;
 import info.zamojski.soft.towercollector.utils.GpsUtils;
 import info.zamojski.soft.towercollector.utils.MobileUtils;
 import info.zamojski.soft.towercollector.utils.NetworkTypeUtils;
+import info.zamojski.soft.towercollector.utils.NetworkUtils;
 import timber.log.Timber;
 
 public class CollectorService extends Service {
@@ -256,18 +258,23 @@ public class CollectorService extends Service {
             stopSelf();
             return START_NOT_STICKY;
         }
-        try {
-            // listen for GPS location change
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, STATIC_LISTENER_INTERVAL, STATIC_LISTENER_DISTANCE, staticLocationListener);
-            Timber.d("onStartCommand(): Static location listener started");
-            synchronized (dynamicLocationListenerLock) {
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, currentIntervalValue.get(), 0, dynamicLocationListener);
-                Timber.d("onStartCommand(): Service started with min distance: 0 and min time: %s", currentIntervalValue.get());
+
+        // Only register GPS listeners if we're not in plane mode. If we ARE in plane mode, this will
+        // be done by the AirplaneModeChangedEvent event handler when user switches it off.
+        if (! NetworkUtils.isInAirplaneMode(MyApplication.getApplication())) {
+            try {
+                // listen for GPS location change
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, STATIC_LISTENER_INTERVAL, STATIC_LISTENER_DISTANCE, staticLocationListener);
+                Timber.d("onStartCommand(): Static location listener started");
+                synchronized (dynamicLocationListenerLock) {
+                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, currentIntervalValue.get(), 0, dynamicLocationListener);
+                    Timber.d("onStartCommand(): Service started with min distance: 0 and min time: %s", currentIntervalValue.get());
+                }
+            } catch (SecurityException ex) {
+                Timber.e(ex, "onStartCommand(): fine location permission is denied");
+                stopSelf();
+                return START_NOT_STICKY;
             }
-        } catch (SecurityException ex) {
-            Timber.e(ex, "onStartCommand(): fine location permission is denied");
-            stopSelf();
-            return START_NOT_STICKY;
         }
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         registerWakeLockAcquirer();
@@ -293,6 +300,34 @@ public class CollectorService extends Service {
         MyApplication.getAnalytics().sendPrefsNotifyMeasurementsCollected(notifyCollected);
 
         return START_REDELIVER_INTENT;
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onEvent(AirplaneModeChangedEvent event) {
+        if (event.isEnabled()) {
+            // Stop listening for GPS location change
+            if (locationManager != null) {
+                synchronized (dynamicLocationListenerLock) {
+                    if (dynamicLocationListener != null)
+                        locationManager.removeUpdates(dynamicLocationListener);
+                }
+                if (staticLocationListener != null)
+                    locationManager.removeUpdates(staticLocationListener);
+            }
+        }
+        else {
+            try {
+                // Resume listening for GPS location change
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, STATIC_LISTENER_INTERVAL, STATIC_LISTENER_DISTANCE, staticLocationListener);
+                Timber.d("onEvent(AirplaneModeChangedEvent event): Static location listener started");
+                synchronized (dynamicLocationListenerLock) {
+                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, currentIntervalValue.get(), 0, dynamicLocationListener);
+                    Timber.d("onEvent(AirplaneModeChangedEvent event): Service started with min distance: 0 and min time: %s", currentIntervalValue.get());
+                }
+            } catch (SecurityException ex) {
+                Timber.e(ex, "onEvent(AirplaneModeChangedEvent event): fine location permission is denied");
+            }
+        }
     }
 
     @Override
