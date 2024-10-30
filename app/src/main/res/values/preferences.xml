@@ -49,17 +49,17 @@
     <string name="preferences_about_opencellid_api_key_summary">Information about access token (API key) and correct formatting.</string>
     <string name="preferences_about_opencellid_project_title">About OpenCellID project</string>
     <string name="preferences_about_opencellid_project_summary">Information about OpenCellID.org project.</string>
-    <string name="preferences_mls_enabled_title">Enable MLS upload</string>
-    <string name="preferences_mls_enabled_on_summary">Measurements will be uploaded to Mozilla Location Services.</string>
-    <string name="preferences_mls_enabled_off_summary">Measurements will not be uploaded to Mozilla Location Services.</string>
-    <string name="preferences_custom_mls_enabled_title">Use custom MLS service</string>
-    <string name="preferences_custom_mls_enabled_on_summary">Measurements will be uploaded to MLS-compatible service defined below.</string>
-    <string name="preferences_custom_mls_enabled_off_summary">Measurements will uploaded to official MLS service.</string>
-    <string name="preferences_custom_mls_url_title">Custom MLS service address</string>
-    <string name="preferences_custom_mls_url_summary">Provide the address to geosubmit method including your own access token, like: "https://location.services.mozilla.com/v2/geosubmit?key=API_KEY"</string>
-    <string name="preferences_custom_mls_url_invalid">Entered custom MLS address is invalid.</string>
-    <string name="preferences_about_mls_project_title">About MLS</string>
-    <string name="preferences_about_mls_project_summary">Information about Mozilla Location Services.</string>
+    <string name="preferences_mls_enabled_title">Enable BeaconDB upload</string>
+    <string name="preferences_mls_enabled_on_summary">Measurements will be uploaded to BeaconDB.</string>
+    <string name="preferences_mls_enabled_off_summary">Measurements will not be uploaded to BeaconDB.</string>
+    <string name="preferences_custom_mls_enabled_title">Use custom BeaconDB service</string>
+    <string name="preferences_custom_mls_enabled_on_summary">Measurements will be uploaded to BeaconDB-compatible service defined below.</string>
+    <string name="preferences_custom_mls_enabled_off_summary">Measurements will uploaded to official BeaconDB service.</string>
+    <string name="preferences_custom_mls_url_title">Custom BeaconDB service address</string>
+    <string name="preferences_custom_mls_url_summary">Provide the address to custom server including all required parameters, like: "https://example.com/geosubmit?optionalParameter=value"</string>
+    <string name="preferences_custom_mls_url_invalid">Entered custom BeaconDB address is invalid.</string>
+    <string name="preferences_about_mls_project_title">About BeaconDB</string>
+    <string name="preferences_about_mls_project_summary">Information about BeaconDB.</string>
     <string name="preferences_imperial_units_title">Use imperial units</string>
     <string name="preferences_imperial_units_on_summary">Values will be presented using imperial units.</string>
     <string name="preferences_imperial_units_off_summary">Values will be presented using metric system.</string>

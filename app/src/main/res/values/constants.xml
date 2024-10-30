@@ -11,7 +11,7 @@
     <string name="app_id" translatable="false">TowerCollector <xliff:g id="app_version">%s</xliff:g></string>
 
     <string name="upload_url_opencellid_org" translatable="false">https://www.opencellid.org/measure/uploadCsv</string>
-    <string name="upload_url_mls" translatable="false">https://location.services.mozilla.com/v2/geosubmit?key=<xliff:g id="api_key">%s</xliff:g></string>
+    <string name="upload_url_mls" translatable="false">https://api.beacondb.net/v2/geosubmit</string>
 
     <string name="map_copyright" translatable="false">© <a href="https://www.openstreetmap.org/copyright/">OpenStreetMap</a> contributors</string>
 

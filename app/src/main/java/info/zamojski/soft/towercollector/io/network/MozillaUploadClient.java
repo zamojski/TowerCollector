@@ -24,10 +24,6 @@ public class MozillaUploadClient extends ClientBase implements IUploadClient {
 
     private final String uploadUrl;
 
-    public MozillaUploadClient(String url, String apiKey) {
-        this(String.format(url, apiKey));
-    }
-
     public MozillaUploadClient(String url) {
         this.uploadUrl = url;
     }
@@ -46,7 +42,7 @@ public class MozillaUploadClient extends ClientBase implements IUploadClient {
             RequestBody requestBody = RequestBody.create(content, JSON);
             Request request = new Request.Builder()
                     .url(uploadUrl)
-                    .header("user-agent", "TowerCollector/" + BuildConfig.VERSION_NAME)
+                    .header("User-Agent", "TowerCollector/" + BuildConfig.VERSION_NAME)
                     .post(requestBody)
                     .build();
 

@@ -158,8 +158,6 @@ def setBuildConfigFieldsFromProps(Properties props) {
     android.defaultConfig.buildConfigField "String", "ACRA_FORM_URI_BASIC_AUTH_PASSWORD", rotHex(props['acra_formUriBasicAuthPassword'])
     // Analytics
     android.defaultConfig.buildConfigField "boolean", "ANALYTICS_AVAILABLE", props['analytics_available']
-    // MLS
-    android.defaultConfig.buildConfigField "String", "MLS_API_KEY", rotHex(props['mls_apiKey'])
     // OCID
     android.defaultConfig.buildConfigField "String", "OCID_API_KEY", rotHex(props['ocid_apiKey'])
     // Other

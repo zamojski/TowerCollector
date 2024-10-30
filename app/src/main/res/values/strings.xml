@@ -72,7 +72,7 @@
     <string name="main_stats_global_cells_label">Discovered cells:</string>
     <string name="main_stats_to_upload_title">To upload</string>
     <string name="main_stats_to_upload_ocid_locations_label" translatable="false">OpenCellID.org:</string>
-    <string name="main_stats_to_upload_mls_locations_label" translatable="false">Mozilla Location Services:</string>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false">BeaconDB:</string>
     <string name="main_last_cell_title">Last saved measurement</string>
     <string name="main_last_number_of_cells_label">Main / neighboring:</string>
     <string name="main_last_number_of_cells_value" translatable="false"><xliff:g id="number_of_main">%1$d</xliff:g> / <xliff:g id="number_of_neighboring">%2$d</xliff:g></string>
@@ -155,7 +155,7 @@
     <string name="uploader_limit_exceeded">Usage limit exceeded</string>
     <string name="uploader_limit_exceeded_description">The daily usage limit for the app has been exceeded. Please try again tomorrow.</string>
     <string name="uploader_result_message" translatable="false"><xliff:g id="message">%1$s</xliff:g> | <xliff:g id="description">%2$s</xliff:g></string>
-    <string name="uploader_result_description" translatable="false">OCID: <xliff:g id="message_for_ocid">%1$s</xliff:g>\n\nMLS: <xliff:g id="message_for_mls">%2$s</xliff:g></string>
+    <string name="uploader_result_description" translatable="false">OCID: <xliff:g id="message_for_ocid">%1$s</xliff:g>\n\nBeaconDB: <xliff:g id="message_for_mls">%2$s</xliff:g></string>
     <string name="uploader_no_internet_title">Internet unavailable</string>
     <string name="uploader_no_internet_message">Cannot upload due to no Internet connection.</string>
     <string name="other_notification_channel_name">Other</string>
@@ -271,7 +271,7 @@
     <string name="main_help_last_date_time_description">Date and time when last measurement was saved.</string>
     <string name="main_help_to_upload_common_locations_title">Measurements to upload</string>
     <string name="main_help_to_upload_ocid_locations_description">Number of measurements waiting for upload to OpenCellID.org.</string>
-    <string name="main_help_to_upload_mls_locations_description">Number of measurements waiting for upload to Mozilla Location Services.</string>
+    <string name="main_help_to_upload_mls_locations_description">Number of measurements waiting for upload to BeaconDB.</string>
     <string name="collector_status_active">Collecting measurements</string>
     <string name="collector_status_inactive">Measurements collection is stopped</string>
     <string name="status_initializing">waiting for location</string>
@@ -290,10 +290,10 @@
     <string name="export_format_kml" translatable="false">KML</string>
     <string name="export_format_kmz" translatable="false">KMZ</string>
     <string name="export_format_csv_ocid">CSV for OpenCellID.org</string>
-    <string name="export_format_json_mls">JSON for Mozilla Location Services</string>
+    <string name="export_format_json_mls">JSON for BeaconDB</string>
     <string name="export_format_zip">Compress each exported file</string>
     <string name="ocid_name" translatable="false">OpenCellID.org</string>
-    <string name="mls_name" translatable="false">Mozilla Location Services</string>
+    <string name="mls_name" translatable="false">BeaconDB</string>
     <string name="upload_configurator_dialog_title">Configure upload target</string>
     <string name="upload_anonymously">Anonymously</string>
     <string name="enter_valid_api_key">You have to enter valid access token in Preferences</string>
