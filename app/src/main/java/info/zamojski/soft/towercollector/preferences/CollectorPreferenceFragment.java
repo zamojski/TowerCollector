@@ -126,14 +126,14 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equals(getString(R.string.preferences_gps_optimizations_enabled_key))
-                || key.equals(getString(R.string.preferences_collect_neighboring_cells_key))
-                || key.equals(getString(R.string.preferences_notify_measurements_collected_key))
-                || key.equals(getString(R.string.preferences_hide_collector_notification_key))) {
+        if (getString(R.string.preferences_gps_optimizations_enabled_key).equals(key)
+                || getString(R.string.preferences_collect_neighboring_cells_key).equals(key)
+                || getString(R.string.preferences_notify_measurements_collected_key).equals(key)
+                || getString(R.string.preferences_hide_collector_notification_key).equals(key)) {
             if (MyApplication.isBackgroundTaskRunning(CollectorService.class)) {
                 Toast.makeText(getActivity(), R.string.preferences_restart_collector, Toast.LENGTH_SHORT).show();
             }
-        } else if (key.equals(getString(R.string.preferences_collector_keep_screen_on_mode_key))) {
+        } else if (getString(R.string.preferences_collector_keep_screen_on_mode_key).equals(key)) {
             String collectorKeepScreenOnValue = collectorKeepScreenOnPreference.getValue();
             CharSequence collectorKeepScreenOnLabel = collectorKeepScreenOnPreference.getEntry();
             Timber.d("onSharedPreferenceChanged(): User set keep screen on = \"%s\"", collectorKeepScreenOnValue);
@@ -141,7 +141,7 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
             if (MyApplication.isBackgroundTaskRunning(CollectorService.class)) {
                 Toast.makeText(getActivity(), R.string.preferences_restart_collector, Toast.LENGTH_SHORT).show();
             }
-        } else if (key.equals(getString(R.string.preferences_collector_low_battery_action_key))) {
+        } else if (getString(R.string.preferences_collector_low_battery_action_key).equals(key)) {
             String collectorLowBatteryActionValue = collectorLowBatteryActionPreference.getValue();
             CharSequence collectorLowBatteryActionLabel = collectorLowBatteryActionPreference.getEntry();
             Timber.d("onSharedPreferenceChanged(): User set low battery action = \"%s\"", collectorLowBatteryActionValue);

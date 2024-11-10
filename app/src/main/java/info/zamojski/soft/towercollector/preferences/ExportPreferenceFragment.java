@@ -41,7 +41,7 @@ public class ExportPreferenceFragment extends PreferenceFragmentBase implements 
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equals(getString(R.string.preferences_export_compression_format_key))) {
+        if (getString(R.string.preferences_export_compression_format_key).equals(key)) {
             String compressionFormatValue = compressionFormatPreference.getValue();
             CharSequence compressionFormatLabel = compressionFormatPreference.getEntry();
             Timber.d("onSharedPreferenceChanged(): User set compression format = \"%s\"", compressionFormatValue);

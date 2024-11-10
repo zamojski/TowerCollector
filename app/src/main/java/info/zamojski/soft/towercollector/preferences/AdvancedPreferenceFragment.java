@@ -115,7 +115,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equals(getString(R.string.preferences_collector_api_version_key))) {
+        if (getString(R.string.preferences_collector_api_version_key).equals(key)) {
             String collectorApiVersionValue = collectorApiVersionPreference.getValue();
             CharSequence collectorApiVersionLabel = collectorApiVersionPreference.getEntry();
             Timber.d("onSharedPreferenceChanged(): User set api version = \"%s\"", collectorApiVersionValue);
@@ -123,7 +123,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
             if (MyApplication.isBackgroundTaskRunning(CollectorService.class)) {
                 Toast.makeText(getActivity(), R.string.preferences_restart_collector, Toast.LENGTH_SHORT).show();
             }
-        } else if (key.equals(getString(R.string.preferences_file_logging_level_key))) {
+        } else if (getString(R.string.preferences_file_logging_level_key).equals(key)) {
             String fileLoggingLevelValue = fileLoggingLevelPreference.getValue();
             CharSequence fileLoggingLevelLabel = fileLoggingLevelPreference.getEntry();
             Timber.d("onSharedPreferenceChanged(): User set file logging level = \"%s\"", fileLoggingLevelValue);

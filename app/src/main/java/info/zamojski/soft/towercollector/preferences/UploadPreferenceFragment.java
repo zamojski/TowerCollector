@@ -67,7 +67,7 @@ public class UploadPreferenceFragment extends DialogEnabledPreferenceFragment im
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Timber.d("onSharedPreferenceChanged(): Preference value changed: %s", key);
-        if (key.equals(getString(R.string.preferences_opencellid_api_key_key))) {
+        if (getString(R.string.preferences_opencellid_api_key_key).equals(key)) {
             String apiKeyValue = apiKeyPreference.getText();
             Timber.d("onSharedPreferenceChanged(): User set API key = \"%s\"", apiKeyValue);
             boolean isApiKeyEmpty = TextUtils.isEmpty(apiKeyValue);
@@ -77,10 +77,10 @@ public class UploadPreferenceFragment extends DialogEnabledPreferenceFragment im
                 Timber.i("onSharedPreferenceChanged(): User defined invalid API key");
                 Toast.makeText(getActivity(), getString(R.string.preferences_opencellid_api_key_invalid), Toast.LENGTH_LONG).show();
             }
-        } else if (key.equals(getString(R.string.preferences_custom_mls_enabled_key))) {
+        } else if (getString(R.string.preferences_custom_mls_enabled_key).equals(key)) {
             boolean isCustomMlsEnabled = customMlsEnabledPreference.isChecked();
             customMlsUrlPreference.setVisible(isCustomMlsEnabled);
-        } else if (key.equals(getString(R.string.preferences_custom_mls_url_key))) {
+        } else if (getString(R.string.preferences_custom_mls_url_key).equals(key)) {
             String customMlsUrlValue = customMlsUrlPreference.getText();
             Timber.d("onSharedPreferenceChanged(): User set custom MLS url = \"%s\"", customMlsUrlValue);
             boolean isCustomMlsUrlEmpty = TextUtils.isEmpty(customMlsUrlValue);

@@ -130,7 +130,7 @@ public class PreferencesOperations {
                             else if (v instanceof Long)
                                 prefEdit.putLong(key, (Long) v);
                             else if (v instanceof String)
-                                prefEdit.putString(key, ((String) v));
+                                prefEdit.putString(key, (String) v);
                         }
                         prefEdit.apply();
                         Timber.d("loadSharedPreferencesFromFile(): Preferences imported");

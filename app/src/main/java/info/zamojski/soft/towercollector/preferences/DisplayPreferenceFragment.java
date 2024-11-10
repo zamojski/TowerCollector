@@ -52,7 +52,7 @@ public class DisplayPreferenceFragment extends DialogEnabledPreferenceFragment i
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equals(getString(R.string.preferences_app_theme_mode_key))) {
+        if (getString(R.string.preferences_app_theme_mode_key).equals(key)) {
             String appThemeValue = appThemePreference.getValue();
             CharSequence appThemeLabel = appThemePreference.getEntry();
             Timber.d("onSharedPreferenceChanged(): User set app theme = \"%s\"", appThemeValue);

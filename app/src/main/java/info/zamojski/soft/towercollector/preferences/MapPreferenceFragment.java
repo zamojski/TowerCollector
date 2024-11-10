@@ -53,10 +53,10 @@ public class MapPreferenceFragment extends DialogEnabledPreferenceFragment imple
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equals(getString(R.string.preferences_main_map_enable_key))) {
+        if (getString(R.string.preferences_main_map_enable_key).equals(key)) {
             MyApplication.getPreferencesProvider().invalidateMainMapEnabledCache();
             EventBus.getDefault().postSticky(new MapEnabledChangedEvent());
-        } else if (key.equals(getString(R.string.preferences_main_map_cache_size_key))) {
+        } else if (getString(R.string.preferences_main_map_cache_size_key).equals(key)) {
             MapUtils.setMapCacheLimits();
         }
     }
