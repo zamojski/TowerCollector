@@ -48,11 +48,11 @@
     <string name="main_dialog_not_compatible_title">Problemy z kompatybilnością</string>
     <string name="main_dialog_not_compatible_begin">Aplikacja może nie działać, ponieważ:\n</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Nie wykryto modułu sieci komórkowej.</string>
-    <string name="main_toast_background_task_already_running_collector">Zbieranie jest uruchomione.</string>
-    <string name="main_toast_background_task_already_running_uploader">Przesyłanie jest uruchomione.</string>
-    <string name="main_toast_background_task_already_running_export">Eksport jest uruchomiony.</string>
-    <string name="main_toast_background_task_already_running_unknown">Zadanie w tle jest uruchomione.</string>
-    <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> Proszę zatrzymać zadanie przed rozpoczęciem kolejnego.</string>
+    <string name="main_toast_background_task_already_running_collector">Zbieranie</string>
+    <string name="main_toast_background_task_already_running_uploader">Przesyłanie</string>
+    <string name="main_toast_background_task_already_running_export">Eksport</string>
+    <string name="main_toast_background_task_already_running_unknown">Zadanie w tle</string>
+    <string name="main_toast_background_task_already_running_common">Najpierw zatrzymaj \'<xliff:g id="task_name">%s</xliff:g>\'</string>
     <string name="enabled">włączony</string>
     <string name="disabled">wyłączony</string>
     <string name="unknown_error">Wystąpił nieznany błąd!</string>
@@ -90,6 +90,7 @@
     <string name="main_last_gps_accuracy_label">Dokładność GPS:</string>
     <string name="main_last_date_time_label">Data zapisania:</string>
     <string name="main_last_cell_no_data_message">Póki co brak próbek, wyjdź na zewnątrz i zbierz trochę danych!</string>
+    <string name="main_last_toast_copy_message">Wartość \'<xliff:g id="property_value">%s</xliff:g>\' skopiowana do schowka</string>
     <string name="main_map_my_location_button">Przejdź do mojego położenia</string>
     <string name="main_map_follow_me_button">Śledź moje położenie</string>
     <string name="main_map_location_enable_button">Włącz pokazywanie położenia</string>
@@ -106,6 +107,7 @@
     <string name="main_menu_help_button">Pomoc</string>
     <string name="main_menu_preferences_button">Ustawienia</string>
     <string name="main_menu_network_type_button">Typ sieci</string>
+    <string name="main_menu_donate_button">Przekaż datek</string>
     <string name="collector_notification_channel_name">Zbieranie</string>
     <string name="collector_notification_title">Zbieranie</string>
     <string name="collector_notification_stats">Dzisiaj <xliff:g id="number_of_measurements">%1$d</xliff:g> próbek z <xliff:g id="number_of_cells">%2$d</xliff:g> przekaźników.</string>
@@ -259,7 +261,7 @@
     <string name="main_help_last_date_time_description">Data i czas zapisania ostatniej próbki.</string>
     <string name="main_help_to_upload_common_locations_title">Próbki do przesłania</string>
     <string name="main_help_to_upload_ocid_locations_description">Liczba próbek oczekujących na przesłanie do OpenCellID.org.</string>
-    <string name="main_help_to_upload_mls_locations_description">Liczba próbek oczekujących na przesłanie do Mozilla Location Services.</string>
+    <string name="main_help_to_upload_mls_locations_description">Liczba próbek oczekujących na przesłanie do BeaconDB.</string>
     <string name="collector_status_active">Próbki są zbierane</string>
     <string name="collector_status_inactive">Zbieranie próbek jest zatrzymane</string>
     <string name="status_initializing">oczekiwanie na pozycję</string>
@@ -274,7 +276,7 @@
     <string name="web_browser_missing">Zainstaluj przeglądarkę internetową, aby otworzyć stronę</string>
     <string name="uploader_all_projects_disabled">Przesyłanie jest wyłączone dla wszystkich projektów</string>
     <string name="export_format_csv_ocid">CSV dla OpenCellID.org</string>
-    <string name="export_format_json_mls">JSON dla Mozilla Location Services</string>
+    <string name="export_format_json_mls">JSON dla BeaconDB</string>
     <string name="export_format_zip">Kompresuj każdy plik</string>
     <string name="upload_configurator_dialog_title">Wybierz cel przesyłania</string>
     <string name="upload_anonymously">Anonimowo</string>

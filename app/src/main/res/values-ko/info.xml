@@ -5,7 +5,7 @@
 <resources>
     <string name="info_about_api_key_title">액세스 토큰(API Key)</string>
     <string name="info_about_opencellid_project_title">OpenCellID 프로젝트</string>
-    <string name="info_about_mls_project_title">Mozilla Location Services 프로젝트</string>
+    <string name="info_about_mls_project_title">BeaconDB 프로젝트</string>
     <string name="info_usage_statistics_title">사용 통계</string>
     <string name="info_about_application_title">정보</string>
     <string name="info_introduction_title">소개</string>

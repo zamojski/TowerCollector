@@ -48,11 +48,11 @@
     <string name="main_dialog_not_compatible_title">תקלות תאימות</string>
     <string name="main_dialog_not_compatible_begin">ייתכן שהיישומון לא יעבוד כיוון:\n</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; לא זוהתה חומרת רשת סלולרית.\n</string>
-    <string name="main_toast_background_task_already_running_collector">שירות האיסוף אינו פעיל.</string>
-    <string name="main_toast_background_task_already_running_uploader">משימת ההעלאה פועלת.</string>
-    <string name="main_toast_background_task_already_running_export">משימת הייצוא פעילה.</string>
-    <string name="main_toast_background_task_already_running_unknown">משימת רקע פעילה.</string>
-    <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> נא לעצור אותה בטרם הפעלת משימה אחרת.</string>
+    <string name="main_toast_background_task_already_running_collector">שירות אספנים</string>
+    <string name="main_toast_background_task_already_running_uploader">משימת העלאה</string>
+    <string name="main_toast_background_task_already_running_export">משימת ייצוא</string>
+    <string name="main_toast_background_task_already_running_unknown">משימת רקע</string>
+    <string name="main_toast_background_task_already_running_common">עצור תחילה את \'<xliff:g id="task_name">%s</xliff:g>\'.</string>
     <string name="enabled">פעילה</string>
     <string name="disabled">מושבתת</string>
     <string name="unknown_error">אירעה שגיאה בלתי ידועה!</string>
@@ -90,6 +90,7 @@
     <string name="main_last_gps_accuracy_label">דיוק:</string>
     <string name="main_last_date_time_label">מועד שמירה:</string>
     <string name="main_last_cell_no_data_message">אין מדידות עדיין, נא לצאת החוצה ולאסוף נתונים!</string>
+    <string name="main_last_toast_copy_message">הערך \'<xliff:g id="property_value">%s</xliff:g>\' הועתק ללוח</string>
     <string name="main_map_my_location_button">מעבר למיקום שלי</string>
     <string name="main_map_follow_me_button">מעקב אחר המיקום שלי</string>
     <string name="main_map_location_enable_button">הפעלת המיקום שלי</string>
@@ -106,6 +107,7 @@
     <string name="main_menu_help_button">עזרה</string>
     <string name="main_menu_preferences_button">העדפות</string>
     <string name="main_menu_network_type_button">סוג רשת</string>
+    <string name="main_menu_donate_button">לִתְרוֹם</string>
     <string name="collector_notification_channel_name">מנגנון איסוף</string>
     <string name="collector_notification_title">מתבצע איסוף</string>
     <string name="collector_notification_stats">היום <xliff:g id="number_of_measurements">%1$d</xliff:g> מדידות עבור <xliff:g id="number_of_cells">%2$d</xliff:g> תאים.</string>
@@ -259,7 +261,7 @@
     <string name="main_help_last_date_time_description">התאריך והשעה של שמירת המדידה האחרונה.</string>
     <string name="main_help_to_upload_common_locations_title">מדידה להעלאה</string>
     <string name="main_help_to_upload_ocid_locations_description">מספר המדידות הממתינות להעלאה אל OpenCellID.org.</string>
-    <string name="main_help_to_upload_mls_locations_description">מספר המדידות שממתינות להעלאה לשירותי המיקום של Mozilla.</string>
+    <string name="main_help_to_upload_mls_locations_description">מספר המדידות הממתינות להעלאה ל-BeaconDB.</string>
     <string name="collector_status_active">מדידות נאספות</string>
     <string name="collector_status_inactive">איסוף המדידות נעצר</string>
     <string name="status_initializing">בהמתנה למיקום</string>
@@ -274,7 +276,7 @@
     <string name="web_browser_missing">נא להתקין דפדפן כדי לפתוח את העמוד</string>
     <string name="uploader_all_projects_disabled">ההעלאה לכל המיזמים מושבתת</string>
     <string name="export_format_csv_ocid">CSV עבור OpenCellID.org</string>
-    <string name="export_format_json_mls">JSON לשירותי המיקום של Mozilla</string>
+    <string name="export_format_json_mls">JSON עבור BeaconDB</string>
     <string name="export_format_zip">לדחוס כל קובץ שעבר ייצוא</string>
     <string name="upload_configurator_dialog_title">הגדרת יעד להעלאה</string>
     <string name="upload_anonymously">באופן אלמוני</string>

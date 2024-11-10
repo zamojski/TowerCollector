@@ -49,17 +49,17 @@
     <string name="preferences_about_opencellid_api_key_summary">Erişim tokeni (API anahtarı) ve doğru biçimleme hakkında bilgiler.</string>
     <string name="preferences_about_opencellid_project_title">OpenCellID projesi hakkında</string>
     <string name="preferences_about_opencellid_project_summary">OpenCellID projesi hakkında bilgiler</string>
-    <string name="preferences_mls_enabled_title">MLS\' ye yüklemeyi etkinleştir</string>
-    <string name="preferences_mls_enabled_on_summary">Ölçümler MLS\' ye (Mozilla Konum Hizmetleri) yüklenecektir.</string>
-    <string name="preferences_mls_enabled_off_summary">Ölçümler Mozilla Konum Hizmetlerine yüklenmeyecektir.</string>
-    <string name="preferences_custom_mls_enabled_title">Özel MLS hizmetini kullanın</string>
-    <string name="preferences_custom_mls_enabled_on_summary">Ölçümler aşağıda tanımlanan MLS uyumlu hizmete yüklenecektir.</string>
-    <string name="preferences_custom_mls_enabled_off_summary">Ölçümler resmi MLS hizmetine yüklenecektir.</string>
-    <string name="preferences_custom_mls_url_title">Özel MLS hizmet adresi</string>
-    <string name="preferences_custom_mls_url_summary">Kendi erişim belirtecinizi de içeren \"geosubmit\" yönteminin adresini sağlayın; örneğin: \"https://location.services.mozilla.com/v2/geosubmit?key=API_KEY\"</string>
-    <string name="preferences_custom_mls_url_invalid">Girilen özel MLS adresi geçersiz.</string>
-    <string name="preferences_about_mls_project_title">MLS hakkında</string>
-    <string name="preferences_about_mls_project_summary">Mozilla Konum Hizmetleri hakkında bilgi.</string>
+    <string name="preferences_mls_enabled_title">BeaconDB\' ye yüklemeyi etkinleştir</string>
+    <string name="preferences_mls_enabled_on_summary">Ölçümler BeaconDB\'ye yüklenecek.</string>
+    <string name="preferences_mls_enabled_off_summary">Ölçümler BeaconDB\'ye yüklenmeyecektir.</string>
+    <string name="preferences_custom_mls_enabled_title">Özel BeaconDB hizmetini kullanın</string>
+    <string name="preferences_custom_mls_enabled_on_summary">Ölçümler aşağıda tanımlanan BeaconDB uyumlu hizmete yüklenecektir.</string>
+    <string name="preferences_custom_mls_enabled_off_summary">Ölçümler resmi BeaconDB hizmetine yüklenecektir.</string>
+    <string name="preferences_custom_mls_url_title">Özel BeaconDB hizmet adresi</string>
+    <string name="preferences_custom_mls_url_summary">Özel sunucunun adresini gerekli tüm parametrelerle birlikte sağlayın, örneğin: \"https://example.com/geosubmit? OptionParameter=value\"</string>
+    <string name="preferences_custom_mls_url_invalid">Girilen özel BeaconDB adresi geçersiz.</string>
+    <string name="preferences_about_mls_project_title">BeaconDB hakkında</string>
+    <string name="preferences_about_mls_project_summary">BeaconDB hakkında bilgi.</string>
     <string name="preferences_imperial_units_title">İngiliz ölçü birimi kullan</string>
     <string name="preferences_imperial_units_on_summary">Değerler İngiliz ölçü biçimi (örn: inç, foot, yard) kullanılarak verilecek</string>
     <string name="preferences_imperial_units_off_summary">Değerler metre sistemi kullanılarak verilecek.</string>
@@ -93,12 +93,14 @@
     <string name="preferences_website_link_summary">Uygulamanın tanıtımını ve uygulama mağazalarından indirme linklerini içeren, uygulama geliştiricisinin websitesini açar</string>
     <string name="preferences_contact_email_link_title">Geliştirici ile iletişime geç</string>
     <string name="preferences_contact_email_link_summary">Sorunlarınızla, sorularınızla ve fikirlerinizle ilgili geliştiriciye mail gönderin.</string>
+    <string name="preferences_donate_link_title">Bağış yapmak</string>
+    <string name="preferences_donate_link_summary">Teşekkür edin ve uygulamaya desteğinizi gösterin.</string>
     <string name="preferences_github_link_title">GitHub sayfası</string>
     <string name="preferences_github_link_summary">Kaynak kodunu bulabileceğiniz, uygulamaya katkıda bulunabileceğiniz, hata bildirebileceğiniz ve fikir paylaşabileceğiniz GitHub sayfasını açar.</string>
     <string name="preferences_facebook_community_link_title">Facebook Topluluğu</string>
     <string name="preferences_facebook_community_link_summary">Kullanışlı bilgiler, gönderi fikirleri bulabileceğiniz ve soru sorabileceğiniz Facebook Topluluk Sayfasını açar.</string>
-    <string name="preferences_twitter_community_link_title">Twitter Topluluğu</string>
-    <string name="preferences_twitter_community_link_summary">Kullanışlı bilgiler, gönderi fikirleri bulabileceğiniz ve soru sorabileceğiniz Twitter Topluluk Sayfasını açar</string>
+    <string name="preferences_twitter_community_link_title">X (Twitter) Topluluğu</string>
+    <string name="preferences_twitter_community_link_summary">Kullanışlı bilgiler, gönderi fikirleri bulabileceğiniz ve soru sorabileceğiniz X Topluluk Sayfasını açar</string>
     <string name="preferences_translate_link_title">Çeviri</string>
     <string name="preferences_translate_link_summary">Uygulamayı çevirmek için işbirliği yapmanızı sağlayan çevrimiçi çeviri aracını açar.</string>
     <string name="preferences_privacy_statement_link_title">Gizlilik Bildirgesi</string>
@@ -112,7 +114,7 @@
     <string name="preferences_about_collector_api_version_title">Toplayıcı API sürümü hakkında</string>
     <string name="preferences_about_collector_api_version_summary">Farklı API sürümleri hakkında bilgiler.</string>
     <string name="preferences_file_logging_level_title">Dosya günlüğü seviyesi</string>
-    <string name="preferences_file_logging_level_summary">Tanılama mesajlarının dosya günlük kaydı düzeyini tanımlar. Son derece ayrıntılı günlük kaydının uygulamayı yavaşlatabileceğine ve büyük günlük dosyaları oluşturabileceğine dikkat edin. Harici bellek mevcut olmalıdır.</string>
+    <string name="preferences_file_logging_level_summary">Tanılama mesajlarının dosya günlük kaydı düzeyini tanımlar. Son derece ayrıntılı günlük kaydının uygulamayı yavaşlatabileceğine ve büyük günlük dosyaları oluşturabileceğine dikkat edin.</string>
     <string name="preferences_collect_neighboring_cells_title">Komşu hücreleri topla</string>
     <string name="preferences_collect_neighboring_cells_on_summary">Eğer varsa komşu hücreler de toplanacak.</string>
     <string name="preferences_collect_neighboring_cells_off_summary">Komşu hücreler toplanmayacak.</string>

@@ -7,15 +7,13 @@
 <p><strong>Bu gizlilik politikasını kabul etmiyorsanız, lütfen uygulamayı yüklemeyin veya kaldırmayın. Uygulamanın mobil cihazdan kalıcı olarak kaldırılması, uygulamanın kullanımının sonlandırılmasına eşdeğerdir.</strong></p>
 
 <h3>Ana fonksiyonlar</h3>
-<p>Uygulamanın temel işlevi, baz istasyonu tanımlayıcılarını, sinyal gücünü ve cihaz konumunu (koordinatları) toplamaktır. Bu bilgiler cihazınızda yerel olarak depolanır ve açık rızanız ve eyleminiz olmadan asla iletilmez. Toplanan veriler, cihazınızda saklanan dosyaya aktarılabilir veya OpenCellID.org ve Mozilla Konum Hizmetleri (MLS) projelerinde paylaşılabilir. Gizliliğin korunduğundan emin olmak için uygulama, aktarım sırasında verilerinize erişebilecek herhangi bir proxy sunucusu KULLANMAZ. Harici hizmetlere giden tüm trafik, HTTPS protokolü kullanılarak şifrelenir.</p>
+<p>The main functionality of the application is to collect cell tower identifiers, signal strength and the device location (coordinates). This information is stored locally on your device and will never be transmitted without your explicit consent and action. The collected data can be exported to the file persisted on your device or shared to OpenCellID.org and BeaconDB projects. To ensure the privacy is protected, the application does NOT use any proxy server that could access your data in transit. All the traffic to external services is encrypted using HTTPS protocol.</p>
 
-<p><strong>OpenCellID.org</strong> projesine katkı, uygulama tercihlerine girilmesi gereken kişisel bir Erişim Simgesi (API Anahtarı) gerektirir. Anahtar yalnızca ölçümleri proje veritabanına yüklemek için kullanılacak ve cihazı başka bir senaryoda asla terk etmeyecektir. Erişim Belirtecini bilen herkes, göz atma ve silme dahil olmak üzere yüklenen veriler üzerinde tam kontrole sahiptir. Erişim Jetonunun gizliliğini korumak sizin sorumluluğunuzdadır!</p>
-
-<p><strong>MLS'ye katkı</strong> projesi, yüklenen ölçümlere göz atma yeteneği sağlamayan paylaşılan API Anahtarı kullanır.</p>
+<p><strong>Contribution to the OpenCellID.org</strong> project requires a personal Access Token (API Key) that needs to be entered in the application preferences. The key will only be used to upload the measurements to the project database and will never leave the device in any other scenario. Anybody who knows the Access Token has full control over the uploaded data, including browsing and deleting. It's your responsibility to protect the confidentiality of your Access Token!</p>
 
 <ul>
 <li><a href="https://community.opencellid.org/privacy">OpenCellID.org gizlilik politikası</a></li>
-<li><a href="https://location.services.mozilla.com/privacy">Mozilla Location Services gizlilik politikası</a></li>
+<li><a href="https://beacondb.net/privacy/">The BeaconDB privacy notice</a></li>
 </ul>
 
 <p>Uygulamanın çoğu özelliği <strong>ön plan konum iznini</strong> gerektirir, ancak cihaz başlangıcında ölçümleri toplamaya başlamak için <strong>arka plan konum izninin</strong> verilmesi gerekir. Arka plan konum izni gereklidir çünkü bu senaryoda, toplama sizin tarafınızdan değil (ön planda) sistem tarafından başlatılır (arka planda).</p>

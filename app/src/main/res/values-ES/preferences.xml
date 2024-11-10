@@ -49,17 +49,17 @@
     <string name="preferences_about_opencellid_api_key_summary">Información sobre el token de acceso (clave API) y el formato correcto.</string>
     <string name="preferences_about_opencellid_project_title">Acerca del proyecto OpenCellID</string>
     <string name="preferences_about_opencellid_project_summary">Información sobre el proyecto OpenCellID.org.</string>
-    <string name="preferences_mls_enabled_title">Habilitar subir a MLS</string>
-    <string name="preferences_mls_enabled_on_summary">Las mediciones se cargarán a Mozzilla Location Services.</string>
-    <string name="preferences_mls_enabled_off_summary">Las mediciones no se cargarán a Mozilla Location Services.</string>
-    <string name="preferences_custom_mls_enabled_title">Utilice el servicio MLS personalizado</string>
-    <string name="preferences_custom_mls_enabled_on_summary">Las mediciones se cargarán en el servicio compatible con MLS que se define a continuación.</string>
-    <string name="preferences_custom_mls_enabled_off_summary">Las medidas se subirán al servicio oficial de la MLS.</string>
-    <string name="preferences_custom_mls_url_title">Dirección de servicio MLS personalizada</string>
-    <string name="preferences_custom_mls_url_summary">Proporcione la dirección al método \"geosubmit\", incluido su propio token de acceso, como: \"https://location.services.mozilla.com/v2/geosubmit?key=API_KEY\"</string>
-    <string name="preferences_custom_mls_url_invalid">La dirección MLS personalizada ingresada no es válida.</string>
-    <string name="preferences_about_mls_project_title">Acerca de MLS</string>
-    <string name="preferences_about_mls_project_summary">Información sobre Mozilla Location Services.</string>
+    <string name="preferences_mls_enabled_title">Habilitar subir a BeaconDB</string>
+    <string name="preferences_mls_enabled_on_summary">Las mediciones se cargarán a BeaconDB.</string>
+    <string name="preferences_mls_enabled_off_summary">Las mediciones no se cargarán a BeaconDB.</string>
+    <string name="preferences_custom_mls_enabled_title">Utilice el servicio BeaconDB personalizado</string>
+    <string name="preferences_custom_mls_enabled_on_summary">Las mediciones se cargarán en el servicio compatible con BeaconDB que se define a continuación.</string>
+    <string name="preferences_custom_mls_enabled_off_summary">Las medidas se subirán al servicio oficial de la BeaconDB.</string>
+    <string name="preferences_custom_mls_url_title">Dirección de servicio BeaconDB personalizada</string>
+    <string name="preferences_custom_mls_url_summary">Proporcione la dirección al servidor personalizado, incluidos todos los parámetros requeridos, como: \"https://example.com/geosubmit?optionalParameter=value\"</string>
+    <string name="preferences_custom_mls_url_invalid">La dirección BeaconDB personalizada ingresada no es válida.</string>
+    <string name="preferences_about_mls_project_title">Acerca de BeaconDB</string>
+    <string name="preferences_about_mls_project_summary">Información sobre BeaconDB.</string>
     <string name="preferences_imperial_units_title">Use unidades inglesas</string>
     <string name="preferences_imperial_units_on_summary">Los valores se mostraran en sistema inglés.</string>
     <string name="preferences_imperial_units_off_summary">Los valores se mostrarán en sistema métrico.</string>
@@ -93,12 +93,14 @@
     <string name="preferences_website_link_summary">Abre el sitio web del desarrollador en el que se encuentran la descripción y ligas de descarga de las tiendas de apps.</string>
     <string name="preferences_contact_email_link_title">Contacto del desarrollador</string>
     <string name="preferences_contact_email_link_summary">Envía un correo electrónico con sus problemas, preguntas e ideas al desarrollador.</string>
+    <string name="preferences_donate_link_title">Donar</string>
+    <string name="preferences_donate_link_summary">Da las gracias y muestra tu apoyo a la aplicación.</string>
     <string name="preferences_github_link_title">Página de GitHub</string>
     <string name="preferences_github_link_summary">Abre la página de GitHub donde puede encontrar el código fuente, contribuir a la aplicación, informar problemas y compartir ideas.</string>
     <string name="preferences_facebook_community_link_title">Comunidad de Facebook</string>
     <string name="preferences_facebook_community_link_summary">Abre la página de la comunidad de Facebook donde puedes encontrar información útil, enlaces, publicar ideas y hacer preguntas.</string>
-    <string name="preferences_twitter_community_link_title">Comunidad de Twitter</string>
-    <string name="preferences_twitter_community_link_summary">Abre la página de la comunidad en Twitter donde se puede encontrar información util, ligas, postear ideas y hacer preguntas.</string>
+    <string name="preferences_twitter_community_link_title">Comunidad de X (Twitter)</string>
+    <string name="preferences_twitter_community_link_summary">Abre la página de la comunidad en X donde se puede encontrar información util, ligas, postear ideas y hacer preguntas.</string>
     <string name="preferences_translate_link_title">Traducir</string>
     <string name="preferences_translate_link_summary">Abre la herramienta online que le permite colaborar con la traducción de la aplicación</string>
     <string name="preferences_privacy_statement_link_title">Acuerdo de confidencialidad</string>
@@ -112,7 +114,7 @@
     <string name="preferences_about_collector_api_version_title">Acerca de la versión de API de Collector</string>
     <string name="preferences_about_collector_api_version_summary">Información sobre las diferencias entre las versiones API.</string>
     <string name="preferences_file_logging_level_title">Nivel de registro de archivos</string>
-    <string name="preferences_file_logging_level_summary">Define el nivel de registro de mensajes de diagnóstico en el archivo. Tenga cuidado de que el registro muy detallado puede ralentizar la aplicación y crear grandes archivos de registro. La memoria externa debe estar presente.</string>
+    <string name="preferences_file_logging_level_summary">Define el nivel de registro de mensajes de diagnóstico en el archivo. Tenga cuidado de que el registro muy detallado puede ralentizar la aplicación y crear grandes archivos de registro.</string>
     <string name="preferences_collect_neighboring_cells_title">Recolectar celdas contiguas</string>
     <string name="preferences_collect_neighboring_cells_on_summary">Las celdas vecinas seran recolectadas, si están disponibles.</string>
     <string name="preferences_collect_neighboring_cells_off_summary">Las celdas vecinas serán desechadas.</string>

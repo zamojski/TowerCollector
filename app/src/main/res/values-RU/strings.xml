@@ -48,11 +48,11 @@
     <string name="main_dialog_not_compatible_title">Проблемы совместимости</string>
     <string name="main_dialog_not_compatible_begin">Приложение может не работать потому, что:</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Не найдено оборудование для работы с мобильными сетями.\n</string>
-    <string name="main_toast_background_task_already_running_collector">Сборщик запущен.</string>
-    <string name="main_toast_background_task_already_running_uploader">Выполняется задача загрузки.</string>
-    <string name="main_toast_background_task_already_running_export">Выполняется экспорт данных.</string>
-    <string name="main_toast_background_task_already_running_unknown">Фоновая задача запущена.</string>
-    <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> Пожалуйста остановите задачу перед запуском новой.</string>
+    <string name="main_toast_background_task_already_running_collector">Коллекторское обслуживание</string>
+    <string name="main_toast_background_task_already_running_uploader">Задача загрузки</string>
+    <string name="main_toast_background_task_already_running_export">Экспортировать задачу</string>
+    <string name="main_toast_background_task_already_running_unknown">Фоновая задача</string>
+    <string name="main_toast_background_task_already_running_common">Сначала остановите \'<xliff:g id="task_name">%s</xliff:g>\'.</string>
     <string name="enabled">включено</string>
     <string name="disabled">отключено</string>
     <string name="unknown_error">Произошла неизвестная ошибка!</string>
@@ -90,6 +90,7 @@
     <string name="main_last_gps_accuracy_label">Точность:</string>
     <string name="main_last_date_time_label">Время сохранения:</string>
     <string name="main_last_cell_no_data_message">Измерений пока нет, выйдите на улицу и соберите данные!</string>
+    <string name="main_last_toast_copy_message">Значение \'<xliff:g id="property_value">%s</xliff:g>\' скопировано в буфер обмена.</string>
     <string name="main_map_my_location_button">Перейти на мою позицию</string>
     <string name="main_map_follow_me_button">Следуй моей позиции</string>
     <string name="main_map_location_enable_button">Включить мое местоположение</string>
@@ -106,6 +107,7 @@
     <string name="main_menu_help_button">Помощь</string>
     <string name="main_menu_preferences_button">Настройки</string>
     <string name="main_menu_network_type_button">Тип сети</string>
+    <string name="main_menu_donate_button">Пожертвовать</string>
     <string name="collector_notification_channel_name">Сборщик</string>
     <string name="collector_notification_title">Сбор измерений</string>
     <string name="collector_notification_stats">Сегодня собрано <xliff:g id="number_of_measurements">%1$d</xliff:g> измерений и <xliff:g id="number_of_cells">%2$d</xliff:g> GSM-сот.</string>
@@ -259,7 +261,7 @@
     <string name="main_help_last_date_time_description">Дата и время последнего сохранённого измерения.</string>
     <string name="main_help_to_upload_common_locations_title">Измерения для выгрузки</string>
     <string name="main_help_to_upload_ocid_locations_description">Количество измерений готовых к выгрузке на OpenCellID.org.</string>
-    <string name="main_help_to_upload_mls_locations_description">Количество измерений готовых к выгрузке на Mozilla Location Services.</string>
+    <string name="main_help_to_upload_mls_locations_description">Количество измерений готовых к выгрузке на BeaconDB.</string>
     <string name="collector_status_active">Сбор измерений</string>
     <string name="collector_status_inactive">Сбор измерений остановлен</string>
     <string name="status_initializing">в ожидании позиции</string>
@@ -274,7 +276,7 @@
     <string name="web_browser_missing">Пожалуйста, установите браузер, чтобы открыть страницу</string>
     <string name="uploader_all_projects_disabled">Выгрузка отключена для всех проектов</string>
     <string name="export_format_csv_ocid">CSV для OpenCellID.org</string>
-    <string name="export_format_json_mls">JSON для Mozilla Location Services</string>
+    <string name="export_format_json_mls">JSON для BeaconDB</string>
     <string name="export_format_zip">Сжимать каждый экспортируемый файл</string>
     <string name="upload_configurator_dialog_title">Настройте место выгрузки</string>
     <string name="upload_anonymously">Анонимно</string>

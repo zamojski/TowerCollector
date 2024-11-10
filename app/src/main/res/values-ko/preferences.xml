@@ -49,17 +49,17 @@
     <string name="preferences_about_opencellid_api_key_summary">액세스 토큰(API 키) 및 올바른 형식에 대한 정보입니다.</string>
     <string name="preferences_about_opencellid_project_title">OpenCellID 프로젝트 정보</string>
     <string name="preferences_about_opencellid_project_summary">OpenCellID.org 프로젝트에 대한 정보입니다.</string>
-    <string name="preferences_mls_enabled_title">MLS 업로드 활성화</string>
-    <string name="preferences_mls_enabled_on_summary">측정값은 Mozilla Location Services에 업로드됩니다.</string>
-    <string name="preferences_mls_enabled_off_summary">측정값은 Mozilla Location Services에 업로드하지 않습니다.</string>
-    <string name="preferences_custom_mls_enabled_title">맞춤형 MLS 서비스 사용</string>
-    <string name="preferences_custom_mls_enabled_on_summary">측정값은 아래 정의된 MLS 호환 서비스에 업로드됩니다.</string>
-    <string name="preferences_custom_mls_enabled_off_summary">측정값은 공식 MLS 서비스에 업로드됩니다.</string>
-    <string name="preferences_custom_mls_url_title">맞춤형 MLS 서비스 주소</string>
-    <string name="preferences_custom_mls_url_summary">다음과 같이 자신의 액세스 토큰을 포함하여 geosubmit 방법에 주소를 제공하세요. \"https://location.services.mozilla.com/v2/geosubmit?key=API_KEY\"</string>
-    <string name="preferences_custom_mls_url_invalid">입력한 맞춤 MLS 주소가 잘못되었습니다.</string>
-    <string name="preferences_about_mls_project_title">MLS에 대한 정보</string>
-    <string name="preferences_about_mls_project_summary">Mozilla Location Services에 대한 정보</string>
+    <string name="preferences_mls_enabled_title">BeaconDB 업로드 활성화</string>
+    <string name="preferences_mls_enabled_on_summary">측정값은 BeaconDB에 업로드됩니다.</string>
+    <string name="preferences_mls_enabled_off_summary">측정값은 BeaconDB에 업로드하지 않습니다.</string>
+    <string name="preferences_custom_mls_enabled_title">맞춤형 BeaconDB 서비스 사용</string>
+    <string name="preferences_custom_mls_enabled_on_summary">측정값은 아래 정의된 BeaconDB 호환 서비스에 업로드됩니다.</string>
+    <string name="preferences_custom_mls_enabled_off_summary">측정값은 공식 BeaconDB 서비스에 업로드됩니다.</string>
+    <string name="preferences_custom_mls_url_title">맞춤형 BeaconDB 서비스 주소</string>
+    <string name="preferences_custom_mls_url_summary">\"https://example.com/geosubmit?ionalParameter=value\" 와 같은 모든 필수 매개변수를 포함하여 맞춤 서버에 주소를 제공하세요.</string>
+    <string name="preferences_custom_mls_url_invalid">입력한 맞춤 BeaconDB 주소가 잘못되었습니다.</string>
+    <string name="preferences_about_mls_project_title">BeaconDB에 대한 정보</string>
+    <string name="preferences_about_mls_project_summary">BeaconDB에 대한 정보</string>
     <string name="preferences_imperial_units_title">야드/파운드법 사용</string>
     <string name="preferences_imperial_units_on_summary">야드파운드법을 사용하여 표시됩니다.</string>
     <string name="preferences_imperial_units_off_summary">미터법을 사용하여 표시됩니다.</string>
@@ -93,12 +93,14 @@
     <string name="preferences_website_link_summary">앱의 설명과 앱스토어 링크가 있는 개발자 웹사이트를 엽니다.</string>
     <string name="preferences_contact_email_link_title">개발자 문의</string>
     <string name="preferences_contact_email_link_summary">질문이나 아이디어를 개발자에게 이메일로 보냅니다.</string>
+    <string name="preferences_donate_link_title">기부</string>
+    <string name="preferences_donate_link_summary">감사 인사를 전하고 앱에 대한 지지를 보여주세요.</string>
     <string name="preferences_github_link_title">Github</string>
     <string name="preferences_github_link_summary">소스코드를 확인하고, 문제 보고, 아이디어를 보고하여 앱에 기여할 수 있는 Github 페이지를 엽니다.</string>
     <string name="preferences_facebook_community_link_title">페이스북 커뮤니티</string>
     <string name="preferences_facebook_community_link_summary">유용한 정보를 찾고 질문할 수 있는 페이스북 커뮤니티를 엽니다.</string>
-    <string name="preferences_twitter_community_link_title">트위터 커뮤니티</string>
-    <string name="preferences_twitter_community_link_summary">유용한 정보를 찾고 질문할 수 있는 트위터 커뮤니티를 엽니다.</string>
+    <string name="preferences_twitter_community_link_title">X (트위터) 커뮤니티</string>
+    <string name="preferences_twitter_community_link_summary">유용한 정보, 링크, 아이디어 게시 및 질문을 찾을 수 있는 X 커뮤니티 페이지를 엽니다.</string>
     <string name="preferences_translate_link_title">번역</string>
     <string name="preferences_translate_link_summary">앱의 번역을 할 수 있도록 웹사이트를 엽니다.</string>
     <string name="preferences_privacy_statement_link_title">개인 정보 보호 정책</string>
@@ -112,7 +114,7 @@
     <string name="preferences_about_collector_api_version_title">수집 API 버전에 대한 정보</string>
     <string name="preferences_about_collector_api_version_summary">API 버전 간의 차이점에 대한 정보입니다.</string>
     <string name="preferences_file_logging_level_title">파일 로깅 레벨</string>
-    <string name="preferences_file_logging_level_summary">앱에 대한 진단 메시지의 로깅 레벨을 설정합니다. 상세한 로깅은 앱 속도가 느려지고, 대용량의 로그 파일이 생성될 수 있습니다. 외부 메모리가 필요합니다.</string>
+    <string name="preferences_file_logging_level_summary">앱에 대한 진단 메시지의 로깅 레벨을 설정합니다. 상세한 로깅은 앱 속도가 느려지고, 대용량의 로그 파일이 생성될 수 있습니다.</string>
     <string name="preferences_collect_neighboring_cells_title">인접 기지국 수집</string>
     <string name="preferences_collect_neighboring_cells_on_summary">가능할 경우 인접 기지국 정보를 수집합니다.</string>
     <string name="preferences_collect_neighboring_cells_off_summary">인접 기지국 수집을 하지 않습니다.</string>

@@ -48,11 +48,11 @@
     <string name="main_dialog_not_compatible_title">Yhteensopivuusongelmia</string>
     <string name="main_dialog_not_compatible_begin">Sovellus ei ehkä toimi koska:\n</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Mobiiliverkkolaitteistoa ei havaittu.\n</string>
-    <string name="main_toast_background_task_already_running_collector">Collector-palvelu on käynnissä.</string>
-    <string name="main_toast_background_task_already_running_uploader">Lähetystehtävä käynnissä.</string>
-    <string name="main_toast_background_task_already_running_export">Vientitehtävä käynnissä.</string>
-    <string name="main_toast_background_task_already_running_unknown">Taustatehtävä käynnissä.</string>
-    <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> Pysäytä se ennen toisen tehtävän aloittamista.</string>
+    <string name="main_toast_background_task_already_running_collector">Keräilijäpalvelu</string>
+    <string name="main_toast_background_task_already_running_uploader">Lataajan tehtävä</string>
+    <string name="main_toast_background_task_already_running_export">Vie tehtävä</string>
+    <string name="main_toast_background_task_already_running_unknown">Taustatehtävä</string>
+    <string name="main_toast_background_task_already_running_common">Pysäytä ensin \'<xliff:g id="task_name">%s</xliff:g>\'.</string>
     <string name="enabled">käytössä</string>
     <string name="disabled">pois käytöstä</string>
     <string name="unknown_error">Tuntematon virhe tapahtui!</string>
@@ -90,6 +90,7 @@
     <string name="main_last_gps_accuracy_label">Tarkkuus:</string>
     <string name="main_last_date_time_label">Tallennusaika:</string>
     <string name="main_last_cell_no_data_message">Ei mittauksia toistaiseksi, mene ulos ja kerää tietoja!</string>
+    <string name="main_last_toast_copy_message">Arvo \'<xliff:g id="property_value">%s</xliff:g>\' kopioitiin leikepöydälle</string>
     <string name="main_map_my_location_button">Siirry sijaintiini</string>
     <string name="main_map_follow_me_button">Seuraa sijaintiani</string>
     <string name="main_map_location_enable_button">Ota sijaintini käyttöön</string>
@@ -106,6 +107,7 @@
     <string name="main_menu_help_button">Ohje</string>
     <string name="main_menu_preferences_button">Asetukset</string>
     <string name="main_menu_network_type_button">Verkon tyyppi</string>
+    <string name="main_menu_donate_button">Lahjoittaa</string>
     <string name="collector_notification_channel_name">Collector</string>
     <string name="collector_notification_title">Kerätään</string>
     <string name="collector_notification_stats">Tänään <xliff:g id="number_of_measurements">%1$d</xliff:g> mittausta <xliff:g id="number_of_cells">%2$d</xliff:g> solusta.</string>
@@ -259,7 +261,7 @@
     <string name="main_help_last_date_time_description">Päivämäärä ja kellonaika, jolloin viimeinen mittaus tallennettiin.</string>
     <string name="main_help_to_upload_common_locations_title">Lähetettävät mittaukset</string>
     <string name="main_help_to_upload_ocid_locations_description">OpenCellID.org -sivustolle lähetystä odottavien mittausten määrä.</string>
-    <string name="main_help_to_upload_mls_locations_description">Mozilla Location Services -palveluun lähetystä odottavien mittausten määrä.</string>
+    <string name="main_help_to_upload_mls_locations_description">BeaconDB-palveluun lähetystä odottavien mittausten määrä.</string>
     <string name="collector_status_active">Kerätään mittauksia</string>
     <string name="collector_status_inactive">Mittausten kerääminen pysäytetty</string>
     <string name="status_initializing">odottaa sijaintia</string>
@@ -274,7 +276,7 @@
     <string name="web_browser_missing">Asenna verkkoselain avataksesi sivun</string>
     <string name="uploader_all_projects_disabled">Lähetys kaikkiin projekteihin on poistettu käytöstä</string>
     <string name="export_format_csv_ocid">CSV OpenCellID.org -sivustolle</string>
-    <string name="export_format_json_mls">JSON Mozilla Location Services -palveluun</string>
+    <string name="export_format_json_mls">JSON BeaconDB-palveluun</string>
     <string name="export_format_zip">Pakkaa jokainen viety tiedosto</string>
     <string name="upload_configurator_dialog_title">Määritä lähetyskohde</string>
     <string name="upload_anonymously">Anonyymisti</string>

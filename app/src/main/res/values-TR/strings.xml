@@ -48,11 +48,11 @@
     <string name="main_dialog_not_compatible_title">Uyumluluk sorunları</string>
     <string name="main_dialog_not_compatible_begin">Uygulama çalışmayabilir çünkü:</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Mobil ağ donanımı algılanamadı.</string>
-    <string name="main_toast_background_task_already_running_collector">Toplama servisi çalışıyor.</string>
-    <string name="main_toast_background_task_already_running_uploader">Yükleme görevi çalışıyor.</string>
-    <string name="main_toast_background_task_already_running_export">Dışa aktarma işlemi çalışıyor.</string>
-    <string name="main_toast_background_task_already_running_unknown">Arkaplan işlemi çalışıyor.</string>
-    <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> Başka bir görev başlatmadan önce lütfen onu durdurun.</string>
+    <string name="main_toast_background_task_already_running_collector">Koleksiyoner hizmeti</string>
+    <string name="main_toast_background_task_already_running_uploader">Yükleyici görevi</string>
+    <string name="main_toast_background_task_already_running_export">Görevi dışa aktar</string>
+    <string name="main_toast_background_task_already_running_unknown">Arka plan görevi</string>
+    <string name="main_toast_background_task_already_running_common">Önce \'<xliff:g id="task_name">%s</xliff:g>\' işlemini durdurun.</string>
     <string name="enabled">Etkin</string>
     <string name="disabled">Devre dışı</string>
     <string name="unknown_error">Bilinmeyen bir hata meydana geldi!</string>
@@ -90,6 +90,7 @@
     <string name="main_last_gps_accuracy_label">Doğruluk</string>
     <string name="main_last_date_time_label">Son kayıt zamanı</string>
     <string name="main_last_cell_no_data_message">Şimdiye kadar ölçüm yok, dışarı çıkın ve biraz veri toplayın!</string>
+    <string name="main_last_toast_copy_message">Değer \'<xliff:g id="property_value">%s</xliff:g>\' panoya kopyalandı</string>
     <string name="main_map_my_location_button">Konumuma git</string>
     <string name="main_map_follow_me_button">Konumumu takip et</string>
     <string name="main_map_location_enable_button">Konumumu etkinleştir</string>
@@ -106,6 +107,7 @@
     <string name="main_menu_help_button">Yardım</string>
     <string name="main_menu_preferences_button">Seçenekler</string>
     <string name="main_menu_network_type_button">Ağ türü</string>
+    <string name="main_menu_donate_button">Bağış yapmak</string>
     <string name="collector_notification_channel_name">Toplayıcı</string>
     <string name="collector_notification_title">Toplanıyor</string>
     <string name="collector_notification_stats">Bugün <xliff:g id="number_of_cells">%2$d</xliff:g> hücreden <xliff:g id="number_of_measurements">%1$d</xliff:g> ölçüm yapıldı.</string>
@@ -259,7 +261,7 @@
     <string name="main_help_last_date_time_description">Son ölçümün kaydedildiği tarih ve saat.</string>
     <string name="main_help_to_upload_common_locations_title">Yüklenecek ölçümler</string>
     <string name="main_help_to_upload_ocid_locations_description">OpenCellID.org a yüklenmek için bekleyen ölçümlerin sayısı.</string>
-    <string name="main_help_to_upload_mls_locations_description">Mozilla konum hizmetlerine yüklenmek için bekleyen ölçümlerin sayısı</string>
+    <string name="main_help_to_upload_mls_locations_description">BeaconDB\'ye yüklenmeyi bekleyen ölçüm sayısı.</string>
     <string name="collector_status_active">Ölçümler toplanıyor</string>
     <string name="collector_status_inactive">Ölçümlerin toplanması durduruldu.</string>
     <string name="status_initializing">Konum bekleniyor</string>
@@ -274,7 +276,7 @@
     <string name="web_browser_missing">Sayfayı açmak için lütfen internet tarayıcısı yükleyin</string>
     <string name="uploader_all_projects_disabled">Tüm projelere yükleme devre dışı</string>
     <string name="export_format_csv_ocid">OpenCellID.org için CSV</string>
-    <string name="export_format_json_mls">Mozilla Konum Hizmetleri için JSON</string>
+    <string name="export_format_json_mls">BeaconDB için JSON</string>
     <string name="export_format_zip">Dışarı aktarılan her bir dosyayı sıkıştır.</string>
     <string name="upload_configurator_dialog_title">Yükleme hedefini yapılandırın</string>
     <string name="upload_anonymously">Anonim olarak</string>

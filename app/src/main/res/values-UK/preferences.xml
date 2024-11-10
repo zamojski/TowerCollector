@@ -49,17 +49,17 @@
     <string name="preferences_about_opencellid_api_key_summary">Інформація про маркер доступу (ключ API) та правильне форматування.</string>
     <string name="preferences_about_opencellid_project_title">Про проект OpenCellID</string>
     <string name="preferences_about_opencellid_project_summary">Інформація про проект OpenCellID.org.</string>
-    <string name="preferences_mls_enabled_title">Увімкнути завантаження MLS</string>
-    <string name="preferences_mls_enabled_on_summary">Вимірювання будуть завантажені на Mozilla Location Services.</string>
-    <string name="preferences_mls_enabled_off_summary">Вимірювання не будуть завантажені в Mozilla Location Services.</string>
-    <string name="preferences_custom_mls_enabled_title">Використовуйте спеціальну послугу MLS</string>
-    <string name="preferences_custom_mls_enabled_on_summary">Вимірювання буде завантажено в службу, сумісну з MLS, визначену нижче.</string>
-    <string name="preferences_custom_mls_enabled_off_summary">Вимірювання будуть завантажені в офіційний сервіс MLS.</string>
-    <string name="preferences_custom_mls_url_title">Спеціальна адреса служби MLS</string>
-    <string name="preferences_custom_mls_url_summary">Укажіть адресу методу geosubmit, включаючи ваш власний маркер доступу, наприклад: \"https://location.services.mozilla.com/v2/geosubmit?key=API_KEY\"</string>
-    <string name="preferences_custom_mls_url_invalid">Введена спеціальна адреса MLS недійсна.</string>
-    <string name="preferences_about_mls_project_title">Про MLS</string>
-    <string name="preferences_about_mls_project_summary">Інформація про послуги Mozilla Location Services.</string>
+    <string name="preferences_mls_enabled_title">Увімкнути завантаження BeaconDB</string>
+    <string name="preferences_mls_enabled_on_summary">Вимірювання будуть завантажені на BeaconDB.</string>
+    <string name="preferences_mls_enabled_off_summary">Вимірювання не будуть завантажені в BeaconDB.</string>
+    <string name="preferences_custom_mls_enabled_title">Використовуйте спеціальну послугу BeaconDB</string>
+    <string name="preferences_custom_mls_enabled_on_summary">Вимірювання буде завантажено в службу, сумісну з BeaconDB, визначену нижче.</string>
+    <string name="preferences_custom_mls_enabled_off_summary">Вимірювання будуть завантажені в офіційний сервіс BeaconDB.</string>
+    <string name="preferences_custom_mls_url_title">Спеціальна адреса служби BeaconDB</string>
+    <string name="preferences_custom_mls_url_summary">Надайте адресу спеціального сервера, включаючи всі необхідні параметри, наприклад: \"https://example.com/geosubmit?optionalParameter=value\"</string>
+    <string name="preferences_custom_mls_url_invalid">Введена спеціальна адреса BeaconDB недійсна.</string>
+    <string name="preferences_about_mls_project_title">Про BeaconDB</string>
+    <string name="preferences_about_mls_project_summary">Інформація про послуги BeaconDB.</string>
     <string name="preferences_imperial_units_title">Використовувати імперські одиниці</string>
     <string name="preferences_imperial_units_on_summary">Значення будуть представлені за допомогою імперських одиниць.</string>
     <string name="preferences_imperial_units_off_summary">Значення будуть представлені за допомогою метричної системи.</string>
@@ -93,12 +93,14 @@
     <string name="preferences_website_link_summary">Відкриває веб-сайт розробника, де містяться описи та магазини завантажень додатків.</string>
     <string name="preferences_contact_email_link_title">Зв\'язатися з розробником</string>
     <string name="preferences_contact_email_link_summary">Надсилання електронною поштою виявлені проблеми, питання та ідеї розробнику.</string>
+    <string name="preferences_donate_link_title">Пожертвуйте</string>
+    <string name="preferences_donate_link_summary">Скажіть подяку та підтримайте додаток.</string>
     <string name="preferences_github_link_title">Сторінка GitHub</string>
     <string name="preferences_github_link_summary">Відкриває сторінку GitHub, де ви можете знайти вихідний код, внести вклад у програму, повідомити про проблеми та обмінятися ідеями.</string>
     <string name="preferences_facebook_community_link_title">Спільнота Facebook</string>
     <string name="preferences_facebook_community_link_summary">Відкриває сторінку спільноти Facebook, де ви можете знайти корисну інформацію, посилання, публікувати ідеї та задавати питання.</string>
-    <string name="preferences_twitter_community_link_title">Спільнота Twitter</string>
-    <string name="preferences_twitter_community_link_summary">Відкриває сторінку спільноти Twitter, де ви можете знайти корисну інформацію, посилання, публікувати ідеї та задавати питання.</string>
+    <string name="preferences_twitter_community_link_title">Спільнота X (Twitter)</string>
+    <string name="preferences_twitter_community_link_summary">Відкриває сторінку спільноти X, де ви можете знайти корисну інформацію, посилання, публікувати ідеї та задавати питання.</string>
     <string name="preferences_translate_link_title">Перекласти</string>
     <string name="preferences_translate_link_summary">Відкриває онлайн-інструмент, який дозволяє вам співпрацювати при перекладі додатка.</string>
     <string name="preferences_privacy_statement_link_title">Заява про конфіденційність</string>
@@ -112,7 +114,7 @@
     <string name="preferences_about_collector_api_version_title">Про версії API збирача</string>
     <string name="preferences_about_collector_api_version_summary">Інформація про відмінності між версіями API.</string>
     <string name="preferences_file_logging_level_title">Рівень реєстрації файлу</string>
-    <string name="preferences_file_logging_level_summary">Визначає рівень журналювання діагностичних повідомлень до файлу. Стережіться, щоб вельми детальне ведення журналу могло сповільнити додаток та створювати великі файли журналів. Зовнішня пам\'ять повинна бути присутня.</string>
+    <string name="preferences_file_logging_level_summary">Визначає рівень журналювання діагностичних повідомлень до файлу. Стережіться, щоб вельми детальне ведення журналу могло сповільнити додаток та створювати великі файли журналів.</string>
     <string name="preferences_collect_neighboring_cells_title">Зібрати сусідні соти</string>
     <string name="preferences_collect_neighboring_cells_on_summary">Сусідні соти будуть збиратися, якщо доступно.</string>
     <string name="preferences_collect_neighboring_cells_off_summary">Сусідні соти будуть відкинуті.</string>

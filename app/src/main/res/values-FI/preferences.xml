@@ -49,17 +49,17 @@
     <string name="preferences_about_opencellid_api_key_summary">Tietoja access tokenista (API-avain) ja sen oikeasta formaatista.</string>
     <string name="preferences_about_opencellid_project_title">Tietoa OpenCellID -projektista</string>
     <string name="preferences_about_opencellid_project_summary">Tietoja OpenCellID.org -projektista.</string>
-    <string name="preferences_mls_enabled_title">Ota MLS-lähetys käyttöön</string>
-    <string name="preferences_mls_enabled_on_summary">Mittaukset lähetetään Mozilla Location Services -palveluun.</string>
-    <string name="preferences_mls_enabled_off_summary">Mittauksia ei lähetetä Mozilla Location Services -palveluun.</string>
-    <string name="preferences_custom_mls_enabled_title">Käytä mukautettua MLS-palvelua</string>
-    <string name="preferences_custom_mls_enabled_on_summary">Mittaukset ladataan alla määriteltyyn MLS-yhteensopivaan palveluun.</string>
-    <string name="preferences_custom_mls_enabled_off_summary">Mittaukset ladataan viralliseen MLS-palveluun.</string>
-    <string name="preferences_custom_mls_url_title">Mukautettu MLS-palveluosoite</string>
-    <string name="preferences_custom_mls_url_summary">Anna geolähetysmenetelmän osoite, mukaan lukien oma käyttöoikeustunnus, kuten: \"https://location.services.mozilla.com/v2/geosubmit?key=API_KEY\"</string>
-    <string name="preferences_custom_mls_url_invalid">Annettu mukautettu MLS-osoite on virheellinen.</string>
-    <string name="preferences_about_mls_project_title">Tietoa MLS:stä</string>
-    <string name="preferences_about_mls_project_summary">Tietoja Mozilla Location Services -palvelusta.</string>
+    <string name="preferences_mls_enabled_title">Ota BeaconDB-lähetys käyttöön</string>
+    <string name="preferences_mls_enabled_on_summary">Mittaukset lähetetään BeaconDB-palveluun.</string>
+    <string name="preferences_mls_enabled_off_summary">Mittauksia ei lähetetä BeaconDB-palveluun.</string>
+    <string name="preferences_custom_mls_enabled_title">Käytä mukautettua BeaconDB-palvelua</string>
+    <string name="preferences_custom_mls_enabled_on_summary">Mittaukset ladataan alla määriteltyyn BeaconDB-yhteensopivaan palveluun.</string>
+    <string name="preferences_custom_mls_enabled_off_summary">Mittaukset ladataan viralliseen BeaconDB-palveluun.</string>
+    <string name="preferences_custom_mls_url_title">Mukautettu BeaconDB-palveluosoite</string>
+    <string name="preferences_custom_mls_url_summary">Anna muokatun palvelimen osoite ja kaikki vaaditut parametrit, kuten \"https://example.com/geosubmit?optionalParameter=value\"</string>
+    <string name="preferences_custom_mls_url_invalid">Annettu mukautettu BeaconDB-osoite on virheellinen.</string>
+    <string name="preferences_about_mls_project_title">Tietoja BeaconDB:stä</string>
+    <string name="preferences_about_mls_project_summary">Tietoja BeaconDB-palvelusta.</string>
     <string name="preferences_imperial_units_title">Käytä brittiläisiä yksiköitä</string>
     <string name="preferences_imperial_units_on_summary">Arvot esitetään brittiläisissä yksiköissä.</string>
     <string name="preferences_imperial_units_off_summary">Arvot esitetään metrijärjestelmässä.</string>
@@ -93,12 +93,14 @@
     <string name="preferences_website_link_summary">Avaa kehittäjän verkkosivuston, joka sisältää kuvauksen ja sovelluskauppojen latauslinkit.</string>
     <string name="preferences_contact_email_link_title">Ota yhteyttä kehittäjään</string>
     <string name="preferences_contact_email_link_summary">Lähetä sähköpostia, jossa kerrot ongelmistasi, kysymyksistäsi ja ideoistasi kehittäjälle.</string>
+    <string name="preferences_donate_link_title">Lahjoittaa</string>
+    <string name="preferences_donate_link_summary">Sano kiitos ja osoita tukesi sovellukselle.</string>
     <string name="preferences_github_link_title">GitHub -sivu</string>
     <string name="preferences_github_link_summary">Avaa GitHub -sivun, josta voit löytää sovelluksen lähdekoodin, osallistua sen kehittämiseen, raportoida siinä esiintyvistä ongelmista ja jakaa ideoita sen parantamiseksi.</string>
     <string name="preferences_facebook_community_link_title">Facebook-yhteisö</string>
     <string name="preferences_facebook_community_link_summary">Avaa Facebook-yhteisösivun, josta voit löytää hyödyllistä tietoa, linkkejä, lähettää ideoita ja esittää kysymyksiä.</string>
-    <string name="preferences_twitter_community_link_title">Twitter-yhteisö</string>
-    <string name="preferences_twitter_community_link_summary">Avaa Twitter-yhteisösivun, josta voit löytää hyödyllistä tietoa, linkkejä, lähettää ideoita ja esittää kysymyksiä.</string>
+    <string name="preferences_twitter_community_link_title">X (Twitter)-yhteisö</string>
+    <string name="preferences_twitter_community_link_summary">Avaa X-yhteisösivun, josta voit löytää hyödyllistä tietoa, linkkejä, lähettää ideoita ja esittää kysymyksiä.</string>
     <string name="preferences_translate_link_title">Kääntäminen</string>
     <string name="preferences_translate_link_summary">Avaa verkkotyökalun, jonka avulla voit tehdä yhteistyötä sovelluksen kääntämisessä.</string>
     <string name="preferences_privacy_statement_link_title">Tietosuojaseloste</string>
@@ -112,7 +114,7 @@
     <string name="preferences_about_collector_api_version_title">Tietoja Collector API -versiosta</string>
     <string name="preferences_about_collector_api_version_summary">Tietoa API-versioiden välisistä eroista.</string>
     <string name="preferences_file_logging_level_title">Tiedoston lokitustaso</string>
-    <string name="preferences_file_logging_level_summary">Määrittää tiedostoon lähetettävien diagnoosiviestien kirjaustason. Varo, että erittäin yksityiskohtainen lokitus voi hidastaa sovellusta ja luoda suuria lokitiedostoja. Ulkoisen muistin on oltava saatavilla.</string>
+    <string name="preferences_file_logging_level_summary">Määrittää tiedostoon lähetettävien diagnoosiviestien kirjaustason. Varo, että erittäin yksityiskohtainen lokitus voi hidastaa sovellusta ja luoda suuria lokitiedostoja.</string>
     <string name="preferences_collect_neighboring_cells_title">Kerää viereiset solut</string>
     <string name="preferences_collect_neighboring_cells_on_summary">Viereiset solut kerätään, jos niitä on saatavilla.</string>
     <string name="preferences_collect_neighboring_cells_off_summary">Viereiset solut hylätään</string>

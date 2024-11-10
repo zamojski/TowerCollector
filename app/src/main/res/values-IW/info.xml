@@ -5,7 +5,7 @@
 <resources>
     <string name="info_about_api_key_title">אסימון גישה (מפתח API)</string>
     <string name="info_about_opencellid_project_title">מיזם OpenCellID</string>
-    <string name="info_about_mls_project_title">מיזם שירותי המיקום של Mozilla</string>
+    <string name="info_about_mls_project_title">פרויקט BeaconDB</string>
     <string name="info_usage_statistics_title">סטטיסטיקת שימוש</string>
     <string name="info_about_application_title">על אודות</string>
     <string name="info_introduction_title">היכרות</string>

@@ -5,7 +5,7 @@
 <resources>
     <string name="info_about_api_key_title">Token de acceso (clave API)</string>
     <string name="info_about_opencellid_project_title">Proyecto OpenCellID</string>
-    <string name="info_about_mls_project_title">El proyecto Mozilla Location Services</string>
+    <string name="info_about_mls_project_title">El proyecto BeaconDB</string>
     <string name="info_usage_statistics_title">Estadísticas de uso</string>
     <string name="info_about_application_title">Acerca de</string>
     <string name="info_introduction_title">Introducción</string>

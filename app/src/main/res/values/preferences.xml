@@ -56,7 +56,7 @@
     <string name="preferences_custom_mls_enabled_on_summary">Measurements will be uploaded to BeaconDB-compatible service defined below.</string>
     <string name="preferences_custom_mls_enabled_off_summary">Measurements will uploaded to official BeaconDB service.</string>
     <string name="preferences_custom_mls_url_title">Custom BeaconDB service address</string>
-    <string name="preferences_custom_mls_url_summary">Provide the address to custom server including all required parameters, like: "https://example.com/geosubmit?optionalParameter=value"</string>
+    <string name="preferences_custom_mls_url_summary">Provide the address to custom server including all required parameters, like: \"https://example.com/geosubmit?optionalParameter=value\"</string>
     <string name="preferences_custom_mls_url_invalid">Entered custom BeaconDB address is invalid.</string>
     <string name="preferences_about_mls_project_title">About BeaconDB</string>
     <string name="preferences_about_mls_project_summary">Information about BeaconDB.</string>

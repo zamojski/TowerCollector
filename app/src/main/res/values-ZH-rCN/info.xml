@@ -5,7 +5,7 @@
 <resources>
     <string name="info_about_api_key_title">访问令牌（API密钥）</string>
     <string name="info_about_opencellid_project_title">OpenCellID项目</string>
-    <string name="info_about_mls_project_title">Mozilla位置服务项目</string>
+    <string name="info_about_mls_project_title">BeaconDB 项目</string>
     <string name="info_usage_statistics_title">使用统计</string>
     <string name="info_about_application_title">关于</string>
     <string name="info_introduction_title">介绍</string>

@@ -48,11 +48,11 @@
     <string name="main_dialog_not_compatible_title">兼容性问题</string>
     <string name="main_dialog_not_compatible_begin">此应用可能无法运行，因为：\n</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; 未检测到移动网络硬件。\n</string>
-    <string name="main_toast_background_task_already_running_collector">收集服务运行中。</string>
-    <string name="main_toast_background_task_already_running_uploader">上传任务正在运行。</string>
-    <string name="main_toast_background_task_already_running_export">导出任务运行中。</string>
-    <string name="main_toast_background_task_already_running_unknown">后台任务运行中。</string>
-    <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> 请先停止，再开始一项新任务</string>
+    <string name="main_toast_background_task_already_running_collector">收藏服务</string>
+    <string name="main_toast_background_task_already_running_uploader">上传者任务</string>
+    <string name="main_toast_background_task_already_running_export">导出任务</string>
+    <string name="main_toast_background_task_already_running_unknown">后台任务</string>
+    <string name="main_toast_background_task_already_running_common">首先停止\'<xliff:g id="task_name">%s</xliff:g>\'。</string>
     <string name="enabled">已启用</string>
     <string name="disabled">已禁用</string>
     <string name="unknown_error">发生未知错误！</string>
@@ -90,6 +90,7 @@
     <string name="main_last_gps_accuracy_label">准确度：</string>
     <string name="main_last_date_time_label">保存时间：</string>
     <string name="main_last_cell_no_data_message">到目前为止没有测量，出去收集一些数据！</string>
+    <string name="main_last_toast_copy_message">值\'<xliff:g id="property_value">%s</xliff:g>\'已复制到剪贴板</string>
     <string name="main_map_my_location_button">移到我的位置</string>
     <string name="main_map_follow_me_button">跟随我的位置</string>
     <string name="main_map_location_enable_button">启用我的位置</string>
@@ -106,6 +107,7 @@
     <string name="main_menu_help_button">帮助</string>
     <string name="main_menu_preferences_button">配置</string>
     <string name="main_menu_network_type_button">网络类型</string>
+    <string name="main_menu_donate_button">捐</string>
     <string name="collector_notification_channel_name">收集器</string>
     <string name="collector_notification_title">收集中</string>
     <string name="collector_notification_stats">今天 <xliff:g id="number_of_cells">%2$d</xliff:g> 个基站 的 <xliff:g id="number_of_measurements">%1$d</xliff:g> 份测量数据。</string>
@@ -259,7 +261,7 @@
     <string name="main_help_last_date_time_description">上次保存测量的日期和时间。</string>
     <string name="main_help_to_upload_common_locations_title">要上传的测量数据</string>
     <string name="main_help_to_upload_ocid_locations_description">等待上传到OpenCellID.org的测量数量。</string>
-    <string name="main_help_to_upload_mls_locations_description">等待上传到Mozilla位置服务的测量数量。</string>
+    <string name="main_help_to_upload_mls_locations_description">等待上传到 BeaconDB 的测量数量。</string>
     <string name="collector_status_active">正在收集测量</string>
     <string name="collector_status_inactive">测量收集已停止</string>
     <string name="status_initializing">等待位置</string>
@@ -274,7 +276,7 @@
     <string name="web_browser_missing">请安装网页浏览器打开网页</string>
     <string name="uploader_all_projects_disabled">已禁用上传到所有项目</string>
     <string name="export_format_csv_ocid">适用于OpenCellID.org的CSV格式</string>
-    <string name="export_format_json_mls">适用于Mozilla位置服务的JSON格式</string>
+    <string name="export_format_json_mls">BeaconDB 的 JSON</string>
     <string name="export_format_zip">压缩每个导出的文件</string>
     <string name="upload_configurator_dialog_title">配置上传目标</string>
     <string name="upload_anonymously">匿名</string>

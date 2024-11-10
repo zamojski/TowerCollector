@@ -49,17 +49,17 @@
     <string name="preferences_about_opencellid_api_key_summary">Informazioni sul token di accesso (chiave API) e sulla corretta formattazione.</string>
     <string name="preferences_about_opencellid_project_title">Info sul progetto OpenCellID</string>
     <string name="preferences_about_opencellid_project_summary">Informazioni sul progetto OpenCellID.org</string>
-    <string name="preferences_mls_enabled_title">Abilita il caricamento su MLS</string>
-    <string name="preferences_mls_enabled_on_summary">Le misurazioni saranno caricate su Mozilla Location Services.</string>
-    <string name="preferences_mls_enabled_off_summary">Le misurazioni non saranno caricate su Mozilla Location Services.</string>
-    <string name="preferences_custom_mls_enabled_title">Utilizza il servizio MLS personalizzato</string>
-    <string name="preferences_custom_mls_enabled_on_summary">Le misurazioni verranno caricate sul servizio compatibile con MLS definito di seguito.</string>
-    <string name="preferences_custom_mls_enabled_off_summary">Le misurazioni verranno caricate sul servizio ufficiale MLS.</string>
-    <string name="preferences_custom_mls_url_title">Indirizzo del servizio MLS personalizzato</string>
-    <string name="preferences_custom_mls_url_summary">Fornisci l\'indirizzo al metodo geosubmit incluso il tuo token di accesso, ad esempio: \"https://location.services.mozilla.com/v2/geosubmit?key=API_KEY\"</string>
-    <string name="preferences_custom_mls_url_invalid">L\'indirizzo MLS personalizzato inserito non è valido.</string>
-    <string name="preferences_about_mls_project_title">Info su MLS</string>
-    <string name="preferences_about_mls_project_summary">Informazioni su Mozilla Location Services.</string>
+    <string name="preferences_mls_enabled_title">Abilita il caricamento su BeaconDB</string>
+    <string name="preferences_mls_enabled_on_summary">Le misurazioni saranno caricate su BeaconDB.</string>
+    <string name="preferences_mls_enabled_off_summary">Le misurazioni non saranno caricate su BeaconDB.</string>
+    <string name="preferences_custom_mls_enabled_title">Utilizza il servizio BeaconDB personalizzato</string>
+    <string name="preferences_custom_mls_enabled_on_summary">Le misurazioni verranno caricate sul servizio compatibile con BeaconDB definito di seguito.</string>
+    <string name="preferences_custom_mls_enabled_off_summary">Le misurazioni verranno caricate sul servizio ufficiale BeaconDB.</string>
+    <string name="preferences_custom_mls_url_title">Indirizzo del servizio BeaconDB personalizzato</string>
+    <string name="preferences_custom_mls_url_summary">Fornisci l\'indirizzo al server personalizzato inclusi tutti i parametri richiesti, come: \"https://example.com/geosubmit?OptionalParameter=value\"</string>
+    <string name="preferences_custom_mls_url_invalid">L\'indirizzo BeaconDB personalizzato inserito non è valido.</string>
+    <string name="preferences_about_mls_project_title">Info su BeaconDB</string>
+    <string name="preferences_about_mls_project_summary">Informazioni su BeaconDB.</string>
     <string name="preferences_imperial_units_title">Usa unità imperiali</string>
     <string name="preferences_imperial_units_on_summary">I valori saranno visualizzati usando le unità imperiali.</string>
     <string name="preferences_imperial_units_off_summary">I valori saranno visualizzati usando il sistema metrico.</string>
@@ -93,12 +93,14 @@
     <string name="preferences_website_link_summary">Apre il sito Web dello sviluppatore contenente la descrizione ed i link per il download dagli app store.</string>
     <string name="preferences_contact_email_link_title">Contatta lo sviluppatore</string>
     <string name="preferences_contact_email_link_summary">Invia un\'email con i tuoi problemi, domande e idee allo sviluppatore.</string>
+    <string name="preferences_donate_link_title">Donare</string>
+    <string name="preferences_donate_link_summary">Ringrazia e mostra il tuo supporto per l\'app.</string>
     <string name="preferences_github_link_title">Pagina GitHub</string>
     <string name="preferences_github_link_summary">Apre la pagina GitHub dove puoi trovare il codice sorgente, contribuire all\'app, segnalare problemi e condividere idee.</string>
     <string name="preferences_facebook_community_link_title">Comunità di Facebook</string>
     <string name="preferences_facebook_community_link_summary">Apre la pagina della Community di Facebook dove puoi trovare informazioni utili, link, postare idee e porre domande.</string>
-    <string name="preferences_twitter_community_link_title">Comunità di Twitter</string>
-    <string name="preferences_twitter_community_link_summary">Apre la pagina della Community di Twitter dove puoi trovare informazioni utili, link, postare idee e porre domande.</string>
+    <string name="preferences_twitter_community_link_title">Comunità di X (Twitter)</string>
+    <string name="preferences_twitter_community_link_summary">Apre la pagina della Community di X dove puoi trovare informazioni utili, link, postare idee e porre domande.</string>
     <string name="preferences_translate_link_title">Traduci</string>
     <string name="preferences_translate_link_summary">Apre lo strumento online che ti consente di collaborare alla traduzione dell\'app.</string>
     <string name="preferences_privacy_statement_link_title">Informativa sulla Privacy</string>
@@ -112,7 +114,7 @@
     <string name="preferences_about_collector_api_version_title">Info sulla versione API del servizio di raccolta</string>
     <string name="preferences_about_collector_api_version_summary">Informazioni sulle differenze tra le versioni dell\'API.</string>
     <string name="preferences_file_logging_level_title">Livello dei file di registrazione</string>
-    <string name="preferences_file_logging_level_summary">Definisce il livello di registrazione dei messaggi diagnostici nel file. Fai attenzione che la registrazione altamente dettagliata potrebbe rallentare l\'app e creare file di registro di grandi dimensioni. La memoria esterna deve essere presente.</string>
+    <string name="preferences_file_logging_level_summary">Definisce il livello di registrazione dei messaggi diagnostici nel file. Fai attenzione che la registrazione altamente dettagliata potrebbe rallentare l\'app e creare file di registro di grandi dimensioni.</string>
     <string name="preferences_collect_neighboring_cells_title">Raccogliere celle adiacenti</string>
     <string name="preferences_collect_neighboring_cells_on_summary">Le celle adiacenti verranno raccolte se disponibili.</string>
     <string name="preferences_collect_neighboring_cells_off_summary">Le celle adiacenti verranno scartate.</string>

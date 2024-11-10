@@ -5,7 +5,7 @@
 <resources>
     <string name="info_about_api_key_title">Access token (API-avain)</string>
     <string name="info_about_opencellid_project_title">OpenCellID -projekti</string>
-    <string name="info_about_mls_project_title">Mozilla Location Services -projekti</string>
+    <string name="info_about_mls_project_title">BeaconDB-projekti</string>
     <string name="info_usage_statistics_title">Käyttötilastot</string>
     <string name="info_about_application_title">Tietoja</string>
     <string name="info_introduction_title">Esittely</string>

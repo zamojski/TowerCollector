@@ -48,11 +48,11 @@
     <string name="main_dialog_not_compatible_title">Kompatibilitätsprobleme</string>
     <string name="main_dialog_not_compatible_begin">Diese App funktioniert eventuell nicht weil:</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Keine Mobilfunkhardware gefunden wurde.</string>
-    <string name="main_toast_background_task_already_running_collector">Datenerfassung läuft.</string>
-    <string name="main_toast_background_task_already_running_uploader">Upload der Messungen läuft.</string>
-    <string name="main_toast_background_task_already_running_export">Export der gesammelten Messungen läuft.</string>
-    <string name="main_toast_background_task_already_running_unknown">Hintergrundtask läuft.</string>
-    <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> Bitte stoppen bevor Sie einen anderen Task starten.</string>
+    <string name="main_toast_background_task_already_running_collector">Sammlerservice</string>
+    <string name="main_toast_background_task_already_running_uploader">Uploader-Aufgabe</string>
+    <string name="main_toast_background_task_already_running_export">Aufgabe exportieren</string>
+    <string name="main_toast_background_task_already_running_unknown">Hintergrundaufgabe</string>
+    <string name="main_toast_background_task_already_running_common">Stoppen Sie zuerst \'<xliff:g id="task_name">%s</xliff:g>\'.</string>
     <string name="enabled">aktiviert</string>
     <string name="disabled">deaktiviert</string>
     <string name="unknown_error">Unbekannter Fehler aufgetreten!</string>
@@ -90,6 +90,7 @@
     <string name="main_last_gps_accuracy_label">Genauigkeit:</string>
     <string name="main_last_date_time_label">Erfasst:</string>
     <string name="main_last_cell_no_data_message">Noch keine Messungen, gehen Sie los und sammeln ein paar!</string>
+    <string name="main_last_toast_copy_message">Wert \'<xliff:g id="property_value">%s</xliff:g>\' in die Zwischenablage kopiert</string>
     <string name="main_map_my_location_button">Zu meinem Standort springen</string>
     <string name="main_map_follow_me_button">Meinem Standort folgen</string>
     <string name="main_map_location_enable_button">Meine Position verwenden</string>
@@ -106,6 +107,7 @@
     <string name="main_menu_help_button">Hilfe</string>
     <string name="main_menu_preferences_button">Einstellungen</string>
     <string name="main_menu_network_type_button">Netzwerktyp</string>
+    <string name="main_menu_donate_button">Spenden</string>
     <string name="collector_notification_channel_name">Erfassung</string>
     <string name="collector_notification_title">Erfassen</string>
     <string name="collector_notification_stats"><xliff:g id="number_of_measurements">%1$d</xliff:g> Messungen von <xliff:g id="number_of_cells">%2$d</xliff:g> Zellen heute.</string>
@@ -259,7 +261,7 @@
     <string name="main_help_last_date_time_description">Zeitpunkt der letzten abgespeicherten Messung.</string>
     <string name="main_help_to_upload_common_locations_title">Messungen noch hochzuladen</string>
     <string name="main_help_to_upload_ocid_locations_description">Anzahl Messungen die noch zu OpenCellID.org hochgeladen werden müssen.</string>
-    <string name="main_help_to_upload_mls_locations_description">Anzahl Messungen die noch zu Mozilla Location Services hochgeladen werden müssen.</string>
+    <string name="main_help_to_upload_mls_locations_description">Anzahl Messungen die noch zu BeaconDB hochgeladen werden müssen.</string>
     <string name="collector_status_active">Sammle Messungen</string>
     <string name="collector_status_inactive">Erfassung ist gestoppt</string>
     <string name="status_initializing">warte auf Koordinaten</string>
@@ -274,7 +276,7 @@
     <string name="web_browser_missing">Bitte installieren Sie einen Web Browser um die Seite zu öffnen</string>
     <string name="uploader_all_projects_disabled">Upload zu allen Projekten deaktiviert</string>
     <string name="export_format_csv_ocid">CSV für OpenCellID.org</string>
-    <string name="export_format_json_mls">JSON für den Mozilla Location Service</string>
+    <string name="export_format_json_mls">JSON für den BeaconDB</string>
     <string name="export_format_zip">Exportierte Dateien komprimieren</string>
     <string name="upload_configurator_dialog_title">Upload-Ziel konfigurieren</string>
     <string name="upload_anonymously">anonym</string>

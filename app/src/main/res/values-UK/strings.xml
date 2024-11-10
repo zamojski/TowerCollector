@@ -48,11 +48,11 @@
     <string name="main_dialog_not_compatible_title">Проблеми сумісності</string>
     <string name="main_dialog_not_compatible_begin">Додаток може не працювати, оскільки:</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Мобільна мережеве обладнання не виявлено.</string>
-    <string name="main_toast_background_task_already_running_collector">Служба збору інформації працює.</string>
-    <string name="main_toast_background_task_already_running_uploader">Виконується завантаження.</string>
-    <string name="main_toast_background_task_already_running_export">Виконується експорт.</string>
-    <string name="main_toast_background_task_already_running_unknown">Фоновий процес запущено.</string>
-    <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> Будь ласка, зупиніть це, перш ніж розпочати нове завдання.</string>
+    <string name="main_toast_background_task_already_running_collector">Колекторська служба</string>
+    <string name="main_toast_background_task_already_running_uploader">Завдання завантажувача</string>
+    <string name="main_toast_background_task_already_running_export">Експортне завдання</string>
+    <string name="main_toast_background_task_already_running_unknown">Фонове завдання</string>
+    <string name="main_toast_background_task_already_running_common">Спочатку зупиніть \"<xliff:g id="task_name">%s</xliff:g>\".</string>
     <string name="enabled">включений</string>
     <string name="disabled">вимкнено</string>
     <string name="unknown_error">Сталася невідома помилка!</string>
@@ -90,6 +90,7 @@
     <string name="main_last_gps_accuracy_label">Точність:</string>
     <string name="main_last_date_time_label">Зекономлений час:</string>
     <string name="main_last_cell_no_data_message">Поки що вимірювань немає, виходьте на вулицю та збирайте деякі дані!</string>
+    <string name="main_last_toast_copy_message">Значення \'<xliff:g id="property_value">%s</xliff:g>\' скопійовано в буфер обміну</string>
     <string name="main_map_my_location_button">Переїхати до мого місцезнаходження</string>
     <string name="main_map_follow_me_button">Слідкуйте за моїм місцезнаходженням</string>
     <string name="main_map_location_enable_button">Увімкнути моє місцезнаходження</string>
@@ -106,6 +107,7 @@
     <string name="main_menu_help_button">Допомога</string>
     <string name="main_menu_preferences_button">Вподобання</string>
     <string name="main_menu_network_type_button">Тип мережі</string>
+    <string name="main_menu_donate_button">Пожертвуйте</string>
     <string name="collector_notification_channel_name">Збирач</string>
     <string name="collector_notification_title">Збір</string>
     <string name="collector_notification_stats">Сьогодні <xliff:g id="number_of_measurements">%1$d</xliff:g> виміряно <xliff:g id="number_of_cells">%2$d</xliff:g> сот.</string>
@@ -259,7 +261,7 @@
     <string name="main_help_last_date_time_description">Дата та час, коли було збережено останнє вимірювання.</string>
     <string name="main_help_to_upload_common_locations_title">Вимірювання для завантаження</string>
     <string name="main_help_to_upload_ocid_locations_description">Кількість вимірювань, що очікують завантаження на OpenCellID.org.</string>
-    <string name="main_help_to_upload_mls_locations_description">Кількість вимірювань, що очікують завантаження на Mozilla Location Services.</string>
+    <string name="main_help_to_upload_mls_locations_description">Кількість вимірювань, що очікують завантаження на BeaconDB.</string>
     <string name="collector_status_active">Збір вимірювань</string>
     <string name="collector_status_inactive">Збір вимірювань припинено</string>
     <string name="status_initializing">чекаючи позиції</string>
@@ -274,7 +276,7 @@
     <string name="web_browser_missing">Будь ласка, встановіть веб-браузер, щоб відкрити сторінку</string>
     <string name="uploader_all_projects_disabled">Завантаження до всіх проектів відключено</string>
     <string name="export_format_csv_ocid">CSV для OpenCellID.org</string>
-    <string name="export_format_json_mls">JSON для Mozilla Location Services</string>
+    <string name="export_format_json_mls">JSON для BeaconDB</string>
     <string name="export_format_zip">Стисніть кожен експортований файл</string>
     <string name="upload_configurator_dialog_title">Налаштувати завантаження цілі</string>
     <string name="upload_anonymously">Анонімно</string>

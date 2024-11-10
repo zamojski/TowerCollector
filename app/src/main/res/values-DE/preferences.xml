@@ -49,17 +49,17 @@
     <string name="preferences_about_opencellid_api_key_summary">Informationen über das Zugriffstoken und das korrekte Format.</string>
     <string name="preferences_about_opencellid_project_title">Über das OpenCellID-Projekt</string>
     <string name="preferences_about_opencellid_project_summary">Informationen über das OpenCellID.org Projekt.</string>
-    <string name="preferences_mls_enabled_title">MLS-Upload aktivieren</string>
-    <string name="preferences_mls_enabled_on_summary">Messungen werden zu den Mozilla Location Services hochgeladen.</string>
-    <string name="preferences_mls_enabled_off_summary">Messungen werden nicht zu den Mozilla Location Services hochgeladen.</string>
-    <string name="preferences_custom_mls_enabled_title">Verwenden Sie einen benutzerdefinierten MLS-Dienst</string>
-    <string name="preferences_custom_mls_enabled_on_summary">Die Messungen werden auf den unten definierten MLS-kompatiblen Dienst hochgeladen.</string>
-    <string name="preferences_custom_mls_enabled_off_summary">Die Messungen werden zum offiziellen MLS-Dienst hochgeladen.</string>
-    <string name="preferences_custom_mls_url_title">Benutzerdefinierte MLS-Dienstadresse</string>
-    <string name="preferences_custom_mls_url_summary">Geben Sie der Geosubmit-Methode die Adresse einschließlich Ihres eigenen Zugriffstokens an, z. B.: \"https://location.services.mozilla.com/v2/geosubmit?key=API_KEY\"</string>
-    <string name="preferences_custom_mls_url_invalid">Die eingegebene benutzerdefinierte MLS-Adresse ist ungültig.</string>
-    <string name="preferences_about_mls_project_title">Über MLS</string>
-    <string name="preferences_about_mls_project_summary">Informationen über die Mozilla Location Services.</string>
+    <string name="preferences_mls_enabled_title">BeaconDB-Upload aktivieren</string>
+    <string name="preferences_mls_enabled_on_summary">Messungen werden zu den BeaconDB hochgeladen.</string>
+    <string name="preferences_mls_enabled_off_summary">Messungen werden nicht zu den BeaconDB hochgeladen.</string>
+    <string name="preferences_custom_mls_enabled_title">Verwenden Sie einen benutzerdefinierten BeaconDB-Dienst</string>
+    <string name="preferences_custom_mls_enabled_on_summary">Die Messungen werden auf den unten definierten BeaconDB-kompatiblen Dienst hochgeladen.</string>
+    <string name="preferences_custom_mls_enabled_off_summary">Die Messungen werden zum offiziellen BeaconDB-Dienst hochgeladen.</string>
+    <string name="preferences_custom_mls_url_title">Benutzerdefinierte BeaconDB-Dienstadresse</string>
+    <string name="preferences_custom_mls_url_summary">Geben Sie dem benutzerdefinierten Server die Adresse einschließlich aller erforderlichen Parameter an, z. B.: \"https://example.com/geosubmit?optionalParameter=value\"</string>
+    <string name="preferences_custom_mls_url_invalid">Die eingegebene benutzerdefinierte BeaconDB-Adresse ist ungültig.</string>
+    <string name="preferences_about_mls_project_title">Über BeaconDB</string>
+    <string name="preferences_about_mls_project_summary">Informationen über die BeaconDB.</string>
     <string name="preferences_imperial_units_title">Englische Einheiten verwenden</string>
     <string name="preferences_imperial_units_on_summary">Werte werden in imperialen Einheiten dargestellt.</string>
     <string name="preferences_imperial_units_off_summary">Werte werden mit metrischen Einheiten dargestellt.</string>
@@ -93,12 +93,14 @@
     <string name="preferences_website_link_summary">Öffnet die Webseite des Entwicklers mit der Beschreibung und Download-Links zu den verschiedenen App-Stores.</string>
     <string name="preferences_contact_email_link_title">Entwickler kontaktieren</string>
     <string name="preferences_contact_email_link_summary">Sendet eine E-Mail mit Ihren Problemen, Fragen und Ideen an den Entwickler.</string>
+    <string name="preferences_donate_link_title">Spenden</string>
+    <string name="preferences_donate_link_summary">Sagen Sie Danke und zeigen Sie Ihre Unterstützung für die App.</string>
     <string name="preferences_github_link_title">GitHub-Seite</string>
     <string name="preferences_github_link_summary">Öffnet GitHub, wo Sie den Source Code finden, zur Entwicklung beitragen, Probleme melden und Ideen mitteilen können.</string>
     <string name="preferences_facebook_community_link_title">Facebook Community</string>
     <string name="preferences_facebook_community_link_summary">Öffnet die Facebook Community Seite auf der man nützliche Informationen und Links finden, Ideen vorschlagen oder Fragen stellen kann.</string>
-    <string name="preferences_twitter_community_link_title">Twitter Community</string>
-    <string name="preferences_twitter_community_link_summary">Öffnet die Twitter Community Seite, auf der Sie nützliche Informationen und Links finden, Ideen posten und Fragen stellen können.</string>
+    <string name="preferences_twitter_community_link_title">X (Twitter) Community</string>
+    <string name="preferences_twitter_community_link_summary">Öffnet die X Community Seite, auf der Sie nützliche Informationen und Links finden, Ideen posten und Fragen stellen können.</string>
     <string name="preferences_translate_link_title">Übersetzen</string>
     <string name="preferences_translate_link_summary">Öffnet Webseite auf der Sie bei der Übersetzung von Tower Collector mithelfen können.</string>
     <string name="preferences_privacy_statement_link_title">Datenschutzerklärung</string>
@@ -112,7 +114,7 @@
     <string name="preferences_about_collector_api_version_title">Über API-Version für Erfassung</string>
     <string name="preferences_about_collector_api_version_summary">Informationen über die Unterschiede der einzelnen API-Versionen.</string>
     <string name="preferences_file_logging_level_title">Datei Log-Level</string>
-    <string name="preferences_file_logging_level_summary">Definiert das Log-Level für Logfiles. Beachten Sie dass ein detailliertes Logging die App verlangsamen und große Logfiles verursachen kann. Externer Speicher wird benötigt.</string>
+    <string name="preferences_file_logging_level_summary">Definiert das Log-Level für Logfiles. Beachten Sie dass ein detailliertes Logging die App verlangsamen und große Logfiles verursachen kann.</string>
     <string name="preferences_collect_neighboring_cells_title">Benachbarte Zellen erfassen</string>
     <string name="preferences_collect_neighboring_cells_on_summary">Benachbarte Zellen werden erfasst wenn verfügbar.</string>
     <string name="preferences_collect_neighboring_cells_off_summary">Benachbarte Zellen werden ignoriert.</string>

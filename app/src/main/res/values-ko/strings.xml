@@ -48,11 +48,11 @@
     <string name="main_dialog_not_compatible_title">호환성 문제</string>
     <string name="main_dialog_not_compatible_begin">다음과 같은 이유로 앱이 동작하지 않을 수 있습니다.\n</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; 셀롤러 모듈이 없습니다.\n</string>
-    <string name="main_toast_background_task_already_running_collector">수집 서비스가 동작중입니다.</string>
-    <string name="main_toast_background_task_already_running_uploader">업로드가 진행 중입니다.</string>
-    <string name="main_toast_background_task_already_running_export">내보내기가 작업이 진행중입니다.</string>
-    <string name="main_toast_background_task_already_running_unknown">백그라운드 작업이 진행중입니다.</string>
-    <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> 다른 작업을 시작하기 전에 수집을 중단해야합니다.</string>
+    <string name="main_toast_background_task_already_running_collector">콜렉터 서비스</string>
+    <string name="main_toast_background_task_already_running_uploader">업로더 작업</string>
+    <string name="main_toast_background_task_already_running_export">작업 내보내기</string>
+    <string name="main_toast_background_task_already_running_unknown">백그라운드 작업</string>
+    <string name="main_toast_background_task_already_running_common">먼저 \'<xliff:g id="task_name">%s</xliff:g>\'을(를) 중지하세요.</string>
     <string name="enabled">활성화</string>
     <string name="disabled">비활성화</string>
     <string name="unknown_error">알수 없는 오류가 발생했습니다.</string>
@@ -90,6 +90,7 @@
     <string name="main_last_gps_accuracy_label">정확도:</string>
     <string name="main_last_date_time_label">수집 시간:</string>
     <string name="main_last_cell_no_data_message">수집된 데이터가 없습니다. 밖으로 나가서 데이터를 수집하세요!</string>
+    <string name="main_last_toast_copy_message">값 \'<xliff:g id="property_value">%s</xliff:g>\'이(가) 클립보드에 복사되었습니다</string>
     <string name="main_map_my_location_button">현재위치로 이동</string>
     <string name="main_map_follow_me_button">내위치 팔로우</string>
     <string name="main_map_location_enable_button">내 위치 활성화</string>
@@ -106,6 +107,7 @@
     <string name="main_menu_help_button">도움말</string>
     <string name="main_menu_preferences_button">설정</string>
     <string name="main_menu_network_type_button">Network type</string>
+    <string name="main_menu_donate_button">기부</string>
     <string name="collector_notification_channel_name">수집</string>
     <string name="collector_notification_title">수집중</string>
     <string name="collector_notification_stats">오늘 <xliff:g id="number_of_cells">%2$d</xliff:g>개의 기지국에서 <xliff:g id="number_of_measurements">%1$d</xliff:g>번 측정을 했습니다.</string>
@@ -259,7 +261,7 @@
     <string name="main_help_last_date_time_description">마지막으로 측정한 데이터를 저장한 날짜 및 시간입니다.</string>
     <string name="main_help_to_upload_common_locations_title">측정값 업로드</string>
     <string name="main_help_to_upload_ocid_locations_description">OpenCellID.org에 업로드 한 데이터 수 입니다.</string>
-    <string name="main_help_to_upload_mls_locations_description">Mozilla Location Services에 업로드 한 데이터 수 입니다.</string>
+    <string name="main_help_to_upload_mls_locations_description">BeaconDB에 업로드 한 데이터 수 입니다.</string>
     <string name="collector_status_active">데이터 수집</string>
     <string name="collector_status_inactive">수집이 중단되었습니다.</string>
     <string name="status_initializing">현재 위치를 찾는중입니다.</string>
@@ -274,7 +276,7 @@
     <string name="web_browser_missing">웹페이지를 열 수 있도록 웹브라우저를 설치해주세요.</string>
     <string name="uploader_all_projects_disabled">모든 프로젝트에 업로드가 비활성화 되었습니다.</string>
     <string name="export_format_csv_ocid">OpenCellID.org용 CSV</string>
-    <string name="export_format_json_mls">Mozilla Location Services용 JSON</string>
+    <string name="export_format_json_mls">BeaconDB용 JSON</string>
     <string name="export_format_zip">각각의 파일 압축</string>
     <string name="upload_configurator_dialog_title">업로드 대상 설정</string>
     <string name="upload_anonymously">익명으로</string>

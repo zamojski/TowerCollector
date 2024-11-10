@@ -49,17 +49,17 @@
     <string name="preferences_about_opencellid_api_key_summary">מידע על אסימון גישה (מפתח ה־API) ועל מבנה תקין.</string>
     <string name="preferences_about_opencellid_project_title">מידע על מיזם OpenCellID</string>
     <string name="preferences_about_opencellid_project_summary">פרטים על מיזם OpenCellID.org.</string>
-    <string name="preferences_mls_enabled_title">הפעלת העלאה ל־MLS</string>
-    <string name="preferences_mls_enabled_on_summary">המדידות יועלו לשירותי המיקום של Mozilla.</string>
-    <string name="preferences_mls_enabled_off_summary">המדידות לא יועלו לשירותי המיקום של Mozilla.</string>
-    <string name="preferences_custom_mls_enabled_title">השתמש בשירות MLS מותאם אישית</string>
-    <string name="preferences_custom_mls_enabled_on_summary">המדידות יועלו לשירות תואם MLS המוגדר להלן.</string>
-    <string name="preferences_custom_mls_enabled_off_summary">המדידות יועלו לשירות MLS הרשמי.</string>
-    <string name="preferences_custom_mls_url_title">כתובת שירות MLS מותאמת אישית</string>
-    <string name="preferences_custom_mls_url_summary">ספק את הכתובת לשיטת הגשה גיאוגרפית כולל אסימון גישה משלך, כמו: \"https://location.services.mozilla.com/v2/geosubmit?key=API_KEY\"</string>
-    <string name="preferences_custom_mls_url_invalid">כתובת MLS מותאמת אישית שהוזנה אינה חוקית.</string>
-    <string name="preferences_about_mls_project_title">מידע על MLS</string>
-    <string name="preferences_about_mls_project_summary">פירוט על שירותי המיקום של Mozilla.</string>
+    <string name="preferences_mls_enabled_title">הפעלת העלאה ל־BeaconDB</string>
+    <string name="preferences_mls_enabled_on_summary">מידות יועלו ל-BeaconDB.</string>
+    <string name="preferences_mls_enabled_off_summary">מידות לא יועלו ל-BeaconDB.</string>
+    <string name="preferences_custom_mls_enabled_title">השתמש בשירות BeaconDB מותאם אישית</string>
+    <string name="preferences_custom_mls_enabled_on_summary">המדידות יועלו לשירות תואם BeaconDB המוגדר להלן.</string>
+    <string name="preferences_custom_mls_enabled_off_summary">המדידות יועלו לשירות BeaconDB הרשמי.</string>
+    <string name="preferences_custom_mls_url_title">כתובת שירות BeaconDB מותאמת אישית</string>
+    <string name="preferences_custom_mls_url_summary">ספק את הכתובת לשרת המותאם אישית כולל כל הפרמטרים הנדרשים, כגון: \"https://example.com/geosubmit?optionalParameter=value\"</string>
+    <string name="preferences_custom_mls_url_invalid">כתובת BeaconDB מותאמת אישית שהוזנה אינה חוקית.</string>
+    <string name="preferences_about_mls_project_title">על BeaconDB</string>
+    <string name="preferences_about_mls_project_summary">מידע על BeaconDB.</string>
     <string name="preferences_imperial_units_title">להשתמש ביחידות אימפריאליות</string>
     <string name="preferences_imperial_units_on_summary">הערכים ייוצגו באמצעות יחידות אימפריאליות.</string>
     <string name="preferences_imperial_units_off_summary">הערכים ייוצגו באמצעות יחידות מטריות.</string>
@@ -93,12 +93,14 @@
     <string name="preferences_website_link_summary">פותח את אתר המפתח שמכיל תיאור וקישורים להורדה מחנויות היישומונים.</string>
     <string name="preferences_contact_email_link_title">יצירת קשר עם המפתח</string>
     <string name="preferences_contact_email_link_summary">מאפשר שליחת דוא״ל עם התקלות, השאלות והרעיונות שלך למפתח.</string>
+    <string name="preferences_donate_link_title">לִתְרוֹם</string>
+    <string name="preferences_donate_link_summary">אמור תודה והראה את תמיכתך באפליקציה.</string>
     <string name="preferences_github_link_title">עמוד ב־GitHub</string>
     <string name="preferences_github_link_summary">פתיחת העמוד ב־GitHub בו ניתן למצוא את קוד המקור, לתרום ליישומון, לדווח על תקלות ולשתף רעיונות.</string>
     <string name="preferences_facebook_community_link_title">קהילת פייסבוק</string>
     <string name="preferences_facebook_community_link_summary">עמוד הקהילה בפייסבוק ייפתח, ניתן למצוא בו מידע שימוש, קישורים, לפרסם רעיונות ולשאול שאלות.</string>
-    <string name="preferences_twitter_community_link_title">קהילת טוויטר</string>
-    <string name="preferences_twitter_community_link_summary">עמוד הקהילה בטוויטר ייפתח, ניתן למצוא בו מידע שימוש, קישורים, לפרסם רעיונות ולשאול שאלות.</string>
+    <string name="preferences_twitter_community_link_title">קהילת X (טוויטר).</string>
+    <string name="preferences_twitter_community_link_summary">פותח דף קהילה X שבו אתה יכול למצוא מידע שימושי, קישורים, לפרסם רעיונות ולשאול שאלות.</string>
     <string name="preferences_translate_link_title">תרגום</string>
     <string name="preferences_translate_link_summary">כלי התרגום המקוון ייפתח, כלי זה מאפשר לך לשתף פעולה בתרגום היישומון.</string>
     <string name="preferences_privacy_statement_link_title">הצהרת פרטיות</string>
@@ -112,7 +114,7 @@
     <string name="preferences_about_collector_api_version_title">על גרסת ה־API של מנגנון האיסוף.</string>
     <string name="preferences_about_collector_api_version_summary">מידע על ההבדלים בין גרסות ה־API.</string>
     <string name="preferences_file_logging_level_title">רמת פירוט ביומן</string>
-    <string name="preferences_file_logging_level_summary">מציג את רמת התיעוד של ההודעות שמאפשרות לנתח תקלות שיופנו לקובץ. יש להיזהר מכך שתיעוד מוגזם עשוי להאט את היישומון וליצור קובצי יומן גדולים. חייב להיות זיכרון חיצוני.</string>
+    <string name="preferences_file_logging_level_summary">מציג את רמת התיעוד של ההודעות שמאפשרות לנתח תקלות שיופנו לקובץ. יש להיזהר מכך שתיעוד מוגזם עשוי להאט את היישומון וליצור קובצי יומן גדולים.</string>
     <string name="preferences_collect_neighboring_cells_title">איסוף תאים סמוכים</string>
     <string name="preferences_collect_neighboring_cells_on_summary">תאים סמוכים ייאספו אם ניתן.</string>
     <string name="preferences_collect_neighboring_cells_off_summary">תאים סמוכים יזכו להתעלמות.</string>

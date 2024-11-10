@@ -48,11 +48,11 @@
     <string name="main_dialog_not_compatible_title">Problemas de compatibilidad</string>
     <string name="main_dialog_not_compatible_begin">La aplicación puede no funcionar por:</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Hardware de red móvil no detectado.</string>
-    <string name="main_toast_background_task_already_running_collector">El servicio Collector está ejecutándose</string>
-    <string name="main_toast_background_task_already_running_uploader">El Uploader está ejecutándose.</string>
-    <string name="main_toast_background_task_already_running_export">La Exportación está encendida.</string>
-    <string name="main_toast_background_task_already_running_unknown">Tarea en segundo plano encendida.</string>
-    <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> Por favor deténgala antes de iniciar otra tarea.</string>
+    <string name="main_toast_background_task_already_running_collector">Servicio de coleccionista</string>
+    <string name="main_toast_background_task_already_running_uploader">Tarea de carga</string>
+    <string name="main_toast_background_task_already_running_export">Exportar tarea</string>
+    <string name="main_toast_background_task_already_running_unknown">Tarea en segundo plano</string>
+    <string name="main_toast_background_task_already_running_common">Detenga \'<xliff:g id="task_name">%s</xliff:g>\' primero.</string>
     <string name="enabled">habilitado</string>
     <string name="disabled">deshabilitado</string>
     <string name="unknown_error">Ocurrió un error desconocido</string>
@@ -90,6 +90,7 @@
     <string name="main_last_gps_accuracy_label">Precisión:</string>
     <string name="main_last_date_time_label">Hora de guardado:</string>
     <string name="main_last_cell_no_data_message">No hay mediciones hasta ahora, ¡salga y recopila algunos datos!</string>
+    <string name="main_last_toast_copy_message">Valor \'<xliff:g id="property_value">%s</xliff:g>\' copiado al portapapeles</string>
     <string name="main_map_my_location_button">Mover a mi ubicación</string>
     <string name="main_map_follow_me_button">Sigue mi ubicación</string>
     <string name="main_map_location_enable_button">Habilitar mi ubicación</string>
@@ -106,6 +107,7 @@
     <string name="main_menu_help_button">Ayuda</string>
     <string name="main_menu_preferences_button">Preferencias</string>
     <string name="main_menu_network_type_button">Tipo de red</string>
+    <string name="main_menu_donate_button">Donar</string>
     <string name="collector_notification_channel_name">Recolectando</string>
     <string name="collector_notification_title">Recabando info</string>
     <string name="collector_notification_stats">Hoy se obtuvieron <xliff:g id="number_of_measurements">%1$d</xliff:g> mediciones de <xliff:g id="number_of_cells">%2$d</xliff:g> celdas.</string>
@@ -259,7 +261,7 @@
     <string name="main_help_last_date_time_description">Fecha y hora de la ultima medición guardada.</string>
     <string name="main_help_to_upload_common_locations_title">Mediciones para cargar</string>
     <string name="main_help_to_upload_ocid_locations_description">Número de mediciones en espera de subida a OpenCellID.org.</string>
-    <string name="main_help_to_upload_mls_locations_description">Número de mediciones en espera de subida a Mozilla Location Services.</string>
+    <string name="main_help_to_upload_mls_locations_description">Número de mediciones en espera de subida a BeaconDB.</string>
     <string name="collector_status_active">Recogiendo medidas</string>
     <string name="collector_status_inactive">El colector de medidas está parado</string>
     <string name="status_initializing">esperando la ubicación</string>
@@ -274,7 +276,7 @@
     <string name="web_browser_missing">Por favor instale un navegador web para abrir la página</string>
     <string name="uploader_all_projects_disabled">Cargar a todos los proyectos está deshabilitado</string>
     <string name="export_format_csv_ocid">CSV para OpenCellID.org</string>
-    <string name="export_format_json_mls">JSON para Mozilla Location Services</string>
+    <string name="export_format_json_mls">JSON para BeaconDB</string>
     <string name="export_format_zip">Comprime cada archivo exportado</string>
     <string name="upload_configurator_dialog_title">Configurar destino de carga</string>
     <string name="upload_anonymously">Anónimamente</string>

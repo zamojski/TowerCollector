@@ -48,11 +48,11 @@
     <string name="main_dialog_not_compatible_title">Kompatibilitási problémák</string>
     <string name="main_dialog_not_compatible_begin">Lehet, hogy az alkalmazás nem fog működni, mert:\n</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Nem található mobil hálózati eszköz.\n</string>
-    <string name="main_toast_background_task_already_running_collector">Adatgyűjtés folyamatban.</string>
-    <string name="main_toast_background_task_already_running_uploader">Feltöltés folyamatban.</string>
-    <string name="main_toast_background_task_already_running_export">Exportálás folyamatban.</string>
-    <string name="main_toast_background_task_already_running_unknown">A háttérfolyamat fut.</string>
-    <string name="main_toast_background_task_already_running_common"><xliff:g id="task_name">%s</xliff:g> Állítsd le, mielőtt egy újabb feladatot indítasz.</string>
+    <string name="main_toast_background_task_already_running_collector">Gyűjtői szolgáltatás</string>
+    <string name="main_toast_background_task_already_running_uploader">Feltöltő feladat</string>
+    <string name="main_toast_background_task_already_running_export">Exportálási feladat</string>
+    <string name="main_toast_background_task_already_running_unknown">Háttérfeladat</string>
+    <string name="main_toast_background_task_already_running_common">Először állítsa le a következőt: \'<xliff:g id="task_name">%s</xliff:g>\'.</string>
     <string name="enabled">engedélyezve</string>
     <string name="disabled">letiltva</string>
     <string name="unknown_error">Ismeretlen hiba történt!</string>
@@ -90,6 +90,7 @@
     <string name="main_last_gps_accuracy_label">Pontosság:</string>
     <string name="main_last_date_time_label">Mentés ideje:</string>
     <string name="main_last_cell_no_data_message">Eddig nincs mérés, menj ki és gyűjts néhány adatot!</string>
+    <string name="main_last_toast_copy_message">A \'<xliff:g id="property_value">%s</xliff:g>\' érték a vágólapra másolva</string>
     <string name="main_map_my_location_button">Ugrás a saját helyzethez</string>
     <string name="main_map_follow_me_button">Saját helyzet követése</string>
     <string name="main_map_location_enable_button">Helymeghatározás engedélyezése</string>
@@ -106,6 +107,7 @@
     <string name="main_menu_help_button">Súgó</string>
     <string name="main_menu_preferences_button">Beállítások</string>
     <string name="main_menu_network_type_button">Hálózattípus</string>
+    <string name="main_menu_donate_button">Adományoz</string>
     <string name="collector_notification_channel_name">Adatgyűjtő</string>
     <string name="collector_notification_title">Adatgyűjtés</string>
     <string name="collector_notification_stats">Ma <xliff:g id="number_of_measurements">%1$d</xliff:g> méréssel <xliff:g id="number_of_cells">%2$d</xliff:g> cellát gyűjtöttél.</string>
@@ -259,7 +261,7 @@
     <string name="main_help_last_date_time_description">Dátum és idő, amikor az utolsó mérés mentve lett.</string>
     <string name="main_help_to_upload_common_locations_title">Feltöltendő mérések</string>
     <string name="main_help_to_upload_ocid_locations_description">Az OpenCellID.org-ra feltöltésre váró mérések száma.</string>
-    <string name="main_help_to_upload_mls_locations_description">A Mozilla Location Servicesre feltöltésre váró mérések száma.</string>
+    <string name="main_help_to_upload_mls_locations_description">A BeaconDB-be való feltöltésre váró mérések száma.</string>
     <string name="collector_status_active">A mérések összegyűjtése</string>
     <string name="collector_status_inactive">A mérések gyűjtése leállt</string>
     <string name="status_initializing">várakozás a pozícióra</string>
@@ -274,7 +276,7 @@
     <string name="web_browser_missing">Telepíts egy webböngészőt az oldal megnyitásához</string>
     <string name="uploader_all_projects_disabled">A feltöltés az összes projekt esetén le van tiltva</string>
     <string name="export_format_csv_ocid">CSV az OpenCellID.org-hoz</string>
-    <string name="export_format_json_mls">JSON a Mozilla Location Services-hez</string>
+    <string name="export_format_json_mls">JSON a BeaconDB-hez</string>
     <string name="export_format_zip">Tömörítse az összes exportált fájlt</string>
     <string name="upload_configurator_dialog_title">Feltöltési cél beállítása</string>
     <string name="upload_anonymously">Névtelenül</string>

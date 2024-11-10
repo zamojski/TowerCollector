@@ -7,15 +7,13 @@
 <p><strong>Jeżeli nie zgadzasz się z tą polityką prywatności, nie instaluj lub odinstaluj aplikację. Trwałe usunięcie aplikacji z urządzenia mobilnego jest równoważne zaprzestaniu korzystania z aplikacji.</strong></p>
 
 <h3>Główne funkcje</h3>
-<p>Główną funkcjonalność aplikacji stanowi zbieranie identyfikatorów przekaźników sieci komórkowej, siły sygnału oraz lokalizacji urządzenia (współrzędnych). Te informacje są przechowywane lokalnie na twoim urządzeniu i nigdy nie zostaną przesłane bez twojej wyraźnej zgody i akcji. Zebrane dane mogą zostać wyeksportowane do plików przechowywanych w pamięci urządzenia lub udostępnione projektom OpenCellId.org oraz Mozilla Location Services. Aby zapewnić prywatność, aplikacja NIE korzysta z serwerów proxy (pośredniczących), które mogłyby uzyskać dostęp do danych w trakcie transmisji. Wszystkie połączenia z aplikacji do zewnętrznych usług korzystają z szyfrowanego protokołu HTTPS.</p>
+<p>The main functionality of the application is to collect cell tower identifiers, signal strength and the device location (coordinates). This information is stored locally on your device and will never be transmitted without your explicit consent and action. The collected data can be exported to the file persisted on your device or shared to OpenCellID.org and BeaconDB projects. To ensure the privacy is protected, the application does NOT use any proxy server that could access your data in transit. All the traffic to external services is encrypted using HTTPS protocol.</p>
 
-<p><strong>Przesyłanie do OpenCellID.org</strong> wymaga wprowadzenia osobistego klucza dostępu (klucza API) w ustawieniach aplikacji. Klucz będzie używany do przesłania próbek do bazy danych projektu i nigdy nie zostanie wykorzystany w innym celu. Ktokolwiek zna klucz dostępu posiada pełną kontrolę nad przesłanymi danymi, włączając w to przeglądanie i kasowanie. Twoim obowiązkiem jest ochrona poufności Twojego klucza dostępu!</p>
-
-<p><strong>Przesyłanie do MLS</strong> korzysta ze współdzielonego klucza API, który nie umożliwia przeglądania przesłanych próbek.</p>
+<p><strong>Contribution to the OpenCellID.org</strong> project requires a personal Access Token (API Key) that needs to be entered in the application preferences. The key will only be used to upload the measurements to the project database and will never leave the device in any other scenario. Anybody who knows the Access Token has full control over the uploaded data, including browsing and deleting. It's your responsibility to protect the confidentiality of your Access Token!</p>
 
 <ul>
 <li><a href="https://community.opencellid.org/privacy">Polityka prywatności OpenCellID.org</a></li>
-<li><a href="https://location.services.mozilla.com/privacy">Polityka prywatności Mozilla Location Services</a></li>
+<li><a href="https://beacondb.net/privacy/">The BeaconDB privacy notice</a></li>
 </ul>
 
 <p>Większość funkcji aplikacji wymaga <strong>dostępu do lokalizacji urządzenia podczas działania</strong>, jednakże, aby automatycznie uruchomić zbieranie próbek przy uruchamianiu urządzenia, konieczne jest przyznanie <strong>dostępu do lokalizacji urządzenia w tle</strong>. Dostęp do lokalizacji w tle jest wymagany, ponieważ w tym przypadku zbieranie jest uruchamiane przez system (w tle), a nie przez ciebie (na pierwszym planie).</p>

@@ -7,15 +7,13 @@
 <p><strong>Jos et hyväksy tätä tietosuojakäytäntöä, älä asenna tai poista sovellus. Sovelluksen pysyvä poistaminen mobiililaitteesta vastaa sovelluksen käytön lopettamista.</strong></p>
 
 <h3>Päätoiminnot</h3>
-<p>Sovelluksen päätoiminto on kerätä matkapuhelinmastojen tunnistetiedot, signaalin voimakkuus ja laitteen sijainti (koordinaatit). Nämä tiedot tallennetaan paikallisesti laitteeseesi, eikä niitä koskaan lähetetä ilman nimenomaista suostumustasi ja toimiasi. Kerätyt tiedot voidaan viedä laitteeseen tallennettuun tiedostoon tai jakaa OpenCellID.org- ja Mozilla Location Services (MLS) -projekteihin. Yksityisyyden suojan varmistamiseksi sovellus EI käytä välityspalvelinta, joka voisi päästä käsiksi tietoihin siirron aikana. Kaikki liikenne ulkoisiin palveluihin salataan HTTPS-protokollan avulla.</p>
+<p>The main functionality of the application is to collect cell tower identifiers, signal strength and the device location (coordinates). This information is stored locally on your device and will never be transmitted without your explicit consent and action. The collected data can be exported to the file persisted on your device or shared to OpenCellID.org and BeaconDB projects. To ensure the privacy is protected, the application does NOT use any proxy server that could access your data in transit. All the traffic to external services is encrypted using HTTPS protocol.</p>
 
-<p><strong>Osallistuminen OpenCellID.org</strong> -projektiin edellyttää henkilökohtaista Access Tokenia (API-avainta), joka on syötettävä sovelluksen asetuksiin. Avainta käytetään vain mittausten lähettämiseen projektin tietokantaan, eikä se koskaan poistu laitteesta missään muussa tilanteessa. Kuka tahansa, joka tietää Access Tokenin, voi täysin hallita lähetettyjä tietoja, myös selata ja poistaa niitä. On sinun vastuullasi suojata Access Tokenin luottamuksellisuus!</p>
-
-<p><strong>MLS-projektiin osallistuminen</strong> käyttää jaettua API-avainta, joka ei tarjoa mahdollisuutta selata lähetettyjä mittaustietoja.</p>
+<p><strong>Contribution to the OpenCellID.org</strong> project requires a personal Access Token (API Key) that needs to be entered in the application preferences. The key will only be used to upload the measurements to the project database and will never leave the device in any other scenario. Anybody who knows the Access Token has full control over the uploaded data, including browsing and deleting. It's your responsibility to protect the confidentiality of your Access Token!</p>
 
 <ul>
 <li><a href="https://community.opencellid.org/privacy">OpenCellID.orgin tietosuojakäytäntö</a></li>
-<li><a href="https://location.services.mozilla.com/privacy">Mozilla Location Services tietosuojakäytäntö</a></li>
+<li><a href="https://beacondb.net/privacy/">The BeaconDB privacy notice</a></li>
 </ul>
 
 <p>Useimmat sovelluksen ominaisuudet edellyttävät <strong>etualalla sijaintilupaa</strong>, mutta mittausten keräämisen aloittamiseksi laitteen käynnistyksen yhteydessä on myönnettävä <strong>taustasijaintilupa</strong>. Taustapaikannusoikeus tarvitaan, koska tässä skenaariossa keräyksen aloittaa järjestelmä (taustalla), et sinä (etualalla).</p>

@@ -49,17 +49,17 @@
     <string name="preferences_about_opencellid_api_key_summary">Informacje o kluczu dostępu (kluczu API) i jego prawidłowym formatowaniu.</string>
     <string name="preferences_about_opencellid_project_title">O projekcie OpenCellID</string>
     <string name="preferences_about_opencellid_project_summary">Informacje o projekcie OpenCellID.org</string>
-    <string name="preferences_mls_enabled_title">Włącz przesyłanie do MLS</string>
-    <string name="preferences_mls_enabled_on_summary">Próbki zostaną przesłane do Mozilla Location Services.</string>
-    <string name="preferences_mls_enabled_off_summary">Próbki zostaną nie przesłane do Mozilla Location Services.</string>
-    <string name="preferences_custom_mls_enabled_title">Używaj własnego serwisu MLS</string>
-    <string name="preferences_custom_mls_enabled_on_summary">Próbki zostaną przesłane do serwisu MLS zdefiniowanego poniżej.</string>
-    <string name="preferences_custom_mls_enabled_off_summary">Próbki zostaną przesłane do oficjalnego serwisu MLS.</string>
-    <string name="preferences_custom_mls_url_title">Adres własnego serwisu MLS</string>
-    <string name="preferences_custom_mls_url_summary">Wprowadź adres metody geosubmit włącznie z kluczem dostępu, np: \"https://location.services.mozilla.com/v2/geosubmit?key=API_KEY\"</string>
-    <string name="preferences_custom_mls_url_invalid">Wprowadzony własny adres MLS jest nieprawidłowy.</string>
-    <string name="preferences_about_mls_project_title">O MLS</string>
-    <string name="preferences_about_mls_project_summary">Informacje o Mozilla Location Services.</string>
+    <string name="preferences_mls_enabled_title">Włącz przesyłanie do BeaconDB</string>
+    <string name="preferences_mls_enabled_on_summary">Próbki zostaną przesłane do BeaconDB.</string>
+    <string name="preferences_mls_enabled_off_summary">Próbki zostaną nie przesłane do BeaconDB.</string>
+    <string name="preferences_custom_mls_enabled_title">Używaj własnego serwisu BeaconDB</string>
+    <string name="preferences_custom_mls_enabled_on_summary">Próbki zostaną przesłane do serwisu kompatybilnego z BeaconDB zdefiniowanego poniżej.</string>
+    <string name="preferences_custom_mls_enabled_off_summary">Próbki zostaną przesłane do oficjalnego serwisu BeaconDB.</string>
+    <string name="preferences_custom_mls_url_title">Adres własnego serwisu BeaconDB</string>
+    <string name="preferences_custom_mls_url_summary">Wprowadź adres metody geosubmit włącznie z kluczem dostępu, np: \"https://example.com/geosubmit?optionalParameter=value\"</string>
+    <string name="preferences_custom_mls_url_invalid">Wprowadzony własny adres BeaconDB jest nieprawidłowy.</string>
+    <string name="preferences_about_mls_project_title">O BeaconDB</string>
+    <string name="preferences_about_mls_project_summary">Informacje o BeaconDB.</string>
     <string name="preferences_imperial_units_title">Użyj jednostek imperialnych</string>
     <string name="preferences_imperial_units_on_summary">Wartości będą wyświetlane z użyciem jednostek imperialnych.</string>
     <string name="preferences_imperial_units_off_summary">Wartości będą wyświetlane z użyciem jednostek systemu metrycznego.</string>
@@ -93,12 +93,14 @@
     <string name="preferences_website_link_summary">Otwiera stronę twórcy aplikacji zawierającą opis i linki do sklepów pozwalających na pobranie.</string>
     <string name="preferences_contact_email_link_title">Skontaktuj się z twórcą</string>
     <string name="preferences_contact_email_link_summary">Wysyła email z twoimi problemami, pytaniami i pomysłami to autora aplikacji.</string>
+    <string name="preferences_donate_link_title">Przekaż datek</string>
+    <string name="preferences_donate_link_summary">Podziękuj i okaż wsparcie dla aplikacji.</string>
     <string name="preferences_github_link_title">Strona GitHub</string>
     <string name="preferences_github_link_summary">Otwiera stronę GitHub, na której możesz znaleźć kod źródłowy aplikacji, pomóc w jej rozwoju, zgłaszać błędy i dzielić się pomysłami.</string>
     <string name="preferences_facebook_community_link_title">Społeczność Facebook</string>
     <string name="preferences_facebook_community_link_summary">Otwiera stronę społeczności Facebook, na której możesz znaleźć przydatne informacje, linki, przesyłać pomysły i zadawać pytania.</string>
-    <string name="preferences_twitter_community_link_title">Społeczność Twittera</string>
-    <string name="preferences_twitter_community_link_summary">Otwiera stronę społeczności Twittera, na której możesz znaleźć przydatne informacje, linki, przesyłać pomysły i zadawać pytania.</string>
+    <string name="preferences_twitter_community_link_title">Społeczność X (Twittera)</string>
+    <string name="preferences_twitter_community_link_summary">Otwiera stronę społeczności X, na której możesz znaleźć przydatne informacje, linki, przesyłać pomysły i zadawać pytania.</string>
     <string name="preferences_translate_link_title">Przetłumacz</string>
     <string name="preferences_translate_link_summary">Otwiera narzędzie online, które pozwala na współpracę w tłumaczeniu aplikacji.</string>
     <string name="preferences_privacy_statement_link_title">Oświadczenie o prywatności</string>
@@ -112,7 +114,7 @@
     <string name="preferences_about_collector_api_version_title">O wersji API Zbierania</string>
     <string name="preferences_about_collector_api_version_summary">Informacje o różnicach pomiędzy wersjami API.</string>
     <string name="preferences_file_logging_level_title">Poziom logowania do pliku</string>
-    <string name="preferences_file_logging_level_summary">Określa poziom logowania komunikatów diagnostycznych do pliku. Uwaga, ustawienie wysokiego poziomu szczegółowości logowania może spowolnić aplikację i utworzyć duże pliki logów. Zewnętrzna pamięć musi być dostępna.</string>
+    <string name="preferences_file_logging_level_summary">Określa poziom logowania komunikatów diagnostycznych do pliku. Uwaga, ustawienie wysokiego poziomu szczegółowości logowania może spowolnić aplikację i utworzyć duże pliki logów.</string>
     <string name="preferences_collect_neighboring_cells_title">Zbieraj sąsiednie przekaźniki</string>
     <string name="preferences_collect_neighboring_cells_on_summary">Sąsiednie przekaźniki będą zbierane, jeżeli będą dostępne.</string>
     <string name="preferences_collect_neighboring_cells_off_summary">Sąsiednie przekaźniki będą pomijane.</string>

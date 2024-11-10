@@ -5,7 +5,7 @@
 <resources>
     <string name="info_about_api_key_title">Hozzáférési token (API-kulcs)</string>
     <string name="info_about_opencellid_project_title">OpenCellID projekt</string>
-    <string name="info_about_mls_project_title">Mozilla Location Services projekt</string>
+    <string name="info_about_mls_project_title">BeaconDB projekt</string>
     <string name="info_usage_statistics_title">Használati statisztika</string>
     <string name="info_about_application_title">Névjegy</string>
     <string name="info_introduction_title">Bevezető</string>

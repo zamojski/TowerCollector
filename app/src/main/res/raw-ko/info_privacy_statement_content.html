@@ -7,15 +7,13 @@
 <p><strong>만약 개인 정보 보호 정책에 동의하지 않는 경우 앱을 설치하지 말고 삭제하십시오. 장치에서 앱을 영구적으로 제거하는 것은 해당 앱의 사용을 종료하는 것과 같습니다.</strong></p>
 
 <h3>주요 기능</h3>
-<p>앱의 주요 기능은 기지국 식별자, 신호 강도 및 위치(GPS 좌표)를 수집하는 것입니다. 이 정보는  귀하의 장치에 저장되며 귀하의 명시적인 동의 및 조치 없이는 절대 전송하지 않습니다. 수집한 데이터는 장치 내에 파일로 내보내거나 OpenCellID.org 또는 Mozilla Location Service(MLS) 프로젝트에 공유할 수 있습니다. 개인 정보를 보호하기 위해 앱은 전송 중인 데이터에 액세스 할 수 있는 프록시 서버를 사용하지 않습니다. 외부에 접속하는 모든 트래픽은 HTTPS 프로토콜을 사용하여 암호화됩니다.</p>
+<p>The main functionality of the application is to collect cell tower identifiers, signal strength and the device location (coordinates). This information is stored locally on your device and will never be transmitted without your explicit consent and action. The collected data can be exported to the file persisted on your device or shared to OpenCellID.org and BeaconDB projects. To ensure the privacy is protected, the application does NOT use any proxy server that could access your data in transit. All the traffic to external services is encrypted using HTTPS protocol.</p>
 
-<p><strong>OpenCellID.org</strong> 프로젝트에 기여하려면 앱 설정에서 개인 액세스 토큰(API Key)가 필요합니다. 키는 프로젝트에 측정 값을 업로드하는 데만 사용되며 장치 외부로 전송하지 않습니다. 액세스 토큰을 알고 있는 사람은 검색 및 삭제를 포함하여 업로드된 데이터를 완전히 제어할 수 있습니다. 액세스 토큰의 보호하는 것은 귀하의 책임입니다.</p>
-
-<p><strong>MLS</strong> 기여 프로젝트는 업로드된 측정값을 탐색하는 기능을 제공하지 않는 공유 API Key를 이용합니다.</p>
+<p><strong>Contribution to the OpenCellID.org</strong> project requires a personal Access Token (API Key) that needs to be entered in the application preferences. The key will only be used to upload the measurements to the project database and will never leave the device in any other scenario. Anybody who knows the Access Token has full control over the uploaded data, including browsing and deleting. It's your responsibility to protect the confidentiality of your Access Token!</p>
 
 <ul>
 <li><a href="https://community.opencellid.org/privacy">OpenCellID.org 개인 정보 보호 정책</a></li>
-<li><a href="https://location.services.mozilla.com/privacy">Mozilla Location Services 개인 정보 보호 정책</a></li>
+<li><a href="https://beacondb.net/privacy/">The BeaconDB privacy notice</a></li>
 </ul>
 
 <p>앱의 대부분의 기능에는 <strong>포그라운드 위치 권한</strong>이 필요하지만 기기 시작 시 데이터 수집 기능을 이용하려면 <strong>백그라운드 위치 권한</strong>이 필요합니다. 이 시나리오에서 데이터 수집은 사용자(포그라운드)가 아니라 시스템(백그라운드)에서 시작되기 때문에 백그라운드 위치 권한이 필요합니다.</p>
