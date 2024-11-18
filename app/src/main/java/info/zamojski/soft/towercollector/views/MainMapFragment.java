@@ -122,8 +122,8 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         boolean themeChanged = reloadTheme();
         if (themeChanged) {
             reloadMapTheme();
-            reloadMarkers(true);
         }
+        reloadMarkers(true);
         registerNetworkCallback();
         if (mainMapView != null) {
             mainMapView.onResume();
@@ -453,11 +453,12 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(MeasurementSavedEvent event) {
         if (++markersAddedIndividually <= MAX_MARKERS_ADDED_INDIVIDUALLY) {
-            Timber.d("onEvent(): Adding single measurement to the map, added %s of %s", markersAddedIndividually, MAX_MARKERS_ADDED_INDIVIDUALLY);
+            Timber.d("onEvent(): Adding saved measurement to the map, added %s of %s", markersAddedIndividually, MAX_MARKERS_ADDED_INDIVIDUALLY);
             MapMeasurement m = MapMeasurement.fromMeasurement(event.getMeasurement());
             markersOverlay.add(createMarker(m, event.getStatistics().getSinceLocal()));
             markersOverlay.invalidate();
         } else {
+            Timber.d("onEvent(): Reloading measurements on the map after saving measurement due to threshold %s reached", MAX_MARKERS_ADDED_INDIVIDUALLY);
             reloadMarkers(true);
         }
     }
