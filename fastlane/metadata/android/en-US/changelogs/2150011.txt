@@ -1,0 +1,14 @@
+- IMPORTANT! Upload to Mozilla Location Services has been replaced with upload to BeaconDB database. If you previously enabled upload to MLS it will now be enabled for BeaconDB. You can still use your own MLS-compatible service if you provide address in Preferences.
+
+- Fix zoom level not remembered when using zoom buttons or accidental scrolling while zooming with pinch gesture.
+- Fix error when importing Preferences from file.
+- Fix measurements not refreshed on the map when application is restored from background.
+- Fix measurements info windows remaining on the map for deleted measurements.
+- Add option to copy value to clipboard from last measurement screen by long press.
+- Add support for Timing Advance for NR (5G) cells.
+- Add option to donate through Buy Me a Coffee.
+- Move map zoom buttons slightly upwards.
+- Shorten toast message when another background task is running.
+- Remove empty line at the end from generated CSV file.
+- Improve improve compatibility with Android 14.
+- Improve error handling.
