@@ -119,7 +119,6 @@ dependencies {
     implementation "ch.acra:acra-http:$acraVersion"
     implementation "ch.acra:acra-dialog:$acraVersion"
     implementation "ch.acra:acra-limiter:$acraVersion"
-    implementation 'org.sufficientlysecure:html-textview:4.0'
     implementation 'com.squareup.okhttp3:okhttp:4.12.0'
     implementation "com.github.permissions-dispatcher:permissionsdispatcher:$permissionsDispatcherVersion"
     annotationProcessor "com.github.permissions-dispatcher:permissionsdispatcher-processor:$permissionsDispatcherVersion"
