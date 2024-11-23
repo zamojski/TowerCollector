@@ -1,8 +1,8 @@
 {
   "Entries": [
     {
-      "VersionCode": 2150011,
-      "Title": "Changes in version 2.15.0",
+      "VersionCode": 2150112,
+      "Title": "Changes in version 2.15.1",
       "Description": "<h1>IMPORTANT!</h1>Upload to Mozilla Location Services has been replaced with upload to <a href='https://beacondb.net/'>BeaconDB</a> database.<br/><br/>If you previously enabled upload to MLS it will now be enabled for BeaconDB. You can still use your own MLS-compatible service if you provide address in Preferences.",
       "Messages": [
         "Fix zoom level not remembered when using zoom buttons or accidental scrolling while zooming with pinch gesture.",
