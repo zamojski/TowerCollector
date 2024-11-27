@@ -162,7 +162,7 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
     }
 
     @TargetApi(Build.VERSION_CODES.TIRAMISU)
-    @NeedsPermission({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    @NeedsPermission({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.FOREGROUND_SERVICE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void requestStartAtBootApi33() {
         requestStartAtBootInternal();
     }
@@ -184,7 +184,7 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
     }
 
     @TargetApi(Build.VERSION_CODES.TIRAMISU)
-    @OnShowRationale({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    @OnShowRationale({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.FOREGROUND_SERVICE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartAtBootRationaleApi33(final PermissionRequest request) {
         onStartAtBootRationaleInternal(request);
     }
@@ -227,7 +227,7 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
     }
 
     @TargetApi(Build.VERSION_CODES.TIRAMISU)
-    @OnPermissionDenied({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    @OnPermissionDenied({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.FOREGROUND_SERVICE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartAtBootPermissionDeniedApi33() {
         onStartAtBootPermissionDeniedInternal();
     }
@@ -249,7 +249,7 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
     }
 
     @TargetApi(Build.VERSION_CODES.TIRAMISU)
-    @OnNeverAskAgain({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    @OnNeverAskAgain({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.FOREGROUND_SERVICE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartAtBootNeverAskAgainApi33() {
         onStartAtBootNeverAskAgainInternal();
     }
