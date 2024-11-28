@@ -1,6 +1,13 @@
 {
   "Entries": [
     {
+      "VersionCode": 2150314,
+      "Title": "Changes in version 2.15.3",
+      "Messages": [
+        "Fix crash when starting export or upload on Android 14+."
+      ]
+    },
+    {
       "VersionCode": 2150213,
       "Title": "Changes in version 2.15.2",
       "Messages": [
@@ -41,16 +48,6 @@
         "Add option to use custom MLS-compatible server for uploads.",
         "Display a warning when attempting to export database when there is no data to upload.",
         "Improve error handling."
-      ]
-    },
-    {
-      "VersionCode": 2140403,
-      "Title": "Changes in version 2.14.4",
-      "Messages": [
-        "Fix missing notifications on Android 13.",
-        "Fix issue with requesting background location permission if no location permission was granted before.",
-        "Improve readability of message when there are no measurements on the device.",
-        "Improve opening Network type settings."
       ]
     }
   ]
