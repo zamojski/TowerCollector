@@ -7,6 +7,7 @@ package info.zamojski.soft.towercollector.export;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.pm.ServiceInfo;
 import android.net.Uri;
 import android.os.Build;
 
@@ -45,6 +46,7 @@ import info.zamojski.soft.towercollector.files.generators.wrappers.interfaces.IP
 import info.zamojski.soft.towercollector.io.filesystem.CompressionFormat;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
 import info.zamojski.soft.towercollector.utils.FileUtils;
+import info.zamojski.soft.towercollector.utils.PermissionUtils;
 import info.zamojski.soft.towercollector.utils.StringUtils;
 import timber.log.Timber;
 
@@ -82,7 +84,12 @@ public class ExportWorker extends Worker implements IProgressListener {
     public Result doWork() {
         try {
             Notification notification = notificationHelper.createNotification(notificationManager);
-            ForegroundInfo foregroundInfo = new ForegroundInfo(NOTIFICATION_ID, notification);
+            ForegroundInfo foregroundInfo;
+            if (PermissionUtils.isForegroundServicePermissionAware()) {
+                foregroundInfo = new ForegroundInfo(NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC);
+            } else {
+                foregroundInfo = new ForegroundInfo(NOTIFICATION_ID, notification);
+            }
             setForegroundAsync(foregroundInfo);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

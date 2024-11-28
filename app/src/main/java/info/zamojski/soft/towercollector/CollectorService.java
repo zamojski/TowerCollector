@@ -83,6 +83,7 @@ import info.zamojski.soft.towercollector.model.Tuple;
 import info.zamojski.soft.towercollector.utils.GpsUtils;
 import info.zamojski.soft.towercollector.utils.MobileUtils;
 import info.zamojski.soft.towercollector.utils.NetworkTypeUtils;
+import info.zamojski.soft.towercollector.utils.PermissionUtils;
 import timber.log.Timber;
 
 public class CollectorService extends Service {
@@ -207,7 +208,7 @@ public class CollectorService extends Service {
         registerReceiver(locationModeOrProvidersChanged, new IntentFilter(LocationManager.PROVIDERS_CHANGED_ACTION));
         Notification notification = notificationHelper.createNotification(notificationManager, getGpsStatusNotificationText(getGpsStatus()));
         // start as foreground service to prevent from killing
-        if (GpsUtils.isBackgroundLocationAware()) {
+        if (PermissionUtils.isForegroundServicePermissionAware()) {
             startForeground(NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
         } else {
             startForeground(NOTIFICATION_ID, notification);

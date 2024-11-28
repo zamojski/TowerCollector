@@ -7,6 +7,7 @@ package info.zamojski.soft.towercollector.uploader;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.pm.ServiceInfo;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
@@ -23,7 +24,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import info.zamojski.soft.towercollector.BuildConfig;
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.UploaderQuickSettingsTileService;
@@ -47,6 +47,7 @@ import info.zamojski.soft.towercollector.model.Statistics;
 import info.zamojski.soft.towercollector.utils.ApkUtils;
 import info.zamojski.soft.towercollector.utils.NetworkUtils;
 import info.zamojski.soft.towercollector.utils.OpenCellIdUtils;
+import info.zamojski.soft.towercollector.utils.PermissionUtils;
 import timber.log.Timber;
 
 public class UploaderWorker extends Worker implements IProgressListener {
@@ -105,7 +106,12 @@ public class UploaderWorker extends Worker implements IProgressListener {
     public Result doWork() {
         try {
             Notification notification = notificationHelper.createNotification(notificationManager);
-            ForegroundInfo foregroundInfo = new ForegroundInfo(NOTIFICATION_ID, notification);
+            ForegroundInfo foregroundInfo;
+            if (PermissionUtils.isForegroundServicePermissionAware()) {
+                foregroundInfo = new ForegroundInfo(NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC);
+            } else {
+                foregroundInfo = new ForegroundInfo(NOTIFICATION_ID, notification);
+            }
             setForegroundAsync(foregroundInfo);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
