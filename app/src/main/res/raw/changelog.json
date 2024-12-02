@@ -1,6 +1,13 @@
 {
   "Entries": [
     {
+      "VersionCode": 2150415,
+      "Title": "Changes in version 2.15.4",
+      "Messages": [
+        "Fix permission denied error when starting collector on Android 13."
+      ]
+    },
+    {
       "VersionCode": 2150314,
       "Title": "Changes in version 2.15.3",
       "Messages": [
@@ -38,17 +45,6 @@
       "Title": "Changes in version 2.14.6",
       "Description": "<h1>IMPORTANT!</h1>Mozilla have made the decision to retire the service and new measurements are no longer accepted. <a href='https://discourse.mozilla.org/t/retiring-the-mozilla-location-service/128693'>Read more</a>.<br/><br/>The option to upload to Mozilla Location Services temporarily remains available, but I will only try to upload the measurements if custom MLS-compatible address is provided in Preferences.",
       "Messages": []
-    },
-    {
-      "VersionCode": 2140505,
-      "Title": "Changes in version 2.14.5",
-      "Messages": [
-        "Fix upload result presentation.",
-        "Add check for Internet connection before starting upload.",
-        "Add option to use custom MLS-compatible server for uploads.",
-        "Display a warning when attempting to export database when there is no data to upload.",
-        "Improve error handling."
-      ]
     }
   ]
 }
