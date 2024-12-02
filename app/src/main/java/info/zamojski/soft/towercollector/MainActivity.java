@@ -881,14 +881,24 @@ public class MainActivity extends AppCompatActivity
             return;
         }
         if (PermissionUtils.isNotificationPermissionRequired()) {
-            MainActivityPermissionsDispatcher.startCollectorServiceApi33WithPermissionCheck(MainActivity.this);
+            if (PermissionUtils.isForegroundServicePermissionAware()) {
+                MainActivityPermissionsDispatcher.startCollectorServiceApi34WithPermissionCheck(MainActivity.this);
+            } else {
+                MainActivityPermissionsDispatcher.startCollectorServiceApi33WithPermissionCheck(MainActivity.this);
+            }
         } else {
             MainActivityPermissionsDispatcher.startCollectorServiceWithPermissionCheck(MainActivity.this);
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @TargetApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     @NeedsPermission({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.FOREGROUND_SERVICE_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void startCollectorServiceApi34() {
+        startCollectorServiceInternal();
+    }
+
+    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @NeedsPermission({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void startCollectorServiceApi33() {
         startCollectorServiceInternal();
     }
@@ -920,8 +930,14 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @TargetApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     @OnShowRationale({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.FOREGROUND_SERVICE_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void onStartCollectorShowRationaleApi34(PermissionRequest request) {
+        onStartCollectorShowRationaleInternal(request);
+    }
+
+    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @OnShowRationale({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorShowRationaleApi33(PermissionRequest request) {
         onStartCollectorShowRationaleInternal(request);
     }
@@ -935,8 +951,14 @@ public class MainActivity extends AppCompatActivity
         onShowRationale(request, GpsUtils.isPreciseLocationAware() ? R.string.permission_collector_rationale_api31_message : R.string.permission_collector_rationale_message);
     }
 
-    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @TargetApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     @OnPermissionDenied({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.FOREGROUND_SERVICE_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void onStartCollectorPermissionDeniedApi34() {
+        onStartCollectorPermissionDeniedInternal();
+    }
+
+    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @OnPermissionDenied({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorPermissionDeniedApi33() {
         onStartCollectorPermissionDeniedInternal();
     }
@@ -950,8 +972,14 @@ public class MainActivity extends AppCompatActivity
         onPermissionDenied(R.string.permission_collector_denied_message);
     }
 
-    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @TargetApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     @OnNeverAskAgain({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.FOREGROUND_SERVICE_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    void onStartCollectorNeverAskAgainApi34() {
+        onStartCollectorNeverAskAgainInternal();
+    }
+
+    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @OnNeverAskAgain({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorNeverAskAgainApi33() {
         onStartCollectorNeverAskAgainInternal();
     }

@@ -46,7 +46,7 @@ public class PermissionUtils {
     }
 
     public static boolean isForegroundServicePermissionAware() {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q; // TODO: should be Build.VERSION_CODES.UPSIDE_DOWN_CAKE but I recall there were issues on Android 12 as well
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE;
     }
 
     public static String getAppPermissions() {
