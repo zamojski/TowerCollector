@@ -11,6 +11,7 @@
     <string name="permission_collector_rationale_background_location_api29_message">If you want to use this function be sure to select \'allow all the time\' option for access device\'s location permission!</string>
     <string name="permission_collector_rationale_background_location_api30_message">If you want to use this function be sure to select \'allow in settings\' and then select \'allow all the time\' option for access device\'s location permission!</string>
     <string name="permission_collector_rationale_background_location_2_step_api30_message">If you want to use this function you must first grant regular location permissions and then you will be separately asked to grant background location permission!</string>
+    <string name="permission_collector_rationale_background_location_compliance_message">The app requires the background location permission only if you want to automatically start collecting measurements at device startup. Without this permission you can only start collecting by yourself.</string>
     <string name="permission_collector_denied_message">Cancelling measurement collecting due to denied permissions</string>
     <string name="permission_collector_never_ask_again_message">Measurement collecting is unavailable due to denied location and/or phone permissions</string>
     <string name="permission_collector_never_ask_again_background_location_api29_message">Measurement collecting is unavailable due to denied background location and/or phone permissions</string>

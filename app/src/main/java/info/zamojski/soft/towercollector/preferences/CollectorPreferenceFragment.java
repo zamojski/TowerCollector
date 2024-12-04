@@ -206,6 +206,7 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
             message += "\n\n" + getString(GpsUtils.isBackgroundLocationPermissionHidden()
                     ? (!PermissionUtils.hasPermission(MyApplication.getApplication(), Manifest.permission.ACCESS_FINE_LOCATION) ? R.string.permission_collector_rationale_background_location_2_step_api30_message : R.string.permission_collector_rationale_background_location_api30_message)
                     : R.string.permission_collector_rationale_background_location_api29_message);
+            message += "\n\n" + getString(R.string.permission_collector_rationale_background_location_compliance_message);
         }
         new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.permission_required)
