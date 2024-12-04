@@ -535,9 +535,14 @@ public class MainActivity extends AppCompatActivity
 
     // have to be public to prevent Force Close
     public void displayBatteryOptimizationsHelpOnClick(View view) {
+        String message = getString(R.string.main_help_battery_optimizations_description_common)
+                + " "
+                + getString(BatteryUtils.isAllowBackgroundUsageAware()
+                ? R.string.main_help_battery_optimizations_description_api35
+                : R.string.main_help_battery_optimizations_description_api23);
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.main_help_battery_optimizations_title)
-                .setMessage(R.string.main_help_battery_optimizations_description)
+                .setMessage(message)
                 .setPositiveButton(R.string.dialog_settings, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -1550,7 +1555,7 @@ public class MainActivity extends AppCompatActivity
     private void startBatterySaverSystemActivity() {
         try {
             Intent intent;
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP_MR1) {
+            if (BatteryUtils.hasBatterySaverSettings()) {
                 intent = new Intent(Settings.ACTION_BATTERY_SAVER_SETTINGS);
             } else {
                 intent = new Intent();

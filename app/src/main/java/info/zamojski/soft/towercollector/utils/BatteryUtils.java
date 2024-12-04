@@ -4,6 +4,7 @@
 
 package info.zamojski.soft.towercollector.utils;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.PowerManager;
@@ -14,6 +15,12 @@ public class BatteryUtils {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return false;
         }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+            return am.isBackgroundRestricted();
+        }
+
         PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         return (pm != null && !pm.isIgnoringBatteryOptimizations(context.getPackageName()));
     }
@@ -27,5 +34,13 @@ public class BatteryUtils {
             return true;
         }
         return false;
+    }
+
+    public static boolean isAllowBackgroundUsageAware() {
+        return Build.VERSION.SDK_INT > Build.VERSION_CODES.UPSIDE_DOWN_CAKE; // TODO: API 35+
+    }
+
+    public static boolean hasBatterySaverSettings() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1;
     }
 }
