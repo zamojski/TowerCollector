@@ -11,6 +11,7 @@
     <string name="permission_collector_rationale_background_location_api29_message">이 기능을 사용하려면 장치의 위치 권한에 대해 \'항상 허용\' 권한이 필요합니다.</string>
     <string name="permission_collector_rationale_background_location_api30_message">이 기능을 사용하려면 \'설정에서 허용\'을 선택한 다음 장치의 위치 권한에 대해 \'항상 허용\' 옵션을 선택해야합니다.</string>
     <string name="permission_collector_rationale_background_location_2_step_api30_message">이 기능을 사용하려면 먼저 일반 위치 권한을 부여해야 하며, 그 후 별도로 백그라운드 위치 권한을 부여하라는 메시지가 표시됩니다!</string>
+    <string name="permission_collector_rationale_background_location_compliance_message">기기 시작 시 측정값 수집을 자동으로 시작하려는 경우에만 앱에 백그라운드 위치 권한이 필요합니다. 이 권한이 없으면 귀하는 혼자서만 수집을 시작할 수 있습니다.</string>
     <string name="permission_collector_denied_message">권한이 없어 데이터 수집이 취소되었습니다.</string>
     <string name="permission_collector_never_ask_again_message">위치/전화 권한이 없어 데이터 수집을 사용할 수 없습니다.</string>
     <string name="permission_collector_never_ask_again_background_location_api29_message">백그라운드 위치 또는 전화 권한이 없어 데이터 수집을 사용할 수 없습니다.</string>

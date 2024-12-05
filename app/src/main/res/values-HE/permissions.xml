@@ -11,6 +11,7 @@
     <string name="permission_collector_rationale_background_location_api29_message">כדי להשתמש ביישומון חשוב לבחור באפשרות ‚לאפשר כל הזמן’ כדי להרשות לגשת למיקום המכשיר!</string>
     <string name="permission_collector_rationale_background_location_api30_message">כדי להשתמש ביכולת הזאת כדאי לוודא שסימנת את ‚לאפשר בהגדרות’ ואז לבחור את האפשרות ‚לאפשר כל הזמן’ לטובת הרשאת הגישה למיקום המכשיר!</string>
     <string name="permission_collector_rationale_background_location_2_step_api30_message">אם ברצונך להשתמש בפונקציה זו עליך להעניק תחילה הרשאות מיקום רגילות ולאחר מכן תתבקש בנפרד להעניק הרשאת מיקום ברקע!</string>
+    <string name="permission_collector_rationale_background_location_compliance_message">האפליקציה דורשת הרשאת מיקום ברקע רק אם ברצונך להתחיל אוטומטית באיסוף מדידות בעת הפעלת המכשיר. ללא אישור זה אתה יכול להתחיל לאסוף רק בעצמך.</string>
     <string name="permission_collector_denied_message">איסוף המדידות מבוטל עקב העדר הרשאות</string>
     <string name="permission_collector_never_ask_again_message">איסוף המדידות אינו זמין עקב העדר הרשאות לגישה ו/או הרשאות לטלפון</string>
     <string name="permission_collector_never_ask_again_background_location_api29_message">איסוף מדידות אינו זמין עקב הרשאת קבלת מיקום ברקע ו/או הרשאות לטלפון</string>

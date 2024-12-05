@@ -208,7 +208,9 @@
     <string name="main_help_invalid_system_time_title">Geçersiz sistem saati</string>
     <string name="main_help_invalid_system_time_description">Mevcut sistem tarihiniz ve/veya saatiniz konumunuzla aynı değil. Ölçümler doğru saatle kaydedilecek fakat sunulan istatistikler doğru olmayabilir. Lütfen cihazınızdaki saati ve tarihi ayarlayın.</string>
     <string name="main_help_battery_optimizations_title">Pil tasarrufu etkin</string>
-    <string name="main_help_battery_optimizations_description">Bu uygulama için pil optimizasyonu etkin, bu yüzden ölçümler doğru ve güvenilir olmayabilir. Lütfen android ayarlarından pil optimizasyonu seçin ve Tüm uygulamalar sonrasında Tower Collector: pil optimizasyonu devre dışını bırak diyerek bunu kapatın.</string>
+    <string name="main_help_battery_optimizations_description_common">Bu uygulama için pil optimizasyonu etkin, bu yüzden ölçümler doğru ve güvenilir olmayabilir.</string>
+    <string name="main_help_battery_optimizations_description_api23">Lütfen Android ayarlarında \'Tüm Uygulamalar\'ı ve ardından Tower Collector: \'Optimize etme\'yi seçerek pil optimizasyonlarını devre dışı bırakın.</string>
+    <string name="main_help_battery_optimizations_description_api35">Lütfen Android ayarlarında \'Tüm Uygulamalar\'ı ve ardından Tower Collector: \'Arka plan kullanımına izin ver\'i seçerek pil optimizasyonlarını devre dışı bırakın.</string>
     <string name="main_help_power_save_mode_title">Pil tasarrufu etkin</string>
     <string name="main_help_power_save_mode_description">Pil tasarrufu etkin, bu yüzden ölçümler güvenilir ve doğru olmayabilir. Lütfen android pil ayarların pil tasarrufunu kapatın.</string>
     <string name="main_help_airplane_mode_title">Uçak modu etkin.</string>

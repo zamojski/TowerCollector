@@ -208,7 +208,9 @@
     <string name="main_help_invalid_system_time_title">Ungültige Systemzeit</string>
     <string name="main_help_invalid_system_time_description">Ihre Systemzeit weicht stark von der GPS-Zeit ab. Messungen werden mit der korrekten Zeit gespeichert, allerdings können die angezeigten Statistiken ungenau sein. Bitte korrigieren Sie Uhrzeit und Datum in Ihrem Gerät.</string>
     <string name="main_help_battery_optimizations_title">Stromsparmodus aktiviert</string>
-    <string name="main_help_battery_optimizations_description">Akku-Leistungsoptimierung ist für diese App aktiviert, was zu ungenauen und unzuverlässigen Messungen führen kann. Bitte deaktivieren Sie Optimierung in den Android-Einstellungen unter \"Akku\" / \"Akku-Leistungsoptimierung\" / \"Tower Collector\".</string>
+    <string name="main_help_battery_optimizations_description_common">Akku-Leistungsoptimierung ist für diese App aktiviert, was zu ungenauen und unzuverlässigen Messungen führen kann.</string>
+    <string name="main_help_battery_optimizations_description_api23">Bitte deaktivieren Sie Optimierung in den Android-Einstellungen unter \"Akku\" / \"Akku-Leistungsoptimierung\" / \"Tower Collector\".</string>
+    <string name="main_help_battery_optimizations_description_api35">Bitte deaktivieren Sie Optimierung in den Android-Einstellungen unter \"Akku\" / \"Hintergrundnutzung zulassen\" / \"Tower Collector\".</string>
     <string name="main_help_power_save_mode_title">Stromsparen aktiviert</string>
     <string name="main_help_power_save_mode_description">Stromsparen ist auf diesem Gerät aktiviert, was zu ungenauen und unzuverlässigen Messungen führen kann. Bitte deaktivieren Sie Stromsparen in den Android Akku-Einstellungen.</string>
     <string name="main_help_airplane_mode_title">Flugmodus aktiviert</string>

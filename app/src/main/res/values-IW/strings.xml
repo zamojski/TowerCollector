@@ -208,7 +208,9 @@
     <string name="main_help_invalid_system_time_title">שעון המערכת שגוי</string>
     <string name="main_help_invalid_system_time_description">התאריך/שעה של המערכת שלך שגויים בהשוואה לשעון ה־GPS. המדידות יישמרו עם השעה הנכונה אך הסטטיסטיקה שתוצג עשויה להיות מוטית. נא להגדיר את התאריך ואת השעה במכשיר שלך.</string>
     <string name="main_help_battery_optimizations_title">מופעלים שיפורי סוללה</string>
-    <string name="main_help_battery_optimizations_description">שיפורי סוללה פועלים על יישומון זה, מה שעלול לגרום באיסוף מדידות בלתי מדויקות או אמינות. נא להשבית את שיפורי הסוללה בהגדרות ה־Android על ידי בחירה ב„כל היישומונים”, Tower Collector: „לא למטב”.</string>
+    <string name="main_help_battery_optimizations_description_common">שיפורי סוללה פועלים על יישומון זה, מה שעלול לגרום באיסוף מדידות בלתי מדויקות או אמינות.</string>
+    <string name="main_help_battery_optimizations_description_api23">נא להשבית את שיפורי הסוללה בהגדרות ה־Android על ידי בחירה ב„כל היישומונים”, Tower Collector: „לא למטב”.</string>
+    <string name="main_help_battery_optimizations_description_api35">נא להשבית את שיפורי הסוללה בהגדרות ה־Android על ידי בחירה ב„כל היישומונים”, Tower Collector: „אפשר שימוש ברקע”.</string>
     <string name="main_help_power_save_mode_title">מופעל חיסכון בסוללה</string>
     <string name="main_help_power_save_mode_description">חיסכון בסוללה מופעל במכשיר, מה שעלול לגרום לאיסוף של מדידות בלתי מדויקות או אמינות. נא להשבית את החיסכון בסוללה בהגדרות הסוללה שב־Android.</string>
     <string name="main_help_airplane_mode_title">מופעל מצב טיסה</string>

@@ -208,7 +208,9 @@
     <string name="main_help_invalid_system_time_title">Heure système invalide.</string>
     <string name="main_help_invalid_system_time_description">La date et/ou l\'heure de votre système actuel ne sont pas valables par rapport à l\'heure GPS. Les mesures seront enregistrées avec l\'heure exacte, mais les statistiques présentées peuvent être inexactes. Veuillez régler la date et l\'heure sur votre appareil.</string>
     <string name="main_help_battery_optimizations_title">Optimisation de la batterie activée</string>
-    <string name="main_help_battery_optimizations_description">L\'optimisation de la batterie est activée pour cette application, ce qui pourrait entrainer une collecte de données imprécise et non-fiable. Merci de désactiver l\'optimisation de la batterie dans les paramêtres d\'Androîd : sélectionnez \"Applications\", puis \"Tower Collector\" et \"Pas d\'optimisation\".</string>
+    <string name="main_help_battery_optimizations_description_common">L\'optimisation de la batterie est activée pour cette application, ce qui pourrait entrainer une collecte de données imprécise et non-fiable.</string>
+    <string name="main_help_battery_optimizations_description_api23">Merci de désactiver l\'optimisation de la batterie dans les paramêtres d\'Androîd : sélectionnez \"Applications\", puis \"Tower Collector\" et \"Pas d\'optimisation\".</string>
+    <string name="main_help_battery_optimizations_description_api35">Merci de désactiver l\'optimisation de la batterie dans les paramêtres d\'Androîd : sélectionnez \"Applications\", puis \"Tower Collector\" et \"Autoriser l\'utilisation en arrière-plan\".</string>
     <string name="main_help_power_save_mode_title">Economiseur de battery activé</string>
     <string name="main_help_power_save_mode_description">L\'économiseur de batterie est activé sur l\'appareil, ce qui pourrait entrainer une collecte de données imprécise et non-fiable. Merci de désactiver l\'économiseur de batterie dans les paramêtres d\'Androîd.</string>
     <string name="main_help_airplane_mode_title">Mode avion activé</string>

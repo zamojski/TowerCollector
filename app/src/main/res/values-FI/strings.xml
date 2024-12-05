@@ -208,7 +208,9 @@
     <string name="main_help_invalid_system_time_title">Virheellinen järjestelmäaika</string>
     <string name="main_help_invalid_system_time_description">Järjestelmän nykyinen päivämäärä ja/tai kellonaika on virheellinen verrattuna GPS-aikaan. Mittaukset tallennetaan oikealla ajalla, mutta esitetyt tilastot voivat olla epätarkkoja. Aseta päivämäärä ja kellonaika laitteessasi.</string>
     <string name="main_help_battery_optimizations_title">Akun optimointi käytössä</string>
-    <string name="main_help_battery_optimizations_description">Akun optimointi on otettu käyttöön tässä sovelluksessa, mikä voi johtaa epätarkkoihin ja epäluotettaviin mittaustuloksiin. Poista akun optimointi käytöstä Android-asetuksista valitsemalla \"Kaikki sovellukset\" ja sitten Tower Collector: \"Älä optimoi\".</string>
+    <string name="main_help_battery_optimizations_description_common">Akun optimointi on otettu käyttöön tässä sovelluksessa, mikä voi johtaa epätarkkoihin ja epäluotettaviin mittaustuloksiin.</string>
+    <string name="main_help_battery_optimizations_description_api23">Poista akun optimointi käytöstä Android-asetuksista valitsemalla \"Kaikki sovellukset\" ja sitten Tower Collector: \"Älä optimoi\".</string>
+    <string name="main_help_battery_optimizations_description_api35">Poista akun optimointi käytöstä Android-asetuksista valitsemalla \"Kaikki sovellukset\" ja sitten Tower Collector: \"Salli taustakäyttö\".</string>
     <string name="main_help_power_save_mode_title">Virransäästö käytössä</string>
     <string name="main_help_power_save_mode_description">Laitteessa on käytössä virransäästö, mikä voi johtaa epätarkkoihin ja epäluotettaviin mittaustuloksiin. Poista virransäästö käytöstä Androidin akkuasetuksista.</string>
     <string name="main_help_airplane_mode_title">Lentokonetila käytössä</string>

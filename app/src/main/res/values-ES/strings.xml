@@ -208,7 +208,9 @@
     <string name="main_help_invalid_system_time_title">Hora de sistema inválida</string>
     <string name="main_help_invalid_system_time_description">El valor actual de la fecha/hora del sistema es inválido según el tiempo del GPS. Las mediciones serán guardadas con la hora correcta pero las estadísticas pueden ser imprecisas. Por favor corrija la fecha y hora de su dispositivo.</string>
     <string name="main_help_battery_optimizations_title">Optimización de la batería habilitada</string>
-    <string name="main_help_battery_optimizations_description">Optimizaciones de la batería están habilitadas para esta aplicación que puede resultar en mediciones inexactas y no fiables que se recopilan. Por favor, desactive las optimizaciones de la batería en la configuración de Android seleccionando \' Todas las aplicaciones\', luego Tower Collector: \'No optimizar\'.</string>
+    <string name="main_help_battery_optimizations_description_common">Optimizaciones de la batería están habilitadas para esta aplicación que puede resultar en mediciones inexactas y no fiables que se recopilan.</string>
+    <string name="main_help_battery_optimizations_description_api23">Por favor, desactive las optimizaciones de la batería en la configuración de Android seleccionando \' Todas las aplicaciones\', luego Tower Collector: \'No optimizar\'.</string>
+    <string name="main_help_battery_optimizations_description_api35">Por favor, desactive las optimizaciones de la batería en la configuración de Android seleccionando \' Todas las aplicaciones\', luego Tower Collector: \'Permitir uso en segundo plano\'.</string>
     <string name="main_help_power_save_mode_title">Ahorro de batería activado</string>
     <string name="main_help_power_save_mode_description">El ahorro de batería está habilitado en el dispositivo, lo que puede provocar que se recopilen mediciones imprecisas y poco confiables. Deshabilite el ahorro de batería en la configuración de la batería de Android.</string>
     <string name="main_help_airplane_mode_title">Modo avión habilitado</string>

@@ -11,6 +11,7 @@
     <string name="permission_collector_rationale_background_location_api29_message">Bu işlevi kullanmak istiyorsanız, cihaz konumuna erişim izni için \'her zaman izin ver\' seçeneğini seçtiğinizden emin olun!</string>
     <string name="permission_collector_rationale_background_location_api30_message">Bu işlevi kullanmak istiyorsanız, \'ayarlardan izin ver\' i seçtiğinizden emin olun ve ardından cihaz konumuna erişim izni için  \'her zaman izin ver\' seçeneğini seçin!</string>
     <string name="permission_collector_rationale_background_location_2_step_api30_message">Bu işlevi kullanmak istiyorsanız öncelikle normal konum izinleri vermelisiniz, ardından ayrıca arka planda konum izni vermeniz istenecektir!</string>
+    <string name="permission_collector_rationale_background_location_compliance_message">Uygulama, yalnızca cihaz başlangıcında ölçümleri otomatik olarak toplamaya başlamak istiyorsanız arka planda konum izni gerektirir. Bu izin olmadan yalnızca kendiniz toplamaya başlayabilirsiniz.</string>
     <string name="permission_collector_denied_message">Reddedilen izinler nedeniyle ölçüm toplaması iptal ediliyor</string>
     <string name="permission_collector_never_ask_again_message">Reddedilen konum ve / veya telefon izinleri nedeniyle ölçüm toplama kullanılamıyor</string>
     <string name="permission_collector_never_ask_again_background_location_api29_message">Reddedilen arka plan konumu ve / veya telefon izinleri nedeniyle ölçüm toplama kullanılamıyor</string>

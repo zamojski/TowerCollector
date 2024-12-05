@@ -208,7 +208,9 @@
     <string name="main_help_invalid_system_time_title">Horário do sistema inválido</string>
     <string name="main_help_invalid_system_time_description">Sua data e/ou hora do sistema está inválido comparando com o horário do GPS. As medições serão salvas com o horário correto mas as estatísticas exibidas podem estar incorretas. Favor configurar a data e hora no seu dispositivo.</string>
     <string name="main_help_battery_optimizations_title">Otimizações de bateria habilitadas</string>
-    <string name="main_help_battery_optimizations_description">As otimizações de bateria estão habilitadas para este aplicativo que pode resultar em medições incorretas e não confiáveis que estão sendo coletadas. Desative as otimizações de bateria nas configurações do Android selecionando \'Todos os apps\' e, em seguida, Tower Collector: \'Não otimizar\'.</string>
+    <string name="main_help_battery_optimizations_description_common">As otimizações de bateria estão habilitadas para este aplicativo que pode resultar em medições incorretas e não confiáveis que estão sendo coletadas.</string>
+    <string name="main_help_battery_optimizations_description_api23">Desative as otimizações de bateria nas configurações do Android selecionando \'Todos os apps\' e, em seguida, Tower Collector: \'Não otimizar\'.</string>
+    <string name="main_help_battery_optimizations_description_api35">Desative as otimizações de bateria nas configurações do Android selecionando \'Todos os apps\' e, em seguida, Tower Collector: \'Permitir uso em segundo plano\'.</string>
     <string name="main_help_power_save_mode_title">Economia de bateria ativado</string>
     <string name="main_help_power_save_mode_description">O economizador de bateria está ativado no dispositivo, o que pode resultar na coleta de medições imprecisas e não confiáveis. Desative a economia de bateria nas configurações da bateria do Android.</string>
     <string name="main_help_airplane_mode_title">Modo avião ativado</string>

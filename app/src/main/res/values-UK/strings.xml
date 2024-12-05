@@ -208,7 +208,9 @@
     <string name="main_help_invalid_system_time_title">Системний годинник барахлить</string>
     <string name="main_help_invalid_system_time_description">Ваша поточна системна дата та/або час недійсні у порівнянні з часом GPS. Вимірювання буде збережено з правильним часом, але представлена статистика може бути неточною. Встановіть дату та час на своєму пристрої.</string>
     <string name="main_help_battery_optimizations_title">Увімкнено оптимізацію акумуляторів</string>
-    <string name="main_help_battery_optimizations_description">Для цього застосунку увімкнено оптимізацію акумуляторів, які можуть спричинити неточні та ненадійні вимірювання. Будь ласка, відключіть оптимізацію акумуляторів у настройках Android, вибравши \"всі програми\", то Tower Collector: \"не оптимізувати\".</string>
+    <string name="main_help_battery_optimizations_description_common">Для цього застосунку увімкнено оптимізацію акумуляторів, які можуть спричинити неточні та ненадійні вимірювання.</string>
+    <string name="main_help_battery_optimizations_description_api23">Будь ласка, відключіть оптимізацію акумуляторів у настройках Android, вибравши \"всі програми\", то Tower Collector: \"Не оптимізувати\".</string>
+    <string name="main_help_battery_optimizations_description_api35">Будь ласка, відключіть оптимізацію акумуляторів у настройках Android, вибравши \"всі програми\", то Tower Collector: \"Дозволити фонове використання\".</string>
     <string name="main_help_power_save_mode_title">Увімкнена економія заряду</string>
     <string name="main_help_power_save_mode_description">Економія заряду вмикається на пристрої, що може спричинити неточне та ненадійне вимірювання, що збираються. Будь ласка, вимкніть економію заряду в налаштуваннях акумулятора Android.</string>
     <string name="main_help_airplane_mode_title">Режим літака увімкнено</string>

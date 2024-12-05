@@ -208,7 +208,9 @@
     <string name="main_help_invalid_system_time_title">시스템 시간이 잘못되었습니다.</string>
     <string name="main_help_invalid_system_time_description">현재 시스템 날짜 또는 시간이 GPS 시간과 차이가 있습니다. 측정값은 정확한 시간에 저장되지만 통계는 정확하지 않을 수 있습니다. 장치 설정에서 날짜와 시간을 설정하세요.</string>
     <string name="main_help_battery_optimizations_title">배터리 최적화 활성화됨</string>
-    <string name="main_help_battery_optimizations_description">이 앱에 배터리 최적화가 활성화되어 있어 부정확한 측정값이 수집될 수 있습니다. Android 설정에서 Tower Collector에 배터리 최적화를 비활성화 하세요.</string>
+    <string name="main_help_battery_optimizations_description_common">이 앱에 배터리 최적화가 활성화되어 있어 부정확한 측정값이 수집될 수 있습니다.</string>
+    <string name="main_help_battery_optimizations_description_api23">\'모든 앱\'을 선택한 다음 Tower Collector: \'최적화하지 않음\'을 선택하여 Android 설정에서 배터리 최적화를 비활성화하세요.</string>
+    <string name="main_help_battery_optimizations_description_api35">\'모든 앱\'을 선택한 다음 Tower Collector: \'백그라운드 사용 허용\'을 선택하여 Android 설정에서 배터리 최적화를 비활성화하세요.</string>
     <string name="main_help_power_save_mode_title">절전 모드 활성화됨</string>
     <string name="main_help_power_save_mode_description">절전 모드가 활성화되어 있어 부정확한 측정값이 수집될 수 있습니다. Android 설정에서 절전 모드를 해제해주세요.</string>
     <string name="main_help_airplane_mode_title">비행기 모드 활성화됨</string>

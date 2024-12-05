@@ -11,6 +11,7 @@
     <string name="permission_collector_rationale_background_location_api29_message">如果要使用此功能，请确保选择“始终允许”选项以获取设备的位置权限！</string>
     <string name="permission_collector_rationale_background_location_api30_message">如果要使用此功能，请确保选择“允许设置”，然后选择“始终允许”选项以获取设备的位置权限！</string>
     <string name="permission_collector_rationale_background_location_2_step_api30_message">如果您想使用此功能，必须先授予常规定位权限，然后会另外要求您授予后台定位权限！</string>
+    <string name="permission_collector_rationale_background_location_compliance_message">仅当您希望在设备启动时自动开始收集测量值时，该应用程序才需要后台位置权限。如果没有此许可，您只能开始自行收集。</string>
     <string name="permission_collector_denied_message">由于拒绝权限而取消收集测量数据</string>
     <string name="permission_collector_never_ask_again_message">由于拒绝位置和/或电话权限，收集测量数据不可用</string>
     <string name="permission_collector_never_ask_again_background_location_api29_message">由于后台位置和/或电话权限被拒绝，无法进行测量收集</string>

@@ -11,6 +11,7 @@
     <string name="permission_collector_rationale_background_location_api29_message">Für diese Funktion wählen Sie bitte die Option \'Immer zulassen\' beim Standortzugriff!</string>
     <string name="permission_collector_rationale_background_location_api30_message">Für diese Funktion wählen Sie bitte \'Zulassen in den Einstellungen\' und dort die Option \'Immer zulassen\' für den Standortzugriff der App.</string>
     <string name="permission_collector_rationale_background_location_2_step_api30_message">Wenn Sie diese Funktion nutzen möchten, müssen Sie zunächst reguläre Standortberechtigungen erteilen. Anschließend werden Sie separat aufgefordert, eine Hintergrundstandortberechtigung zu erteilen!</string>
+    <string name="permission_collector_rationale_background_location_compliance_message">Die App benötigt die Berechtigung zur Hintergrundortung nur dann, wenn Sie beim Gerätestart automatisch mit der Erfassung von Messungen beginnen möchten. Ohne diese Erlaubnis können Sie nur selbst mit dem Sammeln beginnen.</string>
     <string name="permission_collector_denied_message">Erfassung abbrechen wegen fehlenden Berechtigungen</string>
     <string name="permission_collector_never_ask_again_message">Erfassung ist nicht verfügbar wegen fehlender Berechtigung für Standort- oder Telefon-Zugriff</string>
     <string name="permission_collector_never_ask_again_background_location_api29_message">Erfassung ist nicht möglich wegen fehlender Berechtigung für den Standort-Zugriff im Hintergrund oder Telefon-Zugriff.</string>

@@ -208,7 +208,9 @@
     <string name="main_help_invalid_system_time_title">系统时间无效</string>
     <string name="main_help_invalid_system_time_description">与GPS时间相比，您当前的系统日期和/或时间无效。测量将以正确的时间保存，但显示的统计信息可能不准确。请在您的设备中设置日期和时间。</string>
     <string name="main_help_battery_optimizations_title">电池优化已启用</string>
-    <string name="main_help_battery_optimizations_description">已为此应用启用了电池优化，这可能导致收集不准确且不可靠的测量结果。请在Android设置中停用电池优化，方法是选择“所有应用”，然后选择Tower Collector：“不优化”。</string>
+    <string name="main_help_battery_optimizations_description_common">已为此应用启用了电池优化，这可能导致收集不准确且不可靠的测量结果。</string>
+    <string name="main_help_battery_optimizations_description_api23">请在Android设置中停用电池优化，方法是选择“所有应用”，然后选择Tower Collector：“不优化”。</string>
+    <string name="main_help_battery_optimizations_description_api35">请在Android设置中停用电池优化，方法是选择“所有应用”，然后选择Tower Collector：“允许后台使用”。</string>
     <string name="main_help_power_save_mode_title">已启用省电模式</string>
     <string name="main_help_power_save_mode_description">设备上启用了省电模式，这可能导致收集不准确和不可靠的测量结果。 请在Android电池设置中禁用省电模式。</string>
     <string name="main_help_airplane_mode_title">飞行模式已启用</string>

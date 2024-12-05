@@ -208,7 +208,9 @@
     <string name="main_help_invalid_system_time_title">Érvénytelen rendszeridő</string>
     <string name="main_help_invalid_system_time_description">A jelenlegi rendszeridő eltér a GPS idejéhez képest. A mérések a helyes idővel lesznek elmentve, de a statisztikák pontatlanok lehetnek. Állítsd be az dátumot és az időt az eszközödön.</string>
     <string name="main_help_battery_optimizations_title">Akkumulátor optimalizációk engedélyezve</string>
-    <string name="main_help_battery_optimizations_description">Az akkumulátor optimalizációk be vannak kapcsolva az alkalmazásnál, amely pontatlan és nem megbízható méréseket eredményezhet. Tiltsd le az akkumulátor optimalizációkat az Android beállításokban az „Összes alkalmazás”, majd a Tower Collector kiválasztásával. Végül pedig válaszd a „Ne optimalizálja” lehetőséget.</string>
+    <string name="main_help_battery_optimizations_description_common">Az akkumulátor optimalizációk be vannak kapcsolva az alkalmazásnál, amely pontatlan és nem megbízható méréseket eredményezhet.</string>
+    <string name="main_help_battery_optimizations_description_api23">Tiltsd le az akkumulátor optimalizációkat az Android beállításokban az „Összes alkalmazás”, majd a Tower Collector kiválasztásával. Végül pedig válaszd a „Ne optimalizálja” lehetőséget.</string>
+    <string name="main_help_battery_optimizations_description_api35">Tiltsd le az akkumulátor optimalizációkat az Android beállításokban az „Összes alkalmazás”, majd a Tower Collector kiválasztásával. Végül pedig válaszd a „Háttérhasználat engedélyezése” lehetőséget.</string>
     <string name="main_help_power_save_mode_title">Az akkumulátor kímélő aktív</string>
     <string name="main_help_power_save_mode_description">Az akkumulátor kímélő engedélyezve van az eszközön, ami pontatlan és megbízhatatlan méréseket eredményezhet. Kérjük, tiltsd le az akkumulátor-kímélőt az Android akkumulátor-beállításainál.</string>
     <string name="main_help_airplane_mode_title">Repülőgépes üzemmód engedélyezve</string>

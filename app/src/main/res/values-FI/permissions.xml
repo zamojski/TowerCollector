@@ -11,6 +11,7 @@
     <string name="permission_collector_rationale_background_location_api29_message">Jos haluat käyttää tätä toimintoa, muista valita \'Salli koko ajan\' -vaihtoehto laitteen sijaintioikeutta varten!</string>
     <string name="permission_collector_rationale_background_location_api30_message">Jos haluat käyttää tätä toimintoa, muista valita \'Salli asetuksissa\' ja sitten \'Salli koko ajan\' -vaihtoehto, jotta voit käyttää laitteen sijaintioikeutta!</string>
     <string name="permission_collector_rationale_background_location_2_step_api30_message">Jos haluat käyttää tätä toimintoa, sinun on ensin myönnettävä säännölliset sijaintiluvat ja sitten sinua pyydetään erikseen myöntämään taustasijaintilupa!</string>
+    <string name="permission_collector_rationale_background_location_compliance_message">Sovellus vaatii taustasijaintiluvan vain, jos haluat aloittaa mittausten keräämisen automaattisesti laitteen käynnistyksen yhteydessä. Ilman tätä lupaa voit aloittaa keräämisen vain itse.</string>
     <string name="permission_collector_denied_message">Mittausten kerääminen perutaan evättyjen käyttöoikeuksien vuoksi</string>
     <string name="permission_collector_never_ask_again_message">Mittausten kerääminen ei ole mahdollista kielletyn sijainnin ja/tai puhelimen käyttöoikeuksien vuoksi.</string>
     <string name="permission_collector_never_ask_again_background_location_api29_message">Mittausten kerääminen ei ole mahdollista, koska taustasijainti ja/tai puhelimen käyttöoikeudet on evätty.</string>

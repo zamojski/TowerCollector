@@ -208,7 +208,9 @@
     <string name="main_help_invalid_system_time_title">Неверное время в системе</string>
     <string name="main_help_invalid_system_time_description">Ваши текущие дата и/или время отличается от времени GPS. Измерения будут сохранены с правильным временем, но в статистике могут быть ошибки. Пожалуйста, установите правильное время на вашем устройстве.</string>
     <string name="main_help_battery_optimizations_title">Включена оптимизация батареи</string>
-    <string name="main_help_battery_optimizations_description">Оптимизация батареи включены для этого приложения, поэтому это может сказаться на точности и достоверности собираемых измерений. Пожалуйста, отключите оптимизацию батареи в настройках Android выбрав \"Все приложения\", затем Tower Collector: \"Не оптимизировать\".</string>
+    <string name="main_help_battery_optimizations_description_common">Оптимизация батареи включены для этого приложения, поэтому это может сказаться на точности и достоверности собираемых измерений.</string>
+    <string name="main_help_battery_optimizations_description_api23">Пожалуйста, отключите оптимизацию батареи в настройках Android выбрав \"Все приложения\", затем Tower Collector: \"Не оптимизировать\".</string>
+    <string name="main_help_battery_optimizations_description_api35">Пожалуйста, отключите оптимизацию батареи в настройках Android выбрав \"Все приложения\", затем Tower Collector: \"Разрешить использование в фоновом режиме\".</string>
     <string name="main_help_power_save_mode_title">Режим энергосбережения активен</string>
     <string name="main_help_power_save_mode_description">На устройстве включена функция экономии заряда батареи, которая может привести к неточным и ненадежным данным измерений. Пожалуйста, отключите функцию экономии заряда батареи в настройках батареи Android.</string>
     <string name="main_help_airplane_mode_title">Режим самолета включен</string>
