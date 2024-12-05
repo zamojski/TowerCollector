@@ -1,0 +1,2 @@
+- Fix battery optimization detection on Android 15.
+- Extend background location permission rationale to be more compliant with Google Play policy.

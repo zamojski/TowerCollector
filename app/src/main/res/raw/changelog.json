@@ -1,6 +1,14 @@
 {
   "Entries": [
     {
+      "VersionCode": 2150516,
+      "Title": "Changes in version 2.15.5",
+      "Messages": [
+        "Fix battery optimization detection on Android 15.",
+        "Extend background location permission rationale to be more compliant with Google Play policy."
+      ]
+    },
+    {
       "VersionCode": 2150415,
       "Title": "Changes in version 2.15.4",
       "Messages": [
@@ -39,12 +47,6 @@
         "Improve improve compatibility with Android 14.",
         "Improve error handling."
       ]
-    },
-    {
-      "VersionCode": 2140610,
-      "Title": "Changes in version 2.14.6",
-      "Description": "<h1>IMPORTANT!</h1>Mozilla have made the decision to retire the service and new measurements are no longer accepted. <a href='https://discourse.mozilla.org/t/retiring-the-mozilla-location-service/128693'>Read more</a>.<br/><br/>The option to upload to Mozilla Location Services temporarily remains available, but I will only try to upload the measurements if custom MLS-compatible address is provided in Preferences.",
-      "Messages": []
     }
   ]
 }
