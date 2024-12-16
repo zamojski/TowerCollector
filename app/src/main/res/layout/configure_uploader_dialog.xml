@@ -40,6 +40,15 @@
             android:layout_marginTop="8dp"
             android:text="@string/mls_name" />
 
+        <TextView
+            android:id="@+id/mls_invalid_custom_url_upload_dialog_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:text="@string/enter_valid_mls_url_key"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/background_invalid" />
+
         <CheckBox
             android:id="@+id/reupload_if_upload_fails_upload_dialog_checkbox"
             android:layout_width="match_parent"

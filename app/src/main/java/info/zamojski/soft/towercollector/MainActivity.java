@@ -1064,11 +1064,13 @@ public class MainActivity extends AppCompatActivity
             Timber.d("startUploaderTaskWithCheck(): Showing upload configurator");
             // check API key
             boolean isApiKeyValid = OpenCellIdUtils.isApiKeyValid(OpenCellIdUtils.getApiKey());
+            boolean isCustomMlsUrlValid = NetworkUtils.isValidUrl(preferencesProvider.getCustomMlsUploadUrl());
             LayoutInflater inflater = LayoutInflater.from(this);
             View dialogLayout = inflater.inflate(R.layout.configure_uploader_dialog, null);
             final CheckBox ocidUploadCheckbox = dialogLayout.findViewById(R.id.ocid_upload_dialog_checkbox);
             final CheckBox ocidAnonymousUploadCheckbox = dialogLayout.findViewById(R.id.ocid_anonymous_upload_dialog_checkbox);
             final TextView invalidApiKeyTextView = dialogLayout.findViewById(R.id.ocid_invalid_api_key_upload_dialog_textview);
+            final TextView invalidCustomUrlTextView = dialogLayout.findViewById(R.id.mls_invalid_custom_url_upload_dialog_textview);
             ocidUploadCheckbox.setChecked(isOcidUploadEnabled);
             ocidUploadCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -1084,6 +1086,7 @@ public class MainActivity extends AppCompatActivity
                 }
             });
             invalidApiKeyTextView.setVisibility(isUseSharedOpenCellIdApiKeyEnabled || isApiKeyValid ? View.GONE : View.VISIBLE);
+            invalidCustomUrlTextView.setVisibility(!isCustomMlsUploadEnabled || isCustomMlsUrlValid ? View.GONE : View.VISIBLE);
             final CheckBox mlsUploadCheckbox = dialogLayout.findViewById(R.id.mls_upload_dialog_checkbox);
             mlsUploadCheckbox.setChecked(isMlsUploadEnabled);
             final CheckBox reuploadCheckbox = dialogLayout.findViewById(R.id.reupload_if_upload_fails_upload_dialog_checkbox);
