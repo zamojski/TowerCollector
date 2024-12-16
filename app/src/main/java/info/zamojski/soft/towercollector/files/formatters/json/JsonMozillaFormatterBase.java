@@ -43,7 +43,7 @@ public abstract class JsonMozillaFormatterBase extends JsonFormatterBase {
             item.put("position", position);
             JSONArray cellTowers = new JSONArray();
             for (Cell c : m.getCells()) {
-                if (c.getNetworkType() == NetworkGroup.Cdma || c.getMcc() == Cell.UNKNOWN_CID || c.getNetworkType() == NetworkGroup.Tdscdma || c.getNetworkType() == NetworkGroup.Nr)
+                if (c.getNetworkType() == NetworkGroup.Cdma || c.getNetworkType() == NetworkGroup.Tdscdma || c.getMcc() == Cell.UNKNOWN_CID)
                     continue; // Not supported
                 JSONObject cellTower = new JSONObject();
                 cellTower.put("radioType", formatRadioType(c.getNetworkType()));
@@ -63,6 +63,9 @@ public abstract class JsonMozillaFormatterBase extends JsonFormatterBase {
                 int ta = c.getTa();
                 if (ta != Cell.UNKNOWN_SIGNAL)
                     cellTower.put("timingAdvance", ta);
+                int arfcn = c.getArfcn();
+                if (arfcn != Cell.UNKNOWN_CID)
+                    cellTower.put("arfcn", arfcn);
                 cellTower.put("serving", c.isNeighboring() ? 0 : 1);
                 cellTowers.put(cellTower);
             }

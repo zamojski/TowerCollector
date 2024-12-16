@@ -17,9 +17,8 @@ public class MozillaCellUtils implements ICellUtils {
             case Lte:
                 return "lte";
             case Nr:
-                return "nr"; // TODO: verify when supported
+                return "nr";
             case Tdscdma:
-                return "tdscdma"; // TODO: verify when supported
             case Cdma:
             case Unknown:
             default:
