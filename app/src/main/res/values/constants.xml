@@ -184,6 +184,12 @@
 
     <string name="preferences_main_map_clear_cache_key" translatable="false">main_map_clear_cache</string>
 
+    <string name="preferences_main_map_max_clustering_zoom_level_key" translatable="false">main_map_max_clustering_zoom_level</string>
+    <integer name="preferences_main_map_max_clustering_zoom_level_default_value" translatable="false">13</integer>
+    <integer name="preferences_main_map_max_clustering_zoom_level_min_value" translatable="false">0</integer>
+    <integer name="preferences_main_map_max_clustering_zoom_level_max_value" translatable="false">20</integer>
+    <integer name="preferences_main_map_max_clustering_zoom_level_increment_value" translatable="false">1</integer>
+
     <string name="preferences_storage_uri_key" translatable="false">storage_uri</string>
     <string name="preferences_storage_uri_default_value" translatable="false"></string>
     <string name="preferences_change_storage_location_key" translatable="false">change_storage_location</string>

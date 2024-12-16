@@ -342,4 +342,9 @@ public class PreferencesProvider {
         boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_main_map_unmetered_only_key, R.bool.preferences_main_map_unmetered_only_default_value);
         return value;
     }
+
+    public int getMapMaxZoomClusteringLevel() {
+        int value = integerPreferenceProvider.getPreference(R.string.preferences_main_map_max_clustering_zoom_level_key, R.integer.preferences_main_map_max_clustering_zoom_level_default_value);
+        return value;
+    }
 }

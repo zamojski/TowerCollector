@@ -48,6 +48,7 @@ import org.osmdroid.events.DelayedMapListener;
 import org.osmdroid.events.MapListener;
 import org.osmdroid.events.ScrollEvent;
 import org.osmdroid.events.ZoomEvent;
+import org.osmdroid.tileprovider.tilesource.OnlineTileSourceBase;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.BoundingBox;
 import org.osmdroid.util.GeoPoint;
@@ -85,6 +86,8 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
     private static final int MAP_DATA_LOAD_DELAY_IN_MILLIS = 200;
     private static final int MAX_MARKERS_ADDED_INDIVIDUALLY = 500;
     private static final float BOUNDARIES_INCREASE_FACTOR = 1.2f; // 10% more each side
+
+    public static final OnlineTileSourceBase TILE_SOURCE = TileSourceFactory.MAPNIK;
 
     private MapView mainMapView;
     private FollowMyLocationOverlay myLocationOverlay;
@@ -169,7 +172,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         RadiusMarkerClusterer overlay = new RadiusMarkerClusterer(MyApplication.getApplication());
         overlay.setIcon(getClusterIcon());
         overlay.setRadius(100);
-        overlay.setMaxClusteringZoomLevel(13);
+        overlay.setMaxClusteringZoomLevel(MyApplication.getPreferencesProvider().getMapMaxZoomClusteringLevel());
         return overlay;
     }
 
@@ -190,10 +193,10 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         TextView copyrightTextView = view.findViewById(R.id.main_map_copyright);
         copyrightTextView.setMovementMethod(LinkMovementMethod.getInstance());
 
-        mainMapView.setTileSource(TileSourceFactory.MAPNIK);
+        mainMapView.setTileSource(TILE_SOURCE);
         mainMapView.setMultiTouchControls(true);
-        mainMapView.setMinZoomLevel(5.0);
-        mainMapView.setMaxZoomLevel(20.0);
+        mainMapView.setMinZoomLevel((double)Math.max(3, TILE_SOURCE.getMinimumZoomLevel()));
+        mainMapView.setMaxZoomLevel((double)TILE_SOURCE.getMaximumZoomLevel());
         mainMapView.getZoomController().getDisplay().setAdditionalPixelMargins(0, 0, 0, 32);
         IMapController mapController = mainMapView.getController();
         mapController.setZoom(MyApplication.getPreferencesProvider().getMainMapZoomLevel());
