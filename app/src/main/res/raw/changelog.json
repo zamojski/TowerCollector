@@ -1,6 +1,15 @@
 {
   "Entries": [
     {
+      "VersionCode": 2150617,
+      "Title": "Changes in version 2.15.6",
+      "Messages": [
+        "Enable upload of 5G (NR) cells to BeaconDB.",
+        "Show warning when uploading to custom BeaconDB url which is invalid.",
+        "Add option to select clustering level on the map."
+      ]
+    },
+    {
       "VersionCode": 2150516,
       "Title": "Changes in version 2.15.5",
       "Messages": [
@@ -27,25 +36,6 @@
       "Title": "Changes in version 2.15.2",
       "Messages": [
         "Fix crash when starting collector on Android 13+ without proper permissions."
-      ]
-    },
-    {
-      "VersionCode": 2150112,
-      "Title": "Changes in version 2.15.1",
-      "Description": "<h1>IMPORTANT!</h1>Upload to Mozilla Location Services has been replaced with upload to <a href='https://beacondb.net/'>BeaconDB</a> database.<br/><br/>If you previously enabled upload to MLS it will now be enabled for BeaconDB. You can still use your own MLS-compatible service if you provide address in Preferences.",
-      "Messages": [
-        "Fix zoom level not remembered when using zoom buttons or accidental scrolling while zooming with pinch gesture.",
-        "Fix error when importing Preferences from file.",
-        "Fix measurements not refreshed on the map when application is restored from background.",
-        "Fix measurements info windows remaining on the map for deleted measurements.",
-        "Add option to copy value to clipboard from last measurement screen by long press.",
-        "Add support for Timing Advance for NR (5G) cells.",
-        "Add option to donate through Buy Me a Coffee.",
-        "Move map zoom buttons slightly upwards.",
-        "Shorten toast message when another background task is running.",
-        "Remove empty line at the end from generated CSV file.",
-        "Improve improve compatibility with Android 14.",
-        "Improve error handling."
       ]
     }
   ]

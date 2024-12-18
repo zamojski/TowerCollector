@@ -1,0 +1,3 @@
+- Enable upload of 5G (NR) cells to BeaconDB.
+- Show warning when uploading to custom BeaconDB url which is invalid.
+- Add option to select clustering level on the map.
