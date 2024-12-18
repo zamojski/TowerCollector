@@ -169,6 +169,8 @@
     <string name="preferences_main_map_unmetered_only_title">무제한 네트워크에서만 동작</string>
     <string name="preferences_main_map_unmetered_only_on_summary">지도는 무제한 네트워크(일반적으로 Wi-Fi)에 연결되지 않는 한 이전에 캐시된 지도만 사용합니다.</string>
     <string name="preferences_main_map_unmetered_only_off_summary">지도는 인터넷 연결 유형에 관계없이 동작합니다.</string>
+    <string name="preferences_main_map_max_clustering_zoom_level_title">클러스터링 확대/축소 수준</string>
+    <string name="preferences_main_map_max_clustering_zoom_level_summary">측정값이 클러스터링되지 않는 최대 지도 확대/축소 수준입니다.</string>
     <string name="preferences_main_map_cache_size_title">지도 캐시 용량</string>
     <string name="preferences_main_map_cache_size_summary">장치의 사용 가능한 공간에 따라 지도 캐시 용량을 조절합니다.\n<b>[MB]</b></string>
     <string name="preferences_main_map_clear_cache_title">캐시 삭제</string>

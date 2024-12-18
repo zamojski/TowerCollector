@@ -169,6 +169,8 @@
     <string name="preferences_main_map_unmetered_only_title">Solo en redes ilimitadas</string>
     <string name="preferences_main_map_unmetered_only_on_summary">El mapa solo funcionará en áreas previamente almacenadas en caché a menos que esté conectado a una red sin medidor, generalmente Wi-Fi.</string>
     <string name="preferences_main_map_unmetered_only_off_summary">El mapa se actualizará independientemente del tipo de conexión a Internet.</string>
+    <string name="preferences_main_map_max_clustering_zoom_level_title">Nivel de zoom de agrupamiento</string>
+    <string name="preferences_main_map_max_clustering_zoom_level_summary">Nivel máximo de zoom del mapa en el que las mediciones no están agrupadas.</string>
     <string name="preferences_main_map_cache_size_title">Tamaño de la caché del mapa</string>
     <string name="preferences_main_map_cache_size_summary">Ajuste el tamaño de la caché del mapa de acuerdo con la memoria libre disponible en su dispositivo.\n<b>[MB]</b></string>
     <string name="preferences_main_map_clear_cache_title">Limpiar caché</string>

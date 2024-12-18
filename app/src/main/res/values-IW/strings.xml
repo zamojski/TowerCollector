@@ -3,7 +3,7 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="locale">he</string>
+    <string name="locale">iw</string>
     <string name="shortcut_collecting_toggle_short">איסוף</string>
     <string name="shortcut_collecting_toggle_long">שינוי מצב איסוף</string>
     <string name="shortcut_upload_toggle_short">העלאה</string>
@@ -283,6 +283,7 @@
     <string name="upload_configurator_dialog_title">הגדרת יעד להעלאה</string>
     <string name="upload_anonymously">באופן אלמוני</string>
     <string name="enter_valid_api_key">עליך להקליד אסימון גישה תקני בהגדרות</string>
+    <string name="enter_valid_mls_url_key">עליך להזין כתובת שרת מותאמת אישית חוקית של BeaconDB בהעדפות</string>
     <string name="reupload_measurements_if_upload_fails_for_one_of_projects">יש לנסות להעלות את המדידות שוב אם ההעלאה נכשלת עבור אחד מהמיזמים.</string>
     <string name="unsafe_operation_warning_title">פעולה בלתי בטוחה</string>
     <string name="unsafe_operation_warning_message">אפשרות זו עשויה לפגום בהגדרות היישומון ולגרום לקריסה. במקרה שכזה עליך למחוק את נתוני היישומון בהגדרות ה־Android. עליך לסגור את היישומון לחלוטין ולפתוח אותו מחדש כדי לצפות בשינויים!\n\nהשימוש על אחריותך בלבד!</string>

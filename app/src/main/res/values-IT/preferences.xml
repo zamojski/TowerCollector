@@ -169,6 +169,8 @@
     <string name="preferences_main_map_unmetered_only_title">Solo su reti illimitate</string>
     <string name="preferences_main_map_unmetered_only_on_summary">La mappa funzionerà solo nelle aree precedentemente memorizzate nella cache a meno che tu non sia connesso a una rete illimitata, in genere Wi-Fi.</string>
     <string name="preferences_main_map_unmetered_only_off_summary">La mappa verrà aggiornata indipendentemente dal tipo di connessione Internet.</string>
+    <string name="preferences_main_map_max_clustering_zoom_level_title">Livello di zoom del clustering</string>
+    <string name="preferences_main_map_max_clustering_zoom_level_summary">Livello massimo di zoom della mappa al quale le misurazioni non vengono raggruppate.</string>
     <string name="preferences_main_map_cache_size_title">Dimensione della cache della mappa</string>
     <string name="preferences_main_map_cache_size_summary">Regola la dimensione della cache della mappa in base alla memoria libera disponibile sul tuo dispositivo.\n<b>[MB]</b></string>
     <string name="preferences_main_map_clear_cache_title">Cancella cache</string>

@@ -169,6 +169,8 @@
     <string name="preferences_main_map_unmetered_only_title">Yalnızca ölçülmemiş ağlarda</string>
     <string name="preferences_main_map_unmetered_only_on_summary">Harita, genellikle Wi-Fi gibi, ölçülmemiş bir ağa bağlı değilseniz, yalnızca önceden önbelleğe alınmış alanlarda çalışacaktır.</string>
     <string name="preferences_main_map_unmetered_only_off_summary">İnternet bağlantı türüne bakılmaksızın harita güncellenecektir.</string>
+    <string name="preferences_main_map_max_clustering_zoom_level_title">Kümeleme yakınlaştırma düzeyi</string>
+    <string name="preferences_main_map_max_clustering_zoom_level_summary">Ölçümlerin kümelenmediği maksimum harita yakınlaştırma düzeyi.</string>
     <string name="preferences_main_map_cache_size_title">Harita önbelleği boyutu</string>
     <string name="preferences_main_map_cache_size_summary">Harita önbelleği boyutunu cihazınızdaki kullanılabilir boş belleğe göre ayarlayın.\n<b>[MB]</b></string>
     <string name="preferences_main_map_clear_cache_title">Ön belleği temizle</string>

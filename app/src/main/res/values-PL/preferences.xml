@@ -169,6 +169,8 @@
     <string name="preferences_main_map_unmetered_only_title">Tylko połączenia bez limitów</string>
     <string name="preferences_main_map_unmetered_only_on_summary">Mapa będzie działać tylko w poprzednio odwiedzonych miejscach, chyba że dostępne będzie połączenie bez pomiaru danych, zwykle Wi-Fi.</string>
     <string name="preferences_main_map_unmetered_only_off_summary">Mapa będzie aktualizowana niezależnie od rodzaju połączenia internetowego.</string>
+    <string name="preferences_main_map_max_clustering_zoom_level_title">Grupowanie próbek</string>
+    <string name="preferences_main_map_max_clustering_zoom_level_summary">Maksymalny poziom przybliżenia mapy, przy którym próbki nie są grupowane.</string>
     <string name="preferences_main_map_cache_size_title">Rozmiar pamięci podręcznej mapy</string>
     <string name="preferences_main_map_cache_size_summary">Dopasuj rozmiar pamięci podręcznej may w zależności od dostępnej wolnej pamięci urządzenia.\n<b>[MB]</b></string>
     <string name="preferences_main_map_clear_cache_title">Wyczyść pamięć podręczną</string>

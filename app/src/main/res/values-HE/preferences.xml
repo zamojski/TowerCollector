@@ -169,6 +169,8 @@
     <string name="preferences_main_map_unmetered_only_title">רק ברשתות לא מוגבלות</string>
     <string name="preferences_main_map_unmetered_only_on_summary">המפה תעבוד רק באזורים שנשמרו בעבר אלא אם כן התחברת לרשת בלתי מוגבלת, בדרך כלל רשת אלחוטית.</string>
     <string name="preferences_main_map_unmetered_only_off_summary">המפה תעודכן ללא תלות בסוג החיבור לאינטרנט.</string>
+    <string name="preferences_main_map_max_clustering_zoom_level_title">רמת זום מקבץ</string>
+    <string name="preferences_main_map_max_clustering_zoom_level_summary">רמת זום מקסימלית במפה שבה המדידות אינן מקובצות.</string>
     <string name="preferences_main_map_cache_size_title">גודל מטמון המפה</string>
     <string name="preferences_main_map_cache_size_summary">להתאים את גודל מטמון המפה בהתאם לזיכרון הפנוי במכשיר.\n<b>[MB]</b></string>
     <string name="preferences_main_map_clear_cache_title">פינוי המטמון</string>

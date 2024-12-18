@@ -169,6 +169,8 @@
     <string name="preferences_main_map_unmetered_only_title">Тільки в необмежених мережах</string>
     <string name="preferences_main_map_unmetered_only_on_summary">Карта працюватиме лише в раніше кешованих областях, якщо ви не під’єднані до безлімітної мережі, як правило, Wi-Fi.</string>
     <string name="preferences_main_map_unmetered_only_off_summary">Карта буде оновлюватися незалежно від типу підключення до Інтернету.</string>
+    <string name="preferences_main_map_max_clustering_zoom_level_title">Рівень масштабування кластеризації</string>
+    <string name="preferences_main_map_max_clustering_zoom_level_summary">Максимальний рівень масштабування карти, при якому вимірювання не групуються.</string>
     <string name="preferences_main_map_cache_size_title">Розмір кешу карти</string>
     <string name="preferences_main_map_cache_size_summary">Налаштуйте розмір кешу на карті відповідно до вільної пам\'яті на вашому пристрої.\n<b>[MB]</b></string>
     <string name="preferences_main_map_clear_cache_title">Очистити кеш</string>

@@ -169,6 +169,8 @@
     <string name="preferences_main_map_unmetered_only_title">仅在未计量的网络上</string>
     <string name="preferences_main_map_unmetered_only_on_summary">除非您连接到未计量的网络（通常是 Wi-Fi），否则地图将仅在以前缓存的区域中工作。</string>
     <string name="preferences_main_map_unmetered_only_off_summary">无论Internet连接类型如何，地图都会被更新。</string>
+    <string name="preferences_main_map_max_clustering_zoom_level_title">聚类缩放级别</string>
+    <string name="preferences_main_map_max_clustering_zoom_level_summary">测量值不聚集的最大地图缩放级别。</string>
     <string name="preferences_main_map_cache_size_title">地图缓存大小</string>
     <string name="preferences_main_map_cache_size_summary">根据设备上的可用存储调整地图缓存大小。\n<b>[MB]</b></string>
     <string name="preferences_main_map_clear_cache_title">清除缓存</string>

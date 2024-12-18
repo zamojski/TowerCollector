@@ -283,6 +283,7 @@
     <string name="upload_configurator_dialog_title">Upload-Ziel konfigurieren</string>
     <string name="upload_anonymously">anonym</string>
     <string name="enter_valid_api_key">Sie müssen einen gültigen Zugriffstoken in den Einstellungen setzen</string>
+    <string name="enter_valid_mls_url_key">Sie müssen in den Einstellungen eine gültige benutzerdefinierte BeaconDB-Serveradresse eingeben</string>
     <string name="reupload_measurements_if_upload_fails_for_one_of_projects">Upload zu einem Projekt erneut versuchen wenn ein Fehler passiert ist</string>
     <string name="unsafe_operation_warning_title">Unsicherer Vorgang</string>
     <string name="unsafe_operation_warning_message">Diese Option kann die App-Konfiguration zerstören und einen Absturz verursachen. In diesem Fall müssen Sie die App-Daten in den Android-Einstellungen löschen. Sie müssen die App vollständig schließen und wieder öffnen um Änderungen zu sehen!\n\nVerwendung auf eigenes Risiko!</string>

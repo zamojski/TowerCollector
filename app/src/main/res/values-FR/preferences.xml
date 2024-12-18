@@ -169,6 +169,8 @@
     <string name="preferences_main_map_unmetered_only_title">Réseaux illimités uniquement</string>
     <string name="preferences_main_map_unmetered_only_on_summary">La carte ne fonctionnera que dans les zones précédemment mises en cache, sauf si vous êtes connecté à un réseau illimité, généralement Wi-Fi.</string>
     <string name="preferences_main_map_unmetered_only_off_summary">La carte sera mise à jour quel que soit le type de connexion Internet.</string>
+    <string name="preferences_main_map_max_clustering_zoom_level_title">Niveau de zoom de regroupement</string>
+    <string name="preferences_main_map_max_clustering_zoom_level_summary">Niveau de zoom maximal de la carte auquel les mesures ne sont pas regroupées.</string>
     <string name="preferences_main_map_cache_size_title">Taille du cache de la carte</string>
     <string name="preferences_main_map_cache_size_summary">Ajustez la taille du cache de la carte en fonction de la mémoire libre disponible sur votre appareil.\n<b>[MB]</b></string>
     <string name="preferences_main_map_clear_cache_title">Vider le cache</string>
