@@ -1,6 +1,13 @@
 {
   "Entries": [
     {
+      "VersionCode": 2160018,
+      "Title": "Changes in version 2.16.0",
+      "Messages": [
+        "Improve compatibility with Android 15."
+      ]
+    },
+    {
       "VersionCode": 2150617,
       "Title": "Changes in version 2.15.6",
       "Messages": [
@@ -29,13 +36,6 @@
       "Title": "Changes in version 2.15.3",
       "Messages": [
         "Fix crash when starting export or upload on Android 14+."
-      ]
-    },
-    {
-      "VersionCode": 2150213,
-      "Title": "Changes in version 2.15.2",
-      "Messages": [
-        "Fix crash when starting collector on Android 13+ without proper permissions."
       ]
     }
   ]
