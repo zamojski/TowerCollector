@@ -20,7 +20,7 @@ android {
         vectorDrawables.useSupportLibrary = true
 
         // Build
-        buildConfigField "long", "BUILD_DATE_TIME", "${new Date().getTime()}"
+        buildConfigField "long", "BUILD_DATE_TIME", "${getLastGitCommitTimestamp()}"
         buildConfigField "int", "MIN_SDK_VERSION", "${minSdkVersion.apiLevel}"
     }
     signingConfigs {
@@ -206,6 +206,15 @@ String rotHex(String s) {
         sb.append((char) num)
     }
     return sb.toString()
+}
+
+long getLastGitCommitTimestamp() {
+    new ByteArrayOutputStream().withStream { os ->
+        var output = getProviders().exec {
+            commandLine 'git', 'show', '--no-patch', '--format=%ct'
+        }
+        return Long.parseLong(output.getStandardOutput().getAsText().get().trim()) * 1000
+    }
 }
 
 apply plugin: 'com.google.gms.google-services'
