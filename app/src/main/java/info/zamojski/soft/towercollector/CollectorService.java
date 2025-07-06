@@ -48,7 +48,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import cz.mroczis.netmonster.core.INetMonster;
 import cz.mroczis.netmonster.core.model.cell.ICell;
@@ -58,7 +57,6 @@ import info.zamojski.soft.towercollector.broadcast.ExternalBroadcastSender;
 import info.zamojski.soft.towercollector.broadcast.LocationModeOrProvidersChangedReceiver;
 import info.zamojski.soft.towercollector.collector.CollectorNotificationHelper;
 import info.zamojski.soft.towercollector.collector.MeasurementUpdater;
-import info.zamojski.soft.towercollector.collector.ParseResult;
 import info.zamojski.soft.towercollector.collector.TelephonyTriple;
 import info.zamojski.soft.towercollector.collector.parsers.MeasurementParser;
 import info.zamojski.soft.towercollector.collector.parsers.MeasurementParserFactory;
@@ -91,18 +89,13 @@ public class CollectorService extends Service {
     public static final String SERVICE_FULL_NAME = CollectorService.class.getCanonicalName();
     public static final String INTENT_KEY_START_INTENT_SOURCE = "start_intent_source";
     public static final String BROADCAST_INTENT_STOP_SERVICE = SERVICE_FULL_NAME + ".CollectorStop";
-    static final String INTENT_KEY_TRANSPORT_MODE = MeansOfTransport.class.getCanonicalName();
     static final String INTENT_KEY_KEEP_SCREEN_ON_MODE = "CollectorKeepScreenOnMode";
     public static final int NOTIFICATION_ID = 'C';
-    private static final int CONDITIONS_NOT_ACHIEVED_COUNTER_INIT = 3;
-    private static final int STATIC_LISTENER_INTERVAL = 15000;// milliseconds
-    private static final int STATIC_LISTENER_DISTANCE = 0;// meters (always)
     private static final int GPS_STATUS_CHECK_INTERVAL = 15000;// milliseconds
     private static final int CELL_UPDATE_INTERVAL = 10000;// milliseconds
     private static final int WAKE_LOCK_TIMEOUT = 60000;// milliseconds
     private static final int WAKE_LOCK_ACQUIRE_INTERVAL = 5000;// milliseconds
 
-    private static final Object dynamicLocationListenerLock = new Object();
     private static final Object reacquireWakeLockLock = new Object();
 
     private IBinder binder = new LocalBinder();
@@ -133,8 +126,6 @@ public class CollectorService extends Service {
     KeepScreenOnMode keepScreenOnMode;
     private Timer periodicalWakeLockAcquirer;
 
-    private int conditionsNotAchievedCounter = CONDITIONS_NOT_ACHIEVED_COUNTER_INIT;
-    private AtomicInteger currentIntervalValue = new AtomicInteger();//TODO: get rid when on same thread reconnected after processing received event
     private MeansOfTransport transportMode = MeansOfTransport.Fixed;
 
     private long startTime;
@@ -218,12 +209,7 @@ public class CollectorService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
-        Timber.d("onStartCommand(): Starting service");
-        // get locomotion mode
-        transportMode = (MeansOfTransport) intent.getSerializableExtra(INTENT_KEY_TRANSPORT_MODE);
-        if (transportMode == null)
-            transportMode = (MyApplication.getPreferencesProvider().getGpsOptimizationsEnabled() ? MeansOfTransport.Universal : MeansOfTransport.Fixed);
-        Timber.d("onStartCommand(): Selected transport mode: %s", transportMode);
+        Timber.d("onStartCommand(): Starting service with transport mode %s", transportMode);
         String keepScreenOnModeString = intent.getStringExtra(INTENT_KEY_KEEP_SCREEN_ON_MODE);
         if (keepScreenOnModeString == null)
             keepScreenOnModeString = MyApplication.getPreferencesProvider().getCollectorKeepScreenOnMode();
@@ -237,9 +223,7 @@ public class CollectorService extends Service {
         startIntentSource = (IntentSource) intent.getSerializableExtra(INTENT_KEY_START_INTENT_SOURCE);
         if (startIntentSource == null)
             startIntentSource = IntentSource.System;
-        // save interval (max by default, because it may be reconnected in a moment)
-        currentIntervalValue.set(transportMode.getMaxTime());
-        measurementUpdater.setMinDistanceAndInterval(transportMode.getDistance(), transportMode.getMaxTime());
+        measurementUpdater.setMinDistanceAndInterval(transportMode.getDistance());
         locationValidator = new LocationValidator(transportMode.getAccuracy());
         // listen for RSSI (ASU) and cell change
         periodicalPhoneStateListener = new Timer();
@@ -259,12 +243,8 @@ public class CollectorService extends Service {
         }
         try {
             // listen for GPS location change
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, STATIC_LISTENER_INTERVAL, STATIC_LISTENER_DISTANCE, staticLocationListener);
-            Timber.d("onStartCommand(): Static location listener started");
-            synchronized (dynamicLocationListenerLock) {
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, currentIntervalValue.get(), 0, dynamicLocationListener);
-                Timber.d("onStartCommand(): Service started with min distance: 0 and min time: %s", currentIntervalValue.get());
-            }
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,  transportMode.getMinTime(), 0, locationListener);
+            Timber.d("onStartCommand(): Service started with min distance: 0 and min time: %s", transportMode.getMinTime());
         } catch (SecurityException ex) {
             Timber.e(ex, "onStartCommand(): fine location permission is denied");
             stopSelf();
@@ -333,12 +313,8 @@ public class CollectorService extends Service {
         long endTime = System.currentTimeMillis();
         notificationManager.cancel(NOTIFICATION_ID);
         if (locationManager != null) {
-            synchronized (dynamicLocationListenerLock) {
-                if (dynamicLocationListener != null)
-                    locationManager.removeUpdates(dynamicLocationListener);
-            }
-            if (staticLocationListener != null)
-                locationManager.removeUpdates(staticLocationListener);
+            if (locationListener != null)
+                locationManager.removeUpdates(locationListener);
         }
         for (TelephonyTriple telephonyTriple : telephonyTriples) {
             TelephonyManager telephonyManager = telephonyTriple.getTelephonyManager();
@@ -627,8 +603,8 @@ public class CollectorService extends Service {
         measurementUpdater.setLastCellLocation(cellLocation, networkType, networkOperatorCode, networkOperatorName, neighboringCells);
     }
 
-    private LocationListener staticLocationListener = new LocationListener() {
-        private final String INNER_TAG = CollectorService.class.getSimpleName() + ".Static" + LocationListener.class.getSimpleName();
+    private LocationListener locationListener = new LocationListener() {
+        private final String INNER_TAG = CollectorService.class.getSimpleName() + "." + LocationListener.class.getSimpleName();
 
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -665,37 +641,6 @@ public class CollectorService extends Service {
         public void onLocationChanged(Location location) {
             Timber.tag(INNER_TAG).d("onLocationChanged(): %s", location);
             lastLocation = location;
-            lastLocationObtainedTime = System.currentTimeMillis();
-            setLastGpsAccuracy(lastLocation);
-            updateGpsStatus(lastLocation, lastLocationObtainedTime, System.currentTimeMillis());
-            updateSystemTimeChange(lastLocation);
-            //TODO: check if does not interfere with reconnection getParseHandler().post(new MeasurementUpdater(location));
-        }
-    };
-
-    private LocationListener dynamicLocationListener = new LocationListener() {
-        private final String INNER_TAG = CollectorService.class.getSimpleName() + ".Dynamic" + LocationListener.class.getSimpleName();
-
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-            // on Android 10 this callback will never be invoked
-            // don't duplicate logic from static listener
-        }
-
-        @Override
-        public void onProviderEnabled(String provider) {
-            // don't duplicate logic from static listener
-        }
-
-        @Override
-        public void onProviderDisabled(String provider) {
-            // don't duplicate logic from static listener
-        }
-
-        @Override
-        public void onLocationChanged(Location location) {
-            Timber.tag(INNER_TAG).d("onLocationChanged(): %s", location);
-            lastLocation = location;
             long locationObtainedTime = System.currentTimeMillis();
             lastLocationObtainedTime = locationObtainedTime;
             setLastGpsAccuracy(location);
@@ -720,75 +665,6 @@ public class CollectorService extends Service {
                 collectedCellTypes.put(networkType, count == null ? 1 : count + 1);
             }
             numberOfCollectedCells += measurement.getCells().size();
-        }
-        if (transportMode != MeansOfTransport.Fixed)
-            updateDynamicInterval(event.getResult(), speed);
-    }
-
-    public void updateDynamicInterval(ParseResult result, float speed) {
-        if (result == ParseResult.Saved) {
-            // get interval
-            int interval = recalculateInterval(speed);
-            // change only if it makes difference (probably utilizes less CPU time)
-            int intervalDiff = Math.abs(currentIntervalValue.get() - interval);
-            if (intervalDiff < 300) {
-                Timber.d("updateDynamicInterval(): Skipping GPS reconnection because of too small interval difference: %s", intervalDiff);
-                return;
-            }
-            Timber.d("updateDynamicInterval(): New interval calculated: %s difference to previous %s", interval, intervalDiff);
-            // save calculated interval
-            currentIntervalValue.set(interval);
-            measurementUpdater.setMinDistanceAndInterval(transportMode.getDistance(), interval);
-            // reconnect gps
-            try {
-                synchronized (dynamicLocationListenerLock) {
-                    locationManager.removeUpdates(dynamicLocationListener);
-                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, currentIntervalValue.get(), 0, dynamicLocationListener);
-                    Timber.d("updateDynamicInterval(): GPS reconnected with min distance: %s and min time: %s", transportMode.getDistance(), currentIntervalValue);
-                }
-            } catch (SecurityException ex) {
-                Timber.e(ex, "updateDynamicInterval(): fine location permission is denied");
-                stopSelf();
-            }
-            conditionsNotAchievedCounter = CONDITIONS_NOT_ACHIEVED_COUNTER_INIT;
-            return;
-        } else if (result == ParseResult.AccuracyNotAchieved || result == ParseResult.NoNetworkSignal
-                || result == ParseResult.DistanceNotAchieved) {
-            if (currentIntervalValue.get() != transportMode.getMaxTime()) {
-                if (conditionsNotAchievedCounter <= 0) {
-                    Timber.d("updateDynamicInterval(): GPS reconnected with max interval: %s because of fail: %s", transportMode.getMaxTime(), result);
-                    // restore and save interval (increment to max because we don't get appropriate result at all)
-                    int newInterval = Math.min(currentIntervalValue.get() + 500, transportMode.getMaxTime());
-                    currentIntervalValue.set(newInterval);
-                    measurementUpdater.setMinDistanceAndInterval(transportMode.getDistance(), newInterval);
-                    try {
-                        synchronized (dynamicLocationListenerLock) {
-                            locationManager.removeUpdates(dynamicLocationListener);
-                            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, transportMode.getMaxTime(), 0, dynamicLocationListener);
-                        }
-                    } catch (SecurityException ex) {
-                        Timber.e(ex, "updateDynamicInterval(): fine location permission is denied");
-                        stopSelf();
-                    }
-                    conditionsNotAchievedCounter = CONDITIONS_NOT_ACHIEVED_COUNTER_INIT;
-                    return;
-                } else {
-                    Timber.d("updateDynamicInterval(): Skipping GPS reconnection because of fail: %s", result);
-                    conditionsNotAchievedCounter--;
-                    return;
-                }
-            } else {
-                Timber.d("updateDynamicInterval(): GPS failed because of: %s but not reconnected with same parameters", result);
-                return;
-            }
-        } else if (result == ParseResult.LocationTooOld) {
-            Timber.d("updateDynamicInterval(): Skipping GPS reconnection because location is too old");
-            // TODO: consider reconnection
-            setGpsStatus(GpsStatus.NoLocation);
-            return;
-        } else {// only when SaveFailed
-            Timber.d("updateDynamicInterval(): Skipping GPS reconnection");
-            return;
         }
     }
 
@@ -946,22 +822,6 @@ public class CollectorService extends Service {
             newWakeLock.setReferenceCounted(false);
         }
         return newWakeLock;
-    }
-
-    private int recalculateInterval(float speed) {
-        // Random r = new Random();
-        // speed = r.nextFloat() * 60 + 1.5f;// 5.4 - 221.4 km/h
-        int result = transportMode.getMaxTime();
-        // calculate by speed
-        if (speed != 0.0f) {
-            int interval = (int) ((transportMode.getDistance() / speed) * 1000);
-            if (interval < transportMode.getMinTime())
-                interval = transportMode.getMinTime();
-            else if (interval > transportMode.getMaxTime())
-                interval = transportMode.getMaxTime();
-            result = interval;
-        }
-        return result;
     }
 
     private List<NeighboringCellInfo> getNeighboringCellInfo(TelephonyManager telephonyManager) {

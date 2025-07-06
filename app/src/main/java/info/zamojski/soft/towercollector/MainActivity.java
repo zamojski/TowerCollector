@@ -919,10 +919,6 @@ public class MainActivity extends AppCompatActivity
             Timber.d("startCollectorService(): Air plane mode off, starting service");
             // create intent
             final Intent intent = new Intent(this, CollectorService.class);
-            // pass means of transport inside intent
-            boolean gpsOptimizationsEnabled = MyApplication.getPreferencesProvider().getGpsOptimizationsEnabled();
-            MeansOfTransport selectedType = (gpsOptimizationsEnabled ? MeansOfTransport.Universal : MeansOfTransport.Fixed);
-            intent.putExtra(CollectorService.INTENT_KEY_TRANSPORT_MODE, selectedType);
             // pass screen on mode
             final String keepScreenOnMode = MyApplication.getPreferencesProvider().getCollectorKeepScreenOnMode();
             intent.putExtra(CollectorService.INTENT_KEY_KEEP_SCREEN_ON_MODE, keepScreenOnMode);

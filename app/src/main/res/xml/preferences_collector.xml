@@ -9,12 +9,6 @@
         app:key="@string/preferences_general_category_settings_key"
         app:title="@string/preferences_category_settings_title">
         <SwitchPreferenceCompat
-            app:defaultValue="@bool/preferences_gps_optimizations_enabled_default_value"
-            app:key="@string/preferences_gps_optimizations_enabled_key"
-            app:summaryOff="@string/preferences_gps_optimizations_enabled_off_summary"
-            app:summaryOn="@string/preferences_gps_optimizations_enabled_on_summary"
-            app:title="@string/preferences_gps_optimizations_enabled_title" />
-        <SwitchPreferenceCompat
             app:defaultValue="@bool/preferences_collect_neighboring_cells_default_value"
             app:key="@string/preferences_collect_neighboring_cells_key"
             app:summaryOff="@string/preferences_collect_neighboring_cells_off_summary"

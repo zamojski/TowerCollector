@@ -61,11 +61,6 @@ public class PreferencesProvider {
         return value;
     }
 
-    public boolean getGpsOptimizationsEnabled() {
-        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_gps_optimizations_enabled_key, R.bool.preferences_gps_optimizations_enabled_default_value);
-        return value;
-    }
-
     public boolean getTrackingEnabled() {
         boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_tracking_enabled_key, R.bool.preferences_tracking_enabled_default_value);
         return value;
