@@ -94,8 +94,8 @@ public class MeasurementUpdater {
         this.lastSignalStrength = signalStrength;
     }
 
-    public synchronized void setMinDistanceAndInterval(int minDistance, int minInterval) {
-        Timber.d("setMinDistanceAndInterval(): Min distance: %s, interval: %s updated", minDistance, minInterval);
+    public synchronized void setMinDistanceAndInterval(int minDistance) {
+        Timber.d("setMinDistanceAndInterval(): Min distance: %s", minDistance);
         this.minDistance = minDistance;
     }
 
