@@ -2,7 +2,8 @@
 <!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
         app:key="@string/preferences_general_category_settings_key"
@@ -62,6 +63,17 @@
             app:key="@string/preferences_collector_low_battery_action_key"
             app:summary="@string/preferences_collector_low_battery_action_summary"
             app:title="@string/preferences_collector_low_battery_action_title" />
+
+        <SeekBarPreference
+            android:max="@integer/preferences_collector_frequency_throttling_max_value"
+            app:allowDividerBelow="true"
+            app:defaultValue="@integer/preferences_collector_frequency_throttling_default_value"
+            app:key="@string/preferences_collector_frequency_throttling_key"
+            app:min="@integer/preferences_collector_frequency_throttling_min_value"
+            app:seekBarIncrement="@integer/preferences_collector_frequency_throttling_increment_value"
+            app:showSeekBarValue="true"
+            app:summary="@string/preferences_collector_frequency_throttling_summary"
+            app:title="@string/preferences_collector_frequency_throttling_title" />
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/preferences_category_help_title">
         <PreferenceScreen

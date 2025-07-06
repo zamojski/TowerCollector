@@ -112,6 +112,12 @@
     <string name="preferences_collector_low_battery_action_entries_value_none" translatable="false">none</string>
     <string name="preferences_collector_low_battery_action_entries_value_stop" translatable="false">stop</string>
 
+    <string name="preferences_collector_frequency_throttling_key" translatable="false">frequency_throttling</string>
+    <integer name="preferences_collector_frequency_throttling_default_value" translatable="false">0</integer>
+    <integer name="preferences_collector_frequency_throttling_min_value" translatable="false">0</integer>
+    <integer name="preferences_collector_frequency_throttling_max_value" translatable="false">60</integer>
+    <integer name="preferences_collector_frequency_throttling_increment_value" translatable="false">1</integer>
+
     <string name="preferences_about_collector_keep_screen_on_key" translatable="false">about_collector_keep_screen_on</string>
     <string name="preferences_keep_screen_on_mode_entries_value_disabled" translatable="false">disabled</string>
     <string name="preferences_keep_screen_on_mode_entries_value_dim" translatable="false">dim</string>

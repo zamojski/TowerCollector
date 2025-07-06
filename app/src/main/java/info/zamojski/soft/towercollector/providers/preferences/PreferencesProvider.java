@@ -347,4 +347,13 @@ public class PreferencesProvider {
         int value = integerPreferenceProvider.getPreference(R.string.preferences_main_map_max_clustering_zoom_level_key, R.integer.preferences_main_map_max_clustering_zoom_level_default_value);
         return value;
     }
+
+    public int getCollectorFrequencyThrottling() {
+        int value = integerPreferenceProvider.getPreference(R.string.preferences_collector_frequency_throttling_key, R.integer.preferences_collector_frequency_throttling_default_value);
+        return value;
+    }
+
+    public void setCollectorFrequencyThrottling(int value) {
+        integerPreferenceProvider.setPreference(R.string.preferences_collector_frequency_throttling_key, value);
+    }
 }

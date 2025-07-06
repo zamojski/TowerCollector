@@ -148,6 +148,8 @@
     <string name="preferences_start_collector_at_boot_off_summary">The app will not start collecting at device boot. The app can be installed anywhere. The background location permission must be granted to use this function, otherwise the app will not be able to collect measurements.</string>
     <string name="preferences_collector_low_battery_action_title">Low battery action</string>
     <string name="preferences_collector_low_battery_action_summary">Defines what will happen when battery level goes low and collector is running.</string>
+    <string name="preferences_collector_frequency_throttling_title">Frequency throttling</string>
+    <string name="preferences_collector_frequency_throttling_summary">Defines the minimum time interval between measurements to reduce data collection frequency.\n<b>[s]</b></string>
     <string name="preferences_import_database_title">Import database</string>
     <string name="preferences_import_database_summary">Imports app\'s internal database from measurements.db file located in storage folder set in Preferences.</string>
     <string name="preferences_export_database_title">Export database</string>
