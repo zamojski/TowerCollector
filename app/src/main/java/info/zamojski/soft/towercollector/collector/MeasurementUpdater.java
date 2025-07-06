@@ -10,6 +10,7 @@ import java.util.List;
 import org.greenrobot.eventbus.EventBus;
 
 import cz.mroczis.netmonster.core.model.cell.ICell;
+import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.events.Api17PlusMeasurementProcessingEvent;
 import info.zamojski.soft.towercollector.events.LegacyMeasurementProcessingEvent;
@@ -45,6 +46,7 @@ public class MeasurementUpdater {
     private List<NeighboringCellInfo> neighboringCells;
 
     private int minDistance;
+    private long lastEventTime;
 
     public synchronized void setLastLocation(Location location, long locationObtainedTime) {
         Timber.d("setLastLocation(): Location updated: %s obtained at %s", location, locationObtainedTime);
@@ -98,20 +100,35 @@ public class MeasurementUpdater {
     }
 
     private void notifyIfReadyToProcess() {
+        // check frequency throttling
+        int throttlingSeconds = MyApplication.getPreferencesProvider().getCollectorFrequencyThrottling();
+        long currentTime = System.currentTimeMillis();
+        
+        if (throttlingSeconds > 0 && lastEventTime > 0) {
+            long timeSinceLastEvent = (currentTime - lastEventTime) / 1000; // convert to seconds
+            if (timeSinceLastEvent < throttlingSeconds) {
+                Timber.d("notifyIfReadyToProcess(): Throttled - last event was %d seconds ago, throttling is %d seconds", timeSinceLastEvent, throttlingSeconds);
+                return;
+            }
+        }
+        
         if (isNetMonsterCompleted()) {
             Timber.d("notifyIfReadyToProcess(): NetMonster collected");
             NetMonsterMeasurementProcessingEvent event = new NetMonsterMeasurementProcessingEvent(lastLocation, new ArrayList<>(netMonsterCells), minDistance);
             EventBus.getDefault().post(event);
+            lastEventTime = currentTime;
         } else if (isApi17PlusCompleted()) {
             Timber.d("notifyIfReadyToProcess(): Api17Plus collected");
             Api17PlusMeasurementProcessingEvent event = new Api17PlusMeasurementProcessingEvent(lastLocation, new ArrayList<>(lastCellInfo), minDistance);
             EventBus.getDefault().post(event);
+            lastEventTime = currentTime;
         } else if (isLegacyCompleted()) {
             Timber.d("notifyIfReadyToProcess(): Legacy collected");
             LegacyMeasurementProcessingEvent event = new LegacyMeasurementProcessingEvent(lastLocation, lastLocationObtainedTime,
                     lastCellLocation, lastSignalStrength, lastNetworkType, lastOperatorCode, lastOperatorName,
                     new ArrayList<>(neighboringCells), minDistance);
             EventBus.getDefault().post(event);
+            lastEventTime = currentTime;
         }
     }
 
@@ -120,11 +137,11 @@ public class MeasurementUpdater {
     }
 
     private boolean isApi17PlusCompleted() {
-        return (lastLocation != null && lastCellInfo != null && lastCellInfo.size() > 0);
+        return (lastLocation != null && lastCellInfo != null && !lastCellInfo.isEmpty());
     }
 
     private boolean isNetMonsterCompleted() {
-        return (lastLocation != null && netMonsterCells != null && netMonsterCells.size() > 0);
+        return (lastLocation != null && netMonsterCells != null && !netMonsterCells.isEmpty());
     }
 
     private boolean isCellLocationEqual(CellLocation cl1, CellLocation cl2) {
