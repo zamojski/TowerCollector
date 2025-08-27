@@ -67,9 +67,6 @@
     <string name="preferences_app_theme_summary">Определяет цветовую тему для приложения.</string>
     <string name="preferences_collector_keep_screen_on_title">Оставлять экран включённым во время сбора</string>
     <string name="preferences_collector_keep_screen_on_summary">Определяет, будет ли экран постоянно включён во время сбора измерений. Активация значительно ускорит разряд батареи.</string>
-    <string name="preferences_gps_optimizations_enabled_title">Оптимизация сбора GPS</string>
-    <string name="preferences_gps_optimizations_enabled_on_summary">Во время сбора измерений будут использованы улучшенные параметры GPS.</string>
-    <string name="preferences_gps_optimizations_enabled_off_summary">Оптимизация GPS параметров выключена.</string>
     <string name="preferences_export_compression_format_title">Формат сжатия</string>
     <string name="preferences_export_compression_format_summary">Определяет формат сжатия экспортируемых файлов.</string>
     <string name="preferences_tracking_enabled_title">Отправлять статистику</string>
@@ -148,6 +145,8 @@
     <string name="preferences_start_collector_at_boot_off_summary">Приложение не будет автоматически запускать Сборщик во время включения устройства. Приложение можно установить где угодно. Для использования этой функции необходимо предоставить разрешение на определение местоположения в фоновом режиме, иначе приложение не сможет собирать измерения.</string>
     <string name="preferences_collector_low_battery_action_title">Действие при низком заряде</string>
     <string name="preferences_collector_low_battery_action_summary">Определяет что случится, когда будет низкий заряд батареи во время работы Сборщика.</string>
+    <string name="preferences_collector_frequency_throttling_title">Частота сбора дроссельной заслонки</string>
+    <string name="preferences_collector_frequency_throttling_summary">Определяет минимальный интервал между измерениями. Установите значение 0, чтобы отключить.\n<b>[с]</b></string>
     <string name="preferences_import_database_title">Загрузка базы данных</string>
     <string name="preferences_import_database_summary">Загрузка внутренней базы данных из файла measurements.db, расположенного в папке хранения, заданной в настройках.</string>
     <string name="preferences_export_database_title">Выгрузка базы данных</string>

@@ -67,9 +67,6 @@
     <string name="preferences_app_theme_summary">Définit le thème de couleur de l\'application.</string>
     <string name="preferences_collector_keep_screen_on_title">Garde l\'écran allumé lors de la collecte</string>
     <string name="preferences_collector_keep_screen_on_summary">Définit si l\'écran restera constamment allumé pendant la collecte des mesures. L\'activation raccourcira considérablement la durée de vie de la batterie.</string>
-    <string name="preferences_gps_optimizations_enabled_title">Optimisation du collecteur GPS</string>
-    <string name="preferences_gps_optimizations_enabled_on_summary">L\'optimisation des paramètres GPS sera utilisée lors de la collecte des mesures.</string>
-    <string name="preferences_gps_optimizations_enabled_off_summary">L\'optimisation des paramètres GPS est désactivée.</string>
     <string name="preferences_export_compression_format_title">Format de compression</string>
     <string name="preferences_export_compression_format_summary">Définir le format de compression des fichiers exportés.</string>
     <string name="preferences_tracking_enabled_title">Envoyer des statistiques d\'utilisation</string>
@@ -148,6 +145,8 @@
     <string name="preferences_start_collector_at_boot_off_summary">L\'application ne débutera pas la collecte au démarrage de l\'appareil. L\'application peut être installée n\'importe où. L\'autorisation de localisation en arrière-plan doit être accordée pour utiliser cette fonction, sinon l\'application ne pourra pas collecter de mesures.</string>
     <string name="preferences_collector_low_battery_action_title">Action de batterie faible</string>
     <string name="preferences_collector_low_battery_action_summary">Définit ce qui se passera lorsque le niveau de la batterie est bas et que le collecteur est en cours d\'exécution.</string>
+    <string name="preferences_collector_frequency_throttling_title">Fréquence de collecte des gaz</string>
+    <string name="preferences_collector_frequency_throttling_summary">Définit l\'intervalle de temps minimal entre les collectes de mesures. Définissez la valeur sur 0 pour désactiver.\n<b>[s]</b></string>
     <string name="preferences_import_database_title">Importer la base de données</string>
     <string name="preferences_import_database_summary">Importe la base de données interne de l\'application à partir du fichier measurements.db situé dans le dossier de stockage défini dans les préférences.</string>
     <string name="preferences_export_database_title">Exporter la base de données</string>
