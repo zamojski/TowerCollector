@@ -95,10 +95,9 @@ public class OcidUploadClient extends ClientBase implements IUploadClient {
         }
         // don't report captive portals
         if (code != 302) {
-            RuntimeException ex = new RequestException(body);
-            if (body.equalsIgnoreCase("Exceeded filesize limit"))
+            if (body.equalsIgnoreCase("Exceeded filesize limit."))
                 body += ". Actual size=" + fileSize + " bytes.";
-            reportException(ex);
+            reportException(new RequestException(body));
         }
         return RequestResult.ConnectionError;
     }
