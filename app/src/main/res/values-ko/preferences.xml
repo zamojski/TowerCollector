@@ -67,9 +67,6 @@
     <string name="preferences_app_theme_summary">앱의 색상 테마를 설정합니다</string>
     <string name="preferences_collector_keep_screen_on_title">수집할 때 화면 켜짐 유지</string>
     <string name="preferences_collector_keep_screen_on_summary">데이터를 수집하는 동안 화면이 계속 켜져있도록 설정합니다. 활성화 할 경우 배터리를 더 많이 사용합니다.</string>
-    <string name="preferences_gps_optimizations_enabled_title">GPS 수집 최적화</string>
-    <string name="preferences_gps_optimizations_enabled_on_summary">데이터를 수집할 때 GPS 최적화를 사용합니다.</string>
-    <string name="preferences_gps_optimizations_enabled_off_summary">GPS 최적화가 비활성화되었습니다.</string>
     <string name="preferences_export_compression_format_title">압축 포맷</string>
     <string name="preferences_export_compression_format_summary">내보내기 할 파일에 대한 압축 포맷</string>
     <string name="preferences_tracking_enabled_title">사용 통계 전송</string>
@@ -148,6 +145,8 @@
     <string name="preferences_start_collector_at_boot_off_summary">장치 부팅시 데이터 수집을 자동으로 시작하지 않습니다. 앱은 내부 또는 외부 메모리에 설치할 수 있습니다. 이 기능을 사용하려면 백그라운드 위치 권한이 필요합니다. 그렇지 않으면 앱이 부팅시 측정값을 수집할 수 없습니다.</string>
     <string name="preferences_collector_low_battery_action_title">배터리 부족시 작업</string>
     <string name="preferences_collector_low_battery_action_summary">배터리가 부족하고 앱이 데이터 수집중일 때 어떤 작업을 할지 설정합니다.</string>
+    <string name="preferences_collector_frequency_throttling_title">스로틀 수집 주파수</string>
+    <string name="preferences_collector_frequency_throttling_summary">측정값 수집 간의 최소 시간 간격을 정의합니다. 비활성화하려면 값을 0으로 설정하세요.\n<b>[초]</b></string>
     <string name="preferences_import_database_title">데이터베이스 복원</string>
     <string name="preferences_import_database_summary">설정에서 입력한 위치에 있는 measurements.db 파일을 이용해서 앱의 내부 데이터베이스로 복원합니다.</string>
     <string name="preferences_export_database_title">데이터베이스 내보내기</string>

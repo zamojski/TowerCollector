@@ -145,8 +145,8 @@
     <string name="preferences_start_collector_at_boot_off_summary">The app will not start collecting at device boot. The app can be installed anywhere. The background location permission must be granted to use this function, otherwise the app will not be able to collect measurements.</string>
     <string name="preferences_collector_low_battery_action_title">Low battery action</string>
     <string name="preferences_collector_low_battery_action_summary">Defines what will happen when battery level goes low and collector is running.</string>
-    <string name="preferences_collector_frequency_throttling_title">Frequency throttling</string>
-    <string name="preferences_collector_frequency_throttling_summary">Defines the minimum time interval between measurements to reduce data collection frequency.\n<b>[s]</b></string>
+    <string name="preferences_collector_frequency_throttling_title">Throttle collection frequency</string>
+    <string name="preferences_collector_frequency_throttling_summary">Defines the minimum time interval between measurements collection. Set value to 0 to disable.\n<b>[s]</b></string>
     <string name="preferences_import_database_title">Import database</string>
     <string name="preferences_import_database_summary">Imports app\'s internal database from measurements.db file located in storage folder set in Preferences.</string>
     <string name="preferences_export_database_title">Export database</string>
@@ -170,8 +170,6 @@
     <string name="preferences_main_map_unmetered_only_off_summary">The map will be updated regardless of the Internet connection type.</string>
     <string name="preferences_main_map_max_clustering_zoom_level_title">Clustering zoom level</string>
     <string name="preferences_main_map_max_clustering_zoom_level_summary">Max map zoom level at which measurements are not clustered.</string>
-    <string name="preferences_throttle_collection_frequency_title">Throttle collection frequency</string>
-    <string name="preferences_throttle_collection_frequency_summary">Limits how often measurements get collected. Use 0 to disable throttling.</string>
     <string name="preferences_main_map_cache_size_title">Map cache size</string>
     <string name="preferences_main_map_cache_size_summary">Adjust the map cache size according to available free memory on your device.\n<b>[MB]</b></string>
     <string name="preferences_main_map_clear_cache_title">Clear cache</string>

@@ -67,9 +67,6 @@
     <string name="preferences_app_theme_summary">הגדרת ערכת צבעים ליישומון.</string>
     <string name="preferences_collector_keep_screen_on_title">להשאיר את המסך פעיל בזמן האיסוף</string>
     <string name="preferences_collector_keep_screen_on_summary">מגדיר אם המסך יישאר פעיל תמיד בעת איסוף מדידות. הפעלת התכונה תקצר את חיי הסוללה באופן משמעותי.</string>
-    <string name="preferences_gps_optimizations_enabled_title">מיטוב GPS של מנגנון האיסוף</string>
-    <string name="preferences_gps_optimizations_enabled_on_summary">ייעשה שימוש במיטוב משתני GPS בעת איסוף מדידות.</string>
-    <string name="preferences_gps_optimizations_enabled_off_summary">מיטוב משתני GPS מושבת.</string>
     <string name="preferences_export_compression_format_title">תצורת דחיסה</string>
     <string name="preferences_export_compression_format_summary">מגדיר את תצורת הדחיסה של הקבצים המיוצאים.</string>
     <string name="preferences_tracking_enabled_title">שליחת סטטיסטיקת שימוש</string>
@@ -148,6 +145,8 @@
     <string name="preferences_start_collector_at_boot_off_summary">היישומון לא יתחיל לאסוף עם הפעלת המכשיר. לא יכול להתקין את היישומון בכל מקום. יש להעניק הרשאת מיקום רקע לשימוש בפונקציה זו, אחרת האפליקציה לא תוכל לאסוף מדידות.</string>
     <string name="preferences_collector_low_battery_action_title">פעולת סוללה חלשה</string>
     <string name="preferences_collector_low_battery_action_summary">הגדרה של מה יקרה כאשר עצמת הסוללה נחלשת ומנגנון האיסוף עדיין פעיל.</string>
+    <string name="preferences_collector_frequency_throttling_title">תדירות איסוף מצערת</string>
+    <string name="preferences_collector_frequency_throttling_summary">מגדיר את מרווח הזמן המינימלי בין איסוף המדידות. הגדר את הערך ל-0 כדי להשבית.\n<b>[שנייה]</b></string>
     <string name="preferences_import_database_title">ייבוא מסד נתונים</string>
     <string name="preferences_import_database_summary">מייבא את מסד הנתונים הפנימי של היישומון מהקובץ measurements.db שממוקם בתיקייה שמוגדרת בהעדפות.</string>
     <string name="preferences_export_database_title">ייצוא מסד נתונים</string>

@@ -67,9 +67,6 @@
     <string name="preferences_app_theme_summary">设置应用的主题颜色。</string>
     <string name="preferences_collector_keep_screen_on_title">收集时保持屏幕开启</string>
     <string name="preferences_collector_keep_screen_on_summary">设置在收集测量值时屏幕是否持续亮起。启用将显着缩短电池续航。</string>
-    <string name="preferences_gps_optimizations_enabled_title">收集器GPS优化</string>
-    <string name="preferences_gps_optimizations_enabled_on_summary">收集测量数据时将使用GPS参数优化。</string>
-    <string name="preferences_gps_optimizations_enabled_off_summary">禁用GPS参数优化。</string>
     <string name="preferences_export_compression_format_title">压缩格式</string>
     <string name="preferences_export_compression_format_summary">设置导出文件的压缩格式。</string>
     <string name="preferences_tracking_enabled_title">发送使用情况统计</string>
@@ -148,6 +145,8 @@
     <string name="preferences_start_collector_at_boot_off_summary">该应用不会在设备启动时开始收集。该应用可以安装在任何地方。必须授予后台位置权限才能使用此功能，否则该应用将无法收集测量值。</string>
     <string name="preferences_collector_low_battery_action_title">低电量时操作</string>
     <string name="preferences_collector_low_battery_action_summary">设置当电池电量变低且收集器正在运行时的操作。</string>
+    <string name="preferences_collector_frequency_throttling_title">节流收集频率</string>
+    <string name="preferences_collector_frequency_throttling_summary">定义测量值收集之间的最小时间间隔。将值设置为 0 即可禁用。\n<b>[秒]</b></string>
     <string name="preferences_import_database_title">导入数据库</string>
     <string name="preferences_import_database_summary">从位于首选项中设置的存储文件夹中的measurements.db文件导入应用程序的内部数据库。</string>
     <string name="preferences_export_database_title">导出数据库</string>

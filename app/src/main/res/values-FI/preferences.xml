@@ -67,9 +67,6 @@
     <string name="preferences_app_theme_summary">Määrittää sovelluksen väriteeman.</string>
     <string name="preferences_collector_keep_screen_on_title">Pidä näyttö päällä kerättäessä</string>
     <string name="preferences_collector_keep_screen_on_summary">Määrittää, pidetäänkö näyttö jatkuvasti päällä mittauksia kerättäessä. Jos tämä otetaan käyttöön, akun kesto lyhenee merkittävästi.</string>
-    <string name="preferences_gps_optimizations_enabled_title">Collectorin GPS-optimointi</string>
-    <string name="preferences_gps_optimizations_enabled_on_summary">GPS-parametrien optimointia käytetään mittauksia kerättäessä.</string>
-    <string name="preferences_gps_optimizations_enabled_off_summary">GPS-parametrien optimointi on poistettu käytöstä.</string>
     <string name="preferences_export_compression_format_title">Pakkausformaatti</string>
     <string name="preferences_export_compression_format_summary">Määrittää vietävien tiedostojen pakkausmuodon.</string>
     <string name="preferences_tracking_enabled_title">Lähetä käyttötilastoja</string>
@@ -148,6 +145,8 @@
     <string name="preferences_start_collector_at_boot_off_summary">Sovellus ei aloita keräystä laitteen käynnistyksen yhteydessä. Sovellus voidaan asentaa minne tahansa. Taustapaikannusoikeus on myönnettävä tämän toiminnon käyttämiseksi, muuten sovellus ei pysty keräämään mittauksia.</string>
     <string name="preferences_collector_low_battery_action_title">Akun alhaisen varaustilan toiminta</string>
     <string name="preferences_collector_low_battery_action_summary">Määrittää, mitä tapahtuu, kun akun varaustaso laskee ja Collector on käynnissä.</string>
+    <string name="preferences_collector_frequency_throttling_title">Kaasuvivun keräystaajuus</string>
+    <string name="preferences_collector_frequency_throttling_summary">Määrittää vähimmäisajan mittausten keräämisen välillä. Poista käytöstä asettamalla arvoksi 0.\n<b>[s]</b></string>
     <string name="preferences_import_database_title">Tuo tietokanta</string>
     <string name="preferences_import_database_summary">Tuo sovelluksen sisäisen tietokannan measurements.db -tiedostosta, asetuksissa määritetystä tallennuskansiosta.</string>
     <string name="preferences_export_database_title">Vie tietokanta</string>

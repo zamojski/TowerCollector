@@ -67,9 +67,6 @@
     <string name="preferences_app_theme_summary">Meghatározza az app színsémáját.</string>
     <string name="preferences_collector_keep_screen_on_title">Képernyő ébren tartása adatgyűjtés közben</string>
     <string name="preferences_collector_keep_screen_on_summary">Meghatározza, hogy a képernyő folyamatosan folyamatosan működik-e a mérések gyűjtése közben. Az engedélyezés jelentősen csökkenti az akkumulátor élettartamát.</string>
-    <string name="preferences_gps_optimizations_enabled_title">Adatgyűjtő GPS optimalizációja</string>
-    <string name="preferences_gps_optimizations_enabled_on_summary">GPS paraméter optimalizáció lesz használva a mérések begyűjtésekor.</string>
-    <string name="preferences_gps_optimizations_enabled_off_summary">A GPS optimalizáció ki van kapcsolva.</string>
     <string name="preferences_export_compression_format_title">Tömörítési formátum</string>
     <string name="preferences_export_compression_format_summary">Az exportált fájlok tömörítési formátumát határozza meg.</string>
     <string name="preferences_tracking_enabled_title">Felhasználói statisztikák küldése</string>
@@ -148,6 +145,8 @@
     <string name="preferences_start_collector_at_boot_off_summary">Az alkalmazás nem fog bekapcsoláskor elindulni. Bármely tárhelyre telepíthető. A háttér használatához engedélyt kell adni ennek a funkciónak a használatához, különben az alkalmazás nem lesz képes méréseket gyűjteni.</string>
     <string name="preferences_collector_low_battery_action_title">Alacsony akkumulátorszintkor</string>
     <string name="preferences_collector_low_battery_action_summary">Meghatározza, hogy mi fog történni, ha az akkumulátor töltöttségi szintje alacsony és az adatgyűjtő fut.</string>
+    <string name="preferences_collector_frequency_throttling_title">Fojtószelep gyűjtési gyakoriság</string>
+    <string name="preferences_collector_frequency_throttling_summary">Meghatározza a mérések gyűjtése közötti minimális időtartamot. A letiltáshoz állítsa az értéket 0-ra.\n<b>[s]</b></string>
     <string name="preferences_import_database_title">Adatbázis importálása</string>
     <string name="preferences_import_database_summary">Importálja az alkalmazás belső adatbázisát a measurements.db fájlból, amely a Beállítások menüben beállított tárolómappában található.</string>
     <string name="preferences_export_database_title">Adatbázis exportálása</string>

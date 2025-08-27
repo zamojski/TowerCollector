@@ -67,9 +67,6 @@
     <string name="preferences_app_theme_summary">Definisce il colore del tema dell\'app.</string>
     <string name="preferences_collector_keep_screen_on_title">Mantieni lo schermo acceso durante la raccolta dati</string>
     <string name="preferences_collector_keep_screen_on_summary">Definisce se lo schermo verrà tenuto costantemente acceso durante la raccolta delle misurazioni. L\'abilitazione riduce significativamente la durata della batteria.</string>
-    <string name="preferences_gps_optimizations_enabled_title">Ottimizzazione del servizio di raccolta GPS</string>
-    <string name="preferences_gps_optimizations_enabled_on_summary">L\'ottimizzazione dei parametri GPS sarà utilizzata durante la raccolta delle misurazioni.</string>
-    <string name="preferences_gps_optimizations_enabled_off_summary">L\'ottimizzazione dei parametri GPS è disabilitata.</string>
     <string name="preferences_export_compression_format_title">Formato di compressione</string>
     <string name="preferences_export_compression_format_summary">Definisce il formato di compressione dei file esportati.</string>
     <string name="preferences_tracking_enabled_title">Invia statistiche d\'uso</string>
@@ -148,6 +145,8 @@
     <string name="preferences_start_collector_at_boot_off_summary">L\'app non avvierà la raccolta dati all\'avvio del dispositivo. L\'app può essere installata ovunque. L\'autorizzazione alla posizione in background deve essere concessa per utilizzare questa funzione, altrimenti l\'app non sarà in grado di raccogliere misurazioni.</string>
     <string name="preferences_collector_low_battery_action_title">Azioni in caso di batteria scarica</string>
     <string name="preferences_collector_low_battery_action_summary">Definisce cosa accadrà quando il livello della batteria si abbassa e la raccolta dati è in funzione.</string>
+    <string name="preferences_collector_frequency_throttling_title">Frequenza di raccolta dell\'acceleratore</string>
+    <string name="preferences_collector_frequency_throttling_summary">Definisce l\'intervallo di tempo minimo tra la raccolta delle misurazioni. Impostare il valore su 0 per disabilitare.\n<b>[s]</b></string>
     <string name="preferences_import_database_title">Importa database</string>
     <string name="preferences_import_database_summary">Importa il database interno dell\'app dal file measurements.db situato nella cartella di archiviazione impostata in Preferenze.</string>
     <string name="preferences_export_database_title">Esporta database</string>

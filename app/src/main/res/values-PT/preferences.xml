@@ -67,9 +67,6 @@
     <string name="preferences_app_theme_summary">Define a cor tema da aplicação.</string>
     <string name="preferences_collector_keep_screen_on_title">Manter a tela ligada enquanto faz as coletas</string>
     <string name="preferences_collector_keep_screen_on_summary">Define se a tela vai manter ligada constantemente enquanto se está coletando as medições. Habilitá-lo reduzirá significantemente a duração da bateria.</string>
-    <string name="preferences_gps_optimizations_enabled_title">Otimização do coletor GPS</string>
-    <string name="preferences_gps_optimizations_enabled_on_summary">Otimização de parâmetros de GPS serão usados quando coletando as medições.</string>
-    <string name="preferences_gps_optimizations_enabled_off_summary">Otimização de parâmetros GPS está desabilitada.</string>
     <string name="preferences_export_compression_format_title">Formato de compressão</string>
     <string name="preferences_export_compression_format_summary">Define o formato de compactação dos arquivos exportados.</string>
     <string name="preferences_tracking_enabled_title">Enviar estatísticas de uso</string>
@@ -148,6 +145,8 @@
     <string name="preferences_start_collector_at_boot_off_summary">O aplicativo não iniciará a coleta no boot do dispositivo. O aplicativo pode estar instalado em qualquer lugar. A permissão de localização em segundo plano deve ser concedida para usar esta função, caso contrário, o aplicativo não será capaz de coletar medições.</string>
     <string name="preferences_collector_low_battery_action_title">Ação quando a bateria está baixa</string>
     <string name="preferences_collector_low_battery_action_summary">Define o que acontece quando o nível de bateria está baixo e o coletor está rodando.</string>
+    <string name="preferences_collector_frequency_throttling_title">Frequência de coleta do aceleradory</string>
+    <string name="preferences_collector_frequency_throttling_summary">Define o intervalo mínimo de tempo entre a coleta de medições. Defina o valor como 0 para desativar.\n<b>[s]</b></string>
     <string name="preferences_import_database_title">Importar banco de dados</string>
     <string name="preferences_import_database_summary">Importa o banco de dados interno do app a partir do arquivo measurements.db localizado na pasta de armazenamento definida em Preferências.</string>
     <string name="preferences_export_database_title">Exportar banco de dados</string>

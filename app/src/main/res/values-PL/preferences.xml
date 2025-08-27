@@ -67,9 +67,6 @@
     <string name="preferences_app_theme_summary">Określa motyw kolorystyczny aplikacji.</string>
     <string name="preferences_collector_keep_screen_on_title">Utrzymuj ekran włączony podczas zbierania</string>
     <string name="preferences_collector_keep_screen_on_summary">Definiuje czy ekran ma pozostać włączony podczas zbierania próbek. Włączenie skutkuje znaczącym skróceniem czasu pracy na baterii.</string>
-    <string name="preferences_gps_optimizations_enabled_title">Optymalizacja GPS podczas zbierania</string>
-    <string name="preferences_gps_optimizations_enabled_on_summary">Optymalizacja parametrów GPS będzie używana w czasie zbierania próbek.</string>
-    <string name="preferences_gps_optimizations_enabled_off_summary">Optymalizacja parametrów GPS jest wyłączona.</string>
     <string name="preferences_export_compression_format_title">Format kompresji</string>
     <string name="preferences_export_compression_format_summary">Określa format kompresji eksportowanych plików.</string>
     <string name="preferences_tracking_enabled_title">Wysyłaj statystyki użytkowania</string>
@@ -148,6 +145,8 @@
     <string name="preferences_start_collector_at_boot_off_summary">Aplikacja nie rozpocznie zbierania po uruchomieniu urządzenia. Aplikacja może być zainstalowana w dowolnym miejscu. Aby korzystać z tej funkcji wymagane jest przyznanie uprawnień do lokalizacji w tle, w przeciwnym razie aplikacja nie będzie mogła zbierać próbek.</string>
     <string name="preferences_collector_low_battery_action_title">Akcja niskiego poziomu baterii</string>
     <string name="preferences_collector_low_battery_action_summary">Określa co się stanie, gdy poziom baterii będzie niski a zbieranie będzie uruchomione.</string>
+    <string name="preferences_collector_frequency_throttling_title">Ograniczenie częstotliwości zbierania</string>
+    <string name="preferences_collector_frequency_throttling_summary">Określa minimalny czas pomiędzy zbieraniem próbek. Ustaw na 0, aby wyłączyć.\n<b>[s]</b></string>
     <string name="preferences_import_database_title">Import bazy danych</string>
     <string name="preferences_import_database_summary">Importuje wewnętrzną bazę danych aplikacji z pliku measurements.db w folderze zdefiniowanym w Ustawieniach.</string>
     <string name="preferences_export_database_title">Eksport bazy danych</string>

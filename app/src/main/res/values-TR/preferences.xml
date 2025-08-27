@@ -67,9 +67,6 @@
     <string name="preferences_app_theme_summary">Uygulamanın renk temasını belirler.</string>
     <string name="preferences_collector_keep_screen_on_title">Toplama yaparken ekranı açık tut</string>
     <string name="preferences_collector_keep_screen_on_summary">Ölçümleri toplarken ekranın sürekli açıp kalıp kalmayacağını belirler. Etkinleştirmek, pil süresini önemli ölçüde azaltacaktır.</string>
-    <string name="preferences_gps_optimizations_enabled_title">Toplayıcı GPS optimizasyonu</string>
-    <string name="preferences_gps_optimizations_enabled_on_summary">Ölçümler toplanırken GPS parametreleri optimizasyonu kullanılacak.</string>
-    <string name="preferences_gps_optimizations_enabled_off_summary">GPS parametreleri optimizasyonu devre dışı.</string>
     <string name="preferences_export_compression_format_title">Sıkıştırma biçimi</string>
     <string name="preferences_export_compression_format_summary">Dışa aktarılan dosyaların sıkıştırma biçimlerini tanımlar.</string>
     <string name="preferences_tracking_enabled_title">Kullanım istatistiklerini gönder</string>
@@ -148,6 +145,8 @@
     <string name="preferences_start_collector_at_boot_off_summary">Uygulama, cihaz açılışında toplamaya başlamaz. Uygulama herhangi bir yere kurulabilir. Bu işlevi kullanmak için arka plan konum izni verilmelidir, aksi takdirde uygulama ölçümleri toplayamaz.</string>
     <string name="preferences_collector_low_battery_action_title">Düşük pil eylemi</string>
     <string name="preferences_collector_low_battery_action_summary">Pil seviyesi düştüğünde ve toplayıcı çalışırken ne olacağını tanımlar.</string>
+    <string name="preferences_collector_frequency_throttling_title">Gaz toplama sıklığı</string>
+    <string name="preferences_collector_frequency_throttling_summary">Ölçüm toplama arasındaki minimum zaman aralığını tanımlar. Devre dışı bırakmak için değeri 0 olarak ayarlayın.\n<b>[s]</b></string>
     <string name="preferences_import_database_title">Veri tabanını içe aktar</string>
     <string name="preferences_import_database_summary">Uygulamanın dahili veritabanını Tercihler\'de ayarlanan depolama klasöründe bulunan measurement.db dosyasından içe aktarır.</string>
     <string name="preferences_export_database_title">Veri tabanını dışa aktar</string>
