@@ -108,13 +108,13 @@ def permissionsDispatcherVersion = '4.9.2'
 dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.legacy:legacy-support-v13:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'androidx.core:core:1.15.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'androidx.core:core:1.16.0'
     implementation 'androidx.preference:preference:1.2.1'
     implementation 'com.google.android.material:material:1.12.0'
-    implementation 'androidx.work:work-runtime:2.10.0'
-    implementation 'com.google.guava:guava:33.4.0-jre'
-    officialImplementation 'com.google.firebase:firebase-analytics:22.4.0'
+    implementation 'androidx.work:work-runtime:2.10.3'
+    implementation 'com.google.guava:guava:33.4.8-jre'
+    officialImplementation 'com.google.firebase:firebase-analytics:23.0.0'
     implementation 'org.greenrobot:eventbus:3.3.1'
     implementation "ch.acra:acra-http:$acraVersion"
     implementation "ch.acra:acra-dialog:$acraVersion"
