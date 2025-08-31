@@ -1,0 +1,6 @@
+- Fix Stop not working on Collector notification on Android 15.
+- Implement measurement collection throttling - you can now define how often measurements are saved.
+- Remove GPS battery optimizations - it caused issues on some devices and batteries improved a lot over time.
+- Add monochrome icon for more personalized experience.
+- Improve logging.
+- Update external libraries.
