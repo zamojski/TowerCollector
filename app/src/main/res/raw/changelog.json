@@ -1,6 +1,18 @@
 {
   "Entries": [
     {
+      "VersionCode": 2170019,
+      "Title": "Changes in version 2.17.0",
+      "Messages": [
+        "Fix Stop not working on Collector notification on Android 15.",
+        "Implement measurement collection throttling - you can now define how often measurements are saved.",
+        "Remove GPS battery optimizations - it caused issues on some devices and batteries improved a lot over time.",
+        "Add monochrome icon for more personalized experience.",
+        "Improve logging.",
+        "Update external libraries."
+      ]
+    },
+    {
       "VersionCode": 2160018,
       "Title": "Changes in version 2.16.0",
       "Messages": [
@@ -29,13 +41,6 @@
       "Title": "Changes in version 2.15.4",
       "Messages": [
         "Fix permission denied error when starting collector on Android 13."
-      ]
-    },
-    {
-      "VersionCode": 2150314,
-      "Title": "Changes in version 2.15.3",
-      "Messages": [
-        "Fix crash when starting export or upload on Android 14+."
       ]
     }
   ]
