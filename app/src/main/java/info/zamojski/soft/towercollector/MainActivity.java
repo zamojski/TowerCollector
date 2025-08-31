@@ -5,7 +5,7 @@
 package info.zamojski.soft.towercollector;
 
 import android.Manifest;
-import android.annotation.TargetApi;
+import androidx.annotation.RequiresApi;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
@@ -896,13 +896,13 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
+    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     @NeedsPermission({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.FOREGROUND_SERVICE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void startCollectorServiceApi34() {
         startCollectorServiceInternal();
     }
 
-    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @NeedsPermission({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void startCollectorServiceApi33() {
         startCollectorServiceInternal();
@@ -931,13 +931,13 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
+    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     @OnShowRationale({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.FOREGROUND_SERVICE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorShowRationaleApi34(PermissionRequest request) {
         onStartCollectorShowRationaleInternal(request);
     }
 
-    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @OnShowRationale({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorShowRationaleApi33(PermissionRequest request) {
         onStartCollectorShowRationaleInternal(request);
@@ -952,13 +952,13 @@ public class MainActivity extends AppCompatActivity
         onShowRationale(request, GpsUtils.isPreciseLocationAware() ? R.string.permission_collector_rationale_api31_message : R.string.permission_collector_rationale_message);
     }
 
-    @TargetApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
+    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     @OnPermissionDenied({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.FOREGROUND_SERVICE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorPermissionDeniedApi34() {
         onStartCollectorPermissionDeniedInternal();
     }
 
-    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @OnPermissionDenied({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorPermissionDeniedApi33() {
         onStartCollectorPermissionDeniedInternal();
@@ -973,13 +973,13 @@ public class MainActivity extends AppCompatActivity
         onPermissionDenied(R.string.permission_collector_denied_message);
     }
 
-    @TargetApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
+    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     @OnNeverAskAgain({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.FOREGROUND_SERVICE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorNeverAskAgainApi34() {
         onStartCollectorNeverAskAgainInternal();
     }
 
-    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @OnNeverAskAgain({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartCollectorNeverAskAgainApi33() {
         onStartCollectorNeverAskAgainInternal();
@@ -1014,25 +1014,25 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @NeedsPermission({Manifest.permission.POST_NOTIFICATIONS})
     void startUploaderTaskInternalApi33() {
         startUploaderTaskInternal();
     }
 
-    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @OnShowRationale({Manifest.permission.POST_NOTIFICATIONS})
     void onNotificationRationaleApi33(final PermissionRequest request) {
         onNotificationRationaleInternal(request);
     }
 
-    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @OnPermissionDenied({Manifest.permission.POST_NOTIFICATIONS})
     void onNotificationPermissionDeniedApi33() {
         onNotificationPermissionDeniedInternal();
     }
 
-    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @OnNeverAskAgain({Manifest.permission.POST_NOTIFICATIONS})
     void onNotificationNeverAskAgainApi33() {
         onNotificationNeverAskAgainInternal();
@@ -1226,7 +1226,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @NeedsPermission({Manifest.permission.POST_NOTIFICATIONS})
     void startExportTaskInternalApi33() {
         startExportTaskInternal();
@@ -1540,7 +1540,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
+    @RequiresApi(Build.VERSION_CODES.M)
     private void startBatteryOptimizationsSystemActivity() {
         try {
             Intent intent = new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
@@ -1568,7 +1568,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
+    @RequiresApi(Build.VERSION_CODES.M)
     private void startAirplaneModeSystemActivity() {
         try {
             Intent intent = new Intent(Settings.ACTION_AIRPLANE_MODE_SETTINGS);

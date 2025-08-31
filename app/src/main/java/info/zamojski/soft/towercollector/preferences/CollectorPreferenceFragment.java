@@ -5,7 +5,7 @@
 package info.zamojski.soft.towercollector.preferences;
 
 import android.Manifest;
-import android.annotation.TargetApi;
+import androidx.annotation.RequiresApi;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -154,13 +154,13 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
         setupDialog(R.string.preferences_about_notify_measurements_collected_key, R.string.info_about_notify_measurements_collected_title, R.raw.info_about_notify_measurements_collected_content, true);
     }
 
-    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @NeedsPermission({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.FOREGROUND_SERVICE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void requestStartAtBootApi33() {
         requestStartAtBootInternal();
     }
 
-    @TargetApi(Build.VERSION_CODES.Q)
+    @RequiresApi(Build.VERSION_CODES.Q)
     @NeedsPermission({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void requestStartAtBootApi29() {
         requestStartAtBootInternal();
@@ -176,13 +176,13 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
         // Do nothing but request needed permissions so the service can be started by system
     }
 
-    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @OnShowRationale({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.FOREGROUND_SERVICE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartAtBootRationaleApi33(final PermissionRequest request) {
         onStartAtBootRationaleInternal(request);
     }
 
-    @TargetApi(Build.VERSION_CODES.Q)
+    @RequiresApi(Build.VERSION_CODES.Q)
     @OnShowRationale({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartAtBootRationaleApi29(final PermissionRequest request) {
         onStartAtBootRationaleInternal(request);
@@ -220,13 +220,13 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
                 .show();
     }
 
-    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @OnPermissionDenied({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.FOREGROUND_SERVICE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartAtBootPermissionDeniedApi33() {
         onStartAtBootPermissionDeniedInternal();
     }
 
-    @TargetApi(Build.VERSION_CODES.Q)
+    @RequiresApi(Build.VERSION_CODES.Q)
     @OnPermissionDenied({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartAtBootPermissionDeniedApi29() {
         onStartAtBootPermissionDeniedInternal();
@@ -242,13 +242,13 @@ public class CollectorPreferenceFragment extends DialogEnabledPreferenceFragment
         Toast.makeText(getActivity(), R.string.permission_collector_denied_message, Toast.LENGTH_LONG).show();
     }
 
-    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @OnNeverAskAgain({Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.FOREGROUND_SERVICE_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartAtBootNeverAskAgainApi33() {
         onStartAtBootNeverAskAgainInternal();
     }
 
-    @TargetApi(Build.VERSION_CODES.Q)
+    @RequiresApi(Build.VERSION_CODES.Q)
     @OnNeverAskAgain({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.READ_PHONE_STATE})
     void onStartAtBootNeverAskAgainApi29() {
         onStartAtBootNeverAskAgainInternal();

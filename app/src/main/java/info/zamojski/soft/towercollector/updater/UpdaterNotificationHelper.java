@@ -11,7 +11,7 @@ import info.zamojski.soft.towercollector.model.UpdateInfo;
 import info.zamojski.soft.towercollector.tasks.UpdateCheckAsyncTask;
 import info.zamojski.soft.towercollector.utils.NotificationHelperBase;
 
-import android.annotation.TargetApi;
+import androidx.annotation.RequiresApi;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -61,7 +61,7 @@ public class UpdaterNotificationHelper extends NotificationHelperBase {
         return pendingIntent;
     }
 
-    @TargetApi(Build.VERSION_CODES.O)
+    @RequiresApi(Build.VERSION_CODES.O)
     private void createNotificationChannel(NotificationManager notificationManager) {
         NotificationChannel channel = new NotificationChannel(
                 OTHER_NOTIFICATION_CHANNEL_ID,
