@@ -4,7 +4,7 @@
 
 package info.zamojski.soft.towercollector.collector.validators.specific;
 
-import android.annotation.TargetApi;
+import androidx.annotation.RequiresApi;
 import android.os.Build;
 import android.telephony.CellIdentityNr;
 
@@ -15,7 +15,7 @@ import timber.log.Timber;
 
 public class NrCellValidator {
 
-    @TargetApi(Build.VERSION_CODES.Q)
+    @RequiresApi(Build.VERSION_CODES.Q)
     public boolean isValid(CellIdentityNr cell) {
         boolean valid = isValid(cell.getMccString(), cell.getMncString(), cell.getTac(), cell.getNci(), cell.getPci());
         if (!valid) {

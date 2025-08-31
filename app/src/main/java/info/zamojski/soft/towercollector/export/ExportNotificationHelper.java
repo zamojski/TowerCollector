@@ -4,7 +4,6 @@
 
 package info.zamojski.soft.towercollector.export;
 
-import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -13,6 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
 import info.zamojski.soft.towercollector.MainActivity;
@@ -89,7 +89,7 @@ public class ExportNotificationHelper extends NotificationHelperBase {
         return pendingIntent;
     }
 
-    @TargetApi(Build.VERSION_CODES.O)
+    @RequiresApi(Build.VERSION_CODES.O)
     private void createNotificationChannel(NotificationManager notificationManager) {
         NotificationChannel channel = new NotificationChannel(
                 EXPORT_NOTIFICATION_CHANNEL_ID,
