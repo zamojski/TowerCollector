@@ -98,6 +98,7 @@ public class CollectorNotificationHelper extends NotificationHelperBase {
 
     private PendingIntent createStopCollectorIntent() {
         Intent intent = new Intent(CollectorService.BROADCAST_INTENT_STOP_SERVICE);
+        intent.setPackage(MyApplication.getApplication().getPackageName());
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, getImmutablePendingIntentFlags(0));
         return pendingIntent;
     }
