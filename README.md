@@ -28,11 +28,19 @@ To build your own signed apk go to "[app/properties](app/properties)" and:
  3. Copy "[google-services-example.json](app/google-services-example.json)" as "google-services.json" in the same directory and adjust it accordingly or place your own generated file there.
  4. These files will be ignored so don't worry about committing them by mistake.
 
+### Signing key fingerprint for Google Play and GitHub release (Official)
+```
+SHA1: E8:1C:C8:FC:65:50:87:9D:E1:AC:93:DB:04:8C:A5:F3:69:72:63:25
+SHA-256: A4:D7:6D:2E:27:D8:25:BD:1B:2C:E9:75:2F:5A:7A:7B:77:B5:A8:AC:6A:6B:18:7A:E8:52:54:81:C8:E4:37:31
+```
+
 ## Bug reports and feature requests
 Please report any bugs or submit feature requests through the *Issues* tab on this page or email me directly.
 
 ## Translations
-If you would like to help out with translation, please visit https://i18n.zamojski.feedback/
+~If you would like to help out with translation, please visit https://i18n.zamojski.feedback/~
+
+OneSky has suspended their translation service, so as of now the only way to contribute is to create a pull request to this repository.
 
 ## License
 Tower Collector is licensed under the Mozilla Public License 2.0. A copy of this license is included in [LICENSE.txt](LICENSE.txt).
