@@ -1,0 +1,1 @@
+- Change auto update check service address to a new domain.

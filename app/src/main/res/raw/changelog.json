@@ -1,6 +1,13 @@
 {
   "Entries": [
     {
+      "VersionCode": 2170120,
+      "Title": "Changes in version 2.17.1",
+      "Messages": [
+        "Change auto update check service address to a new domain."
+      ]
+    },
+    {
       "VersionCode": 2170019,
       "Title": "Changes in version 2.17.0",
       "Messages": [
@@ -34,13 +41,6 @@
       "Messages": [
         "Fix battery optimization detection on Android 15.",
         "Extend background location permission rationale to be more compliant with Google Play policy."
-      ]
-    },
-    {
-      "VersionCode": 2150415,
-      "Title": "Changes in version 2.15.4",
-      "Messages": [
-        "Fix permission denied error when starting collector on Android 13."
       ]
     }
   ]
