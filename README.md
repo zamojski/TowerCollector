@@ -38,7 +38,7 @@ SHA-256: A4:D7:6D:2E:27:D8:25:BD:1B:2C:E9:75:2F:5A:7A:7B:77:B5:A8:AC:6A:6B:18:7A
 Please report any bugs or submit feature requests through the *Issues* tab on this page or email me directly.
 
 ## Translations
-~If you would like to help out with translation, please visit https://i18n.zamojski.feedback/~
+~If you would like to help out with translation, please visit https://i18n.zamojski.ovh/~
 
 OneSky has suspended their translation service, so as of now the only way to contribute is to create a pull request to this repository.
 

@@ -10,7 +10,7 @@ The OpenCellID.org project goal is to create a worldwide open source database of
 
 BeaconDB is an a public database that collects location information about common wireless infrastructure (cell towers, WiFi access points, Bluetooth beacons). The cell tower data you contribute will be aggregated and released to the public under the "Creative Commons (CC-0)" license.
 
-Please help me translate it to other languages, visit https://i18n.zamojski.feedback/
+Please help me translate it to other languages, visit https://i18n.zamojski.ovh/
 
 This application does not collect, store or send any information which can be used to directly identify user, device which is being used or any other personal information.
 
