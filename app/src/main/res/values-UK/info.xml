@@ -1,0 +1,437 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+  <string name="about_api_key_content"><![CDATA[Маркер доступу (ключ API) - це спеціальна рядок, що використовується для авторизації користувача для завантаження зібраних вимірювань у базу даних OpenCellID.
+
+Правильний ключ повинен складатися з цифр 0-9 та літер a-f. Залежно від дати реєстрації формат ключа може виглядати наступним чином:
+
+* `pk.9743a66f914cc249efca164485a19c5c` – 32 символи, перед якими ставиться `pk.`, всього 35 символів
+* `9743a66f914cc249efca164485a19c5c` – 32 символи
+* `9743a66f-914c-c249-efca-164485a19c5c` – 32 символи в п'яти групах, розділених дефісом, всього 36 символів
+* `9743a66f914cc2` – 14 символів;]]></string>
+  <string name="about_application_content"><![CDATA[Tower Collector %VERSION_NAME%
+
+Copyright © 2012-%CURRENT_YEAR% Adam Zamojski та автори
+
+Стільниковий колектор призначений для збирання місцезнаходження GPS стільникових мереж GSM / UMTS / LTE / CDMA / 5G NR / TD-SCDMA. Зібрані вами вимірювання можна завантажити до багатьох публічних та приватних баз даних.
+
+THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.]]></string>
+  <string name="about_collector_api_version_content"><![CDATA[Ви можете вирішити, який спосіб буде використовувати для отримання деталей стільникової вежі при зборі вимірювань.
+
+*Настійно рекомендується використовувати найновіші доступні для отримання надійних даних. Вибір вимкнено на пристроях з ОС Android 4.1 та старіших версій.*
+
+*   **Автоматичний виявлення.** Програма автоматично визначить, яку версію API можна використовувати, і виберете найкращий варіант. Він буде використовувати безпечний варіант, якщо Колектор стартував, коли сигнал був відсутній.
+*   **Android 4.2 API** - використовує методи, доступні на пристроях Android 4.2 і новіших версій. Ці методи забезпечують найбільш надійну інформацію про клітинку. Проте деякі виробники не застосовували правильно новий API, і вони можуть не використовуватися на таких пристроях. У версії 5.1 та новіших стільникових телефонів інформація може бути отримана з декількох SIM-карт.
+*   **Android 1.0 API** - використовує набір методів, доступних після першої версії Android. Ці методи можуть повернути ненадійні дані для мереж LTE та UMTS. Залежно від пристрою цей метод може вимагати, щоб екран залишався увімкненим під час збору, щоб зберегти правильну інформацію про соту.]]></string>
+  <string name="about_collector_keep_screen_on_content"><![CDATA[Використовуйте цей параметр, щоб зберегти екран на певному рівні яскравості під час збору вимірювань. Екран залишатиметься увімкненим навіть у випадку переходу на іншу програму або спробуйте вимкнути його за допомогою кнопки живлення. Це дозволить значно скоротити термін служби акумулятора 😞
+
+Це може бути використано для вирішення проблеми, щоб зберегти дані про соти та сили сигналу на деяких пристроях під час використання API 1.0 Android
+
+Щоб зберегти екран лише тоді, коли відображається головний екран, перегляньте параметр у розділі "Дисплей".]]></string>
+  <string name="about_main_keep_screen_on_content"><![CDATA[Використовуйте цю опцію, щоб зберегти екран у повній яскравості, коли на пристрої відображається основний екран. Після того, як ви залишите екран або перейдете на іншу програму, певна поведінка Android буде відновлено. Увімкнення значно скорочує термін служби акумулятора.
+
+Щоб завжди вимикати екран під час збору вимірів, дивись розділ "Колектор".]]></string>
+  <string name="about_mls_project_content"><![CDATA[BeaconDB - це загальнодоступна база даних, яка збирає інформацію про місцезнаходження загальної бездротової інфраструктури (стільникові вежі, точки доступу WiFi, маяки Bluetooth). Дані про вежі стільникового зв’язку, які ви надаєте, збиратимуться та оприлюднюються за ліцензією «Creative Commons (CC-0)».
+
+Tower Collector дає вам можливість зробити внесок у проект BeaconDB, завантажуючи вежі стільникового зв’язку з вашого регіону. [Докладніше.](https://beacondb.net/)]]></string>
+  <string name="about_neighboring_cells_content"><![CDATA[Сусідні соти - це клітини, визначені оператором мобільної мережі, розташовані поруч із сотою, до якої телефон підключено. Сусідні клітини можуть бути не настільки надійними, як основна клітина, і можуть змінюватися в будь-який час.
+
+Наявність сусідніх комірок залежить від пристрою, типу мережі, оператора мережі та стільникової мережі]]></string>
+  <string name="about_notify_measurements_collected_content"><![CDATA[Колектор сот може повідомити інші додатки, встановлені в системі, транслюючи *intents*. Щоб отримати додаткові відомості про те, як прослухати та використовувати такі сповіщення, перевірте в інструкції додатку.
+
+### Виміри зібраних подій
+
+Колектор може відправити дані кожен раз, коли збирається новий набір вимірювань, якщо встановлено в налаштуваннях. Зміст сповіщення буде структурою JSON із загальними даними, такими як час та координати GPS. Імена і значення полів відображаються так само, як у експортованому файлі CSV.
+Список полів, що використовуються клітинками, залежить від типу (net_type). Непідтримувані чи відсутні значення будуть встановлені як ` null `.
+
+- GSM - mcc, mnc, lac, cell_id, asu, dbm, ta, rssi, arfcn
+- UMTS - mcc, mnc, lac, cell_id, short_cell_id, rnc, psc, asu, dbm, ec_no, arfcn
+- CDMA - sid → mnc, nid → lac, bid → cell_id, asu, dbm, cdma_dbm, cdma_ecio, evdo_dbm, evdo_ecio, evdo_snr
+- LTE - mcc, mnc, tac → lac, ci → cell_id, short_cell_id, rnc, pci → psc, ta, asu, dbm, rsrp, rsrq, rssi, rssnr, cqi, arfcn
+- 5G NR - mcc, mnc, tac → lac, nci → cell_id, pci → psc, asu, dbm, csi_rsrp, csi_rsrq, csi_sinr, ss_rsrp, ss_rsrq, ss_sinr, arfcn
+- TD-SCDMA - mcc, mnc, lac, cid → cell_id, cpid → psc, asu, dbm, rscp, arfcn
+
+Дія:
+
+`info.zamojski.soft.towercollector.MEASUREMENTS_COLLECTED`
+
+Додаткові ключі:
+
+`measurements`
+
+Приклад додаткових значень:
+
+```
+{
+    "measured_at" : 1234567890123,
+    "gps" : {
+        "lat" : 12.3213123,
+        "lon" : -54.4535435543,
+        "accuracy" : 12.0,
+        "speed" : 13.21,
+        "bearing" : 212.2,
+        "altitude" : 121.0
+    },
+    "cells" : [
+        {
+            "mcc" : 260,
+            "mnc" : 06,
+            "lac" : 5115,
+            "cell_id" : 214325525,
+            "psc" : 1234,
+            "asu" : 12,
+            "dbm" : -112,
+            "neighboring" : "false",
+            "net_type" : "UMTS"
+        },
+        {
+            "mcc" : null,
+            "mnc" : 16,
+            "lac" : 5115,
+            "cell_id" : 2143255,
+            "psc" : null,
+            "asu" : 13,
+            "dbm" : -112,
+            "ta" : null,
+            "neighboring" : "false",
+            "net_type" : "CDMA",
+            "cdma_dbm" : null,
+            "cdma_ecio" : null,
+            "evdo_dbm" : null,
+            "evdo_ecio" : null,
+            "evdo_snr" : null
+        }
+    ]
+}
+```]]></string>
+  <string name="about_opencellid_project_content"><![CDATA[OpenCellID - це проект з відкритим кодом, метою якого є створення глобальної бази CellID, корелювати з місцями розташування GPS. Зібрані дані доступні за ліцензією "Creative Common Attribution-Share Alike 3.0 Unported".
+
+Tower Collector дає вам можливість внести свій внесок у проект OpenCellID шляхом завантаження баштових стільників з вашого регіону. [Додаткова інформація.](https://wiki.opencellid.org/wiki/What_is_OpenCellID)]]></string>
+  <string name="best_practices_content"><![CDATA[Tower Collector is a perfect app for OpenCellID and BeaconDB contributors who want to support the projects with measurements from their area. It is good to know what is the right way to collect the most valuable measurements during walks and trips.
+
+- Уникайте рухатися вперед і назад точно тим самим шляхом кожен день. Велика кількість дубльованих вимірювань не буде дуже корисною.
+- Спробуйте на карті нові місця, особливо рідко відвідувані, оскільки вони часто все ще не охоплені. Багато веж уздовж головних вулиць вже визначені.
+- Час від часу повертайтеся, щоб зібрати нові стільникові елементи, які можуть з'явитися у вашому районі.
+- Збирайте дані для всіх типів мереж, підтримуваних вашим пристроєм, такими як GSM, UMTS, LTE, CDMA, 5G NR, TD-SCDMA та ін. Це можна досягти, змінивши бажані типи мереж в налаштуваннях Android.
+- Використовуйте SIM-карти різних мережевих операторів, щоб краще покрити вашу область.]]></string>
+  <string name="external_integration_content"><![CDATA[Колектор сот виставляє завдання для запуску інших програм, які надсилають *intents*, як Tasker, Automate або Llama. Вам потрібно використовувати тип *Broadcast* для всіх дій, визначених нижче. Для отримання додаткової інформації про те, як зробити таку інтеграцію перевірити інструкцію програми
+*Як у додатку, ви не можете розпочати більше одного завдання одночасно!*
+
+### Запуск колектора
+
+Колектор буде запущений з використанням параметрів, визначених у Параметрах. Дія:
+
+`info.zamojski.soft.towercollector.COLLECTOR_START`
+
+### Зупинити колектор
+
+Колекціонер буде зупинений негайно. Дія:
+
+`info.zamojski.soft.towercollector.COLLECTOR_STOP`
+
+### Почніть вивантажувати
+
+Завантаження буде розпочато за допомогою конфігурації з Налаштування. Акція:
+
+`info.zamojski.soft.towercollector.UPLOADER_START`
+
+### Припинити завантаження
+
+Завантаження буде скасовано найближчим часом. Дії:
+
+`info.zamojski.soft.towercollector.UPLOADER_STOP`
+
+### Почати експорт
+
+Експорт розпочнеться з використанням конфігурації з останнього запуску, виміри будуть збережені. Дія:
+
+`info.zamojski.soft.towercollector.EXPORT_START`
+
+### Зупинити експорт
+
+Незабаром експорт буде скасовано. Дія:
+
+`info.zamojski.soft.towercollector.EXPORT_STOP`
+
+### Android 8+
+
+У Android Oreo і новіші ви повинні додатково визначити назву компонента пакета:
+
+`info.zamojski.soft.towercollector`]]></string>
+  <string name="introduction_content"><![CDATA[### Мета
+
+Додаток призначений для збору координат GPS, корелюваних з інформацією про вежі мобільних стільникових телефонів. Він розроблений, щоб допомогти відобразити ступінь покриття мережі мобільного зв'язку.
+
+### як почати
+
+Щоб розпочати, виберіть пункт 'Почати збір параметрів' (піктограму запису) з меню у верхній частині екрана. Вимірювання будуть збиратися лише тоді, коли ви перебуваєте в діапазоні мобільної мережі, а GPS надає вам позицію з точністю до 40 метрів.
+
+### Наступні кроки
+
+Collected data can be uploaded to OpenCellID.org and BeaconDB projects or exported to a file. Before first upload you will need to select projects you want to contribute to. In case of OpenCellID.org you'll additionally need to register for free and enter received access token in Preferences. Measurements will be deleted from your device after successful upload.
+
+### Більше
+
+Кращі практики та додаткова інформація доступна в розділі «Інформація» у «Налаштуваннях».]]></string>
+  <string name="map_help"><![CDATA[![dot_nr](dot_nr) - 5G (NR)
+
+![dot_lte](dot_lte) - 4G (LTE)
+
+![dot_wcdma](dot_wcdma) - 3G (WCDMA/UMTS)
+
+![dot_gsm](dot_gsm) - 2G (GSM)
+
+![dot_tdscdma](dot_tdscdma) - TD-SCDMA
+
+![dot_cdma](dot_cdma) - CDMA
+
+![dot_unknown](dot_unknown) - Невідомо
+
+![dot_lte_wcdma](dot_lte_wcdma) - Поєднання LTE та WCDMA
+
+![dot_cluster_small](dot_cluster_small) - Кластер - група вимірювань, збільште масштаб, щоб розгрупувати
+
+Яскраві кольори представляють вимірювання з нещодавно відкритими вежами стільникового зв'язку, інакше використовуються темні кольори.]]></string>
+  <string name="open_source_licenses_content"><![CDATA[### Application icon
+
+[CC BY 3.0 License](https://creativecommons.org/licenses/by/3.0/legalcode)
+
+```
+This work is licensed under a Creative Commons Attribution 3.0 Unported License.
+```
+
+### Menu icons
+
+[CC BY 3.0 License](https://creativecommons.org/licenses/by/3.0/legalcode)
+
+```
+This work is licensed under a Creative Commons Attribution 3.0 Unported License.
+```
+
+### ACRA
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2010-2015 Kevin Gaudin
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+This product includes software (package org.acra.jraf.android.util.activitylifecyclecallbackscompat) developed at JRAF, Copyright (C) 2013 Benoit 'BoD' Lubek (BoD@JRAF.org), Apache Software License 2.0.
+```
+
+### DoubleUtils
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 27.04.2012 Alex Vikulov (vikuloff@gmail.com)
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### EventBus
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2012-2016 Markus Junginger
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### Guava
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2013-2023 Google
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### HtmlTextView
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2013-2015 Dominik Schürmann
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### NetMonster Core
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2019 Michal Mroček
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### OkHttp
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2016 Square, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### osmbonuspack
+
+[GNU Lesser General Public License v3.0](https://www.gnu.org/licenses/lgpl-3.0.html)
+
+```
+Copyright 2020 MKergall
+    The components inside this GitHub project are under LGPL licence, with an important simplification: The constraints described in Section 4.d and 4.e of the LGPL LICENCE are DISCARDED.
+
+    This means that you are allowed to convey a Combined Work without providing the user any way to recombine or relink the application, and without providing any shared library mechanism.
+
+    In other terms, you are allowed to include the OSMBonusPack library in your Android application, without making your application open source.
+```
+
+### osmdroid
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2020 osmdroid contributors
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### Permissions Dispatcher
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2016 Shintaro Katafuchi, Marcel Schnelle, Yoshinori Isogai
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### The Android Open Source Project
+
+- AppCompatPreferenceActivity
+- FastXmlSerializer
+- XmlUtils
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright (C) 2006-2014 The Android Open Source Project
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### Timber
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2013 Jake Wharton
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```]]></string>
+  <string name="privacy_statement_content"><![CDATA[Конфіденційність дуже важлива, тому програма збирає та передає лише необхідну інформацію для надання послуг. Додаток НЕ збирає, не зберігає та не надсилає будь-яку інформацію, яка могла б ідентифікувати Вас, Ваш пристрій чи будь-яку іншу особисту інформацію.
+
+**Якщо ви не згодні з цією політикою конфіденційності, будь ласка, не встановлюйте та не видаляйте програму. Постійне видалення програми з мобільного пристрою еквівалентно припиненню використання програми.**
+
+### Основні функції
+
+The main functionality of the application is to collect cell tower identifiers, signal strength and the device location (coordinates). This information is stored locally on your device and will never be transmitted without your explicit consent and action. The collected data can be exported to the file persisted on your device or shared to OpenCellID.org and BeaconDB projects. To ensure the privacy is protected, the application does NOT use any proxy server that could access your data in transit. All the traffic to external services is encrypted using HTTPS protocol.
+
+**Contribution to the OpenCellID.org** project requires a personal Access Token (API Key) that needs to be entered in the application preferences. The key will only be used to upload the measurements to the project database and will never leave the device in any other scenario. Anybody who knows the Access Token has full control over the uploaded data, including browsing and deleting. It's your responsibility to protect the confidentiality of your Access Token!
+
+- [Політика конфіденційності OpenCellID.org](https://community.opencellid.org/privacy)
+- [The BeaconDB privacy notice](https://beacondb.net/privacy/)
+
+Для більшості функцій програми потрібен **дозвіл розташування на передньому плані**, однак, щоб розпочати збір вимірювань під час запуску пристрою, потрібно надати **дозвіл на розташування у фоновому режимі**. Дозвіл на фонове розташування потрібен, оскільки в цьому випадку збір ініціюється системою (у фоновому режимі), а не вами (на передньому плані).
+
+### Додаткові функції
+
+Функція **map** використовує послуги, що надаються OpenStreetMap згідно з [умовами використання](https://wiki.osmfoundation.org/wiki/Terms_of_Use).
+
+Функція **автоматична перевірка оновлення** підключається до сервера, щоб перевірити, чи доступна новіша версія програми. Запит містить версію встановленої програми, і вона виконується під час запуску програми раз на день.
+
+Функція **Зв'язок з розробником** створить нове повідомлення електронної пошти у вибраному поштовому клієнті. Повідомлення містить наступну технічну інформацію про пристрій, щоб допомогти у вирішенні несправностей:
+
+- Версія програми
+- Версія для Android
+- Виробник та модель пристрою
+
+Функція **Експорт налаштувань** або **Експорт бази даних** скопіює налаштування програми або базу даних у спеціальну папку на вашому пристрої. Якщо файли розміщені у спільній пам'яті, до якої має доступ будь-яка інша програма, то конфіденційні дані (наприклад, маркер доступу OpenCellID) можуть бути незахищеними.
+
+Функція **реєстрація файлів на рівні налагодження** створить дуже докладні файли журналів у спеціальній папці на вашому пристрої. Журнал може містити конфіденційну інформацію, як-от ваше поточне місцезнаходження та вишки стільникового зв'язку, до яких підключений ваш пристрій. Цей параметр слід використовувати лише тимчасово для усунення несправностей.
+
+### Помічники з усунення несправностей
+
+Додаток збирає **анонімну статистику використання**. Дані передаються лише розробнику, щоб допомогти краще зрозуміти, як використовується програма, який час виконання різних функцій та які найпопулярніші функції. Зібрані дані використовуються для поліпшення загальної продуктивності, зручності використання та зручності користування. Дані збираються за допомогою сторонньої бібліотеки Google Analytics для Firebase, наданої Google відповідно до [Політики конфіденційності Google](https://policies.google.com/privacy).
+
+Додаток має вбудовану **автоматизовану систему повідомлення про аварії**. Звіти про помилки програми надаються лише розробнику та містять інформацію про причину збою та конфігурацію пристрою. Він НЕ включає жодної інформації, яка може використовуватися для ідентифікації вас або пристрою.]]></string>
+  <string name="usage_statistics_content"><![CDATA[Статистика використання - це форма анонімного зворотного зв'язку. Це допомагає розробнику краще зрозуміти, як застосовується додаток, як швидко це відбувається та які найпопулярніші функції. За допомогою такого роду знань набагато простіше поліпшити загальну продуктивність та зручність роботи користувачів.
+
+Колектор відслідковує та звітує наступні види даних:
+
+- глюки програми;
+- які функції використовуються і для чого;
+- тривалість роботи, що вимагає уваги;
+- кількість зібраних, експортованих та вивантажених вимірювань (лише для статистики).
+
+Реальні дані вимірювань, маркер доступу та будь-яка інша особиста інформація НЕ відслідковуються. Звіти автоматично надсилаються у фоновому режимі. *Якщо ви ставитеся до вашої конфіденційності дуже серйозно, ви можете легко відмовитися від збирання та відправки статистики використання, знявши прапорець біля опції в розділі Налаштування.*]]></string>
+</resources>

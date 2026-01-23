@@ -1,0 +1,439 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+  <string name="about_api_key_content"><![CDATA[Access token (API key) is special string used to authorize user to upload collected measurements to OpenCellID database.
+
+The correct key must consist of digits 0-9 and letters a-f. Depending on registration date key format may look like this:
+
+* `pk.9743a66f914cc249efca164485a19c5c` – 32 characters, preceded with `pk.`, total 35 characters
+* `9743a66f914cc249efca164485a19c5c` – 32 characters
+* `9743a66f-914c-c249-efca-164485a19c5c` – 32 characters in five groups separated by dash, total 36 characters
+* `9743a66f914cc2` – 14 characters]]></string>
+  <string name="about_application_content"><![CDATA[Tower Collector %VERSION_NAME%
+
+Copyright © 2012-%CURRENT_YEAR% Adam Zamojski & Contributors
+
+Tower Collector is designed to collect GPS locations of GSM/UMTS/LTE/CDMA/5G NR/TD-SCDMA cell towers. Your collected measurements can be uploaded to many public and private databases.
+
+THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.]]></string>
+  <string name="about_collector_api_version_content"><![CDATA[You can decide what method will be used to get cell tower details when collecting measurements.
+
+*It is strongly recommended to use the latest available to get more reliable data. Selection is disabled on devices running Android 4.1 and earlier.*
+
+*   **Auto detect** - The app will automatically detect which version of API can be used and select the best option. It will use safe option if Collector started when there is no signal.
+*   **Android 4.2 API** - Uses methods available on Android 4.2 and newer. These methods provide the most reliable cell info. However some manufacturers did not implement new API correctly and it may not be used on such devices. On Android 5.1 and newer cell towers from multiple SIM cards may be returned.
+*   **Android 1.0 API** - Uses a set of methods available since first version of Android. These methods may return unreliable data for LTE and UMTS networks. Depending on the device, this method may require the screen to remain on while collecting to keep cell info updated correctly.]]></string>
+  <string name="about_collector_keep_screen_on_content"><![CDATA[Use this option to keep screen on at selected level of brightness when collecting measurements. The screen will remain on even if you switch to a different application or try to turn it off using power button. Enabling will significantly shorten battery life.
+
+This may be used as a workaround to keep cell and signal strength details updated on some devices when using Android 1.0 API.
+
+To keep screen on only when main screen is visible, see the option in Display section.]]></string>
+  <string name="about_main_keep_screen_on_content"><![CDATA[Use this option to keep screen on at full brightness when main screen is presented on device. Once you leave the screen or switch to a different application the Android defined behavior will be restored. Enabling will significantly shorten battery life.
+
+To keep screen on all the time when collecting measurements, see the option in Collector section.]]></string>
+  <string name="about_mls_project_content"><![CDATA[BeaconDB is an a public database that collects location information about common wireless infrastructure (cell towers, WiFi access points, Bluetooth beacons). The cell tower data you contribute will be aggregated and released to the public under the "Creative Commons (CC-0)" license.
+
+Tower Collector gives you opportunity to contribute in BeaconDB project by uploading cell towers from your area. [More information.](https://beacondb.net/)]]></string>
+  <string name="about_neighboring_cells_content"><![CDATA[Neighboring cells are the cells defined by mobile network operator as cells located nearby the cell the phone is currently connected to. Neighboring cells may not be as reliable as main cell and can change at the time.
+
+The availability of neighboring cells depends on device, network type, network operator and cell tower.]]></string>
+  <string name="about_notify_measurements_collected_content"><![CDATA[Tower Collector can notify other apps installed on the system by broadcasting *intents*. For more information how to listen for and consume such notifications check that app's help.
+
+### Measurements collected event
+
+Collector can send an intent every time new set of measurements is collected if set in Preferences. The content of notification will be a JSON structure with common things like time and GPS extracted. Field names and values are mapped the same way as in exported CSV file.
+List of fields used by cells depend on type (net_type). Unsupported or missing values will be set to `null`.
+
+- GSM - mcc, mnc, lac, cell_id, asu, dbm, ta, rssi, arfcn
+- UMTS - mcc, mnc, lac, cell_id, short_cell_id, rnc, psc, asu, dbm, ec_no, arfcn
+- CDMA - sid → mnc, nid → lac, bid → cell_id, asu, dbm, cdma_dbm, cdma_ecio, evdo_dbm, evdo_ecio, evdo_snr
+- LTE - mcc, mnc, tac → lac, ci → cell_id, short_cell_id, rnc, pci → psc, ta, asu, dbm, rsrp, rsrq, rssi, rssnr, cqi, arfcn
+- 5G NR - mcc, mnc, tac → lac, nci → cell_id, pci → psc, asu, dbm, csi_rsrp, csi_rsrq, csi_sinr, ss_rsrp, ss_rsrq, ss_sinr, arfcn
+- TD-SCDMA - mcc, mnc, lac, cid → cell_id, cpid → psc, asu, dbm, rscp, arfcn
+
+Action:
+
+`info.zamojski.soft.towercollector.MEASUREMENTS_COLLECTED`
+
+Extras key:
+
+`measurements`
+
+Extras value example:
+
+```
+{
+    "measured_at" : 1234567890123,
+    "gps" : {
+        "lat" : 12.3213123,
+        "lon" : -54.4535435543,
+        "accuracy" : 12.0,
+        "speed" : 13.21,
+        "bearing" : 212.2,
+        "altitude" : 121.0
+    },
+    "cells" : [
+        {
+            "mcc" : 260,
+            "mnc" : 06,
+            "lac" : 5115,
+            "cell_id" : 214325525,
+            "psc" : 1234,
+            "asu" : 12,
+            "dbm" : -112,
+            "neighboring" : "false",
+            "net_type" : "UMTS"
+        },
+        {
+            "mcc" : null,
+            "mnc" : 16,
+            "lac" : 5115,
+            "cell_id" : 2143255,
+            "psc" : null,
+            "asu" : 13,
+            "dbm" : -112,
+            "ta" : null,
+            "neighboring" : "false",
+            "net_type" : "CDMA",
+            "cdma_dbm" : null,
+            "cdma_ecio" : null,
+            "evdo_dbm" : null,
+            "evdo_ecio" : null,
+            "evdo_snr" : null
+        }
+    ]
+}
+```]]></string>
+  <string name="about_opencellid_project_content"><![CDATA[OpenCellID is an open source project, aiming to create a worldwide database of CellID correlated with GPS locations. Collected data is available under the "Creative Common Attribution-Share Alike 3.0 Unported" license.
+
+Tower Collector gives you opportunity to contribute to OpenCellID project by uploading cell towers from your area. [More information.](https://wiki.opencellid.org/wiki/What_is_OpenCellID)]]></string>
+  <string name="best_practices_content"><![CDATA[Tower Collector is a perfect app for OpenCellID and BeaconDB contributors who want to support the projects with measurements from their area. It is good to know what is the right way to collect the most valuable measurements during walks and trips.
+
+- Avoid moving back and forth exactly the same way every day. A large number of duplicated measurements will not be very useful.
+- Try to map new places, especially those less frequently visited as they're often still not covered. Many of the towers along main streets have already been mapped.
+- From time to time make a round again to collect new cell towers that could appear in your area.
+- Collect data for all kinds of networks supported by your device, such as GSM, UMTS, LTE, CDMA, 5G NR, TD-SCDMA, etc. You can achieve this by changing preferred network types in Android settings.
+- Use SIM cards from many different network operators to better cover your area.]]></string>
+  <string name="external_integration_content"><![CDATA[Tower Collector exposes tasks to be run by other applications that send *intents* like Tasker, Automate or Llama. You need to use *Broadcast* type for all activities defined below. For more information how to do such integration check that's applications help.
+*Like within the app you can't start more than one task at the same time!*
+
+### Start Collector
+
+Collector will be started using settings defined in Preferences. Action:
+
+`info.zamojski.soft.towercollector.COLLECTOR_START`
+
+### Stop Collector
+
+Collector will be stopped immediately. Action:
+
+`info.zamojski.soft.towercollector.COLLECTOR_STOP`
+
+### Start Upload
+
+Upload will be started using configuration from Preferences. Action:
+
+`info.zamojski.soft.towercollector.UPLOADER_START`
+
+### Stop Upload
+
+Upload will be cancelled soon. Action:
+
+`info.zamojski.soft.towercollector.UPLOADER_STOP`
+
+### Start Export
+
+Export will be started using configuration from last run, measurements will be kept. Action:
+
+`info.zamojski.soft.towercollector.EXPORT_START`
+
+### Stop Export
+
+Export will be cancelled soon. Action:
+
+`info.zamojski.soft.towercollector.EXPORT_STOP`
+
+### Android 8+
+
+On Android Oreo and newer you need to additionally define component package name:
+
+`info.zamojski.soft.towercollector`]]></string>
+  <string name="introduction_content"><![CDATA[### The purpose
+
+The app is designed to collect GPS coordinates correlated with information about mobile cell towers. It is designed to help map the extent of mobile phone network coverage.
+
+### How to start
+
+To start select 'Start collecting' option (record icon) from menu on the top of the screen. Measurements will be collected only when you're in range of mobile network and GPS gives your position with at least 40 meters accuracy.
+
+### Next steps
+
+Collected data can be uploaded to OpenCellID.org and BeaconDB projects or exported to a file. Before first upload you will need to select projects you want to contribute to. In case of OpenCellID.org you'll additionally need to register for free and enter received access token in Preferences. Measurements will be deleted from your device after successful upload.
+
+### More
+
+Best practices and additional information available in Information section in Preferences.]]></string>
+  <string name="map_help"><![CDATA[![dot_nr](dot_nr) - 5G (NR)
+
+![dot_lte](dot_lte) - 4G (LTE)
+
+![dot_wcdma](dot_wcdma) - 3G (WCDMA/UMTS)
+
+![dot_gsm](dot_gsm) - 2G (GSM)
+
+![dot_tdscdma](dot_tdscdma) - TD-SCDMA
+
+![dot_cdma](dot_cdma) - CDMA
+
+![dot_unknown](dot_unknown) - Unknown
+
+![dot_lte_wcdma](dot_lte_wcdma) - Mix of LTE and WCDMA
+
+![dot_cluster_small](dot_cluster_small) - Cluster - a group of measurements, zoom in to ungroup
+
+Bright colors represent measurements with newly discovered cell towers, otherwise dark colors are used.]]></string>
+  <string name="open_source_licenses_content"><![CDATA[### Application icon
+
+[CC BY 3.0 License](https://creativecommons.org/licenses/by/3.0/legalcode)
+
+```
+This work is licensed under a Creative Commons Attribution 3.0 Unported License.
+```
+
+### Menu icons
+
+[CC BY 3.0 License](https://creativecommons.org/licenses/by/3.0/legalcode)
+
+```
+This work is licensed under a Creative Commons Attribution 3.0 Unported License.
+```
+
+### ACRA
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2010-2015 Kevin Gaudin
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+This product includes software (package org.acra.jraf.android.util.activitylifecyclecallbackscompat) developed at JRAF, Copyright (C) 2013 Benoit 'BoD' Lubek (BoD@JRAF.org), Apache Software License 2.0.
+```
+
+### DoubleUtils
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 27.04.2012 Alex Vikulov (vikuloff@gmail.com)
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### EventBus
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2012-2016 Markus Junginger
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### Guava
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2013-2023 Google
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### HtmlTextView
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2013-2015 Dominik Schürmann
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### NetMonster Core
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2019 Michal Mroček
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### OkHttp
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2016 Square, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### osmbonuspack
+
+[GNU Lesser General Public License v3.0](https://www.gnu.org/licenses/lgpl-3.0.html)
+
+```
+Copyright 2015 MKergall
+
+The components inside this GitHub project are under LGPL licence, with an important simplification: The constraints described in Section 4.d and 4.e of the LGPL LICENCE are DISCARDED.
+
+This means that you are allowed to convey a Combined Work without providing the user any way to recombine or relink the application, and without providing any shared library mechanism.
+
+In other terms, you are allowed to include the OSMBonusPack library in your Android application, without making your application open source.
+```
+
+### osmdroid
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2014 osmdroid
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### Permissions Dispatcher
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2016 Shintaro Katafuchi, Marcel Schnelle, Yoshinori Isogai
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### The Android Open Source Project
+
+- AppCompatPreferenceActivity
+- FastXmlSerializer
+- XmlUtils
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright (C) 2006-2014 The Android Open Source Project
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### Timber
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2013 Jake Wharton
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```]]></string>
+  <string name="privacy_statement_content"><![CDATA[The privacy is very important, so the application collect and transmit only the required information to provide the services. The application does NOT collect, store or send any information that could personally identify you, your device or any other personal information.
+
+**If you do not agree to this privacy policy, please do not install or uninstall the application. Permanently removing the application from the mobile device is equivalent to terminating the use of the application.**
+
+### The main functions
+
+The main functionality of the application is to collect cell tower identifiers, signal strength and the device location (coordinates). This information is stored locally on your device and will never be transmitted without your explicit consent and action. The collected data can be exported to the file persisted on your device or shared to OpenCellID.org and BeaconDB projects. To ensure the privacy is protected, the application does NOT use any proxy server that could access your data in transit. All the traffic to external services is encrypted using HTTPS protocol.
+
+**Contribution to the OpenCellID.org** project requires a personal Access Token (API Key) that needs to be entered in the application preferences. The key will only be used to upload the measurements to the project database and will never leave the device in any other scenario. Anybody who knows the Access Token has full control over the uploaded data, including browsing and deleting. It's your responsibility to protect the confidentiality of your Access Token!
+
+- [The OpenCellID.org privacy policy](https://community.opencellid.org/privacy)
+- [The BeaconDB privacy notice](https://beacondb.net/privacy/)
+
+Most of the features of the application require the **foreground location permission**, however, to start collecting measurements at device startup, the **background location permission** must be granted. The background location permission is required because, in this scenario, collecting is initiated by the system (in background), not by you (in foreground).
+
+### The optional functions
+
+The **map** feature uses the services provided by OpenStreetMap under [the terms of use](https://wiki.osmfoundation.org/wiki/Terms_of_Use).
+
+The **automatic update check** feature connects to the server to check if there is available a newer version of the application. The request contains the version of installed application and it is executed on the start of the application once a day.
+
+The **Contact developer** feature will create a new email message in the selected email client. The message includes the following technical information about the device in order to help in troubleshooting:
+
+- The application version
+- The Android version
+- The device manufacturer and model
+
+The **Export preferences** or **Export database** feature will copy the application preferences or database to the dedicated folder on your device. If the files are placed on the shared memory, that any other application has access to, then the sensitive data (like the OpenCellID Access Token) may be unprotected.
+
+The **file logging at Debug level** feature will create very detailed log files in the dedicated folder on your device. The log may contain the sensitive information, like your current location and the cell tower your device is connected to. This option should only be used temporarily for troubleshooting.
+
+### The troubleshooting helpers
+
+The application collects **the anonymous usage statistics**. The data is shared only with the developer, in order to help to better understand how application is being used, what are the execution times of various functions and what are the most popular features. The collected data is used to improve overall performance, usability and user experience. The data is collected using third party Google Analytics for Firebase library provided by Google under [the Google's privacy policy](https://policies.google.com/privacy).
+
+The application has built-in the **automated crash reporting** system. The application failure reports are shared only with the developer and contain information about crash cause and device configuration. It does NOT include any information that can use used to identify you or the device.]]></string>
+  <string name="usage_statistics_content"><![CDATA[Usage statistics is a form of anonymous feedback. It help developer to better understand how application is being used, how fast it is and what are most popular features. With this kind of knowledge it is much easier to improve overall performance, usability and user experience.
+
+Tower Collector tracks and reports the following kinds of data:
+
+- application failures;
+- which features are used and how;
+- time consuming operations duration;
+- number of collected, exported and uploaded measurements (statistics only).
+
+Real measurements data, access token and any other personal information is NOT being tracked. Reports are send automatically in the background. *If you treat your privacy very seriously, you can easily opt-out from collecting and sending usage statistics by unchecking option in Preferences.*]]></string>
+</resources>

@@ -1,0 +1,439 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+  <string name="about_api_key_content"><![CDATA[访问令牌（API密钥）是用于授权用户将收集的测量数据上传到OpenCellID数据库的特殊字符串。
+
+正确的密钥必须由数字0-9和字母a-f组成。根据注册日期，密钥格式可能如下所示：
+
+* `pk.9743a66f914cc249efca164485a19c5c` – 32个字符，前缀`pk.`，共35个字符
+* `9743a66f914cc249efca164485a19c5c` – 共32个字符
+* `9743a66f-914c-c249-efca-164485a19c5c` – 由破折号分隔的五个组中的32个字符， 共36个字符
+* `9743a66f914cc2` – 共14个字符]]></string>
+  <string name="about_application_content"><![CDATA[Tower Collector %VERSION_NAME%
+
+Copyright © 2012-%CURRENT_YEAR% Adam Zamojski 及其他贡献者
+
+Tower Collector旨在收集GSM / UMTS / LTE / CDMA / 5G NR / TD-SCDMA基站的GPS位置。您收集的测量数据可以上传到许多公共和私人数据库。
+
+THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.]]></string>
+  <string name="about_collector_api_version_content"><![CDATA[您可以决定在收集测量结果时使用何种方法获取蜂窝塔的详细信息。
+
+*强烈建议使用最新的可用方法来获取更可靠的数据。 在运行Android 4.1及更早版本的设备上不可选择。*
+
+*   **自动检测** - 此应用将自动检测可以使用的API版本，并选择最佳选项。如果收集器在没有信号时启动，它将使用安全选项。
+*   **Android 4.2 API**  - 使用Android 4.2及更高版本上提供的方法。 这些方法提供最可靠的信号塔信息。 但是，某些制造商没有正确实施新API，也可能无法在此类设备上使用。 在Android 5.1上，可能会返回来自多张SIM卡的较新的手机信号塔信息。
+*   **Android 1.0 API**  - 使用自第一版Android以来可用的一组方法。这些方法可能返回LTE和UMTS网络的不可靠数据。根据设备的不同，此方法可能要求屏幕在收集时保持打开以保持正确更新基站信息。]]></string>
+  <string name="about_collector_keep_screen_on_content"><![CDATA[使用此选项可在收集测量值时将屏幕保持在选定的亮度级别。 即使您切换到其他应用或尝试使用电源按钮关闭它，屏幕仍将保持打开状态。 启用将显着缩短电池续航。
+
+在使用Android 1.0 API时，这可以用作解决方法，以便在某些设备上更新基站和信号强度详细信息。
+
+要仅在主屏幕可见时保持屏幕开启，请参阅“显示”部分中的选项。]]></string>
+  <string name="about_main_keep_screen_on_content"><![CDATA[使用此选项可在设备上显示应用主界面时使屏幕保持全亮。 离开主界面或切换到其他应用后，将恢复 Android 默认定义的行为。 启用将显着缩短电池续航。
+
+要在收集测量值时始终保持屏幕显示，请参阅“收集器”部分中的选项。]]></string>
+  <string name="about_mls_project_content"><![CDATA[BeaconDB 是一个公共数据库，收集有关常见无线基础设施（手机信号塔、WiFi 接入点、蓝牙信标）的位置信息。您贡献的蜂窝塔数据将根据“知识共享 (CC-0)”许可证进行汇总并向公众发布。
+
+Tower Collector 让您有机会通过上传您所在区域的蜂窝塔来为 BeaconDB 项目做出贡献。 [更多信息。](https://beacondb.net/)]]></string>
+  <string name="about_neighboring_cells_content"><![CDATA[相邻小区是由移动网络运营商定义的小区，作为位于手机当前连接的小区附近的小区。 相邻小区可能不如主小区可靠，并且可能随时发生变化。
+
+相邻基站的可用性取决于设备、网络类型、网络运营商和基站。]]></string>
+  <string name="about_notify_measurements_collected_content"><![CDATA[Tower Collector可以通过广播 *intents*来通知系统上安装的其他应用。 有关如何监听和使用此类通知的更多信息，请检查应用的帮助。
+
+### 测量收集事件
+
+如果在"设置"中配置，则每次收集新的测量集时，收集器都可以发送意图。 通知内容将是一个JSON结构，其中包含时间和GPS等常见内容。 字段名称和值的映射方式与导出的CSV文件中的映射方式相同。
+
+单元格使用的字段列表取决于类型（net_type）。 不支持或缺少的值将设置为 `null`。
+
+- GSM - mcc, mnc, lac, cell_id, asu, dbm, ta, rssi, arfcn
+- UMTS - mcc, mnc, lac, cell_id, short_cell_id, rnc, psc, asu, dbm, ec_no, arfcn
+- CDMA - sid → mnc, nid → lac, bid → cell_id, asu, dbm, cdma_dbm, cdma_ecio, evdo_dbm, evdo_ecio, evdo_snr
+- LTE - mcc, mnc, tac → lac, ci → cell_id, short_cell_id, rnc, pci → psc, ta, asu, dbm, rsrp, rsrq, rssi, rssnr, cqi, arfcn
+- 5G NR - mcc, mnc, tac → lac, nci → cell_id, pci → psc, asu, dbm, csi_rsrp, csi_rsrq, csi_sinr, ss_rsrp, ss_rsrq, ss_sinr, arfcn
+- TD-SCDMA - mcc, mnc, lac, cid → cell_id, cpid → psc, asu, dbm, rscp, arfcn
+
+操作：
+
+`info.zamojski.soft.towercollector.MEASUREMENTS_COLLECTED`
+
+附加键：
+
+`measurements`
+
+附加值示例：
+
+```
+{
+    "measured_at" : 1234567890123,
+    "gps" : {
+        "lat" : 12.3213123,
+        "lon" : -54.4535435543,
+        "accuracy" : 12.0,
+        "speed" : 13.21,
+        "bearing" : 212.2,
+        "altitude" : 121.0
+    },
+    "cells" : [
+        {
+            "mcc" : 260,
+            "mnc" : 06,
+            "lac" : 5115,
+            "cell_id" : 214325525,
+            "psc" : 1234,
+            "asu" : 12,
+            "dbm" : -112,
+            "neighboring" : "false",
+            "net_type" : "UMTS"
+        },
+        {
+            "mcc" : null,
+            "mnc" : 16,
+            "lac" : 5115,
+            "cell_id" : 2143255,
+            "psc" : null,
+            "asu" : 13,
+            "dbm" : -112,
+            "ta" : null,
+            "neighboring" : "false",
+            "net_type" : "CDMA",
+            "cdma_dbm" : null,
+            "cdma_ecio" : null,
+            "evdo_dbm" : null,
+            "evdo_ecio" : null,
+            "evdo_snr" : null
+        }
+    ]
+}
+```]]></string>
+  <string name="about_opencellid_project_content"><![CDATA[OpenCellID是一个开源项目，旨在创建一个与GPS位置相关的CellID全球数据库。 收集的数据可在“Creative Common Attribution-Share Alike 3.0 Unported” 许可下获得。
+
+ Tower Collector为您提供了通过上传您所在地区的手机信号塔为OpenCellID项目做出贡献的机会。 [更多信息。](http.wiki.opencellid.org/wiki/What_is_OpenCellID)]]></string>
+  <string name="best_practices_content"><![CDATA[Tower Collector is a perfect app for OpenCellID and BeaconDB contributors who want to support the projects with measurements from their area. It is good to know what is the right way to collect the most valuable measurements during walks and trips.
+
+- 避免每天以完全相同的路线来回移动。大量重复测量将不会非常有用。
+- 尝试绘制新地点，特别是那些不经常访问的地方，因为它们通常仍未被覆盖。沿着主要街道的许多信号塔已被绘制。
+- 不定时再次返回以收集可能出现在您所在地区的新手机信号基站。
+- 收集设备支持的各种网络的数据，如GSM、UMTS、LTE、CDMA、5G NR、TD-SCDMA等。您可以通过更改Android设置中的首选网络类型来实现此目的。
+- 使用来自不同网络运营商的SIM卡，以更好地覆盖您的区域。]]></string>
+  <string name="external_integration_content"><![CDATA[Tower Collector公开由发送 *intents* 的其他应用程序运行的任务，如Tasker，Automate或Llama。 您需要为下面定义的所有活动使用*Broadcast* 类型。 有关如何进行此类集成的更多信息，请检查应用程序是否有帮助。
+
+*在应用中，您不能同时启动多个任务！*
+
+### 启动收集器
+
+收集器将使用设置中的选项启动。操作：
+
+`info.zamojski.soft.towercollector.COLLECTOR_START`
+
+### 停止收集器
+
+收集器将立即停止。操作：
+
+`info.zamojski.soft.towercollector.COLLECTOR_STOP`
+
+### 开始上传
+
+将使用"设置"中的配置启动上传。 操作：
+
+`info.zamojski.soft.towercollector.UPLOADER_START`
+
+### 停止上传
+
+立即停止上传。操作：
+
+`info.zamojski.soft.towercollector.UPLOADER_STOP`
+
+### 开始导出数据
+
+使用上次运行的配置开始导出，将保留测量值。 操作：
+
+`info.zamojski.soft.towercollector.EXPORT_START`
+
+### 停止导出数据
+
+取消导出数据。 操作：
+
+`info.zamojski.soft.towercollector.EXPORT_STOP`
+
+### Android 8+
+
+在Android Oreo和更新的版本上，您还需要另外定义组件包名称：
+
+`info.zamojski.soft.towercollector`]]></string>
+  <string name="introduction_content"><![CDATA[### 目的
+
+此应用旨在收集与移动信号塔信息相关的GPS坐标。这是为了帮助绘制手机网络覆盖范围。
+
+### 如何开始
+
+要从屏幕顶部的菜单中选择"开始收集"选项（记录图标）。只有当您处于移动网络范围内，并且GPS提供的位置精度至少达到40米，才会收集测量数据，。
+
+### 下一步
+
+Collected data can be uploaded to OpenCellID.org and BeaconDB projects or exported to a file. Before first upload you will need to select projects you want to contribute to. In case of OpenCellID.org you'll additionally need to register for free and enter received access token in Preferences. Measurements will be deleted from your device after successful upload.
+
+### 更多
+
+最佳实践和其它信息在"配置"的"信息"部分中]]></string>
+  <string name="map_help"><![CDATA[![dot_nr](dot_nr) - 5G (NR)
+
+![dot_lte](dot_lte) - 4G (LTE)
+
+![dot_wcdma](dot_wcdma) - 3G (WCDMA/UMTS)
+
+![dot_gsm](dot_gsm) - 2G (GSM)
+
+![dot_tdscdma](dot_tdscdma) - TD-SCDMA
+
+![dot_cdma](dot_cdma) - CDMA
+
+![dot_unknown](dot_unknown) - 未知
+
+![dot_lte_wcdma](dot_lte_wcdma) - LTE和WCDMA的混合
+
+![dot_cluster_small](dot_cluster_small) - 群集-一组测量，放大以取消分组
+
+明亮的颜色代表新发现的手机信号塔的测量值，否则使用深色。]]></string>
+  <string name="open_source_licenses_content"><![CDATA[### Application icon
+
+[CC BY 3.0 License](https://creativecommons.org/licenses/by/3.0/legalcode)
+
+```
+This work is licensed under a Creative Commons Attribution 3.0 Unported License.
+```
+
+### Menu icons
+
+[CC BY 3.0 License](https://creativecommons.org/licenses/by/3.0/legalcode)
+
+```
+This work is licensed under a Creative Commons Attribution 3.0 Unported License.
+```
+
+### ACRA
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2010-2015 Kevin Gaudin
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+This product includes software (package org.acra.jraf.android.util.activitylifecyclecallbackscompat) developed at JRAF, Copyright (C) 2013 Benoit 'BoD' Lubek (BoD@JRAF.org), Apache Software License 2.0.
+```
+
+### DoubleUtils
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 27.04.2012 Alex Vikulov (vikuloff@gmail.com)
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### EventBus
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2012-2016 Markus Junginger
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### Guava
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2013-2023 Google
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### HtmlTextView
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2013-2015 Dominik Schürmann
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### NetMonster Core
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2019 Michal Mroček
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### OkHttp
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2016 Square, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### osmbonuspack
+
+[GNU Lesser General Public License v3.0](https://www.gnu.org/licenses/lgpl-3.0.html)
+
+```
+Copyright 2020 MKergall
+    The components inside this GitHub project are under LGPL licence, with an important simplification: The constraints described in Section 4.d and 4.e of the LGPL LICENCE are DISCARDED.
+
+    This means that you are allowed to convey a Combined Work without providing the user any way to recombine or relink the application, and without providing any shared library mechanism.
+
+    In other terms, you are allowed to include the OSMBonusPack library in your Android application, without making your application open source.
+```
+
+### osmdroid
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2020 osmdroid contributors
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### Permissions Dispatcher
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2016 Shintaro Katafuchi, Marcel Schnelle, Yoshinori Isogai
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### The Android Open Source Project
+
+- AppCompatPreferenceActivity
+- FastXmlSerializer
+- XmlUtils
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright (C) 2006-2014 The Android Open Source Project
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```
+
+### Timber
+
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Copyright 2013 Jake Wharton
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+```]]></string>
+  <string name="privacy_statement_content"><![CDATA[隐私非常重要，因此应用程序仅收集和传输所需的信息以提供服务。该应用程序不会收集，存储或发送任何可个人识别您，您的设备或任何其他个人信息。
+
+**如果您不同意此隐私政策，请不要安装或卸载该应用程序。从移动设备中永久删除该应用程序等同于终止该应用程序的使用。**
+
+### 主要功能
+
+The main functionality of the application is to collect cell tower identifiers, signal strength and the device location (coordinates). This information is stored locally on your device and will never be transmitted without your explicit consent and action. The collected data can be exported to the file persisted on your device or shared to OpenCellID.org and BeaconDB projects. To ensure the privacy is protected, the application does NOT use any proxy server that could access your data in transit. All the traffic to external services is encrypted using HTTPS protocol.
+
+**Contribution to the OpenCellID.org** project requires a personal Access Token (API Key) that needs to be entered in the application preferences. The key will only be used to upload the measurements to the project database and will never leave the device in any other scenario. Anybody who knows the Access Token has full control over the uploaded data, including browsing and deleting. It's your responsibility to protect the confidentiality of your Access Token!
+
+- [OpenCellID.org隐私权政策](https://community.opencellid.org/privacy)
+- [The BeaconDB privacy notice](https://beacondb.net/privacy/)
+
+该应用程序的大多数功能都需要**前台位置权限**，但是，要在设备启动时开始收集测量值，必须授予**后台位置权限**。需要后台位置权限，是因为在这种情况下，收集是由系统（在后台）而不是您（在前台）启动的。
+
+### 可选功能
+
+**地图**功能使用OpenStreetMap在[使用条款](https://wiki.osmfoundation.org/wiki/Terms_of_Use)下提供的服务。
+
+**自动更新检查**功能连接到服务器，以检查是否有可用的较新版本的应用程序。 该请求包含已安装应用程序的版本，并且每天在应用程序启动时执行一次。
+
+**联系开发人员**功能将在选定的电子邮件客户端中创建新的电子邮件。该消息包括有关设备的以下技术信息，以帮助进行故障排除：
+
+- 应用版本
+- 安卓版
+- 设备制造商和型号
+
+**导出首选项**或**导出数据库**功能会将应用程序首选项或数据库复制到设备上的专用文件夹中。如果将文件放置在任何其他应用程序都可以访问的共享内存上，则敏感数据（如OpenCellID访问令牌）可能不受保护。
+
+**导出首选项**或**导出数据库**功能会将应用程序首选项或数据库复制到设备上的专用文件夹中。如果将文件放置在任何其他应用程序都可以访问的共享内存上，则敏感数据（如OpenCellID访问令牌）可能不受保护。
+
+### 故障排除助手
+
+该应用程序收集**匿名使用统计信息**。数据仅与开发人员共享，以帮助更好地了解应用程序的使用方式，各种功能的执行时间以及最受欢迎的功能。收集的数据用于改善整体性能，可用性和用户体验。这些数据是由Google[ Google的隐私政策](https://policies.google.com/privacy)提供的第三方Google Analytics for Firebase库收集的。
+
+该应用程序内置了**自动崩溃报告**系统。应用程序故障报告仅与开发人员共享，并且包含有关崩溃原因和设备配置的信息。它不包括任何可用于识别您或设备的信息。]]></string>
+  <string name="usage_statistics_content"><![CDATA[使用情况统计信息是一种匿名形式反馈。它可以帮助开发人员更好地了解应用如何被使用，运行速度是怎样的，最流行的功能是什么。了解这些以后，就容易提高应用整体性能，可用性和服务体验。
+
+Tower Collector 跟踪并报告以下类型的数据：
+
+- 应用错误
+- 使用哪些功能以及如何使用；
+- 耗时的操作时间；
+- 收集、导出和上传的测量数量（仅限统计数据）。
+
+未跟踪实际测量数据、访问令牌和任何其他个人信息。 报告将在后台自动发送。 *如果您非常重视您的隐私，则可以通过取消选中"配置"中的选项轻松选择退出收集和发送使用情况统计信息。*]]></string>
+</resources>

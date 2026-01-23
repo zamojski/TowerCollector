@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+  <string name="about_api_key_content"><![CDATA[Access token (API-avain) on erityinen merkkijono, jota käytetään valtuuttamaan käyttäjä lähettämään kerättyjä mittauksia OpenCellID-tietokantaan.
+
+Oikean avaimen tulee koostua numeroista 0-9 ja kirjaimista a-f. Rekisteröintipäivästä riippuen avaimen muoto voi näyttää tältä:
+
+* `pk.9743a66f914cc249efca164485a19c5c` – 32 merkkiä, jota edeltää `pk.`, yhteensä 35 merkkiä
+* `9743a66f914cc249efca164485a19c5c` – 32 merkkiä
+* `9743a66f-914c-c249-efca-164485a19c5c` – 32 merkkiä viidessä ryhmässä, jotka on erotettu viivalla, yhteensä 36 merkkiä
+* `9743a66f914cc2` – 14 merkkiä]]></string>
+  <string name="about_application_content"><![CDATA[Tower Collector %VERSION_NAME%
+
+Copyright © 2012-%CURRENT_YEAR% Adam Zamojski ja avustajat
+
+Tower Collector on suunniteltu keräämään GPS-sijainteja GSM/UMTS/LTE/CDMA/5G NR/TD-SCDMA-matkapuhelinmastoista. Kerätyt mittauksesi voidaan ladata useisiin julkisiin ja yksityisiin tietokantoihin.
+
+THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.]]></string>
+  <string name="about_collector_api_version_content"><![CDATA[Voit päättää, mitä menetelmää käytetään matkapuhelinmaston tietojen saamiseksi mittauksia kerättäessä.
+
+*On erittäin suositeltavaa käyttää uusinta saatavilla olevaa menetelmää luotettavampien tietojen saamiseksi. Valinta ei ole käytössä laitteissa, joissa on Android 4.1 tai aikaisempi.*
+
+*   **Automaattinen tunnistus** – Sovellus tunnistaa automaattisesti, mitä API-versiota voidaan käyttää ja valitsee parhaan vaihtoehdon. Se käyttää turvallista vaihtoehtoa jos Collector käynnistyy ilman signaalia.
+*   **Android 4.2 API** - Käyttää Android 4.2:n ja uudempien versioiden käytettävissä olevia menetelmiä. Nämä menetelmät tarjoavat luotettavimmat solutiedot. Jotkin valmistajat eivät kuitenkaan ole toteuttaneet uutta API:a oikein, eikä sitä ehkä voi käyttää tällaisissa laitteissa. Android 5.1:ssä ja uudemmissa versioissa voidaan palauttaa useiden SIM-korttien matkapuhelinmastot.
+*   **Android 1.0 API** - Käyttää menetelmiä, jotka ovat saatavilla Androidin ensimmäisestä versiosta lähtien. Nämä menetelmät voivat palauttaa epäluotettavaa dataa LTE ja UMTS -verkoissa. Laitteesta riippuen tämä menetelmä saattaa edellyttää näytön päällä pitämistä keräämisen aikana, jotta solujen tiedot päivittyvät oikein.]]></string>
+  <string name="about_collector_keep_screen_on_content"><![CDATA[Tällä valinnalla voit pitää näytön päällä valitulla kirkkaustasolla mittauksia kerättäessä. Näyttö pysyy päällä, vaikka vaihtaisit toiseen sovellukseen tai yrittäisit sammuttaa sen virtapainikkeella. Toiminnon ottaminen käyttöön lyhentää akun käyttöikää merkittävästi.
+
+Tätä voidaan käyttää kiertotapana, jotta solun ja signaalin voimakkuuden tiedot pysyvät ajan tasalla joissakin laitteissa, kun käytetään Android 1.0 APIa.
+
+Jos haluat pitää näytön päällä vain silloin, kun päänäyttö on näkyvissä, katso vaihtoehto kohdasta Näyttö.]]></string>
+  <string name="about_main_keep_screen_on_content"><![CDATA[Tällä valinnalla voit pitää näytön päällä täydellä kirkkaudella, kun laitteen päänäyttö on esillä. Kun poistut näytöltä tai vaihdat toiseen sovellukseen, Androidissa määritetyt arvot palautuu. Käyttöönotto lyhentää merkittävästi akun käyttöikää.
+
+Jos haluat pitää näytön päällä koko ajan mittauksia kerättäessä, katso asetus kohdasta Collector.]]></string>
+  <string name="about_mls_project_content"><![CDATA[BeaconDB on julkinen tietokanta, joka kerää sijaintitietoja yleisestä langattomasta infrastruktuurista (solutorneista, WiFi-tukipisteistä, Bluetooth-majakoista). Antamasi solutornitiedot kootaan ja julkaistaan ​​Creative Commons (CC-0) -lisenssin alaisena.
+
+Tower Collector antaa sinulle mahdollisuuden osallistua BeaconDB-projektiin lataamalla solutorneja alueeltasi. [Lisätietoja.](https://beacondb.net/)]]></string>
+  <string name="about_neighboring_cells_content"><![CDATA[Viereiset solut ovat soluja, jotka matkaviestinoperaattori on määritellyt soluiksi, jotka sijaitsevat sen solun lähellä, johon puhelin on parhaillaan yhteydessä. Viereiset solut eivät välttämättä ole yhtä luotettavia kuin pääsolu ja ne voivat muuttua.
+
+Viereisten solujen saatavuus riippuu laitteesta, verkkotyypistä, verkko-operaattorista ja matkapuhelinmastosta.]]></string>
+  <string name="about_notify_measurements_collected_content"><![CDATA[Tower Collector voi ilmoittaa muille järjestelmään asennetuille sovelluksille *lähetysaikeista*. Lisätietoja tällaisten ilmoitusten kuuntelemisesta ja käyttämisestä saat kyseisen sovelluksen ohjeesta.
+
+### Kerätyt mittaukset tapahtuma
+
+Collector voi lähettää aikomuksen joka kerta, kun uusi mittaussarja kerätään, jos se on asetettu Asetuksissa. Ilmoituksen sisältö on JSON-rakenne, josta on poimittu yleisiä asioita, kuten aika ja GPS. Kenttien nimet ja arvot kartoitetaan samalla tavalla kuin viedyssä CSV-tiedostossa.
+Solujen käyttämien kenttien luettelo riippuu tyypistä (net_type). Arvot, joita ei tueta, tai puuttuvat arvot asetetaan muotoon `null`.
+
+- GSM - mcc, mnc, lac, cell_id, asu, dbm
+- UMTS - mcc, mnc, lac, cell_id, psc, asu, dbm
+- CDMA - sid as mnc, nid as lac, bid as cell_id, asu, dbm
+- LTE - mcc, mnc, tac as lac, ci as cell_id, pci as psc, ta, asu, dbm
+- 5G NR - mcc, mnc, tac as lac, nci as cell_id, pci as psc, asu, dbm
+- TD-SCDMA - mcc, mnc, lac, cid as cell_id, cpid as psc, asu, dbm
+
+Action:
+
+`info.zamojski.soft.towercollector.MEASUREMENTS_COLLECTED`
+
+Extras key:
+
+`measurements`
+
+Extras value example:
+
+```
+{
+    "measured_at" : 1234567890123,
+    "gps" : {
+        "lat" : 12.3213123,
+        "lon" : -54.4535435543,
+        "accuracy" : 12.0,
+        "speed" : 13.21,
+        "bearing" : 212.2,
+        "altitude" : 121.0
+    },
+    "cells" : [
+        {
+            "mcc" : 260,
+            "mnc" : 06,
+            "lac" : 5115,
+            "cell_id" : 214325525,
+            "psc" : 1234,
+            "asu" : 12,
+            "dbm" : -112,
+            "ta" : 21,
+            "neighboring" : "false",
+            "net_type" : "UMTS"
+        },
+        {
+            "mcc" : null,
+            "mnc" : 16,
+            "lac" : 5115,
+            "cell_id" : 2143255,
+            "psc" : null,
+            "asu" : 13,
+            "dbm" : -112,
+            "ta" : null,
+            "neighboring" : "false",
+            "net_type" : "CDMA"
+        }
+    ]
+}
+```]]></string>
+  <string name="about_opencellid_project_content"><![CDATA[OpenCellID on avoimen lähdekoodin projekti, jonka tavoitteena on luoda maailmanlaajuinen tietokanta CellID-tunnuksista, jotka on korreloitu GPS-sijaintien kanssa. Kerätyt tiedot ovat saatavilla "Creative Common Attribution-Share Alike 3.0 Unported" -lisenssillä.
+
+Tower Collector antaa sinulle mahdollisuuden osallistua OpenCellID-projektiin lähettämällä matkapuhelinmastoja alueeltasi. [Lisätietoja.](https://wiki.opencellid.org/wiki/What_is_OpenCellID)]]></string>
+  <string name="best_practices_content"><![CDATA[Tower Collector is a perfect app for OpenCellID and BeaconDB contributors who want to support the projects with measurements from their area. It is good to know what is the right way to collect the most valuable measurements during walks and trips.
+
+- Vältä liikkumista edestakaisin täsmälleen samalla tavalla joka päivä. Suuri määrä päällekkäisiä mittauksia ei ole kovin hyödyllinen.
+- Yritä kartoittaa uusia paikkoja, erityisesti harvemmin vierailtuja paikkoja, koska niitä ei useinkaan vielä ole katettu. Monet pääkatujen varrella olevista torneista on jo kartoitettu.
+- Tee aika ajoin uusi kierros kerätäksesi alueellesi mahdollisesti ilmestyviä uusia matkapuhelinmastoja.
+- Kerää tietoja kaikista laitteesi tukemista verkoista, kuten GSM, UMTS, LTE, CDMA, 5G NR, TD-SCDMA jne. Voit saavuttaa tämän muuttamalla ensisijaisia verkkotyyppejä Androidin asetuksissa.
+- Käytä useiden eri verkko-operaattoreiden SIM-kortteja kattaaksesi paremmin alueesi.]]></string>
+  <string name="external_integration_content"><![CDATA[Tower Collector mahdollistaa tehtävien suorittamisen muilla sovelluksilla, jotka lähettävät *aikomuksia*, kuten Tasker, Automate tai Llama. Sinun on käytettävä *Broadcast* -tyyppiä kaikissa alla määritellyissä toiminnoissa. Lisätietoja tällaisen integroinnin tekemisestä saat kyseisen sovelluksen ohjeesta.
+*Kuten sovelluksen sisällä, et voi käynnistää useampaa kuin yhtä tehtävää samanaikaisesti!*
+
+### Käynnistä Collector
+
+Collector käynnistetään Asetuksissa määritettyjen asetusten avulla. Toiminta:
+
+`info.zamojski.soft.towercollector.COLLECTOR_START`
+
+### Pysäytä Collector
+
+Collector pysäytetään välittömästi. Toiminta:
+
+`info.zamojski.soft.towercollector.COLLECTOR_STOP`
+
+### Aloita lähetys
+
+Lähetys aloitetaan Asetuksissa asetetuilla määrityksillä. Toiminta:
+
+`info.zamojski.soft.towercollector.UPLOADER_START`
+
+### Pysäytä lähetys
+
+Lähetys perutaan pian. Toiminta:
+
+`info.zamojski.soft.towercollector.UPLOADER_STOP`
+
+### Aloita vienti
+
+Vienti aloitetaan käyttämällä edellisen ajon asetuksia, mittaukset säilytetään. Toiminta:
+
+`info.zamojski.soft.towercollector.EXPORT_START`
+
+### Pysäytä vienti
+
+Vienti perutaan pian. Toiminta:
+
+`info.zamojski.soft.towercollector.EXPORT_STOP`
+
+### Android 8+
+
+Android Oreossa ja uudemmissa versioissa sinun on lisäksi määritettävä komponenttipaketin nimi:
+
+`info.zamojski.soft.towercollector`]]></string>
+  <string name="introduction_content"><![CDATA[### Tarkoitus
+
+Sovellus on suunniteltu keräämään GPS-koordinaatteja, jotka korreloivat matkapuhelinmastoja koskevien tietojen kanssa. Se on suunniteltu auttamaan kartoittaa matkapuhelinverkon peittoalue.
+
+### Miten aloittaa
+
+Aloita valitsemalla näytön yläreunassa olevasta valikosta "Aloita keräys" (tallennuskuvake). Mittaukset kerätään vain, kun olet matkapuhelinverkon alueella ja GPS antaa sijaintisi vähintään 40 metrin tarkkuudella.
+
+### Seuraavat vaiheet
+
+Collected data can be uploaded to OpenCellID.org and BeaconDB projects or exported to a file. Before first upload you will need to select projects you want to contribute to. In case of OpenCellID.org you'll additionally need to register for free and enter received access token in Preferences. Measurements will be deleted from your device after successful upload.
+
+### Lisää
+
+Parhaat käytännöt ja lisätietoja on saatavilla Asetusten Tietoja-osiossa.]]></string>
+  <string name="map_help"><![CDATA[![dot_nr](dot_nr) - 5G (NR)
+
+![dot_lte](dot_lte) - 4G (LTE)
+
+![dot_wcdma](dot_wcdma) - 3G (WCDMA/UMTS)
+
+![dot_gsm](dot_gsm) - 2G (GSM)
+
+![dot_tdscdma](dot_tdscdma) - TD-SCDMA
+
+![dot_cdma](dot_cdma) - CDMA
+
+![dot_unknown](dot_unknown) - Tuntematon
+
+![dot_lte_wcdma](dot_lte_wcdma) - LTE:n ja WCDMA:n sekoitus
+
+![dot_cluster_small](dot_cluster_small) - Cluster - mittausryhmä, zoomaa sisään, jos haluat poistaa ryhmän
+
+Vaaleat värit edustavat mittauksia, joissa on äskettäin löydettyjä matkapuhelinmastoja, muuten käytetään tummia värejä.]]></string>
+  <string name="privacy_statement_content"><![CDATA[Yksityisyys on erittäin tärkeää, joten sovellus kerää ja välittää vain tarvittavat tiedot palvelujen tarjoamiseksi. Sovellus EI kerää, tallenna tai lähetä mitään tietoja, joista voisi tunnistaa sinut, laitteesi tai muita henkilökohtaisia tietoja.
+
+**Jos et hyväksy tätä tietosuojakäytäntöä, älä asenna tai poista sovellus. Sovelluksen pysyvä poistaminen mobiililaitteesta vastaa sovelluksen käytön lopettamista.**
+
+### Päätoiminnot
+
+The main functionality of the application is to collect cell tower identifiers, signal strength and the device location (coordinates). This information is stored locally on your device and will never be transmitted without your explicit consent and action. The collected data can be exported to the file persisted on your device or shared to OpenCellID.org and BeaconDB projects. To ensure the privacy is protected, the application does NOT use any proxy server that could access your data in transit. All the traffic to external services is encrypted using HTTPS protocol.
+
+**Contribution to the OpenCellID.org** project requires a personal Access Token (API Key) that needs to be entered in the application preferences. The key will only be used to upload the measurements to the project database and will never leave the device in any other scenario. Anybody who knows the Access Token has full control over the uploaded data, including browsing and deleting. It's your responsibility to protect the confidentiality of your Access Token!
+
+- [OpenCellID.orgin tietosuojakäytäntö](https://community.opencellid.org/privacy)
+- [The BeaconDB privacy notice](https://beacondb.net/privacy/)
+
+Useimmat sovelluksen ominaisuudet edellyttävät **etualalla sijaintilupaa**, mutta mittausten keräämisen aloittamiseksi laitteen käynnistyksen yhteydessä on myönnettävä **taustasijaintilupa**. Taustapaikannusoikeus tarvitaan, koska tässä skenaariossa keräyksen aloittaa järjestelmä (taustalla), et sinä (etualalla).
+
+### Valinnaiset toiminnot
+
+**Karttaominaisuus** käyttää OpenStreetMapin tarjoamia palveluita [käyttöehtojen](https://wiki.osmfoundation.org/wiki/Terms_of_Use) mukaisesti.
+
+**Automaattinen päivityksen tarkistus** -ominaisuus muodostaa yhteyden palvelimeen ja tarkistaa, onko sovelluksesta saatavilla uudempi versio. Pyyntö sisältää asennetun sovelluksen version, ja se suoritetaan sovelluksen käynnistyksen yhteydessä kerran päivässä.
+
+**Ota yhteyttä kehittäjään** -ominaisuus luo uuden sähköpostiviestin valitussa sähköpostiohjelmassa. Viesti sisältää seuraavat laitteen tekniset tiedot, jotka auttavat vianmäärityksessä:
+
+- Sovelluksen versio
+- Android-versio
+- Laitteen valmistaja ja malli
+
+**Vie asetukset** tai **Vie tietokanta** -toiminto kopioi sovelluksen asetukset tai tietokannan laitteesi omaan kansioon. Jos tiedostot sijoitetaan jaettuun muistiin, johon muilla sovelluksilla on pääsy, arkaluonteiset tiedot (kuten OpenCellID Access Token) voivat olla suojaamattomia.
+
+**Tiedostojen kirjaaminen** Debug-tasolla -toiminto luo erittäin yksityiskohtaisia lokitiedostoja laitteesi omaan kansioon. Loki voi sisältää arkaluonteisia tietoja, kuten nykyisen sijaintisi ja matkapuhelinmaston, johon laitteesi on yhdistetty. Tätä vaihtoehtoa tulisi käyttää vain tilapäisesti vianmääritykseen.
+
+### Vianetsintäavustajat
+
+Sovellus kerää **nimettömiä käyttötilastoja**. Tiedot jaetaan vain kehittäjän kanssa, jotta voidaan ymmärtää paremmin, miten sovellusta käytetään, mitkä ovat eri toimintojen suoritusajat ja mitkä ovat suosituimmat ominaisuudet. Kerättyjä tietoja käytetään yleisen suorituskyvyn, käytettävyyden ja käyttäjäkokemuksen parantamiseen. Tiedot kerätään käyttämällä kolmannen osapuolen Google Analytics for Firebase -kirjastoa, jonka Google tarjoaa [Googlen tietosuojakäytännön](https://policies.google.com/privacy) mukaisesti.
+
+Sovelluksessa on sisäänrakennettu **automaattinen kaatumisraportointijärjestelmä**. Sovelluksen virheraportit jaetaan vain kehittäjän kanssa ja ne sisältävät tietoja kaatumisen syystä ja laitteen määrityksistä. Se EI sisällä tietoja, joita voidaan käyttää sinun tai laitteen tunnistamiseen.]]></string>
+  <string name="usage_statistics_content"><![CDATA[Käyttötilastot ovat eräänlaista anonyymiä palautetta. Niiden avulla kehittäjä ymmärtää paremmin, miten sovellusta käytetään, kuinka nopea se on ja mitkä ovat suosituimmat ominaisuudet. Tällaisen tiedon avulla on paljon helpompi parantaa yleistä suorituskykyä, käytettävyyttä ja käyttäjäkokemusta.
+
+Tower Collector seuraa ja raportoi seuraavanlaisia tietoja:
+
+- sovellusvirheet;
+- mitä ominaisuuksia käytetään ja miten;
+- aikaa vievien toimintojen kesto;
+- kerättyjen, vietyjen ja lähetettyjen mittausten määrä (vain tilastot).
+
+Todellisia mittaustietoja, access tokenia ja muita henkilökohtaisia tietoja EI seurata. Raportit lähetetään automaattisesti taustalla. *Jos suhtaudut yksityisyyteesi erittäin vakavasti, voit helposti kieltää käyttötilastojen keräämisen ja lähettämisen poistamalla valinnan Asetuksissa.*]]></string>
+</resources>
