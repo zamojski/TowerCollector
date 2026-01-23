@@ -1,9 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<resources>
-  <string name="about_api_key_content"><![CDATA[Klucz dostępu (klucz API) to specjalny ciąg znaków używany do autoryzacji użytkownika w celu przesłania próbek do bazy OpenCellID
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. --><resources>
+    <string name="about_api_key_content"><![CDATA[Klucz dostępu (klucz API) to specjalny ciąg znaków używany do autoryzacji użytkownika w celu przesłania próbek do bazy OpenCellID
 
 Poprawny klucz musi składać się z cyfr 0-9 i liter a-f. W zależności od daty rejestracji format klucza może wyglądać następująco:
 
@@ -11,35 +10,35 @@ Poprawny klucz musi składać się z cyfr 0-9 i liter a-f. W zależności od dat
 * `9743a66f914cc249efca164485a19c5c` – 32 znaki
 * `9743a66f-914c-c249-efca-164485a19c5c` – 32 znaki w pięciu grupach oddzielonych myślnikiem, łącznie 36 znaków
 * `9743a66f914cc2` – 14 znaków]]></string>
-  <string name="about_application_content"><![CDATA[Tower Collector %VERSION_NAME%
+    <string name="about_application_content"><![CDATA[Tower Collector %VERSION_NAME%
 
 Copyright © 2012-%CURRENT_YEAR% Adam Zamojski & Współautorzy
 
 Tower Collector zbiera informacje o położeniu przekaźników sieci komórkowych GSM, UMTS, LTE, CDMA, 5G NR i TD-SCDMA. Zebrane dane mogą zostać przesłane do wielu publicznych i prywatnych baz danych.
 
 THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.]]></string>
-  <string name="about_collector_api_version_content"><![CDATA[Możesz wybrać, jaka metoda będzie używana do odczytywania informacji o przekaźniku komórkowym w trakcie zbierania.
+    <string name="about_collector_api_version_content"><![CDATA[Możesz wybrać, jaka metoda będzie używana do odczytywania informacji o przekaźniku komórkowym w trakcie zbierania.
 
 *Wysoce zalecane jest skorzystanie z najnowszej dostępnej metody, aby uzyskać bardziej wiarygodne dane. Wybór jest niedostępny na urządzeniach z Androidem 4.1 lub starszym.*
 
 *   **Wykryj automatycznie** - Aplikacja automatycznie wykryje, której wersji API może użyć i z niej skorzysta. Jeżeli telefon nie będzie miał zasięgu wybrana zostanie bezpieczna opcja.
 *   **Android API 4.2** - Używa metod dostępnych na Androidzie 4.2 i nowszych. Metody te zapewniają najbardziej wiarygodne dane przekaźnika. Jednakże niektórzy producenci nie wdrożyli nowego API prawidłowo i na niektórych urządzeniach może ono być niedostępne. Na Androidzie 5.1 i nowszych zbierane będą przekaźniki z wielu kart SIM.
 *   **Android 1.0 API** - Używa zestawu metod dostępnych od pierwszej wersji Androida. Metody te mogą zwracać nieprawidłowe dane w przypadku sieci LTE i UMTS. W zależności od urządzenia konieczne może być utrzymywanie ekranu włączonego podczas zbierania, aby informacje o przekaźniku były aktualizowane prawidłowo.]]></string>
-  <string name="about_collector_keep_screen_on_content"><![CDATA[Skorzystaj z tej opcji, aby podczas zbierania pozostawić ekran włączony na wybranym poziomie jasności. Ekran pozostanie włączony, nawet gdy przejdziesz do innej aplikacji lub wygasisz go za pomocą wyłącznika. Włączenie skutkuje znaczącym skróceniem czasu pracy na baterii.
+    <string name="about_collector_keep_screen_on_content"><![CDATA[Skorzystaj z tej opcji, aby podczas zbierania pozostawić ekran włączony na wybranym poziomie jasności. Ekran pozostanie włączony, nawet gdy przejdziesz do innej aplikacji lub wygasisz go za pomocą wyłącznika. Włączenie skutkuje znaczącym skróceniem czasu pracy na baterii.
 
 Opcja może zostać wykorzystana jako obejście problemu braku odświeżania informacji o przekaźniku i sile sygnału podczas korzystania z API Androida 1.0.
 
 Aby utrzymywać ekran włączony tylko, gdy widoczny jest główny ekran aplikacji, zobacz opcję w sekcji Wyświetlanie.]]></string>
-  <string name="about_main_keep_screen_on_content"><![CDATA[Skorzystaj z tej opcji, aby pozostawić ekran włączony z pełną jasnością, gdy widoczny jest główny ekran aplikacji. Domyślne zachowanie Androida zostanie przywrócone jak tylko opuścisz ekran główny lub przejdziesz do innej aplikacji. Włączenie skutkuje znaczącym skróceniem czasu pracy na baterii.
+    <string name="about_main_keep_screen_on_content"><![CDATA[Skorzystaj z tej opcji, aby pozostawić ekran włączony z pełną jasnością, gdy widoczny jest główny ekran aplikacji. Domyślne zachowanie Androida zostanie przywrócone jak tylko opuścisz ekran główny lub przejdziesz do innej aplikacji. Włączenie skutkuje znaczącym skróceniem czasu pracy na baterii.
 
 Aby utrzymywać ekran włączony w trakcie zbierania próbek, zobacz opcję w sekcji Zbieranie.]]></string>
-  <string name="about_mls_project_content"><![CDATA[BeaconDB jest publiczną bazą danych zbierającą informacje o infrastrukturze bezprzewodowej (przekaźnikach sieci komórkowych, punktach dostępowych WiFi, urządzeniach Bluetooth). Przesłane dane o przekaźnikach komórkowych zostaną przetworzone i udostępnione publicznie na licencji  "Creative Commons (CC-0)".
+    <string name="about_mls_project_content"><![CDATA[BeaconDB jest publiczną bazą danych zbierającą informacje o infrastrukturze bezprzewodowej (przekaźnikach sieci komórkowych, punktach dostępowych WiFi, urządzeniach Bluetooth). Przesłane dane o przekaźnikach komórkowych zostaną przetworzone i udostępnione publicznie na licencji  "Creative Commons (CC-0)".
 
 Tower Collector daje ci możliwość przyłączenia się do społeczności projektu BeaconDB poprzez przesłanie informacji o przekaźnikach z twojej okolicy. [Więcej informacji.](https://beacondb.net/)]]></string>
-  <string name="about_neighboring_cells_content"><![CDATA[Sąsiednie przekaźniki to przekaźniki zdefiniowane przez operatora komórkowego jako znajdujące się w pobliżu anteny, do której telefon jest obecnie podłączony. Sąsiednie przekaźniki mogą być mniej wiarygodne od głównego przekaźnika i mogą się zmieniać z czasem.
+    <string name="about_neighboring_cells_content"><![CDATA[Sąsiednie przekaźniki to przekaźniki zdefiniowane przez operatora komórkowego jako znajdujące się w pobliżu anteny, do której telefon jest obecnie podłączony. Sąsiednie przekaźniki mogą być mniej wiarygodne od głównego przekaźnika i mogą się zmieniać z czasem.
 
 Dostępność sąsiednich przekaźników zależy od urządzenia, typu sieci, operatora komórkowego i samego przekaźnika.]]></string>
-  <string name="about_notify_measurements_collected_content"><![CDATA[Tower Collector może powiadamiać inne aplikacje zainstalowane w systemie poprzez rozsyłanie *intencji*. Informacje o sposobie nasłuchiwania i formacie danych znajdziesz w pomocy.
+    <string name="about_notify_measurements_collected_content"><![CDATA[Tower Collector może powiadamiać inne aplikacje zainstalowane w systemie poprzez rozsyłanie *intencji*. Informacje o sposobie nasłuchiwania i formacie danych znajdziesz w pomocy.
 
 ### Zdarzenie zebrania próbki
 
@@ -106,17 +105,17 @@ Przykładowe wartości extra:
     ]
 }
 ```]]></string>
-  <string name="about_opencellid_project_content"><![CDATA[OpenCellID jest projektem open source, którego celem jest zbudowanie ogólnodostępnej bazy informacji o przekaźnikach sieci komórkowych skorelowanych ze współrzędnymi GPS. Zebrane dane udostępniane są na licencji "Creative Common Attribution-Share Alike 3.0 Unported".
+    <string name="about_opencellid_project_content"><![CDATA[OpenCellID jest projektem open source, którego celem jest zbudowanie ogólnodostępnej bazy informacji o przekaźnikach sieci komórkowych skorelowanych ze współrzędnymi GPS. Zebrane dane udostępniane są na licencji "Creative Common Attribution-Share Alike 3.0 Unported".
 
 Tower Collector daje ci możliwość przyłączenia się do społeczności projektu OpenCellID poprzez przesłanie informacji o nadajnikach z twojej okolicy. [Więcej informacji.](https://wiki.opencellid.org/wiki/What_is_OpenCellID)]]></string>
-  <string name="best_practices_content"><![CDATA[Tower Collector is a perfect app for OpenCellID and BeaconDB contributors who want to support the projects with measurements from their area. It is good to know what is the right way to collect the most valuable measurements during walks and trips.
+    <string name="best_practices_content"><![CDATA[Tower Collector is a perfect app for OpenCellID and BeaconDB contributors who want to support the projects with measurements from their area. It is good to know what is the right way to collect the most valuable measurements during walks and trips.
 
 - Unikaj codziennego poruszania się w tę i z powrotem dokładnie tymi samymi drogami. Duża liczba zduplikowanych próbek nie będzie zbyt użyteczna.
 - Staraj się odwiedzać nowe miejsca i drogi, zwłaszcza te mniej uczęszczane, które często nie zostały w ogóle zmapowane. Przekaźniki wzdłuż głównych ulic prawdopodobnie zostały już dodane.
 - Od czasu do czasu powtórz zbieranie danych w okolicy, aby dodać informacje o nowych przekaźnikach.
 - Zbieraj dane z użyciem wszystkich wspieranych przez urządzenie rodzajów sieci, takich jak GSM, UMTS, LTE, CDMA, 5G NR, TD-SCDMA, itp. Aby to osiągnąć zmień preferowany rodzaj sieci w ustawieniach Androida.
 - Używaj kart SIM wielu różnych operatorów, aby lepiej pokryć danymi okolicę.]]></string>
-  <string name="external_integration_content"><![CDATA[Tower Collector udostępnia zadania do uruchomienia poprzez wysyłanie *intencji* z innych aplikacji jak Tasker, Automate czy Llama. Musisz skorzystać z trybu *broadcast* dla wszystkich typów aktywności wymienionych poniżej. Więcej informacji o konfiguracji integracji znajdziesz w pomocy każdej z aplikacji.
+    <string name="external_integration_content"><![CDATA[Tower Collector udostępnia zadania do uruchomienia poprzez wysyłanie *intencji* z innych aplikacji jak Tasker, Automate czy Llama. Musisz skorzystać z trybu *broadcast* dla wszystkich typów aktywności wymienionych poniżej. Więcej informacji o konfiguracji integracji znajdziesz w pomocy każdej z aplikacji.
 *Tak samo jak w aplikacji, nie możesz uruchomić więcej niż jednego zadania w tym samym czasie!*
 
 ### Rozpocznij zbieranie
@@ -160,7 +159,7 @@ Eksport zostanie wkrótce zatrzymany. Akcja:
 Na Androidzie Oreo i nowszych konieczne jest dodatkowo zdefiniowane nazwy pakietu komponentu:
 
 `info.zamojski.soft.towercollector`]]></string>
-  <string name="introduction_content"><![CDATA[### Przeznaczenie
+    <string name="introduction_content"><![CDATA[### Przeznaczenie
 
 Aplikacja służy do zbierania współrzędnych GPS skorelowanych z informacjami o przekaźnikach sieci komórkowych. Celem aplikacji jest pomoc w zebraniu informacji o pokryciu terenu zasięgiem sieci komórkowych.
 
@@ -175,7 +174,7 @@ Collected data can be uploaded to OpenCellID.org and BeaconDB projects or export
 ### Więcej
 
 Dobre praktyki oraz dodatkowe informacje znajdziesz w sekcji Informacje w Ustawieniach.]]></string>
-  <string name="map_help"><![CDATA[![dot_nr](dot_nr) - 5G (NR)
+    <string name="map_help"><![CDATA[![dot_nr](dot_nr) - 5G (NR)
 
 ![dot_lte](dot_lte) - 4G (LTE)
 
@@ -194,7 +193,7 @@ Dobre praktyki oraz dodatkowe informacje znajdziesz w sekcji Informacje w Ustawi
 ![dot_cluster_small](dot_cluster_small) - Klaster - grupa próbek, przybliż aby zobaczyć próbki
 
 Jasne kolory oznaczają próbki z nowymi przekaźnikami, w przeciwnym wypadku użyte są ciemne kolory.]]></string>
-  <string name="open_source_licenses_content"><![CDATA[### Ikona aplikacji
+    <string name="open_source_licenses_content"><![CDATA[### Ikona aplikacji
 
 [CC BY 3.0 License](https://creativecommons.org/licenses/by/3.0/legalcode)
 
@@ -388,7 +387,7 @@ https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 ```]]></string>
-  <string name="privacy_statement_content"><![CDATA[Prywatność jest bardzo ważna, dlatego aplikacja zbiera i przesyła wyłącznie informacje konieczne do świadczenia funkcjonowania. Aplikacja NIE zbiera, NIE przechowuje, ani NIE przesyła żadnych informacji, które mogłyby zostać wykorzystane do zidentyfikowania ciebie, twojego urządzenia, ani żadnej informacji osobistej.
+    <string name="privacy_statement_content"><![CDATA[Prywatność jest bardzo ważna, dlatego aplikacja zbiera i przesyła wyłącznie informacje konieczne do świadczenia funkcjonowania. Aplikacja NIE zbiera, NIE przechowuje, ani NIE przesyła żadnych informacji, które mogłyby zostać wykorzystane do zidentyfikowania ciebie, twojego urządzenia, ani żadnej informacji osobistej.
 
 **Jeżeli nie zgadzasz się z tą polityką prywatności, nie instaluj lub odinstaluj aplikację. Trwałe usunięcie aplikacji z urządzenia mobilnego jest równoważne zaprzestaniu korzystania z aplikacji.**
 
@@ -424,7 +423,7 @@ Większość funkcji aplikacji wymaga **dostępu do lokalizacji urządzenia podc
 Aplikacja zbiera **anonimowe statystyki użycia**. Dane są udostępniane wyłącznie twórcy aplikacji w celu lepszego zrozumienia jak aplikacja jest wykorzystywana, jakie są czasy działania poszczególnych funkcji oraz jakie funkcje są używane najczęściej. Zebrane dane służą do poprawy ogólnej wydajności aplikacji, użyteczności i komfortu użytkowania. Dane zbierane są za pomocą zewnętrznej biblioteki Google Analytics for Firebase dostarczanej przez Google i przetwarzane zgodnie z [polityką prywatności Google](https://policies.google.com/privacy).
 
 Aplikacja posiada wbudowany mechanizm **automatycznego raportowania błędów**. Raporty błędów aplikacji są dostępne wyłącznie dla twórcy aplikacji i zawierają informacje o przyczynie błędu i konfiguracji urządzenia. Raporty NIE zawierają informacji pozwalających na zidentyfikowanie ciebie, ani twojego urządzenia.]]></string>
-  <string name="usage_statistics_content"><![CDATA[Statystyki użytkowania to forma anonimowego przekazywania informacji zwrotnej. Pomaga w lepszym zrozumieniu w jaki sposób aplikacja jest użytkowana, jaka jest jej wydajność oraz jakie funkcje są najpopularniejsze. Mając taką wiedzę można w znaczący sposób podnieść wydajność aplikacji, ułatwić korzystanie z niej, a także poprawić jej użyteczność.
+    <string name="usage_statistics_content"><![CDATA[Statystyki użytkowania to forma anonimowego przekazywania informacji zwrotnej. Pomaga w lepszym zrozumieniu w jaki sposób aplikacja jest użytkowana, jaka jest jej wydajność oraz jakie funkcje są najpopularniejsze. Mając taką wiedzę można w znaczący sposób podnieść wydajność aplikacji, ułatwić korzystanie z niej, a także poprawić jej użyteczność.
 
 Tower Collector rejestruje i raportuje następujące rodzaje danych:
 
