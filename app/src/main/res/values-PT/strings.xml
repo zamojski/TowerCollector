@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. --><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="locale">pt</string>
     <string name="shortcut_collecting_toggle_short">Coletar</string>
     <string name="shortcut_collecting_toggle_long">Alternância de coleta</string>
@@ -47,7 +46,7 @@
     <string name="dialog_settings">Configurações</string>
     <string name="main_dialog_not_compatible_title">Problemas de compatibilidade</string>
     <string name="main_dialog_not_compatible_begin">Este aplicativo pode não funcionar porque:</string>
-    <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Hardware de rede móvel não foi detectado.</string>
+    <string name="main_dialog_no_compatible_mobile_radio_message">• Hardware de rede móvel não foi detectado.</string>
     <string name="main_toast_background_task_already_running_collector">Serviço de coletor</string>
     <string name="main_toast_background_task_already_running_uploader">Tarefa do carregador</string>
     <string name="main_toast_background_task_already_running_export">Tarefa de exportação</string>
@@ -119,8 +118,8 @@
     <string name="uploader_notification_progress_info">Enviou <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
     <string name="uploader_result_dialog_title">Enviar resultado</string>
     <string name="uploader_dialog_progress_title">Fazendo upload</string>
-    <string name="uploader_starting">Começando o upload&#8230;</string>
-    <string name="uploader_aborting">Abortando o upload&#8230;</string>
+    <string name="uploader_starting">Começando o upload…</string>
+    <string name="uploader_aborting">Abortando o upload…</string>
     <string name="uploader_already_running">O upload já está executando.</string>
     <string name="uploader_disabled">Upload desabilitado</string>
     <string name="uploader_disabled_description">Upload desabilitado para este projeto.</string>
@@ -156,8 +155,8 @@
     <string name="export_notification_channel_name">Exportar</string>
     <string name="export_notification_title">Exportar</string>
     <string name="export_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% exportado.</string>
-    <string name="export_starting">Iniciando exportação&#8230;</string>
-    <string name="export_aborting">Abortando exportação&#8230;</string>
+    <string name="export_starting">Iniciando exportação…</string>
+    <string name="export_aborting">Abortando exportação…</string>
     <string name="export_toast_no_file_types_selected">Nenhum tipo de arquivo selecionado para exportação.</string>
     <string name="export_toast_no_handler_for_file_type">Nenhum aplicativo para lidar com o arquivo.</string>
     <string name="export_dialog_format_selection_title">Selecione formatos de arquivo:</string>
@@ -514,4 +513,23 @@
     <string name="permission_map_denied_message">O mapa não pode ser ativado devido à permissão de localização negada</string>
     <string name="permission_map_never_ask_again_message">O mapa não está disponível devido à permissão de localização negada</string>
     <string name="permission_uploader_denied_message">Upload cancelado devido a permissão de internet negada.</string>
+    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"></string>
+    <string name="main_last_cell_id_rnc_value" translatable="false"></string>
+    <string name="export_format_csv" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_1" translatable="false"></string>
+    <string name="main_last_signal_strength_value" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false"></string>
+    <string name="export_format_gpx" translatable="false"></string>
+    <string name="main_last_number_of_cells_value" translatable="false"></string>
+    <string name="ocid_name" translatable="false"></string>
+    <string name="main_last_longitude_value" translatable="false"></string>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false"></string>
+    <string name="uploader_result_description" translatable="false"></string>
+    <string name="export_format_kmz" translatable="false"></string>
+    <string name="main_last_gps_accuracy_value" translatable="false"></string>
+    <string name="export_format_kml" translatable="false"></string>
+    <string name="mls_name" translatable="false"></string>
+    <string name="uploader_result_message" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_17" translatable="false"></string>
+    <string name="main_last_latitude_value" translatable="false"></string>
 </resources>
