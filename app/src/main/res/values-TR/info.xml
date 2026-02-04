@@ -1,9 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<resources>
-  <string name="about_api_key_content"><![CDATA[Erişim tokeni (API anahtarı) kullanıcıya toplanan ölçümleri OpenCellID veri tabanına yükleme yetkisi vermek için kullanılan özel bir dizedir.
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. --><resources>
+    <string name="about_api_key_content"><![CDATA[Erişim tokeni (API anahtarı) kullanıcıya toplanan ölçümleri OpenCellID veri tabanına yükleme yetkisi vermek için kullanılan özel bir dizedir.
 
 Doğru anahtar 0 ile 9 arası rakamlardan ve a ve f arası harflerden oluşmalı. Kayıt tarihine bağlı olarak anahtar biçimi bunun gibi olabilir:
 
@@ -11,35 +10,35 @@ Doğru anahtar 0 ile 9 arası rakamlardan ve a ve f arası harflerden oluşmalı
 * `9743a66f914cc249efca164485a19c5c` – 32 karakter
 * `9743a66f-914c-c249-efca-164485a19c5c` – tire ile ayrılan 5 gruptan oluşan 32 karakter, toplamda 36 karakter
 * `9743a66f914cc2` – 14 karakter]]></string>
-  <string name="about_application_content"><![CDATA[Tower Collector %VERSION_NAME%
+    <string name="about_application_content"><![CDATA[Tower Collector %VERSION_NAME%
 
 Copyright © 2012-%CURRENT_YEAR% Adam Zamojski ve Katkıda Bulunanlar
 
 Tower Collector GSM/UMTS/LTE/CDMA/5G NR/TD-SCDMA baz istasyonlarının GPS konumlarını toplamak için tasarlanmıştır. Topladığınız ölçümleriniz birçok kamu ve özel veri tabanına yüklenebilir.
 
 THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.]]></string>
-  <string name="about_collector_api_version_content"><![CDATA[Ölçümler toplandığı sırada baz istasyonu bilgilerini elde etmek için hangi yöntemin kullanılacağını seçebilirsiniz.
+    <string name="about_collector_api_version_content"><![CDATA[Ölçümler toplandığı sırada baz istasyonu bilgilerini elde etmek için hangi yöntemin kullanılacağını seçebilirsiniz.
 
 * Daha güvenilir veriler elde etmek için en yeni yöntemi kullanmanız şiddetle tavsiye edilir. Seçim, Android 4.1 ve öncesi cihazlarda devre dışıdır.*
 
 *   **Otomatik algılama** - Kullanılabilir API versiyonları otomatik olarak bulunur ve uygulama tarafından en iyi opsiyon seçilir.  Eğer toplayıcı sinyal yokken çalıştırılırsa güvenli seçenek kullanılır.
 *   **Android 4.2 API** - Android 4.2 ve daha yeni sürümlerde bulunan yöntemleri kullanır. Bu yöntemler en güvenilir hücre bilgisini sağlar. Ancak bazı üreticiler yeni API'yi doğru bir şekilde uygulamadı ve bu tür cihazlarda kullanılamayabilir. Android 5.1 ve üzerinde farklı sim kartlardan farklı baz istasyonu bilgileri elde edilebilir.
 *   **Android 1.0 API** - Anroidin ilk sürümünden beri mevcut olan bir dizi yöntem kullanır. Bulutu metodlar LTE ve UMTS ağları için güvenilir olmayan veriler sağlayabilir. Cihaza bağlı olarak bu metod hücre bilgilerinin doğru bir şekilde güncellenmesini sağlamak için toplama sırasında ekranın açık kalmasını gerektirebilir.]]></string>
-  <string name="about_collector_keep_screen_on_content"><![CDATA[Ölçümleri toplarken ekranı seçilen parlaklık düzeyinde tutmak için bu seçeneği kullanın. Farklı bir uygulamaya geçseniz veya güç düğmesini kullanarak kapatmaya çalışsanız bile ekran açık kalır. Etkinleştirme pil ömrünü önemli ölçüde kısaltır
+    <string name="about_collector_keep_screen_on_content"><![CDATA[Ölçümleri toplarken ekranı seçilen parlaklık düzeyinde tutmak için bu seçeneği kullanın. Farklı bir uygulamaya geçseniz veya güç düğmesini kullanarak kapatmaya çalışsanız bile ekran açık kalır. Etkinleştirme pil ömrünü önemli ölçüde kısaltır
 
 Bu, Android 1.0 API kullanılıyorken bazı cihazlarda hücre ve sinyal gücü bilgilerini güncel tutmak için geçici bir çözüm olarak kullanılabilir.
 
 Uygulama açıkken ekranı açık tutmak için ayarlar kısmında ekran seçeneklerini inceleyin.]]></string>
-  <string name="about_main_keep_screen_on_content"><![CDATA[Uygulamanın ana ekranı açıkken cihaz parlaklığını en yüksekte tutmak için bu seçeneği kullanın. Ekrandan ayrıldığınız ya da farklı bir uygulamaya geçtiğiniz zaman, Android tanımlı davranış sıfırlanacaktır. Etkinleştirmek pil ömrünü önemli ölçüde kısaltacaktır.
+    <string name="about_main_keep_screen_on_content"><![CDATA[Uygulamanın ana ekranı açıkken cihaz parlaklığını en yüksekte tutmak için bu seçeneği kullanın. Ekrandan ayrıldığınız ya da farklı bir uygulamaya geçtiğiniz zaman, Android tanımlı davranış sıfırlanacaktır. Etkinleştirmek pil ömrünü önemli ölçüde kısaltacaktır.
 
 Ölçümleri toplarken ekranı her zaman açık tutmak için, ayarlardan toplayıcı seçeneklerini inceleyin.]]></string>
-  <string name="about_mls_project_content"><![CDATA[BeaconDB, ortak kablosuz altyapıya (baz istasyonları, WiFi erişim noktaları, Bluetooth işaretçileri) ilişkin konum bilgilerini toplayan halka açık bir veritabanıdır. Katkıda bulunduğunuz baz istasyonu verileri toplanacak ve "Creative Commons (CC-0)" lisansı altında kamuya açıklanacaktır.
+    <string name="about_mls_project_content"><![CDATA[BeaconDB, ortak kablosuz altyapıya (baz istasyonları, WiFi erişim noktaları, Bluetooth işaretçileri) ilişkin konum bilgilerini toplayan halka açık bir veritabanıdır. Katkıda bulunduğunuz baz istasyonu verileri toplanacak ve "Creative Commons (CC-0)" lisansı altında kamuya açıklanacaktır.
 
 Tower Collector, size bölgenizdeki baz istasyonlarını yükleyerek BeaconDB projesine katkıda bulunma fırsatı verir. [Daha fazla bilgi.](https://beacondb.net/)]]></string>
-  <string name="about_neighboring_cells_content"><![CDATA[Komşu hücreler, mobil şebeke operatörü tarafından telefonun şu anda bağlı olduğu hücrenin yakınında bulunan hücreler olarak tanımlanan hücrelerdir. Komşu hücreler, ana hücre kadar güvenilir olmayabilir ve zaman zaman değişebilir.
+    <string name="about_neighboring_cells_content"><![CDATA[Komşu hücreler, mobil şebeke operatörü tarafından telefonun şu anda bağlı olduğu hücrenin yakınında bulunan hücreler olarak tanımlanan hücrelerdir. Komşu hücreler, ana hücre kadar güvenilir olmayabilir ve zaman zaman değişebilir.
 
 Komşu hücrelerin mevcut olup olmadığı cihaza, ağ türüne, ağ operatörüne ve baz istasyonuna bağlıdır.]]></string>
-  <string name="about_notify_measurements_collected_content"><![CDATA[Tower Collector sisteme yüklenmiş diğer uygulamaları *intent* yayınlayarak bilgilendirebilir. Bu tür bildirimleri nasıl dinleyeceğiniz ve kullanacağınızla ilgili daha fazla bilgi için o uygulamanın yardım bölümüne bakın.
+    <string name="about_notify_measurements_collected_content"><![CDATA[Tower Collector sisteme yüklenmiş diğer uygulamaları *intent* yayınlayarak bilgilendirebilir. Bu tür bildirimleri nasıl dinleyeceğiniz ve kullanacağınızla ilgili daha fazla bilgi için o uygulamanın yardım bölümüne bakın.
 
 ### Ölçüm toplama etkinliği
 
@@ -106,15 +105,15 @@ Ekstralar değer örneği:
     ]
 }
 ```]]></string>
-  <string name="about_opencellid_project_content"><![CDATA[OpenCellID GPS konumlarıyla bağlantılı CellID lerinin dünya çapında veri tabanını oluşturmayı hedefleyen açık kaynaklı bir projedir. Toplanan veriler Creative Common Attribution-Share Alike 3.0 Unported" lisansı altında mevcuttur. Tower Collector size, bölgenizden baz istasyonlarının konumunu yükleyerek OpenCellID projelerine katkıda bulunma fırsatı verir. [Daha fazla bilgi.](https://wiki.opencellid.org/wiki/What_is_OpenCellID)]]></string>
-  <string name="best_practices_content"><![CDATA[Tower Collector is a perfect app for OpenCellID and BeaconDB contributors who want to support the projects with measurements from their area. It is good to know what is the right way to collect the most valuable measurements during walks and trips.
+    <string name="about_opencellid_project_content"><![CDATA[OpenCellID GPS konumlarıyla bağlantılı CellID lerinin dünya çapında veri tabanını oluşturmayı hedefleyen açık kaynaklı bir projedir. Toplanan veriler Creative Common Attribution-Share Alike 3.0 Unported" lisansı altında mevcuttur. Tower Collector size, bölgenizden baz istasyonlarının konumunu yükleyerek OpenCellID projelerine katkıda bulunma fırsatı verir. [Daha fazla bilgi.](https://wiki.opencellid.org/wiki/What_is_OpenCellID)]]></string>
+    <string name="best_practices_content"><![CDATA[Tower Collector is a perfect app for OpenCellID and BeaconDB contributors who want to support the projects with measurements from their area. It is good to know what is the right way to collect the most valuable measurements during walks and trips.
 
 - Her gün ileri geri aynı yöne ilerlemekten kaçının. Çok sayıda yinelenen ölçüm faydalı olmayacaktır.
 - Yeni yerleri, özellikle daha az ziyaret edilen kapsanmamış yerleri haritalandırmaya çalışın. Ana caddedeki kulelerin çoğu zaten haritalanmıştır.
 - Bölgenizde görünebilecek yeni baz istasyonlarını toplamak için zaman zaman tekrar bir tur yapın.
 - GSM, UMTS, LTE, CDMA, 5G NR, TD-SCDMA gibi telefonunuz tarafından desteklenen tüm ağ türlerinden veri toplayın. Android ayarlarınızdan tercih edilen ağ seçeneğini değiştirerek bunu yapabilirsiniz.
 - Bölgenizi daha iyi kapsamak için farklı ağ operatörlerinden sim kartlar kullanın.]]></string>
-  <string name="external_integration_content"><![CDATA[Tower Collector; Tasker, Automate veya Llama gibi *intent* gönderen diğer uygulamalar tarafından çalıştırılacak görevleri ortaya çıkarır. Aşağıda tanımlanan tüm etkinlikler için *Broadcast* türünü kullanmanız gerekir. Böyle bir entegrasyonun nasıl yapılacağı hakkında daha fazla bilgi için uygulamaların yardım bölümlerini kontrol edin.
+    <string name="external_integration_content"><![CDATA[Tower Collector; Tasker, Automate veya Llama gibi *intent* gönderen diğer uygulamalar tarafından çalıştırılacak görevleri ortaya çıkarır. Aşağıda tanımlanan tüm etkinlikler için *Broadcast* türünü kullanmanız gerekir. Böyle bir entegrasyonun nasıl yapılacağı hakkında daha fazla bilgi için uygulamaların yardım bölümlerini kontrol edin.
 *Uygulama içinde olduğu gibi, aynı anda birden fazla göreve başlayamazsınız!*
 
 ### Toplayıcıyı başlatma
@@ -158,7 +157,7 @@ Dışa aktarma, son çalıştırmadan itibaren yapılandırma kullanılarak baş
 Android oreo ve üzerinde ek olarak bileşen paketinin ismini tanımlamanız gerekir.
 
 `info.zamojski.soft.towercollector`]]></string>
-  <string name="introduction_content"><![CDATA[### Uygulamanın amacı
+    <string name="introduction_content"><![CDATA[### Uygulamanın amacı
 
 Bu uygulama GPS konumları ile bağlantılı mobil baz istasyonları hakkında bilgi toplamak için tasarlanmıştır. Cep telefonunun kapsama alanını haritalandırmaya yardımcı olmak için tasarlanmıştır.
 
@@ -173,7 +172,7 @@ Collected data can be uploaded to OpenCellID.org and BeaconDB projects or export
 ### Dahası
 
 En iyi yöntemler ve ek bilgiler tercihlerde bilgiler kısmında mevcut.]]></string>
-  <string name="map_help"><![CDATA[![dot_nr](dot_nr) - 5G (NR)
+    <string name="map_help"><![CDATA[![dot_nr](dot_nr) - 5G (NR)
 
 ![dot_lte](dot_lte) - 4G (LTE)
 
@@ -192,7 +191,7 @@ En iyi yöntemler ve ek bilgiler tercihlerde bilgiler kısmında mevcut.]]></str
 ![dot_cluster_small](dot_cluster_small) - Küme - bir grup ölçüm, grubu çözmek için yakınlaştırın
 
 Parlak renkler, yeni keşfedilen baz istasyonlarındaki ölçümleri temsil eder, aksi takdirde koyu renkler kullanılır.]]></string>
-  <string name="privacy_statement_content"><![CDATA[Gizlilik çok önemlidir, bu nedenle uygulama yalnızca hizmetleri sağlamak için gerekli bilgileri toplar ve iletir. Uygulama sizi, cihazınızı veya diğer kişisel bilgileri kişisel olarak tanımlayabilecek herhangi bir bilgiyi toplamaz, saklamaz veya göndermez.
+    <string name="privacy_statement_content"><![CDATA[Gizlilik çok önemlidir, bu nedenle uygulama yalnızca hizmetleri sağlamak için gerekli bilgileri toplar ve iletir. Uygulama sizi, cihazınızı veya diğer kişisel bilgileri kişisel olarak tanımlayabilecek herhangi bir bilgiyi toplamaz, saklamaz veya göndermez.
 
 **Bu gizlilik politikasını kabul etmiyorsanız, lütfen uygulamayı yüklemeyin veya kaldırmayın. Uygulamanın mobil cihazdan kalıcı olarak kaldırılması, uygulamanın kullanımının sonlandırılmasına eşdeğerdir.**
 
@@ -228,7 +227,7 @@ Uygulamanın çoğu özelliği **ön plan konum iznini** gerektirir, ancak cihaz
 Uygulama, **anonim kullanım istatistiklerini** toplar. Veriler, uygulamanın nasıl kullanıldığını, çeşitli işlevlerin çalıştırılma sürelerinin ve en popüler özelliklerin daha iyi anlaşılmasına yardımcı olmak için yalnızca geliştirici ile paylaşılır. Toplanan veriler, genel performansı, kullanılabilirliği ve kullanıcı deneyimini iyileştirmek için kullanılır. Veriler, [Google'ın gizlilik politikası](https://policies.google.com/privacy) kapsamında Google tarafından sağlanan Firebase için üçüncü taraf Google Analytics kitaplığı kullanılarak toplanır.
 
 Uygulama, yerleşik **otomatik kilitlenme raporlama** sistemine sahiptir. Uygulama hatası raporları yalnızca geliştiriciyle paylaşılır ve çökme nedeni ve cihaz yapılandırması hakkında bilgiler içerir. Sizi veya cihazı tanımlamak için kullanılabilecek herhangi bir bilgi İÇERMEZ.]]></string>
-  <string name="usage_statistics_content"><![CDATA[Kullanım istatistikleri, anonim bir geri bildirim biçimidir. Geliştiricinin, uygulamanın nasıl kullanıldığını, ne kadar hızlı olduğunu ve en popüler özelliklerin neler olduğunu daha iyi anlamasına yardımcı olur. Bu tür bilgilerle, genel performansı, kullanılabilirliği ve kullanıcı deneyimini iyileştirmek çok daha kolaydır.
+    <string name="usage_statistics_content"><![CDATA[Kullanım istatistikleri, anonim bir geri bildirim biçimidir. Geliştiricinin, uygulamanın nasıl kullanıldığını, ne kadar hızlı olduğunu ve en popüler özelliklerin neler olduğunu daha iyi anlamasına yardımcı olur. Bu tür bilgilerle, genel performansı, kullanılabilirliği ve kullanıcı deneyimini iyileştirmek çok daha kolaydır.
 
 Tower Collector uygulamasının izlediği ve raporladığı veri türleri şunlardır:
 

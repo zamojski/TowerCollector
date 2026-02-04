@@ -1,9 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<resources>
-  <string name="about_api_key_content"><![CDATA[A hozzáférési token (API kulcs) egy speciális karakterlánc, amely feljogosítja a felhasználót a begyűjtött mérések feltöltésére az OpenCellID adatbázisba.
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. --><resources>
+    <string name="about_api_key_content"><![CDATA[A hozzáférési token (API kulcs) egy speciális karakterlánc, amely feljogosítja a felhasználót a begyűjtött mérések feltöltésére az OpenCellID adatbázisba.
 
 A helyes kulcs 0-9 közti számjegyeket, és a-f közti betűket tartalmaz. A regisztráció dátumától függően a kulcs a következőféleképpen nézhet ki:
 
@@ -11,35 +10,35 @@ A helyes kulcs 0-9 közti számjegyeket, és a-f közti betűket tartalmaz. A re
 * `9743a66f914cc249efca164485a19c5c` – 32 karakter
 * `9743a66f-914c-c249-efca-164485a19c5c` – 32 karakter kötőjellel elválasztva, öt csoportban, összesen 36 karakter
 * `9743a66f914cc2` – 14 karakter]]></string>
-  <string name="about_application_content"><![CDATA[Tower Collector %VERSION_NAME%
+    <string name="about_application_content"><![CDATA[Tower Collector %VERSION_NAME%
 
 Copyright © 2012-%CURRENT_YEAR% Adam Zamojski és közreműködők
 
 A Tower Collector a GSM/UMTS/LTE/CDMA/5G NR/TD-SCDMA cellatornyok GPS pozíciójának mentésére van tervezve. A begyűjtött mérések számos nyilvános és privát adatbázisba feltölthetők.
 
 THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.]]></string>
-  <string name="about_collector_api_version_content"><![CDATA[Kiválaszthatod a cellainformációk begyűjtési módját.
+    <string name="about_collector_api_version_content"><![CDATA[Kiválaszthatod a cellainformációk begyűjtési módját.
 
 *Ajánlott a legfrissebbet választanod, hogy megbízható adatokat kapj. 4.1-es és korábbi Android verziót futtató eszközök esetén nem érhető el.*
 
 *   **Automatikus választás** – Az alkalmazás automatikusan meghatározza a választható API verzióit és  kiválasztja a legjobbat. A biztonságos beállítást választja, ha a gyűjtés megkezdésekor nincs térerő.
 *   **4.2-es Android API** – A 4.2-es és újabb Android verziókban elérhető legjobb metódusokat használja. Az egyes gyártók ezt nem készítették el megfelelően, ezért az ilyen eszközökön lehet, hogy nem használható. Az 5.1-es Android verziótól kezdve több SIM kártyához tartozó cellaadatok is rögzíthetők.
 *   **Android 1.0 API** - A legelső Android változatban megjelent adatlekérési módszert használja. Ez a módszer az LTE és UMTS hálózatoknál nem megbízható adatot fogad. A készülék típusától függően szükség lehet a képernyő ébren tartására, hogy a cellák adatai megfelelően frissüljenek.]]></string>
-  <string name="about_collector_keep_screen_on_content"><![CDATA[Használd ezt a beállítást, hogy a képernyő a megadott fényességi szinten maradjon adatgyűjtés közben. A képernyő még akkor is ugyanazon a fényerőn marad, ha másik alkalmazásra váltasz, vagy ha megpróbálod kikapcsolni a kikapcsológombbal. Az engedélyezése esetén gyorsabban lemerülhet az eszköz.
+    <string name="about_collector_keep_screen_on_content"><![CDATA[Használd ezt a beállítást, hogy a képernyő a megadott fényességi szinten maradjon adatgyűjtés közben. A képernyő még akkor is ugyanazon a fényerőn marad, ha másik alkalmazásra váltasz, vagy ha megpróbálod kikapcsolni a kikapcsológombbal. Az engedélyezése esetén gyorsabban lemerülhet az eszköz.
 
 Ez kerülőmegoldásként használható, hogy frissüljenek a cella és jelerősség adatok egyes 1.0-s Android API-t használó eszközökön.
 
 Ha a képernyőt csak akkor szeretnéd bekapcsolva tartani, ha a főképernyő látható, akkor lásd a Megjelenítés szakaszt a beállításokban.]]></string>
-  <string name="about_main_keep_screen_on_content"><![CDATA[Használd ezt a beállítást, hogy teljes fényerőn maradjon a képernyő, ha a főképernyő látható. Ha elhagyod a képernyőt vagy másik alkalmazásra váltasz, akkor az Androidban megadott viselkedés lesz visszaállítva. Az engedélyezése esetén jelentősen gyorsabban merül az eszköz.
+    <string name="about_main_keep_screen_on_content"><![CDATA[Használd ezt a beállítást, hogy teljes fényerőn maradjon a képernyő, ha a főképernyő látható. Ha elhagyod a képernyőt vagy másik alkalmazásra váltasz, akkor az Androidban megadott viselkedés lesz visszaállítva. Az engedélyezése esetén jelentősen gyorsabban merül az eszköz.
 
 Ha a képernyőt az adatgyűjtés teljes időtartama alatt szeretnéd bekapcsolva tartani, lásd az adatgyűjtő beállításait.]]></string>
-  <string name="about_mls_project_content"><![CDATA[A BeaconDB egy nyilvános adatbázis, amely helyinformációkat gyűjt a gyakori vezeték nélküli infrastruktúráról (cellatornyok, WiFi hozzáférési pontok, Bluetooth jeladók). Az Ön által közölt cellatornyok adatait a „Creative Commons (CC-0)” licenc alatt összesítjük és nyilvánosságra hozzuk.
+    <string name="about_mls_project_content"><![CDATA[A BeaconDB egy nyilvános adatbázis, amely helyinformációkat gyűjt a gyakori vezeték nélküli infrastruktúráról (cellatornyok, WiFi hozzáférési pontok, Bluetooth jeladók). Az Ön által közölt cellatornyok adatait a „Creative Commons (CC-0)” licenc alatt összesítjük és nyilvánosságra hozzuk.
 
 A Tower Collector lehetőséget ad a BeaconDB projektben való részvételre azáltal, hogy feltölti a területéről származó cellatornyokat. [További információ.](https://beacondb.net/)]]></string>
-  <string name="about_neighboring_cells_content"><![CDATA[A szomszédos cellákat a mobilszolgáltató határozza meg az éppen kiválasztott cella közelében. A szomszédos cellák lehet, hogy kevésbé megbízhatóak mint a fő cella, és idővel változhatnak.
+    <string name="about_neighboring_cells_content"><![CDATA[A szomszédos cellákat a mobilszolgáltató határozza meg az éppen kiválasztott cella közelében. A szomszédos cellák lehet, hogy kevésbé megbízhatóak mint a fő cella, és idővel változhatnak.
 
 A szomszédos cellák listájának elérhetősége függ az eszköztől, a hálózattípustól, a hálózati szolgáltatótól és a cellától.]]></string>
-  <string name="about_notify_measurements_collected_content"><![CDATA[A Tower Collector *szándékok* segítségével értesítheti a rendszeren telepített egyéb alkalmazásokat. Ha többet szeretnél tudni az ilyen értesítések figyeléséről és felhasználásáról, nézd meg az alkalmazás súgóját.
+    <string name="about_notify_measurements_collected_content"><![CDATA[A Tower Collector *szándékok* segítségével értesítheti a rendszeren telepített egyéb alkalmazásokat. Ha többet szeretnél tudni az ilyen értesítések figyeléséről és felhasználásáról, nézd meg az alkalmazás súgóját.
 
 ### Mérés begyűjtési esemény
 
@@ -106,17 +105,17 @@ Az extra értékek példája:
     ]
 }
 ```]]></string>
-  <string name="about_opencellid_project_content"><![CDATA[Az OpenCellID egy nyílt forráskódú projekt, amelynek célja, hogy az egész világra kiterjedő adatbázist készítsen, mely GPS pozíciókkal korrelálja a cellaazonosítókat. A begyűjtött adatok „Creative Commons Nevezd meg! – Így add tovább! 3.0 Unported” licenc alatt érhetők el.
+    <string name="about_opencellid_project_content"><![CDATA[Az OpenCellID egy nyílt forráskódú projekt, amelynek célja, hogy az egész világra kiterjedő adatbázist készítsen, mely GPS pozíciókkal korrelálja a cellaazonosítókat. A begyűjtött adatok „Creative Commons Nevezd meg! – Így add tovább! 3.0 Unported” licenc alatt érhetők el.
 
 A Tower Collector lehetőséget ad arra, hogy közreműködj az OpenCellID projektben azáltal, hogy feltöltöd a bejárt környék mobil cellatornyait.[További információk.](https://wiki.opencellid.org/wiki/What_is_OpenCellID)]]></string>
-  <string name="best_practices_content"><![CDATA[Tower Collector is a perfect app for OpenCellID and BeaconDB contributors who want to support the projects with measurements from their area. It is good to know what is the right way to collect the most valuable measurements during walks and trips.
+    <string name="best_practices_content"><![CDATA[Tower Collector is a perfect app for OpenCellID and BeaconDB contributors who want to support the projects with measurements from their area. It is good to know what is the right way to collect the most valuable measurements during walks and trips.
 
 - Mérés szempontból kerüld a mindennapos oda-vissza utat ugyanazon az útvonalon. A sok ismételt mérés nem túl hasznos.
 - Próbálj meg új helyeket feltérképezni, különösen azokat, amelyek kevésbé látogatottak, mivel gyakran nincsenek onnan begyűjtött adatok. A főbb utcák mentén számos torony már fel van térképezve.
 - Időről időre csinálj újabb köröket, mivel új cellák jelenhetnek meg a környéken.
 - Gyűjts adatokat az eszköz által támogatott összes fajta hálózatról, mint GSM, UMTS, LTE, CDMA, 5G NR, TD-SCDMA, stb. Ezt az Android beállításokban érheted el, az előnyben részesített hálózattípusok módosításával.
 - Használd több szolgáltató SIM kártyáját, hogy jobban lefedd a területedet.]]></string>
-  <string name="external_integration_content"><![CDATA[A Tower Collector olyan feladatokat ajánl ki, amelyeket más alkalmazások *szándékok* küldésével futtathatnak, ilyen például a Tasker, az Automate vagy a Llama. Az alábbiakban meghatározott összes tevékenységhez a *Broadcast* típus használata szükséges. Ellenőrizd az alkalmazás súgóját az integráció részleteivel kapcsolatban.
+    <string name="external_integration_content"><![CDATA[A Tower Collector olyan feladatokat ajánl ki, amelyeket más alkalmazások *szándékok* küldésével futtathatnak, ilyen például a Tasker, az Automate vagy a Llama. Az alábbiakban meghatározott összes tevékenységhez a *Broadcast* típus használata szükséges. Ellenőrizd az alkalmazás súgóját az integráció részleteivel kapcsolatban.
 *Mint az alkalmazáson belül is, egyszerre csak egy feladatot futtathatsz!*
 
 ### Adatgyűjtés elindítása
@@ -160,7 +159,7 @@ Az exportálás megszakításra kerül. Művelet:
 Az Android Oreo és újabb verziók esetén meg kell adnod az összetevő csomagnevét is:
 
 `info.zamojski.soft.towercollector`]]></string>
-  <string name="introduction_content"><![CDATA[### A cél
+    <string name="introduction_content"><![CDATA[### A cél
 
 Az alkalmazást arra tervezték, hogy GPS koordinátákat gyűjtsön a mobil cellatornyokkal összefüggő adatokkal együtt. Arra lett tervezve, hogy segítsen megnövelni a mobilhálózat lefedettségi térképének mértékét.
 
@@ -175,7 +174,7 @@ Collected data can be uploaded to OpenCellID.org and BeaconDB projects or export
 ### Továbbiak
 
 A legjobban bevált módszerek és kiegészítő információk a Beállítások Információ részében érhetőek el.]]></string>
-  <string name="map_help"><![CDATA[![dot_nr](dot_nr) - 5G (NR)
+    <string name="map_help"><![CDATA[![dot_nr](dot_nr) - 5G (NR)
 
 ![dot_lte](dot_lte) - 4G (LTE)
 
@@ -194,7 +193,7 @@ A legjobban bevált módszerek és kiegészítő információk a Beállítások 
 ![dot_cluster_small](dot_cluster_small) - Klaszter - mérések csoportja, nagyíts a csoportosítás feloldásához
 
 Az élénk színek az újonnan felfedezett cellatornyokat jelentik, a korábbiak sötét színeket használnak.]]></string>
-  <string name="open_source_licenses_content"><![CDATA[### Alkalmazás ikon
+    <string name="open_source_licenses_content"><![CDATA[### Alkalmazás ikon
 
 [CC BY 3.0 License](https://creativecommons.org/licenses/by/3.0/legalcode)
 
@@ -388,7 +387,7 @@ https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 ```]]></string>
-  <string name="privacy_statement_content"><![CDATA[A magánélet védelme nagyon fontos, ezért az alkalmazás csak a szolgáltatások nyújtásához szükséges információkat gyűjti és továbbítja. Az alkalmazás NEM gyűjt, nem tárol vagy küld semmilyen információt, amely személyesen azonosíthatna téged, az eszközödet vagy bármilyen más személyes információt.
+    <string name="privacy_statement_content"><![CDATA[A magánélet védelme nagyon fontos, ezért az alkalmazás csak a szolgáltatások nyújtásához szükséges információkat gyűjti és továbbítja. Az alkalmazás NEM gyűjt, nem tárol vagy küld semmilyen információt, amely személyesen azonosíthatna téged, az eszközödet vagy bármilyen más személyes információt.
 
 **Ha nem értesz egyet az adatvédelmi irányelvekkel, kérjük, ne telepítsd vagy távolítsd el az alkalmazást. Az alkalmazás végleges eltávolítása a mobileszközről egyenértékű az alkalmazás használatának megszüntetésével.**
 
@@ -424,7 +423,7 @@ A **fájlnaplózás hibakeresési szinten** funkció nagyon részletes naplófá
 Az alkalmazás összegyűjti **az anonim használati statisztikákat**. Az adatokat csak a fejlesztővel osztják meg annak érdekében, hogy jobban megértsék az alkalmazás használatát, a különböző funkciók végrehajtási idejét és a legnépszerűbb szolgáltatásokat. Az összegyűjtött adatokat az általános teljesítmény, a használhatóság és a felhasználói élmény javítására használják. Az adatokat a Google által a Google által biztosított [Google adatvédelmi irányelvei](https://policies.google.com/privacy) alapján harmadik féltől származó Google Analytics for Firebase könyvtár segítségével gyűjtik.
 
 Az alkalmazás beépítve tartalmazza az **automatizált összeomlási jelentés** rendszert. Az alkalmazáshiba-jelentéseket csak a fejlesztővel osztják meg, és információkat tartalmaznak az összeomlás okáról és az eszköz konfigurációjáról. NEM tartalmaz olyan információt, amely felhasználható az eszköz azonosítására.]]></string>
-  <string name="usage_statistics_content"><![CDATA[A használati statisztikák egyfajta névtelen visszajelzések. Segítségükkel a fejlesztő jobban megértheti, hogy az alkalmazást hogyan használják és mik a legnépszerűbb funkciók. Ezzel az ismerettel könnyebben tudja javítani a teljesítményt, a használhatóságot és a felhasználói élményt.
+    <string name="usage_statistics_content"><![CDATA[A használati statisztikák egyfajta névtelen visszajelzések. Segítségükkel a fejlesztő jobban megértheti, hogy az alkalmazást hogyan használják és mik a legnépszerűbb funkciók. Ezzel az ismerettel könnyebben tudja javítani a teljesítményt, a használhatóságot és a felhasználói élményt.
 
 A Tower Collector a következő adatokat követi és küldi el a jelentésekben:
 

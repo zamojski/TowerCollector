@@ -1,9 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<resources>
-  <string name="about_api_key_content"><![CDATA[Das Zugriffstoken (API-Key) ist eine spezieller Schlüssel, der Benutzern erlaubt, gesammelte Messungen an die OpenCellID-Datenbank hochzuladen.
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. --><resources>
+    <string name="about_api_key_content"><![CDATA[Das Zugriffstoken (API-Key) ist eine spezieller Schlüssel, der Benutzern erlaubt, gesammelte Messungen an die OpenCellID-Datenbank hochzuladen.
 
 Ein gültiger Key besteht aus den Ziffern 0-9 und den Buchstaben a-f. Je nach Registrierungsdatum kann das Format so aussehen:
 
@@ -11,35 +10,35 @@ Ein gültiger Key besteht aus den Ziffern 0-9 und den Buchstaben a-f. Je nach Re
 * `9743a66f914cc249efca164485a19c5c` – 32 Zeichen
 * `9743a66f-914c-c249-efca-164485a19c5c` – 32 Zeichen in 5 Gruppen, getrennt durch Bindestriche, insgesamt 36 Zeichen
 * `9743a66f914cc2` – 14 Zeichen]]></string>
-  <string name="about_application_content"><![CDATA[Tower Collector %VERSION_NAME%
+    <string name="about_application_content"><![CDATA[Tower Collector %VERSION_NAME%
 
 Copyright © 2012-%CURRENT_YEAR% Adam Zamojski & Mitwirkende
 
 Tower Collector ermittelt GPS-Koordinaten von GSM/UMTS/LTE/CDMA/5G NR/TD-SCDMA-Basisstationen. Ihre gesammelten Messwerte können in zahlreiche öffentliche und private Datenbanken hochgeladen werden.
 
 THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.]]></string>
-  <string name="about_collector_api_version_content"><![CDATA[Sie können angeben, welche Methode verwendet werden soll um die Infos der Basisstationen zu sammeln.
+    <string name="about_collector_api_version_content"><![CDATA[Sie können angeben, welche Methode verwendet werden soll um die Infos der Basisstationen zu sammeln.
 
 *Es wird empfohlen, die neueste zu verwenden um verlässlichere Daten zu erhalten. Diese Auswahl ist nicht verfügbar auf Geräten mit Android 4.1 und älter.*
 
 *   **Automatisch** - Tower Collector wird automatisch erkennen, welche Version der API verwendet werden kann und die beste auswählen. Es wird die sicherste Option auswählen wenn die Erfassung ohne Empfang gestartet wird.
 *   **Android 4.2 API** - Verwendet Methoden, die auf Android 4.2 und neuer verfügbar sind. Diese Methoden bieten die verlässlichsten Zelleninfos. Allerdings haben manche Hersteller das neue API nicht korrekt implementiert und so kann es auf solchen Geräten nicht verwendet werden. Unter Android 5.1 und neuer können zusätzlich auch Basisstationen von mehreren SIM-Karten erfasst werden.
 *   **Android 1.0 API** - Verwendet eine Reihe von Methoden, die seit der ersten Version von Android verfügbar sind. Diese Methoden können allerdings unzuverlässige Daten bei LTE- und UMTS-Netzen zurück liefern. Abhängig vom Gerät kann es erforderlich sein, den Bildschirm während der Erfassung eingeschaltet zu lassen damit die Zelleninfos korrekt aktualisiert werden.]]></string>
-  <string name="about_collector_keep_screen_on_content"><![CDATA[Verwenden Sie diese Option um den Bildschirm immer mit einer festgelegten Helligkeit eingeschaltet zu lassen während die Erfassung läuft. Der Bildschirm bleibt eingeschaltet, auch wenn Sie zu einer anderen App wechseln oder ihn mit dem Ein/Aus-Schalter ausschalten wollen. Das Aktivieren dieser Option wird die Akkulaufzeit signifikant verkürzen.
+    <string name="about_collector_keep_screen_on_content"><![CDATA[Verwenden Sie diese Option um den Bildschirm immer mit einer festgelegten Helligkeit eingeschaltet zu lassen während die Erfassung läuft. Der Bildschirm bleibt eingeschaltet, auch wenn Sie zu einer anderen App wechseln oder ihn mit dem Ein/Aus-Schalter ausschalten wollen. Das Aktivieren dieser Option wird die Akkulaufzeit signifikant verkürzen.
 
 Das kann als Workaround auf manchen Geräten mit Android 1.0 API verwendet werden, um die Details zur Zelle und Signalstärke aktuell zu halten.
 
 Um den Bildschirm nur eingeschaltet zu lassen, wenn der Hauptbildschirm angezeigt wird, verwenden Sie die entsprechende Option in dem Abschnitt "Anzeige".]]></string>
-  <string name="about_main_keep_screen_on_content"><![CDATA[Verwenden Sie diese Option um den Bildschirm immer mit voller Helligkeit eingeschaltet zu lassen, wenn der Hauptbildschirm angezeigt wird. Wenn Sie den Hauptbildschirm verlassen oder zu einer anderen App wechseln, wird wieder das Standard-Verhalten eingestellt. Aktivieren dieser Option verkürzt die Akkulaufzeit erheblich.
+    <string name="about_main_keep_screen_on_content"><![CDATA[Verwenden Sie diese Option um den Bildschirm immer mit voller Helligkeit eingeschaltet zu lassen, wenn der Hauptbildschirm angezeigt wird. Wenn Sie den Hauptbildschirm verlassen oder zu einer anderen App wechseln, wird wieder das Standard-Verhalten eingestellt. Aktivieren dieser Option verkürzt die Akkulaufzeit erheblich.
 
 Um den Bildschirm immer eingeschaltet zu lassen während die Erfassung läuft, verwenden Sie die Option im Abschnitt "Erfassung".]]></string>
-  <string name="about_mls_project_content"><![CDATA[BeaconDB ist eine öffentliche Datenbank, die Standortinformationen über gängige drahtlose Infrastrukturen (Mobilfunkmasten, WLAN-Zugangspunkte, Bluetooth-Beacons) sammelt. Die von Ihnen bereitgestellten Mobilfunkmastdaten werden aggregiert und unter der „Creative Commons (CC-0)“-Lizenz der Öffentlichkeit zugänglich gemacht.
+    <string name="about_mls_project_content"><![CDATA[BeaconDB ist eine öffentliche Datenbank, die Standortinformationen über gängige drahtlose Infrastrukturen (Mobilfunkmasten, WLAN-Zugangspunkte, Bluetooth-Beacons) sammelt. Die von Ihnen bereitgestellten Mobilfunkmastdaten werden aggregiert und unter der „Creative Commons (CC-0)“-Lizenz der Öffentlichkeit zugänglich gemacht.
 
 Tower Collector bietet Ihnen die Möglichkeit, einen Beitrag zum BeaconDB-Projekt zu leisten, indem Sie Mobilfunkmasten aus Ihrer Region hochladen. [Weitere Informationen.](https://beacondb.net/)]]></string>
-  <string name="about_neighboring_cells_content"><![CDATA[Benachbarte Zellen sind jene Zellen, die vom Netzbetreiber als benachbarte Zellen zur momentan benutzten Zelle definiert wurden. Informationen über benachbarte Zellen sind eventuell nicht so genau wie die der momentan verwendeten Zelle und können sich über die Zeit ändern.
+    <string name="about_neighboring_cells_content"><![CDATA[Benachbarte Zellen sind jene Zellen, die vom Netzbetreiber als benachbarte Zellen zur momentan benutzten Zelle definiert wurden. Informationen über benachbarte Zellen sind eventuell nicht so genau wie die der momentan verwendeten Zelle und können sich über die Zeit ändern.
 
 Die Verfügbarkeit von Informationen über benachbarte Zellen hängt vom Gerät, vom Netzbetreiber, der Art des Netzes und der Basisstation ab.]]></string>
-  <string name="about_notify_measurements_collected_content"><![CDATA[Tower Collector kann andere installierte Apps durch das Senden von *Intents* benachrichtigen. Mehr Informationen zum Empfangen und Konsumieren solcher Benachrichtigungen finden Sie in der Hilfe der App.
+    <string name="about_notify_measurements_collected_content"><![CDATA[Tower Collector kann andere installierte Apps durch das Senden von *Intents* benachrichtigen. Mehr Informationen zum Empfangen und Konsumieren solcher Benachrichtigungen finden Sie in der Hilfe der App.
 
 ### Messungen-gesammelt Ereignis
 
@@ -106,17 +105,17 @@ Extras Wert (Beispiel):
     ]
 }
 ```]]></string>
-  <string name="about_opencellid_project_content"><![CDATA[Das OpenCellID-Projekt ist ein Open-Source-Projekt, das sich zum Ziel gesetzt hat, eine weltweite Datenbank von Cell IDs und den dazugehörigen GPS-Positionen zusammenzutragen. Die gesammelten Informationen sind unter der "Creative Commons Attribution-ShareAlike 3.0 Unported" Lizenz verfügbar.
+    <string name="about_opencellid_project_content"><![CDATA[Das OpenCellID-Projekt ist ein Open-Source-Projekt, das sich zum Ziel gesetzt hat, eine weltweite Datenbank von Cell IDs und den dazugehörigen GPS-Positionen zusammenzutragen. Die gesammelten Informationen sind unter der "Creative Commons Attribution-ShareAlike 3.0 Unported" Lizenz verfügbar.
 
 Tower Collector ermöglicht Ihnen, dieses Projekt durch den Upload der verfügbaren Mobilfunk-Zellen in Ihrer Umgebung zu unterstützen. [Mehr Informationen.](https://wiki.opencellid.org/wiki/What_is_OpenCellID)]]></string>
-  <string name="best_practices_content"><![CDATA[Tower Collector is a perfect app for OpenCellID and BeaconDB contributors who want to support the projects with measurements from their area. It is good to know what is the right way to collect the most valuable measurements during walks and trips.
+    <string name="best_practices_content"><![CDATA[Tower Collector is a perfect app for OpenCellID and BeaconDB contributors who want to support the projects with measurements from their area. It is good to know what is the right way to collect the most valuable measurements during walks and trips.
 
 - Vermeiden Sie es, exakt den selben Weg jeden Tag abzufahren. Eine große Zahl duplizierter Messungen ist nicht sehr hilfreich.
 - Versuchen Sie neue Gebiete zu erfassen, besonders solche die nicht so häufig frequentiert werden. Viele Funkmasten entlang der Hauptstraßen sind bereits erfasst.
 - Machen Sie von Zeit zu Zeit eine erneute Runde, um eventuelle neue Funkmasten in Ihrem Gebiet zu erfassen.
 - Sammeln Sie Daten für alle Arten von Netzwerken die Ihr Gerät unterstützt, wie zum Beispiel GSM, UMTS, LTE, CDMA, 5G NR, TD-SCDMA, usw. Sie können das erreichen indem Sie die Einstellungen zum bevorzugten Netzwerktyp in den Android-Einstellungen anpassen.
 - Verwenden Sie SIM-Karten von verschiedenen Netzbetreibern, um die Abdeckung der Erfassung zu verbessern.]]></string>
-  <string name="external_integration_content"><![CDATA[Tower Collector bietet Tasks an, die von anderen Apps wie Tasker, Automate oder Llama mit Hilfe von *Intents* aufgerufen werden können. Dabei muss für alle unten beschriebenen Aktivitäten der Typ *Broadcast* verwendet werden. Weitere Informationen dazu stehen in der Hilfe der App.
+    <string name="external_integration_content"><![CDATA[Tower Collector bietet Tasks an, die von anderen Apps wie Tasker, Automate oder Llama mit Hilfe von *Intents* aufgerufen werden können. Dabei muss für alle unten beschriebenen Aktivitäten der Typ *Broadcast* verwendet werden. Weitere Informationen dazu stehen in der Hilfe der App.
 *Genauso wie in der App kann nicht mehr als ein Task zur gleichen Zeit laufen!*
 
 ### Starte Erfassung
@@ -160,7 +159,7 @@ Der Export wird in Kürze abgebrochen. Handlung:
 Auf Android Oreo und neuer müssen Sie zusätzlich den Namen des Komponentenpakets definieren:
 
 `info.zamojski.soft.towercollector`]]></string>
-  <string name="introduction_content"><![CDATA[### Zweck
+    <string name="introduction_content"><![CDATA[### Zweck
 
 Diese App wurde entwickelt um Informationen der Mobilfunkmasten in Ihrer Nähe zu sammeln. In Verbindung mit Ihren GPS-Koordinaten kann damit die Abdeckung des Mobilfunk-Netzwerks kartografiert werden.
 
@@ -175,7 +174,7 @@ Collected data can be uploaded to OpenCellID.org and BeaconDB projects or export
 ### Mehr
 
 Weitere Informationen und Links zu wichtigen Webseiten finden Sie im Abscnitt 'Informationen' in den Einstellungen.]]></string>
-  <string name="map_help"><![CDATA[![dot_nr](dot_nr) - 5G (NR)
+    <string name="map_help"><![CDATA[![dot_nr](dot_nr) - 5G (NR)
 
 ![dot_lte](dot_lte) - 4G (LTE)
 
@@ -194,7 +193,7 @@ Weitere Informationen und Links zu wichtigen Webseiten finden Sie im Abscnitt 'I
 ![dot_cluster_small](dot_cluster_small) - Gruppe von Messungen, zoomen Sie hinein um mehr zu sehen
 
 Helle Farben stellen Messungen mit neu entdeckten Mobilfunkmasten dar, ansonsten werden dunkle Farben verwendet.]]></string>
-  <string name="open_source_licenses_content"><![CDATA[### App-Icon
+    <string name="open_source_licenses_content"><![CDATA[### App-Icon
 
 [CC BY 3.0 License](https://creativecommons.org/licenses/by/3.0/legalcode)
 
@@ -388,7 +387,7 @@ https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 ```]]></string>
-  <string name="privacy_statement_content"><![CDATA[Ihre Privatsphäre ist uns sehr wichtig. Die App sammelt und sendet KEINE Informationen, die verwendet werden könnten, um Sie oder Ihr Gerät persönlich zu identifizieren oder andere personenbezogene Daten zu erhalten.
+    <string name="privacy_statement_content"><![CDATA[Ihre Privatsphäre ist uns sehr wichtig. Die App sammelt und sendet KEINE Informationen, die verwendet werden könnten, um Sie oder Ihr Gerät persönlich zu identifizieren oder andere personenbezogene Daten zu erhalten.
 
 **Wenn Sie dieser Datenschutz-Richtlinie nicht zustimmen, installieren Sie diese App nicht bzw. deinstallieren Sie diese bitte. Die App permanent vom Gerät zu entfernen ist gleichbedeutend mit dem Ende der Verwendung dieser App.**
 
@@ -424,7 +423,7 @@ Die Funktion **Datei-Logging mit Debug-Level** erzeugt sehr detaillierte Log-Dat
 Die App sammelt **anonyme Statistiken zur Benutzung**. Diese Daten werden nur mit dem Entwickler geteilt und helfen, die Verwendung der App zu verstehen, die Ausführungszeit einzelner Funktionen und welches die populärsten Funktionen sind. Dadurch kann die Gesamt-Leistung, die einfache Bedienbarkeit und das Benutzungserlebnis optimiert werden. Die Daten werden mit Hilfe der Dritt-Hersteller-Bibliothek Google Analytics for Firebase gesammelt, die von Google gemäß [Googles Datenschutz-Richtlinie](https://policies.google.com/privacy) zur Verfügung gestellt wird.
 
 Die App hat ein eingebautes System um **automatisch Absturzberichte zu senden**. Absturzberichte der App werden nur mit dem Entwickler geteilt und enthalten Informationen über die Ursache des Absturzes und über die Geräte-Konfiguration. Sie enthalten KEINE Informationen die verwendet werden können, Sie oder Ihr Gerät zu identifziereien.]]></string>
-  <string name="usage_statistics_content"><![CDATA[Benutzungsstatistiken sind eine Form von anonymem Feedback. Sie helfen dem Entwickler, besser zu verstehen wie die App verwendet wird, wie schnell sie ist und welches die gefragtesten Features sind. Mit diesem Wissen ist es viel leichter, die generelle Performance, Bedienbarkeit und Benutzerführung zu verbessern.
+    <string name="usage_statistics_content"><![CDATA[Benutzungsstatistiken sind eine Form von anonymem Feedback. Sie helfen dem Entwickler, besser zu verstehen wie die App verwendet wird, wie schnell sie ist und welches die gefragtesten Features sind. Mit diesem Wissen ist es viel leichter, die generelle Performance, Bedienbarkeit und Benutzerführung zu verbessern.
 
 Tower Collector erfasst und übermittelt die folgenden Daten:
 

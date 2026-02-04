@@ -1,0 +1,17 @@
+Tower Collector annab sulle võimaluse osaleda OpenCellID.org ja BeaconDB projektides, laadides üles GSM/UMTS/LTE/CDMA/TD-SCDMA/5G (NR) tugijaamade GPS-asukohti sinu ümbruskonnast. Need mõõtmised aitavad kaardistada mobiilsidevõrkude leviala. Rakendust saab kasutada andmete kogumiseks isiklikel eesmärkidel ning nende eksportimiseks erinevatesse failivormingutesse.
+
+Mõned funktsionaalused:
+• spetsiaalselt optimeeritud GPS-parameetrid aku kasutuse vähendamiseks
+• andmete üleslaadimine OpenCellID.org ja BeaconDB projektidesse
+• eksport SD-kaardile CSV, JSON, GPX, KML ja KMZ vormingutes
+• reklaamivaba – ja seda igavesti!
+
+OpenCellID.org projekti eesmärk on luua ülemaailmne avatud lähtekoodiga mobiilside tugijaamade asukohtade andmebaas. Tower Collector annab sulle võimaluse panustada OpenCellID projekti, laadides üles sinu ümbruskonna tugijaamade asukohti. Kogutud andmeid saavad huvilised kasutada seadmete kiireks asukoha määramiseks ilma GPS-i sisse lülitamata.
+
+BeaconDB on avalik andmebaas, mis kogub teavet levinud traadita infrastruktuuri kohta (mobiilimastid, WiFi pääsupunktid, Bluetoothi seadmed). Sinu panustatud mobiilimastide andmed koondatakse ja avaldatakse avalikkusele „Creative Commons (CC-0)“ litsentsi alusel.
+
+Palun aita seda rakendust tõlkida paljudesse keeltesse, selleks kasuta veebiteenust aadressil https://hosted.weblate.org/translate/tower-collector
+
+See rakendus ei kogu, salvesta ega edasta mingit teavet, mida saaks kasutada kasutaja, kasutatava seadme või muu isikliku teabe otseseks tuvastamiseks.
+
+PALUN TEATA VIGADEST JA KIRJELDA UUT FUNKTSIONAALSUST KAS E-KIRJA TEEL VÕI GITHUBI VEAHALDUSES.
