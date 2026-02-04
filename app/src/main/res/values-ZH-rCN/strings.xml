@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. --><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="locale">zh</string>
     <string name="shortcut_collecting_toggle_short">收集</string>
     <string name="shortcut_collecting_toggle_long">收集开关</string>
@@ -47,7 +46,7 @@
     <string name="dialog_settings">设置</string>
     <string name="main_dialog_not_compatible_title">兼容性问题</string>
     <string name="main_dialog_not_compatible_begin">此应用可能无法运行，因为：\n</string>
-    <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; 未检测到移动网络硬件。\n</string>
+    <string name="main_dialog_no_compatible_mobile_radio_message">• 未检测到移动网络硬件。\n</string>
     <string name="main_toast_background_task_already_running_collector">收藏服务</string>
     <string name="main_toast_background_task_already_running_uploader">上传者任务</string>
     <string name="main_toast_background_task_already_running_export">导出任务</string>
@@ -119,8 +118,8 @@
     <string name="uploader_notification_progress_info">已上传 <xliff:g id="progress_in_percent">%d</xliff:g>%%。</string>
     <string name="uploader_result_dialog_title">上传结果</string>
     <string name="uploader_dialog_progress_title">上传中</string>
-    <string name="uploader_starting">开始上传&#8230;</string>
-    <string name="uploader_aborting">中止上传&#8230;</string>
+    <string name="uploader_starting">开始上传…</string>
+    <string name="uploader_aborting">中止上传…</string>
     <string name="uploader_already_running">已正在上传。</string>
     <string name="uploader_disabled">上传已禁用</string>
     <string name="uploader_disabled_description">已禁用上传到此项目</string>
@@ -156,8 +155,8 @@
     <string name="export_notification_channel_name">导出数据</string>
     <string name="export_notification_title">导出数据中</string>
     <string name="export_notification_progress_info">导出了 <xliff:g id="progress_in_percent">%d</xliff:g>%% 的数据。</string>
-    <string name="export_starting">开始导出数据&#8230;</string>
-    <string name="export_aborting">中止导出数据&#8230;</string>
+    <string name="export_starting">开始导出数据…</string>
+    <string name="export_aborting">中止导出数据…</string>
     <string name="export_toast_no_file_types_selected">没有选择要导出的文件类型。</string>
     <string name="export_toast_no_handler_for_file_type">没有应用程序来处理文件类型。</string>
     <string name="export_dialog_format_selection_title">选择文件格式</string>
@@ -514,4 +513,23 @@
     <string name="permission_map_denied_message">由于拒绝了位置权限，因此无法启用地图</string>
     <string name="permission_map_never_ask_again_message">由于拒绝了位置权限，因此地图不可用</string>
     <string name="permission_uploader_denied_message">由于拒绝联网权限，上传已取消</string>
+    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"></string>
+    <string name="main_last_cell_id_rnc_value" translatable="false"></string>
+    <string name="export_format_csv" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_1" translatable="false"></string>
+    <string name="main_last_signal_strength_value" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false"></string>
+    <string name="export_format_gpx" translatable="false"></string>
+    <string name="main_last_number_of_cells_value" translatable="false"></string>
+    <string name="ocid_name" translatable="false"></string>
+    <string name="main_last_longitude_value" translatable="false"></string>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false"></string>
+    <string name="uploader_result_description" translatable="false"></string>
+    <string name="export_format_kmz" translatable="false"></string>
+    <string name="main_last_gps_accuracy_value" translatable="false"></string>
+    <string name="export_format_kml" translatable="false"></string>
+    <string name="mls_name" translatable="false"></string>
+    <string name="uploader_result_message" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_17" translatable="false"></string>
+    <string name="main_last_latitude_value" translatable="false"></string>
 </resources>
