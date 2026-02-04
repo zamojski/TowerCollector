@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. --><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="locale">ru</string>
     <string name="shortcut_collecting_toggle_short">Сборщик</string>
     <string name="shortcut_collecting_toggle_long">Переключить сбор</string>
@@ -47,7 +46,7 @@
     <string name="dialog_settings">Настройки</string>
     <string name="main_dialog_not_compatible_title">Проблемы совместимости</string>
     <string name="main_dialog_not_compatible_begin">Приложение может не работать потому, что:</string>
-    <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Не найдено оборудование для работы с мобильными сетями.\n</string>
+    <string name="main_dialog_no_compatible_mobile_radio_message">• Не найдено оборудование для работы с мобильными сетями.\n</string>
     <string name="main_toast_background_task_already_running_collector">Коллекторское обслуживание</string>
     <string name="main_toast_background_task_already_running_uploader">Задача загрузки</string>
     <string name="main_toast_background_task_already_running_export">Экспортировать задачу</string>
@@ -119,8 +118,8 @@
     <string name="uploader_notification_progress_info">Загружено <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
     <string name="uploader_result_dialog_title">Выгрузить результаты</string>
     <string name="uploader_dialog_progress_title">Выгрузка</string>
-    <string name="uploader_starting">Начинается выгрузка&#8230;</string>
-    <string name="uploader_aborting">Прерывание выгрузки&#8230;</string>
+    <string name="uploader_starting">Начинается выгрузка…</string>
+    <string name="uploader_aborting">Прерывание выгрузки…</string>
     <string name="uploader_already_running">Выгрузка в процессе.</string>
     <string name="uploader_disabled">Выгрузка отключена</string>
     <string name="uploader_disabled_description">Выгрузка отключена для этого проекта</string>
@@ -156,8 +155,8 @@
     <string name="export_notification_channel_name">Экспорт</string>
     <string name="export_notification_title">Экспортирующий</string>
     <string name="export_notification_progress_info">Экспортировано <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
-    <string name="export_starting">Запуск экспорта&#8230;</string>
-    <string name="export_aborting">Прерывание экспорта&#8230;</string>
+    <string name="export_starting">Запуск экспорта…</string>
+    <string name="export_aborting">Прерывание экспорта…</string>
     <string name="export_toast_no_file_types_selected">Не выбраны файлы для экспорта.</string>
     <string name="export_toast_no_handler_for_file_type">Нет приложения для обработки файла.</string>
     <string name="export_dialog_format_selection_title">Выберите форматы файлов</string>
@@ -228,7 +227,7 @@
     <string name="main_help_global_cells_title">Число обнаруженных GSM-сот</string>
     <string name="main_help_global_cells_description">Число новых уникальных GSM-сот, обнаруженных приложением с момента запуска.</string>
     <string name="mail_help_last_number_of_cells_title">Кол-во сот</string>
-    <string name="mail_help_last_number_of_cells_description">Кол-во главных и  соседних сот, к которым может подключиться телефон.</string>
+    <string name="mail_help_last_number_of_cells_description">Кол-во главных и соседних сот, к которым может подключиться телефон.</string>
     <string name="main_help_last_network_type_title">Тип сети</string>
     <string name="main_help_last_network_type_description">Тип мобильной сети, к которой присоединён телефон.</string>
     <string name="main_help_last_long_cell_id_title">Полный идентификатор вышки</string>
@@ -514,4 +513,23 @@
     <string name="permission_map_denied_message">Невозможно включить карту из-за отказа в разрешении местоположения</string>
     <string name="permission_map_never_ask_again_message">Карта недоступна из-за отказа в разрешении местоположения</string>
     <string name="permission_uploader_denied_message">Загрузка отменена, т.к. нет доступа к интернету.</string>
+    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"></string>
+    <string name="main_last_cell_id_rnc_value" translatable="false"></string>
+    <string name="export_format_csv" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_1" translatable="false"></string>
+    <string name="main_last_signal_strength_value" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false"></string>
+    <string name="export_format_gpx" translatable="false"></string>
+    <string name="main_last_number_of_cells_value" translatable="false"></string>
+    <string name="ocid_name" translatable="false"></string>
+    <string name="main_last_longitude_value" translatable="false"></string>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false"></string>
+    <string name="uploader_result_description" translatable="false"></string>
+    <string name="export_format_kmz" translatable="false"></string>
+    <string name="main_last_gps_accuracy_value" translatable="false"></string>
+    <string name="export_format_kml" translatable="false"></string>
+    <string name="mls_name" translatable="false"></string>
+    <string name="uploader_result_message" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_17" translatable="false"></string>
+    <string name="main_last_latitude_value" translatable="false"></string>
 </resources>
