@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. --><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="locale">uk</string>
     <string name="shortcut_collecting_toggle_short">Збирати</string>
     <string name="shortcut_collecting_toggle_long">Переключити збір</string>
@@ -47,7 +46,7 @@
     <string name="dialog_settings">Налаштування</string>
     <string name="main_dialog_not_compatible_title">Проблеми сумісності</string>
     <string name="main_dialog_not_compatible_begin">Додаток може не працювати, оскільки:</string>
-    <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Мобільна мережеве обладнання не виявлено.</string>
+    <string name="main_dialog_no_compatible_mobile_radio_message">• Мобільна мережеве обладнання не виявлено.</string>
     <string name="main_toast_background_task_already_running_collector">Колекторська служба</string>
     <string name="main_toast_background_task_already_running_uploader">Завдання завантажувача</string>
     <string name="main_toast_background_task_already_running_export">Експортне завдання</string>
@@ -119,8 +118,8 @@
     <string name="uploader_notification_progress_info">Завантажено <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
     <string name="uploader_result_dialog_title">Результат вивантаження</string>
     <string name="uploader_dialog_progress_title">Вивантаження</string>
-    <string name="uploader_starting">Початок вивантаження&#8230;</string>
-    <string name="uploader_aborting">Зупиняємо вивантаження&#8230;</string>
+    <string name="uploader_starting">Початок вивантаження…</string>
+    <string name="uploader_aborting">Зупиняємо вивантаження…</string>
     <string name="uploader_already_running">Вивантаження вже працює.</string>
     <string name="uploader_disabled">Завантаження вимкнено</string>
     <string name="uploader_disabled_description">Завантаження вимкнено для цього проекту.</string>
@@ -156,8 +155,8 @@
     <string name="export_notification_channel_name">Експорт</string>
     <string name="export_notification_title">Експорт</string>
     <string name="export_notification_progress_info">Експортується <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
-    <string name="export_starting">Початок експорту&#8230;</string>
-    <string name="export_aborting">Скасування експорту&#8230;</string>
+    <string name="export_starting">Початок експорту…</string>
+    <string name="export_aborting">Скасування експорту…</string>
     <string name="export_toast_no_file_types_selected">Для експорту не вибрано типів файлів.</string>
     <string name="export_toast_no_handler_for_file_type">Немає програми для обробки формату файлу.</string>
     <string name="export_dialog_format_selection_title">Виберіть формати файлів</string>
@@ -410,7 +409,7 @@
     <string name="preferences_notify_measurements_collected_title">Повідомити про зібрані вимірювання</string>
     <string name="preferences_notify_measurements_collected_on_summary">Інші додатки будуть повідомлені про зібрані виміри. Більш детальна інформація нижче.</string>
     <string name="preferences_notify_measurements_collected_off_summary">Повідомлення в інші додатки про зібрані вимірах відключені. Більш детальна інформація нижче.</string>
-    <string name="preferences_about_notify_measurements_collected_title">Про що повідомляється в  зібраних вимірюваннях</string>
+    <string name="preferences_about_notify_measurements_collected_title">Про що повідомляється в зібраних вимірюваннях</string>
     <string name="preferences_about_notify_measurements_collected_summary">Інформація про зібрані виміри повідомлятиметься іншим додаткам.</string>
     <string name="preferences_main_keep_screen_on_title">Не засинати</string>
     <string name="preferences_main_keep_screen_on_on_summary">Екран буде постійно увімкненим, коли відображається головний екран додатку</string>
@@ -514,4 +513,23 @@
     <string name="permission_map_denied_message">Карту неможливо ввімкнути через відмову в дозволі розташування</string>
     <string name="permission_map_never_ask_again_message">Карта недоступна через відмову в дозволі розташування</string>
     <string name="permission_uploader_denied_message">Вивантаження скасовано через відмову у дозволі на Інтернет.</string>
+    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"></string>
+    <string name="main_last_cell_id_rnc_value" translatable="false"></string>
+    <string name="export_format_csv" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_1" translatable="false"></string>
+    <string name="main_last_signal_strength_value" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false"></string>
+    <string name="export_format_gpx" translatable="false"></string>
+    <string name="main_last_number_of_cells_value" translatable="false"></string>
+    <string name="ocid_name" translatable="false"></string>
+    <string name="main_last_longitude_value" translatable="false"></string>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false"></string>
+    <string name="uploader_result_description" translatable="false"></string>
+    <string name="export_format_kmz" translatable="false"></string>
+    <string name="main_last_gps_accuracy_value" translatable="false"></string>
+    <string name="export_format_kml" translatable="false"></string>
+    <string name="mls_name" translatable="false"></string>
+    <string name="uploader_result_message" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_17" translatable="false"></string>
+    <string name="main_last_latitude_value" translatable="false"></string>
 </resources>
