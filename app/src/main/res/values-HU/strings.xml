@@ -467,14 +467,10 @@
     <string name="preferences_keep_screen_on_mode_disabled">Kikapcsolva</string>
     <string name="preferences_keep_screen_on_mode_dim">Halványítás</string>
     <string name="preferences_keep_screen_on_mode_full">Teljes fényerő</string>
-    <string-array name="preferences_collector_low_battery_action_entries_labels">
-        <item>Ne tegyen semmit</item>
-        <item>Adatgyűjtés leállítása</item>
-    </string-array>
-    <string-array name="preferences_app_theme_mode_entries_labels">
-        <item>Sötét</item>
-        <item>Világos</item>
-    </string-array>
+    <string name="preferences_collector_low_battery_action_nothing">Ne tegyen semmit</string>
+    <string name="preferences_collector_low_battery_action_stop">Adatgyűjtés leállítása</string>
+    <string name="preferences_app_theme_mode_dark">Sötét</string>
+    <string name="preferences_app_theme_mode_light">Világos</string>
     <string name="preferences_collector_api_version_auto">Automatikus érzékelés</string>
     <string name="preferences_file_logging_level_disabled">Kikapcsolva</string>
     <string name="preferences_file_logging_level_debug">Hibakeresés</string>

@@ -467,14 +467,10 @@
     <string name="preferences_keep_screen_on_mode_disabled">Deaktiviert</string>
     <string name="preferences_keep_screen_on_mode_dim">Gedimmt</string>
     <string name="preferences_keep_screen_on_mode_full">Volle Helligkeit</string>
-    <string-array name="preferences_collector_low_battery_action_entries_labels">
-        <item>Keine Aktion</item>
-        <item>Erfassung stoppen</item>
-    </string-array>
-    <string-array name="preferences_app_theme_mode_entries_labels">
-        <item>Dunkel</item>
-        <item>Hell</item>
-    </string-array>
+    <string name="preferences_collector_low_battery_action_nothing">Keine Aktion</string>
+    <string name="preferences_collector_low_battery_action_stop">Erfassung stoppen</string>
+    <string name="preferences_app_theme_mode_dark">Dunkel</string>
+    <string name="preferences_app_theme_mode_light">Hell</string>
     <string name="preferences_collector_api_version_auto">Automatisch</string>
     <string name="preferences_file_logging_level_disabled">Deaktiviert</string>
     <string name="preferences_file_logging_level_debug">Debug</string>

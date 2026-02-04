@@ -467,14 +467,10 @@
     <string name="preferences_keep_screen_on_mode_disabled">Devre dışı</string>
     <string name="preferences_keep_screen_on_mode_dim">Ekran kısık</string>
     <string name="preferences_keep_screen_on_mode_full">Tam parlaklık</string>
-    <string-array name="preferences_collector_low_battery_action_entries_labels">
-        <item>hiçbir şey</item>
-        <item>Toplama yapma</item>
-    </string-array>
-    <string-array name="preferences_app_theme_mode_entries_labels">
-        <item>Koyu</item>
-        <item>Açık</item>
-    </string-array>
+    <string name="preferences_collector_low_battery_action_nothing">Hiçbir şey</string>
+    <string name="preferences_collector_low_battery_action_stop">Toplama yapma</string>
+    <string name="preferences_app_theme_mode_dark">Koyu</string>
+    <string name="preferences_app_theme_mode_light">Açık</string>
     <string name="preferences_collector_api_version_auto">Otomatik algılama</string>
     <string name="preferences_file_logging_level_disabled">Kapalı</string>
     <string name="preferences_file_logging_level_debug">Ayıklama</string>

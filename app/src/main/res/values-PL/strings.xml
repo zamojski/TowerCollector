@@ -467,14 +467,10 @@
     <string name="preferences_keep_screen_on_mode_disabled">Wyłączony</string>
     <string name="preferences_keep_screen_on_mode_dim">Ściemniony</string>
     <string name="preferences_keep_screen_on_mode_full">Pełna jasność</string>
-    <string-array name="preferences_collector_low_battery_action_entries_labels">
-        <item>Nic</item>
-        <item>Zatrzymaj zbieranie</item>
-    </string-array>
-    <string-array name="preferences_app_theme_mode_entries_labels">
-        <item>Ciemny</item>
-        <item>Jasny</item>
-    </string-array>
+    <string name="preferences_collector_low_battery_action_nothing">Nic</string>
+    <string name="preferences_collector_low_battery_action_stop">Zatrzymaj zbieranie</string>
+    <string name="preferences_app_theme_mode_dark">Ciemny</string>
+    <string name="preferences_app_theme_mode_light">Jasny</string>
     <string name="preferences_collector_api_version_auto">Wykryj automatycznie</string>
     <string name="preferences_file_logging_level_disabled">Wyłączone</string>
     <string name="preferences_file_logging_level_debug">Diagnostyka</string>

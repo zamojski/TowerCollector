@@ -467,14 +467,10 @@
     <string name="preferences_keep_screen_on_mode_disabled">已禁用</string>
     <string name="preferences_keep_screen_on_mode_dim">黯淡</string>
     <string name="preferences_keep_screen_on_mode_full">全亮度</string>
-    <string-array name="preferences_collector_low_battery_action_entries_labels">
-        <item>无动作</item>
-        <item>停止收集</item>
-    </string-array>
-    <string-array name="preferences_app_theme_mode_entries_labels">
-        <item>深黑</item>
-        <item>浅色</item>
-    </string-array>
+    <string name="preferences_collector_low_battery_action_nothing">无动作</string>
+    <string name="preferences_collector_low_battery_action_stop">停止收集</string>
+    <string name="preferences_app_theme_mode_dark">深黑</string>
+    <string name="preferences_app_theme_mode_light">浅色</string>
     <string name="preferences_collector_api_version_auto">自动检测</string>
     <string name="preferences_file_logging_level_disabled">已禁用</string>
     <string name="preferences_file_logging_level_debug">调试</string>

@@ -467,14 +467,10 @@
     <string name="preferences_keep_screen_on_mode_disabled">Désactivé</string>
     <string name="preferences_keep_screen_on_mode_dim">Atténué</string>
     <string name="preferences_keep_screen_on_mode_full">Luminosité maximale</string>
-    <string-array name="preferences_collector_low_battery_action_entries_labels">
-        <item>Rien</item>
-        <item>Arrêter le collecteur</item>
-    </string-array>
-    <string-array name="preferences_app_theme_mode_entries_labels">
-        <item>Foncé</item>
-        <item>Clair</item>
-    </string-array>
+    <string name="preferences_collector_low_battery_action_nothing">Rien</string>
+    <string name="preferences_collector_low_battery_action_stop">Arrêter le collecteur</string>
+    <string name="preferences_app_theme_mode_dark">Foncé</string>
+    <string name="preferences_app_theme_mode_light">Clair</string>
     <string name="preferences_collector_api_version_auto">Détection automatique</string>
     <string name="preferences_file_logging_level_disabled">Désactivé</string>
     <string name="preferences_file_logging_level_debug">Déboguer</string>

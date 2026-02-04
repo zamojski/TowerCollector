@@ -467,14 +467,10 @@
     <string name="preferences_keep_screen_on_mode_disabled">Desabilitado</string>
     <string name="preferences_keep_screen_on_mode_dim">Escurecido</string>
     <string name="preferences_keep_screen_on_mode_full">Brilho total</string>
-    <string-array name="preferences_collector_low_battery_action_entries_labels">
-        <item>Nada</item>
-        <item>Parar a coleta</item>
-    </string-array>
-    <string-array name="preferences_app_theme_mode_entries_labels">
-        <item>Escuro</item>
-        <item>Claro</item>
-    </string-array>
+    <string name="preferences_collector_low_battery_action_nothing">Nada</string>
+    <string name="preferences_collector_low_battery_action_stop">Parar a coleta</string>
+    <string name="preferences_app_theme_mode_dark">Escuro</string>
+    <string name="preferences_app_theme_mode_light">Claro</string>
     <string name="preferences_collector_api_version_auto">Autodetecção</string>
     <string name="preferences_file_logging_level_disabled">Desabilitado</string>
     <string name="preferences_file_logging_level_debug">Debug</string>

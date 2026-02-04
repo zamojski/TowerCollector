@@ -467,14 +467,10 @@
     <string name="preferences_keep_screen_on_mode_disabled">מושבת</string>
     <string name="preferences_keep_screen_on_mode_dim">מעומעם</string>
     <string name="preferences_keep_screen_on_mode_full">בהירות מלאה</string>
-    <string-array name="preferences_collector_low_battery_action_entries_labels">
-        <item>שום דבר</item>
-        <item>לעצור את האיסוף</item>
-    </string-array>
-    <string-array name="preferences_app_theme_mode_entries_labels">
-        <item>כהה</item>
-        <item>בהיר</item>
-    </string-array>
+    <string name="preferences_collector_low_battery_action_nothing">שום דבר</string>
+    <string name="preferences_collector_low_battery_action_stop">לעצור את האיסוף</string>
+    <string name="preferences_app_theme_mode_dark">כהה</string>
+    <string name="preferences_app_theme_mode_light">בהיר</string>
     <string name="preferences_collector_api_version_auto">זיהוי אוטומטי</string>
     <string name="preferences_file_logging_level_disabled">מושבת</string>
     <string name="preferences_file_logging_level_debug">ניפוי שגיאות</string>

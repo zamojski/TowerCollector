@@ -467,14 +467,10 @@
     <string name="preferences_keep_screen_on_mode_disabled">Вимкнено</string>
     <string name="preferences_keep_screen_on_mode_dim">Затемнений</string>
     <string name="preferences_keep_screen_on_mode_full">Повна яскравість</string>
-    <string-array name="preferences_collector_low_battery_action_entries_labels">
-        <item>Нічого не робити</item>
-        <item>Припиніть збирати</item>
-    </string-array>
-    <string-array name="preferences_app_theme_mode_entries_labels">
-        <item>темний</item>
-        <item>яскравий</item>
-    </string-array>
+    <string name="preferences_collector_low_battery_action_nothing">Нічого не робити</string>
+    <string name="preferences_collector_low_battery_action_stop">Припиніть збирати</string>
+    <string name="preferences_app_theme_mode_dark">темний</string>
+    <string name="preferences_app_theme_mode_light">яскравий</string>
     <string name="preferences_collector_api_version_auto">Автовизначення</string>
     <string name="preferences_file_logging_level_disabled">Вимкнено</string>
     <string name="preferences_file_logging_level_debug">Відлагоджувати</string>

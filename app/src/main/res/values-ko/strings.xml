@@ -467,14 +467,10 @@
     <string name="preferences_keep_screen_on_mode_disabled">비활성화</string>
     <string name="preferences_keep_screen_on_mode_dim">어둡게</string>
     <string name="preferences_keep_screen_on_mode_full">최대 밝기</string>
-    <string-array name="preferences_collector_low_battery_action_entries_labels">
-        <item>아무것도 안함</item>
-        <item>수집 중단</item>
-    </string-array>
-    <string-array name="preferences_app_theme_mode_entries_labels">
-        <item>다크 모드</item>
-        <item>라이트 모드</item>
-    </string-array>
+    <string name="preferences_collector_low_battery_action_nothing">아무것도 안함</string>
+    <string name="preferences_collector_low_battery_action_stop">수집 중단</string>
+    <string name="preferences_app_theme_mode_dark">다크 모드</string>
+    <string name="preferences_app_theme_mode_light">라이트 모드</string>
     <string name="preferences_collector_api_version_auto">자동 감지</string>
     <string name="preferences_file_logging_level_disabled">비활성화</string>
     <string name="preferences_file_logging_level_debug">Debug</string>

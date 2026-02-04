@@ -467,14 +467,10 @@
     <string name="preferences_keep_screen_on_mode_disabled">Deshabilitado</string>
     <string name="preferences_keep_screen_on_mode_dim">Atenuado</string>
     <string name="preferences_keep_screen_on_mode_full">Brillo máximo</string>
-    <string-array name="preferences_collector_low_battery_action_entries_labels">
-        <item>Hacer nada</item>
-        <item>Detener recolectar</item>
-    </string-array>
-    <string-array name="preferences_app_theme_mode_entries_labels">
-        <item>Oscuro</item>
-        <item>Claro</item>
-    </string-array>
+    <string name="preferences_collector_low_battery_action_nothing">Hacer nada</string>
+    <string name="preferences_collector_low_battery_action_stop">Detener recolectar</string>
+    <string name="preferences_app_theme_mode_dark">Oscuro</string>
+    <string name="preferences_app_theme_mode_light">Claro</string>
     <string name="preferences_collector_api_version_auto">Autodetectar</string>
     <string name="preferences_file_logging_level_disabled">Deshabilitado</string>
     <string name="preferences_file_logging_level_debug">Diagnósticos</string>
