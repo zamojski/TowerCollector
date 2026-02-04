@@ -1,0 +1,10 @@
+[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
+[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
+[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+Tower Collector is a perfect app for OpenCellID and BeaconDB contributors who want to support the projects with measurements from their area. It is good to know what is the right way to collect the most valuable measurements during walks and trips.
+
+- מוטב להימנע מהליכה קדימה ואחורה באותה הדרך בכל יום. מספר גדול של מדידות כפולות אינו מועיל במיוחד.
+- כדאי לנסות למפות מקומות חדשים, במיוחד כאלו שלא נהוג לבקר בהם כיוון שהם בדרך כלל אינם מכוסים היטב. אנטנות רבות לאורך רחובות ראשיים כבר מופו.
+- מדי פעם בפעם כדאי לצאת לסיבוב פעם נוספת כדי לאסוף נתוני אנטנות סלולריות חדשות שעשויות להופיע באזורך.
+- אפשר לאסוף נתונים מכל סוגי הרשתות בהן המכשיר שלך תומך, למשל GSM,‏ UMTS,‏ LTE,‏ CDMA,‏ 5G NR,‏ TD-SCDMA וכו׳. ניתן להגיע לכך על ידי שינוי סוגי הרשתות המועדפים בהגדרות ה־Android.
+- מוטב להשתמש בכרטיסי SIM של מגוון ספקיות רשת כדי לכסות את האזור שלך בצורה הטובה ביותר.

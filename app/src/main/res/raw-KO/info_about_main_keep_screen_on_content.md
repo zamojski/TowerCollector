@@ -1,0 +1,6 @@
+[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
+[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
+[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+기본 화면이 표시될 때 화면을 최대 밝기로 유지하려면 이 옵션을 사용합니다. 화면을 떠나거나 다른 앱으로 전환하면 Android에서 정의한 화면 밝기로 복원됩니다. 활성화 하면 배터리 소모가 크게 증가합니다.
+
+데이터를 수집할 때 항상 화면을 켜려면 설정의 수집 섹션을 참조하세요.

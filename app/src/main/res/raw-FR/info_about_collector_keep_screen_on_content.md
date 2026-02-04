@@ -1,0 +1,8 @@
+[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
+[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
+[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+Utilisez cette option pour garder l\'écran allumé au niveau de luminosité sélectionné lors de la collecte des mesures. L\'écran restera allumé même si vous passez à une autre application ou si vous essayez d\'éteindre le téléphone. L\'activation de cette option réduira fortement la charge de la batterie.
+
+Peut être utilisé como solution pour tenir à jour les détails de la puissance des cellules et du signal sur certains appareils avec l'API Android 1.0.
+
+Pour garder l'écran allumé quand l'écran principal est visible, voir option dans la section Affichage.

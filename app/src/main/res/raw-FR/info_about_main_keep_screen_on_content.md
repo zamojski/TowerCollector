@@ -1,0 +1,6 @@
+[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
+[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
+[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+Utilisez cette option pour garder l\'écran à pleine luminosité lorsque l\'écran principal est présenté sur le périphérique. Une fois que vous quittez l\'écran ou que vous passez à une autre application, le comportement défini par Android sera restauré. L\'activation réduira considérablement la durée de vie de la batterie.
+
+Pour garder l'écran allumé tout le temps lors de la collecte des mesures, voir l'option dans la section collecteur.

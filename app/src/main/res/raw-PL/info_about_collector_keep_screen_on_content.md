@@ -1,0 +1,8 @@
+[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
+[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
+[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+Skorzystaj z tej opcji, aby podczas zbierania pozostawić ekran włączony na wybranym poziomie jasności. Ekran pozostanie włączony, nawet gdy przejdziesz do innej aplikacji lub wygasisz go za pomocą wyłącznika. Włączenie skutkuje znaczącym skróceniem czasu pracy na baterii.
+
+Opcja może zostać wykorzystana jako obejście problemu braku odświeżania informacji o przekaźniku i sile sygnału podczas korzystania z API Androida 1.0.
+
+Aby utrzymywać ekran włączony tylko, gdy widoczny jest główny ekran aplikacji, zobacz opcję w sekcji Wyświetlanie.

@@ -1,0 +1,10 @@
+[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
+[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
+[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+You can decide what method will be used to get cell tower details when collecting measurements.
+
+*It is strongly recommended to use the latest available to get more reliable data. Selection is disabled on devices running Android 4.1 and earlier.*
+
+* **Auto detect** - The app will automatically detect which version of API can be used and select the best option. It will use safe option if Collector started when there is no signal.
+* **Android 4.2 API** - Uses methods available on Android 4.2 and newer. These methods provide the most reliable cell info. However some manufacturers did not implement new API correctly and it may not be used on such devices. On Android 5.1 and newer cell towers from multiple SIM cards may be returned.
+* **Android 1.0 API** - Uses a set of methods available since first version of Android. These methods may return unreliable data for LTE and UMTS networks. Depending on the device, this method may require the screen to remain on while collecting to keep cell info updated correctly.

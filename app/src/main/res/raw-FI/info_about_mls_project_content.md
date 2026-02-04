@@ -1,0 +1,6 @@
+[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
+[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
+[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+BeaconDB on julkinen tietokanta, joka kerää sijaintitietoja yleisestä langattomasta infrastruktuurista (solutorneista, WiFi-tukipisteistä, Bluetooth-majakoista). Antamasi solutornitiedot kootaan ja julkaistaan ​​Creative Commons (CC-0) -lisenssin alaisena.
+
+Tower Collector antaa sinulle mahdollisuuden osallistua BeaconDB-projektiin lataamalla solutorneja alueeltasi. [Lisätietoja.](https://beacondb.net/)

@@ -1,0 +1,6 @@
+[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
+[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
+[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+BeaconDB - це загальнодоступна база даних, яка збирає інформацію про місцезнаходження загальної бездротової інфраструктури (стільникові вежі, точки доступу WiFi, маяки Bluetooth). Дані про вежі стільникового зв’язку, які ви надаєте, збиратимуться та оприлюднюються за ліцензією «Creative Commons (CC-0)».
+
+Tower Collector дає вам можливість зробити внесок у проект BeaconDB, завантажуючи вежі стільникового зв’язку з вашого регіону. [Докладніше.](https://beacondb.net/)
