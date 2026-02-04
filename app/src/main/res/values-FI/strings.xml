@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. --><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="locale">fi</string>
     <string name="shortcut_collecting_toggle_short">Kerää</string>
     <string name="shortcut_collecting_toggle_long">Vipukytke keräilyä</string>
@@ -47,7 +46,7 @@
     <string name="dialog_settings">Asetukset</string>
     <string name="main_dialog_not_compatible_title">Yhteensopivuusongelmia</string>
     <string name="main_dialog_not_compatible_begin">Sovellus ei ehkä toimi koska:\n</string>
-    <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Mobiiliverkkolaitteistoa ei havaittu.\n</string>
+    <string name="main_dialog_no_compatible_mobile_radio_message">• Mobiiliverkkolaitteistoa ei havaittu.\n</string>
     <string name="main_toast_background_task_already_running_collector">Keräilijäpalvelu</string>
     <string name="main_toast_background_task_already_running_uploader">Lataajan tehtävä</string>
     <string name="main_toast_background_task_already_running_export">Vie tehtävä</string>
@@ -119,8 +118,8 @@
     <string name="uploader_notification_progress_info">Lähetetty <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
     <string name="uploader_result_dialog_title">Lähetä tulos</string>
     <string name="uploader_dialog_progress_title">Lähetetään</string>
-    <string name="uploader_starting">Aloitetaan lähettäminen&#8230;</string>
-    <string name="uploader_aborting">Keskeytetään lähetys&#8230;</string>
+    <string name="uploader_starting">Aloitetaan lähettäminen…</string>
+    <string name="uploader_aborting">Keskeytetään lähetys…</string>
     <string name="uploader_already_running">Lähetys on jo käynnissä.</string>
     <string name="uploader_disabled">Lähetys pois käytöstä</string>
     <string name="uploader_disabled_description">Lähetys poistettu käytöstä tässä projektissa.</string>
@@ -156,8 +155,8 @@
     <string name="export_notification_channel_name">Vie</string>
     <string name="export_notification_title">Vienti</string>
     <string name="export_notification_progress_info">Viety <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
-    <string name="export_starting">Aloitetaan vienti&#8230;</string>
-    <string name="export_aborting">Keskeytetään vienti&#8230;</string>
+    <string name="export_starting">Aloitetaan vienti…</string>
+    <string name="export_aborting">Keskeytetään vienti…</string>
     <string name="export_toast_no_file_types_selected">Tiedostotyyppejä ei ole valittu vietäväksi.</string>
     <string name="export_toast_no_handler_for_file_type">Tiedostoa käsittelevä sovellus puuttuu</string>
     <string name="export_dialog_format_selection_title">Valitse tiedostomuodot</string>
@@ -514,4 +513,23 @@
     <string name="permission_map_denied_message">Karttaa ei voi ottaa käyttöön, koska sijaintilupa on evätty.</string>
     <string name="permission_map_never_ask_again_message">Kartta ei ole käytettävissä, koska sijaintilupa on evätty.</string>
     <string name="permission_uploader_denied_message">Lähetys peruutettu evätyn internet-luvan vuoksi.</string>
+    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"></string>
+    <string name="main_last_cell_id_rnc_value" translatable="false"></string>
+    <string name="export_format_csv" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_1" translatable="false"></string>
+    <string name="main_last_signal_strength_value" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false"></string>
+    <string name="export_format_gpx" translatable="false"></string>
+    <string name="main_last_number_of_cells_value" translatable="false"></string>
+    <string name="ocid_name" translatable="false"></string>
+    <string name="main_last_longitude_value" translatable="false"></string>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false"></string>
+    <string name="uploader_result_description" translatable="false"></string>
+    <string name="export_format_kmz" translatable="false"></string>
+    <string name="main_last_gps_accuracy_value" translatable="false"></string>
+    <string name="export_format_kml" translatable="false"></string>
+    <string name="mls_name" translatable="false"></string>
+    <string name="uploader_result_message" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_17" translatable="false"></string>
+    <string name="main_last_latitude_value" translatable="false"></string>
 </resources>
