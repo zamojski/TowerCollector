@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. --><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="locale">de</string>
     <string name="shortcut_collecting_toggle_short">Sammeln</string>
     <string name="shortcut_collecting_toggle_long">Sammeln ein/aus</string>
@@ -47,7 +46,7 @@
     <string name="dialog_settings">Einstellungen</string>
     <string name="main_dialog_not_compatible_title">Kompatibilitätsprobleme</string>
     <string name="main_dialog_not_compatible_begin">Diese App funktioniert eventuell nicht weil:</string>
-    <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Keine Mobilfunkhardware gefunden wurde.</string>
+    <string name="main_dialog_no_compatible_mobile_radio_message">• Keine Mobilfunkhardware gefunden wurde.</string>
     <string name="main_toast_background_task_already_running_collector">Sammlerservice</string>
     <string name="main_toast_background_task_already_running_uploader">Uploader-Aufgabe</string>
     <string name="main_toast_background_task_already_running_export">Aufgabe exportieren</string>
@@ -119,8 +118,8 @@
     <string name="uploader_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% hochgeladen.</string>
     <string name="uploader_result_dialog_title">Upload Ergebnis</string>
     <string name="uploader_dialog_progress_title">hochladen</string>
-    <string name="uploader_starting">Starte Upload&#8230;</string>
-    <string name="uploader_aborting">Upload abbrechen&#8230;</string>
+    <string name="uploader_starting">Starte Upload…</string>
+    <string name="uploader_aborting">Upload abbrechen…</string>
     <string name="uploader_already_running">Upload läuft bereits.</string>
     <string name="uploader_disabled">Upload deaktiviert</string>
     <string name="uploader_disabled_description">Upload deaktiviert für dieses Projekt</string>
@@ -156,8 +155,8 @@
     <string name="export_notification_channel_name">Export</string>
     <string name="export_notification_title">Exportieren</string>
     <string name="export_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% exportiert.</string>
-    <string name="export_starting">Export starten&#8230;</string>
-    <string name="export_aborting">Abbruch des Exports&#8230;</string>
+    <string name="export_starting">Export starten…</string>
+    <string name="export_aborting">Abbruch des Exports…</string>
     <string name="export_toast_no_file_types_selected">Kein Dateityp für Export ausgewählt</string>
     <string name="export_toast_no_handler_for_file_type">Keine App für dieses Dateiformat gefunden.</string>
     <string name="export_dialog_format_selection_title">Gewünschtes Dateiformat</string>
@@ -346,7 +345,7 @@
     <string name="preferences_custom_mls_enabled_on_summary">Die Messungen werden auf den unten definierten BeaconDB-kompatiblen Dienst hochgeladen.</string>
     <string name="preferences_custom_mls_enabled_off_summary">Die Messungen werden zum offiziellen BeaconDB-Dienst hochgeladen.</string>
     <string name="preferences_custom_mls_url_title">Benutzerdefinierte BeaconDB-Dienstadresse</string>
-    <string name="preferences_custom_mls_url_summary">Geben Sie dem benutzerdefinierten Server die Adresse einschließlich aller erforderlichen Parameter an, z. B.: \"https://example.com/geosubmit?optionalParameter=value\"</string>
+    <string name="preferences_custom_mls_url_summary">Geben Sie dem benutzerdefinierten Server die Adresse einschließlich aller erforderlichen Parameter an, z. B.: \"https://example.com/geosubmit?optionalParameter=value\"</string>
     <string name="preferences_custom_mls_url_invalid">Die eingegebene benutzerdefinierte BeaconDB-Adresse ist ungültig.</string>
     <string name="preferences_about_mls_project_title">Über BeaconDB</string>
     <string name="preferences_about_mls_project_summary">Informationen über die BeaconDB.</string>
@@ -356,7 +355,7 @@
     <string name="preferences_app_theme_title">Farbschema</string>
     <string name="preferences_app_theme_summary">Legt das Farbschema der App fest.</string>
     <string name="preferences_collector_keep_screen_on_title">Bildschirm immer an während Erfassung</string>
-    <string name="preferences_collector_keep_screen_on_summary">Legt fest ob Bildschirm während der Erfassung ständig aktiviert ist.  Das Aktivieren dieser Option erhöht drastisch den Akkuverbrauch.</string>
+    <string name="preferences_collector_keep_screen_on_summary">Legt fest ob Bildschirm während der Erfassung ständig aktiviert ist. Das Aktivieren dieser Option erhöht drastisch den Akkuverbrauch.</string>
     <string name="preferences_export_compression_format_title">Dateiformat</string>
     <string name="preferences_export_compression_format_summary">Format der komprimierten Dateien</string>
     <string name="preferences_tracking_enabled_title">Benutzungsstatistiken senden</string>
@@ -514,4 +513,23 @@
     <string name="permission_map_denied_message">Karte kann nicht aktiviert werden da Standortzugriff nicht erlaubt wurde.</string>
     <string name="permission_map_never_ask_again_message">Karte kann wegen verweigerterm Standortzugriff nicht verfügbar.</string>
     <string name="permission_uploader_denied_message">Upload abgebrochen wegen fehlender Berechtigung für Internet-Zugriff</string>
+    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"></string>
+    <string name="main_last_cell_id_rnc_value" translatable="false"></string>
+    <string name="export_format_csv" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_1" translatable="false"></string>
+    <string name="main_last_signal_strength_value" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false"></string>
+    <string name="export_format_gpx" translatable="false"></string>
+    <string name="main_last_number_of_cells_value" translatable="false"></string>
+    <string name="ocid_name" translatable="false"></string>
+    <string name="main_last_longitude_value" translatable="false"></string>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false"></string>
+    <string name="uploader_result_description" translatable="false"></string>
+    <string name="export_format_kmz" translatable="false"></string>
+    <string name="main_last_gps_accuracy_value" translatable="false"></string>
+    <string name="export_format_kml" translatable="false"></string>
+    <string name="mls_name" translatable="false"></string>
+    <string name="uploader_result_message" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_17" translatable="false"></string>
+    <string name="main_last_latitude_value" translatable="false"></string>
 </resources>
