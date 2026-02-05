@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 BeaconDB — это общедоступная база данных, которая собирает информацию о местоположении общей беспроводной инфраструктуры (вышки сотовой связи, точки доступа Wi-Fi, маяки Bluetooth). Внесенные вами данные о вышках сотовой связи будут объединены и опубликованы в соответствии с лицензией «Creative Commons (CC-0)».
 
 Tower Collector дает вам возможность внести свой вклад в проект BeaconDB, загружая вышки сотовой связи из вашего региона. [Дополнительная информация.](https://beacondb.net/)

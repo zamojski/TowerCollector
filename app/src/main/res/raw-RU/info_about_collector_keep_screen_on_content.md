@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Используйте эту опцию, чтобы установить уровень яркости во время сбора измерений. Экран будет подсвечен, даже если вы переключитесь на другое приложение. Чтобы его выключить попробуйте использовать кнопку питания. Включение данной опции будет быстрее разряжать батарею.
 
 Это может быть использовано, чтобы обновлять информацию о силе сигнала и GSM-соте на некоторых устройствах, использующих Android 1.0 API.

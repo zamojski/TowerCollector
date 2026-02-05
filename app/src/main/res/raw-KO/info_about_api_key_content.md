@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 액세스 토큰(API Key)은 사용자가 수집한 데이터를 OpenCellID에 업로드할 수 있는 권한을 확인할 때 사용하는 특수한 문자열입니다.
 
 올바른 키 형식은 숫자 0~9, 문자 a~f로 구성되어야 합니다. 등록한 날짜에 다라 키 형식은 다음과 같을 수 있습니다.

@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Сусідні соти - це клітини, визначені оператором мобільної мережі, розташовані поруч із сотою, до якої телефон підключено. Сусідні клітини можуть бути не настільки надійними, як основна клітина, і можуть змінюватися в будь-який час.
 
 Наявність сусідніх комірок залежить від пристрою, типу мережі, оператора мережі та стільникової мережі

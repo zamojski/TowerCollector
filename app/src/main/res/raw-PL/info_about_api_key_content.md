@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Klucz dostępu (klucz API) to specjalny ciąg znaków używany do autoryzacji użytkownika w celu przesłania próbek do bazy OpenCellID
 
 Poprawny klucz musi składać się z cyfr 0-9 i liter a-f. W zależności od daty rejestracji format klucza może wyglądać następująco:

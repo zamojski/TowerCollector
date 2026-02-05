@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Tower Collector公开由发送 *intents* 的其他应用程序运行的任务，如Tasker，Automate或Llama。 您需要为下面定义的所有活动使用*Broadcast* 类型。 有关如何进行此类集成的更多信息，请检查应用程序是否有帮助。
 *在应用中，您不能同时启动多个任务！*
 

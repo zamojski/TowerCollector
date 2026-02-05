@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Статистика використання - це форма анонімного зворотного зв\'язку. Це допомагає розробнику краще зрозуміти, як застосовується додаток, як швидко це відбувається та які найпопулярніші функції. За допомогою такого роду знань набагато простіше поліпшити загальну продуктивність та зручність роботи користувачів.
 
 Колектор відслідковує та звітує наступні види даних:

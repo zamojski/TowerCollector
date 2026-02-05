@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Вы можете решить какой из методов будет использоваться для получения информации о вышке во время сбора измерений.
 
 *Очень рекомендуется использовать последний доступный для сбора большего числа данных. Секция недоступна на устройствах под управлением Android 4.1 и ранее.*

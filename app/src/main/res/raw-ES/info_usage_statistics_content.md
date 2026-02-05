@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Las estadísticas de uso es una forma de retroalimentación anónima. Ayuda al desarrollador a comprender mejor como es que está siendo usada la aplicación, que tan rápida es y cuales son sus características más populares. Con este conocimiento es mucho más sencillo mejorar el rendimiento, la usabilidad y la experiencia de usuario.
 
 Tower Collector revisa y reporta los siguientes datos:

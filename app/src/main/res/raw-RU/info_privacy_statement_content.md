@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Конфиденциальность очень важна, поэтому приложение собирает и передает только необходимую информацию для предоставления услуг. Приложение НЕ собирает, не хранит и не отправляет какую-либо информацию, которая может идентифицировать вас, ваше устройство или любую другую личную информацию.
 
 **Если вы не согласны с этой политикой конфиденциальности, не устанавливайте и не удаляйте приложение. Окончательное удаление приложения с мобильного устройства равносильно прекращению использования приложения.**

@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 O Tower Collector expõe tarefas a serem executadas por outras aplicações que enviam *intents* como o Tasker, o Automate ou o Llama. Você precisa usar o tipo *Broadcast* para todas as atividades definidas abaixo. Para mais informações de como fazer essa integração verifique a ajuda dessas aplicações.
 *Como dentro do app você não pode iniciar mais de uma tarefa ao mesmo tempo!*
 

@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Você pode decidir qual método será utilizado para obter detalhes das torres celulares quando coletando medições.
 
 *É altamente recomendado que se use a última versão disponível para obter dados mais confiáveis. A seleção é desabilitada em dispositivos rodando Android 4.1 e anteriores.*

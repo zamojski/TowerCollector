@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 OpenCellID è un progetto open source, con l\'obiettivo di creare un database mondiale di CellID correlato con le posizioni GPS. I dati raccolti sono disponibili sotto la licenza "Creative Common Attribution-Share Alike 3.0 Unported".
 
 Tower Collector ti dà l'opportunità di contribuire al progetto OpenCellID caricando le torri cellulari dalla tua zona. [Ulteriori informazioni.](https://wiki.opencellid.org/wiki/What_is_OpenCellID)

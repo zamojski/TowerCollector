@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 使用情况统计信息是一种匿名形式反馈。它可以帮助开发人员更好地了解应用如何被使用，运行速度是怎样的，最流行的功能是什么。了解这些以后，就容易提高应用整体性能，可用性和服务体验。
 
 Tower Collector 跟踪并报告以下类型的数据：

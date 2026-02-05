@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Il token di accesso (chiave API) è una stringa speciale utilizzata per autorizzare l\'utente a caricare le misurazioni raccolte nel database OpenCellID.
 
 La chiave corretta deve essere composta da cifre 0-9 e lettere a-f. A seconda della data di registrazione, il formato della chiave potrebbe essere simile a questo:

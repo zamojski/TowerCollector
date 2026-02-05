@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Puoi decidere quale metodo utilizzare per ottenere i dettagli della torre cellulare quando raccogli le misure..
 
 *Si consiglia vivamente di utilizzare le ultime disponibili per ottenere dati più affidabili. La selezione è disabilitata sui dispositivi con Android 4.1 e versioni precedenti.*

@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 באפשרותך להחליט מה תהיה השיטה להשגת פרטי האנטנה בעת איסוף מדידות.
 
 מומלץ בחום להשתמש בשיטה העדכנית ביותר הזמינה שלך כדי לקבל את הנתונים האמינים ביותר. הבחירה הזאת מושבתת במכשירים שמריצים Android 4.1 ואילך.

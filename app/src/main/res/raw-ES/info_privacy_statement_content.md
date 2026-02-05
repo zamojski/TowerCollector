@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 La privacidad es muy importante, por lo que la aplicación recopila y transmite solo la información requerida para brindar los servicios. La aplicación NO recopila, almacena ni envía ninguna información que pueda identificarlo personalmente a usted, su dispositivo o cualquier otra información personal.
 
 **Si no está de acuerdo con esta política de privacidad, no instale ni desinstale la aplicación. La eliminación permanente de la aplicación del dispositivo móvil equivale a cancelar el uso de la aplicación.**

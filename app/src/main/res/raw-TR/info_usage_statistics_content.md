@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Kullanım istatistikleri, anonim bir geri bildirim biçimidir. Geliştiricinin, uygulamanın nasıl kullanıldığını, ne kadar hızlı olduğunu ve en popüler özelliklerin neler olduğunu daha iyi anlamasına yardımcı olur. Bu tür bilgilerle, genel performansı, kullanılabilirliği ve kullanıcı deneyimini iyileştirmek çok daha kolaydır.
 
 Tower Collector uygulamasının izlediği ve raporladığı veri türleri şunlardır:

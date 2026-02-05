@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 A Tower Collector olyan feladatokat ajánl ki, amelyeket más alkalmazások *szándékok* küldésével futtathatnak, ilyen például a Tasker, az Automate vagy a Llama. Az alábbiakban meghatározott összes tevékenységhez a *Broadcast* típus használata szükséges. Ellenőrizd az alkalmazás súgóját az integráció részleteivel kapcsolatban.
 *Mint az alkalmazáson belül is, egyszerre csak egy feladatot futtathatsz!*
 

@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 ניתן להשתמש באפשרות זו כדי להשאיר את המסך פעיל עם רמת בהירות מסוימת בעת איסוף מדידות. המסך יישאר פעיל אפילו בעת מעבר ליישומון אחר או בעת ניסיון לכבות אותו באמצעות כפתור הכיבוי. הפעלת התכונה תקצר את אורך חיי הסוללה באופן משמעותי.
 
 ניתן לעשות בזה שימוש כמעקף כדי להשאיר את נתוני האנטנה ועצמת הקליטה עדכניים במכשירים שעושים שימוש ב־API של Android 1.0.

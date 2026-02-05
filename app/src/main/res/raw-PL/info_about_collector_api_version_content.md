@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Możesz wybrać, jaka metoda będzie używana do odczytywania informacji o przekaźniku komórkowym w trakcie zbierania.
 
 *Wysoce zalecane jest skorzystanie z najnowszej dostępnej metody, aby uzyskać bardziej wiarygodne dane. Wybór jest niedostępny na urządzeniach z Androidem 4.1 lub starszym.*

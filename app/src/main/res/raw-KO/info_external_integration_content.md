@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Tower Collector은 Tasker, Automate, MacroDroid 또는 Llama와 같은 *Intent*를 보내는 외부 앱과 연동할 수 있습니다. 아래에 정의된 모든 활동에 대해 *Broadcast* 유형을 이용합니다. 연동을 하기 위해서 해당 앱의 도움말을 참조하세요.
 *앱과 마찬가지로 동시에 두 개 이상의 작업을 시작할 수 없습니다.*
 

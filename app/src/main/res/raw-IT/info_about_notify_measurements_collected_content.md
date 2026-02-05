@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Tower Collector può notificare ad altre app installate sul sistema trasmettendo *segnalazioni (intents)*. Per ulteriori informazioni su come raccogliere ed usare tali notifiche, controlla la guida dell\'app.
 
 ### Segnalazione delle misurazioni raccolte

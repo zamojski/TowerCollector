@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Токен доступа (API ключ) - это специальная строка, используемая для авторизации пользователя, чтобы загрузить измерения в базу OpenCellID.
 
 Корректный ключ должен состоять из цифр 0-9 и латинских букв a-f. Ключ может выглядеть так:

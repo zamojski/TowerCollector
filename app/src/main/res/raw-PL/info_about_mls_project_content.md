@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 BeaconDB jest publiczną bazą danych zbierającą informacje o infrastrukturze bezprzewodowej (przekaźnikach sieci komórkowych, punktach dostępowych WiFi, urządzeniach Bluetooth). Przesłane dane o przekaźnikach komórkowych zostaną przetworzone i udostępnione publicznie na licencji  "Creative Commons (CC-0)".
 
 Tower Collector daje ci możliwość przyłączenia się do społeczności projektu BeaconDB poprzez przesłanie informacji o przekaźnikach z twojej okolicy. [Więcej informacji.](https://beacondb.net/)

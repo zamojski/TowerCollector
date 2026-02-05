@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Статистика использования - это форма анонимной обратной связи. Это позволяет разработчику лучше понимать как используется приложение, как часто и какие наиболее востребованные функции в нём. Тем самым это позволяет улучшить интерфейс программы.
 
 Tower Collector собирает и отправляет следующие виды данных:

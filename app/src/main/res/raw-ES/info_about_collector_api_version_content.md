@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Puede decidir cual método se utilizará para obtener los detalles de la celda cuando se recolecten mediciones.
 
 *Es sumamente recomendable utilizar la más reciente para obtener datos confiables. Esta selección está deshabilitada en dispositivos que corran Android 4.1 o anteriores.*

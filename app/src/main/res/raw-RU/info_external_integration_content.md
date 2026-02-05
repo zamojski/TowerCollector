@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Tower Collector выставляет задачи, которые будут запускаться другими приложениями, посылающими *события*, например Tasker, Automate или Llama. Вы должны использовать тип *Широковещательный* для всех активностей, определённых ниже. Для более подробной информации об интеграции с другими приложениями, смотрите раздел Помощь этих приложений.
 *Как и в самом Tower Collector вы не можете запустить более одной задачи одновременно!*
 

@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Колектор сот виставляє завдання для запуску інших програм, які надсилають *intents*, як Tasker, Automate або Llama. Вам потрібно використовувати тип *Broadcast* для всіх дій, визначених нижче. Для отримання додаткової інформації про те, як зробити таку інтеграцію перевірити інструкцію програми
 *Як у додатку, ви не можете розпочати більше одного завдання одночасно!*
 

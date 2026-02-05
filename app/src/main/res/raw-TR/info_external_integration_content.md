@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Tower Collector; Tasker, Automate veya Llama gibi *intent* gönderen diğer uygulamalar tarafından çalıştırılacak görevleri ortaya çıkarır. Aşağıda tanımlanan tüm etkinlikler için *Broadcast* türünü kullanmanız gerekir. Böyle bir entegrasyonun nasıl yapılacağı hakkında daha fazla bilgi için uygulamaların yardım bölümlerini kontrol edin.
 *Uygulama içinde olduğu gibi, aynı anda birden fazla göreve başlayamazsınız!*
 

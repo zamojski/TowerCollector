@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 ל־Tower Collector יש אפשרות להודיע ליישומונים אחרים שמותקנים במערכת על ידי שידור *intents*. למידע נוסף על האזנה אליהם וצריכתם כמו התראות יש לעיין בעזרה של היישומון.
 
 ### אירוע מדידות שנאספו

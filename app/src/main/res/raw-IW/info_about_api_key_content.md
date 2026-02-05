@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 אסימון הגישה (מפתח ה־API) הוא מחרוזת מיוחדת שמשמשת לאימות המשתמש לצורך העלאת המדידות שנאספו אל מסד הנתונים של OpenCellID.
 
 המפתח הנכון חייב להיות מורכב מספרות מ־0 עד 9 ומהאותיות a עד f. בהתאם לתאריך ההרשמה מבנה המפתח אמור להיראות כך:

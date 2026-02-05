@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Tower Collector은 *intents*를 브로드캐스트하여 장치에 설치된 다른 앱에 전송할 수 있습니다. 이러한 알림을 수신하고 사용하는 방법에 대한 자세한 내용은 해당 앱의 도움말을 확인하세요.
 
 ### 데이터 수집 이벤트

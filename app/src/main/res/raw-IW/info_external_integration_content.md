@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 &rlm;Tower Collector חושף משימות שניתן להריץ על ידי יישומונים אחרים ששולחים *intents* כגון Tasker,‏ Automate או Llama. עליך להשתמש בסוג *Broadcast* (שידור) לכל הפעילויות שמוגדרות להלן. למידע נוסף על אופן הביצוע של שילוב שכזה כדאי לעיין בעזרה של היישומון.
 *כמו בתוך היישומון אין אפשרות להפעיל יותר ממשימה אחת בו־זמנית!*
 

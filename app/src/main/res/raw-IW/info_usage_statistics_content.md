@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 סטטיסטיקת שימוש היא סוג של משוב אלמוני. היא מסייעת למפתח להבין לעומק את אופן השימוש ביישומון, מה מהירות הפעולה שלו ומה הן התכונות הנפוצות ביותר. ידע שכזה מקל על שיפור הביצועים הכוללים, השימושיות ועל חוויית המשתמש.
 
 Tower Collector אוסף ומדווח על סוגי הנתונים הבאים:

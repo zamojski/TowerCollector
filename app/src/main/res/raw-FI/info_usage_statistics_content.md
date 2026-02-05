@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Käyttötilastot ovat eräänlaista anonyymiä palautetta. Niiden avulla kehittäjä ymmärtää paremmin, miten sovellusta käytetään, kuinka nopea se on ja mitkä ovat suosituimmat ominaisuudet. Tällaisen tiedon avulla on paljon helpompi parantaa yleistä suorituskykyä, käytettävyyttä ja käyttäjäkokemusta.
 
 Tower Collector seuraa ja raportoi seuraavanlaisia tietoja:

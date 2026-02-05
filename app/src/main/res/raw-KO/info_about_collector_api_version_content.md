@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 데이터를 수집 할 때 기지국 세부 정보를 얻는 데 사용할 방법을 결정할 수 있습니다.
 
 *더 신뢰할 수 있는 데이터를 얻으려면 사용 가능한 최신 방법을 사용하는 것이 좋습니다. Android 4.1 이하를 실행하는 기기에서는 선택이 비활성화 됩니다.*

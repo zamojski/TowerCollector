@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 הפרטיות שלך מאוד חשובה, לכן היישומון אוסף ומעביר רק את המידע הנחוץ כדי לספק את השירותים. היישומון לא אוסף, מאחסן או שולח מידע שיכול לזהות אותך , את המכשיר שלך או פרטים נוספים עליך באופן אישי.
 
 **אם מדיניות הפרטיות הזאת לא מקובלת עליך, נא לא להתקין או להסיר את היישומון. הסרת היישומון לצמיתות מהמכשיר הנייר שוות ערך להפסקת השימוש ביישומון.**

@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 개인 정보는 매우 중요하므로 앱은 서비스 제공에 필요한 정보만 수집하고 전송합니다. 앱은 귀하, 귀하의 장치 또는 기타 개인 정보를 식별할 수 있는 데이터를 수집, 저장, 전송하지 않습니다.
 
 **만약 개인 정보 보호 정책에 동의하지 않는 경우 앱을 설치하지 말고 삭제하십시오. 장치에서 앱을 영구적으로 제거하는 것은 해당 앱의 사용을 종료하는 것과 같습니다.**

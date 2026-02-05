@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Gizlilik çok önemlidir, bu nedenle uygulama yalnızca hizmetleri sağlamak için gerekli bilgileri toplar ve iletir. Uygulama sizi, cihazınızı veya diğer kişisel bilgileri kişisel olarak tanımlayabilecek herhangi bir bilgiyi toplamaz, saklamaz veya göndermez.
 
 **Bu gizlilik politikasını kabul etmiyorsanız, lütfen uygulamayı yüklemeyin veya kaldırmayın. Uygulamanın mobil cihazdan kalıcı olarak kaldırılması, uygulamanın kullanımının sonlandırılmasına eşdeğerdir.**

@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Le jeton d\'accès (la clé API) est une chaîne de caractères spéciale utilisée pour autoriser l\'utilisateur à uploader des mesures collectées dans la base de données OpenCellID.
 
 La clé valide doit être composée des chiffres 0-9 et des lettres a-f. Selon la date d\'enregistrement, le format de la clé peut avoir la forme suivante :

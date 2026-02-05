@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 ### A cél
 
 Az alkalmazást arra tervezték, hogy GPS koordinátákat gyűjtsön a mobil cellatornyokkal összefüggő adatokkal együtt. Arra lett tervezve, hogy segítsen megnövelni a mobilhálózat lefedettségi térképének mértékét.

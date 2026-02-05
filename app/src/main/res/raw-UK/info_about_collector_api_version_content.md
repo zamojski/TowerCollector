@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Ви можете вирішити, який спосіб буде використовувати для отримання деталей стільникової вежі при зборі вимірювань.
 
 *Настійно рекомендується використовувати найновіші доступні для отримання надійних даних. Вибір вимкнено на пристроях з ОС Android 4.1 та старіших версій.*

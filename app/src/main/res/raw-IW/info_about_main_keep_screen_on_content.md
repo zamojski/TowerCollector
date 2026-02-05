@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 ניתן להשתמש באפשרות זו כדי להשאיר את המסך פעיל עם בהירות מלאה כאשר המסך הראשי מוצג במכשיר. לאחר עזיבת המסך או מעבר ליישומון אחר תחזור ההתנהגות שהוגדרה על ידי Android. הפעלת התכונה תקצר את אורך חיי הסוללה באופן משמעותי.
 
 כדי להשאיר את המסך פעיל כל הזמן בעת איסוף מדידות, יש לבקר באפשרות שבסעיף מנגנון האיסוף.

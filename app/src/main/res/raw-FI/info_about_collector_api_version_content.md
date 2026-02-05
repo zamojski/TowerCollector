@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Voit päättää, mitä menetelmää käytetään matkapuhelinmaston tietojen saamiseksi mittauksia kerättäessä.
 
 *On erittäin suositeltavaa käyttää uusinta saatavilla olevaa menetelmää luotettavampien tietojen saamiseksi. Valinta ei ole käytössä laitteissa, joissa on Android 4.1 tai aikaisempi.*

@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Access token (API-avain) on erityinen merkkijono, jota käytetään valtuuttamaan käyttäjä lähettämään kerättyjä mittauksia OpenCellID-tietokantaan.
 
 Oikean avaimen tulee koostua numeroista 0-9 ja kirjaimista a-f. Rekisteröintipäivästä riippuen avaimen muoto voi näyttää tältä:

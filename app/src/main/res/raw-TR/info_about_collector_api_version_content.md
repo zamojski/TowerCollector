@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Ölçümler toplandığı sırada baz istasyonu bilgilerini elde etmek için hangi yöntemin kullanılacağını seçebilirsiniz.
 
 * Daha güvenilir veriler elde etmek için en yeni yöntemi kullanmanız şiddetle tavsiye edilir. Seçim, Android 4.1 ve öncesi cihazlarda devre dışıdır.*

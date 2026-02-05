@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Yksityisyys on erittäin tärkeää, joten sovellus kerää ja välittää vain tarvittavat tiedot palvelujen tarjoamiseksi. Sovellus EI kerää, tallenna tai lähetä mitään tietoja, joista voisi tunnistaa sinut, laitteesi tai muita henkilökohtaisia tietoja.
 
 **Jos et hyväksy tätä tietosuojakäytäntöä, älä asenna tai poista sovellus. Sovelluksen pysyvä poistaminen mobiililaitteesta vastaa sovelluksen käytön lopettamista.**

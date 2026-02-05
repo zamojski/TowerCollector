@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 A BeaconDB egy nyilvános adatbázis, amely helyinformációkat gyűjt a gyakori vezeték nélküli infrastruktúráról (cellatornyok, WiFi hozzáférési pontok, Bluetooth jeladók). Az Ön által közölt cellatornyok adatait a „Creative Commons (CC-0)” licenc alatt összesítjük és nyilvánosságra hozzuk.
 
 A Tower Collector lehetőséget ad a BeaconDB projektben való részvételre azáltal, hogy feltölti a területéről származó cellatornyokat. [További információ.](https://beacondb.net/)

@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 A Tower Collector *szándékok* segítségével értesítheti a rendszeren telepített egyéb alkalmazásokat. Ha többet szeretnél tudni az ilyen értesítések figyeléséről és felhasználásáról, nézd meg az alkalmazás súgóját.
 
 ### Mérés begyűjtési esemény

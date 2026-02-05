@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 BeaconDB 是一个公共数据库，收集有关常见无线基础设施（手机信号塔、WiFi 接入点、蓝牙信标）的位置信息。您贡献的蜂窝塔数据将根据“知识共享 (CC-0)”许可证进行汇总并向公众发布。
 
 Tower Collector 让您有机会通过上传您所在区域的蜂窝塔来为 BeaconDB 项目做出贡献。 [更多信息。](https://beacondb.net/)

@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Tower Collector udostępnia zadania do uruchomienia poprzez wysyłanie *intencji* z innych aplikacji jak Tasker, Automate czy Llama. Musisz skorzystać z trybu *broadcast* dla wszystkich typów aktywności wymienionych poniżej. Więcej informacji o konfiguracji integracji znajdziesz w pomocy każdej z aplikacji.
 *Tak samo jak w aplikacji, nie możesz uruchomić więcej niż jednego zadania w tym samym czasie!*
 

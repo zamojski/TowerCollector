@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 A magánélet védelme nagyon fontos, ezért az alkalmazás csak a szolgáltatások nyújtásához szükséges információkat gyűjti és továbbítja. Az alkalmazás NEM gyűjt, nem tárol vagy küld semmilyen információt, amely személyesen azonosíthatna téged, az eszközödet vagy bármilyen más személyes információt.
 
 **Ha nem értesz egyet az adatvédelmi irányelvekkel, kérjük, ne telepítsd vagy távolítsd el az alkalmazást. Az alkalmazás végleges eltávolítása a mobileszközről egyenértékű az alkalmazás használatának megszüntetésével.**

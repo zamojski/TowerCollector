@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Ölçümleri toplarken ekranı seçilen parlaklık düzeyinde tutmak için bu seçeneği kullanın. Farklı bir uygulamaya geçseniz veya güç düğmesini kullanarak kapatmaya çalışsanız bile ekran açık kalır. Etkinleştirme pil ömrünü önemli ölçüde kısaltır
 
 Bu, Android 1.0 API kullanılıyorken bazı cihazlarda hücre ve sinyal gücü bilgilerini güncel tutmak için geçici bir çözüm olarak kullanılabilir.

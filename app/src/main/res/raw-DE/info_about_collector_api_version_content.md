@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Sie können angeben, welche Methode verwendet werden soll um die Infos der Basisstationen zu sammeln.
 
 *Es wird empfohlen, die neueste zu verwenden um verlässlichere Daten zu erhalten. Diese Auswahl ist nicht verfügbar auf Geräten mit Android 4.1 und älter.*

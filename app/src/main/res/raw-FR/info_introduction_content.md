@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 ### L\'objectif
 
 L\'application est conçue pour collecter des coordonnées GPS corrélées avec des informations sur les tours cellulaires mobiles. Il est conçu pour aider à cartographier l\'étendue de la couverture du réseau téléphonique mobile.

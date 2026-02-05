@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 사용 통계는 익명 피드백의 한 형태입니다. 개발자는 앱이 어떻게 사용되는지, 얼마나 빠르며, 가장 인기 있는 기능이 무엇인지 더 잘 이해할 수 있습니다. 이러한 종류의 지식을 통해 전반적인 성능, 사용성 및 사용자 경험을 훨씬 쉽게 개선할 수 있습니다.
 
 Tower Collector은 다음과 같은 종류의 데이터를 추적하고 보고합니다: 

@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Tower Collector sisteme yüklenmiş diğer uygulamaları *intent* yayınlayarak bilgilendirebilir. Bu tür bildirimleri nasıl dinleyeceğiniz ve kullanacağınızla ilgili daha fazla bilgi için o uygulamanın yardım bölümüne bakın.
 
 ### Ölçüm toplama etkinliği

@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Skorzystaj z tej opcji, aby pozostawić ekran włączony z pełną jasnością, gdy widoczny jest główny ekran aplikacji. Domyślne zachowanie Androida zostanie przywrócone jak tylko opuścisz ekran główny lub przejdziesz do innej aplikacji. Włączenie skutkuje znaczącym skróceniem czasu pracy na baterii.
 
 Aby utrzymywać ekran włączony w trakcie zbierania próbek, zobacz opcję w sekcji Zbieranie.

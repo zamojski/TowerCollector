@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Benutzungsstatistiken sind eine Form von anonymem Feedback. Sie helfen dem Entwickler, besser zu verstehen wie die App verwendet wird, wie schnell sie ist und welches die gefragtesten Features sind. Mit diesem Wissen ist es viel leichter, die generelle Performance, Bedienbarkeit und Benutzerführung zu verbessern.
 
 Tower Collector erfasst und übermittelt die folgenden Daten:

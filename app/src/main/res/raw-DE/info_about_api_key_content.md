@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Das Zugriffstoken (API-Key) ist eine spezieller Schlüssel, der Benutzern erlaubt, gesammelte Messungen an die OpenCellID-Datenbank hochzuladen.
 
 Ein gültiger Key besteht aus den Ziffern 0-9 und den Buchstaben a-f. Je nach Registrierungsdatum kann das Format so aussehen:

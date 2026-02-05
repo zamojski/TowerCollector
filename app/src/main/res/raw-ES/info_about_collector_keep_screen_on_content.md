@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Utilice esta opción para mantener la pantalla encendida con el nivel de brillo seleccionado cuando se recolectan mediciones. La pantalla permanecerá encendida aún si ingresa a una aplicación diferente o intenta apagarla utilizando el botón de encendido. Habilitar esta función reducirá significativamente la duración de la batería.
 
 Esto puede ser utilizado como solución para mantener disponibles los valores de celda y fuerza de señal en algunos dispositivos que usen Android 1.0 API

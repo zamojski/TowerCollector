@@ -1,6 +1,6 @@
-[//]: # (This Source Code Form is subject to the terms of the Mozilla Public)
-[//]: # (License, v. 2.0. If a copy of the MPL was not distributed with this)
-[//]: # (file, You can obtain one at http://mozilla.org/MPL/2.0/.)
+<!-- This Source Code Form is subject to the terms of the Mozilla Public -->
+<!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
+<!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 使用此选项可在设备上显示应用主界面时使屏幕保持全亮。 离开主界面或切换到其他应用后，将恢复 Android 默认定义的行为。 启用将显着缩短电池续航。
 
 要在收集测量值时始终保持屏幕显示，请参阅“收集器”部分中的选项。
