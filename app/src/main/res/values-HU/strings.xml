@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. --><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="locale">hu</string>
     <string name="shortcut_collecting_toggle_short">Begyűjtés</string>
     <string name="shortcut_collecting_toggle_long">Begyűjtés be/ki</string>
@@ -47,7 +46,7 @@
     <string name="dialog_settings">Beállítások</string>
     <string name="main_dialog_not_compatible_title">Kompatibilitási problémák</string>
     <string name="main_dialog_not_compatible_begin">Lehet, hogy az alkalmazás nem fog működni, mert:\n</string>
-    <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Nem található mobil hálózati eszköz.\n</string>
+    <string name="main_dialog_no_compatible_mobile_radio_message">• Nem található mobil hálózati eszköz.\n</string>
     <string name="main_toast_background_task_already_running_collector">Gyűjtői szolgáltatás</string>
     <string name="main_toast_background_task_already_running_uploader">Feltöltő feladat</string>
     <string name="main_toast_background_task_already_running_export">Exportálási feladat</string>
@@ -119,8 +118,8 @@
     <string name="uploader_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% feltöltve.</string>
     <string name="uploader_result_dialog_title">Feltöltés eredménye</string>
     <string name="uploader_dialog_progress_title">Feltöltés</string>
-    <string name="uploader_starting">Feltöltés elkezdése&#8230;</string>
-    <string name="uploader_aborting">Feltöltés megszakítása&#8230;</string>
+    <string name="uploader_starting">Feltöltés elkezdése…</string>
+    <string name="uploader_aborting">Feltöltés megszakítása…</string>
     <string name="uploader_already_running">A feltöltés már folyamatban van.</string>
     <string name="uploader_disabled">Feltöltés letiltva</string>
     <string name="uploader_disabled_description">Feltöltés letiltva ehhez a projekthez.</string>
@@ -156,8 +155,8 @@
     <string name="export_notification_channel_name">Exportálás</string>
     <string name="export_notification_title">Exportálás</string>
     <string name="export_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% exportálva.</string>
-    <string name="export_starting">Exportálás elkezdése&#8230;</string>
-    <string name="export_aborting">Exportálás megszakítása&#8230;</string>
+    <string name="export_starting">Exportálás elkezdése…</string>
+    <string name="export_aborting">Exportálás megszakítása…</string>
     <string name="export_toast_no_file_types_selected">Nem választottál ki fájltípust az exportáláshoz.</string>
     <string name="export_toast_no_handler_for_file_type">Egyetlen alkalmazás sem tudja kezelni a fájlt.</string>
     <string name="export_dialog_format_selection_title">Válaszd ki a fájlformátumokat</string>
@@ -514,4 +513,23 @@
     <string name="permission_map_denied_message">A megtagadott tartózkodási hely engedély miatt a térkép nem kapcsolható be</string>
     <string name="permission_map_never_ask_again_message">A megtagadott tartózkodási hely engedély miatt a térkép nem érhető el</string>
     <string name="permission_uploader_denied_message">Feltöltés megszakítva a megtagadott internet-elérési jogosultság miatt.</string>
+    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"></string>
+    <string name="main_last_cell_id_rnc_value" translatable="false"></string>
+    <string name="export_format_csv" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_1" translatable="false"></string>
+    <string name="main_last_signal_strength_value" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false"></string>
+    <string name="export_format_gpx" translatable="false"></string>
+    <string name="main_last_number_of_cells_value" translatable="false"></string>
+    <string name="ocid_name" translatable="false"></string>
+    <string name="main_last_longitude_value" translatable="false"></string>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false"></string>
+    <string name="uploader_result_description" translatable="false"></string>
+    <string name="export_format_kmz" translatable="false"></string>
+    <string name="main_last_gps_accuracy_value" translatable="false"></string>
+    <string name="export_format_kml" translatable="false"></string>
+    <string name="mls_name" translatable="false"></string>
+    <string name="uploader_result_message" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_17" translatable="false"></string>
+    <string name="main_last_latitude_value" translatable="false"></string>
 </resources>

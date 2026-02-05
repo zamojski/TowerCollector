@@ -1,11 +1,15 @@
 <!-- This Source Code Form is subject to the terms of the Mozilla Public -->
 <!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
 <!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-El token de acceso (clave API) es una cadena especial que se utiliza para autorizar al usuario a cargar las mediciones recogidas en la base de datos OpenCellID.
+Access token (API key) is special string used to authorize user to upload
+collected measurements to OpenCellID database.
 
-Una llave correcta consiste en dígitos del 0-9 y letras de la a-f. Dependiendo de la fecha de registro el formato de la llave podría lucir así:
+The correct key must consist of digits 0-9 and letters a-f. Depending on
+registration date key format may look like this:
 
-* `pk.9743a66f914cc249efca164485a19c5c` - 32 caracteres, precedidos de `pk.`, total 35 caracteres
-* `9743a66f914cc249efca164485a19c5c` - 32 caracteres
-* `9743a66f-914c-c249-efca-164485a19c5c` - 32 caracteres en 5 grupos separados por un guión, 36 caracteres en total
-* `9743a66f914cc2` - 14 caracteres
+* `pk.9743a66f914cc249efca164485a19c5c` - 32 characters, preceded with `pk.`,
+  total 35 characters
+* `9743a66f914cc249efca164485a19c5c` - 32 characters
+* `9743a66f-914c-c249-efca-164485a19c5c` - 32 characters in five groups
+  separated by dash, total 36 characters
+* `9743a66f914cc2` - 14 characters
