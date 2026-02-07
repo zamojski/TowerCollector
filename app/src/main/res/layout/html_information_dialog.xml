@@ -13,7 +13,7 @@
         android:orientation="vertical"
         android:padding="@dimen/padding_large">
 
-        <org.sufficientlysecure.htmltextview.HtmlTextView
+        <TextView
             android:id="@+id/html_info_dialog_textview"
             android:layout_width="match_parent"
             tools:text="Sample content"

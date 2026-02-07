@@ -4,19 +4,31 @@
 
 package info.zamojski.soft.towercollector.controls;
 
-import org.sufficientlysecure.htmltextview.HtmlResImageGetter;
-import org.sufficientlysecure.htmltextview.HtmlTextView;
-import org.sufficientlysecure.htmltextview.OnClickATagListener;
-
-import info.zamojski.soft.towercollector.R;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.appcompat.content.res.AppCompatResources;
+
+import java.util.Collection;
+import java.util.Collections;
+
+import info.zamojski.soft.towercollector.R;
+import info.zamojski.soft.towercollector.utils.ResourceUtils;
+import io.noties.markwon.Markwon;
+import io.noties.markwon.image.ImageItem;
+import io.noties.markwon.image.ImagesPlugin;
+import io.noties.markwon.image.SchemeHandler;
+import io.noties.markwon.linkify.LinkifyPlugin;
 
 public class DialogManager {
 
@@ -45,21 +57,54 @@ public class DialogManager {
         }
 
         builder.setTitle(titleId);
-        HtmlTextView messageView = (HtmlTextView) dialogLayout.findViewById(R.id.html_info_dialog_textview);
+        TextView messageView = dialogLayout.findViewById(R.id.html_info_dialog_textview);
         messageView.setTextAppearance(context, (largeText ? android.R.style.TextAppearance_Medium : android.R.style.TextAppearance_Small));
+
+        Markwon markwon = Markwon.builder(context)
+                .usePlugin(ImagesPlugin.create(plugin -> {
+                    // Custom schema handler because ImagesPlugin doesn't support drawables natively
+                    plugin.addSchemeHandler(new SchemeHandler() {
+                        @NonNull
+                        @Override
+                        public ImageItem handle(@NonNull String raw, @NonNull Uri uri) {
+                            // For "drawable://my_icon", uri.getHost() will be "my_icon"
+                            String resourceName = uri.getHost();
+
+                            // Using getIdentifier is discouraged, but necessary here to load drawables from markdown
+                            int resId = context.getResources().getIdentifier(
+                                    resourceName,
+                                    "drawable",
+                                    context.getPackageName()
+                            );
+
+                            if (resId != 0) {
+                                Drawable drawable = AppCompatResources.getDrawable(context, resId);
+                                if (drawable != null) {
+                                    return ImageItem.withResult(drawable);
+                                }
+                            }
+
+                            // Fallback to a transparent drawable if the resource is not found to avoid crashing
+                            return ImageItem.withResult(new ColorDrawable(Color.TRANSPARENT));
+                        }
+
+                        @NonNull
+                        @Override
+                        public Collection<String> supportedSchemes() {
+                            return Collections.singleton("drawable");
+                        }
+                    });
+                }))
+                // Do not use autolink XML attribute on your TextView as it will remove all links except autolinked ones ¯\_(ツ)_/¯
+                .usePlugin(LinkifyPlugin.create(Linkify.WEB_URLS))
+                .build();
+
         if (messageId != null) {
-            messageView.setHtml(messageId, new HtmlResImageGetter(context));
-        } else {
-            messageView.setHtml(message, new HtmlResImageGetter(context));
+            message = ResourceUtils.getRawString(context, messageId);
         }
+        markwon.setMarkdown(messageView, message);
         // don't move above setting the content because it won't work
         messageView.setTextIsSelectable(textIsSelectable);
-        messageView.setOnClickATagListener(new OnClickATagListener() {
-            @Override
-            public boolean onClick(View widget, String spannedText, @Nullable String href) {
-                return false;
-            }
-        });
 
         AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(true);

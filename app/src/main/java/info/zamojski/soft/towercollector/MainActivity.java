@@ -80,7 +80,6 @@ import info.zamojski.soft.towercollector.controls.NonSwipeableViewPager;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.ExportAction;
 import info.zamojski.soft.towercollector.enums.FileType;
-import info.zamojski.soft.towercollector.enums.MeansOfTransport;
 import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.enums.Validity;
 import info.zamojski.soft.towercollector.events.AirplaneModeChangedEvent;
@@ -97,7 +96,7 @@ import info.zamojski.soft.towercollector.model.ChangelogInfo;
 import info.zamojski.soft.towercollector.model.UpdateInfo;
 import info.zamojski.soft.towercollector.model.UpdateInfo.DownloadLink;
 import info.zamojski.soft.towercollector.providers.ChangelogProvider;
-import info.zamojski.soft.towercollector.providers.HtmlChangelogFormatter;
+import info.zamojski.soft.towercollector.providers.MarkdownChangelogFormatter;
 import info.zamojski.soft.towercollector.providers.preferences.PreferencesProvider;
 import info.zamojski.soft.towercollector.tasks.UpdateCheckAsyncTask;
 import info.zamojski.soft.towercollector.uploader.UploaderProgressDialogFragment;
@@ -716,7 +715,7 @@ public class MainActivity extends AppCompatActivity
             ChangelogInfo changelog = provider.getChangelog(previousVersionCode);
             if (changelog.isEmpty())
                 return;
-            HtmlChangelogFormatter formatter = new HtmlChangelogFormatter();
+            MarkdownChangelogFormatter formatter = new MarkdownChangelogFormatter();
             String message = formatter.formatChangelog(changelog);
             DialogInterface.OnClickListener remindLaterAction = new DialogInterface.OnClickListener() {
                 @Override

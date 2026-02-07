@@ -11,7 +11,7 @@ import android.text.TextUtils;
 import info.zamojski.soft.towercollector.model.ChangelogInfo;
 import info.zamojski.soft.towercollector.model.ChangelogInfo.ChangelogEntry;
 
-public class HtmlChangelogFormatter {
+public class MarkdownChangelogFormatter {
 
     public String formatChangelog(ChangelogInfo changelog) {
         StringBuilder sb = new StringBuilder();
@@ -33,25 +33,25 @@ public class HtmlChangelogFormatter {
     }
 
     private String formatTitle(String title) {
-        return String.format("<h3>%s</h3>", title);
+        return String.format("### %s\n", title);
     }
 
     private String formatDescription(String description) {
-        return String.format("<p>%s</p>", description);
+        return String.format("%s\n\n", description);
     }
 
     private String formatMessages(List<String> messages) {
         StringBuilder sb = new StringBuilder();
-        sb.append("<ul>");
+        sb.append("\n\n");
         for (String message : messages) {
             sb.append(formatMessage(message));
         }
-        sb.append("</ul>");
+        sb.append("\n\n");
         return sb.toString();
     }
 
     private String formatMessage(String message) {
-        return String.format("<li>%s</li>", message);
+        return String.format("- %s\n", message);
     }
 
 }

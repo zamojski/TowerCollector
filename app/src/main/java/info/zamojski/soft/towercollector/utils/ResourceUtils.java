@@ -14,8 +14,8 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.RawRes;
 import androidx.core.content.res.ResourcesCompat;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 
 import timber.log.Timber;
 
@@ -23,16 +23,18 @@ public class ResourceUtils {
 
     public static String getRawString(Context context, @RawRes int rawId) {
         try {
-            StringBuilder builder = new StringBuilder();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(context.getResources().openRawResource(rawId)));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                builder.append(line);
+            InputStream inputStream = context.getResources().openRawResource(rawId);
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+
+            int i = inputStream.read();
+            while (i != -1) {
+                byteArrayOutputStream.write(i);
+                i = inputStream.read();
             }
-            reader.close();
-            return builder.toString();
+            inputStream.close();
+            return byteArrayOutputStream.toString();
         } catch (Exception ex) {
-            Timber.e(ex, "getRawResource(): Unable to read resource");
+            Timber.e(ex, "getRawString(): Unable to read resource");
             return "";
         }
     }
