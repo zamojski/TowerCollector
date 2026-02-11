@@ -1,0 +1,17 @@
+Tower Collector daje ci możliwość współtworzenia baz danych projektów OpenCellID.org i BeaconDB poprzez przesyłanie współrzędnych GPS przekaźników komórkowych sieci GSM/UMTS/LTE/CDMA/TD-SCDMA/5G (NR) z twojej okolicy. Próbki posłużą zebraniu informacji o pokryciu terenu zasięgiem sieci komórkowych. Możesz użyć aplikacji do zbierania danych do celów prywatnych i wyeksportować je do różnych formatów.
+
+Wybrane funkcje:
+• specjalnie dobrane parametry GPS, aby zapewnić długą pracę na baterii
+• przesyłanie do projektów OpenCellID.org i BeaconDB
+• eksport na kartę pamięci jako CSV, JSON, GPX, KML lub KMZ
+• bez reklam, na zawsze!
+
+OpenCellID.org jest projektem open source, którego celem jest zbudowanie ogólnodostępnej bazy informacji o położeniu przekaźników sieci komórkowych. Tower Collector daje ci możliwość dołączenia do społeczności projektu OpenCellID poprzez przesłanie informacji o nadajnikach z twojej okolicy. Zebrane w ramach projektu dane można wykorzystać do szybkiego lokalizowania urządzeń bez konieczności włączania GPSu.
+
+BeaconDB jest publiczną bazą zbierającą identyfikatory infrastruktury bezprzewodowej (przekaźnikach sieci komórkowej, punktów dostępowych WiFi, urządzeń Bluetooth) wraz z ich lokalizacją. Przesłane dane o przekaźnikach sieci komórkowej zostaną, po przetworzeniu, udostępnione w domenie publicznej na licencji "Creative Commons (CC-0)".
+
+Pomóż mi przetłumaczyć ją na więcej języków, odwiedź https://i18n.zamojski.ovh/
+
+Ta aplikacja nie zbiera, nie przechowuje oraz nie wysyła żadnych informacji, które mogłyby zostać wykorzystane do bezpośredniej identyfikacji użytkownika, wykorzystywanego urządzenia lub jakiejkolwiek innej danej personalnej.
+
+ZGŁOSZENIA BŁĘDÓW I PROPOZYCJE FUNKCJONALNOŚCI PROSZĘ PRZESYŁAĆ EMAILEM LUB POPRZEZ GITHUBA.

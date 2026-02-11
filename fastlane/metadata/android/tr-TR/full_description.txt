@@ -1,0 +1,17 @@
+Tower Collector, bölgenizden GSM / UMTS / LTE / CDMA / TD-SCDMA / 5G (NR) baz istasyonlarının GPS konumlarını yükleyerek OpenCellID.org ve BeaconDB projelerine katkıda bulunma fırsatı verir. Ölçümler cep telefonu şebekesinin kapsama alanını haritalandırmaya yardımcı olur. Kişisel amaçlarla veri toplamak ve bunları çeşitli dosyalara aktarmak için uygulamayı kullanabilirsiniz.
+
+Bazı özellikler:
+• Batarya tüketimini azaltmak için özel olarak optimize edilmiş GPS parametreleri
+• OpenCellID.org ve BeaconDB projelerine katkıda bulunun
+• CSV, JSON, GPX, KML ve KMZ olarak dışa aktarın.
+• Reklamsız, sonsuza dek!
+
+OpenCellID.org projesinin hedefi, dünya çapında baz istasyonu lokasyon bilgilerinin açık kaynak veri tabanını oluşturmaktır. Tower Collector size, bulunduğunuz alandaki baz istasyonlarının konumlarını paylaşarak OpenCellID projesine katkıda bulunma fırsatı verir. Toplanan veri hızlıca ve GPS’i açmadan istasyonların yerini saptamak için kullanılabilir.
+
+BeaconDB, yaygın kablosuz altyapı (hücre kuleleri, WiFi erişim noktaları, Bluetooth işaretçileri) hakkında konum bilgisi toplayan bir kamu veritabanıdır. Katkıda bulunduğunuz hücre kulesi verileri toplanacak ve "Creative Commons (CC-0)" lisansı altında kamuya açıklanacaktır.
+
+Lütfen başka dillere çevirmeme yardım edin, https://i18n.zamojski.ovh/ adresini ziyaret edin.
+
+Bu uygulama, kullanılan kullanıcıyı, kullanılan cihazı veya diğer kişisel bilgileri doğrudan tanımlamak için kullanılabilecek bilgileri toplamaz, saklamaz veya gönderemez.
+
+ÖZELLİK İSTEKLERİ VE HATA RAPORLARINI LÜTFEN GİTHUB'DAN VEYA EMAİL İLE GÖNDERİN.

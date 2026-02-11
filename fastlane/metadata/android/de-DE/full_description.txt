@@ -1,0 +1,17 @@
+Diese App sammelt die GPS-Positionen von GSM/UMTS/LTE/CDMA/TD-SCDMA/5G (NR)-Funkmasten und sendet diese an die OpenCellID.org-Datenbank und die BeaconDB. Das Ziel der App ist, das Kartografieren der Mobilfunkabdeckung zu unterstützen. Gesammelte Messungen können auch für eigene Zwecke als verschiedene Dateien exportiert werden.
+
+Die wichtigsten Features:
+• eigens optimierte GPS-Parameter um den Akkuverbrauch zu reduzieren
+• Upload zu den Projekten OpenCellID.org und BeaconDB
+• Export auf  SD-Karte als CSV, JSON, GPX, KML, KMZ-Datei
+• werbefrei, für immer!
+
+Das OpenCellID.org-Projekt hat sich zum Ziel gesetzt, eine weltweite Open-Source Datenbank von GSM-Basisstationen und -zellen zu erstellen. Tower Collector ermöglicht Ihnen, dieses Projekt durch den Upload der verfügbaren Mobilfunk-Zellen in Ihrer Umgebung zu unterstützen. Diese gesammelten Daten können beispielsweise verwendet werden, um ein Gerät schnell zu lokalisieren, ohne dass GPS-Empfang vorhanden sein muss.
+
+BeaconDB ist eine öffentliche Datenbank, die Standortinformationen über gängige drahtlose Infrastrukturen (Mobilfunkmasten, WLAN-Zugangspunkte, Bluetooth-Beacons) sammelt. Die von Ihnen bereitgestellten Mobilfunkmastdaten werden aggregiert und unter der Lizenz „Creative Commons (CC-0)“ öffentlich zugänglich gemacht.
+
+Bitte helfen Sie mir, TowerCollector auch in andere Sprachen zu übersetzen. Mehr dazu finden Sie unter https://i18n.zamojski.ovh/
+
+Diese Anwendung sammelt, speichert und sendet keine Informationen, die verwendet werden können um Sie persönlich, das verwendete Gerät oder sonstige private Details zu identifizieren.
+
+BERICHTE ÜBER FEHLER UND FEATURE-WÜNSCHE BITTE NUR PER E-MAIL.

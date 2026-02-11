@@ -1,0 +1,17 @@
+Tower Collector vă oferă oportunitatea de a contribui la proiectele OpenCellID.org și BeaconDB prin încărcarea locațiilor GPS ale turnurilor de celule GSM / UMTS / LTE / CDMA / TD-SCDMA / 5G (NR) din zona dvs. Măsurătorile ajută la cartografierea gradului de acoperire a rețelei de telefonie mobilă. Puteți utiliza aplicația pentru a colecta date în scopuri personale și a le exporta în fișiere.
+
+Câteva caracteristici:
+• parametrii GPS optimizați special pentru a reduce evacuarea bateriei
+• încărcați în proiectele OpenCellID.org și BeaconDB
+• exportarea pe card SD ca CSV, JSON, GPX, KML sau KMZ
+• fără publicitate, pentru totdeauna!
+
+Obiectivul proiectului OpenCellID.org este crearea unei baze de date open source la nivel mondial cu locații de celule mobile. Tower Collector vă oferă oportunitatea de a contribui la proiectul OpenCellID prin încărcarea locațiilor turnurilor celulare din zona dvs. Datele colectate pot fi utilizate pentru a localiza rapid dispozitivele fără a activa GPS-ul.
+
+BeaconDB este o bază de date publică care colectează informații despre locație despre infrastructura wireless comună (turnuri celulare, puncte de acces WiFi, balize Bluetooth). Datele turnului celular cu care contribuiți vor fi agregate și eliberate publicului sub licența „Creative Commons (CC-0)”.
+
+Vă rugăm să mă ajutați să o traduc în alte limbi, accesați https://i18n.zamojski.ovh/
+
+Această aplicație nu colectează, stochează sau nu trimite nicio informație care poate fi utilizată pentru a identifica direct utilizatorul, dispozitivul care este utilizat sau orice alte informații personale.
+
+RAPORTURI DE BUG ȘI SOLICITARE DE CARACTER VIAȚI EMAIL sau GITHUB VĂ RUGĂM.

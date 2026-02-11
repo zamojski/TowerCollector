@@ -1,0 +1,17 @@
+A Tower Collector lehetőséget nyújt az OpenCellID.org és a BeaconDB projektekben való részvételre a GSM / UMTS / LTE / CDMA / TD-SCDMA / 5G (NR) cellatornyok GPS-helyeinek feltöltésével. A mérések segítenek meghatározni a mobiltelefon-hálózati lefedettség mértékét. Az alkalmazás segítségével adatokat gyűjthetsz személyes célokra, és különféle fájlokba exportálhatod.
+
+Néhány funkció:
+• speciálisan optimalizált GPS paraméterek az akkumulátor használat csökkentésére
+• feltöltés az OpenCellID.org és a BeaconDB projektekhez
+• exportálás SD kártyára CSV, JSON, GPX, KML vagy KMZ formátumban
+• reklámmentes, és az is marad!
+
+Az OpenCellID.org projekt célja egy globális nyílt forráskódú adatbázis elkészítése a mobiladótornyok helyzetéről. A Tower Collector lehetőséget biztosít, hogy hozzájárulj az OpenCellID projekthez a környékbeli adótornyok helyének feltöltésével. A gyűjtött adatok később az eszközök helyének gyors, GPS nélküli meghatározására szolgálhatnak.
+
+A BeaconDB egy nyilvános adatbázis, amely helyinformációkat gyűjt a gyakori vezeték nélküli infrastruktúráról (cellatornyok, WiFi hozzáférési pontok, Bluetooth jeladók). Az Ön által megadott mobiltorony-adatokat a „Creative Commons (CC-0)” licenc alatt összesítjük és nyilvánosságra hozzuk.
+
+Kérjük, segíts lefordítani más nyelvekre is, látogass el a következő oldalra: https://i18n.zamojski.ovh/
+
+Ez az alkalmazás nem gyűjt, nem tárol és nem küld semmilyen információt, amely felhasználható lenne a felhasználó, a használt eszköz vagy más személyes információ közvetlen azonosítására.
+
+HIBAJELENTÉSHEZ ÉS FUNKCIÓKÉRÉSHEZ KÉRJÜK KÜLDJ E-MAILT, VAGY HASZNÁLD A GITHUBOT.

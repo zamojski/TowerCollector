@@ -1,0 +1,17 @@
+Tower Collector ti dà l'opportunità di contribuire ai progetti OpenCellID.org e BeaconDB caricando le posizioni GPS delle torri cellulari GSM/UMTS/LTE/CDMA/TD-SCDMA/5G (NR) della tua zona. Le misurazioni aiutano a mappare l'estensione della copertura della rete di telefonia mobile. È possibile utilizzare l'app per raccogliere dati per scopi personali ed esportarli in vari file.
+
+Alcune caratteristiche:
+• Parametri GPS appositamente ottimizzati per ridurre il consumo della batteria
+• caricaremento dei dati nei progetti OpenCellID.org e BeaconDB
+• esportazione dati su scheda SD come file CSV, JSON, GPX, KML o KMZ
+• senza pubblicità, per sempre!
+
+L'obiettivo del progetto OpenCellID.org è quello di creare un database mondiale, open source, delle posizioni delle celle mobili. Tower Collector ti dà l'opportunità di contribuire al progetto OpenCellID caricando le posizioni delle torri cellulari della tua zona. I dati raccolti possono essere utilizzati per localizzare rapidamente i dispositivi senza abilitare il GPS.
+
+BeaconDB è un database pubblico che raccoglie informazioni sulla posizione di infrastrutture wireless comuni (torri cellulari, punti di accesso WiFi, beacon Bluetooth). I dati delle torri cellulari che fornisci saranno aggregati e resi pubblici con licenza "Creative Commons (CC-0)".
+
+Per favore aiutami a tradurlo in altre lingue, visita https://i18n.zamojski.ovh/
+
+Questa applicazione non raccoglie, memorizza o invia alcuna informazione che può essere utilizzata per identificare direttamente l'utente, il dispositivo che viene utilizzato o altre informazioni personali.
+
+PER FAVORE SEGNALA I DIFETTI E RICHIEDI NUOVE CARATTERISTICHE TRAMITE EMAIL O TRAMITE LA SEGNALAZIONE PROBLEMI DI GITHUB.

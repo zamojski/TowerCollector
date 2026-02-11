@@ -1,0 +1,17 @@
+Tower Collector vám dává možnost přispět do projektů OpenCellID.org a BeaconDB nahráním umístění GPS stanic GSM / UMTS / LTE / CDMA / TD-SCDMA / 5G (NR) z vaší oblasti.  Měření pomáhají zmapovat rozsah pokrytí mobilním telefonem.  Pomocí aplikace můžete shromažďovat data pro osobní účely a exportovat je do souborů.
+
+Některé funkce:
+ • speciálně optimalizované parametry GPS pro snížení vybití baterie
+ • nahrát projekty OpenCellID.org a BeaconDB
+ • exportovat na SD kartu jako CSV, JSON, GPX, KML nebo KMZ
+ • bez reklam, navždy!
+
+Cílem projektu OpenCellID.org je vytvořit celosvětově otevřenou databázi mobilních mobilních lokací.  Tower Collector vám dává možnost přispět do projektu OpenCellID nahráním umístění mobilních věží z vaší oblasti.  Shromážděná data lze použít k rychlému vyhledání zařízení bez povolení GPS.
+
+BeaconDB je veřejná databáze, která shromažďuje informace o poloze běžné bezdrátové infrastruktury (buňkové věže, přístupové body WiFi, majáky Bluetooth). Údaje z vysílačů mobilní sítě, kterými přispějete, budou shromážděny a zveřejněny pod licencí "Creative Commons (CC-0)".
+
+Prosím Vás o pomoc s překladem tohoto projektu do jiných jazyků. Link: https://i18n.zamojski.ovh/
+
+Tato aplikace neshromažďuje, neukládá ani neposílá žádné informace, které mohou být použity k přímé identifikaci uživatele nebo zařízení které je používáno a ani k jakýmkoliv jiným osobním informacím.
+
+CHYBOVÉ ZPRÁVY, POŽADAVKY NA FUNKCE, PROSÍM ZAŠLETE EMAILEM NEBO PŘES GITHUB.
