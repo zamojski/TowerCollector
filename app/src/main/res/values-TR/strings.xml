@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. --><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="locale">tr</string>
     <string name="shortcut_collecting_toggle_short">Topla</string>
     <string name="shortcut_collecting_toggle_long">Toplamayı aç/kapat</string>
@@ -47,7 +46,7 @@
     <string name="dialog_settings">Ayarlar</string>
     <string name="main_dialog_not_compatible_title">Uyumluluk sorunları</string>
     <string name="main_dialog_not_compatible_begin">Uygulama çalışmayabilir çünkü:</string>
-    <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Mobil ağ donanımı algılanamadı.</string>
+    <string name="main_dialog_no_compatible_mobile_radio_message">• Mobil ağ donanımı algılanamadı.</string>
     <string name="main_toast_background_task_already_running_collector">Koleksiyoner hizmeti</string>
     <string name="main_toast_background_task_already_running_uploader">Yükleyici görevi</string>
     <string name="main_toast_background_task_already_running_export">Görevi dışa aktar</string>
@@ -141,7 +140,7 @@
     <string name="uploader_delete_failed">Ölçümleri silerken hata ile karşılaşıldı.</string>
     <string name="uploader_delete_failed_description">Ölçümleri silerken hata ile karşılaşıldı. Lütfen cihazınızı yeniden başlatın ve tekrar deneyin. Eğer yine aynı sorunla karşılaşırsanız geliştiriciye bildirin.</string>
     <string name="uploader_connection_error">Bağlantı hatası</string>
-    <string name="uploader_connection_error_description">Sunucuya ulaşılamadı. Bunun sebebi internetin olmaması, çok yavaş olması yada stabil olmaması gibi ağ ile alakalı sorunlar olabilir. Uygulamanın güncel olup olmadığını kontrol edin.  Uzun süre bu sorunla karşılaşırsanız, geliştiriciye bildirin.</string>
+    <string name="uploader_connection_error_description">Sunucuya ulaşılamadı. Bunun sebebi internetin olmaması, çok yavaş olması yada stabil olmaması gibi ağ ile alakalı sorunlar olabilir. Uygulamanın güncel olup olmadığını kontrol edin. Uzun süre bu sorunla karşılaşırsanız, geliştiriciye bildirin.</string>
     <string name="uploader_server_error">Sunucu hatası</string>
     <string name="uploader_server_error_description">Sunucu yüklemesinde hata ile karşılaşıldı. Bunun sebebi fazla yükleme, sunucunun geçici olarak kapalı olması yada bakım için kapalı olması olabilir. Lütfen daha sonra tekrar deneyiniz. Uzun süre bu sorunla karşılaşırsanız, geliştiriciye bildirin.</string>
     <string name="uploader_limit_exceeded">Kullanım limiti aşıldı.</string>
@@ -156,8 +155,8 @@
     <string name="export_notification_channel_name">Ihracat</string>
     <string name="export_notification_title">Ihracat</string>
     <string name="export_notification_progress_info">İhraç edilen %%<xliff:g id="progress_in_percent">%d</xliff:g>.</string>
-    <string name="export_starting">Dışa aktarma başlatılıyor&#8230;</string>
-    <string name="export_aborting">İhracatı iptal etme&#8230;</string>
+    <string name="export_starting">Dışa aktarma başlatılıyor…</string>
+    <string name="export_aborting">İhracatı iptal etme…</string>
     <string name="export_toast_no_file_types_selected">Dışa aktarma için dosya türü seçilmedi.</string>
     <string name="export_toast_no_handler_for_file_type">Dosyayı açacak uygulama bulunamadı.</string>
     <string name="export_dialog_format_selection_title">Dosya biçimini seçin</string>
@@ -235,7 +234,7 @@
     <string name="main_help_last_long_cell_id_description">Telefonun bağlı olduğu uzun, benzersiz baz istasyonu tanımlayıcısı.</string>
     <string name="main_help_last_long_cell_id_description_umts">UMTS ağları için UTRAN CID olarak da adlandırılan CID, RNC (Radyo Ağı Denetleyicisinin Kimliği) ve Cell ID nin (baz istasyonunun eşsiz kimliği) birleşimidir.</string>
     <string name="main_help_last_long_cell_id_description_lte">LTE ağları için E-UTRAN CID olarak da adlandırılan LCID, eNodeB ( Radyo ağı denetleyicisinin kimliği) ve Cell ID nin (Baz İstasyonunun eşsiz kimliği) birleşimidir.</string>
-    <string name="main_help_last_cell_id_rnc_title">Baz İstasyonu  ID / RNC</string>
+    <string name="main_help_last_cell_id_rnc_title">Baz İstasyonu ID / RNC</string>
     <string name="main_help_last_cell_id_rnc_description">Telefonun bağlı olduğu eşsiz baz istasyonu tanımlayıcısı ve RNC (Radyo Ağı Denetleyicisi). Bu ID sadece UMTS ve LTE ağları için tanımlanır.</string>
     <string name="main_help_last_cell_id_title">Baz İstasyonu ID si</string>
     <string name="main_help_last_cell_id_description">Telefonun bağlandığı eşsiz baz istasyonu tanımlayıcısıdır.</string>
@@ -499,7 +498,7 @@
     <string name="permission_collector_rationale_message">Ölçümlerin toplanması için konum ve telefon izinleri verilmelidir.</string>
     <string name="permission_collector_rationale_api31_message">Ölçümleri toplamak için kesin konum ve telefon izinleri verilmelidir.</string>
     <string name="permission_collector_rationale_background_location_api29_message">Bu işlevi kullanmak istiyorsanız, cihaz konumuna erişim izni için \'her zaman izin ver\' seçeneğini seçtiğinizden emin olun!</string>
-    <string name="permission_collector_rationale_background_location_api30_message">Bu işlevi kullanmak istiyorsanız, \'ayarlardan izin ver\' i seçtiğinizden emin olun ve ardından cihaz konumuna erişim izni için  \'her zaman izin ver\' seçeneğini seçin!</string>
+    <string name="permission_collector_rationale_background_location_api30_message">Bu işlevi kullanmak istiyorsanız, \'ayarlardan izin ver\' i seçtiğinizden emin olun ve ardından cihaz konumuna erişim izni için \'her zaman izin ver\' seçeneğini seçin!</string>
     <string name="permission_collector_rationale_background_location_2_step_api30_message">Bu işlevi kullanmak istiyorsanız öncelikle normal konum izinleri vermelisiniz, ardından ayrıca arka planda konum izni vermeniz istenecektir!</string>
     <string name="permission_collector_rationale_background_location_compliance_message">Uygulama, yalnızca cihaz başlangıcında ölçümleri otomatik olarak toplamaya başlamak istiyorsanız arka planda konum izni gerektirir. Bu izin olmadan yalnızca kendiniz toplamaya başlayabilirsiniz.</string>
     <string name="permission_collector_denied_message">Reddedilen izinler nedeniyle ölçüm toplaması iptal ediliyor</string>
@@ -514,4 +513,23 @@
     <string name="permission_map_denied_message">Reddedilen konum izni nedeniyle harita etkinleştirilemiyor.</string>
     <string name="permission_map_never_ask_again_message">Reddedilen konum izni nedeniyle harita kullanılamıyor</string>
     <string name="permission_uploader_denied_message">İnternet izni reddedildiği için yükleme iptal edildi.</string>
+    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"></string>
+    <string name="main_last_cell_id_rnc_value" translatable="false"></string>
+    <string name="export_format_csv" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_1" translatable="false"></string>
+    <string name="main_last_signal_strength_value" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false"></string>
+    <string name="export_format_gpx" translatable="false"></string>
+    <string name="main_last_number_of_cells_value" translatable="false"></string>
+    <string name="ocid_name" translatable="false"></string>
+    <string name="main_last_longitude_value" translatable="false"></string>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false"></string>
+    <string name="uploader_result_description" translatable="false"></string>
+    <string name="export_format_kmz" translatable="false"></string>
+    <string name="main_last_gps_accuracy_value" translatable="false"></string>
+    <string name="export_format_kml" translatable="false"></string>
+    <string name="mls_name" translatable="false"></string>
+    <string name="uploader_result_message" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_17" translatable="false"></string>
+    <string name="main_last_latitude_value" translatable="false"></string>
 </resources>

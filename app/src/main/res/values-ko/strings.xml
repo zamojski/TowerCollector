@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. --><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="locale">ko</string>
     <string name="shortcut_collecting_toggle_short">수집</string>
     <string name="shortcut_collecting_toggle_long">수집 토글</string>
@@ -47,7 +46,7 @@
     <string name="dialog_settings">설정</string>
     <string name="main_dialog_not_compatible_title">호환성 문제</string>
     <string name="main_dialog_not_compatible_begin">다음과 같은 이유로 앱이 동작하지 않을 수 있습니다.\n</string>
-    <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; 셀롤러 모듈이 없습니다.\n</string>
+    <string name="main_dialog_no_compatible_mobile_radio_message">• 셀롤러 모듈이 없습니다.\n</string>
     <string name="main_toast_background_task_already_running_collector">콜렉터 서비스</string>
     <string name="main_toast_background_task_already_running_uploader">업로더 작업</string>
     <string name="main_toast_background_task_already_running_export">작업 내보내기</string>
@@ -119,8 +118,8 @@
     <string name="uploader_notification_progress_info">업로드 진행중 <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
     <string name="uploader_result_dialog_title">업로드 결과</string>
     <string name="uploader_dialog_progress_title">업로드 진행중</string>
-    <string name="uploader_starting">업로드 시작중&#8230;</string>
-    <string name="uploader_aborting">업로드 취소중&#8230;</string>
+    <string name="uploader_starting">업로드 시작중…</string>
+    <string name="uploader_aborting">업로드 취소중…</string>
     <string name="uploader_already_running">업로드가 이미 진행중입니다.</string>
     <string name="uploader_disabled">업로드 비활성화</string>
     <string name="uploader_disabled_description">이 프로젝트에서 업로드가 비활성화되었습니다.</string>
@@ -156,8 +155,8 @@
     <string name="export_notification_channel_name">내보내기</string>
     <string name="export_notification_title">내보내는중</string>
     <string name="export_notification_progress_info">내보내는중 <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
-    <string name="export_starting">내모내는중 &#8230;</string>
-    <string name="export_aborting">내보내기 취소중 &#8230;</string>
+    <string name="export_starting">내모내는중 …</string>
+    <string name="export_aborting">내보내기 취소중 …</string>
     <string name="export_toast_no_file_types_selected">내보내기 파일 포맷이 선택되지 않았습니다.</string>
     <string name="export_toast_no_handler_for_file_type">해당 파일을 열 수 있는 앱이 없습니다.</string>
     <string name="export_dialog_format_selection_title">파일 포맷 선택</string>
@@ -514,4 +513,23 @@
     <string name="permission_map_denied_message">위치 권한이 없어 지도를 표시할 수 없습니다.</string>
     <string name="permission_map_never_ask_again_message">위치 권한이 없어 지도를 표시할 수 없습니다.</string>
     <string name="permission_uploader_denied_message">인터넷 권한이 없어 업로드가 취소되었습니다.</string>
+    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"></string>
+    <string name="main_last_cell_id_rnc_value" translatable="false"></string>
+    <string name="export_format_csv" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_1" translatable="false"></string>
+    <string name="main_last_signal_strength_value" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false"></string>
+    <string name="export_format_gpx" translatable="false"></string>
+    <string name="main_last_number_of_cells_value" translatable="false"></string>
+    <string name="ocid_name" translatable="false"></string>
+    <string name="main_last_longitude_value" translatable="false"></string>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false"></string>
+    <string name="uploader_result_description" translatable="false"></string>
+    <string name="export_format_kmz" translatable="false"></string>
+    <string name="main_last_gps_accuracy_value" translatable="false"></string>
+    <string name="export_format_kml" translatable="false"></string>
+    <string name="mls_name" translatable="false"></string>
+    <string name="uploader_result_message" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_17" translatable="false"></string>
+    <string name="main_last_latitude_value" translatable="false"></string>
 </resources>
