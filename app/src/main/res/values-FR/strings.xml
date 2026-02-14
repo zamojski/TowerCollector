@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. --><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="locale">fr</string>
     <string name="shortcut_collecting_toggle_short">Collecter</string>
     <string name="shortcut_collecting_toggle_long">Basculer la collecte</string>
@@ -47,7 +46,7 @@
     <string name="dialog_settings">Réglages</string>
     <string name="main_dialog_not_compatible_title">Problèmes de compatibilité</string>
     <string name="main_dialog_not_compatible_begin">L\'application peut ne pas fonctionner car :</string>
-    <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Pas de carte réseau mobile détectée.\n</string>
+    <string name="main_dialog_no_compatible_mobile_radio_message">• Pas de carte réseau mobile détectée.\n</string>
     <string name="main_toast_background_task_already_running_collector">Service de collectionneur</string>
     <string name="main_toast_background_task_already_running_uploader">Tâche de téléchargement</string>
     <string name="main_toast_background_task_already_running_export">Tâche d\'exportation</string>
@@ -119,8 +118,8 @@
     <string name="uploader_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% envoyés.</string>
     <string name="uploader_result_dialog_title">Résultat de l\'envoi</string>
     <string name="uploader_dialog_progress_title">Envoi en cours</string>
-    <string name="uploader_starting">Début de l\'envoi&#8230;</string>
-    <string name="uploader_aborting">Annulation de l\'envoi&#8230;</string>
+    <string name="uploader_starting">Début de l\'envoi…</string>
+    <string name="uploader_aborting">Annulation de l\'envoi…</string>
     <string name="uploader_already_running">L\'envoi est déjà en cours.</string>
     <string name="uploader_disabled">Envoi désactivé</string>
     <string name="uploader_disabled_description">Envoi désactivé pour ce projet.</string>
@@ -156,8 +155,8 @@
     <string name="export_notification_channel_name">Exportation</string>
     <string name="export_notification_title">Exportation</string>
     <string name="export_notification_progress_info">Exporté <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
-    <string name="export_starting">Démarrage de l\'exportation&#8230;</string>
-    <string name="export_aborting">Abandon de l\'exportation&#8230;</string>
+    <string name="export_starting">Démarrage de l\'exportation…</string>
+    <string name="export_aborting">Abandon de l\'exportation…</string>
     <string name="export_toast_no_file_types_selected">Aucun type de fichier sélectionné pour l\'exportation.</string>
     <string name="export_toast_no_handler_for_file_type">Pas d\'application pour traiter le fichier.</string>
     <string name="export_dialog_format_selection_title">Sélectionnez le format du fichier :</string>
@@ -442,7 +441,7 @@
     <string name="preferences_export_database_title">Exporter la base de données</string>
     <string name="preferences_export_database_summary">Exporte la base de données interne de l\'application vers le fichier mesurements.db situé dans le dossier de stockage défini dans les préférences.</string>
     <string name="preferences_export_database_overwrite_warning_title">Perte de données possible</string>
-    <string name="preferences_export_database_overwrite_warning_message">Poursuivre cette opération peut écraser le fichier mesurements.db existant avec la copie actuelle qui ne contient aucune mesure.\n\nÊtes-vous sûr de vouloir exporter ?</string>
+    <string name="preferences_export_database_overwrite_warning_message">Poursuivre cette opération peut écraser le fichier mesurements.db existant avec la copie actuelle qui ne contient aucune mesure.\n\nÊtes-vous sûr de vouloir exporter ?</string>
     <string name="preferences_import_preferences_title">Importer les paramètres</string>
     <string name="preferences_import_preferences_summary">Importe les préférences internes de l\'application à partir du fichier preferences.xml situé dans le dossier de stockage défini dans les préférences.</string>
     <string name="preferences_export_preferences_title">Exporter les paramètres</string>
@@ -500,7 +499,7 @@
     <string name="permission_collector_rationale_api31_message">Une localisation précise et des autorisations téléphoniques doivent être accordées pour collecter des mesures.</string>
     <string name="permission_collector_rationale_background_location_api29_message">Si vous souhaitez utiliser cette fonction, assurez-vous de sélectionner l\'option \"Autoriser tout le temps\" pour accéder à l\'autorisation de localisation de l\'appareil!</string>
     <string name="permission_collector_rationale_background_location_api30_message">Si vous souhaitez utiliser cette fonction, assurez-vous de sélectionner \"autoriser dans les paramètres\" et sélectionnez \"autoriser tout le temps\' option pour le dispositif d\'accès à l\'emplacement de l\'autorisation!</string>
-    <string name="permission_collector_rationale_background_location_2_step_api30_message">Si vous souhaitez utiliser cette fonction, vous devez d\'abord accorder les autorisations de localisation normales, puis il vous sera demandé séparément d\'accorder l\'autorisation de localisation en arrière-plan !</string>
+    <string name="permission_collector_rationale_background_location_2_step_api30_message">Si vous souhaitez utiliser cette fonction, vous devez d\'abord accorder les autorisations de localisation normales, puis il vous sera demandé séparément d\'accorder l\'autorisation de localisation en arrière-plan !</string>
     <string name="permission_collector_rationale_background_location_compliance_message">L\'application nécessite l\'autorisation de localisation en arrière-plan uniquement si vous souhaitez démarrer automatiquement la collecte de mesures au démarrage de l\'appareil. Sans cette autorisation, vous ne pouvez commencer à collecter que par vous-même.</string>
     <string name="permission_collector_denied_message">Annulation de la collecte des mesures en raison du manque d\'autorisations</string>
     <string name="permission_collector_never_ask_again_message">La collecte des mesures n\'est pas disponible en raison du manque d\'autorisation de localisation et/ou du téléphone</string>
@@ -514,4 +513,23 @@
     <string name="permission_map_denied_message">La carte ne peut pas être activée en raison de l\'autorisation de localisation refusée</string>
     <string name="permission_map_never_ask_again_message">La carte n\'est pas disponible en raison du refus d\'autorisation de localisation</string>
     <string name="permission_uploader_denied_message">Envo annulé en raison d\'un manque d\'autorisation sur Internet.</string>
+    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"></string>
+    <string name="main_last_cell_id_rnc_value" translatable="false"></string>
+    <string name="export_format_csv" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_1" translatable="false"></string>
+    <string name="main_last_signal_strength_value" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false"></string>
+    <string name="export_format_gpx" translatable="false"></string>
+    <string name="main_last_number_of_cells_value" translatable="false"></string>
+    <string name="ocid_name" translatable="false"></string>
+    <string name="main_last_longitude_value" translatable="false"></string>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false"></string>
+    <string name="uploader_result_description" translatable="false"></string>
+    <string name="export_format_kmz" translatable="false"></string>
+    <string name="main_last_gps_accuracy_value" translatable="false"></string>
+    <string name="export_format_kml" translatable="false"></string>
+    <string name="mls_name" translatable="false"></string>
+    <string name="uploader_result_message" translatable="false"></string>
+    <string name="preferences_collector_api_version_api_17" translatable="false"></string>
+    <string name="main_last_latitude_value" translatable="false"></string>
 </resources>

@@ -3,8 +3,12 @@
 <!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Tower Collector %VERSION_NAME%
 
-Copyright © 2012-%CURRENT_YEAR% Adam Zamojski & Współautorzy
+Copyright © 2012-%CURRENT_YEAR% Adam Zamojski & Contributors
 
-Tower Collector zbiera informacje o położeniu przekaźników sieci komórkowych GSM, UMTS, LTE, CDMA, 5G NR i TD-SCDMA. Zebrane dane mogą zostać przesłane do wielu publicznych i prywatnych baz danych.
+Tower Collector is designed to collect GPS locations of GSM/UMTS/LTE/CDMA/5G
+NR/TD-SCDMA cell towers. Your collected measurements can be uploaded to many
+public and private databases.
 
-THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES,
+INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS FOR A PARTICULAR PURPOSE.
