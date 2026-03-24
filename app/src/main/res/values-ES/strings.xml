@@ -45,8 +45,8 @@
     <string name="dialog_proceed">Proceder</string>
     <string name="dialog_settings">Configuración</string>
     <string name="main_dialog_not_compatible_title">Problemas de compatibilidad</string>
-    <string name="main_dialog_not_compatible_begin">La aplicación puede no funcionar por:</string>
-    <string name="main_dialog_no_compatible_mobile_radio_message">• Hardware de red móvil no detectado.</string>
+    <string name="main_dialog_not_compatible_begin">La aplicación puede no funcionar por:\n</string>
+    <string name="main_dialog_no_compatible_mobile_radio_message">• Hardware de red móvil no detectado.\n</string>
     <string name="main_toast_background_task_already_running_collector">Servicio de coleccionista</string>
     <string name="main_toast_background_task_already_running_uploader">Tarea de carga</string>
     <string name="main_toast_background_task_already_running_export">Exportar tarea</string>
@@ -54,7 +54,7 @@
     <string name="main_toast_background_task_already_running_common">Detenga \'<xliff:g id="task_name">%s</xliff:g>\' primero.</string>
     <string name="enabled">habilitado</string>
     <string name="disabled">deshabilitado</string>
-    <string name="unknown_error">Ocurrió un error desconocido</string>
+    <string name="unknown_error">¡Ocurrió un error desconocido!</string>
     <string name="main_tab_last_title">Último guardado</string>
     <string name="main_tab_stats_title">Estadísticas</string>
     <string name="main_tab_map_title">Mapa</string>
@@ -111,7 +111,7 @@
     <string name="collector_notification_title">Recabando info</string>
     <string name="collector_notification_stats">Hoy se obtuvieron <xliff:g id="number_of_measurements">%1$d</xliff:g> mediciones de <xliff:g id="number_of_cells">%2$d</xliff:g> celdas.</string>
     <string name="collector_notification_last_measurement">Últimas celdas:\n<xliff:g id="cell_identifier">%s</xliff:g></string>
-    <string name="collector_notification_status">Estado del GPS: <xliff:g id="status">%s</xliff:g></string>
+    <string name="collector_notification_status">Estado del GPS: <xliff:g id="status">%s</xliff:g>.</string>
     <string name="collector_gps_unavailable">No se puede comenzar a recolectar porque el GPS no está disponible.</string>
     <string name="uploader_notification_channel_name">Cargador</string>
     <string name="uploader_notification_title">Subiendo info</string>
@@ -163,7 +163,7 @@
     <string name="export_dialog_progress_title">Exportando</string>
     <string name="export_dialog_progress_message">Guardando en el directorio de \"<xliff:g id="dir_name">%s</xliff:g>\" situado en almacenamiento externo con la fecha y hora actual como nombres de archivo.</string>
     <string name="export_dialog_finished_title">Exportación exitosa</string>
-    <string name="export_dialog_finished_message">Los archivos se han guardado en \"<xliff:g id="dir_name">%s</xliff:g>\".\n\n<i>¡Por favor considere la contribución a uno de los proyectos al subir sus mediciones!</i></string>
+    <string name="export_dialog_finished_message">Los archivos se han guardado en \"<xliff:g id="dir_name">%s</xliff:g>\".\n\n¡Por favor considere la contribución a uno de los proyectos al subir sus mediciones!</string>
     <string name="storage_request_access_title">Seleccionar ubicación de almacenamiento</string>
     <string name="storage_request_access_message">Seleccione una ubicación para almacenar los archivos usando el selector de documentos.</string>
     <string name="storage_request_access_migrate_message">¡Los archivos existentes de la ubicación anterior NO se moverán a una nueva ubicación!</string>
@@ -333,7 +333,7 @@
     <string name="preferences_opencellid_api_key_summary">El token necesario para subir las mediciones.</string>
     <string name="preferences_opencellid_api_key_invalid">El token de acceso introducido no es válido. El formato correcto se describe en la Ayuda.</string>
     <string name="preferences_opencellid_api_key_link_title">Obtenga su propio token de acceso</string>
-    <string name="preferences_opencellid_api_key_link_summary">Regístrese gratis en la página web OpenCellID.org</string>
+    <string name="preferences_opencellid_api_key_link_summary">Regístrese gratis en la página web OpenCellID.org.</string>
     <string name="preferences_about_opencellid_api_key_title">Acerca del token de acceso OpenCellID</string>
     <string name="preferences_about_opencellid_api_key_summary">Información sobre el token de acceso (clave API) y el formato correcto.</string>
     <string name="preferences_about_opencellid_project_title">Acerca del proyecto OpenCellID</string>
@@ -388,7 +388,7 @@
     <string name="preferences_twitter_community_link_title">Comunidad de X (Twitter)</string>
     <string name="preferences_twitter_community_link_summary">Abre la página de la comunidad en X donde se puede encontrar información util, ligas, postear ideas y hacer preguntas.</string>
     <string name="preferences_translate_link_title">Traducir</string>
-    <string name="preferences_translate_link_summary">Abre la herramienta online que le permite colaborar con la traducción de la aplicación</string>
+    <string name="preferences_translate_link_summary">Abre la herramienta online que le permite colaborar con la traducción de la aplicación.</string>
     <string name="preferences_privacy_statement_link_title">Acuerdo de confidencialidad</string>
     <string name="preferences_privacy_statement_link_summary">Muestra el aviso de privacidad de la app.</string>
     <string name="preferences_open_source_licenses_link_title">Licencias de open source</string>
@@ -497,9 +497,9 @@
     <string name="permission_logging_denied_temporarily_message">Deshabilitar temporalmente el registro de archivos debido a la denegación del acceso al almacenamiento.</string>
     <string name="permission_collector_rationale_message">Se deben conceder permisos de ubicación y de teléfono para recopilar mediciones.</string>
     <string name="permission_collector_rationale_api31_message">Se deben otorgar permisos telefónicos y de ubicación precisos para recopilar mediciones.</string>
-    <string name="permission_collector_rationale_background_location_api29_message">Si desea utilizar esta función, asegúrese de seleccionar la opción \'permitir todo el tiempo\' para acceder al permiso de ubicación del dispositivo.</string>
-    <string name="permission_collector_rationale_background_location_api30_message">Si desea utilizar esta función, asegúrese de seleccionar \'permitir en la configuración\' y luego seleccione la opción \'permitir todo el tiempo\' para acceder al permiso de ubicación del dispositivo.</string>
-    <string name="permission_collector_rationale_background_location_2_step_api30_message">Si desea utilizar esta función, primero debe otorgar permisos de ubicación regulares y luego se le pedirá por separado que otorgue permiso de ubicación en segundo plano.</string>
+    <string name="permission_collector_rationale_background_location_api29_message">¡Si desea utilizar esta función, asegúrese de seleccionar la opción \'permitir todo el tiempo\' para acceder al permiso de ubicación del dispositivo!</string>
+    <string name="permission_collector_rationale_background_location_api30_message">¡Si desea utilizar esta función, asegúrese de seleccionar \'permitir en la configuración\' y luego seleccione la opción \'permitir todo el tiempo\' para acceder al permiso de ubicación del dispositivo!</string>
+    <string name="permission_collector_rationale_background_location_2_step_api30_message">¡Si desea utilizar esta función, primero debe otorgar permisos de ubicación regulares y luego se le pedirá por separado que otorgue permiso de ubicación en segundo plano!</string>
     <string name="permission_collector_rationale_background_location_compliance_message">La aplicación requiere el permiso de ubicación en segundo plano solo si desea comenzar a recopilar mediciones automáticamente al iniciar el dispositivo. Sin este permiso sólo podrás empezar a coleccionar tú mismo.</string>
     <string name="permission_collector_denied_message">Cancelación de la recolección de mediciones debido a permisos denegados</string>
     <string name="permission_collector_never_ask_again_message">La recolección de medidas no está disponible debido a la ubicación denegada y/o los permisos del teléfono</string>
@@ -513,23 +513,23 @@
     <string name="permission_map_denied_message">El mapa no se puede habilitar debido al permiso de ubicación denegado</string>
     <string name="permission_map_never_ask_again_message">El mapa no está disponible debido al permiso de ubicación denegado</string>
     <string name="permission_uploader_denied_message">Carga cancelada debido al permiso de Internet negado.</string>
-    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"></string>
-    <string name="main_last_cell_id_rnc_value" translatable="false"></string>
-    <string name="export_format_csv" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_1" translatable="false"></string>
-    <string name="main_last_signal_strength_value" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_netmonster" translatable="false"></string>
-    <string name="export_format_gpx" translatable="false"></string>
-    <string name="main_last_number_of_cells_value" translatable="false"></string>
-    <string name="ocid_name" translatable="false"></string>
-    <string name="main_last_longitude_value" translatable="false"></string>
-    <string name="main_stats_to_upload_mls_locations_label" translatable="false"></string>
-    <string name="uploader_result_description" translatable="false"></string>
-    <string name="export_format_kmz" translatable="false"></string>
-    <string name="main_last_gps_accuracy_value" translatable="false"></string>
-    <string name="export_format_kml" translatable="false"></string>
-    <string name="mls_name" translatable="false"></string>
-    <string name="uploader_result_message" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_17" translatable="false"></string>
-    <string name="main_last_latitude_value" translatable="false"></string>
+    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"/>
+    <string name="main_last_cell_id_rnc_value" translatable="false"/>
+    <string name="export_format_csv" translatable="false"/>
+    <string name="preferences_collector_api_version_api_1" translatable="false"/>
+    <string name="main_last_signal_strength_value" translatable="false"/>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false"/>
+    <string name="export_format_gpx" translatable="false"/>
+    <string name="main_last_number_of_cells_value" translatable="false"/>
+    <string name="ocid_name" translatable="false"/>
+    <string name="main_last_longitude_value" translatable="false"/>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false"/>
+    <string name="uploader_result_description" translatable="false"/>
+    <string name="export_format_kmz" translatable="false"/>
+    <string name="main_last_gps_accuracy_value" translatable="false"/>
+    <string name="export_format_kml" translatable="false"/>
+    <string name="mls_name" translatable="false"/>
+    <string name="uploader_result_message" translatable="false"/>
+    <string name="preferences_collector_api_version_api_17" translatable="false"/>
+    <string name="main_last_latitude_value" translatable="false"/>
 </resources>
