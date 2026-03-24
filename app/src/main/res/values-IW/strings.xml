@@ -283,7 +283,7 @@
     <string name="upload_anonymously">באופן אלמוני</string>
     <string name="enter_valid_api_key">עליך להקליד אסימון גישה תקני בהגדרות</string>
     <string name="enter_valid_mls_url_key">עליך להזין כתובת שרת מותאמת אישית חוקית של BeaconDB בהעדפות</string>
-    <string name="reupload_measurements_if_upload_fails_for_one_of_projects">יש לנסות להעלות את המדידות שוב אם ההעלאה נכשלת עבור אחד מהמיזמים.</string>
+    <string name="reupload_measurements_if_upload_fails_for_one_of_projects">יש לנסות להעלות את המדידות שוב אם ההעלאה נכשלת עבור אחד מהמיזמים</string>
     <string name="unsafe_operation_warning_title">פעולה בלתי בטוחה</string>
     <string name="unsafe_operation_warning_message">אפשרות זו עשויה לפגום בהגדרות היישומון ולגרום לקריסה. במקרה שכזה עליך למחוק את נתוני היישומון בהגדרות ה־Android. עליך לסגור את היישומון לחלוטין ולפתוח אותו מחדש כדי לצפות בשינויים!\n\nהשימוש על אחריותך בלבד!</string>
     <string name="database_import_message">מסד הנתונים ייובא</string>
@@ -295,21 +295,21 @@
     <string name="preferences_header_upload_title">העלאה</string>
     <string name="preferences_header_upload_summary">אפשרויות תרומה למיזמים.</string>
     <string name="preferences_header_collector_title">מנגנון איסוף</string>
-    <string name="preferences_header_collector_summary">הגדרות איסוף מדידות, משתני GPS וכו׳</string>
+    <string name="preferences_header_collector_summary">הגדרות איסוף מדידות, משתני GPS וכו׳.</string>
     <string name="preferences_header_general_title">כללי</string>
-    <string name="preferences_header_general_summary">אפשרויות כלליות, עדכונים, סטטיסטיקה וכו׳</string>
+    <string name="preferences_header_general_summary">אפשרויות כלליות, עדכונים, סטטיסטיקה וכו׳.</string>
     <string name="preferences_header_display_title">תצוגה</string>
-    <string name="preferences_header_display_summary">כל מה שקשור בהצגת נתונים, ערכת עיצוב, יחידות וכו׳</string>
+    <string name="preferences_header_display_summary">כל מה שקשור בהצגת נתונים, ערכת עיצוב, יחידות וכו׳.</string>
     <string name="preferences_header_export_title">ייצוא</string>
-    <string name="preferences_header_export_summary">הגדרות הקשורות לייצוא קבצים</string>
+    <string name="preferences_header_export_summary">הגדרות הקשורות לייצוא קבצים.</string>
     <string name="preferences_header_map_title">מפה</string>
     <string name="preferences_header_map_summary">הגדרות שקשורות למפה.</string>
     <string name="preferences_header_advanced_title">מתקדם</string>
     <string name="preferences_header_advanced_summary">אפשרויות ותכונות מתקדמים.</string>
     <string name="preferences_header_information_title">מידע</string>
-    <string name="preferences_header_information_summary">מידע על היישומון, קישורים, יצירת קשר וכו׳</string>
+    <string name="preferences_header_information_summary">מידע על היישומון, קישורים, יצירת קשר וכו׳.</string>
     <string name="preferences_header_help_title">עזרה</string>
-    <string name="preferences_header_help_summary">עזרה כללית, שימוש ביישומון, דרכי שימוש מומלצות, שילובים וכו׳</string>
+    <string name="preferences_header_help_summary">עזרה כללית, שימוש ביישומון, דרכי שימוש מומלצות, שילובים וכו׳.</string>
     <string name="preferences_category_information_title">מידע</string>
     <string name="preferences_category_settings_title">הגדרות</string>
     <string name="preferences_category_help_title">עזרה</string>
@@ -385,7 +385,7 @@
     <string name="preferences_github_link_summary">פתיחת העמוד ב־GitHub בו ניתן למצוא את קוד המקור, לתרום ליישומון, לדווח על תקלות ולשתף רעיונות.</string>
     <string name="preferences_facebook_community_link_title">קהילת פייסבוק</string>
     <string name="preferences_facebook_community_link_summary">עמוד הקהילה בפייסבוק ייפתח, ניתן למצוא בו מידע שימוש, קישורים, לפרסם רעיונות ולשאול שאלות.</string>
-    <string name="preferences_twitter_community_link_title">קהילת X (טוויטר).</string>
+    <string name="preferences_twitter_community_link_title">קהילת X (טוויטר)</string>
     <string name="preferences_twitter_community_link_summary">פותח דף קהילה X שבו אתה יכול למצוא מידע שימושי, קישורים, לפרסם רעיונות ולשאול שאלות.</string>
     <string name="preferences_translate_link_title">תרגום</string>
     <string name="preferences_translate_link_summary">כלי התרגום המקוון ייפתח, כלי זה מאפשר לך לשתף פעולה בתרגום היישומון.</string>
@@ -397,7 +397,7 @@
     <string name="preferences_external_integration_link_summary">הצגת מידע על שילוב עם יישומונים חיצוניים כגון Tasker,‏ Automate או Llama.</string>
     <string name="preferences_collector_api_version_title">גרסת ה־API של מנגנון האיסוף</string>
     <string name="preferences_collector_api_version_summary">מגדיר גרסת API לשימוש לטובת איסוף פרטי אנטנה סלולרית.</string>
-    <string name="preferences_about_collector_api_version_title">על גרסת ה־API של מנגנון האיסוף.</string>
+    <string name="preferences_about_collector_api_version_title">על גרסת ה־API של מנגנון האיסוף</string>
     <string name="preferences_about_collector_api_version_summary">מידע על ההבדלים בין גרסות ה־API.</string>
     <string name="preferences_file_logging_level_title">רמת פירוט ביומן</string>
     <string name="preferences_file_logging_level_summary">מציג את רמת התיעוד של ההודעות שמאפשרות לנתח תקלות שיופנו לקובץ. יש להיזהר מכך שתיעוד מוגזם עשוי להאט את היישומון וליצור קובצי יומן גדולים.</string>
@@ -513,23 +513,23 @@
     <string name="permission_map_denied_message">לא ניתן להפעיל את המפה עקב הרשאות מיקום שנדחו</string>
     <string name="permission_map_never_ask_again_message">המפה אינה זמינה עקב הרשאות מיקום שנדחו</string>
     <string name="permission_uploader_denied_message">ההעלאה בוטלה עקב העדר הרשאה לגשת לאינטרנט.</string>
-    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"></string>
-    <string name="main_last_cell_id_rnc_value" translatable="false"></string>
-    <string name="export_format_csv" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_1" translatable="false"></string>
-    <string name="main_last_signal_strength_value" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_netmonster" translatable="false"></string>
-    <string name="export_format_gpx" translatable="false"></string>
-    <string name="main_last_number_of_cells_value" translatable="false"></string>
-    <string name="ocid_name" translatable="false"></string>
-    <string name="main_last_longitude_value" translatable="false"></string>
-    <string name="main_stats_to_upload_mls_locations_label" translatable="false"></string>
-    <string name="uploader_result_description" translatable="false"></string>
-    <string name="export_format_kmz" translatable="false"></string>
-    <string name="main_last_gps_accuracy_value" translatable="false"></string>
-    <string name="export_format_kml" translatable="false"></string>
-    <string name="mls_name" translatable="false"></string>
-    <string name="uploader_result_message" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_17" translatable="false"></string>
-    <string name="main_last_latitude_value" translatable="false"></string>
+    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"/>
+    <string name="main_last_cell_id_rnc_value" translatable="false"/>
+    <string name="export_format_csv" translatable="false"/>
+    <string name="preferences_collector_api_version_api_1" translatable="false"/>
+    <string name="main_last_signal_strength_value" translatable="false"/>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false"/>
+    <string name="export_format_gpx" translatable="false"/>
+    <string name="main_last_number_of_cells_value" translatable="false"/>
+    <string name="ocid_name" translatable="false"/>
+    <string name="main_last_longitude_value" translatable="false"/>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false"/>
+    <string name="uploader_result_description" translatable="false"/>
+    <string name="export_format_kmz" translatable="false"/>
+    <string name="main_last_gps_accuracy_value" translatable="false"/>
+    <string name="export_format_kml" translatable="false"/>
+    <string name="mls_name" translatable="false"/>
+    <string name="uploader_result_message" translatable="false"/>
+    <string name="preferences_collector_api_version_api_17" translatable="false"/>
+    <string name="main_last_latitude_value" translatable="false"/>
 </resources>
