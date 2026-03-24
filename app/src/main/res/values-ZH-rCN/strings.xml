@@ -64,7 +64,7 @@
     <string name="main_gps_status_label">GPS状态：</string>
     <string name="main_stats_today_title">今天</string>
     <string name="main_stats_local_title">本地 自从 <xliff:g id="date_time">%s</xliff:g></string>
-    <string name="main_stats_locations_label">测量数据</string>
+    <string name="main_stats_locations_label">测量数据：</string>
     <string name="main_stats_cells_label">基站（新发现）：</string>
     <string name="main_stats_global_title">全部 自从 <xliff:g id="date_time">%s</xliff:g></string>
     <string name="main_stats_global_locations_label">测量数据：</string>
@@ -122,7 +122,7 @@
     <string name="uploader_aborting">中止上传…</string>
     <string name="uploader_already_running">已正在上传。</string>
     <string name="uploader_disabled">上传已禁用</string>
-    <string name="uploader_disabled_description">已禁用上传到此项目</string>
+    <string name="uploader_disabled_description">已禁用上传到此项目。</string>
     <string name="uploader_aborted">上传已中止</string>
     <string name="uploader_aborted_description">没有上传任何内容。</string>
     <string name="uploader_success">上传成功</string>
@@ -163,7 +163,7 @@
     <string name="export_dialog_progress_title">导出中</string>
     <string name="export_dialog_progress_message">保存到外部存储器上的“<xliff:g id="dir_name">%s</xliff:g>”文件夹，以当前日期和时间作为文件名。</string>
     <string name="export_dialog_finished_title">导出成功</string>
-    <string name="export_dialog_finished_message">文件已保存到 “<xliff:g id="dir_name">%s</xliff:g>”。\n\n<i>请考虑通过上传您的测量数据来对其中一个项目做贡献！</i></string>
+    <string name="export_dialog_finished_message">文件已保存到 “<xliff:g id="dir_name">%s</xliff:g>”。\n\n请考虑通过上传您的测量数据来对其中一个项目做贡献！</string>
     <string name="storage_request_access_title">选择存储位置</string>
     <string name="storage_request_access_message">使用文件管理器选择一个位置来存储文件。</string>
     <string name="storage_request_access_migrate_message">旧位置中的现有文件将不会移动到新位置！</string>
@@ -217,7 +217,7 @@
     <string name="main_help_today_locations_title">今天的测量数据</string>
     <string name="main_help_today_locations_description">此应用今天收集的测量数据。</string>
     <string name="main_help_today_cells_title">今天的基站数量</string>
-    <string name="main_help_today_cells_description">应用程序今天收集的基站数量。 括号中是在此设备上首次收集的基站数量</string>
+    <string name="main_help_today_cells_description">应用程序今天收集的基站数量。 括号中是在此设备上首次收集的基站数量。</string>
     <string name="main_help_local_locations_title">存储在本地的测量数据</string>
     <string name="main_help_local_locations_description">自上次上传/删除以来此应用收集的测量数。</string>
     <string name="main_help_local_cells_title">本地存储的基站</string>
@@ -299,7 +299,7 @@
     <string name="preferences_header_general_title">常规</string>
     <string name="preferences_header_general_summary">常规选项、更新、统计等。</string>
     <string name="preferences_header_display_title">显示</string>
-    <string name="preferences_header_display_summary">与数据显示、主题、单位等相关的一切</string>
+    <string name="preferences_header_display_summary">与数据显示、主题、单位等相关的一切。</string>
     <string name="preferences_header_export_title">导出</string>
     <string name="preferences_header_export_summary">与文件导出相关的设置。</string>
     <string name="preferences_header_map_title">地图</string>
@@ -364,7 +364,7 @@
     <string name="preferences_about_tracking_title">关于使用情况统计</string>
     <string name="preferences_about_tracking_summary">有关共享内容和原因的信息。</string>
     <string name="preferences_error_reporting_silent_title">自动发送错误报告</string>
-    <string name="preferences_error_reporting_silent_on_summary">此应用将自动发送错误报告以帮助解决问题</string>
+    <string name="preferences_error_reporting_silent_on_summary">此应用将自动发送错误报告以帮助解决问题。</string>
     <string name="preferences_error_reporting_silent_off_summary">在发送报告之前，该应用会要求您确认，这可能有助于解决问题。</string>
     <string name="preferences_update_check_enabled_title">自动检查更新</string>
     <string name="preferences_update_check_enabled_on_summary">此应用将在新版本可用时通知您。</string>
@@ -402,7 +402,7 @@
     <string name="preferences_file_logging_level_title">文件日志记录级别</string>
     <string name="preferences_file_logging_level_summary">设置诊断消息到文件的日志记录级别。请注意，高度详细的日志记录可能会降低应用速度并创建大型日志文件。</string>
     <string name="preferences_collect_neighboring_cells_title">收集相邻的基站</string>
-    <string name="preferences_collect_neighboring_cells_on_summary">如果可用，将收集相邻的基站</string>
+    <string name="preferences_collect_neighboring_cells_on_summary">如果可用，将收集相邻的基站。</string>
     <string name="preferences_collect_neighboring_cells_off_summary">相邻的小区将被丢弃。</string>
     <string name="preferences_about_neighboring_cells_title">关于相邻的基站</string>
     <string name="preferences_about_neighboring_cells_summary">有关相邻基站的信息。</string>
@@ -512,24 +512,24 @@
     <string name="permission_map_rationale_message">必须授予位置权限才能在地图上显示您的位置。</string>
     <string name="permission_map_denied_message">由于拒绝了位置权限，因此无法启用地图</string>
     <string name="permission_map_never_ask_again_message">由于拒绝了位置权限，因此地图不可用</string>
-    <string name="permission_uploader_denied_message">由于拒绝联网权限，上传已取消</string>
-    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"></string>
-    <string name="main_last_cell_id_rnc_value" translatable="false"></string>
-    <string name="export_format_csv" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_1" translatable="false"></string>
-    <string name="main_last_signal_strength_value" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_netmonster" translatable="false"></string>
-    <string name="export_format_gpx" translatable="false"></string>
-    <string name="main_last_number_of_cells_value" translatable="false"></string>
-    <string name="ocid_name" translatable="false"></string>
-    <string name="main_last_longitude_value" translatable="false"></string>
-    <string name="main_stats_to_upload_mls_locations_label" translatable="false"></string>
-    <string name="uploader_result_description" translatable="false"></string>
-    <string name="export_format_kmz" translatable="false"></string>
-    <string name="main_last_gps_accuracy_value" translatable="false"></string>
-    <string name="export_format_kml" translatable="false"></string>
-    <string name="mls_name" translatable="false"></string>
-    <string name="uploader_result_message" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_17" translatable="false"></string>
-    <string name="main_last_latitude_value" translatable="false"></string>
+    <string name="permission_uploader_denied_message">由于拒绝联网权限，上传已取消。</string>
+    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"/>
+    <string name="main_last_cell_id_rnc_value" translatable="false"/>
+    <string name="export_format_csv" translatable="false"/>
+    <string name="preferences_collector_api_version_api_1" translatable="false"/>
+    <string name="main_last_signal_strength_value" translatable="false"/>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false"/>
+    <string name="export_format_gpx" translatable="false"/>
+    <string name="main_last_number_of_cells_value" translatable="false"/>
+    <string name="ocid_name" translatable="false"/>
+    <string name="main_last_longitude_value" translatable="false"/>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false"/>
+    <string name="uploader_result_description" translatable="false"/>
+    <string name="export_format_kmz" translatable="false"/>
+    <string name="main_last_gps_accuracy_value" translatable="false"/>
+    <string name="export_format_kml" translatable="false"/>
+    <string name="mls_name" translatable="false"/>
+    <string name="uploader_result_message" translatable="false"/>
+    <string name="preferences_collector_api_version_api_17" translatable="false"/>
+    <string name="main_last_latitude_value" translatable="false"/>
 </resources>
