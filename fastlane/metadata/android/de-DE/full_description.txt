@@ -3,7 +3,7 @@ Diese App sammelt die GPS-Positionen von GSM/UMTS/LTE/CDMA/TD-SCDMA/5G (NR)-Funk
 Die wichtigsten Features:
 • eigens optimierte GPS-Parameter um den Akkuverbrauch zu reduzieren
 • Upload zu den Projekten OpenCellID.org und BeaconDB
-• Export auf  SD-Karte als CSV, JSON, GPX, KML, KMZ-Datei
+• Export auf SD-Karte als CSV, JSON, GPX, KML, KMZ-Datei
 • werbefrei, für immer!
 
 Das OpenCellID.org-Projekt hat sich zum Ziel gesetzt, eine weltweite Open-Source Datenbank von GSM-Basisstationen und -zellen zu erstellen. Tower Collector ermöglicht Ihnen, dieses Projekt durch den Upload der verfügbaren Mobilfunk-Zellen in Ihrer Umgebung zu unterstützen. Diese gesammelten Daten können beispielsweise verwendet werden, um ein Gerät schnell zu lokalisieren, ohne dass GPS-Empfang vorhanden sein muss.
