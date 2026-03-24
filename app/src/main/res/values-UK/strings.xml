@@ -45,8 +45,8 @@
     <string name="dialog_proceed">Продовжуй</string>
     <string name="dialog_settings">Налаштування</string>
     <string name="main_dialog_not_compatible_title">Проблеми сумісності</string>
-    <string name="main_dialog_not_compatible_begin">Додаток може не працювати, оскільки:</string>
-    <string name="main_dialog_no_compatible_mobile_radio_message">• Мобільна мережеве обладнання не виявлено.</string>
+    <string name="main_dialog_not_compatible_begin">Додаток може не працювати, оскільки:\n</string>
+    <string name="main_dialog_no_compatible_mobile_radio_message">• Мобільна мережеве обладнання не виявлено.\n</string>
     <string name="main_toast_background_task_already_running_collector">Колекторська служба</string>
     <string name="main_toast_background_task_already_running_uploader">Завдання завантажувача</string>
     <string name="main_toast_background_task_already_running_export">Експортне завдання</string>
@@ -111,7 +111,7 @@
     <string name="collector_notification_title">Збір</string>
     <string name="collector_notification_stats">Сьогодні <xliff:g id="number_of_measurements">%1$d</xliff:g> виміряно <xliff:g id="number_of_cells">%2$d</xliff:g> сот.</string>
     <string name="collector_notification_last_measurement">Останні комірки:\n<xliff:g id="cell_identifier">%s</xliff:g></string>
-    <string name="collector_notification_status">GPS статус: <xliff:g id="status">%s</xliff:g></string>
+    <string name="collector_notification_status">GPS статус: <xliff:g id="status">%s</xliff:g>.</string>
     <string name="collector_gps_unavailable">Неможливо розпочати збирати, тому що GPS недоступний.</string>
     <string name="uploader_notification_channel_name">Вивантажувач</string>
     <string name="uploader_notification_title">Вивантаження</string>
@@ -124,7 +124,7 @@
     <string name="uploader_disabled">Завантаження вимкнено</string>
     <string name="uploader_disabled_description">Завантаження вимкнено для цього проекту.</string>
     <string name="uploader_aborted">Вивантаження зупинено</string>
-    <string name="uploader_aborted_description">Нічого не вивантажено</string>
+    <string name="uploader_aborted_description">Нічого не вивантажено.</string>
     <string name="uploader_success">Вивантаження успішне</string>
     <string name="uploader_success_description">Вивантажено успішно. Дякуємо за ваш внесок!</string>
     <string name="uploader_partially_succeeded">Частково вивантажено</string>
@@ -163,7 +163,7 @@
     <string name="export_dialog_progress_title">Експорт</string>
     <string name="export_dialog_progress_message">Збереження в папку \"<xliff:g id="dir_name">%s</xliff:g>\" на зовнішній пам\'яті з поточною датою і часом в якості імені файлу.</string>
     <string name="export_dialog_finished_title">Експортовано успішно</string>
-    <string name="export_dialog_finished_message">Файли були збережені у \"<xliff:g id="dir_name">%s</xliff:g>\".\n\n<i>Будь ласка, зверніть увагу на внесок у один з проектів завантажуючи свої вимірювання</i></string>
+    <string name="export_dialog_finished_message">Файли були збережені у \"<xliff:g id="dir_name">%s</xliff:g>\".\n\nБудь ласка, зверніть увагу на внесок у один з проектів завантажуючи свої вимірювання!</string>
     <string name="storage_request_access_title">Виберіть місце зберігання</string>
     <string name="storage_request_access_message">Виберіть місце для зберігання файлів за допомогою засобу вибору документів.</string>
     <string name="storage_request_access_migrate_message">Наявні файли зі старого місця НЕ будуть переміщені в нове місце!</string>
@@ -185,14 +185,14 @@
     <string name="clear_toast_finished">База даних очищена</string>
     <string name="clear_map_cache_finished">Кеш карти очищено</string>
     <string name="clear_map_cache_failed">Не вдалося очистити кеш карти</string>
-    <string name="export_toast_failed">Екпорт не виконано: <xliff:g id="failure_reason">%s</xliff:g></string>
+    <string name="export_toast_failed">Екпорт не виконано: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">невідома помилка</string>
     <string name="export_toast_failed_cause_directory_not_exists">не можу створити теку</string>
     <string name="export_toast_failed_cause_directory_not_writable">Каталог доступний тільки для читання</string>
     <string name="export_toast_failed_cause_file_not_writable">Файл доступний тільки для читання</string>
     <string name="export_toast_no_data">Немає даних для експорту.</string>
     <string name="export_toast_cancelled">Експорт скасований.</string>
-    <string name="uploader_toast_failed">Завантаження не виконано: <xliff:g id="failure_reason">%s</xliff:g></string>
+    <string name="uploader_toast_failed">Завантаження не виконано: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="uploader_toast_cancelled">Завантаження скасовано.</string>
     <string name="updater_notification_ticker">Зверніть увагу: доступна нова версія програми</string>
     <string name="updater_notification_title">Нова версія доступна</string>
@@ -229,7 +229,7 @@
     <string name="mail_help_last_number_of_cells_title">Кількість сот</string>
     <string name="mail_help_last_number_of_cells_description">Кількість основних та сусідніх сот, до яких телефон має доступ.</string>
     <string name="main_help_last_network_type_title">Тип мережі</string>
-    <string name="main_help_last_network_type_description">Тип мобільної мережі, до якої підключився телефон</string>
+    <string name="main_help_last_network_type_description">Тип мобільної мережі, до якої підключився телефон.</string>
     <string name="main_help_last_long_cell_id_title">Довгий ІД соти</string>
     <string name="main_help_last_long_cell_id_description">Довгий унікальний ідентифікатор вежі соти, до якого телефон був підключений.</string>
     <string name="main_help_last_long_cell_id_description_umts">Для мереж UMTS LCID, також званий UDRAN CID, являє собою об\'єднання RNC (ідентифікатор контролера радіостанції) та Cell ID (унікальний ідентифікатор Cell Tower).</string>
@@ -240,7 +240,7 @@
     <string name="main_help_last_cell_id_description">Унікальний ідентифікатор башти соти, до якого підключено телефон.</string>
     <string name="main_help_last_bid_title">Ідентифікатор базової станції</string>
     <string name="main_help_last_lac_title">Місцевий код міста</string>
-    <string name="main_help_last_lac_description">Унікальний ідентифікатор призначений для групи стільникових стільникових телефонів, до яких був підключений телефон.</string>
+    <string name="main_help_last_lac_description">Унікальний ідентифікатор призначений для групи стільникових телефонів, до яких був підключений телефон.</string>
     <string name="main_help_last_tac_title">Код міста відстеження</string>
     <string name="main_help_last_nid_title">Ідентифікатор мережі</string>
     <string name="main_help_last_nid_description">Унікальний ідентифікатор мережі, до якої був підключений телефон. Разом з SID він створює унікальний ідентифікатор мережі у всьому світі.</string>
@@ -253,9 +253,9 @@
     <string name="main_help_last_signal_strength_title">Сила сигналу</string>
     <string name="main_help_last_signal_strength_description">Сила сигналу мережі, виміряна при збереженні, виражена в дБм (коефіцієнт потужності в децибелах (дБ) вимірюваної потужності з посиланням на 1 міліватт (мВт)). Подвоєння цієї величини означає потужність сигналу в 10 разів більше. Значення ближче до 0 вказують сильніший сигнал.</string>
     <string name="main_help_last_latitude_title">Широта</string>
-    <string name="main_help_last_latitude_description">Географічна широта збереженої позиції. Позитивне значення представляє північна півкуля, негативна південна частина. Чим вища абсолютна величина, тим далі від екватора</string>
+    <string name="main_help_last_latitude_description">Географічна широта збереженої позиції. Позитивне значення представляє північна півкуля, негативна південна частина. Чим вища абсолютна величина, тим далі від екватора.</string>
     <string name="main_help_last_longitude_title">Довгота</string>
-    <string name="main_help_last_longitude_description">Географічна довгота збереженої позиції. Позитивне значення представляє позицію на схід від Грінвіча, негативне захід. Чим вища абсолютна величина, тим далі від Грінвіча</string>
+    <string name="main_help_last_longitude_description">Географічна довгота збереженої позиції. Позитивне значення представляє позицію на схід від Грінвіча, негативне захід. Чим вища абсолютна величина, тим далі від Грінвіча.</string>
     <string name="main_help_last_gps_accuracy_title">Точність GPS</string>
     <string name="main_help_last_gps_accuracy_description">Точність позиції, отриманої з GPS.</string>
     <string name="main_help_last_date_time_title">Збережений час</string>
@@ -362,7 +362,7 @@
     <string name="preferences_tracking_enabled_on_summary">Анонімна статистика використання буде надсилатись, щоб допомогти вдосконалити додаток. Більше інформації нижче.</string>
     <string name="preferences_tracking_enabled_off_summary">Анонімна статистика використання відключена. Див. Нижче, що може бути відправлено, якщо ввімкнено.</string>
     <string name="preferences_about_tracking_title">Про статистику використання</string>
-    <string name="preferences_about_tracking_summary">Інформація про те, що і чому надсилається</string>
+    <string name="preferences_about_tracking_summary">Інформація про те, що і чому надсилається.</string>
     <string name="preferences_error_reporting_silent_title">Автоматичні повідомлення про помилки</string>
     <string name="preferences_error_reporting_silent_on_summary">Програма автоматично надсилатиме звіти про помилки, які допоможуть вирішити проблему.</string>
     <string name="preferences_error_reporting_silent_off_summary">Додаток запитає вас про підтвердження перед надсиланням звіту, який може допомогти вирішити проблему.</string>
@@ -370,9 +370,9 @@
     <string name="preferences_update_check_enabled_on_summary">Програма повідомить вас, коли буде нова версія.</string>
     <string name="preferences_update_check_enabled_off_summary">Періодичні перевірки доступності нової версії вимикаються.</string>
     <string name="preferences_about_link_title">Про</string>
-    <string name="preferences_about_link_summary">Опис додатка та інформація про версію</string>
+    <string name="preferences_about_link_summary">Опис додатка та інформація про версію.</string>
     <string name="preferences_introduction_link_title">Вступ</string>
-    <string name="preferences_introduction_link_summary">Показує, як використовувати додаток і як він працює</string>
+    <string name="preferences_introduction_link_summary">Показує, як використовувати додаток і як він працює.</string>
     <string name="preferences_best_practices_link_title">Кращі практики</string>
     <string name="preferences_best_practices_link_summary">Відображає належні методи збирання цінних вимірювань.</string>
     <string name="preferences_website_link_title">Веб-сайт</string>
@@ -412,7 +412,7 @@
     <string name="preferences_about_notify_measurements_collected_title">Про що повідомляється в зібраних вимірюваннях</string>
     <string name="preferences_about_notify_measurements_collected_summary">Інформація про зібрані виміри повідомлятиметься іншим додаткам.</string>
     <string name="preferences_main_keep_screen_on_title">Не засинати</string>
-    <string name="preferences_main_keep_screen_on_on_summary">Екран буде постійно увімкненим, коли відображається головний екран додатку</string>
+    <string name="preferences_main_keep_screen_on_on_summary">Екран буде постійно увімкненим, коли відображається головний екран додатку.</string>
     <string name="preferences_main_keep_screen_on_off_summary">Екран буде контролюватися системою, коли відображається головний екран додатка.</string>
     <string name="preferences_show_collector_status_bar_title">Показати рядок стану збору даних</string>
     <string name="preferences_show_collector_status_bar_on_summary">Відображається рядок стану збирання даних.</string>
@@ -474,7 +474,7 @@
     <string name="preferences_file_logging_level_disabled">Вимкнено</string>
     <string name="preferences_file_logging_level_debug">Відлагоджувати</string>
     <string name="preferences_file_logging_level_info">Інформація</string>
-    <string name="preferences_file_logging_level_warning">УВАГА</string>
+    <string name="preferences_file_logging_level_warning">Увага</string>
     <string name="preferences_file_logging_level_error">Помилка</string>
     <string name="info_about_api_key_title">Маркер доступу (ключ API)</string>
     <string name="info_about_opencellid_project_title">Проект OpenCellID</string>
@@ -513,23 +513,23 @@
     <string name="permission_map_denied_message">Карту неможливо ввімкнути через відмову в дозволі розташування</string>
     <string name="permission_map_never_ask_again_message">Карта недоступна через відмову в дозволі розташування</string>
     <string name="permission_uploader_denied_message">Вивантаження скасовано через відмову у дозволі на Інтернет.</string>
-    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"></string>
-    <string name="main_last_cell_id_rnc_value" translatable="false"></string>
-    <string name="export_format_csv" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_1" translatable="false"></string>
-    <string name="main_last_signal_strength_value" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_netmonster" translatable="false"></string>
-    <string name="export_format_gpx" translatable="false"></string>
-    <string name="main_last_number_of_cells_value" translatable="false"></string>
-    <string name="ocid_name" translatable="false"></string>
-    <string name="main_last_longitude_value" translatable="false"></string>
-    <string name="main_stats_to_upload_mls_locations_label" translatable="false"></string>
-    <string name="uploader_result_description" translatable="false"></string>
-    <string name="export_format_kmz" translatable="false"></string>
-    <string name="main_last_gps_accuracy_value" translatable="false"></string>
-    <string name="export_format_kml" translatable="false"></string>
-    <string name="mls_name" translatable="false"></string>
-    <string name="uploader_result_message" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_17" translatable="false"></string>
-    <string name="main_last_latitude_value" translatable="false"></string>
+    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"/>
+    <string name="main_last_cell_id_rnc_value" translatable="false"/>
+    <string name="export_format_csv" translatable="false"/>
+    <string name="preferences_collector_api_version_api_1" translatable="false"/>
+    <string name="main_last_signal_strength_value" translatable="false"/>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false"/>
+    <string name="export_format_gpx" translatable="false"/>
+    <string name="main_last_number_of_cells_value" translatable="false"/>
+    <string name="ocid_name" translatable="false"/>
+    <string name="main_last_longitude_value" translatable="false"/>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false"/>
+    <string name="uploader_result_description" translatable="false"/>
+    <string name="export_format_kmz" translatable="false"/>
+    <string name="main_last_gps_accuracy_value" translatable="false"/>
+    <string name="export_format_kml" translatable="false"/>
+    <string name="mls_name" translatable="false"/>
+    <string name="uploader_result_message" translatable="false"/>
+    <string name="preferences_collector_api_version_api_17" translatable="false"/>
+    <string name="main_last_latitude_value" translatable="false"/>
 </resources>
