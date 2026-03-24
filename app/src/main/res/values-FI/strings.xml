@@ -158,12 +158,12 @@
     <string name="export_starting">Aloitetaan vienti…</string>
     <string name="export_aborting">Keskeytetään vienti…</string>
     <string name="export_toast_no_file_types_selected">Tiedostotyyppejä ei ole valittu vietäväksi.</string>
-    <string name="export_toast_no_handler_for_file_type">Tiedostoa käsittelevä sovellus puuttuu</string>
+    <string name="export_toast_no_handler_for_file_type">Tiedostoa käsittelevä sovellus puuttuu.</string>
     <string name="export_dialog_format_selection_title">Valitse tiedostomuodot</string>
     <string name="export_dialog_progress_title">Viedään</string>
     <string name="export_dialog_progress_message">Tallennetaan kohteeseen \"<xliff:g id="dir_name">%s</xliff:g>\" jossa tiedoston nimenä on nykyinen päivämäärä ja kellonaika.</string>
     <string name="export_dialog_finished_title">Vienti onnistui</string>
-    <string name="export_dialog_finished_message">Tiedostot on tallennettu kohteeseen \"<xliff:g id="dir_name">%s</xliff:g>\".\n\n<i>Harkitse osallistumista johonkin projekteista lataamalla mittauksesi!</i></string>
+    <string name="export_dialog_finished_message">Tiedostot on tallennettu kohteeseen \"<xliff:g id="dir_name">%s</xliff:g>\".\n\nHarkitse osallistumista johonkin projekteista lataamalla mittauksesi!</string>
     <string name="storage_request_access_title">Valitse tallennuspaikka</string>
     <string name="storage_request_access_message">Valitse tiedostojen tallennuspaikka asiakirjavalitsimen avulla.</string>
     <string name="storage_request_access_migrate_message">Vanhan sijainnin olemassa olevia tiedostoja EI siirretä uuteen sijaintiin!</string>
@@ -202,7 +202,7 @@
     <string name="updater_dialog_disable_auto_update">Poista päivitysten tarkistus käytöstä</string>
     <string name="splash_details_database_upgrade">Tietokannan päivitys</string>
     <string name="splash_toast_database_upgrade_running">Tietokannan päivitys on käynnissä. Tämä voi kestää jonkin aikaa.</string>
-    <string name="main_help_gps_status_title">GPS-tila:</string>
+    <string name="main_help_gps_status_title">GPS-tila</string>
     <string name="main_help_gps_status_description">Näyttää GPS:n nykyisen tilan. Jos mittausten saamisessa on ongelmia, etsi paikka, jossa signaalin vastaanotto ja tarkkuus on parempi.</string>
     <string name="main_help_invalid_system_time_title">Virheellinen järjestelmäaika</string>
     <string name="main_help_invalid_system_time_description">Järjestelmän nykyinen päivämäärä ja/tai kellonaika on virheellinen verrattuna GPS-aikaan. Mittaukset tallennetaan oikealla ajalla, mutta esitetyt tilastot voivat olla epätarkkoja. Aseta päivämäärä ja kellonaika laitteessasi.</string>
@@ -283,7 +283,7 @@
     <string name="upload_anonymously">Anonyymisti</string>
     <string name="enter_valid_api_key">Sinun on syötettävä kelvollinen access tokeni Asetuksissa</string>
     <string name="enter_valid_mls_url_key">Sinun on syötettävä kelvollinen mukautettu BeaconDB-palvelimen osoite asetuksiin</string>
-    <string name="reupload_measurements_if_upload_fails_for_one_of_projects">Yritä lähettää mittaukset uudelleen, jos lähetys epäonnistuu jonkin projektin kohdalla.</string>
+    <string name="reupload_measurements_if_upload_fails_for_one_of_projects">Yritä lähettää mittaukset uudelleen, jos lähetys epäonnistuu jonkin projektin kohdalla</string>
     <string name="unsafe_operation_warning_title">Turvaton toiminta</string>
     <string name="unsafe_operation_warning_message">Tämä vaihtoehto voi rikkoa sovelluksen määritykset ja johtaa kaatumiseen. Tällaisessa tapauksessa sinun on tyhjennettävä sovelluksen tiedot Android-asetuksista. Sinun on suljettava sovellus kokonaan ja avattava se uudelleen nähdäksesi muutokset!\n\nKäytät sitä omalla vastuullasi!</string>
     <string name="database_import_message">Tietokanta tuotu</string>
@@ -403,7 +403,7 @@
     <string name="preferences_file_logging_level_summary">Määrittää tiedostoon lähetettävien diagnoosiviestien kirjaustason. Varo, että erittäin yksityiskohtainen lokitus voi hidastaa sovellusta ja luoda suuria lokitiedostoja.</string>
     <string name="preferences_collect_neighboring_cells_title">Kerää viereiset solut</string>
     <string name="preferences_collect_neighboring_cells_on_summary">Viereiset solut kerätään, jos niitä on saatavilla.</string>
-    <string name="preferences_collect_neighboring_cells_off_summary">Viereiset solut hylätään</string>
+    <string name="preferences_collect_neighboring_cells_off_summary">Viereiset solut hylätään.</string>
     <string name="preferences_about_neighboring_cells_title">Tietoa viereisistä soluista</string>
     <string name="preferences_about_neighboring_cells_summary">Tietoja viereisistä soluista.</string>
     <string name="preferences_notify_measurements_collected_title">Ilmoita kerätyistä mittauksista</string>
@@ -502,34 +502,34 @@
     <string name="permission_collector_rationale_background_location_2_step_api30_message">Jos haluat käyttää tätä toimintoa, sinun on ensin myönnettävä säännölliset sijaintiluvat ja sitten sinua pyydetään erikseen myöntämään taustasijaintilupa!</string>
     <string name="permission_collector_rationale_background_location_compliance_message">Sovellus vaatii taustasijaintiluvan vain, jos haluat aloittaa mittausten keräämisen automaattisesti laitteen käynnistyksen yhteydessä. Ilman tätä lupaa voit aloittaa keräämisen vain itse.</string>
     <string name="permission_collector_denied_message">Mittausten kerääminen perutaan evättyjen käyttöoikeuksien vuoksi</string>
-    <string name="permission_collector_never_ask_again_message">Mittausten kerääminen ei ole mahdollista kielletyn sijainnin ja/tai puhelimen käyttöoikeuksien vuoksi.</string>
-    <string name="permission_collector_never_ask_again_background_location_api29_message">Mittausten kerääminen ei ole mahdollista, koska taustasijainti ja/tai puhelimen käyttöoikeudet on evätty.</string>
-    <string name="permission_collector_denied_intent_message">Mittausten keräämisen peruuttaminen evättyjen käyttöoikeuksien vuoksi, avaa sovellus ja myönnä ensin tarvittavat käyttöoikeudet.</string>
+    <string name="permission_collector_never_ask_again_message">Mittausten kerääminen ei ole mahdollista kielletyn sijainnin ja/tai puhelimen käyttöoikeuksien vuoksi</string>
+    <string name="permission_collector_never_ask_again_background_location_api29_message">Mittausten kerääminen ei ole mahdollista, koska taustasijainti ja/tai puhelimen käyttöoikeudet on evätty</string>
+    <string name="permission_collector_denied_intent_message">Mittausten keräämisen peruuttaminen evättyjen käyttöoikeuksien vuoksi, avaa sovellus ja myönnä ensin tarvittavat käyttöoikeudet</string>
     <string name="permission_collector_denied_background_location_message">Käynnistyksen estäminen laitteen käynnistyessä, koska taustapaikan käyttöoikeus on evätty.</string>
     <string name="permission_notification_rationale_message">Ilmoituslupa on myönnettävä, jotta sovellus toimii oikein.</string>
     <string name="permission_notification_denied_message">Sovellus ei voi toimia kunnolla, jos ilmoitukset eivät ole sallittuja.</string>
     <string name="permission_notification_never_ask_again_message">Toiminto ei ole käytettävissä, koska ilmoituslupa on evätty.</string>
     <string name="permission_map_rationale_message">Sijaintilupa on myönnettävä, jotta sijaintisi voidaan näyttää kartalla.</string>
-    <string name="permission_map_denied_message">Karttaa ei voi ottaa käyttöön, koska sijaintilupa on evätty.</string>
-    <string name="permission_map_never_ask_again_message">Kartta ei ole käytettävissä, koska sijaintilupa on evätty.</string>
+    <string name="permission_map_denied_message">Karttaa ei voi ottaa käyttöön, koska sijaintilupa on evätty</string>
+    <string name="permission_map_never_ask_again_message">Kartta ei ole käytettävissä, koska sijaintilupa on evätty</string>
     <string name="permission_uploader_denied_message">Lähetys peruutettu evätyn internet-luvan vuoksi.</string>
-    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"></string>
-    <string name="main_last_cell_id_rnc_value" translatable="false"></string>
-    <string name="export_format_csv" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_1" translatable="false"></string>
-    <string name="main_last_signal_strength_value" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_netmonster" translatable="false"></string>
-    <string name="export_format_gpx" translatable="false"></string>
-    <string name="main_last_number_of_cells_value" translatable="false"></string>
-    <string name="ocid_name" translatable="false"></string>
-    <string name="main_last_longitude_value" translatable="false"></string>
-    <string name="main_stats_to_upload_mls_locations_label" translatable="false"></string>
-    <string name="uploader_result_description" translatable="false"></string>
-    <string name="export_format_kmz" translatable="false"></string>
-    <string name="main_last_gps_accuracy_value" translatable="false"></string>
-    <string name="export_format_kml" translatable="false"></string>
-    <string name="mls_name" translatable="false"></string>
-    <string name="uploader_result_message" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_17" translatable="false"></string>
-    <string name="main_last_latitude_value" translatable="false"></string>
+    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"/>
+    <string name="main_last_cell_id_rnc_value" translatable="false"/>
+    <string name="export_format_csv" translatable="false"/>
+    <string name="preferences_collector_api_version_api_1" translatable="false"/>
+    <string name="main_last_signal_strength_value" translatable="false"/>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false"/>
+    <string name="export_format_gpx" translatable="false"/>
+    <string name="main_last_number_of_cells_value" translatable="false"/>
+    <string name="ocid_name" translatable="false"/>
+    <string name="main_last_longitude_value" translatable="false"/>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false"/>
+    <string name="uploader_result_description" translatable="false"/>
+    <string name="export_format_kmz" translatable="false"/>
+    <string name="main_last_gps_accuracy_value" translatable="false"/>
+    <string name="export_format_kml" translatable="false"/>
+    <string name="mls_name" translatable="false"/>
+    <string name="uploader_result_message" translatable="false"/>
+    <string name="preferences_collector_api_version_api_17" translatable="false"/>
+    <string name="main_last_latitude_value" translatable="false"/>
 </resources>
