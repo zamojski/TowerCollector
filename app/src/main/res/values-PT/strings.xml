@@ -45,8 +45,8 @@
     <string name="dialog_proceed">Continuar</string>
     <string name="dialog_settings">Configurações</string>
     <string name="main_dialog_not_compatible_title">Problemas de compatibilidade</string>
-    <string name="main_dialog_not_compatible_begin">Este aplicativo pode não funcionar porque:</string>
-    <string name="main_dialog_no_compatible_mobile_radio_message">• Hardware de rede móvel não foi detectado.</string>
+    <string name="main_dialog_not_compatible_begin">Este aplicativo pode não funcionar porque:\n</string>
+    <string name="main_dialog_no_compatible_mobile_radio_message">• Hardware de rede móvel não foi detectado.\n</string>
     <string name="main_toast_background_task_already_running_collector">Serviço de coletor</string>
     <string name="main_toast_background_task_already_running_uploader">Tarefa do carregador</string>
     <string name="main_toast_background_task_already_running_export">Tarefa de exportação</string>
@@ -159,11 +159,11 @@
     <string name="export_aborting">Abortando exportação…</string>
     <string name="export_toast_no_file_types_selected">Nenhum tipo de arquivo selecionado para exportação.</string>
     <string name="export_toast_no_handler_for_file_type">Nenhum aplicativo para lidar com o arquivo.</string>
-    <string name="export_dialog_format_selection_title">Selecione formatos de arquivo:</string>
+    <string name="export_dialog_format_selection_title">Selecione formatos de arquivo</string>
     <string name="export_dialog_progress_title">Exportando</string>
     <string name="export_dialog_progress_message">Salvando na pasta \"<xliff:g id="dir_name">%s</xliff:g>\" na memória externa com data e hora atual como nome de arquivo.</string>
     <string name="export_dialog_finished_title">Exportação realizada com sucesso</string>
-    <string name="export_dialog_finished_message">Arquivos salvos em \"<xliff:g id="dir_name">%s</xliff:g>\".\n\n<i>Peço que você considere contribuir com um dos projetos enviando suas medições!</i></string>
+    <string name="export_dialog_finished_message">Arquivos salvos em \"<xliff:g id="dir_name">%s</xliff:g>\".\n\nPeço que você considere contribuir com um dos projetos enviando suas medições!</string>
     <string name="storage_request_access_title">Selecione o local de armazenamento</string>
     <string name="storage_request_access_message">Selecione um local para armazenar os arquivos usando o seletor de documentos.</string>
     <string name="storage_request_access_migrate_message">Os arquivos existentes do local antigo NÃO serão movidos para um novo local!</string>
@@ -224,7 +224,7 @@
     <string name="main_help_local_cells_description">Número de células coletadas (novas descobertas) pela aplicação desde o último upload / apagamento.</string>
     <string name="main_help_global_locations_title">Número total de medições</string>
     <string name="main_help_global_locations_description">Número de medições coletadas pela aplicação desde o início.</string>
-    <string name="main_help_global_cells_title">Número total de células descobertas.</string>
+    <string name="main_help_global_cells_title">Número total de células descobertas</string>
     <string name="main_help_global_cells_description">Número de células novas descobertas (únicas) coletadas pela aplicação desde o início.</string>
     <string name="mail_help_last_number_of_cells_title">Número de células</string>
     <string name="mail_help_last_number_of_cells_description">Número de células principal e vizinhas às quais o telefone tem acesso.</string>
@@ -257,7 +257,7 @@
     <string name="main_help_last_longitude_title">Longitude</string>
     <string name="main_help_last_longitude_description">Longitude geográfica da posição salva. Valores positivos representam uma posição ao leste do Meridiano Primário, negativos ao oeste. Quanto maior o valor absoluto, mais longe está do Meridiano Primário.</string>
     <string name="main_help_last_gps_accuracy_title">Precisão do GPS</string>
-    <string name="main_help_last_gps_accuracy_description">Precisão da posição obtida do GPS</string>
+    <string name="main_help_last_gps_accuracy_description">Precisão da posição obtida do GPS.</string>
     <string name="main_help_last_date_time_title">Horário</string>
     <string name="main_help_last_date_time_description">Data e hora quando a última medição foi salva.</string>
     <string name="main_help_to_upload_common_locations_title">Medições a enviar</string>
@@ -429,7 +429,7 @@
     <string name="preferences_start_collector_at_startup_title">Comece a coletar na inicialização</string>
     <string name="preferences_start_collector_at_startup_on_summary">A coleta será iniciada automaticamente na inicialização do aplicativo.</string>
     <string name="preferences_start_collector_at_startup_off_summary">O aplicativo não começará a coletar na inicialização.</string>
-    <string name="preferences_start_collector_at_boot_title">Inicia a coleta no boot do dispositivo.</string>
+    <string name="preferences_start_collector_at_boot_title">Inicia a coleta no boot do dispositivo</string>
     <string name="preferences_start_collector_at_boot_on_summary">A coleta será iniciada automaticamente no boot do dispositivo. O aplicativo deve estar instalado na memória interna para que isso funcione.</string>
     <string name="preferences_start_collector_at_boot_off_summary">O aplicativo não iniciará a coleta no boot do dispositivo. O aplicativo pode estar instalado em qualquer lugar. A permissão de localização em segundo plano deve ser concedida para usar esta função, caso contrário, o aplicativo não será capaz de coletar medições.</string>
     <string name="preferences_collector_low_battery_action_title">Ação quando a bateria está baixa</string>
@@ -513,23 +513,23 @@
     <string name="permission_map_denied_message">O mapa não pode ser ativado devido à permissão de localização negada</string>
     <string name="permission_map_never_ask_again_message">O mapa não está disponível devido à permissão de localização negada</string>
     <string name="permission_uploader_denied_message">Upload cancelado devido a permissão de internet negada.</string>
-    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"></string>
-    <string name="main_last_cell_id_rnc_value" translatable="false"></string>
-    <string name="export_format_csv" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_1" translatable="false"></string>
-    <string name="main_last_signal_strength_value" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_netmonster" translatable="false"></string>
-    <string name="export_format_gpx" translatable="false"></string>
-    <string name="main_last_number_of_cells_value" translatable="false"></string>
-    <string name="ocid_name" translatable="false"></string>
-    <string name="main_last_longitude_value" translatable="false"></string>
-    <string name="main_stats_to_upload_mls_locations_label" translatable="false"></string>
-    <string name="uploader_result_description" translatable="false"></string>
-    <string name="export_format_kmz" translatable="false"></string>
-    <string name="main_last_gps_accuracy_value" translatable="false"></string>
-    <string name="export_format_kml" translatable="false"></string>
-    <string name="mls_name" translatable="false"></string>
-    <string name="uploader_result_message" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_17" translatable="false"></string>
-    <string name="main_last_latitude_value" translatable="false"></string>
+    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"/>
+    <string name="main_last_cell_id_rnc_value" translatable="false"/>
+    <string name="export_format_csv" translatable="false"/>
+    <string name="preferences_collector_api_version_api_1" translatable="false"/>
+    <string name="main_last_signal_strength_value" translatable="false"/>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false"/>
+    <string name="export_format_gpx" translatable="false"/>
+    <string name="main_last_number_of_cells_value" translatable="false"/>
+    <string name="ocid_name" translatable="false"/>
+    <string name="main_last_longitude_value" translatable="false"/>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false"/>
+    <string name="uploader_result_description" translatable="false"/>
+    <string name="export_format_kmz" translatable="false"/>
+    <string name="main_last_gps_accuracy_value" translatable="false"/>
+    <string name="export_format_kml" translatable="false"/>
+    <string name="mls_name" translatable="false"/>
+    <string name="uploader_result_message" translatable="false"/>
+    <string name="preferences_collector_api_version_api_17" translatable="false"/>
+    <string name="main_last_latitude_value" translatable="false"/>
 </resources>
