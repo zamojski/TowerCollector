@@ -45,8 +45,8 @@
     <string name="dialog_proceed">Onayla</string>
     <string name="dialog_settings">Ayarlar</string>
     <string name="main_dialog_not_compatible_title">Uyumluluk sorunları</string>
-    <string name="main_dialog_not_compatible_begin">Uygulama çalışmayabilir çünkü:</string>
-    <string name="main_dialog_no_compatible_mobile_radio_message">• Mobil ağ donanımı algılanamadı.</string>
+    <string name="main_dialog_not_compatible_begin">Uygulama çalışmayabilir çünkü:\n</string>
+    <string name="main_dialog_no_compatible_mobile_radio_message">• Mobil ağ donanımı algılanamadı.\n</string>
     <string name="main_toast_background_task_already_running_collector">Koleksiyoner hizmeti</string>
     <string name="main_toast_background_task_already_running_uploader">Yükleyici görevi</string>
     <string name="main_toast_background_task_already_running_export">Görevi dışa aktar</string>
@@ -61,21 +61,21 @@
     <string name="main_gps_accuracy_not_available">Mevcut değil</string>
     <string name="main_signal_strength_not_available">Mevcut değil</string>
     <string name="date_time_format_standard">yyyy-MM-dd HH:mm:ss</string>
-    <string name="main_gps_status_label">GPS durumu</string>
+    <string name="main_gps_status_label">GPS durumu:</string>
     <string name="main_stats_today_title">Bugün</string>
-    <string name="main_stats_local_title"><xliff:g id="date_time">%s</xliff:g> den beri ölçümler depolanıyor.</string>
-    <string name="main_stats_locations_label">Ölçümler</string>
-    <string name="main_stats_cells_label">Bulunan Hücreler</string>
+    <string name="main_stats_local_title"><xliff:g id="date_time">%s</xliff:g> den beri ölçümler depolanıyor</string>
+    <string name="main_stats_locations_label">Ölçümler:</string>
+    <string name="main_stats_cells_label">Bulunan Hücreler:</string>
     <string name="main_stats_global_title"><xliff:g id="date_time">%s</xliff:g> den beri toplam</string>
-    <string name="main_stats_global_locations_label">Ölçümler</string>
-    <string name="main_stats_global_cells_label">Bulunan hücreler</string>
+    <string name="main_stats_global_locations_label">Ölçümler:</string>
+    <string name="main_stats_global_cells_label">Bulunan hücreler:</string>
     <string name="main_stats_to_upload_title">Yüklenecek</string>
     <string name="main_last_cell_title">Son kaydedilen ölçümler</string>
-    <string name="main_last_number_of_cells_label">Başlıca / komşu</string>
-    <string name="main_last_network_type_label">Ağ türü</string>
+    <string name="main_last_number_of_cells_label">Başlıca / komşu:</string>
+    <string name="main_last_network_type_label">Ağ türü:</string>
     <string name="main_last_long_cell_id_label">Uzun Cell ID si:</string>
     <string name="main_last_cell_id_rnc_label">Cell ID / RNC:</string>
-    <string name="main_last_cell_id_label">Cell ID</string>
+    <string name="main_last_cell_id_label">Cell ID:</string>
     <string name="main_last_lac_label">LAC:</string>
     <string name="main_last_tac_label">TAC:</string>
     <string name="main_last_mcc_label">MCC:</string>
@@ -83,11 +83,11 @@
     <string name="main_last_sid_label">SID:</string>
     <string name="main_last_nid_label">NID:</string>
     <string name="main_last_bid_label">BID:</string>
-    <string name="main_last_signal_strength_label">Sinyal gücü</string>
-    <string name="main_last_latitude_label">Enlem</string>
-    <string name="main_last_longitude_label">Boylam</string>
-    <string name="main_last_gps_accuracy_label">Doğruluk</string>
-    <string name="main_last_date_time_label">Son kayıt zamanı</string>
+    <string name="main_last_signal_strength_label">Sinyal gücü:</string>
+    <string name="main_last_latitude_label">Enlem:</string>
+    <string name="main_last_longitude_label">Boylam:</string>
+    <string name="main_last_gps_accuracy_label">Doğruluk:</string>
+    <string name="main_last_date_time_label">Son kayıt zamanı:</string>
     <string name="main_last_cell_no_data_message">Şimdiye kadar ölçüm yok, dışarı çıkın ve biraz veri toplayın!</string>
     <string name="main_last_toast_copy_message">Değer \'<xliff:g id="property_value">%s</xliff:g>\' panoya kopyalandı</string>
     <string name="main_map_my_location_button">Konumuma git</string>
@@ -111,19 +111,19 @@
     <string name="collector_notification_title">Toplanıyor</string>
     <string name="collector_notification_stats">Bugün <xliff:g id="number_of_cells">%2$d</xliff:g> hücreden <xliff:g id="number_of_measurements">%1$d</xliff:g> ölçüm yapıldı.</string>
     <string name="collector_notification_last_measurement">Son hücreler:\n<xliff:g id="cell_identifier">%s</xliff:g></string>
-    <string name="collector_notification_status">GPS durumu <xliff:g id="status">%s</xliff:g></string>
+    <string name="collector_notification_status">GPS durumu <xliff:g id="status">%s</xliff:g>.</string>
     <string name="collector_gps_unavailable">Toplama başlatılamadı çünkü konum devre dışı.</string>
     <string name="uploader_notification_channel_name">Yükleyici</string>
     <string name="uploader_notification_title">Yükleniyor</string>
     <string name="uploader_notification_progress_info"><xliff:g id="progress_in_percent">%d</xliff:g>%% yüklendi.</string>
     <string name="uploader_result_dialog_title">Yükleme sonucu</string>
     <string name="uploader_dialog_progress_title">Yükleniyor</string>
-    <string name="uploader_starting">Yükleme başlatılıyor.</string>
-    <string name="uploader_aborting">Yükleme iptal ediliyor.</string>
+    <string name="uploader_starting">Yükleme başlatılıyor…</string>
+    <string name="uploader_aborting">Yükleme iptal ediliyor…</string>
     <string name="uploader_already_running">Yükleme zaten çalışıyor.</string>
     <string name="uploader_disabled">Yükleme kapalı</string>
     <string name="uploader_disabled_description">Yükleme, bu proje için kapatıldı.</string>
-    <string name="uploader_aborted">Yükleme iptal edildi.</string>
+    <string name="uploader_aborted">Yükleme iptal edildi</string>
     <string name="uploader_aborted_description">Hiçbir şey yüklenmedi.</string>
     <string name="uploader_success">Yükleme başarılı</string>
     <string name="uploader_success_description">Yükleme başarılı. Katkınız için teşekkürler!</string>
@@ -137,13 +137,13 @@
     <string name="uploader_invalid_input_data_description">Sunucu uygulamadan gelen veriyi reddetti. Uygulamanın güncel olup olmadığını kontrol edin. Eğer uzun süre bu sorunla karşılaşırsanız, geliştiriciye haber verin.</string>
     <string name="uploader_no_data">Yüklenecek birşey yok</string>
     <string name="uploader_no_data_description">Yüklenecek veri yok. Lütfen yüklemeden önce biraz veri toplayın.</string>
-    <string name="uploader_delete_failed">Ölçümleri silerken hata ile karşılaşıldı.</string>
+    <string name="uploader_delete_failed">Ölçümleri silerken hata ile karşılaşıldı</string>
     <string name="uploader_delete_failed_description">Ölçümleri silerken hata ile karşılaşıldı. Lütfen cihazınızı yeniden başlatın ve tekrar deneyin. Eğer yine aynı sorunla karşılaşırsanız geliştiriciye bildirin.</string>
     <string name="uploader_connection_error">Bağlantı hatası</string>
     <string name="uploader_connection_error_description">Sunucuya ulaşılamadı. Bunun sebebi internetin olmaması, çok yavaş olması yada stabil olmaması gibi ağ ile alakalı sorunlar olabilir. Uygulamanın güncel olup olmadığını kontrol edin. Uzun süre bu sorunla karşılaşırsanız, geliştiriciye bildirin.</string>
     <string name="uploader_server_error">Sunucu hatası</string>
     <string name="uploader_server_error_description">Sunucu yüklemesinde hata ile karşılaşıldı. Bunun sebebi fazla yükleme, sunucunun geçici olarak kapalı olması yada bakım için kapalı olması olabilir. Lütfen daha sonra tekrar deneyiniz. Uzun süre bu sorunla karşılaşırsanız, geliştiriciye bildirin.</string>
-    <string name="uploader_limit_exceeded">Kullanım limiti aşıldı.</string>
+    <string name="uploader_limit_exceeded">Kullanım limiti aşıldı</string>
     <string name="uploader_limit_exceeded_description">Uygulama için günlük kullanım limiti aşıldı.</string>
     <string name="uploader_no_internet_title">İnternet kullanılamıyor</string>
     <string name="uploader_no_internet_message">İnternet bağlantısı olmadığı için yükleme yapılamıyor.</string>
@@ -163,7 +163,7 @@
     <string name="export_dialog_progress_title">Dışa aktarılıyor</string>
     <string name="export_dialog_progress_message">Dosya ismi şu andaki tarih ve saat olacak şekilde dış bellekteki \"<xliff:g id="dir_name">%s</xliff:g>\" klasörüne kaydediliyor.</string>
     <string name="export_dialog_finished_title">Dışa aktarma başarılı</string>
-    <string name="export_dialog_finished_message">Dosyalar \"<xliff:g id="dir_name">%s</xliff:g>\" ya kaydedildi.\n\n<i>Lütfen ölçümlerinizi yükleyerek bu projelerden birine katkıda bulunun</i></string>
+    <string name="export_dialog_finished_message">Dosyalar \"<xliff:g id="dir_name">%s</xliff:g>\" ya kaydedildi.\n\nLütfen ölçümlerinizi yükleyerek bu projelerden birine katkıda bulunun!</string>
     <string name="storage_request_access_title">Depolama konumunu seçin</string>
     <string name="storage_request_access_message">Belge seçiciyi kullanarak dosyaları depolamak için bir konum seçin.</string>
     <string name="storage_request_access_migrate_message">Eski konumdaki mevcut dosyalar yeni bir konuma TAŞINMAYACAKTIR!</string>
@@ -185,14 +185,14 @@
     <string name="clear_toast_finished">Veri tabanı temizlendi</string>
     <string name="clear_map_cache_finished">Harita önbelleği temizlendi</string>
     <string name="clear_map_cache_failed">Harita önbelleği temizlenemedi</string>
-    <string name="export_toast_failed">Dışa aktarma başarısız oldu: <xliff:g id="failure_reason">%s</xliff:g></string>
+    <string name="export_toast_failed">Dışa aktarma başarısız oldu: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">Bilinmeyen hata</string>
     <string name="export_toast_failed_cause_directory_not_exists">Dizin oluşturulamıyor</string>
     <string name="export_toast_failed_cause_directory_not_writable">Dizin sadece salt okunur</string>
     <string name="export_toast_failed_cause_file_not_writable">Dosya sadece salt okunur</string>
     <string name="export_toast_no_data">Dışa aktarılacak veri yok.</string>
     <string name="export_toast_cancelled">Dışa aktarma iptal edildi.</string>
-    <string name="uploader_toast_failed">Yükleme başarısız: <xliff:g id="failure_reason">%s</xliff:g></string>
+    <string name="uploader_toast_failed">Yükleme başarısız: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="uploader_toast_cancelled">Yükleme iptal edildi.</string>
     <string name="updater_notification_ticker">Tower Collector uygulamasının yeni sürümü mevcut</string>
     <string name="updater_notification_title">Yeni sürüm mevcut</string>
@@ -212,16 +212,16 @@
     <string name="main_help_battery_optimizations_description_api35">Lütfen Android ayarlarında \'Tüm Uygulamalar\'ı ve ardından Tower Collector: \'Arka plan kullanımına izin ver\'i seçerek pil optimizasyonlarını devre dışı bırakın.</string>
     <string name="main_help_power_save_mode_title">Pil tasarrufu etkin</string>
     <string name="main_help_power_save_mode_description">Pil tasarrufu etkin, bu yüzden ölçümler güvenilir ve doğru olmayabilir. Lütfen android pil ayarların pil tasarrufunu kapatın.</string>
-    <string name="main_help_airplane_mode_title">Uçak modu etkin.</string>
+    <string name="main_help_airplane_mode_title">Uçak modu etkin</string>
     <string name="main_help_airplane_mode_description">Cihazınızda uçak modu etkin. Bu, uygulamanın ölçümleri toplamasını engelleyebilir. Lütfen android ayarlarından uçak modunu kapatın.</string>
     <string name="main_help_today_locations_title">Bugünkü ölçümler</string>
-    <string name="main_help_today_locations_description">Bugün uygulama tarafından toplanan ölçümlerin sayısı</string>
+    <string name="main_help_today_locations_description">Bugün uygulama tarafından toplanan ölçümlerin sayısı.</string>
     <string name="main_help_today_cells_title">Bugünkü hücreler</string>
     <string name="main_help_today_cells_description">Bugün uygulama tarafından toplanan hücre sayısı. Parantez içinde, bu cihazda ilk kez toplanan ve daha önce hiç kaydedilmemiş hücre sayısı yer almaktadır.</string>
     <string name="main_help_local_locations_title">Cihaza depolanan ölçümler</string>
-    <string name="main_help_local_locations_description">Son yüklemeden/silmeden beri toplanan ölçümlerin sayısı</string>
+    <string name="main_help_local_locations_description">Son yüklemeden/silmeden beri toplanan ölçümlerin sayısı.</string>
     <string name="main_help_local_cells_title">Cihazda depolanan hücreler</string>
-    <string name="main_help_local_cells_description">Son yüklemeden/silmeden beri toplanan ölçümlerin sayısı</string>
+    <string name="main_help_local_cells_description">Son yüklemeden/silmeden beri toplanan ölçümlerin sayısı.</string>
     <string name="main_help_global_locations_title">Toplam ölçüm sayısı</string>
     <string name="main_help_global_locations_description">Başlangıçtan beri uygulama tarafından yapılan tüm ölçümlerin sayısı.</string>
     <string name="main_help_global_cells_title">Toplam bulunan hücrelerin sayısı</string>
@@ -240,7 +240,7 @@
     <string name="main_help_last_cell_id_description">Telefonun bağlandığı eşsiz baz istasyonu tanımlayıcısıdır.</string>
     <string name="main_help_last_bid_title">Baz istasyonu kimliği</string>
     <string name="main_help_last_lac_title">Konum Alan Kodu</string>
-    <string name="main_help_last_lac_description">Telefonun bağlı olduğu baz istasyonu grupları için atanan tan</string>
+    <string name="main_help_last_lac_description">Telefonun bağlı olduğu baz istasyonu grupları için atanan tan.</string>
     <string name="main_help_last_tac_title">İzleme Alan Kodu</string>
     <string name="main_help_last_nid_title">Ağ kimliği</string>
     <string name="main_help_last_nid_description">Telefonun bağlı olduğu ağın benzersiz tanımlayıcısı. SID ile birlikte dünya çapında benzersiz bir ağ tanımlayıcısı oluşturur.</string>
@@ -264,7 +264,7 @@
     <string name="main_help_to_upload_ocid_locations_description">OpenCellID.org a yüklenmek için bekleyen ölçümlerin sayısı.</string>
     <string name="main_help_to_upload_mls_locations_description">BeaconDB\'ye yüklenmeyi bekleyen ölçüm sayısı.</string>
     <string name="collector_status_active">Ölçümler toplanıyor</string>
-    <string name="collector_status_inactive">Ölçümlerin toplanması durduruldu.</string>
+    <string name="collector_status_inactive">Ölçümlerin toplanması durduruldu</string>
     <string name="status_initializing">Konum bekleniyor</string>
     <string name="status_ok">İyi (<xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g>)</string>
     <string name="status_low_gps_accuracy">Düşük doğruluk (<xliff:g id="accuracy_value">%1$.0f</xliff:g><xliff:g id="accuracy_unit">%2$s</xliff:g>)</string>
@@ -278,14 +278,14 @@
     <string name="uploader_all_projects_disabled">Tüm projelere yükleme devre dışı</string>
     <string name="export_format_csv_ocid">OpenCellID.org için CSV</string>
     <string name="export_format_json_mls">BeaconDB için JSON</string>
-    <string name="export_format_zip">Dışarı aktarılan her bir dosyayı sıkıştır.</string>
+    <string name="export_format_zip">Dışarı aktarılan her bir dosyayı sıkıştır</string>
     <string name="upload_configurator_dialog_title">Yükleme hedefini yapılandırın</string>
     <string name="upload_anonymously">Anonim olarak</string>
     <string name="enter_valid_api_key">Ayarlardan geçerli bir Erişim tokeni girmeniz gerekiyor</string>
     <string name="enter_valid_mls_url_key">Tercihler\'e geçerli özel BeaconDB sunucu adresini girmelisiniz</string>
     <string name="reupload_measurements_if_upload_fails_for_one_of_projects">Eğer projelerden birine yükleme başarısız olursa ölçümleri tekrar yüklemeyi dene</string>
     <string name="unsafe_operation_warning_title">Güvenilmeyen eylem</string>
-    <string name="unsafe_operation_warning_message">Bu seçenek uygulamanın yapılandırmasını bozabilir ve çökmeye neden olabilir. Bu durumda Android ayarlarından uygulama verilerini temizlemeniz gerekir. Değişiklikleri görmek için uygulamayı kapatmanız ve yeniden açmanız gerekir.\nRisk size aittir!</string>
+    <string name="unsafe_operation_warning_message">Bu seçenek uygulamanın yapılandırmasını bozabilir ve çökmeye neden olabilir. Bu durumda Android ayarlarından uygulama verilerini temizlemeniz gerekir. Değişiklikleri görmek için uygulamayı kapatmanız ve yeniden açmanız gerekir.\n\nRisk size aittir!</string>
     <string name="database_import_message">Veri tabanı içe aktarıldı</string>
     <string name="database_export_message">Veri tabanı dışa aktarıldı</string>
     <string name="database_import_export_failed_message">Veri tabanı işlemi başarısız oldu</string>
@@ -293,17 +293,17 @@
     <string name="preferences_export_message">Tercihler dışa aktarıldı</string>
     <string name="preferences_import_export_failed_message">Tercih işlemleri başarısız oldu</string>
     <string name="preferences_header_upload_title">Yükleme</string>
-    <string name="preferences_header_upload_summary">Projelere katkıda bulunma seçenekleri</string>
+    <string name="preferences_header_upload_summary">Projelere katkıda bulunma seçenekleri.</string>
     <string name="preferences_header_collector_title">Toplayıcı</string>
     <string name="preferences_header_collector_summary">Ölçüm toplama ayarları, GPS parametreleri, vb.</string>
     <string name="preferences_header_general_title">Genel</string>
     <string name="preferences_header_general_summary">Genel ayarlar, güncellemeler, istatistikler, vb.</string>
     <string name="preferences_header_display_title">Görünüm</string>
-    <string name="preferences_header_display_summary">Veri görünümü, tema, birimler, vb. ile ilgili her şey</string>
+    <string name="preferences_header_display_summary">Veri görünümü, tema, birimler, vb. ile ilgili her şey.</string>
     <string name="preferences_header_export_title">Dışa aktarım</string>
-    <string name="preferences_header_export_summary">Dosya dışa aktarımı ile ilgili ayarlar</string>
+    <string name="preferences_header_export_summary">Dosya dışa aktarımı ile ilgili ayarlar.</string>
     <string name="preferences_header_map_title">Harita</string>
-    <string name="preferences_header_map_summary">Harita ile ilgili ayarlar</string>
+    <string name="preferences_header_map_summary">Harita ile ilgili ayarlar.</string>
     <string name="preferences_header_advanced_title">Gelişmiş</string>
     <string name="preferences_header_advanced_summary">Gelişmiş ayarlar ve fonksiyonlar.</string>
     <string name="preferences_header_information_title">Bilgi</string>
@@ -313,7 +313,7 @@
     <string name="preferences_category_information_title">Bilgi</string>
     <string name="preferences_category_settings_title">Ayarlar</string>
     <string name="preferences_category_help_title">Yardım</string>
-    <string name="preferences_restoring_default">Verilen değer geçersiz, varsayılan ayara dönülüyor.</string>
+    <string name="preferences_restoring_default">Verilen değer geçersiz, varsayılan ayara dönülüyor</string>
     <string name="preferences_value_undefined">Tanımsız</string>
     <string name="preferences_restart_app">Değişiklikleri uygulamak için uygulamayı yeniden başlatın.</string>
     <string name="preferences_restart_collector">Değişiklikleri uygulamak için toplama işlemini yeniden başlatın.</string>
@@ -332,12 +332,12 @@
     <string name="preferences_opencellid_api_key_title">Kişisel erişim tokeni</string>
     <string name="preferences_opencellid_api_key_summary">Token, ölçümlerinizi yüklemek için gereklidir.</string>
     <string name="preferences_opencellid_api_key_invalid">Girilen erişim tokeni geçersiz. Doğru format yardım kısmında açıklanmıştır.</string>
-    <string name="preferences_opencellid_api_key_link_title">Kendi erişim tokeninizi edinin.</string>
+    <string name="preferences_opencellid_api_key_link_title">Kendi erişim tokeninizi edinin</string>
     <string name="preferences_opencellid_api_key_link_summary">Ücretsiz anahtar için OpenCellID.org sitesine kayıt olun.</string>
     <string name="preferences_about_opencellid_api_key_title">OpenCellID erişim tokeni hakkında</string>
     <string name="preferences_about_opencellid_api_key_summary">Erişim tokeni (API anahtarı) ve doğru biçimleme hakkında bilgiler.</string>
     <string name="preferences_about_opencellid_project_title">OpenCellID projesi hakkında</string>
-    <string name="preferences_about_opencellid_project_summary">OpenCellID projesi hakkında bilgiler</string>
+    <string name="preferences_about_opencellid_project_summary">OpenCellID.org projesi hakkında bilgiler.</string>
     <string name="preferences_mls_enabled_title">BeaconDB\' ye yüklemeyi etkinleştir</string>
     <string name="preferences_mls_enabled_on_summary">Ölçümler BeaconDB\'ye yüklenecek.</string>
     <string name="preferences_mls_enabled_off_summary">Ölçümler BeaconDB\'ye yüklenmeyecektir.</string>
@@ -350,7 +350,7 @@
     <string name="preferences_about_mls_project_title">BeaconDB hakkında</string>
     <string name="preferences_about_mls_project_summary">BeaconDB hakkında bilgi.</string>
     <string name="preferences_imperial_units_title">İngiliz ölçü birimi kullan</string>
-    <string name="preferences_imperial_units_on_summary">Değerler İngiliz ölçü biçimi (örn: inç, foot, yard) kullanılarak verilecek</string>
+    <string name="preferences_imperial_units_on_summary">Değerler İngiliz ölçü biçimi (örn: inç, foot, yard) kullanılarak verilecek.</string>
     <string name="preferences_imperial_units_off_summary">Değerler metre sistemi kullanılarak verilecek.</string>
     <string name="preferences_app_theme_title">Tema</string>
     <string name="preferences_app_theme_summary">Uygulamanın renk temasını belirler.</string>
@@ -376,7 +376,7 @@
     <string name="preferences_best_practices_link_title">En iyi yöntemler</string>
     <string name="preferences_best_practices_link_summary">Değerli ölçümleri toplamak için iyi yöntemleri görüntüler.</string>
     <string name="preferences_website_link_title">Web sitesi</string>
-    <string name="preferences_website_link_summary">Uygulamanın tanıtımını ve uygulama mağazalarından indirme linklerini içeren, uygulama geliştiricisinin websitesini açar</string>
+    <string name="preferences_website_link_summary">Uygulamanın tanıtımını ve uygulama mağazalarından indirme linklerini içeren, uygulama geliştiricisinin websitesini açar.</string>
     <string name="preferences_contact_email_link_title">Geliştirici ile iletişime geç</string>
     <string name="preferences_contact_email_link_summary">Sorunlarınızla, sorularınızla ve fikirlerinizle ilgili geliştiriciye mail gönderin.</string>
     <string name="preferences_donate_link_title">Bağış yapmak</string>
@@ -386,7 +386,7 @@
     <string name="preferences_facebook_community_link_title">Facebook Topluluğu</string>
     <string name="preferences_facebook_community_link_summary">Kullanışlı bilgiler, gönderi fikirleri bulabileceğiniz ve soru sorabileceğiniz Facebook Topluluk Sayfasını açar.</string>
     <string name="preferences_twitter_community_link_title">X (Twitter) Topluluğu</string>
-    <string name="preferences_twitter_community_link_summary">Kullanışlı bilgiler, gönderi fikirleri bulabileceğiniz ve soru sorabileceğiniz X Topluluk Sayfasını açar</string>
+    <string name="preferences_twitter_community_link_summary">Kullanışlı bilgiler, gönderi fikirleri bulabileceğiniz ve soru sorabileceğiniz X Topluluk Sayfasını açar.</string>
     <string name="preferences_translate_link_title">Çeviri</string>
     <string name="preferences_translate_link_summary">Uygulamayı çevirmek için işbirliği yapmanızı sağlayan çevrimiçi çeviri aracını açar.</string>
     <string name="preferences_privacy_statement_link_title">Gizlilik Bildirgesi</string>
@@ -394,7 +394,7 @@
     <string name="preferences_open_source_licenses_link_title">Açık kaynak lisansları</string>
     <string name="preferences_open_source_licenses_link_summary">Kullanılan açık kaynak bileşenlerinin lisansları hakkında bilgi verir.</string>
     <string name="preferences_external_integration_link_title">Harici entegrasyon</string>
-    <string name="preferences_external_integration_link_summary">Tasker, Automate ya da LLama gibi harici uygulamalarla olan entegrasyon hakkında bilgileri gösterir.</string>
+    <string name="preferences_external_integration_link_summary">Tasker, Automate ya da Llama gibi harici uygulamalarla olan entegrasyon hakkında bilgileri gösterir.</string>
     <string name="preferences_collector_api_version_title">Toplayıcı API sürümü</string>
     <string name="preferences_collector_api_version_summary">Hücre bilgisini almak için kullanılan API anahtarını tanımlar.</string>
     <string name="preferences_about_collector_api_version_title">Toplayıcı API sürümü hakkında</string>
@@ -418,7 +418,7 @@
     <string name="preferences_show_collector_status_bar_on_summary">Toplayıcı durum çubuğunda gösterilecek.</string>
     <string name="preferences_show_collector_status_bar_off_summary">Toplayıcı durum çubuğunda görünmeyecek.</string>
     <string name="preferences_notification_settings_title">Bildirim ayarları</string>
-    <string name="preferences_notification_settings_summary">Uygulamanın bildirim ayarlarını açar</string>
+    <string name="preferences_notification_settings_summary">Uygulamanın bildirim ayarlarını açar.</string>
     <string name="preferences_about_main_keep_screen_on_title">Ekranın açık tutulması hakkında</string>
     <string name="preferences_about_main_keep_screen_on_summary">Bu seçeneğin nasıl çalıştığı ve ne zaman kullanılacağı hakkında bilgi.</string>
     <string name="preferences_about_collector_keep_screen_on_title">Toplama yapılırken ekranın açık tutulması hakkında bilgi</string>
@@ -442,7 +442,7 @@
     <string name="preferences_export_database_summary">Uygulamanın dahili veritabanını Tercihler\'de ayarlanan depolama klasöründe bulunan measurements.db dosyasına aktarır.</string>
     <string name="preferences_export_database_overwrite_warning_title">Olası veri kaybı</string>
     <string name="preferences_export_database_overwrite_warning_message">Bu işleme devam etmek, mevcut measurements.db dosyasının üzerine herhangi bir ölçüm içermeyen geçerli kopyanın yazılmasına neden olabilir.\n\nİhracat yapmak istediğinizden emin misiniz?</string>
-    <string name="preferences_import_preferences_title">Tercihleri içe aktar.</string>
+    <string name="preferences_import_preferences_title">Tercihleri içe aktar</string>
     <string name="preferences_import_preferences_summary">Uygulamanın dahili tercihlerini Tercihler\'de ayarlanan depolama klasöründe bulunan preferences.xml dosyasından uygulamanın dahili tercihlerini içe aktarır.</string>
     <string name="preferences_export_preferences_title">Tercihleri dışa aktar</string>
     <string name="preferences_export_preferences_summary">Uygulamanın dahili tercihlerini Tercihler\'de ayarlanan depolama klasöründe bulunan preferences.xml dosyasına aktarır.</string>
@@ -510,26 +510,26 @@
     <string name="permission_notification_denied_message">Bildirimlere izin verilmiyorsa uygulama düzgün çalışamaz.</string>
     <string name="permission_notification_never_ask_again_message">Bildirim izninin reddedilmesi nedeniyle işlev kullanılamıyor.</string>
     <string name="permission_map_rationale_message">Konumunuzu haritada görüntülemek için konum izni verilmelidir.</string>
-    <string name="permission_map_denied_message">Reddedilen konum izni nedeniyle harita etkinleştirilemiyor.</string>
+    <string name="permission_map_denied_message">Reddedilen konum izni nedeniyle harita etkinleştirilemiyor</string>
     <string name="permission_map_never_ask_again_message">Reddedilen konum izni nedeniyle harita kullanılamıyor</string>
     <string name="permission_uploader_denied_message">İnternet izni reddedildiği için yükleme iptal edildi.</string>
-    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"></string>
-    <string name="main_last_cell_id_rnc_value" translatable="false"></string>
-    <string name="export_format_csv" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_1" translatable="false"></string>
-    <string name="main_last_signal_strength_value" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_netmonster" translatable="false"></string>
-    <string name="export_format_gpx" translatable="false"></string>
-    <string name="main_last_number_of_cells_value" translatable="false"></string>
-    <string name="ocid_name" translatable="false"></string>
-    <string name="main_last_longitude_value" translatable="false"></string>
-    <string name="main_stats_to_upload_mls_locations_label" translatable="false"></string>
-    <string name="uploader_result_description" translatable="false"></string>
-    <string name="export_format_kmz" translatable="false"></string>
-    <string name="main_last_gps_accuracy_value" translatable="false"></string>
-    <string name="export_format_kml" translatable="false"></string>
-    <string name="mls_name" translatable="false"></string>
-    <string name="uploader_result_message" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_17" translatable="false"></string>
-    <string name="main_last_latitude_value" translatable="false"></string>
+    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"/>
+    <string name="main_last_cell_id_rnc_value" translatable="false"/>
+    <string name="export_format_csv" translatable="false"/>
+    <string name="preferences_collector_api_version_api_1" translatable="false"/>
+    <string name="main_last_signal_strength_value" translatable="false"/>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false"/>
+    <string name="export_format_gpx" translatable="false"/>
+    <string name="main_last_number_of_cells_value" translatable="false"/>
+    <string name="ocid_name" translatable="false"/>
+    <string name="main_last_longitude_value" translatable="false"/>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false"/>
+    <string name="uploader_result_description" translatable="false"/>
+    <string name="export_format_kmz" translatable="false"/>
+    <string name="main_last_gps_accuracy_value" translatable="false"/>
+    <string name="export_format_kml" translatable="false"/>
+    <string name="mls_name" translatable="false"/>
+    <string name="uploader_result_message" translatable="false"/>
+    <string name="preferences_collector_api_version_api_17" translatable="false"/>
+    <string name="main_last_latitude_value" translatable="false"/>
 </resources>
