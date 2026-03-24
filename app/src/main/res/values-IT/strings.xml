@@ -71,7 +71,7 @@
     <string name="main_stats_global_cells_label">Celle scoperte:</string>
     <string name="main_stats_to_upload_title">Da caricare</string>
     <string name="main_last_cell_title">Ultima misurazione salvata</string>
-    <string name="main_last_number_of_cells_label">Principale/adiacenti</string>
+    <string name="main_last_number_of_cells_label">Principale / adiacenti:</string>
     <string name="main_last_network_type_label">Tipo di rete:</string>
     <string name="main_last_long_cell_id_label">Cell ID Lungo:</string>
     <string name="main_last_cell_id_rnc_label">Cell ID / RNC:</string>
@@ -120,7 +120,7 @@
     <string name="uploader_dialog_progress_title">Caricamento</string>
     <string name="uploader_starting">Avvio caricamento…</string>
     <string name="uploader_aborting">Annullamento del caricamento…</string>
-    <string name="uploader_already_running">Il caricamento è già in corso</string>
+    <string name="uploader_already_running">Il caricamento è già in corso.</string>
     <string name="uploader_disabled">Caricamento disabilitato</string>
     <string name="uploader_disabled_description">Caricamento disabilitato per questo progetto.</string>
     <string name="uploader_aborted">Caricamento annullato</string>
@@ -163,7 +163,7 @@
     <string name="export_dialog_progress_title">Esportazione in corso</string>
     <string name="export_dialog_progress_message">Salvataggio nella cartella \"<xliff:g id="dir_name">%s</xliff:g>\" della memoria esterna con data e ora correnti come nome del file.</string>
     <string name="export_dialog_finished_title">Esportazione riuscita</string>
-    <string name="export_dialog_finished_message">I file sono stati salvati in \"<xliff:g id="dir_name">%s</xliff:g>\".\n\n<i>Per favore contribuisci ad uno dei progetti caricando le tue misurazioni!</i></string>
+    <string name="export_dialog_finished_message">I file sono stati salvati in \"<xliff:g id="dir_name">%s</xliff:g>\".\n\nPer favore contribuisci ad uno dei progetti caricando le tue misurazioni!</string>
     <string name="storage_request_access_title">Seleziona la posizione di archiviazione</string>
     <string name="storage_request_access_message">Selezionare una posizione in cui archiviare i file utilizzando il selettore di documenti.</string>
     <string name="storage_request_access_migrate_message">I file esistenti dalla vecchia posizione NON verranno spostati in una nuova posizione!</string>
@@ -337,7 +337,7 @@
     <string name="preferences_about_opencellid_api_key_title">Info sul token di accesso OpenCellID</string>
     <string name="preferences_about_opencellid_api_key_summary">Informazioni sul token di accesso (chiave API) e sulla corretta formattazione.</string>
     <string name="preferences_about_opencellid_project_title">Info sul progetto OpenCellID</string>
-    <string name="preferences_about_opencellid_project_summary">Informazioni sul progetto OpenCellID.org</string>
+    <string name="preferences_about_opencellid_project_summary">Informazioni sul progetto OpenCellID.org.</string>
     <string name="preferences_mls_enabled_title">Abilita il caricamento su BeaconDB</string>
     <string name="preferences_mls_enabled_on_summary">Le misurazioni saranno caricate su BeaconDB.</string>
     <string name="preferences_mls_enabled_off_summary">Le misurazioni non saranno caricate su BeaconDB.</string>
@@ -405,12 +405,12 @@
     <string name="preferences_collect_neighboring_cells_on_summary">Le celle adiacenti verranno raccolte se disponibili.</string>
     <string name="preferences_collect_neighboring_cells_off_summary">Le celle adiacenti verranno scartate.</string>
     <string name="preferences_about_neighboring_cells_title">Info sulle celle adiacenti</string>
-    <string name="preferences_about_neighboring_cells_summary">Informazioni sulle celle adiacenti</string>
+    <string name="preferences_about_neighboring_cells_summary">Informazioni sulle celle adiacenti.</string>
     <string name="preferences_notify_measurements_collected_title">Notifica delle misurazioni raccolte</string>
     <string name="preferences_notify_measurements_collected_on_summary">Altre app saranno informate delle misurazioni raccolte. Maggiori informazioni qui sotto.</string>
     <string name="preferences_notify_measurements_collected_off_summary">Le notifiche ad altre app relative alle misurazioni raccolte sono disabilitate. Maggiori informazioni qui sotto.</string>
     <string name="preferences_about_notify_measurements_collected_title">Info sulla notifica delle misurazioni raccolte</string>
-    <string name="preferences_about_notify_measurements_collected_summary">Informazioni sulla notifica delle misurazioni raccolte ad altre app</string>
+    <string name="preferences_about_notify_measurements_collected_summary">Informazioni sulla notifica delle misurazioni raccolte ad altre app.</string>
     <string name="preferences_main_keep_screen_on_title">Tieni lo schermo acceso quando visibile</string>
     <string name="preferences_main_keep_screen_on_on_summary">Lo schermo sarà mantenuto costantemente attivo quando viene visualizzata la schermata principale dell\'app.</string>
     <string name="preferences_main_keep_screen_on_off_summary">Lo schermo sarà controllato dal sistema quando viene visualizzata la schermata principale dell\'app.</string>
@@ -513,23 +513,23 @@
     <string name="permission_map_denied_message">La mappa non può essere abilitata a causa dell\'autorizzazione alla posizione negata</string>
     <string name="permission_map_never_ask_again_message">La mappa non è disponibile a causa dell\'autorizzazione alla posizione negata</string>
     <string name="permission_uploader_denied_message">Caricamento annullato a causa del rifiuto di autorizzazione Internet.</string>
-    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"></string>
-    <string name="main_last_cell_id_rnc_value" translatable="false"></string>
-    <string name="export_format_csv" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_1" translatable="false"></string>
-    <string name="main_last_signal_strength_value" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_netmonster" translatable="false"></string>
-    <string name="export_format_gpx" translatable="false"></string>
-    <string name="main_last_number_of_cells_value" translatable="false"></string>
-    <string name="ocid_name" translatable="false"></string>
-    <string name="main_last_longitude_value" translatable="false"></string>
-    <string name="main_stats_to_upload_mls_locations_label" translatable="false"></string>
-    <string name="uploader_result_description" translatable="false"></string>
-    <string name="export_format_kmz" translatable="false"></string>
-    <string name="main_last_gps_accuracy_value" translatable="false"></string>
-    <string name="export_format_kml" translatable="false"></string>
-    <string name="mls_name" translatable="false"></string>
-    <string name="uploader_result_message" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_17" translatable="false"></string>
-    <string name="main_last_latitude_value" translatable="false"></string>
+    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"/>
+    <string name="main_last_cell_id_rnc_value" translatable="false"/>
+    <string name="export_format_csv" translatable="false"/>
+    <string name="preferences_collector_api_version_api_1" translatable="false"/>
+    <string name="main_last_signal_strength_value" translatable="false"/>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false"/>
+    <string name="export_format_gpx" translatable="false"/>
+    <string name="main_last_number_of_cells_value" translatable="false"/>
+    <string name="ocid_name" translatable="false"/>
+    <string name="main_last_longitude_value" translatable="false"/>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false"/>
+    <string name="uploader_result_description" translatable="false"/>
+    <string name="export_format_kmz" translatable="false"/>
+    <string name="main_last_gps_accuracy_value" translatable="false"/>
+    <string name="export_format_kml" translatable="false"/>
+    <string name="mls_name" translatable="false"/>
+    <string name="uploader_result_message" translatable="false"/>
+    <string name="preferences_collector_api_version_api_17" translatable="false"/>
+    <string name="main_last_latitude_value" translatable="false"/>
 </resources>
