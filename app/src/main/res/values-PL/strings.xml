@@ -46,12 +46,12 @@
     <string name="dialog_settings">Ustawienia</string>
     <string name="main_dialog_not_compatible_title">Problemy z kompatybilnością</string>
     <string name="main_dialog_not_compatible_begin">Aplikacja może nie działać, ponieważ:\n</string>
-    <string name="main_dialog_no_compatible_mobile_radio_message">• Nie wykryto modułu sieci komórkowej.</string>
+    <string name="main_dialog_no_compatible_mobile_radio_message">• Nie wykryto modułu sieci komórkowej.\n</string>
     <string name="main_toast_background_task_already_running_collector">Zbieranie</string>
     <string name="main_toast_background_task_already_running_uploader">Przesyłanie</string>
     <string name="main_toast_background_task_already_running_export">Eksport</string>
     <string name="main_toast_background_task_already_running_unknown">Zadanie w tle</string>
-    <string name="main_toast_background_task_already_running_common">Najpierw zatrzymaj \'<xliff:g id="task_name">%s</xliff:g>\'</string>
+    <string name="main_toast_background_task_already_running_common">Najpierw zatrzymaj \'<xliff:g id="task_name">%s</xliff:g>\'.</string>
     <string name="enabled">włączony</string>
     <string name="disabled">wyłączony</string>
     <string name="unknown_error">Wystąpił nieznany błąd!</string>
@@ -86,7 +86,7 @@
     <string name="main_last_signal_strength_label">Siła sygnału:</string>
     <string name="main_last_latitude_label">Szerokość geogr.:</string>
     <string name="main_last_longitude_label">Długość geogr.:</string>
-    <string name="main_last_gps_accuracy_label">Dokładność GPS:</string>
+    <string name="main_last_gps_accuracy_label">Dokładność:</string>
     <string name="main_last_date_time_label">Data zapisania:</string>
     <string name="main_last_cell_no_data_message">Póki co brak próbek, wyjdź na zewnątrz i zbierz trochę danych!</string>
     <string name="main_last_toast_copy_message">Wartość \'<xliff:g id="property_value">%s</xliff:g>\' skopiowana do schowka</string>
@@ -163,7 +163,7 @@
     <string name="export_dialog_progress_title">Eksportowanie</string>
     <string name="export_dialog_progress_message">Zapisywanie do folderu \"<xliff:g id="dir_name">%s</xliff:g>\" w pamięci zewnętrznej z aktualną datą i czasem jako nazwą pliku.</string>
     <string name="export_dialog_finished_title">Eksport zakończony</string>
-    <string name="export_dialog_finished_message">Pliki zostały zapisane w \"<xliff:g id="dir_name">%s</xliff:g>\".\n\n<i>Rozważ wsparcie jednego z projektów poprzez przesłanie swoich próbek!</i></string>
+    <string name="export_dialog_finished_message">Pliki zostały zapisane w \"<xliff:g id="dir_name">%s</xliff:g>\".\n\nRozważ wsparcie jednego z projektów poprzez przesłanie swoich próbek!</string>
     <string name="storage_request_access_title">Wybierz miejsce w pamięci</string>
     <string name="storage_request_access_message">Wybierz miejsce zapisu plików z użyciem przeglądarki dokumentów.</string>
     <string name="storage_request_access_migrate_message">Istniejące pliki z poprzedniego miejsca NIE zostaną przeniesione do nowego miejsca!</string>
@@ -333,11 +333,11 @@
     <string name="preferences_opencellid_api_key_summary">Klucz wymagany do przesłania zebranych próbek.</string>
     <string name="preferences_opencellid_api_key_invalid">Wprowadzony klucz dostępu jest nieprawidłowy. Poprawny format opisany jest w Pomocy.</string>
     <string name="preferences_opencellid_api_key_link_title">Wygeneruj własny klucz dostępu</string>
-    <string name="preferences_opencellid_api_key_link_summary">Zarejestruj się za darmo na stronie projektu OpenCellID.org</string>
+    <string name="preferences_opencellid_api_key_link_summary">Zarejestruj się za darmo na stronie projektu OpenCellID.org.</string>
     <string name="preferences_about_opencellid_api_key_title">O kluczu dostępu dla OpenCellID</string>
     <string name="preferences_about_opencellid_api_key_summary">Informacje o kluczu dostępu (kluczu API) i jego prawidłowym formatowaniu.</string>
     <string name="preferences_about_opencellid_project_title">O projekcie OpenCellID</string>
-    <string name="preferences_about_opencellid_project_summary">Informacje o projekcie OpenCellID.org</string>
+    <string name="preferences_about_opencellid_project_summary">Informacje o projekcie OpenCellID.org.</string>
     <string name="preferences_mls_enabled_title">Włącz przesyłanie do BeaconDB</string>
     <string name="preferences_mls_enabled_on_summary">Próbki zostaną przesłane do BeaconDB.</string>
     <string name="preferences_mls_enabled_off_summary">Próbki zostaną nie przesłane do BeaconDB.</string>
@@ -410,7 +410,7 @@
     <string name="preferences_notify_measurements_collected_on_summary">Inne aplikacje będą powiadamiane o zebranych próbkach. Więcej informacji poniżej.</string>
     <string name="preferences_notify_measurements_collected_off_summary">Powiadomienia o zebranych próbkach są wyłączone dla innych aplikacji. Więcej informacji poniżej.</string>
     <string name="preferences_about_notify_measurements_collected_title">O powiadomieniach o zebranych próbkach</string>
-    <string name="preferences_about_notify_measurements_collected_summary">Informacje o powiadomieniach o zebranych próbkach dla innych aplikacji</string>
+    <string name="preferences_about_notify_measurements_collected_summary">Informacje o powiadomieniach o zebranych próbkach dla innych aplikacji.</string>
     <string name="preferences_main_keep_screen_on_title">Utrzymuj ekran włączony gdy widoczny</string>
     <string name="preferences_main_keep_screen_on_on_summary">Ekran będzie utrzymywany włączony, gdy wyświetlany jest główny ekran aplikacji.</string>
     <string name="preferences_main_keep_screen_on_off_summary">Ekran będzie kontrolowany przez system, gdy wyświetlany jest główny ekran aplikacji.</string>
@@ -447,7 +447,7 @@
     <string name="preferences_export_preferences_title">Eksport ustawień</string>
     <string name="preferences_export_preferences_summary">Eksportuje wewnętrzne ustawienia aplikacji do pliku preferences.xml w folderze zdefiniowanym w Ustawieniach.</string>
     <string name="preferences_change_storage_location_title">Zmień miejsce w pamięci</string>
-    <string name="preferences_change_storage_location_summary">Zmienia miejsce w pamięci, gdzie zapisywane są są pliki aplikacji.</string>
+    <string name="preferences_change_storage_location_summary">Zmienia miejsce w pamięci, gdzie zapisywane są pliki aplikacji.</string>
     <string name="preferences_main_map_enable_title">Włącz mapę</string>
     <string name="preferences_main_map_enable_on_summary">Mapa jest widoczna.</string>
     <string name="preferences_main_map_enable_off_summary">Mapa jest ukryta.</string>
@@ -502,8 +502,8 @@
     <string name="permission_collector_rationale_background_location_2_step_api30_message">Jeżeli chcesz używać tej funkcji musisz najpierw zezwolić na dostęp do lokalizacji, a następnie dodatkowo potwierdzić dostęp do lokalizacji w tle!</string>
     <string name="permission_collector_rationale_background_location_compliance_message">Aplikacja wymaga dostępu do lokalizacji w tle tylko jeżeli chcesz, żeby zbieranie uruchamiało się automatycznie po uruchomieniu urządzenia. Bez tego uprawnienia zbieranie można uruchomić jedynie ręcznie.</string>
     <string name="permission_collector_denied_message">Anulowano zbieranie próbek z powodu braku uprawnień</string>
-    <string name="permission_collector_never_ask_again_message">Zbieranie próbek jest niemożliwe z powodu braku uprawnień dostępu do lokalizacji i/lub telefonu.</string>
-    <string name="permission_collector_never_ask_again_background_location_api29_message">Zbieranie próbek jest niemożliwe z powodu braku uprawnień / ograniczeń dostępu do lokalizacji i/lub telefonu.</string>
+    <string name="permission_collector_never_ask_again_message">Zbieranie próbek jest niemożliwe z powodu braku uprawnień dostępu do lokalizacji i/lub telefonu</string>
+    <string name="permission_collector_never_ask_again_background_location_api29_message">Zbieranie próbek jest niemożliwe z powodu braku uprawnień / ograniczeń dostępu do lokalizacji i/lub telefonu</string>
     <string name="permission_collector_denied_intent_message">Anulowano zbieranie próbek z powodu braku uprawnień, otwórz aplikację i nadaj wymagane uprawnienia</string>
     <string name="permission_collector_denied_background_location_message">Zbieranie po uruchomieniu urządzenia zostało wyłączone z powodu braku dostępu do lokalizacji w tle.</string>
     <string name="permission_notification_rationale_message">Możliwość wyświetlania powiadomień jest wymagana do prawidłowego działania aplikacji.</string>
@@ -513,23 +513,23 @@
     <string name="permission_map_denied_message">Mapa nie zostanie włączona z powodu odmowy przydzielenia uprawnień dostępu do lokalizacji</string>
     <string name="permission_map_never_ask_again_message">Mapa jest niedostępna z powodu odmowy uprawnień dostępu do lokalizacji</string>
     <string name="permission_uploader_denied_message">Przesyłanie przerwane z powodu braku uprawnień dostępu do internetu.</string>
-    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"></string>
-    <string name="main_last_cell_id_rnc_value" translatable="false"></string>
-    <string name="export_format_csv" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_1" translatable="false"></string>
-    <string name="main_last_signal_strength_value" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_netmonster" translatable="false"></string>
-    <string name="export_format_gpx" translatable="false"></string>
-    <string name="main_last_number_of_cells_value" translatable="false"></string>
-    <string name="ocid_name" translatable="false"></string>
-    <string name="main_last_longitude_value" translatable="false"></string>
-    <string name="main_stats_to_upload_mls_locations_label" translatable="false"></string>
-    <string name="uploader_result_description" translatable="false"></string>
-    <string name="export_format_kmz" translatable="false"></string>
-    <string name="main_last_gps_accuracy_value" translatable="false"></string>
-    <string name="export_format_kml" translatable="false"></string>
-    <string name="mls_name" translatable="false"></string>
-    <string name="uploader_result_message" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_17" translatable="false"></string>
-    <string name="main_last_latitude_value" translatable="false"></string>
+    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"/>
+    <string name="main_last_cell_id_rnc_value" translatable="false"/>
+    <string name="export_format_csv" translatable="false"/>
+    <string name="preferences_collector_api_version_api_1" translatable="false"/>
+    <string name="main_last_signal_strength_value" translatable="false"/>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false"/>
+    <string name="export_format_gpx" translatable="false"/>
+    <string name="main_last_number_of_cells_value" translatable="false"/>
+    <string name="ocid_name" translatable="false"/>
+    <string name="main_last_longitude_value" translatable="false"/>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false"/>
+    <string name="uploader_result_description" translatable="false"/>
+    <string name="export_format_kmz" translatable="false"/>
+    <string name="main_last_gps_accuracy_value" translatable="false"/>
+    <string name="export_format_kml" translatable="false"/>
+    <string name="mls_name" translatable="false"/>
+    <string name="uploader_result_message" translatable="false"/>
+    <string name="preferences_collector_api_version_api_17" translatable="false"/>
+    <string name="main_last_latitude_value" translatable="false"/>
 </resources>
