@@ -52,7 +52,7 @@
     <string name="main_toast_background_task_already_running_export">Експортне завдання</string>
     <string name="main_toast_background_task_already_running_unknown">Фонове завдання</string>
     <string name="main_toast_background_task_already_running_common">Спочатку зупиніть \"<xliff:g id="task_name">%s</xliff:g>\".</string>
-    <string name="enabled">включений</string>
+    <string name="enabled">ввімкнений</string>
     <string name="disabled">вимкнено</string>
     <string name="unknown_error">Сталася невідома помилка!</string>
     <string name="main_tab_last_title">Останнє збережене</string>
@@ -64,7 +64,7 @@
     <string name="main_gps_status_label">Стан GPS:</string>
     <string name="main_stats_today_title">Сьогодні</string>
     <string name="main_stats_local_title">Починаючи з <xliff:g id="date_time">%s</xliff:g></string>
-    <string name="main_stats_locations_label">Вимірювання</string>
+    <string name="main_stats_locations_label">Вимірювання:</string>
     <string name="main_stats_cells_label">Соти (виявлені):</string>
     <string name="main_stats_global_title">Всого <xliff:g id="date_time">%s</xliff:g></string>
     <string name="main_stats_global_locations_label">Вимірювання:</string>
@@ -73,7 +73,7 @@
     <string name="main_last_cell_title">Останнє збережене</string>
     <string name="main_last_number_of_cells_label">Головна / сусідня:</string>
     <string name="main_last_network_type_label">Тип мережі:</string>
-    <string name="main_last_long_cell_id_label">Довгий ідентифікатор соти</string>
+    <string name="main_last_long_cell_id_label">Довгий ідентифікатор соти:</string>
     <string name="main_last_cell_id_rnc_label">ID / RNC соти:</string>
     <string name="main_last_cell_id_label">Ідентифікатор соти:</string>
     <string name="main_last_lac_label">LAC:</string>
