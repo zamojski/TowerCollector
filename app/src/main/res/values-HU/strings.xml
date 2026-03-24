@@ -71,7 +71,7 @@
     <string name="main_stats_global_cells_label">Felfedezett cellák:</string>
     <string name="main_stats_to_upload_title">Feltöltendő</string>
     <string name="main_last_cell_title">Utoljára tárolt mérés</string>
-    <string name="main_last_number_of_cells_label">Fő / szomszédos</string>
+    <string name="main_last_number_of_cells_label">Fő / szomszédos:</string>
     <string name="main_last_network_type_label">Hálózat típusa:</string>
     <string name="main_last_long_cell_id_label">Hosszú cellaazonosító:</string>
     <string name="main_last_cell_id_rnc_label">Cellaazonosító / RNC:</string>
@@ -163,7 +163,7 @@
     <string name="export_dialog_progress_title">Exportálás</string>
     <string name="export_dialog_progress_message">Mentés a külső tárhely „<xliff:g id="dir_name">%s</xliff:g>” mappájába a jelenlegi dátumot és időt használva fájlnévként.</string>
     <string name="export_dialog_finished_title">Exportálás sikeres</string>
-    <string name="export_dialog_finished_message">A fájlokat ide mentette: „<xliff:g id="dir_name">%s</xliff:g>”.\n\n<i>Fontold meg a közreműködést az egyik projektben a mérések feltöltésével!</i></string>
+    <string name="export_dialog_finished_message">A fájlokat ide mentette: „<xliff:g id="dir_name">%s</xliff:g>”.\n\nFontold meg a közreműködést az egyik projektben a mérések feltöltésével!</string>
     <string name="storage_request_access_title">Válaszd ki a tárolási helyet</string>
     <string name="storage_request_access_message">Válassz egy helyet a fájlok tárolásához a dokumentumválasztóval.</string>
     <string name="storage_request_access_migrate_message">A régi helyről származó fájlok NEM kerülnek új helyre!</string>
@@ -299,7 +299,7 @@
     <string name="preferences_header_general_title">Általános</string>
     <string name="preferences_header_general_summary">Általános beállítások, frissítések, statisztikák, stb.</string>
     <string name="preferences_header_display_title">Megjelenítés</string>
-    <string name="preferences_header_display_summary">Minden a megjelenítéssel, témával, mértékegységekkel, egyebekkel kapcsolatos beállítás</string>
+    <string name="preferences_header_display_summary">Minden a megjelenítéssel, témával, mértékegységekkel, egyebekkel kapcsolatos beállítás.</string>
     <string name="preferences_header_export_title">Exportálás</string>
     <string name="preferences_header_export_summary">A fájl exportálással kapcsolatos beállítások.</string>
     <string name="preferences_header_map_title">Térkép</string>
@@ -355,7 +355,7 @@
     <string name="preferences_app_theme_title">Téma</string>
     <string name="preferences_app_theme_summary">Meghatározza az app színsémáját.</string>
     <string name="preferences_collector_keep_screen_on_title">Képernyő ébren tartása adatgyűjtés közben</string>
-    <string name="preferences_collector_keep_screen_on_summary">Meghatározza, hogy a képernyő folyamatosan folyamatosan működik-e a mérések gyűjtése közben. Az engedélyezés jelentősen csökkenti az akkumulátor élettartamát.</string>
+    <string name="preferences_collector_keep_screen_on_summary">Meghatározza, hogy a képernyő folyamatosan működik-e a mérések gyűjtése közben. Az engedélyezés jelentősen csökkenti az akkumulátor élettartamát.</string>
     <string name="preferences_export_compression_format_title">Tömörítési formátum</string>
     <string name="preferences_export_compression_format_summary">Az exportált fájlok tömörítési formátumát határozza meg.</string>
     <string name="preferences_tracking_enabled_title">Felhasználói statisztikák küldése</string>
@@ -410,7 +410,7 @@
     <string name="preferences_notify_measurements_collected_on_summary">A többi alkalmazás értesülni fog a begyűjtött mérésekről. Tovább információ alább.</string>
     <string name="preferences_notify_measurements_collected_off_summary">A más alkalmazásnak küldött értesítések le vannak tiltva. További információ alább.</string>
     <string name="preferences_about_notify_measurements_collected_title">A begyűjtött mérések értesítéséről</string>
-    <string name="preferences_about_notify_measurements_collected_summary">Információk az adatbegyűjtés más appoknak küldött értesítéséről</string>
+    <string name="preferences_about_notify_measurements_collected_summary">Információk az adatbegyűjtés más appoknak küldött értesítéséről.</string>
     <string name="preferences_main_keep_screen_on_title">Képernyő ébren tartása, ha látható</string>
     <string name="preferences_main_keep_screen_on_on_summary">A képernyő bekapcsolt állapotban lesz tartva, ha a főképernyő látszik.</string>
     <string name="preferences_main_keep_screen_on_off_summary">A képernyőt az operációs rendszer vezérli, ha az alkalmazás fő képernyője megjelenik.</string>
@@ -503,8 +503,8 @@
     <string name="permission_collector_rationale_background_location_compliance_message">Az alkalmazásnak csak akkor van szüksége a háttérben való helymeghatározásra, ha automatikusan el szeretné kezdeni a mérések gyűjtését az eszköz indításakor. Ezen engedély nélkül csak egyedül kezdheti el a gyűjtést.</string>
     <string name="permission_collector_denied_message">Mérések gyűjtésének megszakítása a megtagadott jogosultságok miatt</string>
     <string name="permission_collector_never_ask_again_message">A mérések begyűjtése nem érhető el a megtagadott hely és/vagy a telefon jogosultság miatt</string>
-    <string name="permission_collector_never_ask_again_background_location_api29_message">A mérések gyűjtése nem érhető el, mert a háttérbeli helyadatok vagy a telefon engedély nincs megadva.</string>
-    <string name="permission_collector_denied_intent_message">Mérés begyűjtés megszakítása a megtagadott jogosultságok miatt, először nyisd meg az alkalmazást és add meg a szükséges jogosultságokat.</string>
+    <string name="permission_collector_never_ask_again_background_location_api29_message">A mérések gyűjtése nem érhető el, mert a háttérbeli helyadatok vagy a telefon engedély nincs megadva</string>
+    <string name="permission_collector_denied_intent_message">Mérés begyűjtés megszakítása a megtagadott jogosultságok miatt, először nyisd meg az alkalmazást és add meg a szükséges jogosultságokat</string>
     <string name="permission_collector_denied_background_location_message">Az indítás letiltása az eszköz indításakor a háttér helymeghatározási engedély megtagadása miatt.</string>
     <string name="permission_notification_rationale_message">Az alkalmazás megfelelő működése érdekében értesítési engedélyt kell adni.</string>
     <string name="permission_notification_denied_message">Az alkalmazás nem tud megfelelően működni, ha az értesítések nem engedélyezettek.</string>
@@ -513,23 +513,23 @@
     <string name="permission_map_denied_message">A megtagadott tartózkodási hely engedély miatt a térkép nem kapcsolható be</string>
     <string name="permission_map_never_ask_again_message">A megtagadott tartózkodási hely engedély miatt a térkép nem érhető el</string>
     <string name="permission_uploader_denied_message">Feltöltés megszakítva a megtagadott internet-elérési jogosultság miatt.</string>
-    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"></string>
-    <string name="main_last_cell_id_rnc_value" translatable="false"></string>
-    <string name="export_format_csv" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_1" translatable="false"></string>
-    <string name="main_last_signal_strength_value" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_netmonster" translatable="false"></string>
-    <string name="export_format_gpx" translatable="false"></string>
-    <string name="main_last_number_of_cells_value" translatable="false"></string>
-    <string name="ocid_name" translatable="false"></string>
-    <string name="main_last_longitude_value" translatable="false"></string>
-    <string name="main_stats_to_upload_mls_locations_label" translatable="false"></string>
-    <string name="uploader_result_description" translatable="false"></string>
-    <string name="export_format_kmz" translatable="false"></string>
-    <string name="main_last_gps_accuracy_value" translatable="false"></string>
-    <string name="export_format_kml" translatable="false"></string>
-    <string name="mls_name" translatable="false"></string>
-    <string name="uploader_result_message" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_17" translatable="false"></string>
-    <string name="main_last_latitude_value" translatable="false"></string>
+    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"/>
+    <string name="main_last_cell_id_rnc_value" translatable="false"/>
+    <string name="export_format_csv" translatable="false"/>
+    <string name="preferences_collector_api_version_api_1" translatable="false"/>
+    <string name="main_last_signal_strength_value" translatable="false"/>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false"/>
+    <string name="export_format_gpx" translatable="false"/>
+    <string name="main_last_number_of_cells_value" translatable="false"/>
+    <string name="ocid_name" translatable="false"/>
+    <string name="main_last_longitude_value" translatable="false"/>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false"/>
+    <string name="uploader_result_description" translatable="false"/>
+    <string name="export_format_kmz" translatable="false"/>
+    <string name="main_last_gps_accuracy_value" translatable="false"/>
+    <string name="export_format_kml" translatable="false"/>
+    <string name="mls_name" translatable="false"/>
+    <string name="uploader_result_message" translatable="false"/>
+    <string name="preferences_collector_api_version_api_17" translatable="false"/>
+    <string name="main_last_latitude_value" translatable="false"/>
 </resources>
