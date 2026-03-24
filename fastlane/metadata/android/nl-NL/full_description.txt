@@ -1,4 +1,4 @@
-Tower Collector giver dig mulighed for at bidrage i OpenCellID.org og BeaconDB projekter ved at uploade GPS placeringer af GSM / UMTS / LTE / CDMA / TD-SCDMA / 5G (NR) celletårne ​​fra dit område. Målingerne hjælper med at kortlægge omfanget af mobilnetværksdækning. Du kan bruge appen til at indsamle data til personlige formål og eksportere dem til forskellige filer.
+Tower Collector giver dig mulighed for at bidrage i OpenCellID.org og BeaconDB projekter ved at uploade GPS placeringer af GSM / UMTS / LTE / CDMA / TD-SCDMA / 5G (NR) celletårne fra dit område. Målingerne hjælper med at kortlægge omfanget af mobilnetværksdækning. Du kan bruge appen til at indsamle data til personlige formål og eksportere dem til forskellige filer.
 
 Enkele features:
 • Speciaal geoptimaliseerde GPS-parameters om batterijverbruik te minimaliseren
