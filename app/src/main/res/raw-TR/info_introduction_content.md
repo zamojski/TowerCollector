@@ -3,15 +3,24 @@
 <!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 ### Uygulamanın amacı
 
-Bu uygulama GPS konumları ile bağlantılı mobil baz istasyonları hakkında bilgi toplamak için tasarlanmıştır. Cep telefonunun kapsama alanını haritalandırmaya yardımcı olmak için tasarlanmıştır.
+Bu uygulama GPS konumları ile bağlantılı mobil baz istasyonları hakkında bilgi
+toplamak için tasarlanmıştır. Cep telefonunun kapsama alanını haritalandırmaya
+yardımcı olmak için tasarlanmıştır.
 
 ### Nasıl başlanır
 
-Başlamak için ekranın üstündeki menüden Toplamaya başla seçeneğini (yuvarlak kayıt butonu şeklinde) seçiniz. Ölçümler, sadece siz mobil ağ kapsama alanında olduğunuzda ve GPS size en az 40 metre doğruluk verdiğinde toplanacak.
+Başlamak için ekranın üstündeki menüden Toplamaya başla seçeneğini (yuvarlak
+kayıt butonu şeklinde) seçiniz. Ölçümler, sadece siz mobil ağ kapsama alanında
+olduğunuzda ve GPS size en az 40 metre doğruluk verdiğinde toplanacak.
 
 ### İleriki adımlar
 
-Collected data can be uploaded to OpenCellID.org and BeaconDB projects or exported to a file. Before first upload you will need to select projects you want to contribute to. In case of OpenCellID.org you'll additionally need to register for free and enter received access token in Preferences. Measurements will be deleted from your device after successful upload.
+Toplanan veriler OpenCellID.org ve BeaconDB projelerine yüklenebilir veya bir
+dosyaya aktarılabilir. İlk yüklemeden önce katkıda bulunmak istediğiniz
+projeleri seçmeniz gerekecektir. OpenCellID.org söz konusu olduğunda, ayrıca
+ücretsiz olarak kayıt olmanız ve alınan erişim belirtecini Tercihler bölümüne
+girmeniz gerekecektir. Ölçümler, başarılı yüklemeden sonra cihazınızdan
+silinecektir.
 
 ### Dahası
 
