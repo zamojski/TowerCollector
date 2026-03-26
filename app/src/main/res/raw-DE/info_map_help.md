@@ -17,6 +17,8 @@
 
 ![dot_lte_wcdma](drawable://dot_lte_wcdma) - Kombination aus LTE und WCDMA
 
-![dot_cluster_small](drawable://dot_cluster_small) - Gruppe von Messungen, zoomen Sie hinein um mehr zu sehen
+![dot_cluster_small](drawable://dot_cluster_small) - Gruppe von Messungen,
+zoomen Sie hinein um mehr zu sehen
 
-Helle Farben stellen Messungen mit neu entdeckten Mobilfunkmasten dar, ansonsten werden dunkle Farben verwendet.
+Helle Farben stellen Messungen mit neu entdeckten Mobilfunkmasten dar, ansonsten
+werden dunkle Farben verwendet.
