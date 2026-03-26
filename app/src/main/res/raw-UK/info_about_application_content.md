@@ -5,10 +5,10 @@ Tower Collector %VERSION_NAME%
 
 Copyright © 2012-%CURRENT_YEAR% Adam Zamojski & Contributors
 
-Tower Collector is designed to collect GPS locations of GSM/UMTS/LTE/CDMA/5G
-NR/TD-SCDMA cell towers. Your collected measurements can be uploaded to many
-public and private databases.
+Tower Collector призначений для збору GPS-локацій веж стільникового зв'язку
+GSM/UMTS/LTE/CDMA/5G NR/TD-SCDMA. Зібрані вами вимірювання можна завантажити до
+багатьох публічних та приватних баз даних.
 
-THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES,
-INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-FITNESS FOR A PARTICULAR PURPOSE.
+ЦЕ ПРОГРАМНЕ ЗАБЕЗПЕЧЕННЯ НАДАЄТЬСЯ «ЯК Є» ТА БЕЗ БУДЬ-ЯКИХ ЯВНИХ АБО НЕЯВНИХ
+ГАРАНТІЙ, ВКЛЮЧАЮЧИ, БЕЗ ОБМЕЖЕНЬ, НЕЯВНІ ГАРАНТІЇ ТОВАРНОЇ ПРИДАТНОСТІ ТА
+ПРИДАТНОСТІ ДЛЯ ПЕВНОЇ МЕТИ.
