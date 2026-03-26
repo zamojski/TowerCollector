@@ -17,6 +17,8 @@
 
 ![dot_lte_wcdma](drawable://dot_lte_wcdma) - Az LTE és a WCDMA keveréke
 
-![dot_cluster_small](drawable://dot_cluster_small) - Klaszter - mérések csoportja, nagyíts a csoportosítás feloldásához
+![dot_cluster_small](drawable://dot_cluster_small) - Klaszter - mérések
+csoportja, nagyíts a csoportosítás feloldásához
 
-Az élénk színek az újonnan felfedezett cellatornyokat jelentik, a korábbiak sötét színeket használnak.
+Az élénk színek az újonnan felfedezett cellatornyokat jelentik, a korábbiak
+sötét színeket használnak.
