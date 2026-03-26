@@ -17,6 +17,8 @@
 
 ![dot_lte_wcdma](drawable://dot_lte_wcdma) - Mezcla de LTE y WCDMA
 
-![dot_cluster_small](drawable://dot_cluster_small) - Clúster: un grupo de medidas, acercarse para desagrupar
+![dot_cluster_small](drawable://dot_cluster_small) - Clúster: un grupo de
+medidas, acercarse para desagrupar
 
-Los colores brillantes representan mediciones con torres de telefonía celular recién descubiertas; de lo contrario, se utilizan colores oscuros.
+Los colores brillantes representan mediciones con torres de telefonía celular
+recién descubiertas; de lo contrario, se utilizan colores oscuros.
