@@ -5,10 +5,10 @@ Tower Collector %VERSION_NAME%
 
 Copyright © 2012-%CURRENT_YEAR% Adam Zamojski & Contributors
 
-Tower Collector is designed to collect GPS locations of GSM/UMTS/LTE/CDMA/5G
-NR/TD-SCDMA cell towers. Your collected measurements can be uploaded to many
-public and private databases.
+Tower Collector on suunniteltu keräämään GSM/UMTS/LTE/CDMA/5G NR/TD-SCDMA
+-matkapuhelinmastojen GPS-sijainnit. Kerätyt mittaukset voidaan ladata useisiin
+julkisiin ja yksityisiin tietokantoihin.
 
-THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES,
-INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-FITNESS FOR A PARTICULAR PURPOSE.
+TÄMÄ OHJELMISTO TARJOTAAN "SELLAISENAAN" JA ILMAN MINKÄÄNLAISIA NIMENOMAISIA TAI
+EPÄSUORIA TAKUITA, MUKAAN LUKIEN, MUTTA EI RAJOITTUEN, EPÄSUORAT TAKUUT
+MYYNTIKELPOISUUDESTA JA SOPIVUUDESTA TIETTYYN TARKOITUKSEEN.
