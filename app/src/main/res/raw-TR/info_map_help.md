@@ -17,6 +17,8 @@
 
 ![dot_lte_wcdma](drawable://dot_lte_wcdma) - LTE ve WCDMA karışımı
 
-![dot_cluster_small](drawable://dot_cluster_small) - Küme - bir grup ölçüm, grubu çözmek için yakınlaştırın
+![dot_cluster_small](drawable://dot_cluster_small) - Küme - bir grup ölçüm,
+grubu çözmek için yakınlaştırın
 
-Parlak renkler, yeni keşfedilen baz istasyonlarındaki ölçümleri temsil eder, aksi takdirde koyu renkler kullanılır.
+Parlak renkler, yeni keşfedilen baz istasyonlarındaki ölçümleri temsil eder,
+aksi takdirde koyu renkler kullanılır.
