@@ -17,6 +17,8 @@
 
 ![dot_lte_wcdma](drawable://dot_lte_wcdma) - Mistura de LTE e WCDMA
 
-![dot_cluster_small](drawable://dot_cluster_small) - Cluster - um grupo de medições, amplie para desagrupar
+![dot_cluster_small](drawable://dot_cluster_small) - Cluster - um grupo de
+medições, amplie para desagrupar
 
-Cores brilhantes representam medições com torres de celular recém-descobertas, caso contrário, cores escuras são usadas.
+Cores brilhantes representam medições com torres de celular recém-descobertas,
+caso contrário, cores escuras são usadas.
