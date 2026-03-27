@@ -40,7 +40,5 @@ Please report any bugs or submit feature requests through the *Issues* tab on th
 ## Translations
 If you would like to help out with translation, please visit https://i18n.zamojski.ovh/
 
-OneSky has suspended their translation service, so as of now the only way to contribute is to create a pull request to this repository.
-
 ## License
 Tower Collector is licensed under the Mozilla Public License 2.0. A copy of this license is included in [LICENSE.txt](LICENSE.txt).
