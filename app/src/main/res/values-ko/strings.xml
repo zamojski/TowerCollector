@@ -25,7 +25,7 @@
     <string name="dialog_want_enable_gps">위치 서비스를 활성화하기 위해 설정을 여시겠습니까?</string>
     <string name="dialog_could_not_open_android_settings">Android 설정을 열 수 없습니다. 수동으로 진행하세요.</string>
     <string name="dialog_select_email_app">이메일 선택</string>
-    <string name="dialog_what_is_new">개발자 메시지</string>
+    <string name="dialog_what_is_new">개발자 메시지!</string>
     <string name="dialog_yes">예</string>
     <string name="dialog_no">아니오</string>
     <string name="dialog_ok">확인</string>
@@ -54,14 +54,14 @@
     <string name="main_toast_background_task_already_running_common">먼저 \'<xliff:g id="task_name">%s</xliff:g>\'을(를) 중지하세요.</string>
     <string name="enabled">활성화</string>
     <string name="disabled">비활성화</string>
-    <string name="unknown_error">알수 없는 오류가 발생했습니다.</string>
+    <string name="unknown_error">알수 없는 오류가 발생했습니다!</string>
     <string name="main_tab_last_title">최근 수집</string>
     <string name="main_tab_stats_title">통계</string>
     <string name="main_tab_map_title">지도</string>
-    <string name="main_gps_accuracy_not_available">사용할 수 없습니다.</string>
-    <string name="main_signal_strength_not_available">사용할 수 없습니다.</string>
+    <string name="main_gps_accuracy_not_available">사용할 수 없습니다</string>
+    <string name="main_signal_strength_not_available">사용할 수 없습니다</string>
     <string name="date_time_format_standard">yyyy-MM-dd HH:mm:ss</string>
-    <string name="main_gps_status_label">GPS: 상태</string>
+    <string name="main_gps_status_label">GPS 상태:</string>
     <string name="main_stats_today_title">오늘</string>
     <string name="main_stats_local_title"><xliff:g id="date_time">%s</xliff:g> 이후</string>
     <string name="main_stats_locations_label">측정:</string>
@@ -111,7 +111,7 @@
     <string name="collector_notification_title">수집중</string>
     <string name="collector_notification_stats">오늘 <xliff:g id="number_of_cells">%2$d</xliff:g>개의 기지국에서 <xliff:g id="number_of_measurements">%1$d</xliff:g>번 측정을 했습니다.</string>
     <string name="collector_notification_last_measurement">마지막 기지국: \n<xliff:g id="cell_identifier">%s</xliff:g></string>
-    <string name="collector_notification_status">GPS 상태: <xliff:g id="status">%s</xliff:g></string>
+    <string name="collector_notification_status">GPS 상태: <xliff:g id="status">%s</xliff:g>.</string>
     <string name="collector_gps_unavailable">GPS를 사용할 수 없기 때문에 수집을 시작할 수 없습니다.</string>
     <string name="uploader_notification_channel_name">업로드</string>
     <string name="uploader_notification_title">업로드 진행중</string>
@@ -126,7 +126,7 @@
     <string name="uploader_aborted">업로드 취소</string>
     <string name="uploader_aborted_description">업로드할 데이터가 없습니다.</string>
     <string name="uploader_success">업로드 성공</string>
-    <string name="uploader_success_description">성공적으로 업로드했습니다. 기여해 주셔서 감사합니다.</string>
+    <string name="uploader_success_description">성공적으로 업로드했습니다. 기여해 주셔서 감사합니다!</string>
     <string name="uploader_partially_succeeded">부분적으로 업로드됨</string>
     <string name="uploader_partially_succeeded_description">부분적으로 업로드 되었다는 것은 업로드를 중단되기 전에 일부 데이터가 업로드되었다는 것을 의미합니다. 이것은 사용자의 중단 요청이나 오류 발생으로 일부만 업로드 될 수 있습니다.</string>
     <string name="uploader_failure">업로드 실패</string>
@@ -135,7 +135,7 @@
     <string name="uploader_invalid_api_key_description">설정에 입력한 액세스 토큰이 올바르지 않습니다. 제대로 된 토큰을 입력해주세요.</string>
     <string name="uploader_invalid_input_data">잘못된 데이터</string>
     <string name="uploader_invalid_input_data_description">서버가 앱에서 업로드한 데이터를 거부했습니다. 최신 버전의 앱을 사용중인지 확인해주세요. 이 문제가 지속적으로 발생하면 개발자에게 알려주세요.</string>
-    <string name="uploader_no_data">업로드할 데이터가 없습니다.</string>
+    <string name="uploader_no_data">업로드할 데이터가 없습니다</string>
     <string name="uploader_no_data_description">업로드할 데이터가 없습니다. 업로드 하기 전에 데이터를 수집하세요.</string>
     <string name="uploader_delete_failed">수집한 데이터 삭제 도중 오류</string>
     <string name="uploader_delete_failed_description">앱에서 수집한 데이터를 삭제하는 동안 오류가 발생했습니다. 장치를 다시 시작하고 삭제를 다시 시도하세요. 이 문제가 지속적으로 발생하면 개발자에게 알려주세요.</string>
@@ -148,7 +148,7 @@
     <string name="uploader_no_internet_title">인터넷을 사용할 수 없음</string>
     <string name="uploader_no_internet_message">인터넷 연결이 원활하지 않아 업로드가 불가능합니다.</string>
     <string name="other_notification_channel_name">기타</string>
-    <string name="error_reporting_notification_title">Tower Collector 앱이 충돌했습니다.</string>
+    <string name="error_reporting_notification_title">Tower Collector 앱이 충돌했습니다</string>
     <string name="error_reporting_notification_text">예상치 못한 오류가 발생했습니다. 문제 해결에 도움이 되도록 오류 보고서를 전송해주세요.</string>
     <string name="error_reporting_notification_comment_prompt">댓글(선택사항)</string>
     <string name="error_reporting_notification_email_prompt">이메일(선택사항)</string>
@@ -163,10 +163,10 @@
     <string name="export_dialog_progress_title">내보내는중</string>
     <string name="export_dialog_progress_message"><xliff:g id="dir_name">%s</xliff:g> 위치에 현재 날짜, 시간 이름으로 저장중입니다.</string>
     <string name="export_dialog_finished_title">내보내기 성공</string>
-    <string name="export_dialog_finished_message"><xliff:g id="dir_name">%s</xliff:g>에 파일이 저장되었습니다. \n\n<i>수집한 데이터를 업로드하여 프로젝트에 기여해주세요.</i></string>
+    <string name="export_dialog_finished_message"><xliff:g id="dir_name">%s</xliff:g>에 파일이 저장되었습니다. \n\n수집한 데이터를 업로드하여 프로젝트에 기여해주세요!</string>
     <string name="storage_request_access_title">저장 위치 선택</string>
     <string name="storage_request_access_message">파일을 저장할 위치를 지정해주세요.</string>
-    <string name="storage_request_access_migrate_message">이전에 저장한 위치의 파일이 새로운 위치로 이동되지 않습니다.</string>
+    <string name="storage_request_access_migrate_message">이전에 저장한 위치의 파일이 새로운 위치로 이동되지 않습니다!</string>
     <string name="storage_directory_read_only">저장소가 읽기 전용입니다.</string>
     <string name="storage_storage_not_found">저장소를 찾지 못했습니다.</string>
     <string name="storage_file_not_found">파일을 찾을 수 없습니다.</string>
@@ -174,8 +174,8 @@
     <string name="storage_file_not_readable">파일을 읽을 수 없습니다.</string>
     <string name="storage_file_not_writable">파일을 쓸 수 없습니다.</string>
     <string name="storage_access_denied">저장소 접근이 거부되었습니다.</string>
-    <string name="storage_read_failed">저장소에서 읽기에 실패했습니다: <xliff:g id="error_message">%s</xliff:g></string>
-    <string name="storage_write_failed">저장소에 쓰기에 실패했습니다: <xliff:g id="error_message">%s</xliff:g></string>
+    <string name="storage_read_failed">저장소에서 읽기에 실패했습니다: <xliff:g id="error_message">%s</xliff:g>.</string>
+    <string name="storage_write_failed">저장소에 쓰기에 실패했습니다: <xliff:g id="error_message">%s</xliff:g>.</string>
     <string name="system_toast_no_handler_for_operation">작업을 진행할 앱이 없습니다.</string>
     <string name="system_toast_no_handler_for_document_picker">시스템에 파일 매니저가 설치되어 있고 활성화 되어있는지 확인하세요.</string>
     <string name="clear_dialog_title">모든 데이터 삭제</string>
@@ -185,26 +185,26 @@
     <string name="clear_toast_finished">데이터베이스 초기화 완료</string>
     <string name="clear_map_cache_finished">지도 캐시 삭제 완료</string>
     <string name="clear_map_cache_failed">지도 캐시 삭제 실패</string>
-    <string name="export_toast_failed">내보내기 실패: <xliff:g id="failure_reason">%s</xliff:g></string>
+    <string name="export_toast_failed">내보내기 실패: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">알수 없는 오류</string>
     <string name="export_toast_failed_cause_directory_not_exists">디렉토리 생성 실패</string>
-    <string name="export_toast_failed_cause_directory_not_writable">디렉토리가 읽기 전용입니다.</string>
-    <string name="export_toast_failed_cause_file_not_writable">파일이 읽기 전용입니다.</string>
+    <string name="export_toast_failed_cause_directory_not_writable">디렉토리가 읽기 전용입니다</string>
+    <string name="export_toast_failed_cause_file_not_writable">파일이 읽기 전용입니다</string>
     <string name="export_toast_no_data">내보낼 데이터가 없습니다.</string>
     <string name="export_toast_cancelled">내보내기가 중단되었습니다.</string>
     <string name="uploader_toast_failed">업로드 실패: <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="uploader_toast_cancelled">업로드가 취소되었습니다.</string>
-    <string name="updater_notification_ticker">새로운 버전의 Tower Collector이 있습니다.</string>
-    <string name="updater_notification_title">새로운 버전이 있습니다.</string>
-    <string name="updater_notification_download_options">다운로드 옵션을 보려면 선택하세요.</string>
-    <string name="updater_dialog_new_version_available">다운로드 소스를 선택하세요.</string>
+    <string name="updater_notification_ticker">새로운 버전의 Tower Collector이 있습니다</string>
+    <string name="updater_notification_title">새로운 버전이 있습니다</string>
+    <string name="updater_notification_download_options">다운로드 옵션을 보려면 선택하세요</string>
+    <string name="updater_dialog_new_version_available">다운로드 소스를 선택하세요</string>
     <string name="updater_dialog_direct_download_label">다이렉트 다운로드</string>
     <string name="updater_dialog_disable_auto_update">업데이트 확인 비활성화</string>
     <string name="splash_details_database_upgrade">데이터베이스 업그레이드중</string>
     <string name="splash_toast_database_upgrade_running">데이터베이스가 업그레이드 중입니다. 잠시만 기다려주세요.</string>
     <string name="main_help_gps_status_title">GPS 상태</string>
     <string name="main_help_gps_status_description">현재 GPS 상태를 표시합니다. GPS 측정이 원할하지 않는 경우 더 좋은 신호 수신을 위해 다른 위치로 이동하세요.</string>
-    <string name="main_help_invalid_system_time_title">시스템 시간이 잘못되었습니다.</string>
+    <string name="main_help_invalid_system_time_title">시스템 시간이 잘못되었습니다</string>
     <string name="main_help_invalid_system_time_description">현재 시스템 날짜 또는 시간이 GPS 시간과 차이가 있습니다. 측정값은 정확한 시간에 저장되지만 통계는 정확하지 않을 수 있습니다. 장치 설정에서 날짜와 시간을 설정하세요.</string>
     <string name="main_help_battery_optimizations_title">배터리 최적화 활성화됨</string>
     <string name="main_help_battery_optimizations_description_common">이 앱에 배터리 최적화가 활성화되어 있어 부정확한 측정값이 수집될 수 있습니다.</string>
@@ -264,8 +264,8 @@
     <string name="main_help_to_upload_ocid_locations_description">OpenCellID.org에 업로드 한 데이터 수 입니다.</string>
     <string name="main_help_to_upload_mls_locations_description">BeaconDB에 업로드 한 데이터 수 입니다.</string>
     <string name="collector_status_active">데이터 수집</string>
-    <string name="collector_status_inactive">수집이 중단되었습니다.</string>
-    <string name="status_initializing">현재 위치를 찾는중입니다.</string>
+    <string name="collector_status_inactive">수집이 중단되었습니다</string>
+    <string name="status_initializing">현재 위치를 찾는중입니다</string>
     <string name="status_ok">OK (<xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g>)</string>
     <string name="status_low_gps_accuracy">낮은 정확도 (<xliff:g id="accuracy_value">%1$.0f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g>)</string>
     <string name="status_no_gps_location">위치 없음</string>
@@ -274,18 +274,18 @@
     <string name="airplane_mode">비행기 모드 활성화됨</string>
     <string name="battery_optimizations">배터리 최적화 활성화됨</string>
     <string name="battery_saver">절전 모드 활성화됨</string>
-    <string name="web_browser_missing">웹페이지를 열 수 있도록 웹브라우저를 설치해주세요.</string>
-    <string name="uploader_all_projects_disabled">모든 프로젝트에 업로드가 비활성화 되었습니다.</string>
+    <string name="web_browser_missing">웹페이지를 열 수 있도록 웹브라우저를 설치해주세요</string>
+    <string name="uploader_all_projects_disabled">모든 프로젝트에 업로드가 비활성화 되었습니다</string>
     <string name="export_format_csv_ocid">OpenCellID.org용 CSV</string>
     <string name="export_format_json_mls">BeaconDB용 JSON</string>
     <string name="export_format_zip">각각의 파일 압축</string>
     <string name="upload_configurator_dialog_title">업로드 대상 설정</string>
     <string name="upload_anonymously">익명으로</string>
-    <string name="enter_valid_api_key">설정에서 유효한 액세스 토큰을 입력이 필요합니다.</string>
-    <string name="enter_valid_mls_url_key">환경 설정에 유효한 사용자 정의 BeaconDB 서버 주소를 입력해야 합니다.</string>
-    <string name="reupload_measurements_if_upload_fails_for_one_of_projects">하나의 프로젝트에 업로드가 실패할 경우, 업로드를 다시 시도합니다.</string>
+    <string name="enter_valid_api_key">설정에서 유효한 액세스 토큰을 입력이 필요합니다</string>
+    <string name="enter_valid_mls_url_key">환경 설정에 유효한 사용자 정의 BeaconDB 서버 주소를 입력해야 합니다</string>
+    <string name="reupload_measurements_if_upload_fails_for_one_of_projects">하나의 프로젝트에 업로드가 실패할 경우, 업로드를 다시 시도합니다</string>
     <string name="unsafe_operation_warning_title">안전하지 않은 작업</string>
-    <string name="unsafe_operation_warning_message">이 옵션은 앱에 오류가 발생할 수 있습니다. 이 경우 Android 설정에서 앱 데이터를 지우거나 재설치가 필요합니다. 변경 사항을 보려면 앱을 완전히 닫았다가 다시 열어야 합니다.</string>
+    <string name="unsafe_operation_warning_message">이 옵션은 앱에 오류가 발생할 수 있습니다. 이 경우 Android 설정에서 앱 데이터를 지우거나 재설치가 필요합니다. 변경 사항을 보려면 앱을 완전히 닫았다가 다시 열어야 합니다!\n\n사용에 따른 모든 책임은 사용자에게 있습니다!</string>
     <string name="database_import_message">데이터베이스 복원됨</string>
     <string name="database_export_message">데이터베이스 내보냄</string>
     <string name="database_import_export_failed_message">데이터베이스 작업 실패</string>
@@ -293,7 +293,7 @@
     <string name="preferences_export_message">설정 내보냄</string>
     <string name="preferences_import_export_failed_message">설정 작업 실패</string>
     <string name="preferences_header_upload_title">업로드</string>
-    <string name="preferences_header_upload_summary">프로젝트 기여 옵션</string>
+    <string name="preferences_header_upload_summary">프로젝트 기여 옵션.</string>
     <string name="preferences_header_collector_title">수집</string>
     <string name="preferences_header_collector_summary">데이터 수집, GPS 매개변수 등에 대한 설정입니다.</string>
     <string name="preferences_header_general_title">일반</string>
@@ -313,7 +313,7 @@
     <string name="preferences_category_information_title">정보</string>
     <string name="preferences_category_settings_title">설정</string>
     <string name="preferences_category_help_title">도움말</string>
-    <string name="preferences_restoring_default">입력한 값이 잘못되었습니다. 기본값으로 복원합니다.</string>
+    <string name="preferences_restoring_default">입력한 값이 잘못되었습니다. 기본값으로 복원합니다</string>
     <string name="preferences_value_undefined">미입력</string>
     <string name="preferences_restart_app">설정을 적용하려면 앱을 재시작하세요.</string>
     <string name="preferences_restart_collector">설정을 적용하려면 수집을 재시작하세요.</string>
@@ -345,19 +345,19 @@
     <string name="preferences_custom_mls_enabled_on_summary">측정값은 아래 정의된 BeaconDB 호환 서비스에 업로드됩니다.</string>
     <string name="preferences_custom_mls_enabled_off_summary">측정값은 공식 BeaconDB 서비스에 업로드됩니다.</string>
     <string name="preferences_custom_mls_url_title">맞춤형 BeaconDB 서비스 주소</string>
-    <string name="preferences_custom_mls_url_summary">\"https://example.com/geosubmit?ionalParameter=value\" 와 같은 모든 필수 매개변수를 포함하여 맞춤 서버에 주소를 제공하세요.</string>
+    <string name="preferences_custom_mls_url_summary">\"https://example.com/geosubmit?ionalParameter=value\" 와 같은 모든 필수 매개변수를 포함하여 맞춤 서버에 주소를 제공하세요</string>
     <string name="preferences_custom_mls_url_invalid">입력한 맞춤 BeaconDB 주소가 잘못되었습니다.</string>
     <string name="preferences_about_mls_project_title">BeaconDB에 대한 정보</string>
-    <string name="preferences_about_mls_project_summary">BeaconDB에 대한 정보</string>
+    <string name="preferences_about_mls_project_summary">BeaconDB에 대한 정보.</string>
     <string name="preferences_imperial_units_title">야드/파운드법 사용</string>
     <string name="preferences_imperial_units_on_summary">야드파운드법을 사용하여 표시됩니다.</string>
     <string name="preferences_imperial_units_off_summary">미터법을 사용하여 표시됩니다.</string>
     <string name="preferences_app_theme_title">테마</string>
-    <string name="preferences_app_theme_summary">앱의 색상 테마를 설정합니다</string>
+    <string name="preferences_app_theme_summary">앱의 색상 테마를 설정합니다.</string>
     <string name="preferences_collector_keep_screen_on_title">수집할 때 화면 켜짐 유지</string>
     <string name="preferences_collector_keep_screen_on_summary">데이터를 수집하는 동안 화면이 계속 켜져있도록 설정합니다. 활성화 할 경우 배터리를 더 많이 사용합니다.</string>
     <string name="preferences_export_compression_format_title">압축 포맷</string>
-    <string name="preferences_export_compression_format_summary">내보내기 할 파일에 대한 압축 포맷</string>
+    <string name="preferences_export_compression_format_summary">내보내기 할 파일에 대한 압축 포맷.</string>
     <string name="preferences_tracking_enabled_title">사용 통계 전송</string>
     <string name="preferences_tracking_enabled_on_summary">앱 개선에 도움이 되도록 사용 통계정보를 익명으로 전송합니다. 자세한 정보는 아래를 참고하세요.</string>
     <string name="preferences_tracking_enabled_off_summary">사용 통계 전송이 비활성화 되었습니다. 활성화할 경우 전송하는 내용은 아래를 참고하세요.</string>
@@ -492,44 +492,44 @@
     <string name="info_about_collector_keep_screen_on_title">수집할 때 화면 켜짐 유지</string>
     <string name="info_about_notify_measurements_collected_title">수집한 데이터 전송</string>
     <string name="info_map_help_title">지도 범례</string>
-    <string name="permission_required">권한이 필요합니다.</string>
-    <string name="permission_denied">권한이 거부되었습니다.</string>
+    <string name="permission_required">권한이 필요합니다</string>
+    <string name="permission_denied">권한이 거부되었습니다</string>
     <string name="permission_logging_denied_temporarily_message">파일 저장 권한이 거부되어 일시적으로 파일 로깅이 비활성화되었습니다.</string>
     <string name="permission_collector_rationale_message">데이터를 수집하려면 위치 및 전화 권한이 필요합니다.</string>
     <string name="permission_collector_rationale_api31_message">측정값을 수집하려면 정확한 위치 및 전화 권한이 부여되어야 합니다.</string>
-    <string name="permission_collector_rationale_background_location_api29_message">이 기능을 사용하려면 장치의 위치 권한에 대해 \'항상 허용\' 권한이 필요합니다.</string>
-    <string name="permission_collector_rationale_background_location_api30_message">이 기능을 사용하려면 \'설정에서 허용\'을 선택한 다음 장치의 위치 권한에 대해 \'항상 허용\' 옵션을 선택해야합니다.</string>
+    <string name="permission_collector_rationale_background_location_api29_message">이 기능을 사용하려면 장치의 위치 권한에 대해 \'항상 허용\' 권한이 필요합니다!</string>
+    <string name="permission_collector_rationale_background_location_api30_message">이 기능을 사용하려면 \'설정에서 허용\'을 선택한 다음 장치의 위치 권한에 대해 \'항상 허용\' 옵션을 선택해야합니다!</string>
     <string name="permission_collector_rationale_background_location_2_step_api30_message">이 기능을 사용하려면 먼저 일반 위치 권한을 부여해야 하며, 그 후 별도로 백그라운드 위치 권한을 부여하라는 메시지가 표시됩니다!</string>
     <string name="permission_collector_rationale_background_location_compliance_message">기기 시작 시 측정값 수집을 자동으로 시작하려는 경우에만 앱에 백그라운드 위치 권한이 필요합니다. 이 권한이 없으면 귀하는 혼자서만 수집을 시작할 수 있습니다.</string>
-    <string name="permission_collector_denied_message">권한이 없어 데이터 수집이 취소되었습니다.</string>
-    <string name="permission_collector_never_ask_again_message">위치/전화 권한이 없어 데이터 수집을 사용할 수 없습니다.</string>
-    <string name="permission_collector_never_ask_again_background_location_api29_message">백그라운드 위치 또는 전화 권한이 없어 데이터 수집을 사용할 수 없습니다.</string>
-    <string name="permission_collector_denied_intent_message">권한이 없어 데이터 수집이 취소되었습니다. 앱을 열어 필요한 권한을 부여하세요.</string>
+    <string name="permission_collector_denied_message">권한이 없어 데이터 수집이 취소되었습니다</string>
+    <string name="permission_collector_never_ask_again_message">위치/전화 권한이 없어 데이터 수집을 사용할 수 없습니다</string>
+    <string name="permission_collector_never_ask_again_background_location_api29_message">백그라운드 위치 또는 전화 권한이 없어 데이터 수집을 사용할 수 없습니다</string>
+    <string name="permission_collector_denied_intent_message">권한이 없어 데이터 수집이 취소되었습니다. 앱을 열어 필요한 권한을 부여하세요</string>
     <string name="permission_collector_denied_background_location_message">백그라운드 위치 권한이 없어 장치 부팅시 데이터 수집을 비활성화하였습니다.</string>
     <string name="permission_notification_rationale_message">애플리케이션이 제대로 작동하려면 알림 권한을 부여해야 합니다.</string>
     <string name="permission_notification_denied_message">알림을 허용하지 않으면 앱이 제대로 작동하지 않습니다.</string>
     <string name="permission_notification_never_ask_again_message">알림 권한이 거부되어 해당 기능을 사용할 수 없습니다.</string>
     <string name="permission_map_rationale_message">지도 내에 위치를 표시하려면 위치 권한이 필요합니다.</string>
-    <string name="permission_map_denied_message">위치 권한이 없어 지도를 표시할 수 없습니다.</string>
-    <string name="permission_map_never_ask_again_message">위치 권한이 없어 지도를 표시할 수 없습니다.</string>
+    <string name="permission_map_denied_message">위치 권한이 없어 지도를 표시할 수 없습니다</string>
+    <string name="permission_map_never_ask_again_message">위치 권한이 없어 지도를 표시할 수 없습니다</string>
     <string name="permission_uploader_denied_message">인터넷 권한이 없어 업로드가 취소되었습니다.</string>
-    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"></string>
-    <string name="main_last_cell_id_rnc_value" translatable="false"></string>
-    <string name="export_format_csv" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_1" translatable="false"></string>
-    <string name="main_last_signal_strength_value" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_netmonster" translatable="false"></string>
-    <string name="export_format_gpx" translatable="false"></string>
-    <string name="main_last_number_of_cells_value" translatable="false"></string>
-    <string name="ocid_name" translatable="false"></string>
-    <string name="main_last_longitude_value" translatable="false"></string>
-    <string name="main_stats_to_upload_mls_locations_label" translatable="false"></string>
-    <string name="uploader_result_description" translatable="false"></string>
-    <string name="export_format_kmz" translatable="false"></string>
-    <string name="main_last_gps_accuracy_value" translatable="false"></string>
-    <string name="export_format_kml" translatable="false"></string>
-    <string name="mls_name" translatable="false"></string>
-    <string name="uploader_result_message" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_17" translatable="false"></string>
-    <string name="main_last_latitude_value" translatable="false"></string>
+    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"/>
+    <string name="main_last_cell_id_rnc_value" translatable="false"/>
+    <string name="export_format_csv" translatable="false"/>
+    <string name="preferences_collector_api_version_api_1" translatable="false"/>
+    <string name="main_last_signal_strength_value" translatable="false"/>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false"/>
+    <string name="export_format_gpx" translatable="false"/>
+    <string name="main_last_number_of_cells_value" translatable="false"/>
+    <string name="ocid_name" translatable="false"/>
+    <string name="main_last_longitude_value" translatable="false"/>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false"/>
+    <string name="uploader_result_description" translatable="false"/>
+    <string name="export_format_kmz" translatable="false"/>
+    <string name="main_last_gps_accuracy_value" translatable="false"/>
+    <string name="export_format_kml" translatable="false"/>
+    <string name="mls_name" translatable="false"/>
+    <string name="uploader_result_message" translatable="false"/>
+    <string name="preferences_collector_api_version_api_17" translatable="false"/>
+    <string name="main_last_latitude_value" translatable="false"/>
 </resources>

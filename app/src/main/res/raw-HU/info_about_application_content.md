@@ -3,8 +3,13 @@
 <!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Tower Collector %VERSION_NAME%
 
-Copyright © 2012-%CURRENT_YEAR% Adam Zamojski és közreműködők
+Copyright © 2012-%CURRENT_YEAR% Adam Zamojski & Contributors
 
-A Tower Collector a GSM/UMTS/LTE/CDMA/5G NR/TD-SCDMA cellatornyok GPS pozíciójának mentésére van tervezve. A begyűjtött mérések számos nyilvános és privát adatbázisba feltölthetők.
+A Tower Collector GSM/UMTS/LTE/CDMA/5G NR/TD-SCDMA átjátszótornyok
+GPS-helyzetadatainak gyűjtésére szolgál. A gyűjtött mérések számos nyilvános és
+privát adatbázisba feltölthetők.
 
-THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+EZ A SZOFTVER „JELENLEGI ÁLLAPOTBAN”, BÁRMILYEN KIFEJEZETT VAGY VÉLELMEZTETETT
+GARANCIA NÉLKÜL KERÜL BIZTOSÍTÁSRA, BELEÉRTVE, DE NEM KORLÁTOZÓDVA, AZ
+ELADHATÓSÁGRA ÉS EGY ADOTT CÉLRA VALÓ ALKALMASSÁGRA VONATKOZÓ VÉLELMEZTETETT
+GARANCIÁKAT.

@@ -45,7 +45,7 @@
     <string name="dialog_proceed">Procéder</string>
     <string name="dialog_settings">Réglages</string>
     <string name="main_dialog_not_compatible_title">Problèmes de compatibilité</string>
-    <string name="main_dialog_not_compatible_begin">L\'application peut ne pas fonctionner car :</string>
+    <string name="main_dialog_not_compatible_begin">L\'application peut ne pas fonctionner car :\n</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">• Pas de carte réseau mobile détectée.\n</string>
     <string name="main_toast_background_task_already_running_collector">Service de collectionneur</string>
     <string name="main_toast_background_task_already_running_uploader">Tâche de téléchargement</string>
@@ -71,18 +71,18 @@
     <string name="main_stats_global_cells_label">Cellules découvertes :</string>
     <string name="main_stats_to_upload_title">À envoyer</string>
     <string name="main_last_cell_title">Dernière mesure sauvegardée</string>
-    <string name="main_last_number_of_cells_label">PRINCIPAL / PROCHE</string>
+    <string name="main_last_number_of_cells_label">Principal / proche :</string>
     <string name="main_last_network_type_label">Type de réseau :</string>
     <string name="main_last_long_cell_id_label">Long Cell ID :</string>
     <string name="main_last_cell_id_rnc_label">Cell ID / RNC :</string>
     <string name="main_last_cell_id_label">Identifiant Cellule :</string>
-    <string name="main_last_lac_label">LAC:</string>
-    <string name="main_last_tac_label">TAC:</string>
-    <string name="main_last_mcc_label">MCC:</string>
-    <string name="main_last_mnc_label">MNC:</string>
-    <string name="main_last_sid_label">SID:</string>
-    <string name="main_last_nid_label">NID:</string>
-    <string name="main_last_bid_label">BID:</string>
+    <string name="main_last_lac_label">LAC :</string>
+    <string name="main_last_tac_label">TAC :</string>
+    <string name="main_last_mcc_label">MCC :</string>
+    <string name="main_last_mnc_label">MNC :</string>
+    <string name="main_last_sid_label">SID :</string>
+    <string name="main_last_nid_label">NID :</string>
+    <string name="main_last_bid_label">BID :</string>
     <string name="main_last_signal_strength_label">Force du signal :</string>
     <string name="main_last_latitude_label">Latitude :</string>
     <string name="main_last_longitude_label">Longitude :</string>
@@ -135,7 +135,7 @@
     <string name="uploader_invalid_api_key_description">Le jeton d\'accès de l\'utilisateur entrée dans les paramètres nest pas trouvée. Veuillez vérifier si le jeton d\'accès entré est correct.</string>
     <string name="uploader_invalid_input_data">Données invalides</string>
     <string name="uploader_invalid_input_data_description">Le serveur a refusé les données envoyées par l\'application. Veuillez vérifier si vous avez la dernière version de l\'application. Si vous rencontrez ce problème depuis longtemps, veuillez me le faire savoir.</string>
-    <string name="uploader_no_data">Rien à envoyer.</string>
+    <string name="uploader_no_data">Rien à envoyer</string>
     <string name="uploader_no_data_description">Il n\'y a pas de données à uploader. Veuillez recueillir quelques mesures avant de les envoyer.</string>
     <string name="uploader_delete_failed">Erreur pendant la suppression des mesures</string>
     <string name="uploader_delete_failed_description">L\'appli a rencontré une erreur lors de la suppression des mesures de votre appareil. Veuillez redémarrer votre appareil et vérifier à nouveau. Si vous rencontrez toujours ce problème, veuillez me le faire savoir.</string>
@@ -159,11 +159,11 @@
     <string name="export_aborting">Abandon de l\'exportation…</string>
     <string name="export_toast_no_file_types_selected">Aucun type de fichier sélectionné pour l\'exportation.</string>
     <string name="export_toast_no_handler_for_file_type">Pas d\'application pour traiter le fichier.</string>
-    <string name="export_dialog_format_selection_title">Sélectionnez le format du fichier :</string>
+    <string name="export_dialog_format_selection_title">Sélectionnez le format du fichier</string>
     <string name="export_dialog_progress_title">Exportation</string>
     <string name="export_dialog_progress_message">Enregistrement dans le dossier \"<xliff:g id="dir_name">%s</xliff:g>\" de la mémoire externe avec la date et l\'heure actuelle comme nom de fichier.</string>
     <string name="export_dialog_finished_title">Exportation réussie</string>
-    <string name="export_dialog_finished_message">Les fichiers sauvegardé ici : \"<xliff:g id="dir_name">%s</xliff:g>\".\n\n<i>Vous pouvez également contribuer à l\'un des projets en envoyant vos mesures !</i></string>
+    <string name="export_dialog_finished_message">Les fichiers sauvegardé ici : \"<xliff:g id="dir_name">%s</xliff:g>\".\n\nVous pouvez également contribuer à l\'un des projets en envoyant vos mesures !</string>
     <string name="storage_request_access_title">Sélectionnez un emplacement de stockage</string>
     <string name="storage_request_access_message">Sélectionnez un emplacement pour stocker les fichiers à l\'aide du sélecteur de documents.</string>
     <string name="storage_request_access_migrate_message">Les fichiers existants dans l\'ancien emplacement ne seront PAS déplacés vers le nouvel emplacement !</string>
@@ -174,8 +174,8 @@
     <string name="storage_file_not_readable">Impossible de lire le fichier.</string>
     <string name="storage_file_not_writable">Impossible d\'écrire dans le fichier.</string>
     <string name="storage_access_denied">Accès au stockage refusé.</string>
-    <string name="storage_read_failed">Échec de la lecture à partir du stockage: <xliff:g id="error_message">%s</xliff:g>.</string>
-    <string name="storage_write_failed">Échec de l\'écriture dans le stockage: <xliff:g id="error_message">%s</xliff:g>.</string>
+    <string name="storage_read_failed">Échec de la lecture à partir du stockage : &lt;xliff :g id=\"error_message\"&gt;%s&lt;/xliff :g&gt;.</string>
+    <string name="storage_write_failed">Échec de l\'écriture dans le stockage : &lt;xliff :g id=\"error_message\"&gt;%s&lt;/xliff :g&gt;.</string>
     <string name="system_toast_no_handler_for_operation">Aucune application pour exécuter l\'opération.</string>
     <string name="system_toast_no_handler_for_document_picker">Assurez-vous que le gestionnaire de fichiers d\'origine est installé et activé sur le système.</string>
     <string name="clear_dialog_title">Effacer toutes les données</string>
@@ -188,11 +188,11 @@
     <string name="export_toast_failed">L\'exportation a échoué : <xliff:g id="failure_reason">%s</xliff:g>.</string>
     <string name="export_toast_failed_cause_unknown">erreur inconnue</string>
     <string name="export_toast_failed_cause_directory_not_exists">Impossible de créer le répertoire</string>
-    <string name="export_toast_failed_cause_directory_not_writable">Le répertoire est en lecture seule.</string>
+    <string name="export_toast_failed_cause_directory_not_writable">Le répertoire est en lecture seule</string>
     <string name="export_toast_failed_cause_file_not_writable">le fichier est en lecture seule</string>
     <string name="export_toast_no_data">Aucune donnée à exporter.</string>
     <string name="export_toast_cancelled">Exportation annulée.</string>
-    <string name="uploader_toast_failed">Envoi a échoué: <xliff:g id="failure_reason">%s</xliff:g>.</string>
+    <string name="uploader_toast_failed">Envoi a échoué : &lt;xliff :g id=\"failure_reason\"&gt;%s&lt;/xliff :g&gt;.</string>
     <string name="uploader_toast_cancelled">Envoi annulée.</string>
     <string name="updater_notification_ticker">Une nouvelle version de Tower Colector est disponible</string>
     <string name="updater_notification_title">Une nouvelle version est disponible</string>
@@ -204,7 +204,7 @@
     <string name="splash_toast_database_upgrade_running">Mise à jour de la base de données est cours. Cela peut prendre un moment.</string>
     <string name="main_help_gps_status_title">Statut du GPS</string>
     <string name="main_help_gps_status_description">Affiche l\'état actuel du GPS. Si vous rencontrez des problèmes pour obtenir des mesures, veuillez trouver un emplacement avec une meilleure réception du signal et une meilleure précision.</string>
-    <string name="main_help_invalid_system_time_title">Heure système invalide.</string>
+    <string name="main_help_invalid_system_time_title">Heure système invalide</string>
     <string name="main_help_invalid_system_time_description">La date et/ou l\'heure de votre système actuel ne sont pas valables par rapport à l\'heure GPS. Les mesures seront enregistrées avec l\'heure exacte, mais les statistiques présentées peuvent être inexactes. Veuillez régler la date et l\'heure sur votre appareil.</string>
     <string name="main_help_battery_optimizations_title">Optimisation de la batterie activée</string>
     <string name="main_help_battery_optimizations_description_common">L\'optimisation de la batterie est activée pour cette application, ce qui pourrait entrainer une collecte de données imprécise et non-fiable.</string>
@@ -330,10 +330,10 @@
     <string name="preferences_opencellid_use_shared_api_key_on_summary">Le jeton d\'accès partagé sera utilisé.</string>
     <string name="preferences_opencellid_use_shared_api_key_off_summary">Le jeton d\'accès personnel sera utilisé.</string>
     <string name="preferences_opencellid_api_key_title">Le jeton d\'accès personnel</string>
-    <string name="preferences_opencellid_api_key_summary">Votre jeton est requise pour transmettre vos mesures</string>
+    <string name="preferences_opencellid_api_key_summary">Votre jeton est requise pour transmettre vos mesures.</string>
     <string name="preferences_opencellid_api_key_invalid">Le jeton d\'accès entré est pas invalide. Le format correct est décrit dans l\'Aide.</string>
     <string name="preferences_opencellid_api_key_link_title">Obtenez votre propre jeton d\'accès</string>
-    <string name="preferences_opencellid_api_key_link_summary">Inscrivez-vous gratuitement sur le site Web OpenCellID.org</string>
+    <string name="preferences_opencellid_api_key_link_summary">Inscrivez-vous gratuitement sur le site Web OpenCellID.org.</string>
     <string name="preferences_about_opencellid_api_key_title">À propos du jeton d\'accès OpenCellID</string>
     <string name="preferences_about_opencellid_api_key_summary">Informations sur le jeton d\'accès (clé API) et le formatage correct.</string>
     <string name="preferences_about_opencellid_project_title">À propos du projet OpenCellID</string>
@@ -366,7 +366,7 @@
     <string name="preferences_error_reporting_silent_title">Envoi automatique du rapport d\'erreurs</string>
     <string name="preferences_error_reporting_silent_on_summary">L\'application enverra automatiquement des rapports d\'erreur qui aideront à corriger le problème.</string>
     <string name="preferences_error_reporting_silent_off_summary">L\'application vous demandera une confirmation avant d\'envoyer le rapport, qui peut aider à corriger le problème.</string>
-    <string name="preferences_update_check_enabled_title">Vérification automatique des MAJ</string>
+    <string name="preferences_update_check_enabled_title">Vérification automatique des maj</string>
     <string name="preferences_update_check_enabled_on_summary">L\'application vous préviendra lorsqu\'une nouvelle version sera disponible.</string>
     <string name="preferences_update_check_enabled_off_summary">Les vérifications périodiques de la publication de nouvelles versions sont désactivées.</string>
     <string name="preferences_about_link_title">À propos</string>
@@ -376,9 +376,9 @@
     <string name="preferences_best_practices_link_title">Meilleures pratiques</string>
     <string name="preferences_best_practices_link_summary">Affiche les bonnes pratiques pour la collecte de mesures précieuses.</string>
     <string name="preferences_website_link_title">Site Web</string>
-    <string name="preferences_website_link_summary">Ouvre le site web du développeur contenant la description et les liens de téléchargement des des magasins d\'application.</string>
+    <string name="preferences_website_link_summary">Ouvre le site web du développeur contenant la description et les liens de téléchargement des magasins d\'application.</string>
     <string name="preferences_contact_email_link_title">Contacter le développeur</string>
-    <string name="preferences_contact_email_link_summary">Écrire au développeur pour toute difficulté, question ou idée</string>
+    <string name="preferences_contact_email_link_summary">Écrire au développeur pour toute difficulté, question ou idée.</string>
     <string name="preferences_donate_link_title">Faire un don</string>
     <string name="preferences_donate_link_summary">Dites merci et montrez votre soutien à l\'application.</string>
     <string name="preferences_github_link_title">Page GitHub</string>
@@ -405,7 +405,7 @@
     <string name="preferences_collect_neighboring_cells_on_summary">Les cellules voisines seront collectées si disponibles.</string>
     <string name="preferences_collect_neighboring_cells_off_summary">Les cellules voisines seront éliminées.</string>
     <string name="preferences_about_neighboring_cells_title">À propos des cellules voisines</string>
-    <string name="preferences_about_neighboring_cells_summary">Information sur les cellules voisines</string>
+    <string name="preferences_about_neighboring_cells_summary">Information sur les cellules voisines.</string>
     <string name="preferences_notify_measurements_collected_title">Notifier les mesures collectées</string>
     <string name="preferences_notify_measurements_collected_on_summary">D\'autres applications seront informées des mesures collectées. Plus d\'infos ci-dessous.</string>
     <string name="preferences_notify_measurements_collected_off_summary">Les Notifications aux autres applications concernant les mesures collectées sont désactivées. Plus d\'infos ci-dessous.</string>
@@ -497,8 +497,8 @@
     <string name="permission_logging_denied_temporarily_message">Désactivation temporaire de la journalisation des fichiers en raison d\'un accès refusé au stockage.</string>
     <string name="permission_collector_rationale_message">Les autorisations de localisation et du téléphone doivent être accordées pour collecter les mesures.</string>
     <string name="permission_collector_rationale_api31_message">Une localisation précise et des autorisations téléphoniques doivent être accordées pour collecter des mesures.</string>
-    <string name="permission_collector_rationale_background_location_api29_message">Si vous souhaitez utiliser cette fonction, assurez-vous de sélectionner l\'option \"Autoriser tout le temps\" pour accéder à l\'autorisation de localisation de l\'appareil!</string>
-    <string name="permission_collector_rationale_background_location_api30_message">Si vous souhaitez utiliser cette fonction, assurez-vous de sélectionner \"autoriser dans les paramètres\" et sélectionnez \"autoriser tout le temps\' option pour le dispositif d\'accès à l\'emplacement de l\'autorisation!</string>
+    <string name="permission_collector_rationale_background_location_api29_message">Si vous souhaitez utiliser cette fonction, assurez-vous de sélectionner l\'option \"Autoriser tout le temps\" pour accéder à l\'autorisation de localisation de l\'appareil !</string>
+    <string name="permission_collector_rationale_background_location_api30_message">Si vous souhaitez utiliser cette fonction, assurez-vous de sélectionner \"autoriser dans les paramètres\" et sélectionnez \"autoriser tout le temps\' option pour le dispositif d\'accès à l\'emplacement de l\'autorisation !</string>
     <string name="permission_collector_rationale_background_location_2_step_api30_message">Si vous souhaitez utiliser cette fonction, vous devez d\'abord accorder les autorisations de localisation normales, puis il vous sera demandé séparément d\'accorder l\'autorisation de localisation en arrière-plan !</string>
     <string name="permission_collector_rationale_background_location_compliance_message">L\'application nécessite l\'autorisation de localisation en arrière-plan uniquement si vous souhaitez démarrer automatiquement la collecte de mesures au démarrage de l\'appareil. Sans cette autorisation, vous ne pouvez commencer à collecter que par vous-même.</string>
     <string name="permission_collector_denied_message">Annulation de la collecte des mesures en raison du manque d\'autorisations</string>
@@ -513,23 +513,23 @@
     <string name="permission_map_denied_message">La carte ne peut pas être activée en raison de l\'autorisation de localisation refusée</string>
     <string name="permission_map_never_ask_again_message">La carte n\'est pas disponible en raison du refus d\'autorisation de localisation</string>
     <string name="permission_uploader_denied_message">Envo annulé en raison d\'un manque d\'autorisation sur Internet.</string>
-    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"></string>
-    <string name="main_last_cell_id_rnc_value" translatable="false"></string>
-    <string name="export_format_csv" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_1" translatable="false"></string>
-    <string name="main_last_signal_strength_value" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_netmonster" translatable="false"></string>
-    <string name="export_format_gpx" translatable="false"></string>
-    <string name="main_last_number_of_cells_value" translatable="false"></string>
-    <string name="ocid_name" translatable="false"></string>
-    <string name="main_last_longitude_value" translatable="false"></string>
-    <string name="main_stats_to_upload_mls_locations_label" translatable="false"></string>
-    <string name="uploader_result_description" translatable="false"></string>
-    <string name="export_format_kmz" translatable="false"></string>
-    <string name="main_last_gps_accuracy_value" translatable="false"></string>
-    <string name="export_format_kml" translatable="false"></string>
-    <string name="mls_name" translatable="false"></string>
-    <string name="uploader_result_message" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_17" translatable="false"></string>
-    <string name="main_last_latitude_value" translatable="false"></string>
+    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"/>
+    <string name="main_last_cell_id_rnc_value" translatable="false"/>
+    <string name="export_format_csv" translatable="false"/>
+    <string name="preferences_collector_api_version_api_1" translatable="false"/>
+    <string name="main_last_signal_strength_value" translatable="false"/>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false"/>
+    <string name="export_format_gpx" translatable="false"/>
+    <string name="main_last_number_of_cells_value" translatable="false"/>
+    <string name="ocid_name" translatable="false"/>
+    <string name="main_last_longitude_value" translatable="false"/>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false"/>
+    <string name="uploader_result_description" translatable="false"/>
+    <string name="export_format_kmz" translatable="false"/>
+    <string name="main_last_gps_accuracy_value" translatable="false"/>
+    <string name="export_format_kml" translatable="false"/>
+    <string name="mls_name" translatable="false"/>
+    <string name="uploader_result_message" translatable="false"/>
+    <string name="preferences_collector_api_version_api_17" translatable="false"/>
+    <string name="main_last_latitude_value" translatable="false"/>
 </resources>

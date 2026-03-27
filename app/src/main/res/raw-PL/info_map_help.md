@@ -17,6 +17,8 @@
 
 ![dot_lte_wcdma](drawable://dot_lte_wcdma) - Połączenie LTE i WCDMA
 
-![dot_cluster_small](drawable://dot_cluster_small) - Klaster - grupa próbek, przybliż aby zobaczyć próbki
+![dot_cluster_small](drawable://dot_cluster_small) - Klaster - grupa próbek,
+przybliż aby zobaczyć próbki
 
-Jasne kolory oznaczają próbki z nowymi przekaźnikami, w przeciwnym wypadku użyte są ciemne kolory.
+Jasne kolory oznaczają próbki z nowymi przekaźnikami, w przeciwnym wypadku użyte
+są ciemne kolory.

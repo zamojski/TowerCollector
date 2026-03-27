@@ -17,6 +17,8 @@
 
 ![dot_lte_wcdma](drawable://dot_lte_wcdma) - Mélange de LTE et WCDMA
 
-![dot_cluster_small](drawable://dot_cluster_small) - Cluster - un groupe de mesures, zoomez pour dissocier
+![dot_cluster_small](drawable://dot_cluster_small) - Cluster - un groupe de
+mesures, zoomez pour dissocier
 
-Les couleurs vives représentent des mesures avec des tours cellulaires nouvellement découvertes, sinon des couleurs sombres sont utilisées.
+Les couleurs vives représentent des mesures avec des tours cellulaires
+nouvellement découvertes, sinon des couleurs sombres sont utilisées.

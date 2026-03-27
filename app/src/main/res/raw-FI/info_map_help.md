@@ -17,6 +17,8 @@
 
 ![dot_lte_wcdma](drawable://dot_lte_wcdma) - LTE:n ja WCDMA:n sekoitus
 
-![dot_cluster_small](drawable://dot_cluster_small) - Cluster - mittausryhmä, zoomaa sisään, jos haluat poistaa ryhmän
+![dot_cluster_small](drawable://dot_cluster_small) - Cluster - mittausryhmä,
+zoomaa sisään, jos haluat poistaa ryhmän
 
-Vaaleat värit edustavat mittauksia, joissa on äskettäin löydettyjä matkapuhelinmastoja, muuten käytetään tummia värejä.
+Vaaleat värit edustavat mittauksia, joissa on äskettäin löydettyjä
+matkapuhelinmastoja, muuten käytetään tummia värejä.

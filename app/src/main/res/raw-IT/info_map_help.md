@@ -17,6 +17,8 @@
 
 ![dot_lte_wcdma](drawable://dot_lte_wcdma) - Mix di LTE e WCDMA
 
-![dot_cluster_small](drawable://dot_cluster_small) - Cluster: un gruppo di misurazioni, ingrandisci per separare
+![dot_cluster_small](drawable://dot_cluster_small) - Cluster: un gruppo di
+misurazioni, ingrandisci per separare
 
-I colori luminosi rappresentano misurazioni con ripetitori cellulari scoperti di recente, altrimenti vengono utilizzati colori scuri.
+I colori luminosi rappresentano misurazioni con ripetitori cellulari scoperti di
+recente, altrimenti vengono utilizzati colori scuri.

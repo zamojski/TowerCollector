@@ -3,8 +3,12 @@
 <!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Tower Collector %VERSION_NAME%
 
-Copyright © 2012-%CURRENT_YEAR% Adam Zamojski ja avustajat
+Copyright © 2012-%CURRENT_YEAR% Adam Zamojski & Contributors
 
-Tower Collector on suunniteltu keräämään GPS-sijainteja GSM/UMTS/LTE/CDMA/5G NR/TD-SCDMA-matkapuhelinmastoista. Kerätyt mittauksesi voidaan ladata useisiin julkisiin ja yksityisiin tietokantoihin.
+Tower Collector on suunniteltu keräämään GSM/UMTS/LTE/CDMA/5G NR/TD-SCDMA
+-matkapuhelinmastojen GPS-sijainnit. Kerätyt mittaukset voidaan ladata useisiin
+julkisiin ja yksityisiin tietokantoihin.
 
-THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+TÄMÄ OHJELMISTO TARJOTAAN "SELLAISENAAN" JA ILMAN MINKÄÄNLAISIA NIMENOMAISIA TAI
+EPÄSUORIA TAKUITA, MUKAAN LUKIEN, MUTTA EI RAJOITTUEN, EPÄSUORAT TAKUUT
+MYYNTIKELPOISUUDESTA JA SOPIVUUDESTA TIETTYYN TARKOITUKSEEN.

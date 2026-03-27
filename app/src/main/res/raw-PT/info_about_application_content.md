@@ -3,8 +3,12 @@
 <!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 Tower Collector %VERSION_NAME%
 
-Copyright © 2012-%CURRENT_YEAR% Adam Zamojski e colaboradores
+Copyright © 2012-%CURRENT_YEAR% Adam Zamojski & Contributors
 
-O Tower Collector é projetado para coletar posições GPS de torres celulares GSM/UMTS/LTE/CDMA/5G NR/TD-SCDMA. Suas medições coletadas podem ser carregadas em diversos bancos de dados públicos e privados.
+O Tower Collector foi projetado para coletar as coordenadas GPS de torres de
+celular GSM/UMTS/LTE/CDMA/5G NR/TD-SCDMA. As medições coletadas podem ser
+enviadas para diversos bancos de dados públicos e privados.
 
-THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ESTE SOFTWARE É FORNECIDO "NO ESTADO EM QUE SE ENCONTRA" E SEM QUAISQUER
+GARANTIAS EXPRESSAS OU IMPLÍCITAS, INCLUINDO, SEM LIMITAÇÃO, AS GARANTIAS
+IMPLÍCITAS DE COMERCIABILIDADE E ADEQUAÇÃO A UM FIM ESPECÍFICO.

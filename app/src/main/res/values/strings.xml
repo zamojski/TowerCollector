@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <!-- This Source Code Form is subject to the terms of the Mozilla Public
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. --><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="locale">en</string>
     <string name="shortcut_collecting_toggle_short">Collect</string>
     <string name="shortcut_collecting_toggle_long">Toggle collecting</string>
@@ -47,7 +46,7 @@
     <string name="dialog_settings">Settings</string>
     <string name="main_dialog_not_compatible_title">Compatibility problems</string>
     <string name="main_dialog_not_compatible_begin">The app may not work because:\n</string>
-    <string name="main_dialog_no_compatible_mobile_radio_message">&#8226; Mobile network hardware not detected.\n</string>
+    <string name="main_dialog_no_compatible_mobile_radio_message">• Mobile network hardware not detected.\n</string>
     <string name="main_toast_background_task_already_running_collector">Collector service</string>
     <string name="main_toast_background_task_already_running_uploader">Uploader task</string>
     <string name="main_toast_background_task_already_running_export">Export task</string>
@@ -91,9 +90,9 @@
     <string name="main_last_signal_strength_label">Signal strength:</string>
     <string name="main_last_signal_strength_value" translatable="false"><xliff:g id="signal_strength">%d</xliff:g> dBm</string>
     <string name="main_last_latitude_label">Latitude:</string>
-    <string name="main_last_latitude_value" translatable="false"><xliff:g id="latitude">%.8f&#176;</xliff:g></string>
+    <string name="main_last_latitude_value" translatable="false"><xliff:g id="latitude">%.8f°</xliff:g></string>
     <string name="main_last_longitude_label">Longitude:</string>
-    <string name="main_last_longitude_value" translatable="false"><xliff:g id="longitude">%.8f&#176;</xliff:g></string>
+    <string name="main_last_longitude_value" translatable="false"><xliff:g id="longitude">%.8f°</xliff:g></string>
     <string name="main_last_gps_accuracy_label">Accuracy:</string>
     <string name="main_last_gps_accuracy_value" translatable="false"><xliff:g id="accuracy_value">%1$.2f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="main_last_date_time_label">Save time:</string>
@@ -127,8 +126,8 @@
     <string name="uploader_notification_progress_info">Uploaded <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
     <string name="uploader_result_dialog_title">Upload result</string>
     <string name="uploader_dialog_progress_title">Uploading</string>
-    <string name="uploader_starting">Starting upload&#8230;</string>
-    <string name="uploader_aborting">Aborting upload&#8230;</string>
+    <string name="uploader_starting">Starting upload…</string>
+    <string name="uploader_aborting">Aborting upload…</string>
     <string name="uploader_already_running">Upload is already running.</string>
     <string name="uploader_disabled">Upload disabled</string>
     <string name="uploader_disabled_description">Upload disabled for this project.</string>
@@ -166,15 +165,15 @@
     <string name="export_notification_channel_name">Export</string>
     <string name="export_notification_title">Exporting</string>
     <string name="export_notification_progress_info">Exported <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
-    <string name="export_starting">Starting export&#8230;</string>
-    <string name="export_aborting">Aborting export&#8230;</string>
+    <string name="export_starting">Starting export…</string>
+    <string name="export_aborting">Aborting export…</string>
     <string name="export_toast_no_file_types_selected">No file types selected for export.</string>
     <string name="export_toast_no_handler_for_file_type">No application to handle the file.</string>
     <string name="export_dialog_format_selection_title">Select file formats</string>
     <string name="export_dialog_progress_title">Exporting</string>
     <string name="export_dialog_progress_message">Saving to \"<xliff:g id="dir_name">%s</xliff:g>\" with current date and time as file name.</string>
     <string name="export_dialog_finished_title">Export successful</string>
-    <string name="export_dialog_finished_message">The files have been saved to \"<xliff:g id="dir_name">%s</xliff:g>\".\n\n<i>Please consider contribution to one of the projects by uploading your measurements!</i></string>
+    <string name="export_dialog_finished_message">The files have been saved to \"<xliff:g id="dir_name">%s</xliff:g>\".\n\nPlease consider contribution to one of the projects by uploading your measurements!</string>
     <string name="storage_request_access_title">Select storage location</string>
     <string name="storage_request_access_message">Select a location to store the files using document picker.</string>
     <string name="storage_request_access_migrate_message">The existing files from the old location will NOT be moved to a new location!</string>

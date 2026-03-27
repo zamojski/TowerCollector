@@ -45,7 +45,7 @@
     <string name="dialog_proceed">Продолжить</string>
     <string name="dialog_settings">Настройки</string>
     <string name="main_dialog_not_compatible_title">Проблемы совместимости</string>
-    <string name="main_dialog_not_compatible_begin">Приложение может не работать потому, что:</string>
+    <string name="main_dialog_not_compatible_begin">Приложение может не работать потому, что:\n</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">• Не найдено оборудование для работы с мобильными сетями.\n</string>
     <string name="main_toast_background_task_already_running_collector">Коллекторское обслуживание</string>
     <string name="main_toast_background_task_already_running_uploader">Задача загрузки</string>
@@ -89,7 +89,7 @@
     <string name="main_last_gps_accuracy_label">Точность:</string>
     <string name="main_last_date_time_label">Время сохранения:</string>
     <string name="main_last_cell_no_data_message">Измерений пока нет, выйдите на улицу и соберите данные!</string>
-    <string name="main_last_toast_copy_message">Значение \'<xliff:g id="property_value">%s</xliff:g>\' скопировано в буфер обмена.</string>
+    <string name="main_last_toast_copy_message">Значение \'<xliff:g id="property_value">%s</xliff:g>\' скопировано в буфер обмена</string>
     <string name="main_map_my_location_button">Перейти на мою позицию</string>
     <string name="main_map_follow_me_button">Следуй моей позиции</string>
     <string name="main_map_location_enable_button">Включить мое местоположение</string>
@@ -112,7 +112,7 @@
     <string name="collector_notification_stats">Сегодня собрано <xliff:g id="number_of_measurements">%1$d</xliff:g> измерений и <xliff:g id="number_of_cells">%2$d</xliff:g> GSM-сот.</string>
     <string name="collector_notification_last_measurement">Последние ячейки:\n<xliff:g id="cell_identifier">%s</xliff:g></string>
     <string name="collector_notification_status">Статус GPS: <xliff:g id="status">%s</xliff:g>.</string>
-    <string name="collector_gps_unavailable">Невозможно начать сбор, т.к. GPS выключен</string>
+    <string name="collector_gps_unavailable">Невозможно начать сбор, т.к. GPS выключен.</string>
     <string name="uploader_notification_channel_name">Загрузчик</string>
     <string name="uploader_notification_title">Выгрузка</string>
     <string name="uploader_notification_progress_info">Загружено <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
@@ -122,7 +122,7 @@
     <string name="uploader_aborting">Прерывание выгрузки…</string>
     <string name="uploader_already_running">Выгрузка в процессе.</string>
     <string name="uploader_disabled">Выгрузка отключена</string>
-    <string name="uploader_disabled_description">Выгрузка отключена для этого проекта</string>
+    <string name="uploader_disabled_description">Выгрузка отключена для этого проекта.</string>
     <string name="uploader_aborted">Выгрузка прервана</string>
     <string name="uploader_aborted_description">Ничего не выгружено.</string>
     <string name="uploader_success">Выгрузка успешна</string>
@@ -151,7 +151,7 @@
     <string name="error_reporting_notification_title">Tower Collector разбился</string>
     <string name="error_reporting_notification_text">Произошла неизвестная ошибка. Пожалуйста отправьте отчёт, чтобы помочь исправить проблему.</string>
     <string name="error_reporting_notification_comment_prompt">Комментарий (необязательно)</string>
-    <string name="error_reporting_notification_email_prompt">Email (optional)</string>
+    <string name="error_reporting_notification_email_prompt">Адрес электронной почты (необязательно)</string>
     <string name="export_notification_channel_name">Экспорт</string>
     <string name="export_notification_title">Экспортирующий</string>
     <string name="export_notification_progress_info">Экспортировано <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>
@@ -163,7 +163,7 @@
     <string name="export_dialog_progress_title">Экспорт</string>
     <string name="export_dialog_progress_message">Сохранение в папку \"<xliff:g id="dir_name">%s</xliff:g>\" на внешнюю SD-карту с текущей датой и временем в имени файла.</string>
     <string name="export_dialog_finished_title">Экспорт успешен</string>
-    <string name="export_dialog_finished_message">Файлы были сохранены в \"<xliff:g id="dir_name">%s</xliff:g>\".\n\n<i>Пожалуйста, внесите вклад в один из проектов, выгрузив ваши измерения!</i></string>
+    <string name="export_dialog_finished_message">Файлы были сохранены в \"<xliff:g id="dir_name">%s</xliff:g>\".\n\nПожалуйста, внесите вклад в один из проектов, выгрузив ваши измерения!</string>
     <string name="storage_request_access_title">Выберите место хранения</string>
     <string name="storage_request_access_message">Выберите место для хранения файлов с помощью средства выбора документов.</string>
     <string name="storage_request_access_migrate_message">Существующие файлы из старого места НЕ будут перемещены в новое место!</string>
@@ -282,7 +282,7 @@
     <string name="upload_configurator_dialog_title">Настройте место выгрузки</string>
     <string name="upload_anonymously">Анонимно</string>
     <string name="enter_valid_api_key">Нужно ввести правильный токен доступа в настройках</string>
-    <string name="enter_valid_mls_url_key">Вам необходимо ввести действительный адрес собственного сервера BeaconDB в настройках.</string>
+    <string name="enter_valid_mls_url_key">Вам необходимо ввести действительный адрес собственного сервера BeaconDB в настройках</string>
     <string name="reupload_measurements_if_upload_fails_for_one_of_projects">Попробуйте повторно выгрузить в случае сбоя выгрузки по одному из проектов</string>
     <string name="unsafe_operation_warning_title">Небезопасная операция</string>
     <string name="unsafe_operation_warning_message">Эта опция может сбросить настройки приложения в результате вылета. В этом случае вам необходимо очистить данные приложения в настройках Android. Вы должны полностью закрыть и открыть приложение, чтобы увидеть изменения!\n\nИспользуйте её на свой собственных риск!</string>
@@ -320,7 +320,7 @@
     <string name="preferences_upload_show_configurator_title">Предлагать настройки выгрузки</string>
     <string name="preferences_upload_show_configurator_on_summary">Перед каждой выгрузкой предлагать настройки.</string>
     <string name="preferences_upload_show_configurator_off_summary">Выгрузка в соответствии с запомненными настройками.</string>
-    <string name="preferences_reupload_if_upload_fails_title">Выгрузить повторно, если сразу не удастся.</string>
+    <string name="preferences_reupload_if_upload_fails_title">Выгрузить повторно, если сразу не удастся</string>
     <string name="preferences_reupload_if_upload_fails_on_summary">При неудачной выгрузке по одному из проектов измерения будут храниться до 30 дней и продолжать выгружаться.</string>
     <string name="preferences_reupload_if_upload_fails_off_summary">Удаление измерений выгруженных хотя бы в один из проектов.</string>
     <string name="preferences_opencellid_enabled_title">Включить выгрузку в OCID</string>
@@ -333,11 +333,11 @@
     <string name="preferences_opencellid_api_key_summary">Для загрузки измерений требуется токен.</string>
     <string name="preferences_opencellid_api_key_invalid">Введённый токен доступа имеет неверный формат. Смотрите справочное руководство.</string>
     <string name="preferences_opencellid_api_key_link_title">Получить свой токен доступа</string>
-    <string name="preferences_opencellid_api_key_link_summary">Бесплатная регистрация на сайте OpenCellID.org</string>
+    <string name="preferences_opencellid_api_key_link_summary">Бесплатная регистрация на сайте OpenCellID.org.</string>
     <string name="preferences_about_opencellid_api_key_title">Об токене доступа OpenCellID</string>
     <string name="preferences_about_opencellid_api_key_summary">Информация о токене доступа (API-ключ) и правильном форматировании.</string>
     <string name="preferences_about_opencellid_project_title">О проекте OpenCellID</string>
-    <string name="preferences_about_opencellid_project_summary">Информация о проекте OpenCellID.org</string>
+    <string name="preferences_about_opencellid_project_summary">Информация о проекте OpenCellID.org.</string>
     <string name="preferences_mls_enabled_title">Включить выгрузку в BeaconDB</string>
     <string name="preferences_mls_enabled_on_summary">Измерения будут выгружаться в BeaconDB.</string>
     <string name="preferences_mls_enabled_off_summary">Измерения не будут выгружаться в BeaconDB.</string>
@@ -345,7 +345,7 @@
     <string name="preferences_custom_mls_enabled_on_summary">Измерения будут загружены в службу, совместимую с BeaconDB, определенную ниже.</string>
     <string name="preferences_custom_mls_enabled_off_summary">Измерения будут загружены на официальный сервис BeaconDB.</string>
     <string name="preferences_custom_mls_url_title">Персонализированный адрес службы BeaconDB</string>
-    <string name="preferences_custom_mls_url_summary">Укажите адрес пользовательского сервера, включая все необходимые параметры, например: \"https://example.com/geosubmit?optionalParameter=value\".</string>
+    <string name="preferences_custom_mls_url_summary">Укажите адрес пользовательского сервера, включая все необходимые параметры, например: \"https://example.com/geosubmit?optionalParameter=value\"</string>
     <string name="preferences_custom_mls_url_invalid">Введенный пользовательский адрес BeaconDB недействителен.</string>
     <string name="preferences_about_mls_project_title">О проекте BeaconDB</string>
     <string name="preferences_about_mls_project_summary">Информация о проекте BeaconDB.</string>
@@ -410,7 +410,7 @@
     <string name="preferences_notify_measurements_collected_on_summary">Другие приложения будут оповещены о собраных измерениях. Подробности ниже.</string>
     <string name="preferences_notify_measurements_collected_off_summary">Оповещения другим приложениям о собранных измерениях отключены. Подробности ниже.</string>
     <string name="preferences_about_notify_measurements_collected_title">Об оповещениях о собранных измерениях</string>
-    <string name="preferences_about_notify_measurements_collected_summary">Информация об уведомлениях других приложений во время сборки измерений</string>
+    <string name="preferences_about_notify_measurements_collected_summary">Информация об уведомлениях других приложений во время сборки измерений.</string>
     <string name="preferences_main_keep_screen_on_title">Подсветка экрана во время работы</string>
     <string name="preferences_main_keep_screen_on_on_summary">Подсветка будет постоянно включена, когда активен главный экран.</string>
     <string name="preferences_main_keep_screen_on_off_summary">Подстветка контролируется системой, когда активен главный экран.</string>
@@ -429,7 +429,7 @@
     <string name="preferences_start_collector_at_startup_title">Начать сбор при запуске</string>
     <string name="preferences_start_collector_at_startup_on_summary">Сбор будет автоматически начать при запуске приложения.</string>
     <string name="preferences_start_collector_at_startup_off_summary">Приложение не будет собирать данные при запуске.</string>
-    <string name="preferences_start_collector_at_boot_title">Запускать сборщик во время включения устройства.</string>
+    <string name="preferences_start_collector_at_boot_title">Запускать сборщик во время включения устройства</string>
     <string name="preferences_start_collector_at_boot_on_summary">Сбор сот начнётся автоматически сразу после запуска устройства. Для работы этого режима программа должна быть установлена на внутреннем устройстве памяти.</string>
     <string name="preferences_start_collector_at_boot_off_summary">Приложение не будет автоматически запускать Сборщик во время включения устройства. Приложение можно установить где угодно. Для использования этой функции необходимо предоставить разрешение на определение местоположения в фоновом режиме, иначе приложение не сможет собирать измерения.</string>
     <string name="preferences_collector_low_battery_action_title">Действие при низком заряде</string>
@@ -513,23 +513,23 @@
     <string name="permission_map_denied_message">Невозможно включить карту из-за отказа в разрешении местоположения</string>
     <string name="permission_map_never_ask_again_message">Карта недоступна из-за отказа в разрешении местоположения</string>
     <string name="permission_uploader_denied_message">Загрузка отменена, т.к. нет доступа к интернету.</string>
-    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"></string>
-    <string name="main_last_cell_id_rnc_value" translatable="false"></string>
-    <string name="export_format_csv" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_1" translatable="false"></string>
-    <string name="main_last_signal_strength_value" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_netmonster" translatable="false"></string>
-    <string name="export_format_gpx" translatable="false"></string>
-    <string name="main_last_number_of_cells_value" translatable="false"></string>
-    <string name="ocid_name" translatable="false"></string>
-    <string name="main_last_longitude_value" translatable="false"></string>
-    <string name="main_stats_to_upload_mls_locations_label" translatable="false"></string>
-    <string name="uploader_result_description" translatable="false"></string>
-    <string name="export_format_kmz" translatable="false"></string>
-    <string name="main_last_gps_accuracy_value" translatable="false"></string>
-    <string name="export_format_kml" translatable="false"></string>
-    <string name="mls_name" translatable="false"></string>
-    <string name="uploader_result_message" translatable="false"></string>
-    <string name="preferences_collector_api_version_api_17" translatable="false"></string>
-    <string name="main_last_latitude_value" translatable="false"></string>
+    <string name="main_stats_to_upload_ocid_locations_label" translatable="false"/>
+    <string name="main_last_cell_id_rnc_value" translatable="false"/>
+    <string name="export_format_csv" translatable="false"/>
+    <string name="preferences_collector_api_version_api_1" translatable="false"/>
+    <string name="main_last_signal_strength_value" translatable="false"/>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false"/>
+    <string name="export_format_gpx" translatable="false"/>
+    <string name="main_last_number_of_cells_value" translatable="false"/>
+    <string name="ocid_name" translatable="false"/>
+    <string name="main_last_longitude_value" translatable="false"/>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false"/>
+    <string name="uploader_result_description" translatable="false"/>
+    <string name="export_format_kmz" translatable="false"/>
+    <string name="main_last_gps_accuracy_value" translatable="false"/>
+    <string name="export_format_kml" translatable="false"/>
+    <string name="mls_name" translatable="false"/>
+    <string name="uploader_result_message" translatable="false"/>
+    <string name="preferences_collector_api_version_api_17" translatable="false"/>
+    <string name="main_last_latitude_value" translatable="false"/>
 </resources>

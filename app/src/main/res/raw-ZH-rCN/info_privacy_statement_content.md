@@ -7,12 +7,15 @@
 
 ### 主要功能
 
-The main functionality of the application is to collect cell tower identifiers, signal strength and the device location (coordinates). This information is stored locally on your device and will never be transmitted without your explicit consent and action. The collected data can be exported to the file persisted on your device or shared to OpenCellID.org and BeaconDB projects. To ensure the privacy is protected, the application does NOT use any proxy server that could access your data in transit. All the traffic to external services is encrypted using HTTPS protocol.
+该应用程序的主要功能是收集基站标识符、信号强度和设备位置（坐标）。这些信息存储在您的设备本地，未经您的明确同意和操作，绝不会传输给任何第三方。收集到的数据可以导出到设备上的文件中，也可以共享到
+OpenCellID.org 和 BeaconDB
+项目。为了确保您的隐私安全，该应用程序不使用任何可能在传输过程中访问您数据的代理服务器。所有与外部服务的通信均使用 HTTPS 协议加密。
 
-**Contribution to the OpenCellID.org** project requires a personal Access Token (API Key) that needs to be entered in the application preferences. The key will only be used to upload the measurements to the project database and will never leave the device in any other scenario. Anybody who knows the Access Token has full control over the uploaded data, including browsing and deleting. It\'s your responsibility to protect the confidentiality of your Access Token!
+为 **OpenCellID.org** 项目做出贡献需要一个个人访问令牌（API
+密钥），该密钥需要在应用程序首选项中输入。此密钥仅用于将测量数据上传到项目数据库，在任何其他情况下都不会离开设备。任何知道此访问令牌的人都拥有对已上传数据的完全控制权，包括浏览和删除。保护您的访问令牌的机密性是您的责任！
 
 - [OpenCellID.org隐私权政策](https://community.opencellid.org/privacy)
-- [The BeaconDB privacy notice](https://beacondb.net/privacy/)
+- [BeaconDB隐私声明](https://beacondb.net/privacy/)
 
 该应用程序的大多数功能都需要**前台位置权限**，但是，要在设备启动时开始收集测量值，必须授予**后台位置权限**。需要后台位置权限，是因为在这种情况下，收集是由系统（在后台）而不是您（在前台）启动的。
 
@@ -30,10 +33,12 @@ The main functionality of the application is to collect cell tower identifiers, 
 
 **导出首选项**或**导出数据库**功能会将应用程序首选项或数据库复制到设备上的专用文件夹中。如果将文件放置在任何其他应用程序都可以访问的共享内存上，则敏感数据（如OpenCellID访问令牌）可能不受保护。
 
-**导出首选项**或**导出数据库**功能会将应用程序首选项或数据库复制到设备上的专用文件夹中。如果将文件放置在任何其他应用程序都可以访问的共享内存上，则敏感数据（如OpenCellID访问令牌）可能不受保护。
+启用**调试级别文件日志记录**功能后，会在您设备的指定文件夹中创建非常详细的日志文件。日志可能包含敏感信息，例如您的当前位置以及设备连接的基站。此选项仅应临时用于故障排除。
 
 ### 故障排除助手
 
-该应用程序收集**匿名使用统计信息**。数据仅与开发人员共享，以帮助更好地了解应用程序的使用方式，各种功能的执行时间以及最受欢迎的功能。收集的数据用于改善整体性能，可用性和用户体验。这些数据是由Google[ Google的隐私政策](https://policies.google.com/privacy)提供的第三方Google Analytics for Firebase库收集的。
+该应用程序收集**匿名使用统计信息**。数据仅与开发人员共享，以帮助更好地了解应用程序的使用方式，各种功能的执行时间以及最受欢迎的功能。收集的数据用于改善整体性能，可用性和用户体验。这些数据是由Google[
+Google的隐私政策](https://policies.google.com/privacy)提供的第三方Google Analytics for
+Firebase库收集的。
 
 该应用程序内置了**自动崩溃报告**系统。应用程序故障报告仅与开发人员共享，并且包含有关崩溃原因和设备配置的信息。它不包括任何可用于识别您或设备的信息。

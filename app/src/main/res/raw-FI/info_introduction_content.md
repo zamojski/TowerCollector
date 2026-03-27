@@ -3,15 +3,23 @@
 <!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 ### Tarkoitus
 
-Sovellus on suunniteltu keräämään GPS-koordinaatteja, jotka korreloivat matkapuhelinmastoja koskevien tietojen kanssa. Se on suunniteltu auttamaan kartoittaa matkapuhelinverkon peittoalue.
+Sovellus on suunniteltu keräämään GPS-koordinaatteja, jotka korreloivat
+matkapuhelinmastoja koskevien tietojen kanssa. Se on suunniteltu auttamaan
+kartoittaa matkapuhelinverkon peittoalue.
 
 ### Miten aloittaa
 
-Aloita valitsemalla näytön yläreunassa olevasta valikosta "Aloita keräys" (tallennuskuvake). Mittaukset kerätään vain, kun olet matkapuhelinverkon alueella ja GPS antaa sijaintisi vähintään 40 metrin tarkkuudella.
+Aloita valitsemalla näytön yläreunassa olevasta valikosta "Aloita keräys"
+(tallennuskuvake). Mittaukset kerätään vain, kun olet matkapuhelinverkon
+alueella ja GPS antaa sijaintisi vähintään 40 metrin tarkkuudella.
 
 ### Seuraavat vaiheet
 
-Collected data can be uploaded to OpenCellID.org and BeaconDB projects or exported to a file. Before first upload you will need to select projects you want to contribute to. In case of OpenCellID.org you'll additionally need to register for free and enter received access token in Preferences. Measurements will be deleted from your device after successful upload.
+Kerätyt tiedot voidaan ladata OpenCellID.org- ja BeaconDB-projekteihin tai viedä
+tiedostoon. Ennen ensimmäistä latausta sinun on valittava projektit, joihin
+haluat osallistua. OpenCellID.orgin tapauksessa sinun on lisäksi
+rekisteröidyttävä ilmaiseksi ja annettava saamasi käyttöoikeustunnus asetuksiin.
+Mittaukset poistetaan laitteeltasi onnistuneen latauksen jälkeen.
 
 ### Lisää
 
