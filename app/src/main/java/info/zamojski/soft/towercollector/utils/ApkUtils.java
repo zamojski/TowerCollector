@@ -61,4 +61,8 @@ public class ApkUtils {
             shortcutManager.reportShortcutUsed(context.getString(shortcutId));
         }
     }
+
+    public static boolean isBackInvokedCallbackAware(Context context) {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU;
+    }
 }

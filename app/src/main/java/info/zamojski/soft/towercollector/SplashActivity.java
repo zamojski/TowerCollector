@@ -25,6 +25,8 @@ import android.os.Looper;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.window.OnBackInvokedCallback;
+import android.window.OnBackInvokedDispatcher;
 
 import org.acra.ACRA;
 
@@ -44,6 +46,8 @@ public class SplashActivity extends Activity {
 
     private TextView detailsTextView;
 
+    private OnBackInvokedCallback backInvokedCallback;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,12 +59,19 @@ public class SplashActivity extends Activity {
         this.setFinishOnTouchOutside(false);
         // get UI controls
         detailsTextView = findViewById(R.id.splash_details_textview);
+
+        if (ApkUtils.isBackInvokedCallbackAware(MyApplication.getApplication())) {
+            backInvokedCallback = this::handleBackPressed;
+        }
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         Timber.d("onStart(): Starting splash screen");
+        if (ApkUtils.isBackInvokedCallbackAware(MyApplication.getApplication())) {
+            getOnBackInvokedDispatcher().registerOnBackInvokedCallback(OnBackInvokedDispatcher.PRIORITY_DEFAULT, backInvokedCallback);
+        }
         Intent startupIntent = getIntent();
         if (startupIntent != null) {
             String action = startupIntent.getStringExtra(SHORTCUT_ACTION);
@@ -100,15 +111,26 @@ public class SplashActivity extends Activity {
     protected void onStop() {
         super.onStop();
         Timber.d("onStop(): Stopping splash screen");
+        if (ApkUtils.isBackInvokedCallbackAware(MyApplication.getApplication())) {
+            getOnBackInvokedDispatcher().unregisterOnBackInvokedCallback(backInvokedCallback);
+        }
     }
 
     @Override
     public void onBackPressed() {
-        Timber.d("onBackPressed(): Preventing close if db upgrade is running");
+        handleBackPressed();
+    }
+
+    private void handleBackPressed() {
+        Timber.d("handleBackPressed(): Preventing close if db upgrade is running");
         if (databaseUpgradeRunning) {
             Toast.makeText(this, R.string.splash_toast_database_upgrade_running, Toast.LENGTH_SHORT).show();
         } else {
-            super.onBackPressed();
+            if (ApkUtils.isBackInvokedCallbackAware(MyApplication.getApplication())) {
+                finish();
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 
