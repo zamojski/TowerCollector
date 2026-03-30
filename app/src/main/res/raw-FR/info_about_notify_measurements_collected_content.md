@@ -38,43 +38,43 @@ Exemple de valeurs supplémentaires :
 
 ```
 {
-    "measured_at" : 1234567890123,
-    "gps" : {
-        "lat" : 12.3213123,
-        "lon" : -54.4535435543,
-        "accuracy" : 12.0,
-        "speed" : 13.21,
-        "bearing" : 212.2,
-        "altitude" : 121.0
+    "measured_at" : 1234567890123,
+    "gps" : {
+        "lat" : 12.3213123,
+        "lon" : -54.4535435543,
+        "accuracy" : 12.0,
+        "speed" : 13.21,
+        "bearing" : 212.2,
+        "altitude" : 121.0
     },
-    "cells" : [
+    "cells" : [
         {
-            "mcc" : 260,
-            "mnc" : 06,
-            "lac" : 5115,
-            "cell_id" : 214325525,
-            "psc" : 1234,
-            "asu" : 12,
-            "dbm" : -112,
-            "neighboring" : "false",
-            "net_type" : "UMTS"
+            "mcc" : 260,
+            "mnc" : 06,
+            "lac" : 5115,
+            "cell_id" : 214325525,
+            "psc" : 1234,
+            "asu" : 12,
+            "dbm" : -112,
+            "neighboring" : "false",
+            "net_type" : "UMTS"
         },
         {
-            "mcc" : null,
-            "mnc" : 16,
-            "lac" : 5115,
-            "cell_id" : 2143255,
-            "psc" : null,
-            "asu" : 13,
-            "dbm" : -112,
-            "ta" : null,
-            "neighboring" : "false",
-            "net_type" : "CDMA",
-            "cdma_dbm" : null,
-            "cdma_ecio" : null,
-            "evdo_dbm" : null,
-            "evdo_ecio" : null,
-            "evdo_snr" : null
+            "mcc" : null,
+            "mnc" : 16,
+            "lac" : 5115,
+            "cell_id" : 2143255,
+            "psc" : null,
+            "asu" : 13,
+            "dbm" : -112,
+            "ta" : null,
+            "neighboring" : "false",
+            "net_type" : "CDMA",
+            "cdma_dbm" : null,
+            "cdma_ecio" : null,
+            "evdo_dbm" : null,
+            "evdo_ecio" : null,
+            "evdo_snr" : null
         }
     ]
 }
