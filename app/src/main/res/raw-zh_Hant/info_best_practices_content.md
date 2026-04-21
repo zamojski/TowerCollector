@@ -1,13 +1,11 @@
 <!-- This Source Code Form is subject to the terms of the Mozilla Public -->
 <!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
 <!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-Tower Collector is a perfect app for OpenCellID and BeaconDB contributors who
-want to support the projects with measurements from their area. It is good to
-know what is the right way to collect the most valuable measurements during
-walks and trips.
+Tower Collector 是一款非常適合 OpenCellID 與 BeaconDB
+貢獻者使用的應用程式，特別適合希望透過蒐集所在地區的量測資料來支持這些專案的使用者。同時，了解在步行或旅行過程中，如何以正確方式蒐集最具價值的量測資料，也相當重要。
 
-- Avoid moving back and forth exactly the same way every day. A large number of
-  duplicated measurements will not be very useful.
+- 請避免每天都沿著完全相同的路線來回移動。\
+  過多重複的量測資料對整體資料品質的提升幫助不大。
 - Try to map new places, especially those less frequently visited as they\'re
   often still not covered. Many of the towers along main streets have already
   been mapped.
