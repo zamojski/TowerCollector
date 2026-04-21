@@ -1,11 +1,9 @@
 <!-- This Source Code Form is subject to the terms of the Mozilla Public -->
 <!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
 <!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-You can decide what method will be used to get cell tower details when
-collecting measurements.
+在蒐集量測資料時，你可以自行決定要使用哪一種方式來取得基地台的詳細資訊。
 
-*It is strongly recommended to use the latest available to get more reliable
-data. Selection is disabled on devices running Android 4.1 and earlier.*
+強烈建議使用目前可用的最新版本，以取得更可靠的資料。在 Android 4.1（含）以下版本的裝置上，此選項將無法使用。
 
 * **Auto detect** - The app will automatically detect which version of API can
   be used and select the best option. It will use safe option if Collector
