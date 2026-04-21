@@ -1,0 +1,20 @@
+Tower Collector 讓你可以透過上傳所在地區的 GSM / UMTS / LTE / CDMA / TD-SCDMA / 5G（NR）基地台 GPS 位置資訊，為 OpenCellID.org 與 BeaconDB 專案做出貢獻。 這些量測資料有助於繪製行動通訊網路涵蓋範圍的地圖。你也可以將本應用程式用於個人用途，並將收集到的資料匯出成各種檔案格式。  
+
+主要功能：  
+• 經特別優化的 GPS 參數設定，有效降低電量耗損  
+• 支援上傳資料至 OpenCellID.org 與 BeaconDB 專案  
+• 可匯出至 SD 卡，支援 CSV、JSON、GPX、KML、KMZ 等格式  
+• 永久無廣告！  
+
+OpenCellID.org 專案的目標是建立一個全球性的開源行動基地台位置資料庫。  
+Tower Collector 讓你能透過上傳所在地區的基地台位置資訊，參與並貢獻 OpenCellID 專案。  
+所蒐集的資料可用於在未啟用 GPS 的情況下，快速定位裝置位置。  
+
+BeaconDB 是一個公開的資料庫，專門蒐集常見無線基礎設施的定位資訊，包括基地台、Wi‑Fi 存取點與藍牙 Beacon。  
+你所貢獻的基地台資料將經彙整後，以 Creative Commons（CC‑0）授權方式對外公開釋出。  
+
+如果你願意協助翻譯成其他語言，請造訪：https://i18n.zamojski.ovh/  
+
+本應用程式不會蒐集、儲存或傳送任何可用於直接識別使用者本人、使用中的裝置，或任何其他個人身分的資訊。  
+
+問題回報與功能建議，請透過電子郵件或 GitHub Issues 提出。
