@@ -1,11 +1,11 @@
 <!-- This Source Code Form is subject to the terms of the Mozilla Public -->
 <!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
 <!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-Tower Collector exposes tasks to be run by other applications that send
-*intents* like Tasker, Automate or Llama. You need to use *Broadcast* type for
-all activities defined below. For more information how to do such integration
-check that\'s applications help. *Like within the app you can\'t start more than
-one task at the same time!*
+Tower Collector 可向其他應用程式（如 Tasker、Automate 或 Llama）提供可被觸發的工作，這些應用程式需透過發送 Intent
+來執行。\
+針對下列所有活動，請一律使用 Broadcast 類型。\
+若需了解如何進行此類整合，請參閱對應應用程式的說明文件。\
+注意：與在應用程式內相同，同一時間無法啟動超過一個工作！
 
 ### Start Collector
 
