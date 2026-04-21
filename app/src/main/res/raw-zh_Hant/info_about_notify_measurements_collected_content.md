@@ -4,7 +4,7 @@
 Tower Collector 可透過廣播 Intent 的方式，向系統中安裝的其他應用程式發送通知。\
 若需了解如何接收並處理這類通知，請參閱對應應用程式的說明文件。
 
-### Measurements collected event
+### 量測資料蒐集事件
 
 Collector can send an intent every time new set of measurements is collected if
 set in Preferences. The content of notification will be a JSON structure with
