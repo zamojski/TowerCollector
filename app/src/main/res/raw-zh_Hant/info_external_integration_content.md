@@ -7,7 +7,7 @@ Tower Collector 可向其他應用程式（如 Tasker、Automate 或 Llama）提
 若需了解如何進行此類整合，請參閱對應應用程式的說明文件。\
 注意：與在應用程式內相同，同一時間無法啟動超過一個工作！
 
-### Start Collector
+### 啟動收集器
 
 Collector will be started using settings defined in Preferences. Action:
 
