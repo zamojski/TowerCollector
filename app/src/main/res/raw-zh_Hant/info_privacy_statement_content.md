@@ -3,9 +3,7 @@
 <!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 隱私權非常重要，因此本應用程式僅會蒐集並傳送提供服務所需的最低限度資訊。本應用程式不會蒐集、儲存或傳送任何可用於識別你本人、你的裝置，或其他任何個人身分的資訊。
 
-**If you do not agree to this privacy policy, please do not install or uninstall
-the application. Permanently removing the application from the mobile device is
-equivalent to terminating the use of the application.**
+**若你不同意本隱私權政策，請勿安裝或請解除安裝本應用程式。將應用程式永久自行動裝置中移除，即視為終止使用本應用程式。**
 
 ### The main functions
 
