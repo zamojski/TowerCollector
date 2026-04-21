@@ -1,10 +1,7 @@
 <!-- This Source Code Form is subject to the terms of the Mozilla Public -->
 <!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
 <!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-The privacy is very important, so the application collect and transmit only the
-required information to provide the services. The application does NOT collect,
-store or send any information that could personally identify you, your device or
-any other personal information.
+隱私權非常重要，因此本應用程式僅會蒐集並傳送提供服務所需的最低限度資訊。本應用程式不會蒐集、儲存或傳送任何可用於識別你本人、你的裝置，或其他任何個人身分的資訊。
 
 **If you do not agree to this privacy policy, please do not install or uninstall
 the application. Permanently removing the application from the mobile device is
