@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. --><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="main_stats_to_upload_ocid_locations_label" translatable="false">OpenCellID.org:</string>
+    <string name="main_stats_to_upload_mls_locations_label" translatable="false">BeaconDB:</string>
+    <string name="main_last_number_of_cells_value" translatable="false"><xliff:g id="number_of_main">%1$d</xliff:g> / <xliff:g id="number_of_neighboring">%2$d</xliff:g></string>
+    <string name="main_last_cell_id_rnc_value" translatable="false"><xliff:g id="short_cell_id">%1$d</xliff:g> / <xliff:g id="rnc">%2$d</xliff:g></string>
+    <string name="main_last_signal_strength_value" translatable="false"><xliff:g id="signal_strength">%d</xliff:g> dBm</string>
+    <string name="main_last_latitude_value" translatable="false"><xliff:g id="latitude">%.8f°</xliff:g></string>
+    <string name="main_last_longitude_value" translatable="false"><xliff:g id="longitude">%.8f°</xliff:g></string>
+    <string name="main_last_gps_accuracy_value" translatable="false"><xliff:g id="accuracy_value">%1$.2f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
+    <string name="uploader_result_message" translatable="false"><xliff:g id="message">%1$s</xliff:g> | <xliff:g id="description">%2$s</xliff:g></string>
+    <string name="uploader_result_description" translatable="false">OCID: <xliff:g id="message_for_ocid">%1$s</xliff:g>\n\nBeaconDB: <xliff:g id="message_for_mls">%2$s</xliff:g></string>
+    <string name="export_format_csv" translatable="false">CSV</string>
+    <string name="export_format_gpx" translatable="false">GPX</string>
+    <string name="export_format_kml" translatable="false">KML</string>
+    <string name="export_format_kmz" translatable="false">KMZ</string>
+    <string name="ocid_name" translatable="false">OpenCellID.org</string>
+    <string name="mls_name" translatable="false">BeaconDB</string>
+    <string-array name="preferences_keep_screen_on_mode_entries_labels" translatable="false">
+        <item>@string/preferences_keep_screen_on_mode_disabled</item>
+        <item>@string/preferences_keep_screen_on_mode_dim</item>
+        <item>@string/preferences_keep_screen_on_mode_full</item>
+    </string-array>
+    <string-array name="preferences_keep_screen_on_mode_entries_values" translatable="false">
+        <item>@string/preferences_keep_screen_on_mode_entries_value_disabled</item>
+        <item>@string/preferences_keep_screen_on_mode_entries_value_dim</item>
+        <item>@string/preferences_keep_screen_on_mode_entries_value_full</item>
+    </string-array>
+    <string-array name="preferences_collector_low_battery_action_entries_labels" translatable="false">
+        <item>@string/preferences_collector_low_battery_action_nothing</item>
+        <item>@string/preferences_collector_low_battery_action_stop</item>
+    </string-array>
+    <string-array name="preferences_collector_low_battery_action_entries_values" translatable="false">
+        <item>@string/preferences_collector_low_battery_action_entries_value_none</item>
+        <item>@string/preferences_collector_low_battery_action_entries_value_stop</item>
+    </string-array>
+    <string-array name="preferences_app_theme_mode_entries_labels" translatable="false">
+        <item>@string/preferences_app_theme_mode_dark</item>
+        <item>@string/preferences_app_theme_mode_light</item>
+    </string-array>
+    <string-array name="preferences_app_theme_mode_entries_values" translatable="false">
+        <item>@string/preferences_app_theme_mode_entries_value_dark</item>
+        <item>@string/preferences_app_theme_mode_entries_value_light</item>
+    </string-array>
+    <string name="preferences_collector_api_version_api_netmonster" translatable="false">NetMonster Core API</string>
+    <string name="preferences_collector_api_version_api_17" translatable="false">Android 4.2 API</string>
+    <string name="preferences_collector_api_version_api_1" translatable="false">Android 1.0 API</string>
+    <string-array name="preferences_collector_api_version_entries_labels" translatable="false">
+        <item>@string/preferences_collector_api_version_auto</item>
+        <item>@string/preferences_collector_api_version_api_netmonster</item>
+        <item>@string/preferences_collector_api_version_api_17</item>
+        <item>@string/preferences_collector_api_version_api_1</item>
+    </string-array>
+    <string-array name="preferences_collector_api_version_entries_values" translatable="false">
+        <item>@string/preferences_collector_api_version_entries_value_auto</item>
+        <item>@string/preferences_collector_api_version_entries_value_api_netmonster</item>
+        <item>@string/preferences_collector_api_version_entries_value_api_17</item>
+        <item>@string/preferences_collector_api_version_entries_value_api_1</item>
+    </string-array>
+    <string-array name="preferences_file_logging_level_entries_labels" translatable="false">
+        <item>@string/preferences_file_logging_level_disabled</item>
+        <item>@string/preferences_file_logging_level_debug</item>
+        <item>@string/preferences_file_logging_level_info</item>
+        <item>@string/preferences_file_logging_level_warning</item>
+        <item>@string/preferences_file_logging_level_error</item>
+    </string-array>
+    <string-array name="preferences_file_logging_level_entries_values" translatable="false">
+        <item>@string/preferences_file_logging_level_entries_value_disabled</item>
+        <item>@string/preferences_file_logging_level_entries_value_debug</item>
+        <item>@string/preferences_file_logging_level_entries_value_info</item>
+        <item>@string/preferences_file_logging_level_entries_value_warning</item>
+        <item>@string/preferences_file_logging_level_entries_value_error</item>
+    </string-array>
+    <string-array name="preferences_export_compression_format_entries_labels" translatable="false">
+        <item>@string/preferences_export_compression_format_zip</item>
+        <item>@string/preferences_export_compression_format_gzip</item>
+    </string-array>
+    <string-array name="preferences_export_compression_format_entries_values" translatable="false">
+        <item>@string/preferences_export_compression_format_entries_value_zip</item>
+        <item>@string/preferences_export_compression_format_entries_value_gzip</item>
+    </string-array>
+</resources>

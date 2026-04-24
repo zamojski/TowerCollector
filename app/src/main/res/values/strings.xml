@@ -70,15 +70,11 @@
     <string name="main_stats_global_locations_label">Measurements:</string>
     <string name="main_stats_global_cells_label">Discovered cells:</string>
     <string name="main_stats_to_upload_title">To upload</string>
-    <string name="main_stats_to_upload_ocid_locations_label" translatable="false">OpenCellID.org:</string>
-    <string name="main_stats_to_upload_mls_locations_label" translatable="false">BeaconDB:</string>
     <string name="main_last_cell_title">Last saved measurement</string>
     <string name="main_last_number_of_cells_label">Main / neighboring:</string>
-    <string name="main_last_number_of_cells_value" translatable="false"><xliff:g id="number_of_main">%1$d</xliff:g> / <xliff:g id="number_of_neighboring">%2$d</xliff:g></string>
     <string name="main_last_network_type_label">Network type:</string>
     <string name="main_last_long_cell_id_label">Long Cell ID:</string>
     <string name="main_last_cell_id_rnc_label">Cell ID / RNC:</string>
-    <string name="main_last_cell_id_rnc_value" translatable="false"><xliff:g id="short_cell_id">%1$d</xliff:g> / <xliff:g id="rnc">%2$d</xliff:g></string>
     <string name="main_last_cell_id_label">Cell ID:</string>
     <string name="main_last_lac_label">LAC:</string>
     <string name="main_last_tac_label">TAC:</string>
@@ -88,13 +84,9 @@
     <string name="main_last_nid_label">NID:</string>
     <string name="main_last_bid_label">BID:</string>
     <string name="main_last_signal_strength_label">Signal strength:</string>
-    <string name="main_last_signal_strength_value" translatable="false"><xliff:g id="signal_strength">%d</xliff:g> dBm</string>
     <string name="main_last_latitude_label">Latitude:</string>
-    <string name="main_last_latitude_value" translatable="false"><xliff:g id="latitude">%.8f°</xliff:g></string>
     <string name="main_last_longitude_label">Longitude:</string>
-    <string name="main_last_longitude_value" translatable="false"><xliff:g id="longitude">%.8f°</xliff:g></string>
     <string name="main_last_gps_accuracy_label">Accuracy:</string>
-    <string name="main_last_gps_accuracy_value" translatable="false"><xliff:g id="accuracy_value">%1$.2f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="main_last_date_time_label">Save time:</string>
     <string name="main_last_cell_no_data_message">No measurements so far, go outside and collect some data!</string>
     <string name="main_last_toast_copy_message">Value \'<xliff:g id="property_value">%s</xliff:g>\' copied to clipboard</string>
@@ -153,8 +145,6 @@
     <string name="uploader_server_error_description">The server returned internal error which may mean that it is overloaded, temporarily unavailable or down for maintenance. Please try again later. If you encounter this problem for a long time, please let me know.</string>
     <string name="uploader_limit_exceeded">Usage limit exceeded</string>
     <string name="uploader_limit_exceeded_description">The daily usage limit for the app has been exceeded. Please try again tomorrow.</string>
-    <string name="uploader_result_message" translatable="false"><xliff:g id="message">%1$s</xliff:g> | <xliff:g id="description">%2$s</xliff:g></string>
-    <string name="uploader_result_description" translatable="false">OCID: <xliff:g id="message_for_ocid">%1$s</xliff:g>\n\nBeaconDB: <xliff:g id="message_for_mls">%2$s</xliff:g></string>
     <string name="uploader_no_internet_title">Internet unavailable</string>
     <string name="uploader_no_internet_message">Cannot upload due to no Internet connection.</string>
     <string name="other_notification_channel_name">Other</string>
@@ -286,15 +276,9 @@
     <string name="battery_saver">Battery saver enabled</string>
     <string name="web_browser_missing">Please install web browser to open the page</string>
     <string name="uploader_all_projects_disabled">Upload to all projects is disabled</string>
-    <string name="export_format_csv" translatable="false">CSV</string>
-    <string name="export_format_gpx" translatable="false">GPX</string>
-    <string name="export_format_kml" translatable="false">KML</string>
-    <string name="export_format_kmz" translatable="false">KMZ</string>
     <string name="export_format_csv_ocid">CSV for OpenCellID.org</string>
     <string name="export_format_json_mls">JSON for BeaconDB</string>
     <string name="export_format_zip">Compress each exported file</string>
-    <string name="ocid_name" translatable="false">OpenCellID.org</string>
-    <string name="mls_name" translatable="false">BeaconDB</string>
     <string name="upload_configurator_dialog_title">Configure upload target</string>
     <string name="upload_anonymously">Anonymously</string>
     <string name="enter_valid_api_key">You have to enter valid access token in Preferences</string>
@@ -486,75 +470,12 @@
     <string name="preferences_collector_low_battery_action_stop">Stop collecting</string>
     <string name="preferences_app_theme_mode_dark">Dark</string>
     <string name="preferences_app_theme_mode_light">Light</string>
-    <string-array name="preferences_keep_screen_on_mode_entries_labels" translatable="false">
-        <item>@string/preferences_keep_screen_on_mode_disabled</item>
-        <item>@string/preferences_keep_screen_on_mode_dim</item>
-        <item>@string/preferences_keep_screen_on_mode_full</item>
-    </string-array>
-    <string-array name="preferences_keep_screen_on_mode_entries_values" translatable="false">
-        <item>@string/preferences_keep_screen_on_mode_entries_value_disabled</item>
-        <item>@string/preferences_keep_screen_on_mode_entries_value_dim</item>
-        <item>@string/preferences_keep_screen_on_mode_entries_value_full</item>
-    </string-array>
-    <string-array name="preferences_collector_low_battery_action_entries_labels" translatable="false">
-        <item>@string/preferences_collector_low_battery_action_nothing</item>
-        <item>@string/preferences_collector_low_battery_action_stop</item>
-    </string-array>
-    <string-array name="preferences_collector_low_battery_action_entries_values" translatable="false">
-        <item>@string/preferences_collector_low_battery_action_entries_value_none</item>
-        <item>@string/preferences_collector_low_battery_action_entries_value_stop</item>
-    </string-array>
-    <string-array name="preferences_app_theme_mode_entries_labels" translatable="false">
-        <item>@string/preferences_app_theme_mode_dark</item>
-        <item>@string/preferences_app_theme_mode_light</item>
-    </string-array>
-    <string-array name="preferences_app_theme_mode_entries_values" translatable="false">
-        <item>@string/preferences_app_theme_mode_entries_value_dark</item>
-        <item>@string/preferences_app_theme_mode_entries_value_light</item>
-    </string-array>
     <string name="preferences_collector_api_version_auto">Auto detect</string>
-    <string name="preferences_collector_api_version_api_netmonster" translatable="false">NetMonster Core API</string>
-    <string name="preferences_collector_api_version_api_17" translatable="false">Android 4.2 API</string>
-    <string name="preferences_collector_api_version_api_1" translatable="false">Android 1.0 API</string>
-    <string-array name="preferences_collector_api_version_entries_labels" translatable="false">
-        <item>@string/preferences_collector_api_version_auto</item>
-        <item>@string/preferences_collector_api_version_api_netmonster</item>
-        <item>@string/preferences_collector_api_version_api_17</item>
-        <item>@string/preferences_collector_api_version_api_1</item>
-    </string-array>
-    <string-array name="preferences_collector_api_version_entries_values" translatable="false">
-        <item>@string/preferences_collector_api_version_entries_value_auto</item>
-        <item>@string/preferences_collector_api_version_entries_value_api_netmonster</item>
-        <item>@string/preferences_collector_api_version_entries_value_api_17</item>
-        <item>@string/preferences_collector_api_version_entries_value_api_1</item>
-    </string-array>
     <string name="preferences_file_logging_level_disabled">Disabled</string>
     <string name="preferences_file_logging_level_debug">Debug</string>
     <string name="preferences_file_logging_level_info">Info</string>
     <string name="preferences_file_logging_level_warning">Warning</string>
     <string name="preferences_file_logging_level_error">Error</string>
-    <string-array name="preferences_file_logging_level_entries_labels" translatable="false">
-        <item>@string/preferences_file_logging_level_disabled</item>
-        <item>@string/preferences_file_logging_level_debug</item>
-        <item>@string/preferences_file_logging_level_info</item>
-        <item>@string/preferences_file_logging_level_warning</item>
-        <item>@string/preferences_file_logging_level_error</item>
-    </string-array>
-    <string-array name="preferences_file_logging_level_entries_values" translatable="false">
-        <item>@string/preferences_file_logging_level_entries_value_disabled</item>
-        <item>@string/preferences_file_logging_level_entries_value_debug</item>
-        <item>@string/preferences_file_logging_level_entries_value_info</item>
-        <item>@string/preferences_file_logging_level_entries_value_warning</item>
-        <item>@string/preferences_file_logging_level_entries_value_error</item>
-    </string-array>
-    <string-array name="preferences_export_compression_format_entries_labels" translatable="false">
-        <item>@string/preferences_export_compression_format_zip</item>
-        <item>@string/preferences_export_compression_format_gzip</item>
-    </string-array>
-    <string-array name="preferences_export_compression_format_entries_values" translatable="false">
-        <item>@string/preferences_export_compression_format_entries_value_zip</item>
-        <item>@string/preferences_export_compression_format_entries_value_gzip</item>
-    </string-array>
     <string name="info_about_api_key_title">Access token (API key)</string>
     <string name="info_about_opencellid_project_title">OpenCellID project</string>
     <string name="info_about_mls_project_title">BeaconDB project</string>
