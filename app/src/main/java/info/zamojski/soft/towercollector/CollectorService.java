@@ -646,6 +646,7 @@ public class CollectorService extends Service {
             lastLocationObtainedTime = locationObtainedTime;
             setLastGpsAccuracy(location);
             measurementUpdater.setLastLocation(location, locationObtainedTime);
+            updateGpsStatus(lastLocation, lastLocationObtainedTime, System.currentTimeMillis());
         }
     };
 
