@@ -36,7 +36,7 @@ import timber.log.Timber;
 public class MeasurementsDatabase {
 
     public static final String DATABASE_FILE_NAME = "measurements.db";
-    public static final int DATABASE_FILE_VERSION = 17;
+    public static final int DATABASE_FILE_VERSION = 18;
 
     private static final int NUM_OF_DELETIONS_PER_ONE_QUERY = 50;
 
@@ -284,6 +284,7 @@ public class MeasurementsDatabase {
         final String globalSince = "GLOBAL_SINCE";
         final String uploadToOcid = "UPLOAD_TO_OCID";
         final String uploadToMls = "UPLOAD_TO_MLS";
+        final String uploadToT0st = "UPLOAD_TO_T0ST";
         String todayTime = String.valueOf(todayCalendar.getTimeInMillis());
         String[] selectionArgs = new String[]{todayTime, todayTime};
         // get all in one query (raw is the only possible solution)
@@ -294,8 +295,9 @@ public class MeasurementsDatabase {
         String localSinceQuery = "SELECT MIN(" + MeasurementsTable.COLUMN_MEASURED_AT + ") AS " + localSince + " FROM " + NotUploadedMeasurementsView.VIEW_NAME;
         String todayMeasurementsAndCellsQuery = "SELECT COUNT(" + MeasurementsTable.COLUMN_ROW_ID + ") AS " + todayMeasurementsCount + ", COUNT(DISTINCT " + CellSignalsTable.COLUMN_CELL_ID + ") AS " + todayCellsCount + " FROM " + CellSignalsTable.TABLE_NAME + " WHERE " + CellSignalsTable.COLUMN_MEASUREMENT_ID + " IN (SELECT DISTINCT " + MeasurementsTable.COLUMN_ROW_ID + " FROM " + NotUploadedMeasurementsView.VIEW_NAME + " WHERE " + MeasurementsTable.COLUMN_MEASURED_AT + " > ?)";
         String todayDiscoveredCellsQuery = "SELECT COUNT(" + CellsTable.COLUMN_ROW_ID + ") AS " + todayDiscoveredCellsCount + " FROM " + CellsTable.TABLE_NAME + " WHERE " + CellsTable.COLUMN_DISCOVERED_AT + " >= (SELECT MIN(" + MeasurementsTable.COLUMN_MEASURED_AT + ") FROM " + NotUploadedMeasurementsView.VIEW_NAME + " WHERE " + MeasurementsTable.COLUMN_MEASURED_AT + " > ?)";
-        String uploadToOcidAndMlsQuery = "SELECT SUM(CASE WHEN m." + MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT + " IS NULL THEN 1 ELSE 0 END) AS " + uploadToOcid + ", "
-                + "SUM(CASE WHEN m." + MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT + " IS NULL THEN 1 ELSE 0 END) AS " + uploadToMls
+        String uploadToOcidAndMlsAndT0stQuery = "SELECT SUM(CASE WHEN m." + MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT + " IS NULL THEN 1 ELSE 0 END) AS " + uploadToOcid + ", "
+                + "SUM(CASE WHEN m." + MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT + " IS NULL THEN 1 ELSE 0 END) AS " + uploadToMls + ", "
+                + "SUM(CASE WHEN m." + MeasurementsTable.COLUMN_UPLOADED_TO_T0ST_AT + " IS NULL THEN 1 ELSE 0 END) AS " + uploadToT0st
                 + " FROM " + CellSignalsTable.TABLE_NAME + " cs INNER JOIN " + MeasurementsTable.TABLE_NAME + " m ON cs." + CellSignalsTable.COLUMN_MEASUREMENT_ID + " = m." + MeasurementsTable.COLUMN_ROW_ID;
 
         String query = "SELECT * FROM ((" + globalStatsQuery + ") "
@@ -304,7 +306,7 @@ public class MeasurementsDatabase {
                 + "JOIN (" + localSinceQuery + ") "
                 + "JOIN (" + todayMeasurementsAndCellsQuery + ") "
                 + "JOIN (" + todayDiscoveredCellsQuery + ") "
-                + "JOIN (" + uploadToOcidAndMlsQuery + "))";
+                + "JOIN (" + uploadToOcidAndMlsAndT0stQuery + "))";
         // Timber.d(query);
         Cursor cursor = db.rawQuery(query, selectionArgs);
         if (cursor.moveToNext()) {
@@ -320,6 +322,7 @@ public class MeasurementsDatabase {
             stats.setSinceGlobal(cursor.getLong(cursor.getColumnIndex(globalSince)));
             stats.setToUploadOcid(cursor.getInt(cursor.getColumnIndex(uploadToOcid)));
             stats.setToUploadMls(cursor.getInt(cursor.getColumnIndex(uploadToMls)));
+            stats.setToUploadT0st(cursor.getInt(cursor.getColumnIndex(uploadToT0st)));
         }
         cursor.close();
         Timber.d("getMeasurementsStatistics(): Value from DB: %s", stats);
@@ -424,6 +427,7 @@ public class MeasurementsDatabase {
                 MeasurementsTable.COLUMN_MEASURED_AT,
                 MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT,
                 MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT,
+                MeasurementsTable.COLUMN_UPLOADED_TO_T0ST_AT,
                 MeasurementsTable.COLUMN_LATITUDE,
                 MeasurementsTable.COLUMN_LONGITUDE,
                 MeasurementsTable.COLUMN_GPS_ACCURACY,
@@ -481,6 +485,7 @@ public class MeasurementsDatabase {
         int measuredAtColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_MEASURED_AT);
         int uploadedToOcidAtColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT);
         int uploadedToMlsAtColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT);
+        int uploadedToT0stAtColumnIndex = cursor.getColumnIndex(MeasurementsTable.COLUMN_UPLOADED_TO_T0ST_AT);
         while (cursor.moveToNext()) {
             Measurement measurement;
             int measurementId = cursor.getInt(measurementIdColumnIndex);
@@ -500,6 +505,8 @@ public class MeasurementsDatabase {
                     measurement.setUploadedToOcidAt(cursor.getLong(uploadedToOcidAtColumnIndex));
                 if (!cursor.isNull(uploadedToMlsAtColumnIndex))
                     measurement.setUploadedToMlsAt(cursor.getLong(uploadedToMlsAtColumnIndex));
+                if (!cursor.isNull(uploadedToT0stAtColumnIndex))
+                    measurement.setUploadedToT0stAt(cursor.getLong(uploadedToT0stAtColumnIndex));
 
                 tempMeasurements.put(measurementId, measurement);
                 measurementList.add(measurement);
@@ -631,12 +638,12 @@ public class MeasurementsDatabase {
         return deletedCellSignals;
     }
 
-    public int markAsUploaded(int[] measurementIds, Long uploadedToOcidAt, Long uploadedToMlsAt) {
+    public int markAsUploaded(int[] measurementIds, Long uploadedToOcidAt, Long uploadedToMlsAt, Long uploadedToT0stAt) {
         if (measurementIds == null || measurementIds.length == 0) {
             Timber.d("markAsUploaded(): Nothing to mark");
             return 0;
         }
-        Timber.d("markAsUploaded(): Marking %s measurements as uploaded to OCID = %s, MLS = %s", measurementIds.length, uploadedToOcidAt, uploadedToMlsAt);
+        Timber.d("markAsUploaded(): Marking %s measurements as uploaded to OCID = %s, MLS = %s, @t0stbrot.net = %s", measurementIds.length, uploadedToOcidAt, uploadedToMlsAt, uploadedToT0stAt);
         // in transaction
         int updated = 0;
         SQLiteDatabase db = helper.getWritableDatabase();
@@ -669,6 +676,8 @@ public class MeasurementsDatabase {
                     cv.put(MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT, uploadedToOcidAt);
                 if (uploadedToMlsAt != null)
                     cv.put(MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT, uploadedToMlsAt);
+                if (uploadedToT0stAt != null)
+                    cv.put(MeasurementsTable.COLUMN_UPLOADED_TO_T0ST_AT, uploadedToT0stAt);
                 // mark measurements
                 updated += db.update(MeasurementsTable.TABLE_NAME, cv, whereClauseBuilder.toString(), whereArgs);
             }
@@ -760,12 +769,14 @@ public class MeasurementsDatabase {
                     .append(",").append(MeasurementsTable.COLUMN_MEASURED_AT)
                     .append(",").append(MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT)
                     .append(",").append(MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT)
+                    .append(",").append(MeasurementsTable.COLUMN_UPLOADED_TO_T0ST_AT)
                     .append("\r\n");
             String query = "SELECT "
                     + MeasurementsTable.COLUMN_ROW_ID
                     + "," + MeasurementsTable.COLUMN_MEASURED_AT
                     + "," + MeasurementsTable.COLUMN_UPLOADED_TO_OCID_AT
                     + "," + MeasurementsTable.COLUMN_UPLOADED_TO_MLS_AT
+                    + "," + MeasurementsTable.COLUMN_UPLOADED_TO_T0ST_AT
                     + " FROM " + MeasurementsTable.TABLE_NAME;
             Cursor cursor = db.rawQuery(query, null);
             while (cursor.moveToNext()) {
@@ -773,10 +784,12 @@ public class MeasurementsDatabase {
                 long measuredAt = cursor.getLong(1);
                 long uploadedToOcidAt = cursor.getLong(2);
                 long uploadedToMlsAt = cursor.getLong(3);
+                long uploadedToT0stAt = cursor.getLong(4);
                 sb.append(rowId)
                         .append(",").append(measuredAt)
                         .append(",").append(uploadedToOcidAt)
                         .append(",").append(uploadedToMlsAt)
+                        .append(",").append(uploadedToT0stAt)
                         .append("\r\n");
             }
             cursor.close();

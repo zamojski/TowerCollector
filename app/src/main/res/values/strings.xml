@@ -513,4 +513,20 @@
     <string name="permission_map_denied_message">The map cannot be enabled due to denied location permission</string>
     <string name="permission_map_never_ask_again_message">The map is unavailable due to denied location permission</string>
     <string name="permission_uploader_denied_message">Upload cancelled due to denied internet permission.</string>
+    <string name="upload_url_t0st">https://ha-cells.t0stbrot.net</string>
+    <string name="t0st_name" translatable="false">\@t0stbrot.net</string>
+    <string name="preferences_t0st_enabled_key" translatable="false">t0st_enabled</string>
+    <string name="preferences_t0st_enabled_off_summary">Measurements will not be uploaded to t0stbrot.net.</string>
+    <string name="preferences_t0st_enabled_on_summary">Measurements will be uploaded to t0stbrot.net.</string>
+    <string name="preferences_t0st_enabled_title">Enable @t0stbrot.net upload</string>
+    <string name="preferences_t0st_contributor_name_key" translatable="false">t0st_contributor_name</string>
+    <string name="preferences_t0st_contributor_name_summary">The Contributor Name used for @t0stbrot.net.</string>
+    <string name="preferences_t0st_contributor_name_title">Contributor Name</string>
+    <string name="preferences_about_t0st_project_key" translatable="false">about_t0st</string>
+    <string name="preferences_about_t0st_project_summary">Information about @t0stbrot.net</string>
+    <string name="preferences_about_t0st_project_title">About @t0stbrot.net</string>
+    <string name="preferences_t0st_contributor_name_default_value">anonymous</string>
+    <string name="info_about_t0st_project_title">About @t0stbrot.net</string>
+    <string name="main_help_to_upload_t0st_locations_description">Number of measurements waiting for upload to @t0stbrot.net.</string>
+    <string name="main_stats_to_upload_t0st_locations_label">\@t0stbrot.net:</string>
 </resources>

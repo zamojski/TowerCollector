@@ -524,6 +524,9 @@ public class MainActivity extends AppCompatActivity
         } else if (viewId == R.id.main_stats_to_upload_mls_locations_tablerow) {
             titleId = R.string.main_help_to_upload_common_locations_title;
             messageId = R.string.main_help_to_upload_mls_locations_description;
+        } else if (viewId == R.id.main_stats_to_upload_t0st_locations_tablerow) {
+            titleId = R.string.main_help_to_upload_common_locations_title;
+            messageId = R.string.main_help_to_upload_t0st_locations_description;
         }
         Timber.d("displayHelpOnClick(): Displaying help for title: %s", titleId);
         if (titleId != View.NO_ID && messageId != View.NO_ID) {
@@ -1057,9 +1060,10 @@ public class MainActivity extends AppCompatActivity
         final boolean isOcidUploadEnabled = preferencesProvider.isOpenCellIdUploadEnabled();
         final boolean isUseSharedOpenCellIdApiKeyEnabled = preferencesProvider.isUseSharedOpenCellIdApiKeyEnabled();
         final boolean isMlsUploadEnabled = preferencesProvider.isMlsUploadEnabled();
+        final boolean isT0stUploadEnabled = preferencesProvider.isT0stUploadEnabled();
         final boolean isCustomMlsUploadEnabled = preferencesProvider.isCustomMlsUploadEnabled();
         final boolean isReuploadIfUploadFailsEnabled = preferencesProvider.isReuploadIfUploadFailsEnabled();
-        Timber.i("startUploaderTaskWithCheck(): Upload for OCID = " + isOcidUploadEnabled + ", MLS = " + isMlsUploadEnabled);
+        Timber.i("startUploaderTaskWithCheck(): Upload for OCID = " + isOcidUploadEnabled + ", MLS = " + isMlsUploadEnabled + ", @t0stbrot.net = " + isT0stUploadEnabled);
         boolean showConfigurator = preferencesProvider.getShowConfiguratorBeforeUpload();
         if (showConfigurator) {
             Timber.d("startUploaderTaskWithCheck(): Showing upload configurator");
@@ -1090,6 +1094,8 @@ public class MainActivity extends AppCompatActivity
             invalidCustomUrlTextView.setVisibility(!isCustomMlsUploadEnabled || isCustomMlsUrlValid ? View.GONE : View.VISIBLE);
             final CheckBox mlsUploadCheckbox = dialogLayout.findViewById(R.id.mls_upload_dialog_checkbox);
             mlsUploadCheckbox.setChecked(isMlsUploadEnabled);
+            final CheckBox t0stUploadCheckbox = dialogLayout.findViewById(R.id.t0st_upload_dialog_checkbox);
+            t0stUploadCheckbox.setChecked(isT0stUploadEnabled);
             final CheckBox reuploadCheckbox = dialogLayout.findViewById(R.id.reupload_if_upload_fails_upload_dialog_checkbox);
             reuploadCheckbox.setChecked(isReuploadIfUploadFailsEnabled);
             final CheckBox dontShowAgainCheckbox = dialogLayout.findViewById(R.id.dont_show_again_dialog_checkbox);
@@ -1103,6 +1109,7 @@ public class MainActivity extends AppCompatActivity
                     boolean isOcidUploadCheckedTemp = ocidUploadCheckbox.isChecked();
                     boolean isOcidAnonymousUploadCheckedTemp = ocidAnonymousUploadCheckbox.isChecked();
                     boolean isMlsUploadCheckedTemp = mlsUploadCheckbox.isChecked();
+                    boolean isT0stUploadCheckedTemp = t0stUploadCheckbox.isChecked();
                     boolean isReuploadIfUploadFailsCheckedTemp = reuploadCheckbox.isChecked();
                     if (dontShowAgainCheckbox.isChecked()) {
                         preferencesProvider.setOpenCellIdUploadEnabled(isOcidUploadCheckedTemp);
@@ -1111,10 +1118,10 @@ public class MainActivity extends AppCompatActivity
                         preferencesProvider.setReuploadIfUploadFailsEnabled(isReuploadIfUploadFailsCheckedTemp);
                         preferencesProvider.setShowConfiguratorBeforeUpload(false);
                     }
-                    if (!isOcidUploadCheckedTemp && !isMlsUploadCheckedTemp) {
+                    if (!isOcidUploadCheckedTemp && !isMlsUploadCheckedTemp && !isT0stUploadCheckedTemp) {
                         showAllProjectsDisabledMessage();
                     } else {
-                        startUploaderTask(isOcidUploadCheckedTemp, isOcidAnonymousUploadCheckedTemp, isMlsUploadCheckedTemp, isCustomMlsUploadEnabled, isReuploadIfUploadFailsCheckedTemp);
+                         startUploaderTask(isOcidUploadCheckedTemp, isOcidAnonymousUploadCheckedTemp, isMlsUploadCheckedTemp, isCustomMlsUploadEnabled, isT0stUploadCheckedTemp, isReuploadIfUploadFailsCheckedTemp);
                     }
                 }
             });
@@ -1132,10 +1139,10 @@ public class MainActivity extends AppCompatActivity
             alertDialog.show();
         } else {
             Timber.d("startUploaderTaskWithCheck(): Using upload configuration from preferences");
-            if (!isOcidUploadEnabled && !isMlsUploadEnabled) {
+            if (!isOcidUploadEnabled && !isMlsUploadEnabled && !isT0stUploadEnabled) {
                 showAllProjectsDisabledMessage();
             } else {
-                startUploaderTask(isOcidUploadEnabled, isUseSharedOpenCellIdApiKeyEnabled, isMlsUploadEnabled, isCustomMlsUploadEnabled, isReuploadIfUploadFailsEnabled);
+                startUploaderTask(isOcidUploadEnabled, isUseSharedOpenCellIdApiKeyEnabled, isMlsUploadEnabled, isCustomMlsUploadEnabled, isT0stUploadEnabled, isReuploadIfUploadFailsEnabled);
             }
         }
     }
@@ -1194,7 +1201,7 @@ public class MainActivity extends AppCompatActivity
         snackbar.show();
     }
 
-    private void startUploaderTask(boolean isOcidUploadEnabled, boolean isOcidAnonymousUploadEnabled, boolean isMlsUploadEnabled, boolean isCustomMlsUploadEnabled, boolean isReuploadIfUploadFailsEnabled) {
+    private void startUploaderTask(boolean isOcidUploadEnabled, boolean isOcidAnonymousUploadEnabled, boolean isMlsUploadEnabled, boolean isCustomMlsUploadEnabled, boolean isT0stUploadEnabled, boolean isReuploadIfUploadFailsEnabled) {
         // start task
         if (!MyApplication.isBackgroundTaskRunning(UploaderWorker.class)) {
             WorkRequest uploaderWorkRequest = new OneTimeWorkRequest.Builder(UploaderWorker.class)
@@ -1203,6 +1210,7 @@ public class MainActivity extends AppCompatActivity
                             .putBoolean(UploaderWorker.INTENT_KEY_UPLOAD_TO_OCID_SHARED, isOcidAnonymousUploadEnabled)
                             .putBoolean(UploaderWorker.INTENT_KEY_UPLOAD_TO_MLS, isMlsUploadEnabled)
                             .putBoolean(UploaderWorker.INTENT_KEY_UPLOAD_TO_CUSTOM_MLS, isCustomMlsUploadEnabled)
+                            .putBoolean(UploaderWorker.INTENT_KEY_UPLOAD_TO_T0ST, isT0stUploadEnabled)
                             .putBoolean(UploaderWorker.INTENT_KEY_UPLOAD_TRY_REUPLOAD, isReuploadIfUploadFailsEnabled)
                             .putString(UploaderWorker.INTENT_KEY_START_INTENT_SOURCE, IntentSource.User.name())
                             .build())

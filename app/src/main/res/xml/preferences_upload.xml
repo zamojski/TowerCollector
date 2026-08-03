@@ -40,6 +40,19 @@
             app:summary="@string/preferences_opencellid_api_key_link_summary"
             app:title="@string/preferences_opencellid_api_key_link_title" />
     </PreferenceCategory>
+    <PreferenceCategory app:title="@string/t0st_name">
+        <SwitchPreferenceCompat
+            app:defaultValue="@bool/preferences_t0st_enabled_default_value"
+            app:key="@string/preferences_t0st_enabled_key"
+            app:summaryOff="@string/preferences_t0st_enabled_off_summary"
+            app:summaryOn="@string/preferences_t0st_enabled_on_summary"
+            app:title="@string/preferences_t0st_enabled_title" />
+        <info.zamojski.soft.towercollector.controls.TrimmedEditTextPreference
+            app:defaultValue="@string/preferences_t0st_contributor_name_default_value"
+            app:key="@string/preferences_t0st_contributor_name_key"
+            app:summary="@string/preferences_t0st_contributor_name_summary"
+            app:title="@string/preferences_t0st_contributor_name_title" />
+    </PreferenceCategory>
     <PreferenceCategory app:title="@string/mls_name">
         <SwitchPreferenceCompat
             app:defaultValue="@bool/preferences_mls_enabled_default_value"
@@ -72,6 +85,10 @@
             app:key="@string/preferences_about_mls_project_key"
             app:summary="@string/preferences_about_mls_project_summary"
             app:title="@string/preferences_about_mls_project_title" />
+        <PreferenceScreen
+            app:key="@string/preferences_about_t0st_project_key"
+            app:summary="@string/preferences_about_t0st_project_summary"
+            app:title="@string/preferences_about_t0st_project_title" />
     </PreferenceCategory>
 
 </PreferenceScreen>

@@ -62,6 +62,8 @@
     <string name="preferences_custom_mls_url_key" translatable="false">custom_mls_url</string>
     <string name="preferences_custom_mls_url_default_value" translatable="false"></string>
 
+    <bool name="preferences_t0st_enabled_default_value">true</bool>
+
     <string name="preferences_imperial_units_key" translatable="false">imperial_units_key</string>
     <bool name="preferences_imperial_units_default_value" translatable="false">false</bool>
 

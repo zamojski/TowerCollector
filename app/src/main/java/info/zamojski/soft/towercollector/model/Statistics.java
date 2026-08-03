@@ -25,6 +25,7 @@ public class Statistics implements Serializable {
 
     private int toUploadOcid;
     private int toUploadMls;
+    private int toUploadT0st;
 
     public int getLocationsToday() {
         return locationsToday;
@@ -122,6 +123,9 @@ public class Statistics implements Serializable {
         this.toUploadMls = toUploadMls;
     }
 
+    public int getToUploadT0st() {return toUploadT0st; }
+    public void setToUploadT0st(int toUploadT0st) { this.toUploadT0st = toUploadT0st; }
+
     @Override
     public String toString() {
         return "Statistics{" +
@@ -137,6 +141,7 @@ public class Statistics implements Serializable {
                 ", sinceGlobal=" + sinceGlobal +
                 ", toUploadOcid=" + toUploadOcid +
                 ", toUploadMls=" + toUploadMls +
+                ", toUploadT0st=" + toUploadT0st +
                 '}';
     }
 }

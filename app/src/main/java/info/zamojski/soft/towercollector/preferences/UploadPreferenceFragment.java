@@ -46,6 +46,7 @@ public class UploadPreferenceFragment extends DialogEnabledPreferenceFragment im
         setupApiKeyFormatDialog();
         setupAboutOpenCellIdDialog();
         setupAboutMlsDialog();
+        setupAboutT0stDialog();
     }
 
     @Override
@@ -108,5 +109,9 @@ public class UploadPreferenceFragment extends DialogEnabledPreferenceFragment im
 
     private void setupAboutMlsDialog() {
         setupDialog(R.string.preferences_about_mls_project_key, R.string.info_about_mls_project_title, R.raw.info_about_mls_project_content);
+    }
+
+    private void setupAboutT0stDialog() {
+        setupDialog(R.string.preferences_about_t0st_project_key, R.string.info_about_t0st_project_title, R.raw.info_about_t0st_project_content);
     }
 }

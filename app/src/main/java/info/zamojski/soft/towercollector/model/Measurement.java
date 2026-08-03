@@ -52,6 +52,10 @@ public class Measurement extends MeasurementBase implements Serializable {
      */
     private Long uploadedToMlsAt;
     /**
+     * Uploaded to @t0stbrot.net Unix Timestamp with milliseconds.
+     */
+    private Long uploadedToT0stAt;
+    /**
      * Associated cells.
      */
     private List<Cell> cells = new ArrayList<>();
@@ -112,6 +116,9 @@ public class Measurement extends MeasurementBase implements Serializable {
         this.uploadedToMlsAt = uploadedToMlsAt;
     }
 
+    public Long getUploadedToT0stAt() { return uploadedToT0stAt; }
+    public void setUploadedToT0stAt(Long uploadedToT0stAt) { this.uploadedToT0stAt = uploadedToT0stAt; }
+
     public List<Cell> getCells() {
         return cells;
     }
@@ -158,6 +165,7 @@ public class Measurement extends MeasurementBase implements Serializable {
                 ", measuredAt=" + measuredAt +
                 ", uploadedToOcidAt=" + uploadedToOcidAt +
                 ", uploadedToMlsAt=" + uploadedToMlsAt +
+                ", uploadedToT0stAt=" + uploadedToT0stAt +
                 ", cells=[" + TextUtils.join(", ", cells) + "]" +
                 '}';
     }

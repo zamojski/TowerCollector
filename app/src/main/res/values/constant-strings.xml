@@ -11,7 +11,7 @@
     <string name="main_last_longitude_value" translatable="false"><xliff:g id="longitude">%.8f°</xliff:g></string>
     <string name="main_last_gps_accuracy_value" translatable="false"><xliff:g id="accuracy_value">%1$.2f</xliff:g> <xliff:g id="accuracy_unit">%2$s</xliff:g></string>
     <string name="uploader_result_message" translatable="false"><xliff:g id="message">%1$s</xliff:g> | <xliff:g id="description">%2$s</xliff:g></string>
-    <string name="uploader_result_description" translatable="false">OCID: <xliff:g id="message_for_ocid">%1$s</xliff:g>\n\nBeaconDB: <xliff:g id="message_for_mls">%2$s</xliff:g></string>
+    <string name="uploader_result_description" translatable="false">OCID: <xliff:g id="message_for_ocid">%1$s</xliff:g>\n\nBeaconDB: <xliff:g id="message_for_mls">%2$s</xliff:g>\n\n@t0stbrot.net: <xliff:g id="message_for_t0st">%3$s</xliff:g></string>
     <string name="export_format_csv" translatable="false">CSV</string>
     <string name="export_format_gpx" translatable="false">GPX</string>
     <string name="export_format_kml" translatable="false">KML</string>

@@ -212,6 +212,20 @@ public class PreferencesProvider {
         booleanPreferenceProvider.setPreference(R.string.preferences_mls_enabled_key, value);
     }
 
+    public boolean isT0stUploadEnabled() {
+        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_t0st_enabled_key, R.bool.preferences_t0st_enabled_default_value);
+        return value;
+    }
+
+    public void setT0stUploadEnabled(boolean value) {
+        booleanPreferenceProvider.setPreference(R.string.preferences_t0st_enabled_key, value);
+    }
+
+    public String getT0stContributorName() {
+        String value = stringPreferenceProvider.getPreference(R.string.preferences_t0st_contributor_name_key, R.string.preferences_t0st_contributor_name_default_value);
+        return value;
+    }
+
     public boolean isReuploadIfUploadFailsEnabled() {
         boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_reupload_if_upload_fails_key, R.bool.preferences_reupload_if_upload_fails_default_value);
         return value;
