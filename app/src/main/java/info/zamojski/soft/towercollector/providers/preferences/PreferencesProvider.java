@@ -4,10 +4,12 @@
 
 package info.zamojski.soft.towercollector.providers.preferences;
 
+import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
 import info.zamojski.soft.towercollector.enums.ExportAction;
 import info.zamojski.soft.towercollector.enums.FileType;
 import info.zamojski.soft.towercollector.utils.Cache;
+import info.zamojski.soft.towercollector.utils.StringUtils;
 
 import android.content.Context;
 import android.net.Uri;
@@ -217,12 +219,15 @@ public class PreferencesProvider {
         return value;
     }
 
-    public void setT0stUploadEnabled(boolean value) {
-        booleanPreferenceProvider.setPreference(R.string.preferences_t0st_enabled_key, value);
-    }
-
     public String getT0stContributorName() {
+        boolean isAnonymous = booleanPreferenceProvider.getPreference(R.string.preferences_t0st_contributor_anonymous_key, R.bool.preferences_t0st_contributor_anonymous_default_value);
+        if (isAnonymous) {
+            return MyApplication.getApplication().getString(R.string.preferences_t0st_contributor_name_default_value);
+        }
         String value = stringPreferenceProvider.getPreference(R.string.preferences_t0st_contributor_name_key, R.string.preferences_t0st_contributor_name_default_value);
+        if (StringUtils.isNullEmptyOrWhitespace(value)) {
+            return MyApplication.getApplication().getString(R.string.preferences_t0st_contributor_name_default_value);
+        }
         return value;
     }
 

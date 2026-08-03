@@ -18,6 +18,7 @@
     <string name="export_format_kmz" translatable="false">KMZ</string>
     <string name="ocid_name" translatable="false">OpenCellID.org</string>
     <string name="mls_name" translatable="false">BeaconDB</string>
+    <string name="t0st_name" translatable="false">\@t0stbrot.net</string>
     <string-array name="preferences_keep_screen_on_mode_entries_labels" translatable="false">
         <item>@string/preferences_keep_screen_on_mode_disabled</item>
         <item>@string/preferences_keep_screen_on_mode_dim</item>

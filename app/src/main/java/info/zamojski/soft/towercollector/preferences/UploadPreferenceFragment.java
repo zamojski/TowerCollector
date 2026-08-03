@@ -25,6 +25,7 @@ public class UploadPreferenceFragment extends DialogEnabledPreferenceFragment im
     private TrimmedEditTextPreference apiKeyPreference;
     private SwitchPreferenceCompat customMlsEnabledPreference;
     private TrimmedEditTextPreference customMlsUrlPreference;
+    private TrimmedEditTextPreference t0stContributorNamePreference;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -38,6 +39,11 @@ public class UploadPreferenceFragment extends DialogEnabledPreferenceFragment im
         customMlsEnabledPreference = findPreference(getString(R.string.preferences_custom_mls_enabled_key));
         customMlsUrlPreference = findPreference(getString(R.string.preferences_custom_mls_url_key));
         customMlsUrlPreference.setOnBindEditTextListener(editText -> {
+            editText.setInputType(InputType.TYPE_CLASS_TEXT);
+        });
+
+        t0stContributorNamePreference = findPreference(getString(R.string.preferences_t0st_contributor_name_key));
+        t0stContributorNamePreference.setOnBindEditTextListener(editText -> {
             editText.setInputType(InputType.TYPE_CLASS_TEXT);
         });
 
@@ -57,6 +63,7 @@ public class UploadPreferenceFragment extends DialogEnabledPreferenceFragment im
         apiKeyPreference.setSummary(formatValueString(R.string.preferences_opencellid_api_key_summary, (apiKeyPreference.getText().length() > 0 ? apiKeyPreference.getText() : getString(R.string.preferences_value_undefined))));
         customMlsUrlPreference.setVisible(customMlsEnabledPreference.isChecked());
         customMlsUrlPreference.setSummary(formatValueString(R.string.preferences_custom_mls_url_summary, (customMlsUrlPreference.getText().length() > 0 ? customMlsUrlPreference.getText() : getString(R.string.preferences_value_undefined))));
+        t0stContributorNamePreference.setSummary(formatValueString(R.string.preferences_t0st_contributor_name_summary, (t0stContributorNamePreference.getText().length() > 0 ? t0stContributorNamePreference.getText() : getString(R.string.preferences_t0st_contributor_name_default_value))));
     }
 
     @Override
@@ -92,6 +99,10 @@ public class UploadPreferenceFragment extends DialogEnabledPreferenceFragment im
                 Timber.i("onSharedPreferenceChanged(): User defined invalid custom MLS url");
                 Toast.makeText(getActivity(), getString(R.string.preferences_custom_mls_url_invalid), Toast.LENGTH_LONG).show();
             }
+        } else if (getString(R.string.preferences_t0st_contributor_name_key).equals(key)) {
+            String contributorNameValue = t0stContributorNamePreference.getText();
+            Timber.d("onSharedPreferenceChanged(): User set contributor name = \"%s\"", contributorNameValue);
+            t0stContributorNamePreference.setSummary(formatValueString(R.string.preferences_t0st_contributor_name_summary, (contributorNameValue.length() > 0 ? contributorNameValue : getString(R.string.preferences_t0st_contributor_name_default_value))));
         }
     }
 
