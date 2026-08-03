@@ -44,6 +44,7 @@
     <string name="dialog_dont_show_again">Don\'t show this again</string>
     <string name="dialog_proceed">Proceed</string>
     <string name="dialog_settings">Settings</string>
+    <string name="dialog_stop">Stop</string>
     <string name="main_dialog_not_compatible_title">Compatibility problems</string>
     <string name="main_dialog_not_compatible_begin">The app may not work because:\n</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">• Mobile network hardware not detected.\n</string>

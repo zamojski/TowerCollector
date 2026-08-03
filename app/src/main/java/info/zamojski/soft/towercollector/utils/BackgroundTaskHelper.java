@@ -6,12 +6,15 @@ package info.zamojski.soft.towercollector.utils;
 
 import info.zamojski.soft.towercollector.CollectorService;
 import info.zamojski.soft.towercollector.R;
+import info.zamojski.soft.towercollector.broadcast.ExternalBroadcastReceiver;
 import info.zamojski.soft.towercollector.export.ExportWorker;
 import info.zamojski.soft.towercollector.uploader.UploaderWorker;
 
 import android.content.Context;
 import android.view.View;
 import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 public class BackgroundTaskHelper {
 
@@ -22,18 +25,38 @@ public class BackgroundTaskHelper {
     }
 
     public void showTaskRunningMessage(String taskClassName) {
-        int messageId = View.NO_ID;
+        showTaskRunningMessage(null, taskClassName);
+    }
+
+    public void showTaskRunningMessage(View view, String taskClassName) {
+        int messageId;
+        View.OnClickListener stopActionListener = null;
+
         if (taskClassName.equals(CollectorService.class.getName())) {
             messageId = R.string.main_toast_background_task_already_running_collector;
+            stopActionListener = v -> ExternalBroadcastReceiver.stopCollectorService(context);
         } else if (taskClassName.equals(UploaderWorker.class.getName())) {
             messageId = R.string.main_toast_background_task_already_running_uploader;
+            stopActionListener = v -> ExternalBroadcastReceiver.stopUploaderWorker(context);
         } else if (taskClassName.equals(ExportWorker.class.getName())) {
             messageId = R.string.main_toast_background_task_already_running_export;
+            stopActionListener = v -> ExternalBroadcastReceiver.stopExportWorker(context);
         } else {
             messageId = R.string.main_toast_background_task_already_running_unknown;
         }
-        String message = context.getString(messageId);
-        Toast.makeText(context.getApplicationContext(), context.getString(R.string.main_toast_background_task_already_running_common, message), Toast.LENGTH_SHORT).show();
+
+        String taskName = context.getString(messageId);
+        String fullMessage = context.getString(R.string.main_toast_background_task_already_running_common, taskName);
+
+        if (view != null) {
+            Snackbar snackbar = Snackbar.make(view, fullMessage, Snackbar.LENGTH_LONG);
+            if (stopActionListener != null) {
+                snackbar.setAction(R.string.dialog_stop, stopActionListener);
+            }
+            snackbar.show();
+        } else {
+            Toast.makeText(context.getApplicationContext(), fullMessage, Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

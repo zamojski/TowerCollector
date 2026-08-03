@@ -56,15 +56,15 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         if (collectorStartAction.equals(action)) {
             startCollectorServiceFromForeground(context, IntentSource.Application);
         } else if (collectorStopAction.equals(action)) {
-            stopCollectorService(context);
+            stopCollectorServiceFromBroadcast(context);
         } else if (uploaderStartAction.equals(action)) {
             startUploaderWorker(context, IntentSource.Application);
         } else if (UploaderStopAction.equals(action)) {
-            stopUploaderWorker(context);
+            stopUploaderWorkerFromBroadcast(context);
         } else if (exportStartAction.equals(action)) {
             startExportWorker(context, IntentSource.Application);
         } else if (ExportStopAction.equals(action)) {
-            stopExportWorker(context);
+            stopExportWorkerFromBroadcast(context);
         } else if (Intent.ACTION_BOOT_COMPLETED.equals(action) || quickBootPowerOnAction.equals(action)) {
             boolean startAtBootEnabled = MyApplication.getPreferencesProvider().getStartCollectorAtBoot();
             if (startAtBootEnabled) {
@@ -104,10 +104,14 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         ApkUtils.reportShortcutUsage(context, R.string.shortcut_id_collector_toggle);
     }
 
-    public void stopCollectorService(Context context) {
+    public void stopCollectorServiceFromBroadcast(Context context) {
         Timber.d("stopCollectorService(): Stopping service from broadcast");
-        context.stopService(getCollectorIntent(context));
+        stopCollectorService(context);
         ApkUtils.reportShortcutUsage(context, R.string.shortcut_id_collector_toggle);
+    }
+
+    public static void stopCollectorService(Context context) {
+        context.stopService(getCollectorIntent(context));
     }
 
     private Intent getCollectorIntent(Context context, IntentSource source) {
@@ -116,7 +120,7 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         return intent;
     }
 
-    private Intent getCollectorIntent(Context context) {
+    private static Intent getCollectorIntent(Context context) {
         return new Intent(context, CollectorService.class);
     }
 
@@ -152,11 +156,15 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         ApkUtils.reportShortcutUsage(context, R.string.shortcut_id_uploader_toggle);
     }
 
-    public void stopUploaderWorker(Context context) {
+    public void stopUploaderWorkerFromBroadcast(Context context) {
         Timber.d("stopUploaderWorker(): Stopping worker from broadcast");
-        WorkManager.getInstance(MyApplication.getApplication())
-                .cancelAllWorkByTag(UploaderWorker.WORKER_TAG);
+        stopUploaderWorker(context);
         ApkUtils.reportShortcutUsage(context, R.string.shortcut_id_uploader_toggle);
+    }
+
+    public static void stopUploaderWorker(Context context) {
+        WorkManager.getInstance(MyApplication.getApplication())
+            .cancelAllWorkByTag(UploaderWorker.WORKER_TAG);
     }
 
     public void startExportWorker(Context context, IntentSource source) {
@@ -177,11 +185,15 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         ApkUtils.reportShortcutUsage(context, R.string.shortcut_id_export_toggle);
     }
 
-    public void stopExportWorker(Context context) {
+    public void stopExportWorkerFromBroadcast(Context context) {
         Timber.d("stopExportWorker(): Stopping worker from broadcast");
-        WorkManager.getInstance(MyApplication.getApplication())
-                .cancelAllWorkByTag(ExportWorker.WORKER_TAG);
+        stopExportWorker(context);
         ApkUtils.reportShortcutUsage(context, R.string.shortcut_id_export_toggle);
+    }
+
+    public static void stopExportWorker(Context context) {
+        WorkManager.getInstance(MyApplication.getApplication())
+            .cancelAllWorkByTag(ExportWorker.WORKER_TAG);
     }
 
     private boolean canStartBackgroundService(Context context) {

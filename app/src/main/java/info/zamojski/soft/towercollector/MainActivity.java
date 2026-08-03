@@ -890,7 +890,7 @@ public class MainActivity extends AppCompatActivity
         String runningTaskClassName = MyApplication.getBackgroundTaskName();
         if (runningTaskClassName != null) {
             Timber.d("startCollectorServiceWithCheck(): Another task is running in background: %s", runningTaskClassName);
-            backgroundTaskHelper.showTaskRunningMessage(runningTaskClassName);
+            backgroundTaskHelper.showTaskRunningMessage(activityView, runningTaskClassName);
             return;
         }
         if (PermissionUtils.isNotificationPermissionRequired()) {
@@ -1011,7 +1011,7 @@ public class MainActivity extends AppCompatActivity
         String runningTaskClassName = MyApplication.getBackgroundTaskName();
         if (runningTaskClassName != null) {
             Timber.d("startUploaderTaskWithCheck(): Another task is running in background: %s", runningTaskClassName);
-            backgroundTaskHelper.showTaskRunningMessage(runningTaskClassName);
+            backgroundTaskHelper.showTaskRunningMessage(activityView, runningTaskClassName);
             return;
         }
 
@@ -1228,7 +1228,7 @@ public class MainActivity extends AppCompatActivity
         String runningTaskClassName = MyApplication.getBackgroundTaskName();
         if (runningTaskClassName != null) {
             Timber.d("startExportTask(): Another task is running in background: %s", runningTaskClassName);
-            backgroundTaskHelper.showTaskRunningMessage(runningTaskClassName);
+            backgroundTaskHelper.showTaskRunningMessage(activityView, runningTaskClassName);
             return;
         }
 

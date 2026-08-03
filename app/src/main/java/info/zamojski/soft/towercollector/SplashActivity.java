@@ -173,7 +173,7 @@ public class SplashActivity extends Activity {
                 ensurePreferencesUpToDate();
                 ensureDatabaseUpToDate();
                 if (MyApplication.isBackgroundTaskRunning(CollectorService.class)) {
-                    new ExternalBroadcastReceiver().stopCollectorService(MyApplication.getApplication());
+                    new ExternalBroadcastReceiver().stopCollectorServiceFromBroadcast(MyApplication.getApplication());
                 } else {
                     new ExternalBroadcastReceiver().startCollectorServiceFromForeground(MyApplication.getApplication(), source);
                 }
@@ -191,7 +191,7 @@ public class SplashActivity extends Activity {
                 ensurePreferencesUpToDate();
                 ensureDatabaseUpToDate();
                 if (MyApplication.isBackgroundTaskRunning(UploaderWorker.class)) {
-                    new ExternalBroadcastReceiver().stopUploaderWorker(MyApplication.getApplication());
+                    new ExternalBroadcastReceiver().stopUploaderWorkerFromBroadcast(MyApplication.getApplication());
                 } else {
                     new ExternalBroadcastReceiver().startUploaderWorker(MyApplication.getApplication(), source);
                 }
@@ -209,7 +209,7 @@ public class SplashActivity extends Activity {
                 ensurePreferencesUpToDate();
                 ensureDatabaseUpToDate();
                 if (MyApplication.isBackgroundTaskRunning(ExportWorker.class)) {
-                    new ExternalBroadcastReceiver().stopExportWorker(MyApplication.getApplication());
+                    new ExternalBroadcastReceiver().stopExportWorkerFromBroadcast(MyApplication.getApplication());
                 } else {
                     new ExternalBroadcastReceiver().startExportWorker(MyApplication.getApplication(), source);
                 }
