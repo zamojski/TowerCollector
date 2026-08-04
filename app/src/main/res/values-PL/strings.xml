@@ -514,7 +514,7 @@
     <string name="permission_map_never_ask_again_message">Mapa jest niedostępna z powodu odmowy uprawnień dostępu do lokalizacji</string>
     <string name="permission_uploader_denied_message">Przesyłanie przerwane z powodu braku uprawnień dostępu do internetu.</string>
     <string name="dialog_stop">Zatrzymaj</string>
-    <string name="preferences_t0st_enabled_off_summary">Próbki nie zostaną przesłane do serwisu t0stbrot.net.</string>
+    <string name="preferences_t0st_enabled_off_summary">Próbki nie zostaną przesłane do serwisu @t0stbrot.net.</string>
     <string name="preferences_t0st_enabled_title">Włącz przesyłanie do @t0stbrot.net</string>
     <string name="preferences_t0st_contributor_name_summary">Nazwa przesyłającego używana w przypadku @t0stbrot.net.</string>
     <string name="preferences_t0st_contributor_name_title">Nazwa przesyłającego</string>
@@ -526,4 +526,5 @@
     <string name="preferences_t0st_contributor_anonymous_title">Anonimowe przesyłanie</string>
     <string name="preferences_t0st_contributor_anonymous_on_summary">Próbki zostaną przesłane anonimowo.</string>
     <string name="preferences_t0st_contributor_anonymous_off_summary">Nazwa przesyłającego zostanie wykorzystana.</string>
+    <string name="preferences_t0st_enabled_on_summary">Próbki zostaną przesłane do serwisu @t0stbrot.net.</string>
 </resources>
