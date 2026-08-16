@@ -36,6 +36,7 @@ confidentialité de votre jeton d'accès !
 - [La politique de confidentialité
   d\'OpenCellID.org](https://community.opencellid.org/privacy)
 - [Avis de confidentialité de BeaconDB](https://beacondb.net/privacy/)
+- [The @t0stbrot privacy policy](https://t0stbrot.net/info)
 
 La plupart des fonctionnalités de l\'application nécessitent l \'**autorisation
 de localisation au premier plan**, cependant, pour commencer à collecter les

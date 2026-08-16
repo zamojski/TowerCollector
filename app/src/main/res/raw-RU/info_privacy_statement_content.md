@@ -33,6 +33,7 @@ HTTPS.
 - [Политика конфиденциальности
   OpenCellID.org](https://community.opencellid.org/privacy)
 - [Уведомление о конфиденциальности BeaconDB](https://beacondb.net/privacy/)
+- [The @t0stbrot privacy policy](https://t0stbrot.net/info)
 
 Для большинства функций приложения требуется **разрешение на определение
 местоположения на переднем плане**, однако, чтобы начать сбор измерений при

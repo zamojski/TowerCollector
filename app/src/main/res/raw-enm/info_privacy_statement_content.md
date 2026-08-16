@@ -30,6 +30,7 @@ responsibility to protect the confidentiality of your Access Token!
 
 - [The OpenCellID.org privacy policy](https://community.opencellid.org/privacy)
 - [The BeaconDB privacy notice](https://beacondb.net/privacy/)
+- [The @t0stbrot privacy policy](https://t0stbrot.net/info)
 
 Most of the features of the application require the **foreground location
 permission**, however, to start collecting measurements at device startup, the
