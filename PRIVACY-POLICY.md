@@ -8,10 +8,13 @@ The main functionality of the application is to collect cell tower identifiers, 
 
 **Contribution to the OpenCellID.org** project requires a personal Access Token (API Key) that needs to be entered in the application preferences. The key will only be used to upload the measurements to the project database and will never leave the device in any other scenario. Anybody who knows the Access Token has full control over the uploaded data, including browsing and deleting. It's your responsibility to protect the confidentiality of the Access Token!
 
-**Contribution to the MLS** project uses shared API Key that doesn't provide the ability to browse the uploaded measurements.
+**Contribution to the BeaconDB** project uses shared API Key that doesn't provide the ability to browse the uploaded measurements.
+
+**Contribution to the @t0stbrot** project uses contributor name to link the uploaded measurements to a person. The contributor name is not verified and it doesn't provide the ability to browse the uploaded measurements.
 
 - [The OpenCellID.org privacy policy](https://community.opencellid.org/privacy)
 - [The Mozilla Location Services privacy policy](https://location.services.mozilla.com/privacy)
+- [The @t0stbrot privacy policy](https://t0stbrot.net/info)
 
 Most of the features of the application require the **foreground location permission**, however, to start collecting measurements at device startup, the **background location permission** must be granted. The background location permission is required because, in this scenario, collecting is initiated by the system (in background), not by you (in foreground).
 

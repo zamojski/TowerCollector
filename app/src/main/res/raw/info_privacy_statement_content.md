@@ -13,6 +13,7 @@ The main functionality of the application is to collect cell tower identifiers, 
 
 - [The OpenCellID.org privacy policy](https://community.opencellid.org/privacy)
 - [The BeaconDB privacy notice](https://beacondb.net/privacy/)
+- [The @t0stbrot privacy policy](https://t0stbrot.net/info)
 
 Most of the features of the application require the **foreground location permission**, however, to start collecting measurements at device startup, the **background location permission** must be granted. The background location permission is required because, in this scenario, collecting is initiated by the system (in background), not by you (in foreground).
 
