@@ -9,17 +9,18 @@ network coverage.
 
 ### How to start
 
-To start select \'Start collecting\' option (record icon) from menu on the top
+To start select \'Start collecting\' option (record icon) from menu at the top
 of the screen. Measurements will be collected only when you\'re in range of
 mobile network and GPS gives your position with at least 40 meters accuracy.
 
 ### Next steps
 
-Collected data can be uploaded to OpenCellID.org and BeaconDB projects or
-exported to a file. Before first upload you will need to select projects you
-want to contribute to. In case of OpenCellID.org you'll additionally need to
-register for free and enter received access token in Preferences. Measurements
-will be deleted from your device after successful upload.
+Collected data can be uploaded to OpenCellID.org, BeaconDB and @t0stbrot.net
+projects or exported to a file. Before first upload you will need to select
+projects you want to contribute to. In case of OpenCellID.org you'll
+additionally need to register for free and enter received access token in
+Preferences. Measurements will be deleted from your device after successful
+upload.
 
 ### More
 

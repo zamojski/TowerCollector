@@ -9,18 +9,18 @@ megnövelni a mobilhálózat lefedettségi térképének mértékét.
 
 ### Hogyan kezdd
 
-A kezdéshez válaszd az „Adatgyűjtés indítása" lehetőséget (rögzítés ikon) a
-képernyő tetején lévő menüből. A mérések csak akkor lesznek begyűjtve, ha van
-térerő és a GPS pontossága legalább 40 méter.
+To start select \'Start collecting\' option (record icon) from menu at the top
+of the screen. Measurements will be collected only when you\'re in range of
+mobile network and GPS gives your position with at least 40 meters accuracy.
 
 ### Következő lépések
 
-A gyűjtött adatok feltölthetők OpenCellID.org és BeaconDB projektekbe, vagy
-fájlba exportálhatók. Az első feltöltés előtt ki kell választania azokat a
-projekteket, amelyekhez hozzá szeretne járulni. Az OpenCellID.org esetében ezen
-felül ingyenesen kell regisztrálnia, és meg kell adnia a kapott hozzáférési
-tokent a Beállításokban. A mérések a sikeres feltöltés után törlődnek az
-eszközéről.
+Collected data can be uploaded to OpenCellID.org, BeaconDB and @t0stbrot.net
+projects or exported to a file. Before first upload you will need to select
+projects you want to contribute to. In case of OpenCellID.org you'll
+additionally need to register for free and enter received access token in
+Preferences. Measurements will be deleted from your device after successful
+upload.
 
 ### Továbbiak
 

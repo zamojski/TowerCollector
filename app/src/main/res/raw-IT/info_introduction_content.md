@@ -9,19 +9,18 @@ copertura della rete di telefonia mobile.
 
 ### Come iniziare
 
-Per iniziare seleziona l\'opzione \'Inizia raccolta\' (icona di registrazione)
-dal menu nella parte superiore dello schermo. Le misurazioni verranno raccolte
-solo quando ci si trova in presenza di una rete mobile ed il GPS fornisce la
-propria posizione con una precisione di almeno 40 metri.
+To start select \'Start collecting\' option (record icon) from menu at the top
+of the screen. Measurements will be collected only when you\'re in range of
+mobile network and GPS gives your position with at least 40 meters accuracy.
 
 ### Passi successivi
 
-I dati raccolti possono essere caricati sui progetti OpenCellID.org e BeaconDB
-oppure esportati in un file. Prima del primo caricamento, dovrai selezionare i
-progetti a cui desideri contribuire. Nel caso di OpenCellID.org, dovrai inoltre
-registrarti gratuitamente e inserire il token di accesso ricevuto nelle
-Preferenze. Le misurazioni verranno eliminate dal dispositivo dopo il
-caricamento.
+Collected data can be uploaded to OpenCellID.org, BeaconDB and @t0stbrot.net
+projects or exported to a file. Before first upload you will need to select
+projects you want to contribute to. In case of OpenCellID.org you'll
+additionally need to register for free and enter received access token in
+Preferences. Measurements will be deleted from your device after successful
+upload.
 
 ### Di più
 

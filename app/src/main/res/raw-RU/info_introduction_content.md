@@ -9,17 +9,18 @@
 
 ### С чего начать
 
-Для начала работы выберите "Начать сбор" (иконка записи) из меню в верху экрана.
-Измерения будут собраны только когда вы находитесь в мобильной сети и GPS выдаёт
-вам координаты по крайней мере с 40-метровой точностью.
+To start select \'Start collecting\' option (record icon) from menu at the top
+of the screen. Measurements will be collected only when you\'re in range of
+mobile network and GPS gives your position with at least 40 meters accuracy.
 
 ### Следующие шаги
 
-Собранные данные можно загрузить в проекты OpenCellID.org и BeaconDB или
-экспортировать в файл. Перед первой загрузкой вам необходимо выбрать проекты, в
-которые вы хотите внести свой вклад. В случае с OpenCellID.org вам дополнительно
-потребуется бесплатно зарегистрироваться и ввести полученный токен доступа в
-настройках. Измерения будут удалены с вашего устройства после успешной загрузки.
+Collected data can be uploaded to OpenCellID.org, BeaconDB and @t0stbrot.net
+projects or exported to a file. Before first upload you will need to select
+projects you want to contribute to. In case of OpenCellID.org you'll
+additionally need to register for free and enter received access token in
+Preferences. Measurements will be deleted from your device after successful
+upload.
 
 ### Далее
 

@@ -8,16 +8,18 @@
 
 ### כיצד להתחיל
 
-כדי להתחיל יש לבחור באפשרות ‚להתחיל את האיסוף\' (סמל של הקלטה) מהתפריט שבראש
-מסך. המדידות תיאספנה רק כשהנך בטווח של רשת סלולרית וה־GPS איתר את המיקום שלך
-בדיוק של 40 מטרים לפחות.
+To start select \'Start collecting\' option (record icon) from menu at the top
+of the screen. Measurements will be collected only when you\'re in range of
+mobile network and GPS gives your position with at least 40 meters accuracy.
 
 ### הצעדים הבאים
 
-ניתן להעלות נתונים שנאספו לפרויקטים של OpenCellID.org ו-BeaconDB או לייצא אותם
-לקובץ. לפני ההעלאה הראשונה תצטרכו לבחור פרויקטים שאליהם תרצו לתרום. במקרה של
-OpenCellID.org תצטרכו בנוסף להירשם בחינם ולהזין את אסימון הגישה שקיבלתם בהעדפות.
-המדידות יימחקו מהמכשיר שלכם לאחר העלאה מוצלחת.
+Collected data can be uploaded to OpenCellID.org, BeaconDB and @t0stbrot.net
+projects or exported to a file. Before first upload you will need to select
+projects you want to contribute to. In case of OpenCellID.org you'll
+additionally need to register for free and enter received access token in
+Preferences. Measurements will be deleted from your device after successful
+upload.
 
 ### עוד
 

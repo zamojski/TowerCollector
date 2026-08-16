@@ -9,18 +9,18 @@ yardımcı olmak için tasarlanmıştır.
 
 ### Nasıl başlanır
 
-Başlamak için ekranın üstündeki menüden Toplamaya başla seçeneğini (yuvarlak
-kayıt butonu şeklinde) seçiniz. Ölçümler, sadece siz mobil ağ kapsama alanında
-olduğunuzda ve GPS size en az 40 metre doğruluk verdiğinde toplanacak.
+To start select \'Start collecting\' option (record icon) from menu at the top
+of the screen. Measurements will be collected only when you\'re in range of
+mobile network and GPS gives your position with at least 40 meters accuracy.
 
 ### İleriki adımlar
 
-Toplanan veriler OpenCellID.org ve BeaconDB projelerine yüklenebilir veya bir
-dosyaya aktarılabilir. İlk yüklemeden önce katkıda bulunmak istediğiniz
-projeleri seçmeniz gerekecektir. OpenCellID.org söz konusu olduğunda, ayrıca
-ücretsiz olarak kayıt olmanız ve alınan erişim belirtecini Tercihler bölümüne
-girmeniz gerekecektir. Ölçümler, başarılı yüklemeden sonra cihazınızdan
-silinecektir.
+Collected data can be uploaded to OpenCellID.org, BeaconDB and @t0stbrot.net
+projects or exported to a file. Before first upload you will need to select
+projects you want to contribute to. In case of OpenCellID.org you'll
+additionally need to register for free and enter received access token in
+Preferences. Measurements will be deleted from your device after successful
+upload.
 
 ### Dahası
 
