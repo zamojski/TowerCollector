@@ -513,4 +513,17 @@
     <string name="permission_map_denied_message">O mapa não pode ser ativado devido à permissão de localização negada</string>
     <string name="permission_map_never_ask_again_message">O mapa não está disponível devido à permissão de localização negada</string>
     <string name="permission_uploader_denied_message">Upload cancelado devido a permissão de internet negada.</string>
+    <string name="dialog_stop">Parar</string>
+    <string name="preferences_t0st_enabled_off_summary">As medidas não serão carregadas no @t0stbrot.net.</string>
+    <string name="preferences_t0st_enabled_on_summary">As medidas serão carregadas em @t0stbrot.net.</string>
+    <string name="preferences_t0st_enabled_title">Habilitar upload para @t0stbrot.net</string>
+    <string name="preferences_t0st_contributor_name_summary">Nome do colaborador usado para @t0stbrot.net.</string>
+    <string name="preferences_t0st_contributor_name_title">Nome do colaborador</string>
+    <string name="preferences_about_t0st_project_summary">Informações sobre o projeto @t0stbrot.net</string>
+    <string name="preferences_about_t0st_project_title">Sobre @t0stbrot.net</string>
+    <string name="info_about_t0st_project_title">Sobre @t0stbrot.net</string>
+    <string name="main_help_to_upload_t0st_locations_description">Número de medições aguardando upload para @t0stbrot.net.</string>
+    <string name="preferences_t0st_contributor_anonymous_title">Contribuição anônima</string>
+    <string name="preferences_t0st_contributor_anonymous_on_summary">A contribuição anônima será utilizada.</string>
+    <string name="preferences_t0st_contributor_anonymous_off_summary">O nome do colaborador será utilizado.</string>
 </resources>
