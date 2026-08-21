@@ -24,7 +24,7 @@
 
 - [מדיניות הפרטיות של OpenCellID.org](https://community.opencellid.org/privacy)
 - [הודעת הפרטיות של BeaconDB](https://beacondb.net/privacy/)
-- [The @t0stbrot privacy policy](https://t0stbrot.net/info)
+- [מדיניות הפרטיות של @t0stbrot](https://t0stbrot.net/info)
 
 ההרשאה למיקום הרקע נדרשת מכיוון שבתרחיש זה רוב תכונות היישומון דורשות את **הרשאת
 מיקום בחזית**, עם זאת, כדי להתחיל לאסוף מדידות עם הפעלת המכשיר, יש להעניק
