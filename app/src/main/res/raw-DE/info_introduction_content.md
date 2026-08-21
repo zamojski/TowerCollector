@@ -9,18 +9,18 @@ Mobilfunk-Netzwerks kartografiert werden.
 
 ### Erste Schritte
 
-To start select \'Start collecting\' option (record icon) from menu at the top
-of the screen. Measurements will be collected only when you\'re in range of
-mobile network and GPS gives your position with at least 40 meters accuracy.
+Um zu beginnen, wählen Sie \'Starte Erfassung\' (Aufnahme-Icon) aus dem Menü
+oben am Bildschirm. Messungen werden nur erfasst wenn Sie ein Mobilfunknetz
+empfangen und GPS eine Position mit mindestens 40m Genauigkeit ermittelt hat.
 
 ### Nächste Schritte
 
-Collected data can be uploaded to OpenCellID.org, BeaconDB and @t0stbrot.net
-projects or exported to a file. Before first upload you will need to select
-projects you want to contribute to. In case of OpenCellID.org you'll
-additionally need to register for free and enter received access token in
-Preferences. Measurements will be deleted from your device after successful
-upload.
+Die erfassten Daten können in die Projekte OpenCellID.org, BeaconDB und
+@t0stbrot.net hochgeladen oder in eine Datei exportiert werden. Vor dem ersten
+Upload müssen Sie die Projekte auswählen, zu denen Sie beitragen möchten. Für
+OpenCellID.org ist zusätzlich eine kostenlose Registrierung erforderlich. Geben
+Sie dazu Ihr erhaltenes Zugriffstoken in den Einstellungen ein. Die Messwerte
+werden nach erfolgreichem Upload von Ihrem Gerät gelöscht.
 
 ### Mehr
 
