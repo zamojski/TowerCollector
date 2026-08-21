@@ -1,14 +1,17 @@
-Tower Collector antaa sinulle mahdollisuuden osallistua OpenCellID.org- ja BeaconDB -projekteihin lähettämällä alueesi GSM/UMTS/LTE/CDMA/TD-SCDMA/5G (NR) -matkapuhelinmastojen GPS-sijainnit. Mittaukset auttavat kartoittamaan matkapuhelinverkon peittoalueen. Voit käyttää sovellusta tietojen keräämiseen henkilökohtaisiin tarkoituksiin ja viedä ne erilaisiin tiedostoihin.
+Tower Collector antaa sinulle mahdollisuuden osallistua OpenCellID.org-, BeaconDB- ja @t0stbrot.net-projekteihin lähettämällä alueesi GSM/UMTS/LTE/CDMA/TD-SCDMA/5G (NR) -matkapuhelinmastojen GPS-sijainnit. Mittaukset auttavat kartoittamaan matkapuhelinverkon peittoalueen. Voit käyttää sovellusta tietojen keräämiseen henkilökohtaisiin tarkoituksiin ja viedä ne erilaisiin tiedostoihin.
 
 Joitakin ominaisuuksia:
 • erityisesti optimoidut GPS-parametrit akun kulutuksen vähentämiseksi
-• lähettäminen OpenCellID.org- ja BeaconDB -projekteihin.
+• lähettäminen OpenCellID.org-, BeaconDB- ja @t0stbrot.net-projekteihin.
 • vienti SD-kortille CSV-, JSON-, GPX-, KML- ja KMZ-muodossa.
 • mainokseton, ikuisesti!
 
 OpenCellID.org -projektin tavoitteena on luoda maailmanlaajuinen avoimen lähdekoodin tietokanta mobiilisolujen sijainneista. Tower Collector antaa sinulle mahdollisuuden osallistua OpenCellID -projektiin lähettämällä matkapuhelinmastojen sijainteja alueeltasi. Kerättyjä tietoja voidaan käyttää laitteiden nopeaan paikantamiseen ilman GPS:n käyttöönottoa.
 
 BeaconDB on julkinen tietokanta, joka kerää sijaintitietoja yleisestä langattomasta infrastruktuurista (solutorneista, WiFi-tukipisteistä, Bluetooth-majakoista). Antamasi solutornitiedot kootaan ja julkaistaan Creative Commons (CC-0) -lisenssin alaisena.
+
+@t0stbrot on julkinen tietokanta, joka kerää tietoja matkapuhelinmastojen sijainneista. Antamasi tiedot matkapuhelinmastoista kootaan ja julkaistaan yleisölle "Creative Commons Nimeä-JaaSamoin 4.0 (CC BY-SA 4.0)" -lisenssillä.
+
 
 Auta minua kääntämään sovellus muille kielille, käy osoitteessa https://i18n.zamojski.ovh/
 
