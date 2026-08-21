@@ -513,4 +513,17 @@
     <string name="permission_map_denied_message">Karte kann nicht aktiviert werden da Standortzugriff nicht erlaubt wurde</string>
     <string name="permission_map_never_ask_again_message">Karte kann wegen verweigerterm Standortzugriff nicht verfügbar</string>
     <string name="permission_uploader_denied_message">Upload abgebrochen wegen fehlender Berechtigung für Internet-Zugriff.</string>
+    <string name="dialog_stop">Stoppen</string>
+    <string name="preferences_t0st_enabled_off_summary">Die Messwerte werden nicht auf @t0stbrot.net hochgeladen.</string>
+    <string name="preferences_t0st_enabled_on_summary">Die Messwerte werden auf @t0stbrot.net hochgeladen.</string>
+    <string name="preferences_t0st_enabled_title">\@t0stbrot.net-Upload aktivieren</string>
+    <string name="preferences_t0st_contributor_name_summary">Der Name des Beitragenden, der für @t0stbrot.net verwendet wird.</string>
+    <string name="preferences_t0st_contributor_name_title">Name des Beitragenden</string>
+    <string name="preferences_about_t0st_project_summary">Informationen zum Projekt @t0stbrot.net</string>
+    <string name="preferences_about_t0st_project_title">Über @t0stbrot.net</string>
+    <string name="info_about_t0st_project_title">Über @t0stbrot.net</string>
+    <string name="main_help_to_upload_t0st_locations_description">Anzahl der Messwerte, die auf den Upload zu @t0stbrot.net warten.</string>
+    <string name="preferences_t0st_contributor_anonymous_title">Anonymer Beitrag</string>
+    <string name="preferences_t0st_contributor_anonymous_on_summary">Der anonyme Beitrag wird verwendet.</string>
+    <string name="preferences_t0st_contributor_anonymous_off_summary">Der Name des Beitragenden wird verwendet.</string>
 </resources>
