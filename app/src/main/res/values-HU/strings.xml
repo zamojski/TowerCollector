@@ -513,4 +513,17 @@
     <string name="permission_map_denied_message">A megtagadott tartózkodási hely engedély miatt a térkép nem kapcsolható be</string>
     <string name="permission_map_never_ask_again_message">A megtagadott tartózkodási hely engedély miatt a térkép nem érhető el</string>
     <string name="permission_uploader_denied_message">Feltöltés megszakítva a megtagadott internet-elérési jogosultság miatt.</string>
+    <string name="dialog_stop">Stop</string>
+    <string name="preferences_t0st_enabled_off_summary">A mérések nem kerülnek feltöltésre a @t0stbrot.net oldalra.</string>
+    <string name="preferences_t0st_enabled_on_summary">A mérések feltöltésre kerülnek a @t0stbrot.net oldalra.</string>
+    <string name="preferences_t0st_enabled_title">\@t0stbrot.net feltöltés engedélyezése</string>
+    <string name="preferences_t0st_contributor_name_summary">A @t0stbrot.net-hez használt közreműködői név.</string>
+    <string name="preferences_t0st_contributor_name_title">Közreműködő neve</string>
+    <string name="preferences_about_t0st_project_summary">Információk a @t0stbrot.net projektről</string>
+    <string name="preferences_about_t0st_project_title">A @t0stbrot.net-ről</string>
+    <string name="info_about_t0st_project_title">A @t0stbrot.net-ről</string>
+    <string name="main_help_to_upload_t0st_locations_description">A @t0stbrot.net oldalra feltöltésre váró mérések száma.</string>
+    <string name="preferences_t0st_contributor_anonymous_title">Névtelen hozzászólás</string>
+    <string name="preferences_t0st_contributor_anonymous_on_summary">A névtelen hozzászólást fogjuk felhasználni.</string>
+    <string name="preferences_t0st_contributor_anonymous_off_summary">A közreműködő neve lesz használva.</string>
 </resources>
