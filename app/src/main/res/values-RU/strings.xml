@@ -513,4 +513,17 @@
     <string name="permission_map_denied_message">Невозможно включить карту из-за отказа в разрешении местоположения</string>
     <string name="permission_map_never_ask_again_message">Карта недоступна из-за отказа в разрешении местоположения</string>
     <string name="permission_uploader_denied_message">Загрузка отменена, т.к. нет доступа к интернету.</string>
+    <string name="dialog_stop">Стоп</string>
+    <string name="preferences_t0st_enabled_off_summary">Результаты измерений не будут загружены на сайт @t0stbrot.net.</string>
+    <string name="preferences_t0st_enabled_on_summary">Результаты замеров будут загружены на сайт @t0stbrot.net.</string>
+    <string name="preferences_t0st_enabled_title">Включить загрузку с @t0stbrot.net</string>
+    <string name="preferences_t0st_contributor_name_summary">Имя пользователя, используемое для @t0stbrot.net.</string>
+    <string name="preferences_t0st_contributor_name_title">Имя участника</string>
+    <string name="preferences_about_t0st_project_summary">Информация о проекте @t0stbrot.net</string>
+    <string name="preferences_about_t0st_project_title">О @t0stbrot.net</string>
+    <string name="info_about_t0st_project_title">О @t0stbrot.net</string>
+    <string name="main_help_to_upload_t0st_locations_description">Количество измерений, ожидающих загрузки на @t0stbrot.net.</string>
+    <string name="preferences_t0st_contributor_anonymous_title">Анонимный вклад</string>
+    <string name="preferences_t0st_contributor_anonymous_on_summary">Анонимный вклад будет использован.</string>
+    <string name="preferences_t0st_contributor_anonymous_off_summary">Будет использовано имя автора.</string>
 </resources>
