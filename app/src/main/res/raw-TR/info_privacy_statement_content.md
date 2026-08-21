@@ -31,7 +31,7 @@ sorumluluğunuzdadır!
 
 - [OpenCellID.org gizlilik politikası](https://community.opencellid.org/privacy)
 - [BeaconDB gizlilik bildirimi](https://beacondb.net/privacy/)
-- [The @t0stbrot privacy policy](https://t0stbrot.net/info)
+- [@t0stbrot gizlilik politikası](https://t0stbrot.net/info)
 
 Uygulamanın çoğu özelliği **ön plan konum iznini** gerektirir, ancak cihaz
 başlangıcında ölçümleri toplamaya başlamak için **arka plan konum izninin**
