@@ -513,4 +513,17 @@
     <string name="permission_map_denied_message">Karttaa ei voi ottaa käyttöön, koska sijaintilupa on evätty</string>
     <string name="permission_map_never_ask_again_message">Kartta ei ole käytettävissä, koska sijaintilupa on evätty</string>
     <string name="permission_uploader_denied_message">Lähetys peruutettu evätyn internet-luvan vuoksi.</string>
+    <string name="dialog_stop">Stop</string>
+    <string name="preferences_t0st_enabled_off_summary">Mittauksia ei ladata @t0stbrot.netiin.</string>
+    <string name="preferences_t0st_enabled_on_summary">Mittaukset ladataan osoitteeseen @t0stbrot.net.</string>
+    <string name="preferences_t0st_enabled_title">Ota käyttöön @t0stbrot.net-lataus</string>
+    <string name="preferences_t0st_contributor_name_summary">\@t0stbrot.net-osoitteessa käytetty avustajan nimi.</string>
+    <string name="preferences_t0st_contributor_name_title">Avustajanimi</string>
+    <string name="preferences_about_t0st_project_summary">Tietoa @t0stbrot.net-projektista</string>
+    <string name="preferences_about_t0st_project_title">Tietoja @t0stbrot.net-sivustosta</string>
+    <string name="info_about_t0st_project_title">Tietoja @t0stbrot.net-sivustosta</string>
+    <string name="main_help_to_upload_t0st_locations_description">Mittausten määrä, jotka odottavat latausta osoitteeseen @t0stbrot.net.</string>
+    <string name="preferences_t0st_contributor_anonymous_title">Anonyymi osallistuminen</string>
+    <string name="preferences_t0st_contributor_anonymous_on_summary">Anonyymiä vastausta käytetään.</string>
+    <string name="preferences_t0st_contributor_anonymous_off_summary">Avustajanimeä käytetään.</string>
 </resources>
