@@ -33,7 +33,7 @@ responsabilidade proteger a confidencialidade do seu Token de Acesso!
 - [A política de privacidade do
   OpenCellID.org](https://community.opencellid.org/privacy)
 - [Aviso de privacidade do BeaconDB](https://beacondb.net/privacy/)
-- [The @t0stbrot privacy policy](https://t0stbrot.net/info)
+- [A política de privacidade do @t0stbrot](https://t0stbrot.net/info)
 
 A maioria dos recursos do aplicativo requer a **permissão de localização em
 primeiro plano**, no entanto, para iniciar a coleta de medições na inicialização
