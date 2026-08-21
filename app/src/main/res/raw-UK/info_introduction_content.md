@@ -9,18 +9,19 @@
 
 ### як почати
 
-To start select \'Start collecting\' option (record icon) from menu at the top
-of the screen. Measurements will be collected only when you\'re in range of
-mobile network and GPS gives your position with at least 40 meters accuracy.
+Щоб розпочати, виберіть пункт \'Почати збір параметрів\' (піктограму запису) з
+меню у верхній частині екрана. Вимірювання будуть збиратися лише тоді, коли ви
+перебуваєте в діапазоні мобільної мережі, а GPS надає вам позицію з точністю до
+40 метрів.
 
 ### Наступні кроки
 
-Collected data can be uploaded to OpenCellID.org, BeaconDB and @t0stbrot.net
-projects or exported to a file. Before first upload you will need to select
-projects you want to contribute to. In case of OpenCellID.org you'll
-additionally need to register for free and enter received access token in
-Preferences. Measurements will be deleted from your device after successful
-upload.
+Зібрані дані можна завантажити до проектів OpenCellID.org BeaconDB та
+@t0stbrot.net або експортувати у файл. Перед першим завантаженням вам потрібно
+буде вибрати проекти, в які ви хочете зробити свій внесок. У випадку
+OpenCellID.org вам також потрібно буде безкоштовно зареєструватися та ввести
+отриманий токен доступу в налаштуваннях. Вимірювання будуть видалені з вашого
+пристрою після успішного завантаження.
 
 ### Більше
 
