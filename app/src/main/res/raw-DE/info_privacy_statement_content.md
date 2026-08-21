@@ -33,7 +33,7 @@ wahren!
 - [Die OpenCellID.org
   Datenschutz-Richtline](https://community.opencellid.org/privacy)
 - [Datenschutzhinweis von BeaconDB](https://beacondb.net/privacy/)
-- [The @t0stbrot privacy policy](https://t0stbrot.net/info)
+- [Die Datenschutzrichtlinie von @t0stbrot](https://t0stbrot.net/info)
 
 Die meisten Funktionen der App benötigen die **Berechtigung für den
 Standort-Zugriff im Vordergrund**. Um die Erfassung direkt nach dem Gerätestart
