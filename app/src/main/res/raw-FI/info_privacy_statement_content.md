@@ -32,7 +32,7 @@ luottamuksellisuus!
 - [OpenCellID.orgin
   tietosuojakäytäntö](https://community.opencellid.org/privacy)
 - [BeaconDB:n tietosuojailmoitus](https://beacondb.net/privacy/)
-- [The @t0stbrot privacy policy](https://t0stbrot.net/info)
+- [@t0stbrotin tietosuojakäytäntö](https://t0stbrot.net/info)
 
 Useimmat sovelluksen ominaisuudet edellyttävät **etualalla sijaintilupaa**,
 mutta mittausten keräämisen aloittamiseksi laitteen käynnistyksen yhteydessä on
