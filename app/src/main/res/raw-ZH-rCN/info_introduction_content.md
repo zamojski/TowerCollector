@@ -7,18 +7,13 @@
 
 ### 如何开始
 
-To start select \'Start collecting\' option (record icon) from menu at the top
-of the screen. Measurements will be collected only when you\'re in range of
-mobile network and GPS gives your position with at least 40 meters accuracy.
+要从屏幕顶部的菜单中选择"开始收集"选项（记录图标）。只有当您处于移动网络范围内，并且GPS提供的位置精度至少达到40米，才会收集测量数据，。
 
 ### 下一步
 
-Collected data can be uploaded to OpenCellID.org, BeaconDB and @t0stbrot.net
-projects or exported to a file. Before first upload you will need to select
-projects you want to contribute to. In case of OpenCellID.org you'll
-additionally need to register for free and enter received access token in
-Preferences. Measurements will be deleted from your device after successful
-upload.
+收集到的数据可以上传到 OpenCellID.org、BeaconDB 和 @t0stbrot.net
+项目，也可以导出到文件。首次上传前，您需要选择要贡献数据的项目。如果是
+OpenCellID.org，您还需要免费注册，并在“设置”中输入收到的访问令牌。成功上传后，测量数据将从您的设备中删除。
 
 ### 更多
 
