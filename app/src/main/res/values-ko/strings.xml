@@ -513,4 +513,17 @@
     <string name="permission_map_denied_message">위치 권한이 없어 지도를 표시할 수 없습니다</string>
     <string name="permission_map_never_ask_again_message">위치 권한이 없어 지도를 표시할 수 없습니다</string>
     <string name="permission_uploader_denied_message">인터넷 권한이 없어 업로드가 취소되었습니다.</string>
+    <string name="dialog_stop">멈추다</string>
+    <string name="preferences_t0st_enabled_off_summary">측정값은 @t0stbrot.net에 업로드되지 않습니다.</string>
+    <string name="preferences_t0st_enabled_on_summary">측정값은 @t0stbrot.net에 업로드될 예정입니다.</string>
+    <string name="preferences_t0st_enabled_title">\@t0stbrot.net 업로드 활성화</string>
+    <string name="preferences_t0st_contributor_name_summary">\@t0stbrot.net에 사용된 기여자 이름입니다.</string>
+    <string name="preferences_t0st_contributor_name_title">기여자 이름</string>
+    <string name="preferences_about_t0st_project_summary">\@t0stbrot.net 프로젝트에 대한 정보</string>
+    <string name="preferences_about_t0st_project_title">\@t0stbrot.net 소개</string>
+    <string name="info_about_t0st_project_title">\@t0stbrot.net 소개</string>
+    <string name="main_help_to_upload_t0st_locations_description">\@t0stbrot.net에 업로드 대기 중인 측정값의 수입니다.</string>
+    <string name="preferences_t0st_contributor_anonymous_title">익명의 기고</string>
+    <string name="preferences_t0st_contributor_anonymous_on_summary">익명의 기부금은 사용될 예정입니다.</string>
+    <string name="preferences_t0st_contributor_anonymous_off_summary">기고자의 이름이 사용됩니다.</string>
 </resources>
