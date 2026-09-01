@@ -109,7 +109,7 @@
     <string name="main_menu_project_support_button">프로젝트 지원</string>
     <string name="collector_notification_channel_name">수집</string>
     <string name="collector_notification_title">수집중</string>
-    <string name="collector_notification_stats">오늘 <xliff:g id="number_of_cells">%2$d</xliff:g>개의 기지국에서 <xliff:g id="number_of_measurements">%1$d</xliff:g>번 측정을 했습니다.</string>
+    <string name="collector_notification_stats">오늘 <xliff:g id="number_of_measurements">%1$d</xliff:g>개의 <xliff:g id="number_of_cells">%2$d</xliff:g>개의 세포를 측정했습니다.</string>
     <string name="collector_notification_last_measurement">마지막 기지국: \n<xliff:g id="cell_identifier">%s</xliff:g></string>
     <string name="collector_notification_status">GPS 상태: <xliff:g id="status">%s</xliff:g>.</string>
     <string name="collector_gps_unavailable">GPS를 사용할 수 없기 때문에 수집을 시작할 수 없습니다.</string>
@@ -163,7 +163,7 @@
     <string name="export_dialog_progress_title">내보내는중</string>
     <string name="export_dialog_progress_message"><xliff:g id="dir_name">%s</xliff:g> 위치에 현재 날짜, 시간 이름으로 저장중입니다.</string>
     <string name="export_dialog_finished_title">내보내기 성공</string>
-    <string name="export_dialog_finished_message"><xliff:g id="dir_name">%s</xliff:g>에 파일이 저장되었습니다. \n\n수집한 데이터를 업로드하여 프로젝트에 기여해주세요!</string>
+    <string name="export_dialog_finished_message">에 파일이 저장되었습니다<xliff:g id="dir_name">%s</xliff:g>. \n\n수집한 데이터를 업로드하여 프로젝트에 기여해주세요!</string>
     <string name="storage_request_access_title">저장 위치 선택</string>
     <string name="storage_request_access_message">파일을 저장할 위치를 지정해주세요.</string>
     <string name="storage_request_access_migrate_message">이전에 저장한 위치의 파일이 새로운 위치로 이동되지 않습니다!</string>
@@ -513,4 +513,17 @@
     <string name="permission_map_denied_message">위치 권한이 없어 지도를 표시할 수 없습니다</string>
     <string name="permission_map_never_ask_again_message">위치 권한이 없어 지도를 표시할 수 없습니다</string>
     <string name="permission_uploader_denied_message">인터넷 권한이 없어 업로드가 취소되었습니다.</string>
+    <string name="dialog_stop">멈추다</string>
+    <string name="preferences_t0st_enabled_off_summary">측정값은 @t0stbrot.net에 업로드되지 않습니다.</string>
+    <string name="preferences_t0st_enabled_on_summary">측정값은 @t0stbrot.net에 업로드될 예정입니다.</string>
+    <string name="preferences_t0st_enabled_title">\@t0stbrot.net 업로드 활성화</string>
+    <string name="preferences_t0st_contributor_name_summary">\@t0stbrot.net에 사용된 기여자 이름입니다.</string>
+    <string name="preferences_t0st_contributor_name_title">기여자 이름</string>
+    <string name="preferences_about_t0st_project_summary">\@t0stbrot.net 프로젝트에 대한 정보</string>
+    <string name="preferences_about_t0st_project_title">\@t0stbrot.net 소개</string>
+    <string name="info_about_t0st_project_title">\@t0stbrot.net 소개</string>
+    <string name="main_help_to_upload_t0st_locations_description">\@t0stbrot.net에 업로드 대기 중인 측정값의 수입니다.</string>
+    <string name="preferences_t0st_contributor_anonymous_title">익명의 기고</string>
+    <string name="preferences_t0st_contributor_anonymous_on_summary">익명의 기부금은 사용될 예정입니다.</string>
+    <string name="preferences_t0st_contributor_anonymous_off_summary">기고자의 이름이 사용됩니다.</string>
 </resources>

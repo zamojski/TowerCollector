@@ -16,9 +16,9 @@ menu no topo da tela. As medições serão coletadas somente quando você está 
 
 ### Próximos passos
 
-Os dados coletados podem ser enviados para os projetos OpenCellID.org e BeaconDB
-ou exportados para um arquivo. Antes do primeiro envio, você precisará
-selecionar os projetos para os quais deseja contribuir. No caso do
+Os dados coletados podem ser enviados para os projetos OpenCellID.org, BeaconDB
+e @t0stbrot.net ou exportados para um arquivo. Antes do primeiro envio, você
+precisará selecionar os projetos para os quais deseja contribuir. No caso do
 OpenCellID.org, você também precisará se cadastrar gratuitamente e inserir o
 token de acesso recebido nas Preferências. As medições serão excluídas do seu
 dispositivo após o envio bem-sucedido.

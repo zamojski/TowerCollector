@@ -16,12 +16,12 @@ al menos 40 metros de precisión.
 
 ### Proximos pasos
 
-Los datos recopilados se pueden subir a los proyectos OpenCellID.org y BeaconDB
-o exportar a un archivo. Antes de la primera subida, deberá seleccionar los
-proyectos a los que desea contribuir. En el caso de OpenCellID.org, además
-deberá registrarse gratuitamente e introducir el token de acceso recibido en
-Preferencias. Las mediciones se eliminarán de su dispositivo tras la subida
-correcta.
+Los datos recopilados se pueden subir a los proyectos OpenCellID.org, BeaconDB y
+@t0stbrot.net o exportar a un archivo. Antes de la primera subida, deberá
+seleccionar los proyectos a los que desea contribuir. En el caso de
+OpenCellID.org, además deberá registrarse gratuitamente e introducir el token de
+acceso recibido en Preferencias. Las mediciones se eliminarán de su dispositivo
+tras la subida correcta.
 
 ### Más
 

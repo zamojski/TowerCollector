@@ -15,12 +15,12 @@ olduğunuzda ve GPS size en az 40 metre doğruluk verdiğinde toplanacak.
 
 ### İleriki adımlar
 
-Toplanan veriler OpenCellID.org ve BeaconDB projelerine yüklenebilir veya bir
-dosyaya aktarılabilir. İlk yüklemeden önce katkıda bulunmak istediğiniz
-projeleri seçmeniz gerekecektir. OpenCellID.org söz konusu olduğunda, ayrıca
-ücretsiz olarak kayıt olmanız ve alınan erişim belirtecini Tercihler bölümüne
-girmeniz gerekecektir. Ölçümler, başarılı yüklemeden sonra cihazınızdan
-silinecektir.
+Toplanan veriler OpenCellID.org, BeaconDB ve @t0stbrot.net projelerine
+yüklenebilir veya bir dosyaya aktarılabilir. İlk yüklemeden önce katkıda
+bulunmak istediğiniz projeleri seçmeniz gerekecektir. OpenCellID.org söz konusu
+olduğunda, ayrıca ücretsiz olarak kayıt olmanız ve alınan erişim belirtecini
+Tercihler bölümüne girmeniz gerekecektir. Ölçümler, başarılı yüklemeden sonra
+cihazınızdan silinecektir.
 
 ### Dahası
 

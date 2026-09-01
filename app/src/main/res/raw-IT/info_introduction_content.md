@@ -16,11 +16,11 @@ propria posizione con una precisione di almeno 40 metri.
 
 ### Passi successivi
 
-I dati raccolti possono essere caricati sui progetti OpenCellID.org e BeaconDB
-oppure esportati in un file. Prima del primo caricamento, dovrai selezionare i
-progetti a cui desideri contribuire. Nel caso di OpenCellID.org, dovrai inoltre
-registrarti gratuitamente e inserire il token di accesso ricevuto nelle
-Preferenze. Le misurazioni verranno eliminate dal dispositivo dopo il
+I dati raccolti possono essere caricati sui progetti OpenCellID.org, BeaconDB e
+@t0stbrot.net oppure esportati in un file. Prima del primo caricamento, dovrai
+selezionare i progetti a cui desideri contribuire. Nel caso di OpenCellID.org,
+dovrai inoltre registrarti gratuitamente e inserire il token di accesso ricevuto
+nelle Preferenze. Le misurazioni verranno eliminate dal dispositivo dopo il
 caricamento.
 
 ### Di più

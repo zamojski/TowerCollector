@@ -513,4 +513,17 @@
     <string name="permission_map_denied_message">Reddedilen konum izni nedeniyle harita etkinleştirilemiyor</string>
     <string name="permission_map_never_ask_again_message">Reddedilen konum izni nedeniyle harita kullanılamıyor</string>
     <string name="permission_uploader_denied_message">İnternet izni reddedildiği için yükleme iptal edildi.</string>
+    <string name="dialog_stop">Durmak</string>
+    <string name="preferences_t0st_enabled_off_summary">Ölçümler t0stbrot.net adresine yüklenmeyecektir.</string>
+    <string name="preferences_t0st_enabled_on_summary">Ölçümler t0stbrot.net adresine yüklenecektir.</string>
+    <string name="preferences_t0st_enabled_title">\@t0stbrot.net yüklemesini etkinleştirin</string>
+    <string name="preferences_t0st_contributor_name_summary">\@t0stbrot.net için kullanılan katkıda bulunan adı.</string>
+    <string name="preferences_t0st_contributor_name_title">Katılımcı adı</string>
+    <string name="preferences_about_t0st_project_summary">\@t0stbrot.net projesi hakkında bilgi</string>
+    <string name="preferences_about_t0st_project_title">\@t0stbrot.net hakkında</string>
+    <string name="info_about_t0st_project_title">\@t0stbrot.net hakkında</string>
+    <string name="main_help_to_upload_t0st_locations_description">\@t0stbrot.net adresine yüklenmeyi bekleyen ölçüm sayısı.</string>
+    <string name="preferences_t0st_contributor_anonymous_title">Anonim katkı</string>
+    <string name="preferences_t0st_contributor_anonymous_on_summary">Anonim katkı kullanılacaktır.</string>
+    <string name="preferences_t0st_contributor_anonymous_off_summary">Katkıda bulunan kişinin adı kullanılacaktır.</string>
 </resources>

@@ -15,11 +15,12 @@ alueella ja GPS antaa sijaintisi vähintään 40 metrin tarkkuudella.
 
 ### Seuraavat vaiheet
 
-Kerätyt tiedot voidaan ladata OpenCellID.org- ja BeaconDB-projekteihin tai viedä
-tiedostoon. Ennen ensimmäistä latausta sinun on valittava projektit, joihin
-haluat osallistua. OpenCellID.orgin tapauksessa sinun on lisäksi
-rekisteröidyttävä ilmaiseksi ja annettava saamasi käyttöoikeustunnus asetuksiin.
-Mittaukset poistetaan laitteeltasi onnistuneen latauksen jälkeen.
+Kerätyt tiedot voidaan ladata OpenCellID.org-, BeaconDB- ja
+@t0stbrot.net-projekteihin tai viedä tiedostoon. Ennen ensimmäistä latausta
+sinun on valittava projektit, joihin haluat osallistua. OpenCellID.orgin
+tapauksessa sinun on lisäksi rekisteröidyttävä ilmaiseksi ja annettava saamasi
+käyttöoikeustunnus asetuksiin. Mittaukset poistetaan laitteeltasi onnistuneen
+latauksen jälkeen.
 
 ### Lisää
 

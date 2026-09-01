@@ -11,11 +11,9 @@
 
 ### 下一步
 
-Collected data can be uploaded to OpenCellID.org and BeaconDB projects or
-exported to a file. Before first upload you will need to select projects you
-want to contribute to. In case of OpenCellID.org you\'ll additionally need to
-register for free and enter received access token in Preferences. Measurements
-will be deleted from your device after successful upload.
+收集到的数据可以上传到 OpenCellID.org、BeaconDB 和 @t0stbrot.net
+项目，也可以导出到文件。首次上传前，您需要选择要贡献数据的项目。如果是
+OpenCellID.org，您还需要免费注册，并在“设置”中输入收到的访问令牌。成功上传后，测量数据将从您的设备中删除。
 
 ### 更多
 

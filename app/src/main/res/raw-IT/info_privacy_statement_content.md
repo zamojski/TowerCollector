@@ -33,6 +33,7 @@ responsabilità proteggere la riservatezza del tuo token di accesso!
 - [La privacy policy di
   OpenCellID.org](https://community.opencellid.org/privacy)
 - [L'informativa sulla privacy di BeaconDB](https://beacondb.net/privacy/)
+- [Informativa sulla privacy di @t0stbrot](https://t0stbrot.net/info)
 
 La maggior parte delle caratteristiche dell\'applicazione richiede il permesso
 **di localizzazione in background** e comunque, per iniziare a raccogliere le

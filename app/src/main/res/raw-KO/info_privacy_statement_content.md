@@ -20,6 +20,7 @@ BeaconDB 프로젝트와 공유할 수 있습니다. 개인정보 보호를 위�
 
 - [OpenCellID.org 개인 정보 보호 정책](https://community.opencellid.org/privacy)
 - [BeaconDB 개인정보 보호 고지](https://beacondb.net/privacy/)
+- [@t0stbrot 개인정보 보호정책](https://t0stbrot.net/info)
 
 앱의 대부분의 기능에는 **포그라운드 위치 권한**이 필요하지만 기기 시작 시 데이터 수집 기능을 이용하려면 **백그라운드 위치 권한**이
 필요합니다. 이 시나리오에서 데이터 수집은 사용자(포그라운드)가 아니라 시스템(백그라운드)에서 시작되기 때문에 백그라운드 위치 권한이

@@ -15,12 +15,12 @@ térerő és a GPS pontossága legalább 40 méter.
 
 ### Következő lépések
 
-A gyűjtött adatok feltölthetők OpenCellID.org és BeaconDB projektekbe, vagy
-fájlba exportálhatók. Az első feltöltés előtt ki kell választania azokat a
-projekteket, amelyekhez hozzá szeretne járulni. Az OpenCellID.org esetében ezen
-felül ingyenesen kell regisztrálnia, és meg kell adnia a kapott hozzáférési
-tokent a Beállításokban. A mérések a sikeres feltöltés után törlődnek az
-eszközéről.
+A gyűjtött adatok feltölthetők OpenCellID.org, BeaconDB és @t0stbrot.net
+projektekbe, vagy fájlba exportálhatók. Az első feltöltés előtt ki kell
+választania azokat a projekteket, amelyekhez hozzá szeretne járulni. Az
+OpenCellID.org esetében ezen felül ingyenesen kell regisztrálnia, és meg kell
+adnia a kapott hozzáférési tokent a Beállításokban. A mérések a sikeres
+feltöltés után törlődnek az eszközéről.
 
 ### Továbbiak
 

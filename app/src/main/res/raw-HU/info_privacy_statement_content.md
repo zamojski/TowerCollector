@@ -32,6 +32,7 @@ bizalmasságának védelme!
 - [Az OpenCellID.org adatvédelmi
   irányelvei](https://community.opencellid.org/privacy)
 - [A BeaconDB adatvédelmi nyilatkozata](https://beacondb.net/privacy/)
+- [A @t0stbrot adatvédelmi irányelvei](https://t0stbrot.net/info)
 
 Az alkalmazás legtöbb funkciójának megköveteli az **előtér helymeghatározási
 engedélyét**, azonban a mérések gyűjtésének megkezdéséhez az eszköz indításakor

@@ -15,9 +15,9 @@ uzyskasz pozycję z GPS z dokładnością min. 40 metrów.
 
 ### Co później
 
-Zebrane dane można przesłać do projektów OpenCellID.org i BeaconDB lub
-wyeksportować do pliku. Przed pierwszym przesłaniem należy wybrać projekty, w
-których chcesz wziąć udział. W przypadku OpenCellID.org należy dodatkowo
+Zebrane dane można przesłać do projektów OpenCellID.org, BeaconDB oraz @t0stbrot
+lub wyeksportować do pliku. Przed pierwszym przesłaniem należy wybrać projekty,
+w których chcesz wziąć udział. W przypadku OpenCellID.org należy dodatkowo
 zarejestrować się bezpłatnie i wprowadzić otrzymany token dostępu w
 Preferencjach. Pomiary zostaną usunięte z urządzenia po pomyślnym przesłaniu.
 

@@ -45,7 +45,7 @@
     <string name="dialog_proceed">Procéder</string>
     <string name="dialog_settings">Réglages</string>
     <string name="main_dialog_not_compatible_title">Problèmes de compatibilité</string>
-    <string name="main_dialog_not_compatible_begin">L\'application peut ne pas fonctionner car :\n</string>
+    <string name="main_dialog_not_compatible_begin">L\'application peut ne pas fonctionner car :\n</string>
     <string name="main_dialog_no_compatible_mobile_radio_message">• Pas de carte réseau mobile détectée.\n</string>
     <string name="main_toast_background_task_already_running_collector">Service de collectionneur</string>
     <string name="main_toast_background_task_already_running_uploader">Tâche de téléchargement</string>
@@ -71,18 +71,18 @@
     <string name="main_stats_global_cells_label">Cellules découvertes :</string>
     <string name="main_stats_to_upload_title">À envoyer</string>
     <string name="main_last_cell_title">Dernière mesure sauvegardée</string>
-    <string name="main_last_number_of_cells_label">Principal / proche :</string>
+    <string name="main_last_number_of_cells_label">Principal / proche :</string>
     <string name="main_last_network_type_label">Type de réseau :</string>
     <string name="main_last_long_cell_id_label">Long Cell ID :</string>
     <string name="main_last_cell_id_rnc_label">Cell ID / RNC :</string>
     <string name="main_last_cell_id_label">Identifiant Cellule :</string>
-    <string name="main_last_lac_label">LAC :</string>
-    <string name="main_last_tac_label">TAC :</string>
-    <string name="main_last_mcc_label">MCC :</string>
-    <string name="main_last_mnc_label">MNC :</string>
-    <string name="main_last_sid_label">SID :</string>
-    <string name="main_last_nid_label">NID :</string>
-    <string name="main_last_bid_label">BID :</string>
+    <string name="main_last_lac_label">LAC :</string>
+    <string name="main_last_tac_label">TAC :</string>
+    <string name="main_last_mcc_label">MCC :</string>
+    <string name="main_last_mnc_label">MNC :</string>
+    <string name="main_last_sid_label">SID :</string>
+    <string name="main_last_nid_label">NID :</string>
+    <string name="main_last_bid_label">BID :</string>
     <string name="main_last_signal_strength_label">Force du signal :</string>
     <string name="main_last_latitude_label">Latitude :</string>
     <string name="main_last_longitude_label">Longitude :</string>
@@ -163,7 +163,7 @@
     <string name="export_dialog_progress_title">Exportation</string>
     <string name="export_dialog_progress_message">Enregistrement dans le dossier \"<xliff:g id="dir_name">%s</xliff:g>\" de la mémoire externe avec la date et l\'heure actuelle comme nom de fichier.</string>
     <string name="export_dialog_finished_title">Exportation réussie</string>
-    <string name="export_dialog_finished_message">Les fichiers sauvegardé ici : \"<xliff:g id="dir_name">%s</xliff:g>\".\n\nVous pouvez également contribuer à l\'un des projets en envoyant vos mesures !</string>
+    <string name="export_dialog_finished_message">Les fichiers sauvegardé ici : \"<xliff:g id="dir_name">%s</xliff:g>\".\n\nVous pouvez également contribuer à l\'un des projets en envoyant vos mesures !</string>
     <string name="storage_request_access_title">Sélectionnez un emplacement de stockage</string>
     <string name="storage_request_access_message">Sélectionnez un emplacement pour stocker les fichiers à l\'aide du sélecteur de documents.</string>
     <string name="storage_request_access_migrate_message">Les fichiers existants dans l\'ancien emplacement ne seront PAS déplacés vers le nouvel emplacement !</string>
@@ -174,8 +174,8 @@
     <string name="storage_file_not_readable">Impossible de lire le fichier.</string>
     <string name="storage_file_not_writable">Impossible d\'écrire dans le fichier.</string>
     <string name="storage_access_denied">Accès au stockage refusé.</string>
-    <string name="storage_read_failed">Échec de la lecture à partir du stockage : &lt;xliff :g id=\"error_message\"&gt;%s&lt;/xliff :g&gt;.</string>
-    <string name="storage_write_failed">Échec de l\'écriture dans le stockage : &lt;xliff :g id=\"error_message\"&gt;%s&lt;/xliff :g&gt;.</string>
+    <string name="storage_read_failed">Échec de la lecture à partir du stockage : &lt;xliff :g id=\"error_message\"&gt;%s&lt;/xliff :g&gt;.</string>
+    <string name="storage_write_failed">Échec de l\'écriture dans le stockage : &lt;xliff :g id=\"error_message\"&gt;%s&lt;/xliff :g&gt;.</string>
     <string name="system_toast_no_handler_for_operation">Aucune application pour exécuter l\'opération.</string>
     <string name="system_toast_no_handler_for_document_picker">Assurez-vous que le gestionnaire de fichiers d\'origine est installé et activé sur le système.</string>
     <string name="clear_dialog_title">Effacer toutes les données</string>
@@ -192,7 +192,7 @@
     <string name="export_toast_failed_cause_file_not_writable">le fichier est en lecture seule</string>
     <string name="export_toast_no_data">Aucune donnée à exporter.</string>
     <string name="export_toast_cancelled">Exportation annulée.</string>
-    <string name="uploader_toast_failed">Envoi a échoué : &lt;xliff :g id=\"failure_reason\"&gt;%s&lt;/xliff :g&gt;.</string>
+    <string name="uploader_toast_failed">Envoi a échoué : &lt;xliff :g id=\"failure_reason\"&gt;%s&lt;/xliff :g&gt;.</string>
     <string name="uploader_toast_cancelled">Envoi annulée.</string>
     <string name="updater_notification_ticker">Une nouvelle version de Tower Colector est disponible</string>
     <string name="updater_notification_title">Une nouvelle version est disponible</string>
@@ -497,8 +497,8 @@
     <string name="permission_logging_denied_temporarily_message">Désactivation temporaire de la journalisation des fichiers en raison d\'un accès refusé au stockage.</string>
     <string name="permission_collector_rationale_message">Les autorisations de localisation et du téléphone doivent être accordées pour collecter les mesures.</string>
     <string name="permission_collector_rationale_api31_message">Une localisation précise et des autorisations téléphoniques doivent être accordées pour collecter des mesures.</string>
-    <string name="permission_collector_rationale_background_location_api29_message">Si vous souhaitez utiliser cette fonction, assurez-vous de sélectionner l\'option \"Autoriser tout le temps\" pour accéder à l\'autorisation de localisation de l\'appareil !</string>
-    <string name="permission_collector_rationale_background_location_api30_message">Si vous souhaitez utiliser cette fonction, assurez-vous de sélectionner \"autoriser dans les paramètres\" et sélectionnez \"autoriser tout le temps\' option pour le dispositif d\'accès à l\'emplacement de l\'autorisation !</string>
+    <string name="permission_collector_rationale_background_location_api29_message">Si vous souhaitez utiliser cette fonction, assurez-vous de sélectionner l\'option \"Autoriser tout le temps\" pour accéder à l\'autorisation de localisation de l\'appareil !</string>
+    <string name="permission_collector_rationale_background_location_api30_message">Si vous souhaitez utiliser cette fonction, assurez-vous de sélectionner \"autoriser dans les paramètres\" et sélectionnez \"autoriser tout le temps\' option pour le dispositif d\'accès à l\'emplacement de l\'autorisation !</string>
     <string name="permission_collector_rationale_background_location_2_step_api30_message">Si vous souhaitez utiliser cette fonction, vous devez d\'abord accorder les autorisations de localisation normales, puis il vous sera demandé séparément d\'accorder l\'autorisation de localisation en arrière-plan !</string>
     <string name="permission_collector_rationale_background_location_compliance_message">L\'application nécessite l\'autorisation de localisation en arrière-plan uniquement si vous souhaitez démarrer automatiquement la collecte de mesures au démarrage de l\'appareil. Sans cette autorisation, vous ne pouvez commencer à collecter que par vous-même.</string>
     <string name="permission_collector_denied_message">Annulation de la collecte des mesures en raison du manque d\'autorisations</string>
@@ -513,4 +513,17 @@
     <string name="permission_map_denied_message">La carte ne peut pas être activée en raison de l\'autorisation de localisation refusée</string>
     <string name="permission_map_never_ask_again_message">La carte n\'est pas disponible en raison du refus d\'autorisation de localisation</string>
     <string name="permission_uploader_denied_message">Envo annulé en raison d\'un manque d\'autorisation sur Internet.</string>
+    <string name="dialog_stop">Arrêt</string>
+    <string name="preferences_t0st_enabled_off_summary">Les mesures ne seront pas téléchargées sur @t0stbrot.net.</string>
+    <string name="preferences_t0st_enabled_on_summary">Les mesures seront téléchargées sur @t0stbrot.net.</string>
+    <string name="preferences_t0st_enabled_title">Activer le téléchargement sur @t0stbrot.net</string>
+    <string name="preferences_t0st_contributor_name_summary">Nom du contributeur utilisé pour @t0stbrot.net.</string>
+    <string name="preferences_t0st_contributor_name_title">Nom du contributeur</string>
+    <string name="preferences_about_t0st_project_summary">Informations sur le projet @t0stbrot.net</string>
+    <string name="preferences_about_t0st_project_title">À propos de @t0stbrot.net</string>
+    <string name="info_about_t0st_project_title">À propos de @t0stbrot.net</string>
+    <string name="main_help_to_upload_t0st_locations_description">Nombre de mesures en attente de téléchargement sur @t0stbrot.net.</string>
+    <string name="preferences_t0st_contributor_anonymous_title">Contribution anonyme</string>
+    <string name="preferences_t0st_contributor_anonymous_on_summary">La contribution anonyme sera utilisée.</string>
+    <string name="preferences_t0st_contributor_anonymous_off_summary">Le nom du contributeur sera utilisé.</string>
 </resources>

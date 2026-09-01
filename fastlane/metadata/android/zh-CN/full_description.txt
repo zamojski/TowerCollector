@@ -1,14 +1,17 @@
-通过上传您所在地区的GSM/UMTS/LTE/CDMA/TD-SCDMA/5G (NR)手机信号塔的GPS位置，Tower Collector为您提供了在 OpenCellID.org 和 BeaconDB 中做出贡献的机会。 这些测量有助于绘制手机网络覆盖范围。您可以使用该应用收集个人用途的数据并将其导出到文件中。
+通过上传您所在地区的GSM/UMTS/LTE/CDMA/TD-SCDMA/5G (NR)手机信号塔的GPS位置，Tower Collector为您提供了在 OpenCellID.org，BeaconDB 和 @t0stbrot 中做出贡献的机会。 这些测量有助于绘制手机网络覆盖范围。您可以使用该应用收集个人用途的数据并将其导出到文件中。
 
  一些功能：
  •特别优化的GPS参数，以减少电池消耗
- •上传到 OpenCellID.org 和 BeaconDB
+ •上传到 OpenCellID.org，BeaconDB 和 @t0stbrot
  •以CSV，JSON，GPX，KML和KMZ格式导出到SD卡
  •没有广告，永远！
 
  OpenCellID.org项目的目标是创建一个移动小区位置的全球开源数据库。 通过上传您所在地区的手机信号塔位置，Tower Collector为您提供了在OpenCellID项目中做出贡献的机会。 收集的数据可用于快速定位设备而无需启用GPS。
 
 BeaconDB 是一个公共数据库，用于收集有关常见无线基础设施（手机信号塔、WiFi 接入点、蓝牙信标）的位置信息。您贡献的手机信号塔数据将根据“知识共享 (CC-0)”许可进行汇总并向公众发布。
+
+@t0stbrot 是一个收集基站位置信息的公共数据库。您贡献的基站数据将被汇总，并根据“知识共享署名-相同方式共享 4.0 国际许可协议 (CC BY-SA 4.0)”向公众发布。
+
 
  请帮我翻译成其他语言，访问 https://i18n.zamojski.ovh/
 

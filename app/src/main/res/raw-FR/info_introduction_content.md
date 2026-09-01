@@ -16,12 +16,12 @@ votre position avec une précision d\'au moins 40 mètres.
 
 ### Prochaines étapes
 
-Les données collectées peuvent être téléchargées sur les projets OpenCellID.org
-et BeaconDB ou exportées vers un fichier. Avant le premier téléchargement, vous
-devrez sélectionner les projets auxquels vous souhaitez contribuer. Pour
-OpenCellID.org, vous devrez également vous inscrire gratuitement et saisir le
-jeton d'accès reçu dans les Préférences. Les mesures seront supprimées de votre
-appareil une fois le téléchargement réussi.
+Les données collectées peuvent être téléchargées sur les projets OpenCellID.org,
+BeaconDB et @t0stbrot.net ou exportées vers un fichier. Avant le premier
+téléchargement, vous devrez sélectionner les projets auxquels vous souhaitez
+contribuer. Pour OpenCellID.org, vous devrez également vous inscrire
+gratuitement et saisir le jeton d'accès reçu dans les Préférences. Les mesures
+seront supprimées de votre appareil une fois le téléchargement réussi.
 
 ### Plus
 

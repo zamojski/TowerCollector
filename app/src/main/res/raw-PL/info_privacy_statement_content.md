@@ -33,6 +33,7 @@ Ochrona poufności swojego tokena dostępu jest Twoim obowiązkiem!
 - [Polityka prywatności
   OpenCellID.org](https://community.opencellid.org/privacy)
 - [Polityka prywatności BeaconDB](https://beacondb.net/privacy/)
+- [Polityka prywatności @t0stbrot](https://t0stbrot.net/info)
 
 Większość funkcji aplikacji wymaga **dostępu do lokalizacji urządzenia podczas
 działania**, jednakże, aby automatycznie uruchomić zbieranie próbek przy

@@ -16,6 +16,7 @@ OpenCellID.org 和 BeaconDB
 
 - [OpenCellID.org隐私权政策](https://community.opencellid.org/privacy)
 - [BeaconDB隐私声明](https://beacondb.net/privacy/)
+- [@t0stbrot 隐私政策](https://t0stbrot.net/info)
 
 该应用程序的大多数功能都需要**前台位置权限**，但是，要在设备启动时开始收集测量值，必须授予**后台位置权限**。需要后台位置权限，是因为在这种情况下，收集是由系统（在后台）而不是您（在前台）启动的。
 

@@ -513,4 +513,17 @@
     <string name="permission_map_denied_message">לא ניתן להפעיל את המפה עקב הרשאות מיקום שנדחו</string>
     <string name="permission_map_never_ask_again_message">המפה אינה זמינה עקב הרשאות מיקום שנדחו</string>
     <string name="permission_uploader_denied_message">ההעלאה בוטלה עקב העדר הרשאה לגשת לאינטרנט.</string>
+    <string name="dialog_stop">לְהַפְסִיק</string>
+    <string name="preferences_t0st_enabled_off_summary">מידות לא יועלו לאתר @t0stbrot.net.</string>
+    <string name="preferences_t0st_enabled_on_summary">המידות יועלו לאתר @t0stbrot.net.</string>
+    <string name="preferences_t0st_enabled_title">הפעל העלאה של @t0stbrot.net</string>
+    <string name="preferences_t0st_contributor_name_summary">שם התורם בו נעשה שימוש עבור @t0stbrot.net.</string>
+    <string name="preferences_t0st_contributor_name_title">שם התורם</string>
+    <string name="preferences_about_t0st_project_summary">מידע על פרויקט @t0stbrot.net</string>
+    <string name="preferences_about_t0st_project_title">אודות @t0stbrot.net</string>
+    <string name="info_about_t0st_project_title">אודות @t0stbrot.net</string>
+    <string name="main_help_to_upload_t0st_locations_description">מספר מדידות הממתינות להעלאה ל-@t0stbrot.net.</string>
+    <string name="preferences_t0st_contributor_anonymous_title">תרומה אנונימית</string>
+    <string name="preferences_t0st_contributor_anonymous_on_summary">התרומה האנונימית תיעשה בשימוש.</string>
+    <string name="preferences_t0st_contributor_anonymous_off_summary">שם התורם ייעשה בו שימוש.</string>
 </resources>
