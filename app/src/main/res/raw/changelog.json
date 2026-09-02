@@ -1,6 +1,17 @@
 {
   "Entries": [
     {
+      "VersionCode": 2190029,
+      "Title": "Changes in version 2.19.0",
+      "Description": "Welcome [@t0stbrot.net](https://t0stbrot.net/) as new project to which you can contribute from your location anonymously. It's a recently established project which warmly welcomes new contributors. It's enabled by default so feel free to contribute!",
+      "Messages": [
+        "Add @t0stbrot.net as new contribution project.",
+        "Fix GPS status not updated immediately when the location is obtained.",
+        "Replace toast notification with snackbar with Stop action when another task is currently running in background.",
+        "Update translations."
+      ]
+    },
+    {
       "VersionCode": 2180528,
       "Title": "Changes in version 2.18.0",
       "Messages": [
@@ -49,13 +60,6 @@
         "Add monochrome icon for more personalized experience.",
         "Improve logging.",
         "Update external libraries."
-      ]
-    },
-    {
-      "VersionCode": 2160018,
-      "Title": "Changes in version 2.16.0",
-      "Messages": [
-        "Improve compatibility with Android 15."
       ]
     }
   ]

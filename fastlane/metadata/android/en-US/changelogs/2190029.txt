@@ -1,0 +1,4 @@
+- Add @t0stbrot.net as new contribution project.
+- Fix GPS status not updated immediately when the location is obtained.
+- Replace toast notification with snackbar with Stop action when another task is currently running in background.
+- Update translations.
