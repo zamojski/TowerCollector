@@ -6,14 +6,11 @@ package info.zamojski.soft.towercollector.dao.migration;
 
 import android.database.sqlite.SQLiteDatabase;
 
-class UpgradeScript18 implements IUpgradeScript {
+class UpgradeScript19 implements IUpgradeScript {
 
     @Override
     public void performUpgrade(SQLiteDatabase database) {
-        // add new columns
-        database.execSQL("ALTER TABLE measurements ADD COLUMN uploaded_to_t0st_at INTEGER DEFAULT NULL");
-        database.execSQL("CREATE INDEX 'IX_measurements_uploaded_to_t0st_at' ON measurements (uploaded_to_t0st_at ASC)");
-
+        // re-apply one more time to fix issue on devices which run buggy UpgradeScript18 (now fixed there as well)
         database.execSQL("DROP VIEW not_uploaded_measurements");
         database.execSQL("CREATE VIEW not_uploaded_measurements AS SELECT * FROM measurements WHERE uploaded_to_ocid_at IS NULL AND uploaded_to_mls_at IS NULL AND uploaded_to_t0st_at IS NULL");
     }

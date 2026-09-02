@@ -36,7 +36,7 @@ import timber.log.Timber;
 public class MeasurementsDatabase {
 
     public static final String DATABASE_FILE_NAME = "measurements.db";
-    public static final int DATABASE_FILE_VERSION = 18;
+    public static final int DATABASE_FILE_VERSION = 19;
 
     private static final int NUM_OF_DELETIONS_PER_ONE_QUERY = 50;
 
@@ -307,7 +307,7 @@ public class MeasurementsDatabase {
                 + "JOIN (" + todayMeasurementsAndCellsQuery + ") "
                 + "JOIN (" + todayDiscoveredCellsQuery + ") "
                 + "JOIN (" + uploadToOcidAndMlsAndT0stQuery + "))";
-        // Timber.d(query);
+         Timber.d(query);
         Cursor cursor = db.rawQuery(query, selectionArgs);
         if (cursor.moveToNext()) {
             stats.setCellsToday(cursor.getInt(cursor.getColumnIndex(todayCellsCount)));
