@@ -1,0 +1,20 @@
+Tower Collector sniedz jums iespēju piedalīties OpenCellID.org, BeaconDB un @t0stbrot projektos, augšupielādējot GSM/UMTS/LTE/CDMA/TD-SCDMA/5G (NR) mobilo sakaru torņu GPS atrašanās vietas no jūsu reģiona. Mērījumi palīdz kartēt mobilo tālruņu tīkla pārklājuma apjomu. Varat izmantot lietotni, lai apkopotu datus personīgām vajadzībām un eksportētu tos uz dažādiem failiem.
+
+Dažas funkcijas:
+• īpaši optimizēti GPS parametri, lai samazinātu akumulatora izlādi
+• augšupielāde OpenCellID.org, BeaconDB un @t0stbrot projektos
+• eksportēšana uz SD karti CSV, JSON, GPX, KML un KMZ formātā.
+• bez reklāmām, uz visiem laikiem!
+
+OpenCellID.org projekta mērķis ir izveidot pasaules mēroga atvērtā pirmkoda mobilo sakaru torņu atrašanās vietu datubāzi. Tower Collector sniedz jums iespēju piedalīties OpenCellID projektā, augšupielādējot mobilo sakaru torņu atrašanās vietas no jūsu reģiona. Apkopotos datus var izmantot, lai ātri atrastu ierīces, neieslēdzot GPS.
+
+BeaconDB ir publiska datubāze, kas apkopo atrašanās vietas informāciju par izplatītu bezvadu infrastruktūru (mobilo sakaru torņiem, WiFi piekļuves punktiem, Bluetooth raidītājiem). Jūsu sniegtie mobilo sakaru torņu dati tiks apkopoti un publiskoti saskaņā ar licenci "Creative Commons (CC-0)".
+
+@t0stbrot ir publiska datubāze, kas apkopo mobilo sakaru torņu atrašanās vietas. Jūsu sniegtie mobilo sakaru torņu dati tiks apkopoti un publiskoti saskaņā ar licenci "Creative Commons Attribution-ShareAlike 4.0 (CC BY-SA 4.0)".
+
+
+Lūdzu, palīdziet man to iztulkot citās valodās, apmeklējot vietni https://i18n.zamojski.ovh/
+
+Šī lietojumprogramma neapkopo, neuzglabā un nesūta nekādu informāciju, ko varētu izmantot, lai tieši identificētu lietotāju, izmantoto ierīci vai jebkādu citu personisku informāciju.
+
+LŪDZU, SŪTIET KĻŪDU ZIŅOJUMUS UN FUNKCIJU PIEPRASĪJUMUS PA E-PASTU VAI GITHUB.
