@@ -1759,7 +1759,7 @@ public class MainActivity extends AppCompatActivity
                     String updateFeedUrl = String.format(Locale.ENGLISH, BuildConfig.UPDATE_CHECK_FEED_URI, currentVersion);
                     if (!StringUtils.isNullEmptyOrWhitespace(updateFeedUrl)) {
                         UpdateCheckAsyncTask updateCheckTask = new UpdateCheckAsyncTask(getApplication(), currentVersion);
-                        updateCheckTask.execute(updateFeedUrl);
+                        updateCheckTask.submit(updateFeedUrl);
                     }
                     MyApplication.getPreferencesProvider().setLastUpdateCheckDate(currentDate);
                 } else {
