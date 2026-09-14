@@ -5,7 +5,9 @@
 package info.zamojski.soft.towercollector.views;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BlendMode;
@@ -20,6 +22,7 @@ import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.NetworkRequest;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -37,6 +40,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.core.app.ShareCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.net.ConnectivityManagerCompat;
 
@@ -96,6 +100,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
     private ImageButton myLocationButton;
     private ImageButton toggleLocationButton;
     private ImageButton helpButton;
+    private ImageButton shareButton;
     private RadiusMarkerClusterer markersOverlay;
     private Bitmap clusterIcon;
     private BackgroundMarkerLoaderTask backgroundMarkerLoaderTask;
@@ -189,6 +194,8 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         toggleLocationButton.setOnLongClickListener(IMAGE_BUTTON_LONG_CLICK_LISTENER);
         helpButton = view.findViewById(R.id.main_map_help_button);
         helpButton.setOnLongClickListener(IMAGE_BUTTON_LONG_CLICK_LISTENER);
+        shareButton = view.findViewById(R.id.main_map_share_button);
+        shareButton.setOnLongClickListener(IMAGE_BUTTON_LONG_CLICK_LISTENER);
 
         TextView copyrightTextView = view.findViewById(R.id.main_map_copyright);
         copyrightTextView.setMovementMethod(LinkMovementMethod.getInstance());
@@ -265,6 +272,33 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
             public void onClick(View v) {
                 Timber.d("helpButton.click(): Showing map help");
                 DialogManager.createHtmlInfoDialog(getActivity(), R.string.info_map_help_title, R.raw.info_map_help, false, false).show();
+            }
+        });
+
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Activity activity = getActivity();
+                if (activity == null) {
+                    return;
+                }
+                GeoPoint mapCenter = (GeoPoint) mainMapView.getMapCenter();
+                String latStr = GpsUtils.formatCoordinate(mapCenter.getLatitude());
+                String lonStr = GpsUtils.formatCoordinate(mapCenter.getLongitude());
+                String coordinates = latStr + ", " + lonStr;
+                Timber.d("shareButton.click(): Sharing coordinates: %s", coordinates);
+
+                Intent shareIntent = new ShareCompat.IntentBuilder(activity)
+                        .setType("text/plain")
+                        .setText(coordinates)
+                        .getIntent();
+
+                String geoUri = "geo:" + latStr + "," + lonStr + "?q=" + latStr + "," + lonStr;
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(geoUri));
+
+                Intent chooserIntent = Intent.createChooser(shareIntent, activity.getString(R.string.dialog_share));
+                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{mapIntent});
+                activity.startActivity(chooserIntent);
             }
         });
 
@@ -447,6 +481,7 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
     private void reloadMapTheme() {
         myLocationButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.map_my_location, theme));
         helpButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.map_help, theme));
+        shareButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.map_share, theme));
         boolean useDarkTheme = MyApplication.getCurrentAppTheme() == R.style.DarkAppTheme && !isLightThemeForced;
         mainMapView.getOverlayManager().getTilesOverlay().setColorFilter(useDarkTheme ? TilesOverlay.INVERT_COLORS : null);
         myLocationOverlay.setDirectionArrow(ResourceUtils.getDrawableBitmap(MyApplication.getApplication(), R.drawable.map_person, theme),

@@ -9,7 +9,20 @@ import android.content.Context;
 import android.location.LocationManager;
 import android.os.Build;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class GpsUtils {
+
+    private static final Locale LOCALE = Locale.ENGLISH;
+    private static final NumberFormat coordsDoubleFormatter;
+
+    static {
+        coordsDoubleFormatter = NumberFormat.getNumberInstance(LOCALE);
+        coordsDoubleFormatter.setGroupingUsed(false);
+        coordsDoubleFormatter.setMinimumFractionDigits(6);
+        coordsDoubleFormatter.setMaximumFractionDigits(8);
+    }
 
     public static boolean isPreciseLocationAware() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.S;
@@ -38,5 +51,9 @@ public class GpsUtils {
 
     public static boolean hasGpsPermissions(Context context) {
         return PermissionUtils.hasPermission(context, Manifest.permission.ACCESS_FINE_LOCATION);
+    }
+
+    public static String formatCoordinate(double value) {
+        return coordsDoubleFormatter.format(value);
     }
 }

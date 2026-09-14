@@ -96,6 +96,7 @@
     <string name="main_map_location_enable_button">Enable my location</string>
     <string name="main_map_location_disable_button">Disable my location</string>
     <string name="main_map_help_button">Show help</string>
+    <string name="main_map_share_button">Share coordinates</string>
     <string name="main_map_enable">Enable</string>
     <string name="main_map_disable">Disable</string>
     <string name="main_menu_start_button">Start collecting</string>

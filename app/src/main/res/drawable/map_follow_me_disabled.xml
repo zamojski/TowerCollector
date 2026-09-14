@@ -5,6 +5,7 @@
     android:width="36dp"
     android:height="36dp"
     android:autoMirrored="true"
+    android:tint="?attr/icon_color"
     android:viewportWidth="36.0"
     android:viewportHeight="36.0">
     <path
@@ -18,7 +19,7 @@
         android:translateY="7.2">
 
         <path
-            android:fillColor="?attr/icon_color"
+            android:fillColor="@android:color/black"
             android:pathData="M12,6.34L21,3l-3.34,9L12,6.34zM22.61,19.78L4.22,1.39L2.81,2.81l5.07,5.07L3,9.69v1.41l7.07,2.83L12.9,21h1.41l1.81,-4.88l5.07,5.07L22.61,19.78z" />
     </group>
 </vector>
