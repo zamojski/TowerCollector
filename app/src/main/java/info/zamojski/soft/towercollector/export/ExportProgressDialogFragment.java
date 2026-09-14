@@ -14,7 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
+import info.zamojski.soft.towercollector.utils.StorageUtils;
 
 public class ExportProgressDialogFragment extends DialogFragment {
 
@@ -57,7 +59,7 @@ public class ExportProgressDialogFragment extends DialogFragment {
 
         ProgressDialog exportProgressDialog = new ProgressDialog(getContext());
         exportProgressDialog.setTitle(R.string.export_dialog_progress_title);
-        exportProgressDialog.setMessage(getString(R.string.export_dialog_progress_message, storageUri == null ? "" : storageUri.getPath()));
+        exportProgressDialog.setMessage(getString(R.string.export_dialog_progress_message, storageUri == null ? "" : StorageUtils.getStorageDisplayName(MyApplication.getApplication(), storageUri)));
         exportProgressDialog.setCancelable(false);
         exportProgressDialog.setCanceledOnTouchOutside(false);
         exportProgressDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_cancel), (dialog, which) -> {

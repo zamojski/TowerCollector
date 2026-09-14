@@ -40,7 +40,7 @@ public class GeneralPreferenceFragment extends DialogEnabledPreferenceFragment i
         super.onResume();
         PreferenceManager.getDefaultSharedPreferences(getActivity()).registerOnSharedPreferenceChangeListener(this);
         Uri storageUri = MyApplication.getPreferencesProvider().getStorageUri();
-        changeStorageLocationPreference.setSummary(formatValueStringPoor(R.string.preferences_change_storage_location_summary, (storageUri == null ? getString(R.string.preferences_value_undefined) : storageUri.getPath())));
+        changeStorageLocationPreference.setSummary(formatValueStringPoor(R.string.preferences_change_storage_location_summary, (storageUri == null ? getString(R.string.preferences_value_undefined) : StorageUtils.getStorageDisplayName(MyApplication.getApplication(), storageUri))));
     }
 
     @Override

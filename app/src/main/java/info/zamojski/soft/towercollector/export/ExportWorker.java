@@ -47,6 +47,7 @@ import info.zamojski.soft.towercollector.io.filesystem.CompressionFormat;
 import info.zamojski.soft.towercollector.model.AnalyticsStatistics;
 import info.zamojski.soft.towercollector.utils.FileUtils;
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
+import info.zamojski.soft.towercollector.utils.StorageUtils;
 import info.zamojski.soft.towercollector.utils.StringUtils;
 import timber.log.Timber;
 
@@ -123,7 +124,7 @@ public class ExportWorker extends Worker implements IProgressListener {
                     return Result.failure(getMessageData(getStringById(R.string.export_toast_no_data)));
                 case Succeeded:
                     Data resultData = new Data.Builder()
-                            .putString(DIR_PATH, storageUri.getPath())
+                            .putString(DIR_PATH, StorageUtils.getStorageDisplayName(MyApplication.getApplication(), storageUri))
                             .putStringArray(FILE_PATHS, getGeneratedFiles())
                             .build();
                     return Result.success(resultData);

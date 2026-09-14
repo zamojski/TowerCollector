@@ -7,16 +7,22 @@ package info.zamojski.soft.towercollector.utils;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.os.storage.StorageManager;
+import android.os.storage.StorageVolume;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.documentfile.provider.DocumentFile;
 
 import java.io.File;
+import java.util.List;
+import java.util.Objects;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
@@ -111,6 +117,32 @@ public class StorageUtils {
 
     public static boolean canWriteStorageUri(DocumentFile storageDirectory) {
         return storageDirectory != null && storageDirectory.canWrite();
+    }
+
+
+    public static String getStorageDisplayName(Context context, Uri uri) {
+        if (uri == null || uri.getLastPathSegment() == null) {
+            return "";
+        }
+
+        String lastPathSegment = uri.getLastPathSegment();
+        String uriVolume = lastPathSegment.replaceFirst(":.*", "");
+        String uriFileName = lastPathSegment.replaceFirst(".*:", "");
+
+        if (Build.VERSION.SDK_INT < 24) {
+            return uriFileName;
+        }
+
+        StorageManager storageManager = ContextCompat.getSystemService(context, StorageManager.class);
+        List<StorageVolume> storageVolumes = storageManager.getStorageVolumes();
+
+        for (StorageVolume volume : storageVolumes) {
+            if (Objects.equals(volume.getUuid(), uriVolume)) {
+                return String.format("%1$s/%2$s", volume.getDescription(context), uriFileName);
+            }
+        }
+
+        return uriFileName;
     }
 
     private static boolean canMigrateLegacyStorage() {
