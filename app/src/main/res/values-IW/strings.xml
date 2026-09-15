@@ -526,4 +526,5 @@
     <string name="preferences_t0st_contributor_anonymous_title">תרומה אנונימית</string>
     <string name="preferences_t0st_contributor_anonymous_on_summary">התרומה האנונימית תיעשה בשימוש.</string>
     <string name="preferences_t0st_contributor_anonymous_off_summary">שם התורם ייעשה בו שימוש.</string>
+    <string name="main_map_share_button">שתף קואורדינטות</string>
 </resources>
