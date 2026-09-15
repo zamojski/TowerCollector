@@ -25,6 +25,10 @@ import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.dev.DatabaseOperations;
 import info.zamojski.soft.towercollector.dev.PreferencesOperations;
 import info.zamojski.soft.towercollector.utils.StorageUtils;
+import info.zamojski.soft.towercollector.events.StorageUriPersistedEvent;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import timber.log.Timber;
 
 public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment implements OnSharedPreferenceChangeListener {
@@ -102,6 +106,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
     public void onResume() {
         super.onResume();
         PreferenceManager.getDefaultSharedPreferences(getActivity()).registerOnSharedPreferenceChangeListener(this);
+        EventBus.getDefault().register(this);
         // set summaries
         setupListPreferenceSummary(collectorApiVersionPreference, R.string.preferences_collector_api_version_summary);
         setupListPreferenceSummary(fileLoggingLevelPreference, R.string.preferences_file_logging_level_summary);
@@ -111,6 +116,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
     public void onPause() {
         super.onPause();
         PreferenceManager.getDefaultSharedPreferences(getActivity()).unregisterOnSharedPreferenceChangeListener(this);
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -152,7 +158,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
             MyApplication.getApplication().initLogger();
         } else {
             if (!MyApplication.getPreferencesProvider().getFileLoggingLevel().equals(getString(R.string.preferences_file_logging_level_default_value))) {
-                StorageUtils.requestStorageUri(getActivity());
+                StorageUtils.requestStorageUri(getActivity(), StorageUtils.PendingAction.REINITIALIZE_LOGGER);
             }
         }
     }
@@ -163,7 +169,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         if (StorageUtils.canReadStorageUri(storageUri)) {
             DatabaseOperations.importDatabase(MyApplication.getApplication());
         } else {
-            StorageUtils.requestStorageUri(getActivity());
+            StorageUtils.requestStorageUri(getActivity(), StorageUtils.PendingAction.IMPORT_DATABASE);
         }
     }
 
@@ -173,7 +179,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         if (StorageUtils.canWriteStorageUri(storageUri)) {
             DatabaseOperations.exportDatabase(MyApplication.getApplication());
         } else {
-            StorageUtils.requestStorageUri(getActivity());
+            StorageUtils.requestStorageUri(getActivity(), StorageUtils.PendingAction.EXPORT_DATABASE);
         }
     }
 
@@ -183,7 +189,7 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         if (StorageUtils.canReadStorageUri(storageUri)) {
             PreferencesOperations.importPreferences(MyApplication.getApplication());
         } else {
-            StorageUtils.requestStorageUri(getActivity());
+            StorageUtils.requestStorageUri(getActivity(), StorageUtils.PendingAction.IMPORT_PREFERENCES);
         }
     }
 
@@ -193,7 +199,33 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         if (StorageUtils.canWriteStorageUri(storageUri)) {
             PreferencesOperations.exportPreferences(MyApplication.getApplication());
         } else {
-            StorageUtils.requestStorageUri(getActivity());
+            StorageUtils.requestStorageUri(getActivity(), StorageUtils.PendingAction.EXPORT_PREFERENCES);
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onEvent(StorageUriPersistedEvent event) {
+        if (event.getPendingAction() != StorageUtils.PendingAction.NONE && event.getPendingAction() != StorageUtils.PendingAction.EXPORT_DATA) {
+            EventBus.getDefault().removeStickyEvent(event);
+            switch (event.getPendingAction()) {
+                case REINITIALIZE_LOGGER:
+                    requestLoggerChange();
+                    break;
+                case IMPORT_DATABASE:
+                    importDatabase();
+                    break;
+                case EXPORT_DATABASE:
+                    exportDatabase();
+                    break;
+                case IMPORT_PREFERENCES:
+                    importPreferences();
+                    break;
+                case EXPORT_PREFERENCES:
+                    exportPreferences();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

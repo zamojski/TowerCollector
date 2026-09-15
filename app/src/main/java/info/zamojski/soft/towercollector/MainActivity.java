@@ -91,6 +91,7 @@ import info.zamojski.soft.towercollector.events.PowerSaveModeChangedEvent;
 import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
 import info.zamojski.soft.towercollector.events.ShowLocationOnMapEvent;
 import info.zamojski.soft.towercollector.events.SystemTimeChangedEvent;
+import info.zamojski.soft.towercollector.events.StorageUriPersistedEvent;
 import info.zamojski.soft.towercollector.export.ExportProgressDialogFragment;
 import info.zamojski.soft.towercollector.export.ExportWorker;
 import info.zamojski.soft.towercollector.model.ChangelogInfo;
@@ -1328,7 +1329,7 @@ public class MainActivity extends AppCompatActivity
             });
             alertDialog.show();
         } else {
-            StorageUtils.requestStorageUri(this);
+            StorageUtils.requestStorageUri(this, StorageUtils.PendingAction.EXPORT_DATA);
         }
     }
 
@@ -1824,6 +1825,14 @@ public class MainActivity extends AppCompatActivity
             if (tab != null) {
                 tab.select();
             }
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onEvent(StorageUriPersistedEvent event) {
+        if (event.getPendingAction() == StorageUtils.PendingAction.EXPORT_DATA) {
+            EventBus.getDefault().removeStickyEvent(event);
+            startExportTask();
         }
     }
 }

@@ -20,21 +20,41 @@ import android.widget.Toast;
 import androidx.core.content.ContextCompat;
 import androidx.documentfile.provider.DocumentFile;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.File;
 import java.util.List;
 import java.util.Objects;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
+import info.zamojski.soft.towercollector.events.StorageUriPersistedEvent;
 import timber.log.Timber;
 
 public class StorageUtils {
+
+    public enum PendingAction {
+        NONE,
+        EXPORT_DATA,
+        EXPORT_DATABASE,
+        IMPORT_DATABASE,
+        EXPORT_PREFERENCES,
+        IMPORT_PREFERENCES,
+        REINITIALIZE_LOGGER
+    }
+
+    private static PendingAction pendingAction = PendingAction.NONE;
 
     public static final int OPEN_DOCUMENT_ACTIVITY_RESULT = 'D';
     private static final int URI_BASIC_FLAGS = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
     private static final int URI_EXTENDED_FLAGS = URI_BASIC_FLAGS | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION;
 
     public static void requestStorageUri(Activity activity) {
+        requestStorageUri(activity, PendingAction.NONE);
+    }
+
+    public static void requestStorageUri(Activity activity, PendingAction action) {
+        pendingAction = action;
         AlertDialog alertDialog = new AlertDialog.Builder(activity).create();
         alertDialog.setCanceledOnTouchOutside(true);
         alertDialog.setCancelable(true);
@@ -61,7 +81,7 @@ public class StorageUtils {
             }
         });
         alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, activity.getString(R.string.dialog_cancel), (dialog, which) -> {
-            // empty
+            pendingAction = PendingAction.NONE;
         });
         alertDialog.show();
     }
@@ -75,11 +95,15 @@ public class StorageUtils {
                 activity.grantUriPermission(activity.getPackageName(), storageUri, modeFlags);
                 activity.getContentResolver().takePersistableUriPermission(storageUri, URI_BASIC_FLAGS);
                 MyApplication.getPreferencesProvider().setStorageUri(storageUri);
+                EventBus.getDefault().postSticky(new StorageUriPersistedEvent(pendingAction));
             } catch (Exception ex) {
                 Timber.e(ex, "persistStorageUri(): Failed to persist storage uri");
                 Toast.makeText(activity, R.string.storage_access_denied, Toast.LENGTH_LONG).show();
+            } finally {
+                pendingAction = PendingAction.NONE;
             }
         } else {
+            pendingAction = PendingAction.NONE;
             Toast.makeText(activity, R.string.storage_access_denied, Toast.LENGTH_LONG).show();
         }
     }
