@@ -120,7 +120,7 @@ dependencies {
     implementation "ch.acra:acra-http:$acraVersion"
     implementation "ch.acra:acra-dialog:$acraVersion"
     implementation "ch.acra:acra-limiter:$acraVersion"
-    implementation 'com.squareup.okhttp3:okhttp:5.4.0'
+    implementation 'com.squareup.okhttp3:okhttp:5.5.0'
     implementation "com.github.permissions-dispatcher:permissionsdispatcher:$permissionsDispatcherVersion"
     annotationProcessor "com.github.permissions-dispatcher:permissionsdispatcher-processor:$permissionsDispatcherVersion"
     implementation 'com.jakewharton.timber:timber:5.0.1'
