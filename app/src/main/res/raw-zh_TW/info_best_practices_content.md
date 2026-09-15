@@ -1,19 +1,12 @@
 <!-- This Source Code Form is subject to the terms of the Mozilla Public -->
 <!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
 <!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-Tower Collector is a perfect app for OpenCellID and BeaconDB contributors who
-want to support the projects with measurements from their area. It is good to
-know what is the right way to collect the most valuable measurements during
-walks and trips.
+Tower Collector 是一款非常適合 OpenCellID 和 BeaconDB
+貢獻者的應用程序，他們可以透過收集所在區域的測量數據來支援這些項目。了解如何在步行和旅行中收集最有價值的測量數據非常重要。
 
-- Avoid moving back and forth exactly the same way every day. A large number of
-  duplicated measurements will not be very useful.
-- Try to map new places, especially those less frequently visited as they\'re
-  often still not covered. Many of the towers along main streets have already
-  been mapped.
-- From time to time make a round again to collect new cell towers that could
-  appear in your area.
-- Collect data for all kinds of networks supported by your device, such as GSM,
-  UMTS, LTE, CDMA, 5G NR, TD-SCDMA, etc. You can achieve this by changing
-  preferred network types in Android settings.
-- Use SIM cards from many different network operators to better cover your area.
+- 避免每天以完全相同的路線來回移動。大量重複測量將不會非常有用。
+- 嘗試繪製新地點，特別是那些不經常訪問的地方，因為它們通常仍未被覆蓋。沿著主要街道的許多信號塔已被繪製。
+- 不定時再次返回以收集可能出現在您所在地區的新手機訊號基地台。
+- 收集設備支援的各種網路的數據，如GSM、UMTS、LTE、CDMA、5G
+  NR、TD-SCDMA等。您可以透過更改Android設定中的首選網路類型來實現此目的。
+- 使用來自不同網路營運商的SIM卡，以便更好地覆蓋您的區域。
