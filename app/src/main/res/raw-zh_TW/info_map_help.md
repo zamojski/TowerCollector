@@ -13,12 +13,10 @@
 
 ![dot_cdma](drawable://dot_cdma) - CDMA
 
-![dot_unknown](drawable://dot_unknown) - Unknown
+![dot_unknown](drawable://dot_unknown) - 未知
 
-![dot_lte_wcdma](drawable://dot_lte_wcdma) - Mix of LTE and WCDMA
+![dot_lte_wcdma](drawable://dot_lte_wcdma) - LTE和WCDMA的混合
 
-![dot_cluster_small](drawable://dot_cluster_small) - Cluster - a group of
-measurements, zoom in to ungroup
+![dot_cluster_small](drawable://dot_cluster_small) - 群集-一組測量，放大以取消分組
 
-Bright colors represent measurements with newly discovered cell towers,
-otherwise dark colors are used.
+明亮的顏色代表新發現的手機訊號塔的測量值，否則使用深色。
