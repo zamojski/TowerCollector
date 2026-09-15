@@ -1,0 +1,5 @@
+- Fix the need to trigger intended action once more when the storage path wasn't granted in advance.
+- Add option to navigate to the last measurement location when coordinates are clicked on the Last measurement tab.
+- Add option to share coordinates of the center of the map from the Map tab.
+- Improve presentation of storage path.
+- Update external libraries.

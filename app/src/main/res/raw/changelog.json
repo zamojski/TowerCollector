@@ -1,6 +1,17 @@
 {
   "Entries": [
     {
+      "VersionCode": 2190130,
+      "Title": "Changes in version 2.19.1",
+      "Messages": [
+        "Fix the need to trigger intended action once more when the storage path wasn't granted in advance.",
+        "Add option to navigate to the last measurement location when coordinates are clicked on the Last measurement tab.",
+        "Add option to share coordinates of the center of the map from the Map tab.",
+        "Improve presentation of storage path.",
+        "Update external libraries."
+      ]
+    },
+    {
       "VersionCode": 2190029,
       "Title": "Changes in version 2.19.0",
       "Description": "Welcome [@t0stbrot.net](https://t0stbrot.net/) as new project to which you can contribute from your location anonymously. It's a recently established project which warmly welcomes new contributors. It's enabled by default so feel free to contribute!",
@@ -48,18 +59,6 @@
       "Title": "Changes in version 2.17.1",
       "Messages": [
         "Change auto update check service address to a new domain."
-      ]
-    },
-    {
-      "VersionCode": 2170019,
-      "Title": "Changes in version 2.17.0",
-      "Messages": [
-        "Fix Stop not working on Collector notification on Android 15.",
-        "Implement measurement collection throttling - you can now define how often measurements are saved.",
-        "Remove GPS battery optimizations - it caused issues on some devices and batteries improved a lot over time.",
-        "Add monochrome icon for more personalized experience.",
-        "Improve logging.",
-        "Update external libraries."
       ]
     }
   ]
