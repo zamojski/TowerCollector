@@ -526,4 +526,5 @@
     <string name="preferences_t0st_contributor_anonymous_title">Contribuição anônima</string>
     <string name="preferences_t0st_contributor_anonymous_on_summary">A contribuição anônima será utilizada.</string>
     <string name="preferences_t0st_contributor_anonymous_off_summary">O nome do colaborador será utilizado.</string>
+    <string name="main_map_share_button">Compartilhar coordenadas</string>
 </resources>
