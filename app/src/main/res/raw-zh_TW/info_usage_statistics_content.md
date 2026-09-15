@@ -1,19 +1,14 @@
 <!-- This Source Code Form is subject to the terms of the Mozilla Public -->
 <!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
 <!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-Usage statistics is a form of anonymous feedback. It help developer to better
-understand how application is being used, how fast it is and what are most
-popular features. With this kind of knowledge it is much easier to improve
-overall performance, usability and user experience.
+使用情況統計資料是一種匿名形式回饋。它可以幫助開發人員更了解應用程式如何被使用，運行速度是怎樣的，最受歡迎的功能是什麼。了解這些以後，就容易提高應用整體效能，可用性和服務體驗。
 
-Tower Collector tracks and reports the following kinds of data:
+Tower Collector 追蹤並報告以下類型的資料：
 
-- application failures;
-- which features are used and how;
-- time consuming operations duration;
-- number of collected, exported and uploaded measurements (statistics only).
+- 應用錯誤;
+- 使用哪些功能以及如何使用;
+- 耗時的操作時間;
+- 收集、匯出和上傳的測量（僅限統計資料）。
 
-Real measurements data, access token and any other personal information is NOT
-being tracked. Reports are send automatically in the background. *If you treat
-your privacy very seriously, you can easily opt-out from collecting and sending
-usage statistics by unchecking option in Preferences.*
+未追蹤實際測量資料、存取權杖和任何其他個人資訊。 報告將在後台自動發送。
+*如果您非常重視您的隱私，則可以透過取消選取"配置"中的選項輕鬆選擇退出收集和發送使用統計資料。 *
