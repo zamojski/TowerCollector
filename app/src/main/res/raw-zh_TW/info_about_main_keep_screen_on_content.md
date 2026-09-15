@@ -1,10 +1,6 @@
 <!-- This Source Code Form is subject to the terms of the Mozilla Public -->
 <!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
 <!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-Use this option to keep screen on at full brightness when main screen is
-presented on device. Once you leave the screen or switch to a different
-application the Android defined behavior will be restored. Enabling will
-significantly shorten battery life.
+使用此選項可在裝置上顯示應用程式主介面時保持螢幕全亮。 離開主介面或切換到其他應用程式後，將恢復 Android 預設定義的行為。 啟用將顯著縮短電池續航。
 
-To keep screen on all the time when collecting measurements, see the option in
-Collector section.
+若要在收集測量值時始終保持螢幕顯示，請參閱「收集器」部分中的選項。
