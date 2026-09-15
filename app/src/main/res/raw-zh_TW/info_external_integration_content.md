@@ -1,52 +1,48 @@
 <!-- This Source Code Form is subject to the terms of the Mozilla Public -->
 <!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
 <!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-Tower Collector exposes tasks to be run by other applications that send
-*intents* like Tasker, Automate or Llama. You need to use *Broadcast* type for
-all activities defined below. For more information how to do such integration
-check that\'s applications help. *Like within the app you can\'t start more than
-one task at the same time!*
+Tower Collector公開由發送 *intents* 的其他應用程式執行的任務，如Tasker，Automate或Llama。
+您需要為下面定義的所有活動使用*Broadcast* 類型。 有關如何進行此類整合的更多信息，請檢查應用程式是否有幫助。
+*在應用程式中，您不能同時啟動多個任務！ *
 
-### Start Collector
+### 启动收集器
 
-Collector will be started using settings defined in Preferences. Action:
+收集器將使用設定中的選項啟動。操作：
 
 `info.zamojski.soft.towercollector.COLLECTOR_START`
 
-### Stop Collector
+### 停止收集器
 
-Collector will be stopped immediately. Action:
+收集器將立即停止。操作：
 
 `info.zamojski.soft.towercollector.COLLECTOR_STOP`
 
-### Start Upload
+### 開始上傳
 
-Upload will be started using configuration from Preferences. Action:
+將使用"設定"中的配置啟動上傳。 操作：
 
 `info.zamojski.soft.towercollector.UPLOADER_START`
 
-### Stop Upload
+### 停止上傳
 
-Upload will be cancelled soon. Action:
+立即停止上傳。操作：
 
 `info.zamojski.soft.towercollector.UPLOADER_STOP`
 
-### Start Export
+### 開始匯出數據
 
-Export will be started using configuration from last run, measurements will be
-kept. Action:
+使用上次執行的配置開始匯出，將保留測量值。 操作：
 
 `info.zamojski.soft.towercollector.EXPORT_START`
 
-### Stop Export
+### 停止導出數據
 
-Export will be cancelled soon. Action:
+取消匯出數據。 操作：
 
 `info.zamojski.soft.towercollector.EXPORT_STOP`
 
 ### Android 8+
 
-On Android Oreo and newer you need to additionally define component package
-name:
+在Android Oreo和更新的版本上，您還需要另外定義元件包名稱：
 
 `info.zamojski.soft.towercollector`
