@@ -526,4 +526,5 @@
     <string name="preferences_t0st_contributor_anonymous_title">Anonyymi osallistuminen</string>
     <string name="preferences_t0st_contributor_anonymous_on_summary">Anonyymiä vastausta käytetään.</string>
     <string name="preferences_t0st_contributor_anonymous_off_summary">Avustajanimeä käytetään.</string>
+    <string name="main_map_share_button">Jaa koordinaatit</string>
 </resources>
