@@ -1,83 +1,45 @@
 <!-- This Source Code Form is subject to the terms of the Mozilla Public -->
 <!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
 <!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-The privacy is very important, so the application collect and transmit only the
-required information to provide the services. The application does NOT collect,
-store or send any information that could personally identify you, your device or
-any other personal information.
+隱私非常重要，因此應用程式僅收集和傳輸所需的資訊以提供服務。該應用程式不會收集，儲存或發送任何可個人識別您，您的裝置或任何其他個人資訊。
 
-**If you do not agree to this privacy policy, please do not install or uninstall
-the application. Permanently removing the application from the mobile device is
-equivalent to terminating the use of the application.**
+**如果您不同意此隱私權政策，請不要安裝或解除安裝應用程式。從行動裝置中永久刪除該應用程式等同於終止該應用程式的使用。 **
 
-### The main functions
+### 主要功能
 
-The main functionality of the application is to collect cell tower identifiers,
-signal strength and the device location (coordinates). This information is
-stored locally on your device and will never be transmitted without your
-explicit consent and action. The collected data can be exported to the file
-persisted on your device or shared to OpenCellID.org and BeaconDB projects. To
-ensure the privacy is protected, the application does NOT use any proxy server
-that could access your data in transit. All the traffic to external services is
-encrypted using HTTPS protocol.
+該應用程式的主要功能是收集基地台標識符、訊號強度和設備位置（座標）。這些資訊儲存在您的裝置本地，未經您的明確同意和操作，絕不會傳輸給任何第三方。收集到的資料可以匯出到裝置上的檔案中，也可以分享到
+OpenCellID.org 和 BeaconDB
+專案。為了確保您的隱私安全，該應用程式不使用任何可能在傳輸過程中存取您資料的代理伺服器。所有與外部服務的通訊均使用 HTTPS 協定加密。
 
-**Contribution to the OpenCellID.org** project requires a personal Access Token
-(API Key) that needs to be entered in the application preferences. The key will
-only be used to upload the measurements to the project database and will never
-leave the device in any other scenario. Anybody who knows the Access Token has
-full control over the uploaded data, including browsing and deleting. It\'s your
-responsibility to protect the confidentiality of your Access Token!
+為 **OpenCellID.org** 專案做出貢獻需要一個個人存取權杖（API
+金鑰），該金鑰需要在應用程式首選項中輸入。此密鑰僅用於將測量資料上傳到專案資料庫，在任何其他情況下都不會離開裝置。任何知道此存取權杖的人都擁有對已上傳資料的完全控制權，包括瀏覽和刪除。保護您的存取令牌的機密性是您的責任！
 
-- [The OpenCellID.org privacy policy](https://community.opencellid.org/privacy)
-- [The BeaconDB privacy notice](https://beacondb.net/privacy/)
-- [The @t0stbrot privacy policy](https://t0stbrot.net/info)
+- [OpenCellID.org隐私权政策](https://community.opencellid.org/privacy)
+- [BeaconDB隐私声明](https://beacondb.net/privacy/)
+- [@t0stbrot 隐私政策](https://t0stbrot.net/info)
 
-Most of the features of the application require the **foreground location
-permission**, however, to start collecting measurements at device startup, the
-**background location permission** must be granted. The background location
-permission is required because, in this scenario, collecting is initiated by the
-system (in background), not by you (in foreground).
+該應用程式的大多數功能都需要**前台位置權限**，但是，要在設備啟動時開始收集測量值，必須授予**後台位置權限**。需要後台位置權限，是因為在這種情況下，收集是由系統（在背景）而不是您（在前台）啟動的。
 
-### The optional functions
+### 選用功能
 
-The **map** feature uses the services provided by OpenStreetMap under [the terms
-of use](https://wiki.osmfoundation.org/wiki/Terms_of_Use).
+**地圖**功能使用OpenStreetMap在[使用條款](https://wiki.osmfoundation.org/wiki/Terms_of_Use)下提供的服務。
 
-The **automatic update check** feature connects to the server to check if there
-is available a newer version of the application. The request contains the
-version of installed application and it is executed on the start of the
-application once a day.
+**自動更新檢查**功能連接到伺服器，以檢查是否有可用的較新版本的應用程式。 該請求包含已安裝應用程式的版本，並且每天在應用程式啟動時執行一次。
 
-The **Contact developer** feature will create a new email message in the
-selected email client. The message includes the following technical information
-about the device in order to help in troubleshooting:
+**聯絡開發人員**功能將在選定的電子郵件用戶端中建立新的電子郵件。該訊息包括有關設備的以下技術信息，以幫助進行故障排除：
 
-- The application version
-- The Android version
-- The device manufacturer and model
+- 应用版本
+- 安卓版
+- 設備製造商和型號
 
-The **Export preferences** or **Export database** feature will copy the
-application preferences or database to the dedicated folder on your device. If
-the files are placed on the shared memory, that any other application has access
-to, then the sensitive data (like the OpenCellID Access Token) may be
-unprotected.
+**匯出首選項**或**匯出資料庫**功能會將應用程式首選項或資料庫複製到裝置上的專用資料夾中。如果將檔案放置在任何其他應用程式都可以存取的共享記憶體上，則敏感資料（如OpenCellID存取權杖）可能不受保護。
 
-The **file logging at Debug level** feature will create very detailed log files
-in the dedicated folder on your device. The log may contain the sensitive
-information, like your current location and the cell tower your device is
-connected to. This option should only be used temporarily for troubleshooting.
+啟用**偵錯等級檔案日誌記錄**功能後，會在您裝置的指定資料夾中建立非常詳細的日誌檔案。日誌可能包含敏感訊息，例如您的當前位置以及裝置連接的基地台。此選項僅應暫時用於故障排除。
 
-### The troubleshooting helpers
+### 故障排除助手
 
-The application collects **the anonymous usage statistics**. The data is shared
-only with the developer, in order to help to better understand how application
-is being used, what are the execution times of various functions and what are
-the most popular features. The collected data is used to improve overall
-performance, usability and user experience. The data is collected using third
-party Google Analytics for Firebase library provided by Google under [the
-Google's privacy policy](https://policies.google.com/privacy).
+该应用程序收集**匿名使用统计信息**。数据仅与开发人员共享，以帮助更好地了解应用程序的使用方式，各种功能的执行时间以及最受欢迎的功能。收集的数据用于改善整体性能，可用性和用户体验。这些数据是由Google[
+Google的隐私政策](https://policies.google.com/privacy)提供的第三方Google Analytics for
+Firebase库收集的。
 
-The application has built-in the **automated crash reporting** system. The
-application failure reports are shared only with the developer and contain
-information about crash cause and device configuration. It does NOT include any
-information that can use used to identify you or the device.
+該應用程式內建了**自動崩潰報告**系統。應用程式故障報告僅與開發人員共享，並且包含有關崩潰原因和設備配置的資訊。它不包括任何可用於識別您或設備的資訊。
