@@ -57,16 +57,15 @@
                     <TableRow
                         android:id="@+id/main_last_network_type_tablerow1"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:longClickable="true"
-                        android:onClick="displayHelpOnClick">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/main_last_network_type_label_textview1"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="displayHelpOnClick"
                             android:padding="@dimen/padding_small"
                             android:text="@string/main_last_network_type_label"
                             tools:context=".MainActivity" />
@@ -75,6 +74,7 @@
                             android:id="@+id/main_last_network_type_value_textview1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:longClickable="true"
                             android:padding="@dimen/padding_small"
                             tools:context=".MainActivity"
                             tools:text="UMTS" />
@@ -83,16 +83,15 @@
                     <TableRow
                         android:id="@+id/main_last_long_cell_id_tablerow1"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:longClickable="true"
-                        android:onClick="displayHelpOnClick">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/main_last_long_cell_id_label_textview1"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="displayHelpOnClick"
                             android:padding="@dimen/padding_small"
                             android:text="@string/main_last_long_cell_id_label"
                             tools:context=".MainActivity" />
@@ -101,6 +100,7 @@
                             android:id="@+id/main_last_long_cell_id_value_textview1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:longClickable="true"
                             android:padding="@dimen/padding_small"
                             tools:context=".MainActivity"
                             tools:text="12345678" />
@@ -109,16 +109,15 @@
                     <TableRow
                         android:id="@+id/main_last_cell_id_rnc_tablerow1"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:longClickable="true"
-                        android:onClick="displayHelpOnClick">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/main_last_cell_id_rnc_label_textview1"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="displayHelpOnClick"
                             android:padding="@dimen/padding_small"
                             android:text="@string/main_last_cell_id_rnc_label"
                             tools:context=".MainActivity" />
@@ -127,6 +126,7 @@
                             android:id="@+id/main_last_cell_id_rnc_value_textview1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:longClickable="true"
                             android:padding="@dimen/padding_small"
                             tools:context=".MainActivity"
                             tools:text="24910 / 188" />
@@ -135,16 +135,15 @@
                     <TableRow
                         android:id="@+id/main_last_cell_id_tablerow1"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:longClickable="true"
-                        android:onClick="displayHelpOnClick">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/main_last_cell_id_label_textview1"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="displayHelpOnClick"
                             android:padding="@dimen/padding_small"
                             android:text="@string/main_last_cell_id_label"
                             tools:context=".MainActivity" />
@@ -153,6 +152,7 @@
                             android:id="@+id/main_last_cell_id_value_textview1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:longClickable="true"
                             android:padding="@dimen/padding_small"
                             tools:context=".MainActivity"
                             tools:text="12345678" />
@@ -161,16 +161,15 @@
                     <TableRow
                         android:id="@+id/main_last_lac_tablerow1"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:longClickable="true"
-                        android:onClick="displayHelpOnClick">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/main_last_lac_label_textview1"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="displayHelpOnClick"
                             android:padding="@dimen/padding_small"
                             android:text="@string/main_last_lac_label"
                             tools:context=".MainActivity" />
@@ -179,6 +178,7 @@
                             android:id="@+id/main_last_lac_value_textview1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:longClickable="true"
                             android:padding="@dimen/padding_small"
                             tools:context=".MainActivity"
                             tools:text="12" />
@@ -187,16 +187,15 @@
                     <TableRow
                         android:id="@+id/main_last_mcc_tablerow1"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:longClickable="true"
-                        android:onClick="displayHelpOnClick">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/main_last_mcc_label_textview1"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="displayHelpOnClick"
                             android:padding="@dimen/padding_small"
                             android:text="@string/main_last_mcc_label"
                             tools:context=".MainActivity" />
@@ -205,6 +204,7 @@
                             android:id="@+id/main_last_mcc_value_textview1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:longClickable="true"
                             android:padding="@dimen/padding_small"
                             tools:context=".MainActivity"
                             tools:text="123" />
@@ -213,16 +213,15 @@
                     <TableRow
                         android:id="@+id/main_last_mnc_tablerow1"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:longClickable="true"
-                        android:onClick="displayHelpOnClick">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/main_last_mnc_label_textview1"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="displayHelpOnClick"
                             android:padding="@dimen/padding_small"
                             android:text="@string/main_last_mnc_label"
                             tools:context=".MainActivity" />
@@ -231,6 +230,7 @@
                             android:id="@+id/main_last_mnc_value_textview1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:longClickable="true"
                             android:padding="@dimen/padding_small"
                             tools:context=".MainActivity"
                             tools:text="45" />
@@ -239,16 +239,15 @@
                     <TableRow
                         android:id="@+id/main_last_signal_strength_tablerow1"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:longClickable="true"
-                        android:onClick="displayHelpOnClick">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/main_last_signal_strength_label_textview1"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="displayHelpOnClick"
                             android:padding="@dimen/padding_small"
                             android:text="@string/main_last_signal_strength_label"
                             tools:context=".MainActivity" />
@@ -257,6 +256,7 @@
                             android:id="@+id/main_last_signal_strength_value_textview1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:longClickable="true"
                             android:padding="@dimen/padding_small"
                             tools:context=".MainActivity"
                             tools:text="-70 dBm" />
@@ -285,16 +285,15 @@
                     <TableRow
                         android:id="@+id/main_last_network_type_tablerow2"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:longClickable="true"
-                        android:onClick="displayHelpOnClick">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/main_last_network_type_label_textview2"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="displayHelpOnClick"
                             android:padding="@dimen/padding_small"
                             android:text="@string/main_last_network_type_label"
                             tools:context=".MainActivity" />
@@ -303,6 +302,7 @@
                             android:id="@+id/main_last_network_type_value_textview2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:longClickable="true"
                             android:padding="@dimen/padding_small"
                             tools:context=".MainActivity"
                             tools:text="UMTS" />
@@ -311,16 +311,15 @@
                     <TableRow
                         android:id="@+id/main_last_long_cell_id_tablerow2"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:longClickable="true"
-                        android:onClick="displayHelpOnClick">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/main_last_long_cell_id_label_textview2"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="displayHelpOnClick"
                             android:padding="@dimen/padding_small"
                             android:text="@string/main_last_long_cell_id_label"
                             tools:context=".MainActivity" />
@@ -329,6 +328,7 @@
                             android:id="@+id/main_last_long_cell_id_value_textview2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:longClickable="true"
                             android:padding="@dimen/padding_small"
                             tools:context=".MainActivity"
                             tools:text="12345678" />
@@ -337,16 +337,15 @@
                     <TableRow
                         android:id="@+id/main_last_cell_id_rnc_tablerow2"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:longClickable="true"
-                        android:onClick="displayHelpOnClick">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/main_last_cell_id_rnc_label_textview2"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="displayHelpOnClick"
                             android:padding="@dimen/padding_small"
                             android:text="@string/main_last_cell_id_rnc_label"
                             tools:context=".MainActivity" />
@@ -355,6 +354,7 @@
                             android:id="@+id/main_last_cell_id_rnc_value_textview2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:longClickable="true"
                             android:padding="@dimen/padding_small"
                             tools:context=".MainActivity"
                             tools:text="24910 / 188" />
@@ -363,16 +363,15 @@
                     <TableRow
                         android:id="@+id/main_last_cell_id_tablerow2"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:longClickable="true"
-                        android:onClick="displayHelpOnClick">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/main_last_cell_id_label_textview2"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="displayHelpOnClick"
                             android:padding="@dimen/padding_small"
                             android:text="@string/main_last_cell_id_label"
                             tools:context=".MainActivity" />
@@ -381,6 +380,7 @@
                             android:id="@+id/main_last_cell_id_value_textview2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:longClickable="true"
                             android:padding="@dimen/padding_small"
                             tools:context=".MainActivity"
                             tools:text="12345678" />
@@ -389,16 +389,15 @@
                     <TableRow
                         android:id="@+id/main_last_lac_tablerow2"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:longClickable="true"
-                        android:onClick="displayHelpOnClick">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/main_last_lac_label_textview2"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="displayHelpOnClick"
                             android:padding="@dimen/padding_small"
                             android:text="@string/main_last_lac_label"
                             tools:context=".MainActivity" />
@@ -407,6 +406,7 @@
                             android:id="@+id/main_last_lac_value_textview2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:longClickable="true"
                             android:padding="@dimen/padding_small"
                             tools:context=".MainActivity"
                             tools:text="12" />
@@ -415,16 +415,15 @@
                     <TableRow
                         android:id="@+id/main_last_mcc_tablerow2"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:longClickable="true"
-                        android:onClick="displayHelpOnClick">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/main_last_mcc_label_textview2"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="displayHelpOnClick"
                             android:padding="@dimen/padding_small"
                             android:text="@string/main_last_mcc_label"
                             tools:context=".MainActivity" />
@@ -433,6 +432,7 @@
                             android:id="@+id/main_last_mcc_value_textview2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:longClickable="true"
                             android:padding="@dimen/padding_small"
                             tools:context=".MainActivity"
                             tools:text="123" />
@@ -441,16 +441,15 @@
                     <TableRow
                         android:id="@+id/main_last_mnc_tablerow2"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:longClickable="true"
-                        android:onClick="displayHelpOnClick">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/main_last_mnc_label_textview2"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="displayHelpOnClick"
                             android:padding="@dimen/padding_small"
                             android:text="@string/main_last_mnc_label"
                             tools:context=".MainActivity" />
@@ -459,6 +458,7 @@
                             android:id="@+id/main_last_mnc_value_textview2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:longClickable="true"
                             android:padding="@dimen/padding_small"
                             tools:context=".MainActivity"
                             tools:text="45" />
@@ -467,16 +467,15 @@
                     <TableRow
                         android:id="@+id/main_last_signal_strength_tablerow2"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:longClickable="true"
-                        android:onClick="displayHelpOnClick">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/main_last_signal_strength_label_textview2"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="displayHelpOnClick"
                             android:padding="@dimen/padding_small"
                             android:text="@string/main_last_signal_strength_label"
                             tools:context=".MainActivity" />
@@ -485,6 +484,7 @@
                             android:id="@+id/main_last_signal_strength_value_textview2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:longClickable="true"
                             android:padding="@dimen/padding_small"
                             tools:context=".MainActivity"
                             tools:text="-70 dBm" />
@@ -512,16 +512,15 @@
                     <TableRow
                         android:id="@+id/main_last_number_of_cells_tablerow"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:longClickable="true"
-                        android:onClick="displayHelpOnClick">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/main_last_number_of_cells_label_textview"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="displayHelpOnClick"
                             android:padding="@dimen/padding_small"
                             android:text="@string/main_last_number_of_cells_label"
                             tools:context=".MainActivity" />
@@ -530,6 +529,7 @@
                             android:id="@+id/main_last_number_of_cells_value_textview"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:longClickable="true"
                             android:padding="@dimen/padding_small"
                             tools:context=".MainActivity"
                             tools:text="1 / 3" />
@@ -538,16 +538,15 @@
                     <TableRow
                         android:id="@+id/main_last_latitude_tablerow"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:longClickable="true"
-                        android:onClick="displayHelpOnClick">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/main_last_latitude_label_textview"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="displayHelpOnClick"
                             android:padding="@dimen/padding_small"
                             android:text="@string/main_last_latitude_label"
                             tools:context=".MainActivity" />
@@ -556,6 +555,9 @@
                             android:id="@+id/main_last_latitude_value_textview"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:longClickable="true"
                             android:padding="@dimen/padding_small"
                             tools:context=".MainActivity"
                             tools:text="12.34567890&#176;" />
@@ -564,16 +566,15 @@
                     <TableRow
                         android:id="@+id/main_last_longitude_tablerow"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:longClickable="true"
-                        android:onClick="displayHelpOnClick">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/main_last_longitude_label_textview"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="displayHelpOnClick"
                             android:padding="@dimen/padding_small"
                             android:text="@string/main_last_longitude_label"
                             tools:context=".MainActivity" />
@@ -582,6 +583,9 @@
                             android:id="@+id/main_last_longitude_value_textview"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:longClickable="true"
                             android:padding="@dimen/padding_small"
                             tools:context=".MainActivity"
                             tools:text="-0.123456789&#176;" />
@@ -590,16 +594,15 @@
                     <TableRow
                         android:id="@+id/main_last_gps_accuracy_tablerow"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:longClickable="true"
-                        android:onClick="displayHelpOnClick">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/main_last_gps_accuracy_label_textview"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="displayHelpOnClick"
                             android:padding="@dimen/padding_small"
                             android:text="@string/main_last_gps_accuracy_label"
                             tools:context=".MainActivity" />
@@ -608,6 +611,7 @@
                             android:id="@+id/main_last_gps_accuracy_value_textview"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:longClickable="true"
                             android:padding="@dimen/padding_small"
                             tools:context=".MainActivity"
                             tools:text="6.00 m" />
@@ -616,16 +620,15 @@
                     <TableRow
                         android:id="@+id/main_last_date_time_tablerow"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:longClickable="true"
-                        android:onClick="displayHelpOnClick">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/main_last_date_time_label_textview"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="displayHelpOnClick"
                             android:padding="@dimen/padding_small"
                             android:text="@string/main_last_date_time_label"
                             tools:context=".MainActivity" />
@@ -634,6 +637,7 @@
                             android:id="@+id/main_last_date_time_value_textview"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:longClickable="true"
                             android:padding="@dimen/padding_small"
                             tools:context=".MainActivity"
                             tools:text="2018-01-01 12:34:56" />

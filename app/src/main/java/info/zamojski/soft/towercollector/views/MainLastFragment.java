@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -29,13 +30,14 @@ import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.NetworkGroup;
 import info.zamojski.soft.towercollector.events.MeasurementSavedEvent;
 import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
+import info.zamojski.soft.towercollector.events.ShowLocationOnMapEvent;
 import info.zamojski.soft.towercollector.model.Cell;
 import info.zamojski.soft.towercollector.model.Measurement;
 import info.zamojski.soft.towercollector.utils.NetworkTypeUtils;
 import info.zamojski.soft.towercollector.utils.UnitConverter;
 import timber.log.Timber;
 
-public class MainLastFragment extends MainFragmentBase implements View.OnLongClickListener {
+public class MainLastFragment extends MainFragmentBase implements View.OnLongClickListener, View.OnClickListener {
 
     private ViewGroup lastCellHasDataViewGroup;
     private ViewGroup lastCellHasNoDataViewGroup;
@@ -87,6 +89,9 @@ public class MainLastFragment extends MainFragmentBase implements View.OnLongCli
     private TextView lastLongitudeValueTextView;
     private TextView lastGpsAccuracyValueTextView;
     private TextView lastDateTimeValueTextView;
+
+    private double lastLatitude = Double.NaN;
+    private double lastLongitude = Double.NaN;
 
     private ClipboardManager clipboardManager;
 
@@ -175,8 +180,10 @@ public class MainLastFragment extends MainFragmentBase implements View.OnLongCli
         lastNumberOfCellsValueTextView.setOnLongClickListener(this);
         lastLatitudeValueTextView = view.findViewById(R.id.main_last_latitude_value_textview);
         lastLatitudeValueTextView.setOnLongClickListener(this);
+        lastLatitudeValueTextView.setOnClickListener(this);
         lastLongitudeValueTextView = view.findViewById(R.id.main_last_longitude_value_textview);
         lastLongitudeValueTextView.setOnLongClickListener(this);
+        lastLongitudeValueTextView.setOnClickListener(this);
         lastGpsAccuracyValueTextView = view.findViewById(R.id.main_last_gps_accuracy_value_textview);
         lastGpsAccuracyValueTextView.setOnLongClickListener(this);
         lastDateTimeValueTextView = view.findViewById(R.id.main_last_date_time_value_textview);
@@ -211,6 +218,9 @@ public class MainLastFragment extends MainFragmentBase implements View.OnLongCli
         Timber.d("printMeasurement(): Printing last measurement %s", measurement);
         int neighboringCellsCount = measurement.getNeighboringCellsCount();
         int mainCellsCount = measurement.getMainCells().size();
+
+        lastLatitude = measurement.getLatitude();
+        lastLongitude = measurement.getLongitude();
 
         lastCellHasDataViewGroup.setVisibility(View.VISIBLE);
         lastCellHasNoDataViewGroup.setVisibility(View.GONE);
@@ -312,6 +322,9 @@ public class MainLastFragment extends MainFragmentBase implements View.OnLongCli
         lastCellHasDataViewGroup.setVisibility(View.GONE);
         lastCellHasNoDataViewGroup.setVisibility(View.VISIBLE);
 
+        lastLatitude = Double.NaN;
+        lastLongitude = Double.NaN;
+
         clearCell(lastNetworkTypeValueTextView1, lastLongCellIdValueTextView1, lastCellIdRncValueTextView1, lastCellIdValueTextView1, lastLacValueTextView1, lastMccValueTextView1, lastMncValueTextView1, lastSignalStrengthValueTextView1);
         clearCell(lastNetworkTypeValueTextView2, lastLongCellIdValueTextView2, lastCellIdRncValueTextView2, lastCellIdValueTextView2, lastLacValueTextView2, lastMccValueTextView2, lastMncValueTextView2, lastSignalStrengthValueTextView2);
 
@@ -331,6 +344,20 @@ public class MainLastFragment extends MainFragmentBase implements View.OnLongCli
         lastMccValueTextView.setText("");
         lastMncValueTextView.setText("");
         lastSignalStrengthValueTextView.setText("");
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        if (id == R.id.main_last_latitude_value_textview || id == R.id.main_last_longitude_value_textview) {
+            onCoordinatesClick();
+        }
+    }
+
+    private void onCoordinatesClick() {
+        if (!Double.isNaN(lastLatitude) && !Double.isNaN(lastLongitude)) {
+            EventBus.getDefault().post(new ShowLocationOnMapEvent(lastLatitude, lastLongitude));
+        }
     }
 
     @Override

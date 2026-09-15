@@ -89,6 +89,7 @@ import info.zamojski.soft.towercollector.events.GpsStatusChangedEvent;
 import info.zamojski.soft.towercollector.events.MapEnabledChangedEvent;
 import info.zamojski.soft.towercollector.events.PowerSaveModeChangedEvent;
 import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
+import info.zamojski.soft.towercollector.events.ShowLocationOnMapEvent;
 import info.zamojski.soft.towercollector.events.SystemTimeChangedEvent;
 import info.zamojski.soft.towercollector.export.ExportProgressDialogFragment;
 import info.zamojski.soft.towercollector.export.ExportWorker;
@@ -427,6 +428,20 @@ public class MainActivity extends AppCompatActivity
         viewPager.getAdapter().notifyDataSetChanged();
     }
 
+    private NetworkGroup getNetworkGroupTag(View view) {
+        Object tag = view.getTag();
+        if (tag instanceof NetworkGroup) {
+            return (NetworkGroup) tag;
+        }
+        if (view.getParent() instanceof View) {
+            tag = ((View) view.getParent()).getTag();
+            if (tag instanceof NetworkGroup) {
+                return (NetworkGroup) tag;
+            }
+        }
+        return null;
+    }
+
     // have to be public to prevent Force Close
     public void displayHelpOnClick(View view) {
         int titleId = View.NO_ID;
@@ -457,65 +472,66 @@ public class MainActivity extends AppCompatActivity
         } else if (viewId == R.id.main_stats_global_cells_tablerow) {
             titleId = R.string.main_help_global_cells_title;
             messageId = R.string.main_help_global_cells_description;
-        } else if (viewId == R.id.main_last_number_of_cells_tablerow) {
+        } else if (viewId == R.id.main_last_number_of_cells_label_textview) {
             titleId = R.string.mail_help_last_number_of_cells_title;
             messageId = R.string.mail_help_last_number_of_cells_description;
-        } else if (viewId == R.id.main_last_network_type_tablerow1 || viewId == R.id.main_last_network_type_tablerow2) {
+        } else if (viewId == R.id.main_last_network_type_label_textview1 || viewId == R.id.main_last_network_type_label_textview2) {
             titleId = R.string.main_help_last_network_type_title;
             messageId = R.string.main_help_last_network_type_description;
-        } else if (viewId == R.id.main_last_long_cell_id_tablerow1 || viewId == R.id.main_last_long_cell_id_tablerow2) {
+        } else if (viewId == R.id.main_last_long_cell_id_label_textview1 || viewId == R.id.main_last_long_cell_id_label_textview2) {
             titleId = R.string.main_help_last_long_cell_id_title;
             messageId = R.string.main_help_last_long_cell_id_description;
-            NetworkGroup tag = (NetworkGroup) view.getTag();
+            NetworkGroup tag = getNetworkGroupTag(view);
             if (tag == NetworkGroup.Lte) {
                 additionalMessageId = R.string.main_help_last_long_cell_id_description_lte;
             } else if (tag == NetworkGroup.Wcdma) {
                 additionalMessageId = R.string.main_help_last_long_cell_id_description_umts;
             }
-        } else if (viewId == R.id.main_last_cell_id_rnc_tablerow1 || viewId == R.id.main_last_cell_id_rnc_tablerow2) {
+        } else if (viewId == R.id.main_last_cell_id_rnc_label_textview1 || viewId == R.id.main_last_cell_id_rnc_label_textview2) {
             titleId = R.string.main_help_last_cell_id_rnc_title;
             messageId = R.string.main_help_last_cell_id_rnc_description;
-        } else if (viewId == R.id.main_last_cell_id_tablerow1 || viewId == R.id.main_last_cell_id_tablerow2) {
+        } else if (viewId == R.id.main_last_cell_id_label_textview1 || viewId == R.id.main_last_cell_id_label_textview2) {
             titleId = R.string.main_help_last_cell_id_title;
             messageId = R.string.main_help_last_cell_id_description;
-            NetworkGroup tag = (NetworkGroup) view.getTag();
+            NetworkGroup tag = getNetworkGroupTag(view);
             if (tag == NetworkGroup.Cdma) {
                 titleId = R.string.main_help_last_bid_title;
             }
-        } else if (viewId == R.id.main_last_lac_tablerow1 || viewId == R.id.main_last_lac_tablerow2) {
+        } else if (viewId == R.id.main_last_lac_label_textview1 || viewId == R.id.main_last_lac_label_textview2) {
             titleId = R.string.main_help_last_lac_title;
             messageId = R.string.main_help_last_lac_description;
-            NetworkGroup tag = (NetworkGroup) view.getTag();
+            NetworkGroup tag = getNetworkGroupTag(view);
+            Timber.d("displayHelpOnClick(): Tag = %s", tag);
             if (tag == NetworkGroup.Lte || tag == NetworkGroup.Nr) {
                 titleId = R.string.main_help_last_tac_title;
             } else if (tag == NetworkGroup.Cdma) {
                 titleId = R.string.main_help_last_nid_title;
                 messageId = R.string.main_help_last_nid_description;
             }
-        } else if (viewId == R.id.main_last_mcc_tablerow1 || viewId == R.id.main_last_mcc_tablerow2) {
+        } else if (viewId == R.id.main_last_mcc_label_textview1 || viewId == R.id.main_last_mcc_label_textview2) {
             titleId = R.string.main_help_last_mcc_title;
             messageId = R.string.main_help_last_mcc_description;
-        } else if (viewId == R.id.main_last_mnc_tablerow1 || viewId == R.id.main_last_mnc_tablerow2) {
+        } else if (viewId == R.id.main_last_mnc_label_textview1 || viewId == R.id.main_last_mnc_label_textview2) {
             titleId = R.string.main_help_last_mnc_title;
             messageId = R.string.main_help_last_mnc_description;
-            NetworkGroup tag = (NetworkGroup) view.getTag();
+            NetworkGroup tag = getNetworkGroupTag(view);
             if (tag == NetworkGroup.Cdma) {
                 titleId = R.string.main_help_last_sid_title;
                 messageId = R.string.main_help_last_sid_description;
             }
-        } else if (viewId == R.id.main_last_signal_strength_tablerow1 || viewId == R.id.main_last_signal_strength_tablerow2) {
+        } else if (viewId == R.id.main_last_signal_strength_label_textview1 || viewId == R.id.main_last_signal_strength_label_textview2) {
             titleId = R.string.main_help_last_signal_strength_title;
             messageId = R.string.main_help_last_signal_strength_description;
-        } else if (viewId == R.id.main_last_latitude_tablerow) {
+        } else if (viewId == R.id.main_last_latitude_label_textview) {
             titleId = R.string.main_help_last_latitude_title;
             messageId = R.string.main_help_last_latitude_description;
-        } else if (viewId == R.id.main_last_longitude_tablerow) {
+        } else if (viewId == R.id.main_last_longitude_label_textview) {
             titleId = R.string.main_help_last_longitude_title;
             messageId = R.string.main_help_last_longitude_description;
-        } else if (viewId == R.id.main_last_gps_accuracy_tablerow) {
+        } else if (viewId == R.id.main_last_gps_accuracy_label_textview) {
             titleId = R.string.main_help_last_gps_accuracy_title;
             messageId = R.string.main_help_last_gps_accuracy_description;
-        } else if (viewId == R.id.main_last_date_time_tablerow) {
+        } else if (viewId == R.id.main_last_date_time_label_textview) {
             titleId = R.string.main_help_last_date_time_title;
             messageId = R.string.main_help_last_date_time_description;
         } else if (viewId == R.id.main_stats_to_upload_ocid_locations_tablerow) {
@@ -611,7 +627,7 @@ public class MainActivity extends AppCompatActivity
         alertDialog.setCancelable(true);
         alertDialog.setTitle(R.string.updater_dialog_new_version_available);
         // load data
-        ArrayAdapter<UpdateInfo.DownloadLink> adapter = new UpdateDialogArrayAdapter(alertDialog.getContext(), inflater, updateInfo.getDownloadLinks());
+        ArrayAdapter<DownloadLink> adapter = new UpdateDialogArrayAdapter(alertDialog.getContext(), inflater, updateInfo.getDownloadLinks());
         ListView listView = (ListView) dialogLayout.findViewById(R.id.download_options_list);
         listView.setAdapter(adapter);
         // bind events
@@ -1799,5 +1815,15 @@ public class MainActivity extends AppCompatActivity
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onEvent(MapEnabledChangedEvent event) {
         refreshTabs();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(ShowLocationOnMapEvent event) {
+        if (MyApplication.getPreferencesProvider().isMainMapEnabled() && tabLayout != null && tabLayout.getTabCount() > 2) {
+            Tab tab = tabLayout.getTabAt(2);
+            if (tab != null) {
+                tab.select();
+            }
+        }
     }
 }

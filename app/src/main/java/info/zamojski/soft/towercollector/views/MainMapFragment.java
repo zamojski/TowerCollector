@@ -72,6 +72,7 @@ import info.zamojski.soft.towercollector.controls.DialogManager;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.events.MeasurementSavedEvent;
 import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
+import info.zamojski.soft.towercollector.events.ShowLocationOnMapEvent;
 import info.zamojski.soft.towercollector.map.FollowMyLocationOverlay;
 import info.zamojski.soft.towercollector.model.Boundaries;
 import info.zamojski.soft.towercollector.model.MapCell;
@@ -504,6 +505,16 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(PrintMainWindowEvent event) {
         reloadMarkers(true);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(ShowLocationOnMapEvent event) {
+        Timber.d("onEvent(): Show location on map: %s, %s", event.getLatitude(), event.getLongitude());
+        if (mainMapView != null) {
+            GeoPoint point = new GeoPoint(event.getLatitude(), event.getLongitude());
+            mainMapView.getController().animateTo(point);
+            setFollowMe(false);
+        }
     }
 
     @Override
