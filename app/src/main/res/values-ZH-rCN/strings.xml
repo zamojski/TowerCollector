@@ -526,4 +526,5 @@
     <string name="preferences_t0st_contributor_anonymous_title">匿名投稿</string>
     <string name="preferences_t0st_contributor_anonymous_on_summary">我们将使用匿名捐款。</string>
     <string name="preferences_t0st_contributor_anonymous_off_summary">将会使用贡献者的姓名。</string>
+    <string name="main_map_share_button">分享坐标</string>
 </resources>

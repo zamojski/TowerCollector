@@ -526,4 +526,5 @@
     <string name="preferences_t0st_contributor_anonymous_title">Névtelen hozzászólás</string>
     <string name="preferences_t0st_contributor_anonymous_on_summary">A névtelen hozzászólást fogjuk felhasználni.</string>
     <string name="preferences_t0st_contributor_anonymous_off_summary">A közreműködő neve lesz használva.</string>
+    <string name="main_map_share_button">Koordináták megosztása</string>
 </resources>

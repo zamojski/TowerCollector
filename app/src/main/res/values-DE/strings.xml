@@ -526,4 +526,5 @@
     <string name="preferences_t0st_contributor_anonymous_title">Anonymer Beitrag</string>
     <string name="preferences_t0st_contributor_anonymous_on_summary">Der anonyme Beitrag wird verwendet.</string>
     <string name="preferences_t0st_contributor_anonymous_off_summary">Der Name des Beitragenden wird verwendet.</string>
+    <string name="main_map_share_button">Koordinaten teilen</string>
 </resources>

@@ -1,0 +1,20 @@
+Tower Collector memberi Anda kesempatan untuk berkontribusi dalam proyek OpenCellID.org, BeaconDB, dan @t0stbrot dengan mengunggah lokasi GPS menara seluler GSM/UMTS/LTE/CDMA/TD-SCDMA/5G (NR) dari area Anda. Pengukuran ini membantu memetakan jangkauan jaringan telepon seluler. Anda dapat menggunakan aplikasi ini untuk mengumpulkan data untuk keperluan pribadi dan mengekspornya ke berbagai file.
+
+Beberapa fitur:
+• Parameter GPS yang dioptimalkan secara khusus untuk mengurangi konsumsi baterai
+• Unggah ke proyek OpenCellID.org, BeaconDB, dan @t0stbrot
+• Ekspor ke kartu SD sebagai CSV, JSON, GPX, KML, dan KMZ.
+• Bebas iklan, selamanya!
+
+Tujuan proyek OpenCellID.org adalah untuk menciptakan basis data sumber terbuka di seluruh dunia tentang lokasi seluler. Tower Collector memberi Anda kesempatan untuk berkontribusi dalam proyek OpenCellID dengan mengunggah lokasi menara seluler dari area Anda. Data yang dikumpulkan dapat digunakan untuk dengan cepat menemukan perangkat tanpa mengaktifkan GPS.
+
+BeaconDB adalah basis data publik yang mengumpulkan informasi lokasi tentang infrastruktur nirkabel umum (menara seluler, titik akses WiFi, beacon Bluetooth). Data menara seluler yang Anda sumbangkan akan dikumpulkan dan dirilis ke publik di bawah lisensi ""Creative Commons (CC-0)"".
+
+@t0stbrot adalah basis data publik yang mengumpulkan lokasi menara seluler. Data menara seluler yang Anda sumbangkan akan dikumpulkan dan dirilis ke publik di bawah lisensi ""Creative Commons Attribution-ShareAlike 4.0 (CC BY-SA 4.0)"".
+
+
+Silakan bantu saya menerjemahkannya ke bahasa lain, kunjungi https://i18n.zamojski.ovh/
+
+Aplikasi ini tidak mengumpulkan, menyimpan, atau mengirim informasi apa pun yang dapat digunakan untuk mengidentifikasi pengguna, perangkat yang digunakan, atau informasi pribadi lainnya secara langsung.
+
+LAPORAN BUG DAN PERMINTAAN FITUR SILAKAN KIRIM MELALUI EMAIL ATAU MASALAH GITHUB.
