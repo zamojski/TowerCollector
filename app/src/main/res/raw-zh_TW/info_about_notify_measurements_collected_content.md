@@ -1,19 +1,14 @@
 <!-- This Source Code Form is subject to the terms of the Mozilla Public -->
 <!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
 <!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-Tower Collector can notify other apps installed on the system by broadcasting
-*intents*. For more information how to listen for and consume such notifications
-check that app\'s help.
+Tower Collector可以透過廣播 *intents*來通知系統上安裝的其他應用程式。 有關如何監聽和使用此類通知的更多信息，請檢查應用的幫助。
 
-### Measurements collected event
+### 測量收集事件
 
-Collector can send an intent every time new set of measurements is collected if
-set in Preferences. The content of notification will be a JSON structure with
-common things like time and GPS extracted. Field names and values are mapped the
-same way as in exported CSV file.
+如果在"設定"中配置，則每次收集新的測量集時，收集器都可以發送意圖。 通知內容將是一個JSON結構，其中包含時間和GPS等常見內容。
+欄位名稱和值的對應方式與匯出的CSV檔案中的對應方式相同。
 
-List of fields used by cells depend on type (net_type). Unsupported or missing
-values will be set to `null`.
+單元格使用的欄位清單取決於類型（net_type）。 不支援或缺少的值將設定為 `null`。
 
 - GSM - mcc, mnc, lac, cell_id, asu, dbm, ta, rssi, arfcn
 - UMTS - mcc, mnc, lac, cell_id, short_cell_id, rnc, psc, asu, dbm, ec_no, arfcn
@@ -25,15 +20,15 @@ values will be set to `null`.
   csi_rsrq, csi_sinr, ss_rsrp, ss_rsrq, ss_sinr, arfcn
 - TD-SCDMA - mcc, mnc, lac, cid → cell_id, cpid → psc, asu, dbm, rscp, arfcn
 
-Action:
+操作：
 
 `info.zamojski.soft.towercollector.MEASUREMENTS_COLLECTED`
 
-Extras key:
+附加鍵：
 
 `measurements`
 
-Extras value example:
+附加價值範例：
 
 ```
 {
