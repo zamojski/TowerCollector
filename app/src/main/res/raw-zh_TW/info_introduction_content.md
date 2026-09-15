@@ -1,28 +1,20 @@
 <!-- This Source Code Form is subject to the terms of the Mozilla Public -->
 <!-- License, v. 2.0. If a copy of the MPL was not distributed with this -->
 <!-- file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-### The purpose
+### 目的
 
-The app is designed to collect GPS coordinates correlated with information about
-mobile cell towers. It is designed to help map the extent of mobile phone
-network coverage.
+此應用旨在收集與行動訊號塔資訊相關的GPS座標。這是為了幫助繪製手機網路覆蓋範圍。
 
-### How to start
+### 如何開始
 
-To start select \'Start collecting\' option (record icon) from menu at the top
-of the screen. Measurements will be collected only when you\'re in range of
-mobile network and GPS gives your position with at least 40 meters accuracy.
+若要從螢幕頂部的選單中選擇"開始收集"選項（記錄圖示）。只有當您處於行動網路範圍內，且GPS提供的位置精度至少達到40米，才會收集測量數據，。
 
-### Next steps
+### 下一步
 
-Collected data can be uploaded to OpenCellID.org, BeaconDB and @t0stbrot.net
-projects or exported to a file. Before first upload you will need to select
-projects you want to contribute to. In case of OpenCellID.org you'll
-additionally need to register for free and enter received access token in
-Preferences. Measurements will be deleted from your device after successful
-upload.
+收集到的資料可以上傳到 OpenCellID.org、BeaconDB 和 @t0stbrot.net
+項目，也可以匯出到檔案。首次上傳前，您需要選擇要貢獻資料的項目。如果是
+OpenCellID.org，您還需要免費註冊，並在「設定」中輸入收到的存取權杖。成功上傳後，測量資料將從您的裝置中刪除。
 
-### More
+### 更多
 
-Best practices and additional information available in Information section in
-Preferences.
+最佳實踐和其它資訊在"配置"的"資訊"部分中。
