@@ -99,9 +99,16 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         Timber.d("startCollectorService(): Starting service from broadcast");
         Intent intent = getCollectorIntent(context, source);
 
-        ContextCompat.startForegroundService(context, intent);
-        EventBus.getDefault().post(new CollectorStartedEvent(intent));
-        ApkUtils.reportShortcutUsage(context, R.string.shortcut_id_collector_toggle);
+        try {
+            ContextCompat.startForegroundService(context, intent);
+            EventBus.getDefault().post(new CollectorStartedEvent(intent));
+            ApkUtils.reportShortcutUsage(context, R.string.shortcut_id_collector_toggle);
+        } catch (IllegalStateException ex) {
+            Timber.e(ex, "startCollectorServiceInternal(): Failed to start foreground service");
+        } catch (SecurityException ex) {
+            Timber.e(ex, "startCollectorServiceInternal(): Security exception starting collector service");
+            showCollectorPermissionsDenied(context);
+        }
     }
 
     public void stopCollectorServiceFromBroadcast(Context context) {

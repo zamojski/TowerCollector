@@ -950,9 +950,17 @@ public class MainActivity extends AppCompatActivity
             // pass analytics data
             intent.putExtra(CollectorService.INTENT_KEY_START_INTENT_SOURCE, IntentSource.User);
             // start service
-            ContextCompat.startForegroundService(this, intent);
-            EventBus.getDefault().post(new CollectorStartedEvent(intent));
-            ApkUtils.reportShortcutUsage(MyApplication.getApplication(), R.string.shortcut_id_collector_toggle);
+            try {
+                ContextCompat.startForegroundService(this, intent);
+                EventBus.getDefault().post(new CollectorStartedEvent(intent));
+                ApkUtils.reportShortcutUsage(MyApplication.getApplication(), R.string.shortcut_id_collector_toggle);
+            } catch (IllegalStateException ex) {
+                Timber.e(ex, "startCollectorServiceInternal(): Failed to start foreground service");
+                Toast.makeText(this, R.string.permission_collector_denied_intent_message, Toast.LENGTH_LONG).show();
+            } catch (SecurityException ex) {
+                Timber.e(ex, "startCollectorServiceInternal(): Security exception starting collector service");
+                Toast.makeText(this, R.string.permission_collector_denied_intent_message, Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -1214,7 +1222,7 @@ public class MainActivity extends AppCompatActivity
         // hack for black text on dark grey background
         View view = snackbar.getView();
         TextView tv = view.findViewById(com.google.android.material.R.id.snackbar_text);
-        tv.setTextColor(Color.WHITE);
+        tv.setTextColor(Color.WHITE);//
         snackbar.show();
     }
 

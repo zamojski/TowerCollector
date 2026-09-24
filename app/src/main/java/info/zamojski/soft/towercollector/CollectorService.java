@@ -141,10 +141,12 @@ public class CollectorService extends Service {
     private SystemTimeValidator systemTimeValidator = new SystemTimeValidator();
 
     private PowerManager powerManager;
-    private PowerManager.WakeLock wakeLock;
+    private WakeLock wakeLock;
 
     private IntentSource startIntentSource = IntentSource.System;
     private int apiVersionUsed;
+
+    private boolean isCreatedSuccessfully = false;
 
     // ========== SERVICE ========== //
 
@@ -199,16 +201,35 @@ public class CollectorService extends Service {
         registerReceiver(locationModeOrProvidersChanged, new IntentFilter(LocationManager.PROVIDERS_CHANGED_ACTION));
         Notification notification = notificationHelper.createNotification(notificationManager, getGpsStatusNotificationText(getGpsStatus()));
         // start as foreground service to prevent from killing
-        if (PermissionUtils.isForegroundServicePermissionAware()) {
-            startForeground(NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
-        } else {
-            startForeground(NOTIFICATION_ID, notification);
+        try {
+            if (PermissionUtils.isForegroundServicePermissionAware()) {
+                startForeground(NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
+            } else {
+                startForeground(NOTIFICATION_ID, notification);
+            }
+            isCreatedSuccessfully = true;
+        } catch (IllegalStateException ex) {
+            Timber.e(ex, "onCreate(): Failed to start foreground service");
+            stopSelf();
+        } catch (SecurityException ex) {
+            Timber.e(ex, "onCreate(): Security exception when starting foreground service");
+            stopSelf();
         }
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
+        if (!isCreatedSuccessfully) {
+            Timber.w("onStartCommand(): Service was not created successfully, stopping");
+            stopSelf();
+            return START_NOT_STICKY;
+        }
+        if (intent == null) {
+            Timber.w("onStartCommand(): Intent is null, stopping");
+            stopSelf();
+            return START_NOT_STICKY;
+        }
         Timber.d("onStartCommand(): Starting service with transport mode %s", transportMode);
         String keepScreenOnModeString = intent.getStringExtra(INTENT_KEY_KEEP_SCREEN_ON_MODE);
         if (keepScreenOnModeString == null)
@@ -306,12 +327,16 @@ public class CollectorService extends Service {
         }
         EventBus.getDefault().postSticky(new GpsStatusChangedEvent());
         EventBus.getDefault().postSticky(new CollectorStateChangedEvent(false));
-        EventBus.getDefault().unregister(this);
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
         unregisterReceiverSafely(stopRequestBroadcastReceiver);
         unregisterReceiverSafely(batteryStatusBroadcastReceiver);
         unregisterReceiverSafely(locationModeOrProvidersChanged);
         long endTime = System.currentTimeMillis();
-        notificationManager.cancel(NOTIFICATION_ID);
+        if (notificationManager != null) {
+            notificationManager.cancel(NOTIFICATION_ID);
+        }
         if (locationManager != null) {
             if (locationListener != null)
                 locationManager.removeUpdates(locationListener);
@@ -330,12 +355,14 @@ public class CollectorService extends Service {
             CollectorQuickSettingsTileService.requestTileUpdate(false);
         }
         long duration = (endTime - startTime);
-        Statistics endStats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
-        int numberOfCollectedLocations = endStats.getLocationsLocal() - startStats.getLocationsLocal();
-        AnalyticsStatistics stats = new AnalyticsStatistics();
-        stats.setLocations(numberOfCollectedLocations);
-        stats.setCells(numberOfCollectedCells);
-        MyApplication.getAnalytics().sendCollectorFinished(startIntentSource, transportMode.name(), apiVersionUsed, duration, stats, collectedCellTypes);
+        if (startStats != null) {
+            Statistics endStats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
+            int numberOfCollectedLocations = endStats.getLocationsLocal() - startStats.getLocationsLocal();
+            AnalyticsStatistics stats = new AnalyticsStatistics();
+            stats.setLocations(numberOfCollectedLocations);
+            stats.setCells(numberOfCollectedCells);
+            MyApplication.getAnalytics().sendCollectorFinished(startIntentSource, transportMode.name(), apiVersionUsed, duration, stats, collectedCellTypes);
+        }
         super.onDestroy();
     }
 
@@ -900,6 +927,11 @@ public class CollectorService extends Service {
         if (broadcastReceiver != null) {
             try {
                 unregisterReceiver(broadcastReceiver);
+            } catch (IllegalArgumentException ex) {
+                Timber.d(ex);
+            }
+            try {
+                MyApplication.getApplication().unregisterReceiver(broadcastReceiver);
             } catch (IllegalArgumentException ex) {
                 Timber.d(ex);
             }
