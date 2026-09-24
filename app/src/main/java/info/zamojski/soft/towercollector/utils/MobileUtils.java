@@ -41,11 +41,17 @@ public class MobileUtils {
 
     private static boolean isApi17CellInfoAvailable(Context context) {
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        if (telephonyManager == null) {
+            return false;
+        }
         List<CellInfo> cells;
         try {
             cells = telephonyManager.getAllCellInfo();
         } catch (SecurityException ex) {
             Timber.d(ex, "isApi17CellInfoAvailable(): Result = location permission is denied");
+            return false;
+        } catch (Exception ex) {
+            Timber.e(ex, "isApi17CellInfoAvailable(): Exception getting cell info");
             return false;
         }
         if (cells == null || cells.size() == 0) {
@@ -72,12 +78,18 @@ public class MobileUtils {
     }
 
     public static boolean isNetMonsterCoreApiCompatible(Context context) {
-        INetMonster netMonster = getNetMonsterCore(context);
         try {
+            INetMonster netMonster = getNetMonsterCore(context);
+            if (netMonster == null) {
+                return false;
+            }
             List<ICell> cells = netMonster.getCells();
-            return !cells.isEmpty();
+            return cells != null && !cells.isEmpty();
         } catch (SecurityException ex) {
             Timber.d(ex, "isNetMonsterCoreApiCompatible(): Result = location permission is denied");
+            return false;
+        } catch (Exception ex) {
+            Timber.e(ex, "isNetMonsterCoreApiCompatible(): Exception in NetMonster Core check");
             return false;
         }
     }

@@ -387,9 +387,9 @@ public class CollectorService extends Service {
         if (getString(R.string.preferences_collector_api_version_entries_value_auto).equals(collectorApiVersion)) {
             // auto detection
             MyApplication.getAnalytics().sendPrefsCollectorApiVersion(0);
-            if (MobileUtils.isNetMonsterCoreApiCompatible(MyApplication.getApplication())) {
+            if (MobileUtils.isNetMonsterCoreApiCompatible(this)) {
                 registerNetMonsterListener();
-            } else if (MobileUtils.isApi17FullyCompatible(MyApplication.getApplication())) {
+            } else if (MobileUtils.isApi17FullyCompatible(this)) {
                 registerApi17PhoneStateListener();
             } else {
                 registerApi1PhoneStateListener();
@@ -494,7 +494,11 @@ public class CollectorService extends Service {
                             TelephonyManager telephonyManager = telephonyTriple.getTelephonyManager();
                             TelephonyManager.CellInfoCallback cellInfoUpdateRequestCallback = (TelephonyManager.CellInfoCallback) telephonyTriple.getCellInfoUpdateRequestCallback();
                             // value is cached and update needs to be requested
-                            telephonyManager.requestCellInfoUpdate(getMainExecutor(), cellInfoUpdateRequestCallback);
+                            try {
+                                telephonyManager.requestCellInfoUpdate(getMainExecutor(), cellInfoUpdateRequestCallback);
+                            } catch (Exception ex) {
+                                Timber.tag(INNER_TAG).e(ex, "run(): Exception requesting cell info update");
+                            }
                         }
                     } else {
                         // value should be refreshed on the call
@@ -509,6 +513,8 @@ public class CollectorService extends Service {
                 } catch (SecurityException ex) {
                     Timber.tag(INNER_TAG).e(ex, "run(): coarse location or phone permission is denied");
                     stopSelf();
+                } catch (Exception ex) {
+                    Timber.tag(INNER_TAG).e(ex, "run(): Exception updating cell info");
                 }
             }
         }, 0, CELL_UPDATE_INTERVAL);
@@ -544,6 +550,8 @@ public class CollectorService extends Service {
                 } catch (SecurityException ex) {
                     Timber.tag(INNER_TAG).e(ex, "onCellLocationChanged(): coarse location or phone permission is denied");
                     stopSelf();
+                } catch (Exception ex) {
+                    Timber.tag(INNER_TAG).e(ex, "onCellLocationChanged(): Exception processing cell location");
                 }
             }
         };
@@ -581,11 +589,22 @@ public class CollectorService extends Service {
 
     private void registerNetMonsterListener() {
         Timber.d("registerNetMonsterListener(): Registering NetMonster Core listener");
-        INetMonster netMonster = MobileUtils.getNetMonsterCore(MyApplication.getApplication());
+        INetMonster netMonster = null;
+        try {
+            netMonster = MobileUtils.getNetMonsterCore(this);
+        } catch (Exception ex) {
+            Timber.e(ex, "registerNetMonsterListener(): Exception initializing NetMonster Core");
+        }
+        if (netMonster == null) {
+            Timber.w("registerNetMonsterListener(): NetMonster Core unavailable, falling back to API 17");
+            registerApi17PhoneStateListener();
+            return;
+        }
         boolean collectNeighboringCells = MyApplication.getPreferencesProvider().getCollectNeighboringCells();
         measurementParser = new MeasurementParserFactory().CreateNetMonsterParser(transportMode.getAccuracy(), collectNeighboringCells);
         getMeasurementParserHandler().post(measurementParser);
 
+        final INetMonster finalNetMonster = netMonster;
         // run scheduled cell listener
         periodicalPhoneStateListener.schedule(new TimerTask() {
             private final String INNER_TAG = CollectorService.class.getSimpleName() + ".Periodical" + PhoneStateListener.class.getSimpleName();
@@ -593,7 +612,7 @@ public class CollectorService extends Service {
             @Override
             public void run() {
                 try {
-                    List<ICell> cells = netMonster.getCells();
+                    List<ICell> cells = finalNetMonster.getCells();
                     if (cells == null) {
                         Timber.tag(INNER_TAG).d("run(): Null reported");
                         return;
@@ -603,6 +622,8 @@ public class CollectorService extends Service {
                 } catch (SecurityException ex) {
                     Timber.tag(INNER_TAG).e(ex, "run(): coarse location or phone permission is denied");
                     stopSelf();
+                } catch (Exception ex) {
+                    Timber.tag(INNER_TAG).e(ex, "run(): Exception fetching cells from NetMonster Core");
                 }
             }
         }, 0, CELL_UPDATE_INTERVAL);
