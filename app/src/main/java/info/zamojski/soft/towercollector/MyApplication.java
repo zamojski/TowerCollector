@@ -99,7 +99,7 @@ public class MyApplication extends Application {
                 }
                 // strange but it happens that app is tested on devices with lower SDK - don't send ACRA reports
                 // also ignore errors caused by system failures
-                if (isSdkVersionSupported() && !hasSystemDied(ex) && !isAndroid10TelephonyManagerLambdaBug(ex) && !hasFileSystemInBadStage(ex)) {
+                if (isSdkVersionSupported() && !hasSystemDied(ex) && !isAndroid10TelephonyManagerLambdaBug(ex) && !hasFileSystemInBadStage(ex) && !isTransientNetworkException(ex)) {
                     if (isDatabaseCorrupted(ex)) {
                         String dbString = DatabaseOperations.getDatabaseBaseString(getApplication());
                         ACRA.getErrorReporter().putCustomData("DB", dbString);
@@ -136,6 +136,12 @@ public class MyApplication extends Application {
                 && containsParcelableException
                 && containsTelephonyManager
                 && containsLambdaOnError;
+    }
+
+    private boolean isTransientNetworkException(Throwable ex) {
+        String stackTrace = getFullStackTrace(ex);
+        return stackTrace.contains("Required SETTINGS preface not received")
+                || stackTrace.contains("Unexpected response code for CONNECT");
     }
 
     private boolean isDatabaseCorrupted(Throwable ex) {

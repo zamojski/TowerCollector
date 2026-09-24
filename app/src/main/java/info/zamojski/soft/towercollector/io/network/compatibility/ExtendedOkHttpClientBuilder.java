@@ -8,6 +8,7 @@ import android.os.Build;
 
 import java.security.KeyStore;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.net.ssl.SSLContext;
@@ -17,13 +18,15 @@ import javax.net.ssl.X509TrustManager;
 
 import okhttp3.ConnectionSpec;
 import okhttp3.OkHttpClient;
+import okhttp3.Protocol;
 import okhttp3.TlsVersion;
 import timber.log.Timber;
 
 public class ExtendedOkHttpClientBuilder {
 
     public OkHttpClient.Builder newBuilder() {
-        return enableTls12(new OkHttpClient().newBuilder());
+        return enableTls12(new OkHttpClient().newBuilder())
+                .protocols(Collections.singletonList(Protocol.HTTP_1_1));
     }
 
     /**
