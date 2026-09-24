@@ -229,7 +229,7 @@ public class MyApplication extends Application {
                 .withBuildConfigClass(BuildConfig.class)
                 .withSendReportsInDevMode(BuildConfig.ACRA_SEND_REPORTS_IN_DEV_MODE)
                 .withReportFormat(StringFormat.valueOf(BuildConfig.ACRA_REPORT_TYPE))
-                .withExcludeMatchingSharedPreferencesKeys(getString(R.string.preferences_opencellid_api_key_key))
+                .withExcludeMatchingSharedPreferencesKeys(getString(R.string.preferences_opencellid_api_key_key), getString(R.string.preferences_t0st_contributor_name_key))
                 .withReportContent(getCustomAcraReportFields())
                 .withLogcatArguments("-t", "250", "-v", "time")
                 .withPluginConfigurations(
