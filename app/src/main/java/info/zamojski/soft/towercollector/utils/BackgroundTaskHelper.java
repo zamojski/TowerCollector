@@ -49,7 +49,7 @@ public class BackgroundTaskHelper {
         String fullMessage = context.getString(R.string.main_toast_background_task_already_running_common, taskName);
 
         if (view != null) {
-            Snackbar snackbar = Snackbar.make(view, fullMessage, Snackbar.LENGTH_LONG);
+            Snackbar snackbar = SnackbarUtils.make(view, fullMessage, Snackbar.LENGTH_LONG);
             if (stopActionListener != null) {
                 snackbar.setAction(R.string.dialog_stop, stopActionListener);
             }

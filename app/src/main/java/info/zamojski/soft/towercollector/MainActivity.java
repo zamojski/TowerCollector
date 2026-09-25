@@ -16,7 +16,6 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -113,6 +112,7 @@ import info.zamojski.soft.towercollector.utils.MapUtils;
 import info.zamojski.soft.towercollector.utils.NetworkUtils;
 import info.zamojski.soft.towercollector.utils.OpenCellIdUtils;
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
+import info.zamojski.soft.towercollector.utils.SnackbarUtils;
 import info.zamojski.soft.towercollector.utils.StorageUtils;
 import info.zamojski.soft.towercollector.utils.StringUtils;
 import info.zamojski.soft.towercollector.utils.UpdateDialogArrayAdapter;
@@ -1212,18 +1212,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void showAllProjectsDisabledMessage() {
-        Snackbar snackbar = Snackbar.make(activityView, R.string.uploader_all_projects_disabled, Snackbar.LENGTH_LONG)
+        SnackbarUtils.make(activityView, R.string.uploader_all_projects_disabled, Snackbar.LENGTH_LONG)
                 .setAction(R.string.main_menu_preferences_button, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         startPreferencesActivity();
                     }
-                });
-        // hack for black text on dark grey background
-        View view = snackbar.getView();
-        TextView tv = view.findViewById(com.google.android.material.R.id.snackbar_text);
-        tv.setTextColor(Color.WHITE);//
-        snackbar.show();
+                })
+                .show();
     }
 
     private void startUploaderTask(boolean isOcidUploadEnabled, boolean isOcidAnonymousUploadEnabled, boolean isMlsUploadEnabled, boolean isCustomMlsUploadEnabled, boolean isT0stUploadEnabled, boolean isReuploadIfUploadFailsEnabled) {

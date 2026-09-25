@@ -23,4 +23,16 @@
     <color name="dot_dark">#aaffffff</color>
     <color name="ic_notification_background_color">@android:color/white</color>
 
+    <!-- Snackbar: inverse surface (dark) for LightAppTheme — makes it visually distinct -->
+    <color name="snackbar_background_light">#FF323232</color>
+    <color name="snackbar_text_light">#FFFFFFFF</color>
+    <!-- AppCompat light accent stays in-family and readable on the dark snackbar -->
+    <color name="snackbar_action_light">#FF00CD8C</color>
+
+    <!-- Snackbar: inverse surface (light) for DarkAppTheme — makes it visually distinct -->
+    <color name="snackbar_background_dark">#FFE8E8E8</color>
+    <color name="snackbar_text_dark">#FF1A1A1A</color>
+    <!-- AppCompat dark accent stays in-family and readable on the light snackbar -->
+    <color name="snackbar_action_dark">#FF00695C</color>
+
 </resources>

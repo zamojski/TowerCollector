@@ -11,6 +11,13 @@
         <item name="android:textColor">@color/text_light</item>
         <item name="android:textColorSecondary">@color/text_secondary_light</item>
         <item name="toolbar_background_color">@color/toolbar_light</item>
+        <!-- Required by Material Snackbar layout even when backgroundTint overrides the final color -->
+        <item name="colorSurface">#FFFFFFFF</item>
+        <item name="colorOnSurface">#FF000000</item>
+        <!-- Snackbar: dark surface on light background; text/action colors applied in SnackbarUtils -->
+        <item name="snackbarStyle">@style/SnackbarStyle.Light</item>
+        <item name="snackbarTextColor">@color/snackbar_text_light</item>
+        <item name="snackbarActionColor">@color/snackbar_action_light</item>
     </style>
 
     <style name="LightPopupTheme" parent="ThemeOverlay.AppCompat.Light">
@@ -25,6 +32,21 @@
         <item name="android:textColor">@color/text_dark</item>
         <item name="android:textColorSecondary">@color/text_secondary_dark</item>
         <item name="toolbar_background_color">@color/toolbar_dark</item>
+        <!-- Required by Material Snackbar layout even when backgroundTint overrides the final color -->
+        <item name="colorSurface">#FF121212</item>
+        <item name="colorOnSurface">#FFE0E0E0</item>
+        <!-- Snackbar: light surface on dark background; text/action colors applied in SnackbarUtils -->
+        <item name="snackbarStyle">@style/SnackbarStyle.Dark</item>
+        <item name="snackbarTextColor">@color/snackbar_text_dark</item>
+        <item name="snackbarActionColor">@color/snackbar_action_dark</item>
+    </style>
+
+    <style name="SnackbarStyle.Light" parent="Widget.MaterialComponents.Snackbar">
+        <item name="backgroundTint">@color/snackbar_background_light</item>
+    </style>
+
+    <style name="SnackbarStyle.Dark" parent="Widget.MaterialComponents.Snackbar">
+        <item name="backgroundTint">@color/snackbar_background_dark</item>
     </style>
 
     <style name="DarkPopupTheme" parent="ThemeOverlay.AppCompat">
