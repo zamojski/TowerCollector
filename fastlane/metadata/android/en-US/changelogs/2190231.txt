@@ -1,0 +1,3 @@
+- Fix Snackbar background and text color contrast when mixing light and dark app and system themes.
+- Fix crash when starting Collector on Android 12+ when running in the background.
+- Improve error handling.

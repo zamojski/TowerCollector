@@ -1,6 +1,15 @@
 {
   "Entries": [
     {
+      "VersionCode": 2190231,
+      "Title": "Changes in version 2.19.2",
+      "Messages": [
+        "Fix Snackbar background and text color contrast when mixing light and dark app and system themes.",
+        "Fix crash when starting Collector on Android 12+ when running in the background.",
+        "Improve error handling."
+      ]
+    },
+    {
       "VersionCode": 2190130,
       "Title": "Changes in version 2.19.1",
       "Messages": [
@@ -52,13 +61,6 @@
         "Fix 'Unknown' network type not handled correctly when uploading measurements to BeaconDB.",
         "Improve compatibility with Android 16.",
         "Update translations."
-      ]
-    },
-    {
-      "VersionCode": 2170120,
-      "Title": "Changes in version 2.17.1",
-      "Messages": [
-        "Change auto update check service address to a new domain."
       ]
     }
   ]
