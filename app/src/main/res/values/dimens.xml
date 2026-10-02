@@ -11,5 +11,6 @@
     <dimen name="larger_font">18sp</dimen>
     <dimen name="smaller_font">15sp</dimen>
     <dimen name="smallest_font">12sp</dimen>
+    <dimen name="map_zoom_bottom_margin">0dp</dimen>
 
 </resources>

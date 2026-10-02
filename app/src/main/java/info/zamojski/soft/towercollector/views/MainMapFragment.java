@@ -68,7 +68,7 @@ import java.util.Locale;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.R;
-import info.zamojski.soft.towercollector.controls.DialogManager;
+import info.zamojski.soft.towercollector.controls.ManagedHtmlInfoDialogFragment;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.events.MeasurementSavedEvent;
 import info.zamojski.soft.towercollector.events.PrintMainWindowEvent;
@@ -205,7 +205,8 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
         mainMapView.setMultiTouchControls(true);
         mainMapView.setMinZoomLevel((double)Math.max(3, TILE_SOURCE.getMinimumZoomLevel()));
         mainMapView.setMaxZoomLevel((double)TILE_SOURCE.getMaximumZoomLevel());
-        mainMapView.getZoomController().getDisplay().setAdditionalPixelMargins(0, 0, 0, 32);
+        int zoomMarginBottom = getResources().getDimensionPixelOffset(R.dimen.map_zoom_bottom_margin);
+        mainMapView.getZoomController().getDisplay().setAdditionalPixelMargins(0, 0, 0, zoomMarginBottom);
         IMapController mapController = mainMapView.getController();
         mapController.setZoom(MyApplication.getPreferencesProvider().getMainMapZoomLevel());
 
@@ -272,7 +273,8 @@ public class MainMapFragment extends MainFragmentBase implements FollowMyLocatio
             @Override
             public void onClick(View v) {
                 Timber.d("helpButton.click(): Showing map help");
-                DialogManager.createHtmlInfoDialog(getActivity(), R.string.info_map_help_title, R.raw.info_map_help, false, false).show();
+                ManagedHtmlInfoDialogFragment fragment = ManagedHtmlInfoDialogFragment.newInstance(R.string.info_map_help_title, R.raw.info_map_help, false, false);
+                fragment.show(getChildFragmentManager(), ManagedHtmlInfoDialogFragment.TAG);
             }
         });
 

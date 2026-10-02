@@ -38,7 +38,8 @@ public class SplashActivity extends Activity {
     public static final String UPLOADER_TOGGLE_ACTION = "UPLOADER_TOGGLE";
     public static final String EXPORT_TOGGLE_ACTION = "EXPORT_TOGGLE";
 
-    private boolean databaseUpgradeRunning = false;
+    private static volatile boolean databaseUpgradeRunning = false;
+    private static final Object MIGRATION_LOCK = new Object();
 
     private HandlerThread asyncHandlerThread;
     private Handler asyncHandler;
@@ -52,9 +53,6 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Timber.d("onCreate(): Creating activity");
-        // set fixed screen orientation
-        if (!ApkUtils.isRunningOnBuggyOreoSetRequestedOrientation(this))
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.splash);
         this.setFinishOnTouchOutside(false);
         // get UI controls
@@ -112,6 +110,20 @@ public class SplashActivity extends Activity {
         unregisterBackCallback();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (asyncHandler != null) {
+            asyncHandler.removeCallbacksAndMessages(null);
+        }
+        if (asyncHandlerThread != null) {
+            asyncHandlerThread.quit();
+        }
+        if (mainHandler != null) {
+            mainHandler.removeCallbacksAndMessages(null);
+        }
+    }
+
     private void handleBackPressed() {
         Timber.d("handleBackPressed(): Preventing close if db upgrade is running");
         if (databaseUpgradeRunning) {
@@ -158,6 +170,7 @@ public class SplashActivity extends Activity {
             public void run() {
                 ensurePreferencesUpToDate();
                 ensureDatabaseUpToDate();
+                if (isDestroyed() || isFinishing()) return;
                 startMainActivity();
                 Timber.d("startMainActivityAsync(): Closing splash screen window");
                 finish();
@@ -172,6 +185,7 @@ public class SplashActivity extends Activity {
             public void run() {
                 ensurePreferencesUpToDate();
                 ensureDatabaseUpToDate();
+                if (isDestroyed() || isFinishing()) return;
                 if (MyApplication.isBackgroundTaskRunning(CollectorService.class)) {
                     new ExternalBroadcastReceiver().stopCollectorServiceFromBroadcast(MyApplication.getApplication());
                 } else {
@@ -190,6 +204,7 @@ public class SplashActivity extends Activity {
             public void run() {
                 ensurePreferencesUpToDate();
                 ensureDatabaseUpToDate();
+                if (isDestroyed() || isFinishing()) return;
                 if (MyApplication.isBackgroundTaskRunning(UploaderWorker.class)) {
                     new ExternalBroadcastReceiver().stopUploaderWorkerFromBroadcast(MyApplication.getApplication());
                 } else {
@@ -208,6 +223,7 @@ public class SplashActivity extends Activity {
             public void run() {
                 ensurePreferencesUpToDate();
                 ensureDatabaseUpToDate();
+                if (isDestroyed() || isFinishing()) return;
                 if (MyApplication.isBackgroundTaskRunning(ExportWorker.class)) {
                     new ExternalBroadcastReceiver().stopExportWorkerFromBroadcast(MyApplication.getApplication());
                 } else {
@@ -220,33 +236,37 @@ public class SplashActivity extends Activity {
     }
 
     private void ensureDatabaseUpToDate() {
-        int currentDbVersion = MeasurementsDatabase.getDatabaseVersion(MyApplication.getApplication());
-        if (currentDbVersion != MeasurementsDatabase.DATABASE_FILE_VERSION) {
-            Timber.d("ensureDatabaseUpToDate(): Upgrading database");
-            databaseUpgradeRunning = true;
-            showDetailsMessage();
-            // show progress dialog only when migrating database
-            DatabaseUpgradeTask databaseMigrationTask = new DatabaseUpgradeTask(this, currentDbVersion);
-            databaseMigrationTask.upgrade();
-            hideDetailsMessage();
-            databaseUpgradeRunning = false;
+        synchronized (MIGRATION_LOCK) {
+            int currentDbVersion = MeasurementsDatabase.getDatabaseVersion(MyApplication.getApplication());
+            if (currentDbVersion != MeasurementsDatabase.DATABASE_FILE_VERSION) {
+                Timber.d("ensureDatabaseUpToDate(): Upgrading database");
+                databaseUpgradeRunning = true;
+                showDetailsMessage();
+                // show progress dialog only when migrating database
+                DatabaseUpgradeTask databaseMigrationTask = new DatabaseUpgradeTask(currentDbVersion);
+                databaseMigrationTask.upgrade();
+                hideDetailsMessage();
+                databaseUpgradeRunning = false;
+            }
+            // Load last measurement and stats into cache
+            MeasurementsDatabase.getInstance(MyApplication.getApplication()).getLastMeasurement();
+            MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
         }
-        // Load last measurement and stats into cache
-        MeasurementsDatabase.getInstance(MyApplication.getApplication()).getLastMeasurement();
-        MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
     }
 
     private void ensurePreferencesUpToDate() {
-        int currentPreferencesVersion = MyApplication.getPreferencesProvider().getPreferencesVersion();
-        if (currentPreferencesVersion != PreferencesProvider.PREFERENCES_VERSION) {
-            Timber.d("ensurePreferencesUpToDate(): Upgrading preferences");
-            databaseUpgradeRunning = true; // reuse intentionally as it should be fast and is executed in series
-            showDetailsMessage();
-            // show progress dialog only when migrating preferences
-            PreferencesUpgradeTask preferencesUpgradeTask = new PreferencesUpgradeTask(MyApplication.getApplication(), currentPreferencesVersion);
-            preferencesUpgradeTask.upgrade();
-            hideDetailsMessage();
-            databaseUpgradeRunning = false;
+        synchronized (MIGRATION_LOCK) {
+            int currentPreferencesVersion = MyApplication.getPreferencesProvider().getPreferencesVersion();
+            if (currentPreferencesVersion != PreferencesProvider.PREFERENCES_VERSION) {
+                Timber.d("ensurePreferencesUpToDate(): Upgrading preferences");
+                databaseUpgradeRunning = true; // reuse intentionally as it should be fast and is executed in series
+                showDetailsMessage();
+                // show progress dialog only when migrating preferences
+                PreferencesUpgradeTask preferencesUpgradeTask = new PreferencesUpgradeTask(MyApplication.getApplication(), currentPreferencesVersion);
+                preferencesUpgradeTask.upgrade();
+                hideDetailsMessage();
+                databaseUpgradeRunning = false;
+            }
         }
     }
 

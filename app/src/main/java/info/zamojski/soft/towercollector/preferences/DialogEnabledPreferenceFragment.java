@@ -17,7 +17,15 @@ import android.widget.Toast;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceScreen;
 
-public abstract class DialogEnabledPreferenceFragment extends PreferenceFragmentBase {
+import info.zamojski.soft.towercollector.controls.ManagedHtmlInfoDialogFragment;
+import info.zamojski.soft.towercollector.controls.ManagedConfirmationDialogFragment;
+
+public abstract class DialogEnabledPreferenceFragment extends PreferenceFragmentBase implements ManagedConfirmationDialogFragment.ConfirmationListener {
+
+    @Override
+    public void onConfirmed(int actionId) {
+        // Default empty implementation. Subclasses can override to handle confirmations.
+    }
 
     protected void setupDialog(int preferenceKey, final int title, final int content) {
         setupDialog(preferenceKey, title, content, false);
@@ -28,7 +36,8 @@ public abstract class DialogEnabledPreferenceFragment extends PreferenceFragment
         preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                DialogManager.createHtmlInfoDialog(getActivity(), title, content, false, textIsSelectable).show();
+                ManagedHtmlInfoDialogFragment fragment = ManagedHtmlInfoDialogFragment.newInstance(title, content, false, textIsSelectable);
+                fragment.show(getChildFragmentManager(), ManagedHtmlInfoDialogFragment.TAG);
                 MyApplication.getAnalytics().sendHelpDialogOpened(getString(preferenceKey));
                 return true;
             }
@@ -57,19 +66,21 @@ public abstract class DialogEnabledPreferenceFragment extends PreferenceFragment
         preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                DialogManager.createHtmlInfoDialog(getActivity(), title, content, false, false).show();
+                ManagedHtmlInfoDialogFragment fragment = ManagedHtmlInfoDialogFragment.newInstance(title, content, false, false);
+                fragment.show(getChildFragmentManager(), ManagedHtmlInfoDialogFragment.TAG);
                 MyApplication.getAnalytics().sendHelpDialogOpened(getString(preferenceKey));
                 return true;
             }
         });
     }
 
-    protected void showConfirmationDialog(final int preferenceKey, final int title, final int content, final DialogInterface.OnClickListener confirmedAction) {
+    protected void showConfirmationDialog(final int preferenceKey, final int title, final int content, final int actionId) {
         PreferenceScreen preference = findPreference(getString(preferenceKey));
         preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                DialogManager.createConfirmationDialog(getActivity(), title, content, confirmedAction).show();
+                ManagedConfirmationDialogFragment fragment = ManagedConfirmationDialogFragment.newInstance(title, content, actionId);
+                fragment.show(getChildFragmentManager(), ManagedConfirmationDialogFragment.TAG);
                 return true;
             }
         });

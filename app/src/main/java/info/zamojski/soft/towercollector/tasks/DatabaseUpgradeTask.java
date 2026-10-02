@@ -4,7 +4,6 @@
 
 package info.zamojski.soft.towercollector.tasks;
 
-import android.app.Activity;
 import android.widget.Toast;
 
 import info.zamojski.soft.towercollector.MyApplication;
@@ -14,11 +13,9 @@ import timber.log.Timber;
 
 public class DatabaseUpgradeTask {
 
-    private final Activity activity;
     private final int oldDbVersion;
 
-    public DatabaseUpgradeTask(Activity activity, int oldDbVersion) {
-        this.activity = activity;
+    public DatabaseUpgradeTask(int oldDbVersion) {
         this.oldDbVersion = oldDbVersion;
     }
 
@@ -36,7 +33,7 @@ public class DatabaseUpgradeTask {
             MyApplication.getAnalytics().sendMigrationFinished(duration, oldDbVersion, stats);
         } catch (RuntimeException ex) {
             Timber.e(ex, "upgrade(): Database migration from version %s crashed", oldDbVersion);
-            Toast.makeText(activity, "Database upgrade failed. Please clear app data or reinstall.", Toast.LENGTH_LONG).show();
+            Toast.makeText(MyApplication.getApplication(), "Database upgrade failed. Please clear app data or reinstall.", Toast.LENGTH_LONG).show();
             MyApplication.handleSilentException(ex);
             throw ex;
         }

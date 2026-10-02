@@ -51,26 +51,20 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
         setupPreferencesExport();
     }
 
+    private static final int ACTION_IMPORT_DATABASE = 1;
+    private static final int ACTION_EXPORT_DATABASE = 2;
+    private static final int ACTION_IMPORT_PREFERENCES = 3;
+
     private void setupDatabaseImport() {
         showConfirmationDialog(R.string.preferences_import_database_key, R.string.unsafe_operation_warning_title,
-                R.string.unsafe_operation_warning_message, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        importDatabase();
-                    }
-                });
+                R.string.unsafe_operation_warning_message, ACTION_IMPORT_DATABASE);
     }
 
     private void setupDatabaseExport() {
         int measurementsToUploadCount = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getAllLocationsCount(true);
         if (measurementsToUploadCount == 0) {
             showConfirmationDialog(R.string.preferences_export_database_key, R.string.preferences_export_database_overwrite_warning_title,
-                    R.string.preferences_export_database_overwrite_warning_message, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            exportDatabase();
-                        }
-                    });
+                    R.string.preferences_export_database_overwrite_warning_message, ACTION_EXPORT_DATABASE);
         } else {
             setupOnClick(R.string.preferences_export_database_key, new Preference.OnPreferenceClickListener() {
                 @Override
@@ -84,12 +78,18 @@ public class AdvancedPreferenceFragment extends DialogEnabledPreferenceFragment 
 
     private void setupPreferencesImport() {
         showConfirmationDialog(R.string.preferences_import_preferences_key, R.string.unsafe_operation_warning_title,
-                R.string.unsafe_operation_warning_message, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        importPreferences();
-                    }
-                });
+                R.string.unsafe_operation_warning_message, ACTION_IMPORT_PREFERENCES);
+    }
+
+    @Override
+    public void onConfirmed(int actionId) {
+        if (actionId == ACTION_IMPORT_DATABASE) {
+            importDatabase();
+        } else if (actionId == ACTION_EXPORT_DATABASE) {
+            exportDatabase();
+        } else if (actionId == ACTION_IMPORT_PREFERENCES) {
+            importPreferences();
+        }
     }
 
     private void setupPreferencesExport() {

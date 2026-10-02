@@ -48,6 +48,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ShareCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
+import androidx.fragment.app.DialogFragment;
+import android.app.Dialog;
+import androidx.annotation.NonNull;
 import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkInfo;
@@ -74,7 +77,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import info.zamojski.soft.towercollector.analytics.IntentSource;
 import info.zamojski.soft.towercollector.broadcast.AirplaneModeBroadcastReceiver;
 import info.zamojski.soft.towercollector.broadcast.BatterySaverBroadcastReceiver;
-import info.zamojski.soft.towercollector.controls.DialogManager;
+import info.zamojski.soft.towercollector.controls.ManagedChangelogDialogFragment;
+import info.zamojski.soft.towercollector.controls.ManagedHtmlInfoDialogFragment;
 import info.zamojski.soft.towercollector.controls.NonSwipeableViewPager;
 import info.zamojski.soft.towercollector.dao.MeasurementsDatabase;
 import info.zamojski.soft.towercollector.enums.ExportAction;
@@ -146,6 +150,7 @@ public class MainActivity extends AppCompatActivity
     private String[] exportedFilePaths;
 
     private UploaderProgressDialogFragment uploaderProgressDialog;
+    private String uploaderFinishedMessage;
 
     private Boolean canStartNetworkTypeSystemActivityResult = null;
 
@@ -176,9 +181,6 @@ public class MainActivity extends AppCompatActivity
         setTheme(MyApplication.getCurrentAppTheme());
         super.onCreate(savedInstanceState);
         Timber.d("onCreate(): Creating activity");
-        // set fixed screen orientation
-        if (!ApkUtils.isRunningOnBuggyOreoSetRequestedOrientation(this))
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.main);
         activityView = findViewById(R.id.main_root);
         //setup toolbar
@@ -215,6 +217,48 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("isFirstStart", isFirstStart);
+        outState.putBoolean("showAskForLocationSettingsDialog", showAskForLocationSettingsDialog);
+        outState.putBoolean("showNotCompatibleDialog", showNotCompatibleDialog);
+        if (canStartNetworkTypeSystemActivityResult != null) {
+            outState.putBoolean("canStartNetworkTypeSystemActivityResult", canStartNetworkTypeSystemActivityResult);
+        }
+        if (exportedDirAbsolutePath != null) {
+            outState.putString("exportedDirAbsolutePath", exportedDirAbsolutePath);
+        }
+        if (exportedFilePaths != null) {
+            outState.putStringArray("exportedFilePaths", exportedFilePaths);
+        }
+        if (uploaderFinishedMessage != null) {
+            outState.putString("uploaderFinishedMessage", uploaderFinishedMessage);
+        }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState != null) {
+            isFirstStart = savedInstanceState.getBoolean("isFirstStart", isFirstStart);
+            showAskForLocationSettingsDialog = savedInstanceState.getBoolean("showAskForLocationSettingsDialog", showAskForLocationSettingsDialog);
+            showNotCompatibleDialog = savedInstanceState.getBoolean("showNotCompatibleDialog", showNotCompatibleDialog);
+            if (savedInstanceState.containsKey("canStartNetworkTypeSystemActivityResult")) {
+                canStartNetworkTypeSystemActivityResult = savedInstanceState.getBoolean("canStartNetworkTypeSystemActivityResult");
+            }
+            if (savedInstanceState.containsKey("exportedDirAbsolutePath")) {
+                exportedDirAbsolutePath = savedInstanceState.getString("exportedDirAbsolutePath");
+            }
+            if (savedInstanceState.containsKey("exportedFilePaths")) {
+                exportedFilePaths = savedInstanceState.getStringArray("exportedFilePaths");
+            }
+            if (savedInstanceState.containsKey("uploaderFinishedMessage")) {
+                uploaderFinishedMessage = savedInstanceState.getString("uploaderFinishedMessage");
+            }
+        }
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         Timber.d("onDestroy(): Unbinding from service");
@@ -227,15 +271,9 @@ public class MainActivity extends AppCompatActivity
         if (batterySaverBroadcastReceiver != null)
             unregisterReceiver(batterySaverBroadcastReceiver);
 
-        if (exportProgressDialog != null && exportProgressDialog.isVisible()) {
-            exportProgressDialog.dismiss();
-            exportProgressDialog = null;
-        }
+        
 
-        if (uploaderProgressDialog != null && uploaderProgressDialog.isVisible()) {
-            uploaderProgressDialog.dismiss();
-            uploaderProgressDialog = null;
-        }
+        
     }
 
     @Override
@@ -284,6 +322,12 @@ public class MainActivity extends AppCompatActivity
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         } else {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
+        if (exportedDirAbsolutePath != null && exportedFilePaths != null) {
+            displayExportFinishedDialog();
+        }
+        if (uploaderFinishedMessage != null) {
+            displayUploaderFinishedDialog(uploaderFinishedMessage);
         }
     }
 
@@ -551,70 +595,99 @@ public class MainActivity extends AppCompatActivity
             if (additionalMessageId != View.NO_ID) {
                 message += "\n\n" + getString(additionalMessageId);
             }
-            AlertDialog dialog = new AlertDialog.Builder(this).setTitle(titleId).setMessage(message).setPositiveButton(R.string.dialog_ok, null).create();
-            dialog.setCanceledOnTouchOutside(true);
-            dialog.setCancelable(true);
-            dialog.show();
+            HelpDialogFragment dialogFragment = HelpDialogFragment.newInstance(getString(titleId), message);
+            dialogFragment.show(getSupportFragmentManager(), HelpDialogFragment.TAG);
         }
     }
 
-    // have to be public to prevent Force Close
+    public static class HelpDialogFragment extends DialogFragment {
+        public static final String TAG = "HelpDialogFragment";
+        private static final String ARG_TITLE = "title";
+        private static final String ARG_MESSAGE = "message";
+
+        public static HelpDialogFragment newInstance(String title, String message) {
+            HelpDialogFragment fragment = new HelpDialogFragment();
+            Bundle args = new Bundle();
+            args.putString(ARG_TITLE, title);
+            args.putString(ARG_MESSAGE, message);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @NonNull
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            String title = getArguments().getString(ARG_TITLE);
+            String message = getArguments().getString(ARG_MESSAGE);
+            return new AlertDialog.Builder(getContext())
+                    .setTitle(title)
+                    .setMessage(message)
+                    .setPositiveButton(R.string.dialog_ok, null)
+                    .create();
+        }
+    }
+
     public void displayBatteryOptimizationsHelpOnClick(View view) {
         String message = getString(R.string.main_help_battery_optimizations_description_common)
                 + " "
                 + getString(BatteryUtils.isAllowBackgroundUsageAware()
                 ? R.string.main_help_battery_optimizations_description_api35
                 : R.string.main_help_battery_optimizations_description_api23);
-        AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle(R.string.main_help_battery_optimizations_title)
-                .setMessage(message)
-                .setPositiveButton(R.string.dialog_settings, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        startBatteryOptimizationsSystemActivity();
-                    }
-                })
-                .setNegativeButton(R.string.dialog_cancel, null)
-                .create();
-        dialog.setCanceledOnTouchOutside(true);
-        dialog.setCancelable(true);
-        dialog.show();
+        SystemSettingsHelpDialogFragment dialogFragment = SystemSettingsHelpDialogFragment.newInstance(
+                getString(R.string.main_help_battery_optimizations_title), message, 1);
+        dialogFragment.show(getSupportFragmentManager(), SystemSettingsHelpDialogFragment.TAG);
     }
 
-    // have to be public to prevent Force Close
     public void displayPowerSaveModeHelpOnClick(View view) {
-        AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle(R.string.main_help_power_save_mode_title)
-                .setMessage(R.string.main_help_power_save_mode_description)
-                .setPositiveButton(R.string.dialog_settings, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        startBatterySaverSystemActivity();
-                    }
-                })
-                .setNegativeButton(R.string.dialog_cancel, null)
-                .create();
-        dialog.setCanceledOnTouchOutside(true);
-        dialog.setCancelable(true);
-        dialog.show();
+        SystemSettingsHelpDialogFragment dialogFragment = SystemSettingsHelpDialogFragment.newInstance(
+                getString(R.string.main_help_power_save_mode_title),
+                getString(R.string.main_help_power_save_mode_description), 2);
+        dialogFragment.show(getSupportFragmentManager(), SystemSettingsHelpDialogFragment.TAG);
     }
 
-    // have to be public to prevent Force Close
     public void displayAirplaneModeHelpOnClick(View view) {
-        AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle(R.string.main_help_airplane_mode_title)
-                .setMessage(R.string.main_help_airplane_mode_description)
-                .setPositiveButton(R.string.dialog_settings, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        startAirplaneModeSystemActivity();
-                    }
-                })
-                .setNegativeButton(R.string.dialog_cancel, null)
-                .create();
-        dialog.setCanceledOnTouchOutside(true);
-        dialog.setCancelable(true);
-        dialog.show();
+        SystemSettingsHelpDialogFragment dialogFragment = SystemSettingsHelpDialogFragment.newInstance(
+                getString(R.string.main_help_airplane_mode_title),
+                getString(R.string.main_help_airplane_mode_description), 3);
+        dialogFragment.show(getSupportFragmentManager(), SystemSettingsHelpDialogFragment.TAG);
+    }
+
+    public static class SystemSettingsHelpDialogFragment extends DialogFragment {
+        public static final String TAG = "SystemSettingsHelpDialogFragment";
+        private static final String ARG_TITLE = "title";
+        private static final String ARG_MESSAGE = "message";
+        private static final String ARG_ACTION = "action";
+
+        public static SystemSettingsHelpDialogFragment newInstance(String title, String message, int action) {
+            SystemSettingsHelpDialogFragment fragment = new SystemSettingsHelpDialogFragment();
+            Bundle args = new Bundle();
+            args.putString(ARG_TITLE, title);
+            args.putString(ARG_MESSAGE, message);
+            args.putInt(ARG_ACTION, action);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @NonNull
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            String title = getArguments().getString(ARG_TITLE);
+            String message = getArguments().getString(ARG_MESSAGE);
+            final int action = getArguments().getInt(ARG_ACTION);
+            return new AlertDialog.Builder(getContext())
+                    .setTitle(title)
+                    .setMessage(message)
+                    .setPositiveButton(R.string.dialog_settings, (dialog, which) -> {
+                        MainActivity activity = (MainActivity) getActivity();
+                        if (activity != null) {
+                            if (action == 1) activity.startBatteryOptimizationsSystemActivity();
+                            else if (action == 2) activity.startBatterySaverSystemActivity();
+                            else if (action == 3) activity.startAirplaneModeSystemActivity();
+                        }
+                    })
+                    .setNegativeButton(R.string.dialog_cancel, null)
+                    .create();
+        }
     }
 
     private void displayNewVersionDownloadOptions(UpdateInfo updateInfo) {
@@ -722,7 +795,8 @@ public class MainActivity extends AppCompatActivity
     private void displayIntroduction() {
         if (MyApplication.getPreferencesProvider().getShowIntroduction()) {
             Timber.d("displayIntroduction(): Showing introduction");
-            DialogManager.createHtmlInfoDialog(this, R.string.info_introduction_title, R.raw.info_introduction_content, false, false).show();
+            ManagedHtmlInfoDialogFragment fragment = ManagedHtmlInfoDialogFragment.newInstance(R.string.info_introduction_title, R.raw.info_introduction_content, false, false);
+            fragment.show(getSupportFragmentManager(), ManagedHtmlInfoDialogFragment.TAG);
             MyApplication.getPreferencesProvider().setShowIntroduction(false);
         }
     }
@@ -743,14 +817,8 @@ public class MainActivity extends AppCompatActivity
                 return;
             MarkdownChangelogFormatter formatter = new MarkdownChangelogFormatter();
             String message = formatter.formatChangelog(changelog);
-            DialogInterface.OnClickListener remindLaterAction = new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    // reset setting for next cold start
-                    MyApplication.getPreferencesProvider().setRecentDeveloperMessagesVersion(previousVersionCode);
-                }
-            };
-            DialogManager.createHtmlInfoDialog(this, R.string.dialog_what_is_new, message, false, false, R.string.dialog_remind_later, remindLaterAction).show();
+            ManagedChangelogDialogFragment fragment = ManagedChangelogDialogFragment.newInstance(message, previousVersionCode);
+            fragment.show(getSupportFragmentManager(), ManagedChangelogDialogFragment.TAG);
         }
     }
 
@@ -813,6 +881,7 @@ public class MainActivity extends AppCompatActivity
         builder.setOnCancelListener(dialog -> {
             exportKeepAction();
             exportedFilePaths = null;
+            exportedDirAbsolutePath = null;
         });
 
         AlertDialog dialog = builder.create();
@@ -856,13 +925,12 @@ public class MainActivity extends AppCompatActivity
         });
 
         dialog.show();
-
-        exportedDirAbsolutePath = null;
     }
 
     private void dismissExportFinishedDialog(DialogInterface dialog) {
         dialog.dismiss();
         exportedFilePaths = null;
+        exportedDirAbsolutePath = null;
     }
 
     private void exportKeepAction() {
@@ -1072,6 +1140,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void startUploaderTaskInternal() {
+        final PreferencesProvider preferencesProvider = MyApplication.getPreferencesProvider();
         if (!NetworkUtils.isNetworkAvailable(MyApplication.getApplication())) {
             new AlertDialog.Builder(this)
                     .setTitle(R.string.uploader_no_internet_title)
@@ -1081,87 +1150,17 @@ public class MainActivity extends AppCompatActivity
                     .show();
             return;
         }
-        final PreferencesProvider preferencesProvider = MyApplication.getPreferencesProvider();
         final boolean isOcidUploadEnabled = preferencesProvider.isOpenCellIdUploadEnabled();
         final boolean isUseSharedOpenCellIdApiKeyEnabled = preferencesProvider.isUseSharedOpenCellIdApiKeyEnabled();
         final boolean isMlsUploadEnabled = preferencesProvider.isMlsUploadEnabled();
-        final boolean isT0stUploadEnabled = preferencesProvider.isT0stUploadEnabled();
         final boolean isCustomMlsUploadEnabled = preferencesProvider.isCustomMlsUploadEnabled();
+        final boolean isT0stUploadEnabled = preferencesProvider.isT0stUploadEnabled();
         final boolean isReuploadIfUploadFailsEnabled = preferencesProvider.isReuploadIfUploadFailsEnabled();
-        Timber.i("startUploaderTaskWithCheck(): Upload for OCID = " + isOcidUploadEnabled + ", MLS = " + isMlsUploadEnabled + ", @t0stbrot.net = " + isT0stUploadEnabled);
-        boolean showConfigurator = preferencesProvider.getShowConfiguratorBeforeUpload();
-        if (showConfigurator) {
-            Timber.d("startUploaderTaskWithCheck(): Showing upload configurator");
-            // check API key
-            boolean isApiKeyValid = OpenCellIdUtils.isApiKeyValid(OpenCellIdUtils.getApiKey());
-            boolean isCustomMlsUrlValid = NetworkUtils.isValidUrl(preferencesProvider.getCustomMlsUploadUrl());
-            LayoutInflater inflater = LayoutInflater.from(this);
-            View dialogLayout = inflater.inflate(R.layout.configure_uploader_dialog, null);
-            final CheckBox ocidUploadCheckbox = dialogLayout.findViewById(R.id.ocid_upload_dialog_checkbox);
-            final CheckBox ocidAnonymousUploadCheckbox = dialogLayout.findViewById(R.id.ocid_anonymous_upload_dialog_checkbox);
-            final TextView invalidApiKeyTextView = dialogLayout.findViewById(R.id.ocid_invalid_api_key_upload_dialog_textview);
-            final TextView invalidCustomUrlTextView = dialogLayout.findViewById(R.id.mls_invalid_custom_url_upload_dialog_textview);
-            ocidUploadCheckbox.setChecked(isOcidUploadEnabled);
-            ocidUploadCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    ocidAnonymousUploadCheckbox.setEnabled(isChecked);
-                }
-            });
-            ocidAnonymousUploadCheckbox.setChecked(isUseSharedOpenCellIdApiKeyEnabled);
-            ocidAnonymousUploadCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    invalidApiKeyTextView.setVisibility(isChecked || isApiKeyValid ? View.GONE : View.VISIBLE);
-                }
-            });
-            invalidApiKeyTextView.setVisibility(isUseSharedOpenCellIdApiKeyEnabled || isApiKeyValid ? View.GONE : View.VISIBLE);
-            invalidCustomUrlTextView.setVisibility(!isCustomMlsUploadEnabled || isCustomMlsUrlValid ? View.GONE : View.VISIBLE);
-            final CheckBox mlsUploadCheckbox = dialogLayout.findViewById(R.id.mls_upload_dialog_checkbox);
-            mlsUploadCheckbox.setChecked(isMlsUploadEnabled);
-            final CheckBox t0stUploadCheckbox = dialogLayout.findViewById(R.id.t0st_upload_dialog_checkbox);
-            t0stUploadCheckbox.setChecked(isT0stUploadEnabled);
-            final CheckBox reuploadCheckbox = dialogLayout.findViewById(R.id.reupload_if_upload_fails_upload_dialog_checkbox);
-            reuploadCheckbox.setChecked(isReuploadIfUploadFailsEnabled);
-            final CheckBox dontShowAgainCheckbox = dialogLayout.findViewById(R.id.dont_show_again_dialog_checkbox);
-            AlertDialog alertDialog = new AlertDialog.Builder(this).setView(dialogLayout).create();
-            alertDialog.setCanceledOnTouchOutside(true);
-            alertDialog.setCancelable(true);
-            alertDialog.setTitle(R.string.upload_configurator_dialog_title);
-            alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_upload), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    boolean isOcidUploadCheckedTemp = ocidUploadCheckbox.isChecked();
-                    boolean isOcidAnonymousUploadCheckedTemp = ocidAnonymousUploadCheckbox.isChecked();
-                    boolean isMlsUploadCheckedTemp = mlsUploadCheckbox.isChecked();
-                    boolean isT0stUploadCheckedTemp = t0stUploadCheckbox.isChecked();
-                    boolean isReuploadIfUploadFailsCheckedTemp = reuploadCheckbox.isChecked();
-                    if (dontShowAgainCheckbox.isChecked()) {
-                        preferencesProvider.setOpenCellIdUploadEnabled(isOcidUploadCheckedTemp);
-                        preferencesProvider.setUseSharedOpenCellIdApiKeyEnabled(isOcidAnonymousUploadCheckedTemp);
-                        preferencesProvider.setMlsUploadEnabled(isMlsUploadCheckedTemp);
-                        preferencesProvider.setReuploadIfUploadFailsEnabled(isReuploadIfUploadFailsCheckedTemp);
-                        preferencesProvider.setShowConfiguratorBeforeUpload(false);
-                    }
-                    if (!isOcidUploadCheckedTemp && !isMlsUploadCheckedTemp && !isT0stUploadCheckedTemp) {
-                        showAllProjectsDisabledMessage();
-                    } else {
-                         startUploaderTask(isOcidUploadCheckedTemp, isOcidAnonymousUploadCheckedTemp, isMlsUploadCheckedTemp, isCustomMlsUploadEnabled, isT0stUploadCheckedTemp, isReuploadIfUploadFailsCheckedTemp);
-                    }
-                }
-            });
-            alertDialog.setButton(DialogInterface.BUTTON_NEUTRAL, getString(R.string.main_menu_preferences_button), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    startPreferencesActivity();
-                }
-            });
-            alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.dialog_cancel), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                }
-            });
-            alertDialog.show();
+
+        boolean showConfiguratorDialog = preferencesProvider.getShowConfiguratorBeforeUpload();
+        if (showConfiguratorDialog) {
+            UploadConfigDialogFragment dialogFragment = new UploadConfigDialogFragment();
+            dialogFragment.show(getSupportFragmentManager(), UploadConfigDialogFragment.TAG);
         } else {
             Timber.d("startUploaderTaskWithCheck(): Using upload configuration from preferences");
             if (!isOcidUploadEnabled && !isMlsUploadEnabled && !isT0stUploadEnabled) {
@@ -1169,6 +1168,88 @@ public class MainActivity extends AppCompatActivity
             } else {
                 startUploaderTask(isOcidUploadEnabled, isUseSharedOpenCellIdApiKeyEnabled, isMlsUploadEnabled, isCustomMlsUploadEnabled, isT0stUploadEnabled, isReuploadIfUploadFailsEnabled);
             }
+        }
+    }
+
+    public static class UploadConfigDialogFragment extends DialogFragment {
+        public static final String TAG = "UploadConfigDialogFragment";
+
+        @NonNull
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final PreferencesProvider preferencesProvider = MyApplication.getPreferencesProvider();
+            final boolean isOcidUploadEnabled = preferencesProvider.isOpenCellIdUploadEnabled();
+            final boolean isUseSharedOpenCellIdApiKeyEnabled = preferencesProvider.isUseSharedOpenCellIdApiKeyEnabled();
+            final boolean isMlsUploadEnabled = preferencesProvider.isMlsUploadEnabled();
+            final boolean isCustomMlsUploadEnabled = preferencesProvider.isCustomMlsUploadEnabled();
+            final boolean isT0stUploadEnabled = preferencesProvider.isT0stUploadEnabled();
+            final boolean isReuploadIfUploadFailsEnabled = preferencesProvider.isReuploadIfUploadFailsEnabled();
+
+            final boolean isApiKeyValid = OpenCellIdUtils.isApiKeyValid(OpenCellIdUtils.getApiKey());
+            final boolean isCustomMlsUrlValid = NetworkUtils.isValidUrl(preferencesProvider.getCustomMlsUploadUrl());
+
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            View dialogLayout = inflater.inflate(R.layout.configure_uploader_dialog, null);
+            final CheckBox ocidUploadCheckbox = dialogLayout.findViewById(R.id.ocid_upload_dialog_checkbox);
+            final CheckBox ocidAnonymousUploadCheckbox = dialogLayout.findViewById(R.id.ocid_anonymous_upload_dialog_checkbox);
+            final TextView invalidApiKeyTextView = dialogLayout.findViewById(R.id.ocid_invalid_api_key_upload_dialog_textview);
+            final TextView invalidCustomUrlTextView = dialogLayout.findViewById(R.id.mls_invalid_custom_url_upload_dialog_textview);
+            final CheckBox mlsUploadCheckbox = dialogLayout.findViewById(R.id.mls_upload_dialog_checkbox);
+            final CheckBox t0stUploadCheckbox = dialogLayout.findViewById(R.id.t0st_upload_dialog_checkbox);
+            final CheckBox reuploadCheckbox = dialogLayout.findViewById(R.id.reupload_if_upload_fails_upload_dialog_checkbox);
+            final CheckBox dontShowAgainCheckbox = dialogLayout.findViewById(R.id.dont_show_again_dialog_checkbox);
+
+            if (savedInstanceState == null) {
+                ocidUploadCheckbox.setChecked(isOcidUploadEnabled);
+                ocidAnonymousUploadCheckbox.setChecked(isUseSharedOpenCellIdApiKeyEnabled);
+                mlsUploadCheckbox.setChecked(isMlsUploadEnabled);
+                t0stUploadCheckbox.setChecked(isT0stUploadEnabled);
+                reuploadCheckbox.setChecked(isReuploadIfUploadFailsEnabled);
+            }
+
+            ocidUploadCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                ocidAnonymousUploadCheckbox.setEnabled(isChecked);
+            });
+            ocidAnonymousUploadCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                invalidApiKeyTextView.setVisibility(isChecked || isApiKeyValid ? View.GONE : View.VISIBLE);
+            });
+            
+            invalidApiKeyTextView.setVisibility(ocidAnonymousUploadCheckbox.isChecked() || isApiKeyValid ? View.GONE : View.VISIBLE);
+            invalidCustomUrlTextView.setVisibility(!isCustomMlsUploadEnabled || isCustomMlsUrlValid ? View.GONE : View.VISIBLE);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext())
+                    .setView(dialogLayout)
+                    .setTitle(R.string.upload_configurator_dialog_title)
+                    .setPositiveButton(getString(R.string.dialog_upload), (dialog, which) -> {
+                        boolean isOcidUploadCheckedTemp = ocidUploadCheckbox.isChecked();
+                        boolean isOcidAnonymousUploadCheckedTemp = ocidAnonymousUploadCheckbox.isChecked();
+                        boolean isMlsUploadCheckedTemp = mlsUploadCheckbox.isChecked();
+                        boolean isT0stUploadCheckedTemp = t0stUploadCheckbox.isChecked();
+                        boolean isReuploadIfUploadFailsCheckedTemp = reuploadCheckbox.isChecked();
+                        if (dontShowAgainCheckbox.isChecked()) {
+                            preferencesProvider.setOpenCellIdUploadEnabled(isOcidUploadCheckedTemp);
+                            preferencesProvider.setUseSharedOpenCellIdApiKeyEnabled(isOcidAnonymousUploadCheckedTemp);
+                            preferencesProvider.setMlsUploadEnabled(isMlsUploadCheckedTemp);
+                            preferencesProvider.setReuploadIfUploadFailsEnabled(isReuploadIfUploadFailsCheckedTemp);
+                            preferencesProvider.setShowConfiguratorBeforeUpload(false);
+                        }
+                        MainActivity activity = (MainActivity) getActivity();
+                        if (activity != null) {
+                            if (!isOcidUploadCheckedTemp && !isMlsUploadCheckedTemp && !isT0stUploadCheckedTemp) {
+                                activity.showAllProjectsDisabledMessage();
+                            } else {
+                                activity.startUploaderTask(isOcidUploadCheckedTemp, isOcidAnonymousUploadCheckedTemp, isMlsUploadCheckedTemp, isCustomMlsUploadEnabled, isT0stUploadCheckedTemp, isReuploadIfUploadFailsCheckedTemp);
+                            }
+                        }
+                    })
+                    .setNeutralButton(getString(R.string.main_menu_preferences_button), (dialog, which) -> {
+                        MainActivity activity = (MainActivity) getActivity();
+                        if (activity != null) {
+                            activity.startPreferencesActivity();
+                        }
+                    })
+                    .setNegativeButton(getString(R.string.dialog_cancel), null);
+            return builder.create();
         }
     }
 
@@ -1273,67 +1354,76 @@ public class MainActivity extends AppCompatActivity
     private void startExportTask() {
         Uri storageUri = MyApplication.getPreferencesProvider().getStorageUri();
         if (StorageUtils.canWriteStorageUri(storageUri)) {
-            final PreferencesProvider preferencesProvider = MyApplication.getPreferencesProvider();
-            List<FileType> recentFileTypes = preferencesProvider.getEnabledExportFileTypes();
-            LayoutInflater inflater = LayoutInflater.from(this);
-            View dialogLayout = inflater.inflate(R.layout.configure_exporter_dialog, null);
-            final CheckBox csvExportCheckbox = dialogLayout.findViewById(R.id.csv_export_dialog_checkbox);
-            csvExportCheckbox.setChecked(recentFileTypes.contains(FileType.Csv));
-            final CheckBox gpxExportCheckbox = dialogLayout.findViewById(R.id.gpx_export_dialog_checkbox);
-            gpxExportCheckbox.setChecked(recentFileTypes.contains(FileType.Gpx));
-            final CheckBox kmlExportCheckbox = dialogLayout.findViewById(R.id.kml_export_dialog_checkbox);
-            kmlExportCheckbox.setChecked(recentFileTypes.contains(FileType.Kml));
-            final CheckBox kmzExportCheckbox = dialogLayout.findViewById(R.id.kmz_export_dialog_checkbox);
-            kmzExportCheckbox.setChecked(recentFileTypes.contains(FileType.Kmz));
-            final CheckBox csvOcidExportCheckbox = dialogLayout.findViewById(R.id.csv_ocid_export_dialog_checkbox);
-            csvOcidExportCheckbox.setChecked(recentFileTypes.contains(FileType.CsvOcid));
-            final CheckBox jsonMlsExportCheckbox = dialogLayout.findViewById(R.id.json_mls_export_dialog_checkbox);
-            jsonMlsExportCheckbox.setChecked(recentFileTypes.contains(FileType.JsonMls));
-            final CheckBox compressExportCheckbox = dialogLayout.findViewById(R.id.compress_export_dialog_checkbox);
-            compressExportCheckbox.setChecked(recentFileTypes.contains(FileType.Compress));
-            AlertDialog alertDialog = new AlertDialog.Builder(this).setView(dialogLayout).create();
-            alertDialog.setCanceledOnTouchOutside(true);
-            alertDialog.setCancelable(true);
-            alertDialog.setTitle(R.string.export_dialog_format_selection_title);
-            alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.dialog_export), (dialog, which) -> {
-                List<FileType> selectedFileTypes = new ArrayList<>();
-                if (csvExportCheckbox.isChecked())
-                    selectedFileTypes.add(FileType.Csv);
-                if (gpxExportCheckbox.isChecked())
-                    selectedFileTypes.add(FileType.Gpx);
-                if (kmlExportCheckbox.isChecked())
-                    selectedFileTypes.add(FileType.Kml);
-                if (kmzExportCheckbox.isChecked())
-                    selectedFileTypes.add(FileType.Kmz);
-                if (csvOcidExportCheckbox.isChecked())
-                    selectedFileTypes.add(FileType.CsvOcid);
-                if (jsonMlsExportCheckbox.isChecked())
-                    selectedFileTypes.add(FileType.JsonMls);
-                if (compressExportCheckbox.isChecked())
-                    selectedFileTypes.add(FileType.Compress);
-                preferencesProvider.setEnabledExportFileTypes(selectedFileTypes);
-                Timber.d("startExportTask(): User selected positions: %s", TextUtils.join(",", selectedFileTypes));
-                if (selectedFileTypes.isEmpty()) {
-                    Toast.makeText(getApplication(), R.string.export_toast_no_file_types_selected, Toast.LENGTH_LONG).show();
-                } else {
-                    WorkRequest exportWorkRequest = new OneTimeWorkRequest.Builder(ExportWorker.class)
-                            .setInputData(new Data.Builder()
-                                    .putStringArray(ExportWorker.SELECTED_FILE_TYPES, FileType.toNames(selectedFileTypes).toArray(new String[0]))
-                                    .putString(ExportWorker.INTENT_SOURCE, IntentSource.User.name())
-                                    .build())
-                            .addTag(ExportWorker.WORKER_TAG)
-                            .build();
-                    showExportProgress(storageUri, exportWorkRequest.getId());
-                    WorkManager.getInstance(MyApplication.getApplication())
-                            .enqueue(exportWorkRequest);
-                }
-            });
-            alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.dialog_cancel), (dialog, which) -> {
-                // empty
-            });
-            alertDialog.show();
+            ExportConfigDialogFragment dialogFragment = new ExportConfigDialogFragment();
+            dialogFragment.show(getSupportFragmentManager(), ExportConfigDialogFragment.TAG);
         } else {
             StorageUtils.requestStorageUri(this, StorageUtils.PendingAction.EXPORT_DATA);
+        }
+    }
+
+    public static class ExportConfigDialogFragment extends DialogFragment {
+        public static final String TAG = "ExportConfigDialogFragment";
+
+        @NonNull
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final PreferencesProvider preferencesProvider = MyApplication.getPreferencesProvider();
+            List<FileType> recentFileTypes = preferencesProvider.getEnabledExportFileTypes();
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            View dialogLayout = inflater.inflate(R.layout.configure_exporter_dialog, null);
+            final CheckBox csvExportCheckbox = dialogLayout.findViewById(R.id.csv_export_dialog_checkbox);
+            final CheckBox gpxExportCheckbox = dialogLayout.findViewById(R.id.gpx_export_dialog_checkbox);
+            final CheckBox kmlExportCheckbox = dialogLayout.findViewById(R.id.kml_export_dialog_checkbox);
+            final CheckBox kmzExportCheckbox = dialogLayout.findViewById(R.id.kmz_export_dialog_checkbox);
+            final CheckBox csvOcidExportCheckbox = dialogLayout.findViewById(R.id.csv_ocid_export_dialog_checkbox);
+            final CheckBox jsonMlsExportCheckbox = dialogLayout.findViewById(R.id.json_mls_export_dialog_checkbox);
+            final CheckBox compressExportCheckbox = dialogLayout.findViewById(R.id.compress_export_dialog_checkbox);
+
+            if (savedInstanceState == null) {
+                csvExportCheckbox.setChecked(recentFileTypes.contains(FileType.Csv));
+                gpxExportCheckbox.setChecked(recentFileTypes.contains(FileType.Gpx));
+                kmlExportCheckbox.setChecked(recentFileTypes.contains(FileType.Kml));
+                kmzExportCheckbox.setChecked(recentFileTypes.contains(FileType.Kmz));
+                csvOcidExportCheckbox.setChecked(recentFileTypes.contains(FileType.CsvOcid));
+                jsonMlsExportCheckbox.setChecked(recentFileTypes.contains(FileType.JsonMls));
+                compressExportCheckbox.setChecked(recentFileTypes.contains(FileType.Compress));
+            }
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext())
+                    .setView(dialogLayout)
+                    .setTitle(R.string.export_dialog_format_selection_title)
+                    .setPositiveButton(getString(R.string.dialog_export), (dialog, which) -> {
+                        List<FileType> selectedFileTypes = new ArrayList<>();
+                        if (csvExportCheckbox.isChecked()) selectedFileTypes.add(FileType.Csv);
+                        if (gpxExportCheckbox.isChecked()) selectedFileTypes.add(FileType.Gpx);
+                        if (kmlExportCheckbox.isChecked()) selectedFileTypes.add(FileType.Kml);
+                        if (kmzExportCheckbox.isChecked()) selectedFileTypes.add(FileType.Kmz);
+                        if (csvOcidExportCheckbox.isChecked()) selectedFileTypes.add(FileType.CsvOcid);
+                        if (jsonMlsExportCheckbox.isChecked()) selectedFileTypes.add(FileType.JsonMls);
+                        if (compressExportCheckbox.isChecked()) selectedFileTypes.add(FileType.Compress);
+                        
+                        preferencesProvider.setEnabledExportFileTypes(selectedFileTypes);
+                        Timber.d("startExportTask(): User selected positions: %s", TextUtils.join(",", selectedFileTypes));
+                        MainActivity activity = (MainActivity) getActivity();
+                        if (activity != null) {
+                            if (selectedFileTypes.isEmpty()) {
+                                Toast.makeText(activity.getApplicationContext(), R.string.export_toast_no_file_types_selected, Toast.LENGTH_LONG).show();
+                            } else {
+                                Uri storageUri = preferencesProvider.getStorageUri();
+                                WorkRequest exportWorkRequest = new OneTimeWorkRequest.Builder(ExportWorker.class)
+                                        .setInputData(new Data.Builder()
+                                                .putStringArray(ExportWorker.SELECTED_FILE_TYPES, FileType.toNames(selectedFileTypes).toArray(new String[0]))
+                                                .putString(ExportWorker.INTENT_SOURCE, IntentSource.User.name())
+                                                .build())
+                                        .addTag(ExportWorker.WORKER_TAG)
+                                        .build();
+                                activity.showExportProgress(storageUri, exportWorkRequest.getId());
+                                WorkManager.getInstance(MyApplication.getApplication()).enqueue(exportWorkRequest);
+                            }
+                        }
+                    })
+                    .setNegativeButton(getString(R.string.dialog_cancel), null);
+            return builder.create();
         }
     }
 
@@ -1380,6 +1470,9 @@ public class MainActivity extends AppCompatActivity
                         int currentPercent = workInfo.getProgress().getInt(ExportWorker.PROGRESS, ExportWorker.PROGRESS_MIN_VALUE);
                         int maxPercent = workInfo.getProgress().getInt(ExportWorker.PROGRESS_MAX, ExportWorker.PROGRESS_MAX_VALUE);
                         Timber.tag(INNER_TAG).d("onChanged(): Updating progress: %s %s", currentPercent, maxPercent);
+                        if (exportProgressDialog == null) {
+                            exportProgressDialog = (ExportProgressDialogFragment) getSupportFragmentManager().findFragmentByTag(ExportProgressDialogFragment.FRAGMENT_TAG);
+                        }
                         if (exportProgressDialog == null) {
                             // show loading indicator
                             exportProgressDialog = ExportProgressDialogFragment.createInstance(storageUri, currentPercent, maxPercent);
@@ -1462,6 +1555,9 @@ public class MainActivity extends AppCompatActivity
                         int maxPercent = workInfo.getProgress().getInt(UploaderWorker.PROGRESS_MAX, UploaderWorker.PROGRESS_MAX_VALUE);
                         Timber.tag(INNER_TAG).d("onChanged(): Updating progress: %s %s", currentPercent, maxPercent);
                         if (uploaderProgressDialog == null) {
+                            uploaderProgressDialog = (UploaderProgressDialogFragment) getSupportFragmentManager().findFragmentByTag(UploaderProgressDialogFragment.FRAGMENT_TAG);
+                        }
+                        if (uploaderProgressDialog == null) {
                             // show loading indicator
                             uploaderProgressDialog = UploaderProgressDialogFragment.createInstance(currentPercent, maxPercent);
                             uploaderProgressDialog.setCancelListener(MainActivity.this);
@@ -1497,12 +1593,15 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void displayUploaderFinishedDialog(String message) {
+        uploaderFinishedMessage = message;
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle(R.string.uploader_result_dialog_title);
         builder.setMessage(message);
         builder.setCancelable(true);
         builder.setPositiveButton(R.string.dialog_ok, null);
-        builder.show();
+        AlertDialog dialog = builder.create();
+        dialog.setOnDismissListener(dialogInterface -> uploaderFinishedMessage = null);
+        dialog.show();
     }
 
     @Override
@@ -1518,29 +1617,31 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void startCleanup() {
-        // show dialog that runs async task
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.clear_dialog_title);
-        builder.setMessage(R.string.clear_dialog_message);
-        builder.setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                MeasurementsDatabase.getInstance(MyApplication.getApplication()).clearAllData();
-                Toast.makeText(MainActivity.this, R.string.clear_toast_finished, Toast.LENGTH_SHORT).show();
-                MapUtils.clearMapCache(MainActivity.this);
-                EventBus.getDefault().post(new PrintMainWindowEvent());
-            }
-        });
-        builder.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-                // cancel
-            }
-        });
-        AlertDialog dialog = builder.create();
-        dialog.setCanceledOnTouchOutside(true);
-        dialog.setCancelable(true);
-        dialog.show();
+        CleanupConfirmDialogFragment dialogFragment = new CleanupConfirmDialogFragment();
+        dialogFragment.show(getSupportFragmentManager(), CleanupConfirmDialogFragment.TAG);
+    }
+
+    public static class CleanupConfirmDialogFragment extends DialogFragment {
+        public static final String TAG = "CleanupConfirmDialogFragment";
+
+        @NonNull
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            return new AlertDialog.Builder(getContext())
+                    .setTitle(R.string.clear_dialog_title)
+                    .setMessage(R.string.clear_dialog_message)
+                    .setPositiveButton(R.string.dialog_ok, (dialog, which) -> {
+                        MainActivity activity = (MainActivity) getActivity();
+                        if (activity != null) {
+                            MeasurementsDatabase.getInstance(MyApplication.getApplication()).clearAllData();
+                            Toast.makeText(activity, R.string.clear_toast_finished, Toast.LENGTH_SHORT).show();
+                            MapUtils.clearMapCache(activity);
+                            EventBus.getDefault().post(new PrintMainWindowEvent());
+                        }
+                    })
+                    .setNegativeButton(R.string.dialog_cancel, null)
+                    .create();
+        }
     }
 
     private void startPreferencesActivity() {

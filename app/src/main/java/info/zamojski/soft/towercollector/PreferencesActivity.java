@@ -31,9 +31,6 @@ public class PreferencesActivity extends AppCompatActivity implements Preference
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(MyApplication.getCurrentAppTheme());
         super.onCreate(savedInstanceState);
-        // set fixed screen orientation
-        if (!ApkUtils.isRunningOnBuggyOreoSetRequestedOrientation(this))
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.preferences);
         if (savedInstanceState == null) {
             getSupportFragmentManager()
