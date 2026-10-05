@@ -36,10 +36,12 @@ import info.zamojski.soft.towercollector.utils.ExceptionUtils;
 import info.zamojski.soft.towercollector.utils.HashUtils;
 
 import android.app.Application;
+import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabaseCorruptException;
 import android.net.Uri;
 import android.os.Build;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.os.DeadObjectException;
@@ -81,6 +83,12 @@ public class MyApplication extends Application {
         initEventBus();
         initTheme();
         initAnalytics();
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        initTheme();
     }
 
     static {

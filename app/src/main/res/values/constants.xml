@@ -80,7 +80,8 @@
     <bool name="preferences_error_reporting_silent_default_value" translatable="false">true</bool>
 
     <string name="preferences_app_theme_mode_key" translatable="false">preferences_app_theme_mode</string>
-    <string name="preferences_app_theme_mode_default_value" translatable="false">@string/preferences_app_theme_mode_entries_value_light</string>
+    <string name="preferences_app_theme_mode_default_value" translatable="false">@string/preferences_app_theme_mode_entries_value_system</string>
+    <string name="preferences_app_theme_mode_entries_value_system" translatable="false">system</string>
     <string name="preferences_app_theme_mode_entries_value_light" translatable="false">light</string>
     <string name="preferences_app_theme_mode_entries_value_dark" translatable="false">dark</string>
 

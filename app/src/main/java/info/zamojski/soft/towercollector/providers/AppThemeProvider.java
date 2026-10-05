@@ -4,21 +4,27 @@
 
 package info.zamojski.soft.towercollector.providers;
 
-import info.zamojski.soft.towercollector.R;
-
 import android.content.Context;
+import android.content.res.Configuration;
+
+import info.zamojski.soft.towercollector.R;
 
 public class AppThemeProvider {
 
-    private String lightThemeName, darkThemeName;
+    private String systemThemeName, lightThemeName, darkThemeName;
+    private Context context;
 
     public AppThemeProvider(Context context) {
+        this.context = context;
+        this.systemThemeName = context.getString(R.string.preferences_app_theme_mode_entries_value_system);
         this.lightThemeName = context.getString(R.string.preferences_app_theme_mode_entries_value_light);
         this.darkThemeName = context.getString(R.string.preferences_app_theme_mode_entries_value_dark);
     }
 
     public int getAppTheme(String themeName) {
-        if (themeName.equals(lightThemeName)) {
+        if (themeName.equals(systemThemeName)) {
+            return isSystemDarkTheme() ? R.style.DarkAppTheme : R.style.LightAppTheme;
+        } else if (themeName.equals(lightThemeName)) {
             return R.style.LightAppTheme;
         } else if (themeName.equals(darkThemeName)) {
             return R.style.DarkAppTheme;
@@ -29,7 +35,9 @@ public class AppThemeProvider {
     }
 
     public int getPopupTheme(String themeName) {
-        if (themeName.equals(lightThemeName)) {
+        if (themeName.equals(systemThemeName)) {
+            return isSystemDarkTheme() ? R.style.DarkPopupTheme : R.style.LightPopupTheme;
+        } else if (themeName.equals(lightThemeName)) {
             return R.style.LightPopupTheme;
         } else if (themeName.equals(darkThemeName)) {
             return R.style.DarkPopupTheme;
@@ -37,5 +45,10 @@ public class AppThemeProvider {
             // default
             return R.style.LightPopupTheme;
         }
+    }
+
+    private boolean isSystemDarkTheme() {
+        int currentNightMode = context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        return currentNightMode == Configuration.UI_MODE_NIGHT_YES;
     }
 }

@@ -472,6 +472,7 @@
     <string name="preferences_collector_low_battery_action_stop">Stop collecting</string>
     <string name="preferences_app_theme_mode_dark">Dark</string>
     <string name="preferences_app_theme_mode_light">Light</string>
+    <string name="preferences_app_theme_mode_system">System</string>
     <string name="preferences_collector_api_version_auto">Auto detect</string>
     <string name="preferences_file_logging_level_disabled">Disabled</string>
     <string name="preferences_file_logging_level_debug">Debug</string>

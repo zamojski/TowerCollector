@@ -40,10 +40,12 @@
         <item>@string/preferences_collector_low_battery_action_entries_value_stop</item>
     </string-array>
     <string-array name="preferences_app_theme_mode_entries_labels" translatable="false">
+        <item>@string/preferences_app_theme_mode_system</item>
         <item>@string/preferences_app_theme_mode_dark</item>
         <item>@string/preferences_app_theme_mode_light</item>
     </string-array>
     <string-array name="preferences_app_theme_mode_entries_values" translatable="false">
+        <item>@string/preferences_app_theme_mode_entries_value_system</item>
         <item>@string/preferences_app_theme_mode_entries_value_dark</item>
         <item>@string/preferences_app_theme_mode_entries_value_light</item>
     </string-array>
