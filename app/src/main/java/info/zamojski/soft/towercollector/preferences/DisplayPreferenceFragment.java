@@ -58,7 +58,9 @@ public class DisplayPreferenceFragment extends DialogEnabledPreferenceFragment i
             Timber.d("onSharedPreferenceChanged(): User set app theme = \"%s\"", appThemeValue);
             appThemePreference.setSummary(formatValueString(R.string.preferences_app_theme_summary, appThemeLabel));
             MyApplication.getApplication().initTheme();
-            Toast.makeText(getActivity(), R.string.preferences_restart_app, Toast.LENGTH_SHORT).show();
+            if (getActivity() != null) {
+                getActivity().recreate();
+            }
         }
     }
 

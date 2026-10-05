@@ -175,11 +175,14 @@ public class MainActivity extends AppCompatActivity
 
     private boolean isInUseForWhile = false;
 
+    private int currentThemeId;
+
     // ========== ACTIVITY ========== //
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(MyApplication.getCurrentAppTheme());
+        currentThemeId = MyApplication.getCurrentAppTheme();
+        setTheme(currentThemeId);
         super.onCreate(savedInstanceState);
         Timber.d("onCreate(): Creating activity");
         setContentView(R.layout.main);
@@ -330,6 +333,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
+        if (currentThemeId != MyApplication.getCurrentAppTheme()) {
+            recreate();
+            return;
+        }
         Timber.d("onResume(): Resuming");
         // print on UI
         EventBus.getDefault().post(new PrintMainWindowEvent());
