@@ -7,7 +7,7 @@
                                    xmlns:app="http://schemas.android.com/apk/res-auto"
                                    android:layout_width="match_parent"
                                    android:layout_height="?attr/actionBarSize"
-                                   android:background="?attr/toolbar_background_color"
+                                   android:background="?attr/colorSurface"
                                    android:elevation="4dp"
                                    app:navigationContentDescription="@string/abc_action_bar_up_description"
                                    app:navigationIcon="?attr/homeAsUpIndicator"/>

@@ -5,7 +5,8 @@
 package info.zamojski.soft.towercollector;
 
 import android.Manifest;
-import android.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -58,8 +59,9 @@ import androidx.work.WorkManager;
 import androidx.work.WorkRequest;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayout.Tab;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
+import androidx.viewpager.widget.ViewPager;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import org.greenrobot.eventbus.EventBus;
@@ -116,7 +118,6 @@ import info.zamojski.soft.towercollector.utils.MapUtils;
 import info.zamojski.soft.towercollector.utils.NetworkUtils;
 import info.zamojski.soft.towercollector.utils.OpenCellIdUtils;
 import info.zamojski.soft.towercollector.utils.PermissionUtils;
-import info.zamojski.soft.towercollector.utils.SnackbarUtils;
 import info.zamojski.soft.towercollector.utils.StorageUtils;
 import info.zamojski.soft.towercollector.utils.StringUtils;
 import info.zamojski.soft.towercollector.utils.UpdateDialogArrayAdapter;
@@ -131,7 +132,7 @@ import timber.log.Timber;
 
 @RuntimePermissions
 public class MainActivity extends AppCompatActivity
-        implements TabLayout.OnTabSelectedListener, ExportProgressDialogFragment.OnExportCancelledListener, UploaderProgressDialogFragment.OnUploaderCancelledListener {
+        implements ExportProgressDialogFragment.OnExportCancelledListener, UploaderProgressDialogFragment.OnUploaderCancelledListener {
 
     private static final int BATTERY_OPTIMIZATIONS_ACTIVITY_RESULT = 'B';
     private static final int BATTERY_SAVER_ACTIVITY_RESULT = 'S';
@@ -160,7 +161,7 @@ public class MainActivity extends AppCompatActivity
     private MenuItem networkTypeMenu;
     private MenuItem projectSupportMenu;
 
-    private TabLayout tabLayout;
+    private BottomNavigationView bottomNavigation;
 
     public ICollectorService collectorServiceBinder;
 
@@ -191,9 +192,31 @@ public class MainActivity extends AppCompatActivity
         MainActivityPagerAdapter pageAdapter = new MainActivityPagerAdapter(getSupportFragmentManager(), getApplication());
         viewPager = findViewById(R.id.main_pager);
         viewPager.setAdapter(pageAdapter);
-        tabLayout = findViewById(R.id.main_tab_layout);
-        tabLayout.setupWithViewPager(viewPager);
-        tabLayout.addOnTabSelectedListener(this);
+        bottomNavigation = findViewById(R.id.bottom_navigation);
+        bottomNavigation.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.navigation_last) {
+                viewPager.setCurrentItem(0);
+                return true;
+            } else if (itemId == R.id.navigation_stats) {
+                viewPager.setCurrentItem(1);
+                return true;
+            } else if (itemId == R.id.navigation_map) {
+                viewPager.setCurrentItem(2);
+                return true;
+            }
+            return false;
+        });
+        
+        viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                if (position == 0) bottomNavigation.setSelectedItemId(R.id.navigation_last);
+                else if (position == 1) bottomNavigation.setSelectedItemId(R.id.navigation_stats);
+                else if (position == 2) bottomNavigation.setSelectedItemId(R.id.navigation_map);
+            }
+        });
+        bottomNavigation.getMenu().findItem(R.id.navigation_map).setVisible(MyApplication.getPreferencesProvider().isMainMapEnabled());
 
         isInUseForWhile = MeasurementsDatabase.getInstance(MyApplication.getApplication()).isInUseForWhile();
 
@@ -264,7 +287,7 @@ public class MainActivity extends AppCompatActivity
         Timber.d("onDestroy(): Unbinding from service");
         if (isCollectorServiceRunning.get())
             unbindService(collectorServiceConnection);
-        tabLayout.removeOnTabSelectedListener(this);
+        
 
         if (airplaneModeBroadcastReceiver != null)
             unregisterReceiver(airplaneModeBroadcastReceiver);
@@ -441,23 +464,6 @@ public class MainActivity extends AppCompatActivity
         return super.onKeyUp(keyCode, event);
     }
 
-    @Override
-    public void onTabSelected(Tab tab) {
-        Timber.d("onTabSelected() Switching to tab %s", tab.getPosition());
-        // switch to page when tab is selected
-        viewPager.setCurrentItem(tab.getPosition());
-    }
-
-    @Override
-    public void onTabUnselected(Tab tab) {
-        // nothing
-    }
-
-    @Override
-    public void onTabReselected(Tab tab) {
-        // nothing
-    }
-
     // ========== UI ========== //
 
     private void printInvalidSystemTime(ICollectorService collectorServiceBinder) {
@@ -619,7 +625,7 @@ public class MainActivity extends AppCompatActivity
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             String title = getArguments().getString(ARG_TITLE);
             String message = getArguments().getString(ARG_MESSAGE);
-            return new AlertDialog.Builder(getContext())
+            return new MaterialAlertDialogBuilder(getContext())
                     .setTitle(title)
                     .setMessage(message)
                     .setPositiveButton(R.string.dialog_ok, null)
@@ -674,7 +680,7 @@ public class MainActivity extends AppCompatActivity
             String title = getArguments().getString(ARG_TITLE);
             String message = getArguments().getString(ARG_MESSAGE);
             final int action = getArguments().getInt(ARG_ACTION);
-            return new AlertDialog.Builder(getContext())
+            return new MaterialAlertDialogBuilder(getContext())
                     .setTitle(title)
                     .setMessage(message)
                     .setPositiveButton(R.string.dialog_settings, (dialog, which) -> {
@@ -692,7 +698,7 @@ public class MainActivity extends AppCompatActivity
 
     private void displayNewVersionDownloadOptions(UpdateInfo updateInfo) {
         // display dialog
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        AlertDialog.Builder dialogBuilder = new MaterialAlertDialogBuilder(this);
         LayoutInflater inflater = LayoutInflater.from(this);
         View dialogLayout = inflater.inflate(R.layout.new_version, null);
         dialogBuilder.setView(dialogLayout);
@@ -760,7 +766,7 @@ public class MainActivity extends AppCompatActivity
                 if (noRadioDetected) {
                     Timber.d("displayNotCompatibleDialog(): Not compatible because of radio: %s, phone type: %s", noRadioDetected, telephonyManager.getPhoneType());
                     //use custom layout to show "don't show this again" checkbox
-                    AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+                    AlertDialog.Builder dialogBuilder = new MaterialAlertDialogBuilder(this);
                     LayoutInflater inflater = LayoutInflater.from(this);
                     View dialogLayout = inflater.inflate(R.layout.dont_show_again_dialog, null);
                     final CheckBox dontShowAgainCheckbox = (CheckBox) dialogLayout.findViewById(R.id.dont_show_again_dialog_checkbox);
@@ -836,7 +842,7 @@ public class MainActivity extends AppCompatActivity
         final RadioButton shareRadioButton = dialogLayout.findViewById(R.id.export_finished_dialog_share_radiobutton);
         openRadioButton.setEnabled(singleFile);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        AlertDialog.Builder builder = new MaterialAlertDialogBuilder(MainActivity.this);
         builder.setTitle(R.string.export_dialog_finished_title);
         builder.setView(dialogLayout);
         builder.setCancelable(true);
@@ -862,7 +868,7 @@ public class MainActivity extends AppCompatActivity
         });
         builder.setNegativeButton(R.string.dialog_delete, (dialog, which) -> {
             // show dialog that runs async task
-            AlertDialog.Builder deleteBuilder = new AlertDialog.Builder(this);
+            AlertDialog.Builder deleteBuilder = new MaterialAlertDialogBuilder(this);
             deleteBuilder.setTitle(R.string.delete_dialog_title);
             deleteBuilder.setMessage(R.string.delete_dialog_message);
             deleteBuilder.setPositiveButton(R.string.dialog_ok, (positiveDialog, positiveWhich) -> {
@@ -1142,7 +1148,7 @@ public class MainActivity extends AppCompatActivity
     private void startUploaderTaskInternal() {
         final PreferencesProvider preferencesProvider = MyApplication.getPreferencesProvider();
         if (!NetworkUtils.isNetworkAvailable(MyApplication.getApplication())) {
-            new AlertDialog.Builder(this)
+            new MaterialAlertDialogBuilder(this)
                     .setTitle(R.string.uploader_no_internet_title)
                     .setMessage(R.string.uploader_no_internet_message)
                     .setCancelable(true)
@@ -1217,7 +1223,7 @@ public class MainActivity extends AppCompatActivity
             invalidApiKeyTextView.setVisibility(ocidAnonymousUploadCheckbox.isChecked() || isApiKeyValid ? View.GONE : View.VISIBLE);
             invalidCustomUrlTextView.setVisibility(!isCustomMlsUploadEnabled || isCustomMlsUrlValid ? View.GONE : View.VISIBLE);
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext())
+            AlertDialog.Builder builder = new MaterialAlertDialogBuilder(getContext())
                     .setView(dialogLayout)
                     .setTitle(R.string.upload_configurator_dialog_title)
                     .setPositiveButton(getString(R.string.dialog_upload), (dialog, which) -> {
@@ -1254,7 +1260,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void onNotificationRationaleInternal(PermissionRequest request) {
-        new AlertDialog.Builder(this)
+        new MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.permission_required)
                 .setMessage(R.string.permission_notification_rationale_message)
                 .setCancelable(true)
@@ -1278,7 +1284,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void onNotificationNeverAskAgainInternal() {
-        new AlertDialog.Builder(this)
+        new MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.permission_denied)
                 .setMessage(R.string.permission_notification_never_ask_again_message)
                 .setCancelable(true)
@@ -1293,7 +1299,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void showAllProjectsDisabledMessage() {
-        SnackbarUtils.make(activityView, R.string.uploader_all_projects_disabled, Snackbar.LENGTH_LONG)
+        Snackbar.make(activityView, R.string.uploader_all_projects_disabled, Snackbar.LENGTH_LONG)
                 .setAction(R.string.main_menu_preferences_button, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -1389,7 +1395,7 @@ public class MainActivity extends AppCompatActivity
                 compressExportCheckbox.setChecked(recentFileTypes.contains(FileType.Compress));
             }
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext())
+            AlertDialog.Builder builder = new MaterialAlertDialogBuilder(getContext())
                     .setView(dialogLayout)
                     .setTitle(R.string.export_dialog_format_selection_title)
                     .setPositiveButton(getString(R.string.dialog_export), (dialog, which) -> {
@@ -1594,7 +1600,7 @@ public class MainActivity extends AppCompatActivity
 
     public void displayUploaderFinishedDialog(String message) {
         uploaderFinishedMessage = message;
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        AlertDialog.Builder builder = new MaterialAlertDialogBuilder(MainActivity.this);
         builder.setTitle(R.string.uploader_result_dialog_title);
         builder.setMessage(message);
         builder.setCancelable(true);
@@ -1627,7 +1633,7 @@ public class MainActivity extends AppCompatActivity
         @NonNull
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
-            return new AlertDialog.Builder(getContext())
+            return new MaterialAlertDialogBuilder(getContext())
                     .setTitle(R.string.clear_dialog_title)
                     .setMessage(R.string.clear_dialog_message)
                     .setPositiveButton(R.string.dialog_ok, (dialog, which) -> {
@@ -1716,7 +1722,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void showCannotOpenAndroidSettingsDialog() {
-        AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).setMessage(R.string.dialog_could_not_open_android_settings).setPositiveButton(R.string.dialog_ok, null).create();
+        AlertDialog alertDialog = new MaterialAlertDialogBuilder(MainActivity.this).setMessage(R.string.dialog_could_not_open_android_settings).setPositiveButton(R.string.dialog_ok, null).create();
         alertDialog.setCanceledOnTouchOutside(true);
         alertDialog.setCancelable(true);
         alertDialog.show();
@@ -1772,7 +1778,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void onShowRationale(final PermissionRequest request, String message) {
-        new AlertDialog.Builder(this)
+        new MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.permission_required)
                 .setMessage(message)
                 .setCancelable(true)
@@ -1796,7 +1802,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void onNeverAskAgain(@StringRes int messageResId) {
-        new AlertDialog.Builder(this)
+        new MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.permission_denied)
                 .setMessage(messageResId)
                 .setCancelable(true)
@@ -1820,7 +1826,7 @@ public class MainActivity extends AppCompatActivity
         } else {
             Timber.d("askAndSetGpsEnabled(): GPS disabled, asking user");
             isGpsEnabled = false;
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            AlertDialog.Builder builder = new MaterialAlertDialogBuilder(this);
             builder.setMessage(R.string.dialog_want_enable_gps).setPositiveButton(R.string.dialog_yes, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     Timber.d("askAndSetGpsEnabled(): display settings");
@@ -1836,7 +1842,7 @@ public class MainActivity extends AppCompatActivity
                         } catch (ActivityNotFoundException ex2) {
                             Timber.w("askAndSetGpsEnabled(): Could not open Settings to enable GPS");
                             MyApplication.handleSilentException(ex2);
-                            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).setMessage(R.string.dialog_could_not_open_android_settings).setPositiveButton(R.string.dialog_ok, null).create();
+                            AlertDialog alertDialog = new MaterialAlertDialogBuilder(MainActivity.this).setMessage(R.string.dialog_could_not_open_android_settings).setPositiveButton(R.string.dialog_ok, null).create();
                             alertDialog.setCanceledOnTouchOutside(true);
                             alertDialog.setCancelable(true);
                             alertDialog.show();
@@ -1921,15 +1927,15 @@ public class MainActivity extends AppCompatActivity
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onEvent(MapEnabledChangedEvent event) {
         refreshTabs();
+        if (bottomNavigation != null) {
+            bottomNavigation.getMenu().findItem(R.id.navigation_map).setVisible(MyApplication.getPreferencesProvider().isMainMapEnabled());
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(ShowLocationOnMapEvent event) {
-        if (MyApplication.getPreferencesProvider().isMainMapEnabled() && tabLayout != null && tabLayout.getTabCount() > 2) {
-            Tab tab = tabLayout.getTabAt(2);
-            if (tab != null) {
-                tab.select();
-            }
+        if (MyApplication.getPreferencesProvider().isMainMapEnabled() && bottomNavigation != null) {
+            bottomNavigation.setSelectedItemId(R.id.navigation_map);
         }
     }
 

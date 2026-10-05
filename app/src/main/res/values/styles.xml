@@ -1,63 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- This Source Code Form is subject to the terms of the Mozilla Public
-   - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="LightAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="icon_color">@color/icon_light</item>
-        <item name="icon_background_color">@color/icon_background_light</item>
-        <item name="dot_color">@color/dot_light</item>
-        <item name="android:textColor">@color/text_light</item>
-        <item name="android:textColorSecondary">@color/text_secondary_light</item>
-        <item name="toolbar_background_color">@color/toolbar_light</item>
-        <!-- Required by Material Snackbar layout even when backgroundTint overrides the final color -->
-        <item name="colorSurface">#FFFFFFFF</item>
-        <item name="colorOnSurface">#FF000000</item>
-        <!-- Snackbar: dark surface on light background; text/action colors applied in SnackbarUtils -->
-        <item name="snackbarStyle">@style/SnackbarStyle.Light</item>
-        <item name="snackbarTextColor">@color/snackbar_text_light</item>
-        <item name="snackbarActionColor">@color/snackbar_action_light</item>
+    <style name="LightAppTheme" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Brand Colors -->
+        <item name="colorPrimary">@color/snackbar_action_dark</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorPrimaryContainer">#A7F5D9</item>
+        <item name="colorOnPrimaryContainer">#00201a</item>
+        <item name="colorSecondary">@color/snackbar_action_dark</item>
+        <item name="colorSecondaryContainer">#b3ebd5</item>
+        <item name="colorOnSecondaryContainer">#00201a</item>
+
+        <!-- Preferences M3 style -->
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+
+        <!-- Snackbar -->
+        <item name="snackbarStyle">@style/Widget.Material3.Snackbar</item>
+        <item name="snackbarButtonStyle">@style/Widget.App.SnackbarButton.Light</item>
+        <item name="map_overlay_background">@color/icon_background_light</item>
     </style>
 
-    <style name="LightPopupTheme" parent="ThemeOverlay.AppCompat.Light">
+    <style name="LightPopupTheme" parent="ThemeOverlay.Material3.Light">
         <item name="android:layout_marginStart">4dp</item>
         <item name="android:layout_marginEnd">4dp</item>
+        <item name="shapeAppearanceCornerMedium">@style/ShapeAppearance.Material3.Corner.Medium</item>
     </style>
 
-    <style name="DarkAppTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="icon_color">@color/icon_dark</item>
-        <item name="icon_background_color">@color/icon_background_dark</item>
-        <item name="dot_color">@color/dot_dark</item>
-        <item name="android:textColor">@color/text_dark</item>
-        <item name="android:textColorSecondary">@color/text_secondary_dark</item>
-        <item name="toolbar_background_color">@color/toolbar_dark</item>
-        <!-- Required by Material Snackbar layout even when backgroundTint overrides the final color -->
-        <item name="colorSurface">#FF121212</item>
-        <item name="colorOnSurface">#FFE0E0E0</item>
-        <!-- Snackbar: light surface on dark background; text/action colors applied in SnackbarUtils -->
-        <item name="snackbarStyle">@style/SnackbarStyle.Dark</item>
-        <item name="snackbarTextColor">@color/snackbar_text_dark</item>
-        <item name="snackbarActionColor">@color/snackbar_action_dark</item>
+    <style name="DarkAppTheme" parent="Theme.Material3.Dark.NoActionBar">
+        <!-- Brand Colors -->
+        <item name="colorPrimary">@color/snackbar_action_light</item>
+        <item name="colorOnPrimary">#003828</item>
+        <item name="colorPrimaryContainer">#005045</item>
+        <item name="colorOnPrimaryContainer">#A7F5D9</item>
+        <item name="colorSecondary">@color/snackbar_action_light</item>
+        <item name="colorSecondaryContainer">#005045</item>
+        <item name="colorOnSecondaryContainer">#b3ebd5</item>
+
+        <!-- Preferences M3 style -->
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+
+        <!-- Snackbar -->
+        <item name="snackbarStyle">@style/Widget.Material3.Snackbar</item>
+        <item name="snackbarButtonStyle">@style/Widget.App.SnackbarButton.Dark</item>
+        <item name="map_overlay_background">@color/icon_background_dark</item>
     </style>
 
-    <style name="SnackbarStyle.Light" parent="Widget.MaterialComponents.Snackbar">
-        <item name="backgroundTint">@color/snackbar_background_light</item>
-    </style>
-
-    <style name="SnackbarStyle.Dark" parent="Widget.MaterialComponents.Snackbar">
-        <item name="backgroundTint">@color/snackbar_background_dark</item>
-    </style>
-
-    <style name="DarkPopupTheme" parent="ThemeOverlay.AppCompat">
+    <style name="DarkPopupTheme" parent="ThemeOverlay.Material3.Dark">
         <item name="android:layout_marginStart">4dp</item>
         <item name="android:layout_marginEnd">4dp</item>
+        <item name="shapeAppearanceCornerMedium">@style/ShapeAppearance.Material3.Corner.Medium</item>
     </style>
 
     <style name="DefaultSplashScreenAppTheme" parent="Theme.AppCompat.Dialog">
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowBackground">@color/black_transp_70</item>
         <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- Custom Snackbar Button Styles -->
+    <style name="Widget.App.SnackbarButton.Light" parent="Widget.Material3.Button.TextButton.Snackbar">
+        <item name="android:textColor">@color/snackbar_action_light</item>
+    </style>
+
+    <style name="Widget.App.SnackbarButton.Dark" parent="Widget.Material3.Button.TextButton.Snackbar">
+        <item name="android:textColor">@color/snackbar_action_dark</item>
     </style>
 
 </resources>

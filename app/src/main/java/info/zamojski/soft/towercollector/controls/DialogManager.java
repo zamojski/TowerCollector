@@ -4,7 +4,8 @@
 
 package info.zamojski.soft.towercollector.controls;
 
-import android.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -47,7 +48,7 @@ public class DialogManager {
     private static AlertDialog createHtmlInfoDialog(Context context, int titleId, Integer messageId, String message, boolean largeText, boolean textIsSelectable, Integer negativeActionTextId, DialogInterface.OnClickListener negativeAction) {
         if (messageId == null && message == null)
             throw new IllegalArgumentException("MessageId or message values is required");
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
         View dialogLayout = inflater.inflate(R.layout.html_information_dialog, null);
         builder.setView(dialogLayout);
@@ -112,7 +113,7 @@ public class DialogManager {
     }
 
     public static AlertDialog createConfirmationDialog(Context context, int titleId, int messageId, DialogInterface.OnClickListener confirmedAction) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context);
 
         builder.setPositiveButton(R.string.dialog_proceed, confirmedAction);
         builder.setNegativeButton(R.string.dialog_cancel, null);

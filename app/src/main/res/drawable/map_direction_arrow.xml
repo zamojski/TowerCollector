@@ -5,7 +5,7 @@
     android:width="36dp"
     android:height="36dp"
     android:autoMirrored="true"
-    android:tint="?attr/icon_color"
+    android:tint="?attr/colorOnSurface"
     android:viewportWidth="24"
     android:viewportHeight="24">
     <path

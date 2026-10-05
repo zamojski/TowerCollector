@@ -4,11 +4,6 @@
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources>
 
-    <attr name="icon_color" format="reference"/>
-    <attr name="icon_background_color" format="reference"/>
-    <attr name="dot_color" format="reference"/>
-    <attr name="toolbar_background_color" format="reference"/>
-    <attr name="snackbarTextColor" format="color|reference"/>
-    <attr name="snackbarActionColor" format="color|reference"/>
+    <attr name="map_overlay_background" format="color|reference"/>
 
 </resources>

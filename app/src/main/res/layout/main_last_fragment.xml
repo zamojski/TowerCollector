@@ -32,6 +32,7 @@
 
             <TextView
                 android:id="@+id/main_last_cell_title_textview"
+                android:layout_marginStart="12dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/padding_small"
@@ -39,16 +40,13 @@
                 android:textStyle="bold"
                 tools:context=".MainActivity" />
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView app:cardBackgroundColor="?attr/colorSurfaceContainer" app:cardCornerRadius="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="-8dp"
-                app:cardElevation="5dp"
-                app:cardMaxElevation="8dp"
-                app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="true">
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp">
 
-                <TableLayout
+                <TableLayout android:padding="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="5dp"
@@ -61,6 +59,8 @@
 
                         <TextView
                             android:id="@+id/main_last_network_type_label_textview1"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -72,6 +72,8 @@
 
                         <TextView
                             android:id="@+id/main_last_network_type_value_textview1"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:longClickable="true"
@@ -87,6 +89,8 @@
 
                         <TextView
                             android:id="@+id/main_last_long_cell_id_label_textview1"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -98,6 +102,8 @@
 
                         <TextView
                             android:id="@+id/main_last_long_cell_id_value_textview1"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:longClickable="true"
@@ -113,6 +119,8 @@
 
                         <TextView
                             android:id="@+id/main_last_cell_id_rnc_label_textview1"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -124,6 +132,8 @@
 
                         <TextView
                             android:id="@+id/main_last_cell_id_rnc_value_textview1"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:longClickable="true"
@@ -139,6 +149,8 @@
 
                         <TextView
                             android:id="@+id/main_last_cell_id_label_textview1"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -150,6 +162,8 @@
 
                         <TextView
                             android:id="@+id/main_last_cell_id_value_textview1"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:longClickable="true"
@@ -165,6 +179,8 @@
 
                         <TextView
                             android:id="@+id/main_last_lac_label_textview1"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -176,6 +192,8 @@
 
                         <TextView
                             android:id="@+id/main_last_lac_value_textview1"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:longClickable="true"
@@ -191,6 +209,8 @@
 
                         <TextView
                             android:id="@+id/main_last_mcc_label_textview1"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -202,6 +222,8 @@
 
                         <TextView
                             android:id="@+id/main_last_mcc_value_textview1"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:longClickable="true"
@@ -217,6 +239,8 @@
 
                         <TextView
                             android:id="@+id/main_last_mnc_label_textview1"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -228,6 +252,8 @@
 
                         <TextView
                             android:id="@+id/main_last_mnc_value_textview1"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:longClickable="true"
@@ -243,6 +269,8 @@
 
                         <TextView
                             android:id="@+id/main_last_signal_strength_label_textview1"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -254,6 +282,8 @@
 
                         <TextView
                             android:id="@+id/main_last_signal_strength_value_textview1"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:longClickable="true"
@@ -264,19 +294,16 @@
 
                 </TableLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView app:cardBackgroundColor="?attr/colorSurfaceContainer" app:cardCornerRadius="16dp"
                 android:id="@+id/main_last_cell_cardview2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="-8dp"
-                app:cardElevation="5dp"
-                app:cardMaxElevation="8dp"
-                app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="true">
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp">
 
-                <TableLayout
+                <TableLayout android:padding="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="5dp"
@@ -289,6 +316,8 @@
 
                         <TextView
                             android:id="@+id/main_last_network_type_label_textview2"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -300,6 +329,8 @@
 
                         <TextView
                             android:id="@+id/main_last_network_type_value_textview2"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:longClickable="true"
@@ -315,6 +346,8 @@
 
                         <TextView
                             android:id="@+id/main_last_long_cell_id_label_textview2"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -326,6 +359,8 @@
 
                         <TextView
                             android:id="@+id/main_last_long_cell_id_value_textview2"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:longClickable="true"
@@ -341,6 +376,8 @@
 
                         <TextView
                             android:id="@+id/main_last_cell_id_rnc_label_textview2"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -352,6 +389,8 @@
 
                         <TextView
                             android:id="@+id/main_last_cell_id_rnc_value_textview2"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:longClickable="true"
@@ -367,6 +406,8 @@
 
                         <TextView
                             android:id="@+id/main_last_cell_id_label_textview2"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -378,6 +419,8 @@
 
                         <TextView
                             android:id="@+id/main_last_cell_id_value_textview2"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:longClickable="true"
@@ -393,6 +436,8 @@
 
                         <TextView
                             android:id="@+id/main_last_lac_label_textview2"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -404,6 +449,8 @@
 
                         <TextView
                             android:id="@+id/main_last_lac_value_textview2"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:longClickable="true"
@@ -419,6 +466,8 @@
 
                         <TextView
                             android:id="@+id/main_last_mcc_label_textview2"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -430,6 +479,8 @@
 
                         <TextView
                             android:id="@+id/main_last_mcc_value_textview2"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:longClickable="true"
@@ -445,6 +496,8 @@
 
                         <TextView
                             android:id="@+id/main_last_mnc_label_textview2"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -456,6 +509,8 @@
 
                         <TextView
                             android:id="@+id/main_last_mnc_value_textview2"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:longClickable="true"
@@ -471,6 +526,8 @@
 
                         <TextView
                             android:id="@+id/main_last_signal_strength_label_textview2"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -482,6 +539,8 @@
 
                         <TextView
                             android:id="@+id/main_last_signal_strength_value_textview2"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:longClickable="true"
@@ -492,18 +551,15 @@
 
                 </TableLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView app:cardBackgroundColor="?attr/colorSurfaceContainer" app:cardCornerRadius="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="-8dp"
-                app:cardElevation="5dp"
-                app:cardMaxElevation="8dp"
-                app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="true">
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp">
 
-                <TableLayout
+                <TableLayout android:padding="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="5dp"
@@ -516,6 +572,8 @@
 
                         <TextView
                             android:id="@+id/main_last_number_of_cells_label_textview"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -527,6 +585,8 @@
 
                         <TextView
                             android:id="@+id/main_last_number_of_cells_value_textview"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:longClickable="true"
@@ -542,6 +602,8 @@
 
                         <TextView
                             android:id="@+id/main_last_latitude_label_textview"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -553,6 +615,8 @@
 
                         <TextView
                             android:id="@+id/main_last_latitude_value_textview"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -570,6 +634,8 @@
 
                         <TextView
                             android:id="@+id/main_last_longitude_label_textview"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -581,6 +647,8 @@
 
                         <TextView
                             android:id="@+id/main_last_longitude_value_textview"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -598,6 +666,8 @@
 
                         <TextView
                             android:id="@+id/main_last_gps_accuracy_label_textview"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -609,6 +679,8 @@
 
                         <TextView
                             android:id="@+id/main_last_gps_accuracy_value_textview"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:longClickable="true"
@@ -624,6 +696,8 @@
 
                         <TextView
                             android:id="@+id/main_last_date_time_label_textview"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:clickable="true"
@@ -635,6 +709,8 @@
 
                         <TextView
                             android:id="@+id/main_last_date_time_value_textview"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:longClickable="true"
@@ -645,7 +721,7 @@
 
                 </TableLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 

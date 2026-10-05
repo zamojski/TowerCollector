@@ -6,7 +6,8 @@ package info.zamojski.soft.towercollector.utils;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -55,7 +56,7 @@ public class StorageUtils {
 
     public static void requestStorageUri(Activity activity, PendingAction action) {
         pendingAction = action;
-        AlertDialog alertDialog = new AlertDialog.Builder(activity).create();
+        AlertDialog alertDialog = new MaterialAlertDialogBuilder(activity).create();
         alertDialog.setCanceledOnTouchOutside(true);
         alertDialog.setCancelable(true);
         alertDialog.setTitle(R.string.storage_request_access_title);

@@ -19,10 +19,11 @@
         android:focusable="true">
 
         <TextView
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
             android:id="@+id/main_invalid_system_time_value_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/padding_small"
             android:text="@string/invalid_system_time"
             android:textColor="@color/text_light"
             tools:context=".MainActivity"/>

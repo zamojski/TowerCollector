@@ -31,6 +31,7 @@
 
             <TextView
                 android:id="@+id/main_stats_today_title_textview"
+                android:layout_marginStart="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/padding_small"
@@ -38,21 +39,20 @@
                 android:textStyle="bold"
                 tools:context=".MainActivity" />
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView app:cardBackgroundColor="?attr/colorSurfaceContainer" app:cardCornerRadius="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="-8dp"
-                app:cardElevation="5dp"
-                app:cardMaxElevation="8dp"
-                app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="true">
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp">
 
-                <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:stretchColumns="*"><TableRow>
+                <TableLayout android:padding="8dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:stretchColumns="*"><TableRow>
 
                     <LinearLayout android:id="@+id/main_stats_today_locations_tablerow" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="horizontal" android:clickable="true" android:focusable="true" android:onClick="displayHelpOnClick" android:padding="4dp">
 
                         <TextView
                             android:id="@+id/main_stats_today_locations_label_textview"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="140dp"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_small"
@@ -61,6 +61,8 @@
 
                         <TextView
                             android:id="@+id/main_stats_today_locations_value_textview"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_small"
@@ -72,6 +74,8 @@
 
                         <TextView
                             android:id="@+id/main_stats_today_cells_label_textview"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="140dp"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_small"
@@ -80,6 +84,8 @@
 
                         <TextView
                             android:id="@+id/main_stats_today_cells_value_textview"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_small"
@@ -91,10 +97,11 @@
 
             </TableLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:id="@+id/main_stats_local_title_textview"
+                android:layout_marginStart="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/padding_small"
@@ -102,21 +109,20 @@
                 android:textStyle="bold"
                 tools:context=".MainActivity" />
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView app:cardBackgroundColor="?attr/colorSurfaceContainer" app:cardCornerRadius="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="-8dp"
-                app:cardElevation="5dp"
-                app:cardMaxElevation="8dp"
-                app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="true">
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp">
 
-                <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:stretchColumns="*"><TableRow>
+                <TableLayout android:padding="8dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:stretchColumns="*"><TableRow>
 
                     <LinearLayout android:id="@+id/main_stats_local_locations_tablerow" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="horizontal" android:clickable="true" android:focusable="true" android:onClick="displayHelpOnClick" android:padding="4dp">
 
                         <TextView
                             android:id="@+id/main_stats_local_locations_label_textview"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="140dp"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_small"
@@ -125,6 +131,8 @@
 
                         <TextView
                             android:id="@+id/main_stats_local_locations_value_textview"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_small"
@@ -136,6 +144,8 @@
 
                         <TextView
                             android:id="@+id/main_stats_local_cells_label_textview"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="140dp"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_small"
@@ -144,6 +154,8 @@
 
                         <TextView
                             android:id="@+id/main_stats_local_cells_value_textview"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_small"
@@ -155,10 +167,11 @@
 
             </TableLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:id="@+id/main_stats_global_title_textview"
+                android:layout_marginStart="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/padding_small"
@@ -166,21 +179,20 @@
                 android:textStyle="bold"
                 tools:context=".MainActivity" />
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView app:cardBackgroundColor="?attr/colorSurfaceContainer" app:cardCornerRadius="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="-8dp"
-                app:cardElevation="5dp"
-                app:cardMaxElevation="8dp"
-                app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="true">
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp">
 
-                <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:stretchColumns="*"><TableRow>
+                <TableLayout android:padding="8dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:stretchColumns="*"><TableRow>
 
                     <LinearLayout android:id="@+id/main_stats_global_locations_tablerow" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="horizontal" android:clickable="true" android:focusable="true" android:onClick="displayHelpOnClick" android:padding="4dp">
 
                         <TextView
                             android:id="@+id/main_stats_global_locations_label_textview"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="140dp"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_small"
@@ -189,6 +201,8 @@
 
                         <TextView
                             android:id="@+id/main_stats_global_locations_value_textview"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_small"
@@ -200,6 +214,8 @@
 
                         <TextView
                             android:id="@+id/main_stats_global_cells_label_textview"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="140dp"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_small"
@@ -208,6 +224,8 @@
 
                         <TextView
                             android:id="@+id/main_stats_global_cells_value_textview"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_small"
@@ -219,10 +237,11 @@
 
             </TableLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:id="@+id/main_stats_to_upload_title_textview"
+                android:layout_marginStart="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/padding_small"
@@ -230,21 +249,20 @@
                 android:textStyle="bold"
                 tools:context=".MainActivity" />
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView app:cardBackgroundColor="?attr/colorSurfaceContainer" app:cardCornerRadius="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="-8dp"
-                app:cardElevation="5dp"
-                app:cardMaxElevation="8dp"
-                app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="true">
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp">
 
-                <TableLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:stretchColumns="*"><TableRow>
+                <TableLayout android:padding="8dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:stretchColumns="*"><TableRow>
 
                     <LinearLayout android:id="@+id/main_stats_to_upload_ocid_locations_tablerow" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="horizontal" android:clickable="true" android:focusable="true" android:onClick="displayHelpOnClick" android:padding="4dp">
 
                         <TextView
                             android:id="@+id/main_stats_to_upload_ocid_locations_label_textview"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="140dp"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_small"
@@ -253,6 +271,8 @@
 
                         <TextView
                             android:id="@+id/main_stats_to_upload_ocid_locations_value_textview"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_small"
@@ -264,6 +284,8 @@
 
                         <TextView
                             android:id="@+id/main_stats_to_upload_mls_locations_label_textview"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="140dp"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_small"
@@ -272,6 +294,8 @@
 
                         <TextView
                             android:id="@+id/main_stats_to_upload_mls_locations_value_textview"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_small"
@@ -283,6 +307,8 @@
 
                         <TextView
                             android:id="@+id/main_stats_to_upload_t0st_locations_label_textview"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:layout_width="140dp"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_small"
@@ -291,6 +317,8 @@
 
                         <TextView
                             android:id="@+id/main_stats_to_upload_t0st_locations_value_textview"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/padding_small"
@@ -301,7 +329,7 @@
 
             </TableLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 

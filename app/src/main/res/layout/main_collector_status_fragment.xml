@@ -11,11 +11,11 @@
     android:visibility="gone">
 
     <TextView
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
         android:id="@+id/main_collector_status_value_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/padding_small"
-        android:paddingVertical="@dimen/padding_large"
         android:textAlignment="textStart"
         android:textColor="@color/text_light"
         tools:context=".MainActivity"

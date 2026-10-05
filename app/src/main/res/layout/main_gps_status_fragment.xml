@@ -18,19 +18,21 @@
         android:focusable="true">
 
         <TextView
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
             android:id="@+id/main_gps_status_label_textview"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:padding="@dimen/padding_small"
             android:text="@string/main_gps_status_label"
             android:textColor="@color/text_light"
             tools:context=".MainActivity" />
 
         <TextView
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
             android:id="@+id/main_gps_status_value_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/padding_small"
             android:textColor="@color/text_light"
             tools:context=".MainActivity"
             tools:text="@string/status_initializing" />
