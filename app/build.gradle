@@ -102,7 +102,7 @@ android {
     }
 }
 
-def acraVersion = '5.13.1'
+def acraVersion = '5.14.2'
 def permissionsDispatcherVersion = '4.9.2'
 def markwonVersion = '4.6.2'
 
