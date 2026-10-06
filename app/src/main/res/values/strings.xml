@@ -416,6 +416,9 @@
     <string name="preferences_main_keep_screen_on_title">Keep screen on when visible</string>
     <string name="preferences_main_keep_screen_on_on_summary">Screen will be kept constantly on when app\'s main screen is displayed.</string>
     <string name="preferences_main_keep_screen_on_off_summary">Screen will be controlled by the system when app\'s main screen is displayed.</string>
+    <string name="preferences_main_show_on_lock_screen_title">Show on lock screen</string>
+    <string name="preferences_main_show_on_lock_screen_on_summary">App will be shown over the lock screen when device screen is turned on.</string>
+    <string name="preferences_main_show_on_lock_screen_off_summary">App will not be shown over the lock screen.</string>
     <string name="preferences_show_collector_status_bar_title">Show collector status bar</string>
     <string name="preferences_show_collector_status_bar_on_summary">Collector status bar will be visible.</string>
     <string name="preferences_show_collector_status_bar_off_summary">Collector status bar will be hidden.</string>

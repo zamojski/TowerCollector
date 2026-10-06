@@ -32,6 +32,13 @@ public class DisplayPreferenceFragment extends DialogEnabledPreferenceFragment i
 
         appThemePreference = findPreference(getString(R.string.preferences_app_theme_mode_key));
 
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O_MR1) {
+            Preference showOnLockScreenPref = findPreference(getString(R.string.preferences_main_show_on_lock_screen_key));
+            if (showOnLockScreenPref != null) {
+                showOnLockScreenPref.setVisible(false);
+            }
+        }
+
         setupMainKeepScreenOnDialog();
         setupNotificationSettingsLink();
     }

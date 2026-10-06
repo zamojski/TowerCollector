@@ -96,6 +96,8 @@
     <string name="preferences_main_keep_screen_on_mode_key" translatable="false">main_keep_screen_on_mode</string>
     <bool name="preferences_main_keep_screen_on_mode_default_value" translatable="false">false</bool>
     <string name="preferences_about_main_keep_screen_on_key" translatable="false">about_main_keep_screen_on</string>
+    <string name="preferences_main_show_on_lock_screen_key" translatable="false">main_show_on_lock_screen</string>
+    <bool name="preferences_main_show_on_lock_screen_default_value" translatable="false">false</bool>
     <string name="preferences_notification_settings_key" translatable="false">notification_settings</string>
 
     <string name="preferences_show_collector_status_bar_key" translatable="false">show_collector_status_bar</string>

@@ -96,6 +96,11 @@ public class PreferencesProvider {
         return value;
     }
 
+    public boolean getMainShowOnLockScreen() {
+        boolean value = booleanPreferenceProvider.getPreference(R.string.preferences_main_show_on_lock_screen_key, R.bool.preferences_main_show_on_lock_screen_default_value);
+        return value;
+    }
+
     public String getCollectorKeepScreenOnMode() {
         String value = stringPreferenceProvider.getPreference(R.string.preferences_collector_keep_screen_on_mode_key, R.string.preferences_collector_keep_screen_on_mode_default_value);
         return value;
