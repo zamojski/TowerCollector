@@ -16,13 +16,16 @@ public class BatteryUtils {
             return false;
         }
 
+        boolean isBackgroundRestricted = false;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-            return am.isBackgroundRestricted();
+            isBackgroundRestricted = am != null && am.isBackgroundRestricted();
         }
 
         PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-        return (pm != null && !pm.isIgnoringBatteryOptimizations(context.getPackageName()));
+        boolean isIgnoringOptimizations = pm != null && pm.isIgnoringBatteryOptimizations(context.getPackageName());
+
+        return isBackgroundRestricted || !isIgnoringOptimizations;
     }
 
     public static boolean isPowerSaveModeEnabled(Context context) {
