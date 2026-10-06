@@ -1,6 +1,21 @@
 {
   "Entries": [
     {
+      "VersionCode": 3000032,
+      "Title": "Changes in version 3.0.0",
+      "Description": "A massive application interface upgrade has come! Latest design guidelines, new features and requested improvements are available.\n\nIn you encounter any issues or glitches feel free to reach me on email or GitHub - links are in the app preferences!",
+      "Messages": [
+        "Align app look and feel to latest Material Design 3 guidelines.",
+        "Add support for landscape orientation and screen rotation.",
+        "Add option to follow system theme and react to system changes.",
+        "Apply app theme without restarting the app.",
+        "Add option to show the app on the lock screen (like navigation apps).",
+        "Improve support for resizing the app in split-screen mode.",
+        "Fix Optimized background battery usage not detected correctly.",
+        "Update external libraries."
+      ]
+    },
+    {
       "VersionCode": 2190231,
       "Title": "Changes in version 2.19.2",
       "Messages": [
@@ -52,15 +67,6 @@
       "Title": "Changes in version 2.17.3",
       "Messages": [
         "Update background location permission rationale to satisfy Google Play Prominent Disclosure requirement."
-      ]
-    },
-    {
-      "VersionCode": 2170221,
-      "Title": "Changes in version 2.17.2",
-      "Messages": [
-        "Fix 'Unknown' network type not handled correctly when uploading measurements to BeaconDB.",
-        "Improve compatibility with Android 16.",
-        "Update translations."
       ]
     }
   ]

@@ -1,0 +1,8 @@
+- Align app look and feel to latest Material Design 3 guidelines.
+- Add support for landscape orientation and screen rotation.
+- Add option to follow system theme and react to system changes.
+- Apply app theme without restarting the app.
+- Add option to show the app on the lock screen (like navigation apps).
+- Improve support for resizing the app in split-screen mode.
+- Fix Optimized background battery usage not detected correctly.
+- Update external libraries.
