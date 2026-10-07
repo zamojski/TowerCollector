@@ -16,19 +16,29 @@ import info.zamojski.soft.towercollector.providers.ICellUtils;
 
 public class CsvExportFormatter extends CsvFormatter {
 
-    private static final NumberFormat gpsDoubleFormatter;
-    private static final SimpleDateFormat exportDateFormatter;
+    private static final ThreadLocal<NumberFormat> gpsDoubleFormatter = new ThreadLocal<NumberFormat>() {
+        @Override
+        protected NumberFormat initialValue() {
+            NumberFormat format = NumberFormat.getNumberInstance(LOCALE);
+            format.setGroupingUsed(false);
+            format.setMinimumFractionDigits(0);
+            format.setMaximumFractionDigits(2);
+            return format;
+        }
+    };
+    private static final ThreadLocal<SimpleDateFormat> exportDateFormatter = new ThreadLocal<SimpleDateFormat>() {
+        @Override
+        protected SimpleDateFormat initialValue() {
+            SimpleDateFormat format = new SimpleDateFormat("\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\"", LOCALE);
+            format.setTimeZone(TimeZone.getTimeZone("UTC"));
+            return format;
+        }
+    };
 
     private static final ICellUtils cellUtils;
 
     static {
-        gpsDoubleFormatter = NumberFormat.getNumberInstance(LOCALE);
-        gpsDoubleFormatter.setGroupingUsed(false);
-        gpsDoubleFormatter.setMinimumFractionDigits(0);
-        gpsDoubleFormatter.setMaximumFractionDigits(2);
         cellUtils = new GeneralCellUtils();
-        exportDateFormatter = new SimpleDateFormat("\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\"", LOCALE);
-        exportDateFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
     }
 
     @Override
@@ -188,7 +198,7 @@ public class CsvExportFormatter extends CsvFormatter {
     }
 
     private String formatGpsValue(double value) {
-        return gpsDoubleFormatter.format(value);
+        return gpsDoubleFormatter.get().format(value);
     }
 
     private String formatAsuSignal(int asu) {
@@ -208,6 +218,6 @@ public class CsvExportFormatter extends CsvFormatter {
     }
 
     private String formatDate(long timestamp) {
-        return exportDateFormatter.format(new Date(timestamp));
+        return exportDateFormatter.get().format(new Date(timestamp));
     }
 }

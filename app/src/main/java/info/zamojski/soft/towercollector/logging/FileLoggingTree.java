@@ -33,7 +33,12 @@ public class FileLoggingTree extends Timber.DebugTree {
     private static final int DISABLED = 0;
     private static final int FILE_EXISTENCE_CHECK_INTERVAL = 25;
 
-    private final static SimpleDateFormat shortDateFormat = new SimpleDateFormat("MM-dd-HH:mm:ss.SSS", new Locale("en"));
+    private final static ThreadLocal<SimpleDateFormat> shortDateFormat = new ThreadLocal<SimpleDateFormat>() {
+        @Override
+        protected SimpleDateFormat initialValue() {
+            return new SimpleDateFormat("MM-dd-HH:mm:ss.SSS", new Locale("en"));
+        }
+    };
 
     private DocumentFile logFile;
     private OutputStreamWriter osw;
@@ -78,7 +83,7 @@ public class FileLoggingTree extends Timber.DebugTree {
                     reinitialize();
                 }
             }
-            osw.write(String.format(Locale.ENGLISH, "%s %s/%s(%5d:%5d): %s\r\n", shortDateFormat.format(new Date()), LEVELS[priority], tag, Process.myPid(), Process.myTid(), message));
+            osw.write(String.format(Locale.ENGLISH, "%s %s/%s(%5d:%5d): %s\r\n", shortDateFormat.get().format(new Date()), LEVELS[priority], tag, Process.myPid(), Process.myTid(), message));
             osw.flush();
         } catch (Exception ex) {
             Log.e(TAG, "log(): Failed to write log file", ex);

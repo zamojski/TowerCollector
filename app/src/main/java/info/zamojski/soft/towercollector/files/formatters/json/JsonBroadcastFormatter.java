@@ -20,14 +20,18 @@ import info.zamojski.soft.towercollector.providers.ICellUtils;
 
 public class JsonBroadcastFormatter extends JsonFormatterBase implements IJsonFormatter {
 
-    private static final SimpleDateFormat exportDateFormatter;
+    private static final ThreadLocal<SimpleDateFormat> exportDateFormatter = new ThreadLocal<SimpleDateFormat>() {
+        @Override
+        protected SimpleDateFormat initialValue() {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", LOCALE);
+            format.setTimeZone(TimeZone.getTimeZone("UTC"));
+            return format;
+        }
+    };
 
     private static final ICellUtils cellUtils;
 
     static {
-        exportDateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", LOCALE);
-        exportDateFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
-
         cellUtils = new GeneralCellUtils();
     }
 
@@ -105,7 +109,7 @@ public class JsonBroadcastFormatter extends JsonFormatterBase implements IJsonFo
     }
 
     private String formatDate(long timestamp) {
-        return exportDateFormatter.format(new Date(timestamp));
+        return exportDateFormatter.get().format(new Date(timestamp));
     }
 
     private Object formatNullable(int value, int invalid) {

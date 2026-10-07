@@ -25,32 +25,48 @@ public class KmlExportFormatter implements IKmlFormatter {
 
     private static final Locale LOCALE = Locale.ENGLISH;
 
-    private static final NumberFormat coordsDoubleFormatter;
-    private static final NumberFormat gpsDoubleFormatter;
-    private static final SimpleDateFormat exportDateFormatter;
+    private static final ThreadLocal<NumberFormat> coordsDoubleFormatter = new ThreadLocal<NumberFormat>() {
+        @Override
+        protected NumberFormat initialValue() {
+            NumberFormat format = NumberFormat.getNumberInstance(LOCALE);
+            format.setGroupingUsed(false);
+            format.setMinimumFractionDigits(8);
+            format.setMaximumFractionDigits(12);
+            return format;
+        }
+    };
+    private static final ThreadLocal<NumberFormat> gpsDoubleFormatter = new ThreadLocal<NumberFormat>() {
+        @Override
+        protected NumberFormat initialValue() {
+            NumberFormat format = NumberFormat.getNumberInstance(LOCALE);
+            format.setGroupingUsed(false);
+            format.setMinimumFractionDigits(0);
+            format.setMaximumFractionDigits(2);
+            return format;
+        }
+    };
+    private static final ThreadLocal<SimpleDateFormat> exportDateFormatter = new ThreadLocal<SimpleDateFormat>() {
+        @Override
+        protected SimpleDateFormat initialValue() {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", LOCALE);
+            format.setTimeZone(TimeZone.getTimeZone("UTC"));
+            return format;
+        }
+    };
 
-    protected static final NumberFormat intFormatter;
+    protected static final ThreadLocal<NumberFormat> intFormatter = new ThreadLocal<NumberFormat>() {
+        @Override
+        protected NumberFormat initialValue() {
+            NumberFormat format = NumberFormat.getNumberInstance(LOCALE);
+            format.setParseIntegerOnly(true);
+            format.setGroupingUsed(false);
+            return format;
+        }
+    };
 
     private static final ICellUtils cellUtils;
 
     static {
-        coordsDoubleFormatter = NumberFormat.getNumberInstance(LOCALE);
-        coordsDoubleFormatter.setGroupingUsed(false);
-        coordsDoubleFormatter.setMinimumFractionDigits(8);
-        coordsDoubleFormatter.setMaximumFractionDigits(12);
-
-        gpsDoubleFormatter = NumberFormat.getNumberInstance(LOCALE);
-        gpsDoubleFormatter.setGroupingUsed(false);
-        gpsDoubleFormatter.setMinimumFractionDigits(0);
-        gpsDoubleFormatter.setMaximumFractionDigits(2);
-
-        intFormatter = NumberFormat.getNumberInstance(LOCALE);
-        intFormatter.setParseIntegerOnly(true);
-        intFormatter.setGroupingUsed(false);
-
-        exportDateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", LOCALE);
-        exportDateFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
-
         cellUtils = new GeneralCellUtils();
     }
 
@@ -190,11 +206,11 @@ public class KmlExportFormatter implements IKmlFormatter {
     }
 
     private String formatCoordinate(double value) {
-        return coordsDoubleFormatter.format(value);
+        return coordsDoubleFormatter.get().format(value);
     }
 
     private String formatGpsValue(double value) {
-        return gpsDoubleFormatter.format(value);
+        return gpsDoubleFormatter.get().format(value);
     }
 
     private String formatDbmSignal(int dbm) {
@@ -205,14 +221,14 @@ public class KmlExportFormatter implements IKmlFormatter {
     }
 
     private String formatDate(long timestamp) {
-        return exportDateFormatter.format(new Date(timestamp));
+        return exportDateFormatter.get().format(new Date(timestamp));
     }
 
     private String formatInt(int value) {
-        return intFormatter.format(value);
+        return intFormatter.get().format(value);
     }
 
     private String formatLong(long value) {
-        return intFormatter.format(value);
+        return intFormatter.get().format(value);
     }
 }

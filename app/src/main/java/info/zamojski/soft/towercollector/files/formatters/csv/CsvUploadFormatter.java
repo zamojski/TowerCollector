@@ -18,13 +18,18 @@ import info.zamojski.soft.towercollector.utils.StringUtils;
 public class CsvUploadFormatter extends CsvFormatter {
 
     private static final ICellUtils cellUtils;
-    private static final SimpleDateFormat uploadDateFormatter;
+    private static final ThreadLocal<SimpleDateFormat> uploadDateFormatter = new ThreadLocal<SimpleDateFormat>() {
+        @Override
+        protected SimpleDateFormat initialValue() {
+            SimpleDateFormat format = new SimpleDateFormat("\"yyyy-MM-dd HH:mm:ss.SSS'Z'\"", LOCALE);
+            format.setTimeZone(TimeZone.getTimeZone("UTC"));
+            return format;
+        }
+    };
 
     static {
         cellUtils = new OpenCellIdCellUtils();
         deviceName = StringUtils.substring(deviceName, 0, 50);
-        uploadDateFormatter = new SimpleDateFormat("\"yyyy-MM-dd HH:mm:ss.SSS'Z'\"", LOCALE);
-        uploadDateFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
     }
 
     @Override
@@ -145,6 +150,6 @@ public class CsvUploadFormatter extends CsvFormatter {
     }
 
     private String formatDate(long timestamp) {
-        return uploadDateFormatter.format(new Date(timestamp));
+        return uploadDateFormatter.get().format(new Date(timestamp));
     }
 }
