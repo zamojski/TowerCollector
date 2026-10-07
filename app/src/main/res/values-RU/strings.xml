@@ -527,4 +527,8 @@
     <string name="preferences_t0st_contributor_anonymous_on_summary">Анонимный вклад будет использован.</string>
     <string name="preferences_t0st_contributor_anonymous_off_summary">Будет использовано имя автора.</string>
     <string name="main_map_share_button">Поделиться координатами</string>
+    <string name="preferences_main_show_on_lock_screen_title">Отображать на экране блокировки</string>
+    <string name="preferences_main_show_on_lock_screen_on_summary">Приложение будет отображаться поверх экрана блокировки, когда экран устройства включен.</string>
+    <string name="preferences_main_show_on_lock_screen_off_summary">Приложение не будет отображаться поверх экрана блокировки.</string>
+    <string name="preferences_app_theme_mode_system">Система</string>
 </resources>
