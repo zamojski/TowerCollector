@@ -154,10 +154,33 @@ public class CollectorService extends Service {
     public void onCreate() {
         super.onCreate();
         Timber.d("onCreate(): Creating service");
+
+        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        boolean hideNotification = MyApplication.getPreferencesProvider().getHideCollectorNotification();
+        notificationHelper = new CollectorNotificationHelper(this, hideNotification);
+
+        // start as foreground service immediately to prevent ForegroundServiceDidNotStartInTimeException
+        Notification notification = notificationHelper.createNotification(notificationManager, getGpsStatusNotificationText(getGpsStatus()));
+        try {
+            if (PermissionUtils.isForegroundServicePermissionAware()) {
+                startForeground(NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
+            } else {
+                startForeground(NOTIFICATION_ID, notification);
+            }
+            isCreatedSuccessfully = true;
+        } catch (IllegalStateException ex) {
+            Timber.e(ex, "onCreate(): Failed to start foreground service");
+            stopSelf();
+            return;
+        } catch (SecurityException ex) {
+            Timber.e(ex, "onCreate(): Security exception when starting foreground service");
+            stopSelf();
+            return;
+        }
+
         MyApplication.startBackgroundTask(this);
         // get managers
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         TelephonyManager defaultTelephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         if (MobileUtils.isApi24MultiSimCompatible()) { // multi-sim, multiple listeners
             try {
@@ -188,10 +211,14 @@ public class CollectorService extends Service {
             Timber.d("onCreate(): Single SIM - adding default subscription");
             telephonyTriples.add(new TelephonyTriple(defaultTelephonyManager));
         }
-        boolean hideNotification = MyApplication.getPreferencesProvider().getHideCollectorNotification();
-        notificationHelper = new CollectorNotificationHelper(this, hideNotification);
-        // create notification
-        startStats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                startStats = MeasurementsDatabase.getInstance(MyApplication.getApplication()).getMeasurementsStatistics();
+            }
+        }).start();
+
         startTime = lastLocationObtainedTime = System.currentTimeMillis();
         EventBus.getDefault().register(this);
         // register receiver
@@ -199,22 +226,6 @@ public class CollectorService extends Service {
         registerReceiver(batteryStatusBroadcastReceiver, new IntentFilter(Intent.ACTION_BATTERY_LOW));
         registerReceiver(locationModeOrProvidersChanged, new IntentFilter(LocationManager.MODE_CHANGED_ACTION));
         registerReceiver(locationModeOrProvidersChanged, new IntentFilter(LocationManager.PROVIDERS_CHANGED_ACTION));
-        Notification notification = notificationHelper.createNotification(notificationManager, getGpsStatusNotificationText(getGpsStatus()));
-        // start as foreground service to prevent from killing
-        try {
-            if (PermissionUtils.isForegroundServicePermissionAware()) {
-                startForeground(NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
-            } else {
-                startForeground(NOTIFICATION_ID, notification);
-            }
-            isCreatedSuccessfully = true;
-        } catch (IllegalStateException ex) {
-            Timber.e(ex, "onCreate(): Failed to start foreground service");
-            stopSelf();
-        } catch (SecurityException ex) {
-            Timber.e(ex, "onCreate(): Security exception when starting foreground service");
-            stopSelf();
-        }
     }
 
     @Override
