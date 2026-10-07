@@ -12,6 +12,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -135,38 +136,35 @@ public class NetMonsterMeasurementParser extends MeasurementParser {
     }
 
     private void removeDuplicatedCells(List<ICell> cells) {
-        List<ICell> cellsToRemove = new ArrayList<>();
         Set<String> uniqueCellKeys = new HashSet<>();
 
-        for (ICell cell : cells) {
+        Iterator<ICell> iterator = cells.iterator();
+        while (iterator.hasNext()) {
+            ICell cell = iterator.next();
             if (cell == null)
                 continue;
             String key = cellConverter.createCellKey(cell);
             if (uniqueCellKeys.contains(key)) {
                 Timber.d("removeDuplicatedCells(): Remove duplicated cell: %s", key);
-                cellsToRemove.add(cell);
+                iterator.remove();
             } else {
                 uniqueCellKeys.add(key);
             }
         }
-
-        cells.removeAll(cellsToRemove);
     }
 
     private void removeInvalidCells(List<ICell> cells) {
-        List<ICell> cellsToRemove = new ArrayList<>();
-
-        for (ICell cell : cells) {
+        Iterator<ICell> iterator = cells.iterator();
+        while (iterator.hasNext()) {
+            ICell cell = iterator.next();
             if (cell == null)
                 continue;
             if (!cellValidator.isValid(cell)) {
                 // don't try to create neighboring cells because this may be even more unreliable than on older API
                 Timber.d("removeInvalidCells(): Cell invalid: %s", cell);
-                cellsToRemove.add(cell);
+                iterator.remove();
             }
         }
-
-        cells.removeAll(cellsToRemove);
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)

@@ -16,6 +16,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -156,23 +157,22 @@ public class LegacyMeasurementParser extends MeasurementParser {
     }
 
     private void removeDuplicatedNeighbors(List<NeighboringCellInfo> neighboringCells, Cell mainCell) {
-        List<NeighboringCellInfo> cellsToRemove = new ArrayList<NeighboringCellInfo>();
         Set<String> uniqueCellKeys = new HashSet<String>();
 
         uniqueCellKeys.add(createCellKey(mainCell));
-        for (NeighboringCellInfo cell : neighboringCells) {
+        Iterator<NeighboringCellInfo> iterator = neighboringCells.iterator();
+        while (iterator.hasNext()) {
+            NeighboringCellInfo cell = iterator.next();
             if (cell == null)
                 continue;
             String key = createCellKey(cell, mainCell);
             if (uniqueCellKeys.contains(key)) {
                 Timber.d("removeDuplicatedNeighbors(): Remove duplicated cell: %s", key);
-                cellsToRemove.add(cell);
+                iterator.remove();
             } else {
                 uniqueCellKeys.add(key);
             }
         }
-
-        neighboringCells.removeAll(cellsToRemove);
     }
 
     private String createCellKey(NeighboringCellInfo neighboringCell, Cell cell) {
