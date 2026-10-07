@@ -474,6 +474,17 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            if (event.getKeyCode() == KeyEvent.KEYCODE_CALL) {
+                // Prevent SecurityException in PhoneFallbackEventHandler on Android 12+
+                return true;
+            }
+        }
+        return super.dispatchKeyEvent(event);
+    }
+
+    @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_MENU) {
             if (event.getAction() == KeyEvent.ACTION_UP && mainMenu != null) {

@@ -28,6 +28,17 @@ public class PreferencesActivity extends AppCompatActivity implements Preference
     private static final String TITLE_TAG = "PREFERENCES_ACTIVITY_TITLE";
 
     @Override
+    public boolean dispatchKeyEvent(android.view.KeyEvent event) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            if (event.getKeyCode() == android.view.KeyEvent.KEYCODE_CALL) {
+                // Prevent SecurityException in PhoneFallbackEventHandler on Android 12+
+                return true;
+            }
+        }
+        return super.dispatchKeyEvent(event);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(MyApplication.getCurrentAppTheme());
         super.onCreate(savedInstanceState);
