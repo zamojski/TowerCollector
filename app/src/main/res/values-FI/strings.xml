@@ -527,4 +527,8 @@
     <string name="preferences_t0st_contributor_anonymous_on_summary">Anonyymiä vastausta käytetään.</string>
     <string name="preferences_t0st_contributor_anonymous_off_summary">Avustajanimeä käytetään.</string>
     <string name="main_map_share_button">Jaa koordinaatit</string>
+    <string name="preferences_main_show_on_lock_screen_title">Näytä lukitusnäytöllä</string>
+    <string name="preferences_main_show_on_lock_screen_on_summary">Sovellus näkyy lukitusnäytöllä, kun laitteen näyttö on päällä.</string>
+    <string name="preferences_main_show_on_lock_screen_off_summary">Sovellusta ei näytetä lukitusnäytöllä.</string>
+    <string name="preferences_app_theme_mode_system">Järjestelmä</string>
 </resources>

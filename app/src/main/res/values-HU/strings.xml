@@ -527,4 +527,8 @@
     <string name="preferences_t0st_contributor_anonymous_on_summary">A névtelen hozzászólást fogjuk felhasználni.</string>
     <string name="preferences_t0st_contributor_anonymous_off_summary">A közreműködő neve lesz használva.</string>
     <string name="main_map_share_button">Koordináták megosztása</string>
+    <string name="preferences_main_show_on_lock_screen_title">Megjelenítés a zárolási képernyőn</string>
+    <string name="preferences_main_show_on_lock_screen_on_summary">Az alkalmazás a lezárási képernyőn jelenik meg, amikor az eszköz képernyője be van kapcsolva.</string>
+    <string name="preferences_main_show_on_lock_screen_off_summary">Az alkalmazás nem jelenik meg a lezárási képernyőn.</string>
+    <string name="preferences_app_theme_mode_system">Rendszer</string>
 </resources>

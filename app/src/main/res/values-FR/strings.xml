@@ -527,4 +527,8 @@
     <string name="preferences_t0st_contributor_anonymous_on_summary">La contribution anonyme sera utilisée.</string>
     <string name="preferences_t0st_contributor_anonymous_off_summary">Le nom du contributeur sera utilisé.</string>
     <string name="main_map_share_button">Partager les coordonnées</string>
+    <string name="preferences_main_show_on_lock_screen_title">Afficher sur l\'écran de verrouillage</string>
+    <string name="preferences_main_show_on_lock_screen_on_summary">L\'application s\'affichera par-dessus l\'écran de verrouillage lorsque l\'écran de l\'appareil sera allumé.</string>
+    <string name="preferences_main_show_on_lock_screen_off_summary">L\'application ne s\'affichera pas sur l\'écran de verrouillage.</string>
+    <string name="preferences_app_theme_mode_system">Système</string>
 </resources>

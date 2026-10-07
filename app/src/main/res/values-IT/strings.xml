@@ -527,4 +527,8 @@
     <string name="preferences_t0st_contributor_anonymous_on_summary">Il contributo anonimo verrà utilizzato.</string>
     <string name="preferences_t0st_contributor_anonymous_off_summary">Verrà utilizzato il nome del collaboratore.</string>
     <string name="main_map_share_button">Condividi le coordinate</string>
+    <string name="preferences_main_show_on_lock_screen_title">Mostra sulla schermata di blocco</string>
+    <string name="preferences_main_show_on_lock_screen_on_summary">L\'app verrà visualizzata sopra la schermata di blocco quando lo schermo del dispositivo viene acceso.</string>
+    <string name="preferences_main_show_on_lock_screen_off_summary">L\'app non verrà visualizzata sulla schermata di blocco.</string>
+    <string name="preferences_app_theme_mode_system">Sistema</string>
 </resources>
