@@ -7,7 +7,11 @@ package info.zamojski.soft.towercollector.tasks;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import info.zamojski.soft.towercollector.MyApplication;
 import info.zamojski.soft.towercollector.io.network.UpdateClient;
@@ -17,26 +21,48 @@ import info.zamojski.soft.towercollector.parsers.update.UpdateFeedParser;
 import info.zamojski.soft.towercollector.updater.UpdaterNotificationHelper;
 import timber.log.Timber;
 
-public class UpdateCheckAsyncTask extends AsyncTask<String, Void, UpdateInfo> {
+public class UpdateCheckAsyncTask {
 
     public static final String TASK_FULL_NAME = UpdateCheckAsyncTask.class.getCanonicalName();
     public static final String INTENT_KEY_UPDATE_INFO = UpdateInfo.class.getCanonicalName();
 
     public static final int NOTIFICATION_ID = 'A';
 
+    /**
+     * Shared for the lifetime of the application process. Each submitted update check is queued
+     * independently and this executor is intentionally not shut down by an individual check.
+     */
+    private static final ExecutorService APPLICATION_PROCESS_EXECUTOR = Executors.newSingleThreadExecutor();
+
     private UpdaterNotificationHelper notificationHelper;
 
-    private Context context;
-    private int currentVersion;
-    private UpdateFeedParser responseParser;
+    private final Context context;
+    private final int currentVersion;
+    private final UpdateFeedParser responseParser;
+    private final Handler mainHandler;
 
     public UpdateCheckAsyncTask(Context context, int currentVersion) {
         this.context = context;
         this.currentVersion = currentVersion;
         responseParser = new UpdateFeedParser();
+        mainHandler = new Handler(Looper.getMainLooper());
     }
 
-    @Override
+    public void submit(final String updateFeedUrl) {
+        APPLICATION_PROCESS_EXECUTOR.execute(new Runnable() {
+            @Override
+            public void run() {
+                final UpdateInfo updateInfo = doInBackground(updateFeedUrl);
+                mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        onPostExecute(updateInfo);
+                    }
+                });
+            }
+        });
+    }
+
     protected UpdateInfo doInBackground(String... urls) {
         // get update feed url
         String updateFeedUrl = urls[0];
@@ -62,7 +88,6 @@ public class UpdateCheckAsyncTask extends AsyncTask<String, Void, UpdateInfo> {
         return null;
     }
 
-    @Override
     protected void onPostExecute(UpdateInfo updateInfo) {
         if (updateInfo == null)
             return;
