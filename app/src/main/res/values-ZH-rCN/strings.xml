@@ -527,4 +527,8 @@
     <string name="preferences_t0st_contributor_anonymous_on_summary">我们将使用匿名捐款。</string>
     <string name="preferences_t0st_contributor_anonymous_off_summary">将会使用贡献者的姓名。</string>
     <string name="main_map_share_button">分享坐标</string>
+    <string name="preferences_main_show_on_lock_screen_title">在锁屏上显示</string>
+    <string name="preferences_main_show_on_lock_screen_on_summary">当设备屏幕亮起时，应用程序将显示在锁屏界面之上。</string>
+    <string name="preferences_main_show_on_lock_screen_off_summary">应用不会在锁屏界面上显示。</string>
+    <string name="preferences_app_theme_mode_system">系统</string>
 </resources>
