@@ -75,10 +75,9 @@ public class StorageUtils {
             try {
                 activity.startActivityForResult(intent, OPEN_DOCUMENT_ACTIVITY_RESULT);
             } catch (Exception ex) {
+                pendingAction = PendingAction.NONE;
                 Toast.makeText(activity, activity.getString(R.string.system_toast_no_handler_for_operation)
                         + "\n\n" + activity.getString(R.string.system_toast_no_handler_for_document_picker), Toast.LENGTH_LONG).show();
-                Throwable wrappedEx = new RuntimeException("No handler to select storage folder", ex);
-                MyApplication.handleSilentException(wrappedEx);
             }
         });
         alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, activity.getString(R.string.dialog_cancel), (dialog, which) -> {
