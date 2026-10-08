@@ -5,5 +5,6 @@
 <resources>
 
     <attr name="map_overlay_background" format="color|reference"/>
+    <attr name="map_dot_stroke" format="color|reference"/>
 
 </resources>

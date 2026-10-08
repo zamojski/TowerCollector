@@ -6,12 +6,12 @@
     android:shape="oval">
     <gradient
         android:centerX="-1"
-        android:endColor="#9900ff00"
-        android:startColor="#99ff0000"
+        android:endColor="#ff00ff00"
+        android:startColor="#ffff0000"
         android:type="sweep" />
     <stroke
         android:width="1.5dp"
-        android:color="?attr/colorOnSurfaceVariant" />
+        android:color="?attr/map_dot_stroke" />
     <size
         android:width="12dp"
         android:height="12dp" />

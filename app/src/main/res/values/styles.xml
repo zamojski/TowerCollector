@@ -18,6 +18,7 @@
         <item name="snackbarStyle">@style/Widget.Material3.Snackbar</item>
         <item name="snackbarButtonStyle">@style/Widget.App.SnackbarButton.Light</item>
         <item name="map_overlay_background">@color/icon_background_light</item>
+        <item name="map_dot_stroke">@android:color/black</item>
     </style>
 
     <style name="LightPopupTheme" parent="ThemeOverlay.Material3.Light">
@@ -43,6 +44,7 @@
         <item name="snackbarStyle">@style/Widget.Material3.Snackbar</item>
         <item name="snackbarButtonStyle">@style/Widget.App.SnackbarButton.Dark</item>
         <item name="map_overlay_background">@color/icon_background_dark</item>
+        <item name="map_dot_stroke">@android:color/white</item>
     </style>
 
     <style name="DarkPopupTheme" parent="ThemeOverlay.Material3.Dark">
