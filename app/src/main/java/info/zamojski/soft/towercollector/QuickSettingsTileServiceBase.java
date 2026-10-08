@@ -4,6 +4,7 @@
 
 package info.zamojski.soft.towercollector;
 
+import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.drawable.Icon;
@@ -53,7 +54,18 @@ public abstract class QuickSettingsTileServiceBase extends TileService {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(SplashActivity.SHORTCUT_ACTION, shortcutAction);
         intent.putExtra(SplashActivity.ACTION_SOURCE, IntentSource.QuickSettingsTile.name());
-        startActivity(intent);
+        
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            PendingIntent pendingIntent = PendingIntent.getActivity(
+                    this,
+                    0,
+                    intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+            );
+            startActivityAndCollapse(pendingIntent);
+        } else {
+            startActivityAndCollapse(intent);
+        }
     }
 
     protected static void requestTileUpdate(Class<?> clazz, boolean isActive) {
