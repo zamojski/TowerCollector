@@ -122,7 +122,11 @@ public class UploaderWorker extends Worker implements IProgressListener {
             } else {
                 foregroundInfo = new ForegroundInfo(NOTIFICATION_ID, notification);
             }
-            setForegroundAsync(foregroundInfo);
+            try {
+                setForegroundAsync(foregroundInfo).get();
+            } catch (Exception ex) {
+                Timber.e(ex, "doWork(): Failed to start foreground service for worker (likely background restriction)");
+            }
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 UploaderQuickSettingsTileService.requestTileUpdate(true);

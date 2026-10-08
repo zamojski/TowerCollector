@@ -105,6 +105,7 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
             ApkUtils.reportShortcutUsage(context, R.string.shortcut_id_collector_toggle);
         } catch (IllegalStateException ex) {
             Timber.e(ex, "startCollectorServiceInternal(): Failed to start foreground service");
+            showCollectorStartFailed(context);
         } catch (SecurityException ex) {
             Timber.e(ex, "startCollectorServiceInternal(): Security exception starting collector service");
             showCollectorPermissionsDenied(context);
@@ -230,5 +231,10 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
     private void showGpsNotAvailable(Context context) {
         Timber.d("showGpsNotAvailable(): Cannot start collector because GPS is not available");
         Toast.makeText(context, R.string.collector_gps_unavailable, Toast.LENGTH_LONG).show();
+    }
+
+    private void showCollectorStartFailed(Context context) {
+        Timber.d("showCollectorStartFailed(): Showing fallback toast because background start was blocked");
+        Toast.makeText(context, R.string.collector_start_failed, Toast.LENGTH_LONG).show();
     }
 }
