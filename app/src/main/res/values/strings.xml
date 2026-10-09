@@ -115,7 +115,8 @@
     <string name="collector_notification_last_measurement">Last cells:\n<xliff:g id="cell_identifier">%s</xliff:g></string>
     <string name="collector_notification_status">GPS status: <xliff:g id="status">%s</xliff:g>.</string>
     <string name="collector_gps_unavailable">Cannot start collecting because GPS is unavailable.</string>
-    <string name="collector_start_failed">Collector start blocked by Android background restrictions.</string>
+    <string name="notification_collector_start_failed_title">Collector start blocked</string>
+    <string name="notification_collector_start_failed_text">Tap to start collecting (background start prevented by Android).</string>
     <string name="uploader_notification_channel_name">Uploader</string>
     <string name="uploader_notification_title">Uploading</string>
     <string name="uploader_notification_progress_info">Uploaded <xliff:g id="progress_in_percent">%d</xliff:g>%%.</string>

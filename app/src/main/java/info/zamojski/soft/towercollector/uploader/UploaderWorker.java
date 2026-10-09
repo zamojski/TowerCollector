@@ -126,6 +126,7 @@ public class UploaderWorker extends Worker implements IProgressListener {
                 setForegroundAsync(foregroundInfo).get();
             } catch (Exception ex) {
                 Timber.e(ex, "doWork(): Failed to start foreground service for worker (likely background restriction)");
+                notificationManager.notify(NOTIFICATION_ID, notification);
             }
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

@@ -105,7 +105,7 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
             ApkUtils.reportShortcutUsage(context, R.string.shortcut_id_collector_toggle);
         } catch (IllegalStateException ex) {
             Timber.e(ex, "startCollectorServiceInternal(): Failed to start foreground service");
-            showCollectorStartFailed(context);
+            showCollectorStartFailedNotification(context, intent);
         } catch (SecurityException ex) {
             Timber.e(ex, "startCollectorServiceInternal(): Security exception starting collector service");
             showCollectorPermissionsDenied(context);
@@ -233,8 +233,34 @@ public class ExternalBroadcastReceiver extends BroadcastReceiver {
         Toast.makeText(context, R.string.collector_gps_unavailable, Toast.LENGTH_LONG).show();
     }
 
-    private void showCollectorStartFailed(Context context) {
-        Timber.d("showCollectorStartFailed(): Showing fallback toast because background start was blocked");
-        Toast.makeText(context, R.string.collector_start_failed, Toast.LENGTH_LONG).show();
+    private void showCollectorStartFailedNotification(Context context, Intent serviceIntent) {
+        Timber.d("showCollectorStartFailedNotification(): Showing fallback notification to start collector");
+        android.app.NotificationManager notificationManager = (android.app.NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        if (notificationManager == null) return;
+        
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            android.app.NotificationChannel channel = new android.app.NotificationChannel(
+                "other_notification_channel", 
+                "Other notifications", 
+                android.app.NotificationManager.IMPORTANCE_HIGH);
+            notificationManager.createNotificationChannel(channel);
+        }
+        
+        android.app.PendingIntent pendingIntent;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            pendingIntent = android.app.PendingIntent.getForegroundService(context, 100, serviceIntent, android.app.PendingIntent.FLAG_UPDATE_CURRENT | android.app.PendingIntent.FLAG_IMMUTABLE);
+        } else {
+            pendingIntent = android.app.PendingIntent.getService(context, 100, serviceIntent, android.app.PendingIntent.FLAG_UPDATE_CURRENT | android.app.PendingIntent.FLAG_IMMUTABLE);
+        }
+        
+        androidx.core.app.NotificationCompat.Builder builder = new androidx.core.app.NotificationCompat.Builder(context, "other_notification_channel")
+            .setSmallIcon(R.drawable.ic_notification)
+            .setContentTitle(context.getString(R.string.notification_collector_start_failed_title))
+            .setContentText(context.getString(R.string.notification_collector_start_failed_text))
+            .setPriority(androidx.core.app.NotificationCompat.PRIORITY_HIGH)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true);
+            
+        notificationManager.notify(1001, builder.build());
     }
 }
