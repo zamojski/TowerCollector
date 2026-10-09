@@ -1,0 +1,6 @@
+- Optimize startup time of Collector service to reduce crashes.
+- Fix quick settings tile actions crashing the app on Android 14+.
+- Show toast when the system blocks the background start action.
+- Improve contrast for dot icons on the map.
+- Improve error handling.
+- Update translations.

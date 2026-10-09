@@ -1,6 +1,18 @@
 {
   "Entries": [
     {
+      "VersionCode": 3000134,
+      "Title": "Changes in version 3.0.1",
+      "Messages": [
+        "Optimize startup time of Collector service to reduce crashes.",
+        "Fix quick settings tile actions crashing the app on Android 14+.",
+        "Show toast when the system blocks the background start action.",
+        "Improve contrast for dot icons on the map.",
+        "Improve error handling.",
+        "Update translations."
+      ]
+    },
+    {
       "VersionCode": 3000032,
       "Title": "Changes in version 3.0.0",
       "Description": "A massive application interface upgrade has come! Latest design guidelines, new features and requested improvements are available.\n\nIn you encounter any issues or glitches feel free to reach me on email or GitHub - links are in the app preferences!",
@@ -60,13 +72,6 @@
       "Title": "Changes in version 2.17.4",
       "Messages": [
         "Fix application crash on startup."
-      ]
-    },
-    {
-      "VersionCode": 2170322,
-      "Title": "Changes in version 2.17.3",
-      "Messages": [
-        "Update background location permission rationale to satisfy Google Play Prominent Disclosure requirement."
       ]
     }
   ]
