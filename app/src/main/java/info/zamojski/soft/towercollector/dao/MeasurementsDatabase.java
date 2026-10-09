@@ -12,8 +12,6 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 
-import org.acra.ACRA;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -985,7 +983,6 @@ public class MeasurementsDatabase {
         @Override
         public void onCreate(SQLiteDatabase sqliteDatabase) {
             Timber.tag(INNER_TAG).d("onCreate(): Creating db structure");
-            ACRA.getErrorReporter().putCustomData("DB_VERSION", String.valueOf(sqliteDatabase.getVersion()));
             List<ITable> tables = new ArrayList<ITable>();
             tables.add(new StatsTable());
             tables.add(new MeasurementsTable());
