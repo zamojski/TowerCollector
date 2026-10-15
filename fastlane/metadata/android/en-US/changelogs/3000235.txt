@@ -1,0 +1,2 @@
+- Show notification instead of toast when the system blocks start of action from background by an external app or shortcut.
+- Update external libraries.

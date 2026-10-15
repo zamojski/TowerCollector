@@ -1,6 +1,14 @@
 {
   "Entries": [
     {
+      "VersionCode": 3000235,
+      "Title": "Changes in version 3.0.2",
+      "Messages": [
+        "Show notification instead of toast when the system blocks start of action from background by an external app or shortcut.",
+        "Update external libraries."
+      ]
+    },
+    {
       "VersionCode": 3000134,
       "Title": "Changes in version 3.0.1",
       "Messages": [
@@ -65,13 +73,6 @@
         "Improve compatibility with Android 17 and 16.",
         "Hide 'Project support' link on Google Play's app version.",
         "Update external libraries."
-      ]
-    },
-    {
-      "VersionCode": 2170423,
-      "Title": "Changes in version 2.17.4",
-      "Messages": [
-        "Fix application crash on startup."
       ]
     }
   ]
